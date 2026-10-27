@@ -1,0 +1,10 @@
+{
+  "name": "Reportes H y S",
+  "short_name": "Reportes H y S",
+  "description": "Gestión de la Prevención de Riesgos, Higiene y Seguridad",
+  "lang": "es",
+  "start_url": "./v2.html",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#0b3b35"
+}
