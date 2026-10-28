@@ -1,0 +1,21 @@
+{
+  "id": "/Reportes-HYS/",
+  "name": "Reportes HYS - Higiene y Seguridad",
+  "short_name": "Reportes HYS",
+  "description": "Informes diarios y entrega de turno de Higiene y Seguridad",
+  "lang": "es-CL",
+  "start_url": "/Reportes-HYS/",
+  "scope": "/Reportes-HYS/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f8fc",
+  "theme_color": "#123b63",
+  "icons": [
+    {
+      "src": "/Reportes-HYS/icon-hys.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
