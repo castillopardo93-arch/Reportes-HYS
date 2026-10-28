@@ -89,6 +89,75 @@ body{background:#fff!important}
 .archive-record{padding:14px 15px;border-bottom:1px solid #e5eef8}.archive-record:last-child{border-bottom:0}.archive-filename{display:block;overflow-wrap:anywhere;margin-bottom:8px;color:#173d68;font-size:14px}
 .archive-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px;font-size:12px;color:#526f91}.archive-meta span{overflow-wrap:anywhere}.archive-empty{padding:18px;border:1px dashed #b8d2f0;border-radius:9px;background:#f8fbff;color:#456b95}.archive-empty p{margin:7px 0 0}
 @media(max-width:700px){#historial.archive-main{padding:12px}.archive-meta{grid-template-columns:1fr}.archive-record{padding:12px}}
+
+
+/* v174: adaptación móvil reforzada, sin alterar lógica de informes ni PDF */
+html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{width:100%;max-width:100%;overflow-x:hidden}
+img,canvas,video,iframe{max-width:100%}
+input,select,textarea{max-width:100%;min-width:0}
+.panel,.main,.sidepanels,#historial,.archive-record,.archive-month{min-width:0;max-width:100%}
+button,.btn,.nav{touch-action:manipulation}
+:focus-visible{outline:3px solid #75baff;outline-offset:2px}
+@media(max-width:700px){
+  html{font-size:16px;scroll-padding-top:62px}
+  body{font-size:14px}
+  .top{padding:10px 12px;gap:8px}
+  .brand{min-width:0;overflow-wrap:anywhere}
+  .topmeta{min-width:0;line-height:1.4}
+  .topmeta>span{overflow-wrap:anywhere}
+  .side{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .nav{min-height:48px;flex:0 0 auto}
+  .main{width:100%;min-width:0;padding:14px 10px 20px}
+  .pagehead{align-items:flex-start}
+  .pagehead>div:last-child{min-width:0}
+  .pagehead h1,.pagehead p{overflow-wrap:anywhere}
+  .panel{width:100%;min-width:0}
+  .field{min-width:0;width:100%}
+  .field input,.field select,.field textarea{width:100%;min-width:0;min-height:46px;font-size:16px}
+  /* Período: ambas fechas visibles en una fila; el resto sigue en una columna */
+  #inicioPanel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:10px;row-gap:12px}
+  #inicioPanel>.rangehead,#inicioPanel>.metasubhead{grid-column:1/-1}
+  #inicioPanel>.field:has(#dateFrom),#inicioPanel>.field:has(#dateTo){grid-column:span 1;min-width:0}
+  #inicioPanel>.field:has(#turnDay),#inicioPanel>.field:has(#date):not(:has(#dateFrom)),#inicioPanel>.field:has(#owner),#inicioPanel>.field:has(#shift),#inicioPanel>.field:has(#project),#inicioPanel>.field:has(#area){grid-column:1/-1}
+  #inicioPanel #dateFrom,#inicioPanel #dateTo{padding:9px 5px;letter-spacing:-.2px}
+  #inicioPanel .daybadge{width:100%;white-space:normal}
+  .section-title{align-items:flex-start}
+  .section-title>span:first-child{min-width:0;overflow-wrap:anywhere}
+  .section-title .add{max-width:100%;white-space:normal}
+  .btnrow{display:flex;flex-wrap:wrap;width:100%;gap:8px}
+  .btnrow .btn{flex:1 1 130px;min-width:0;min-height:44px;white-space:normal}
+  .footeractions{display:flex;flex-direction:column;width:100%}
+  .footeractions>.btn,.footeractions .btnrow,.footeractions .btnrow .btn{width:100%;min-height:46px}
+  .tablewrap{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .tablewrap table{min-width:600px}
+  .sidepanels{width:100%;min-width:0}
+  .upload{width:100%;max-width:100%;overflow-wrap:anywhere}
+  #historial.archive-main{width:100%;max-width:100%;padding:12px}
+  #historial.archive-main h3{align-items:flex-start}
+  .archive-month{margin:10px 0}
+  .archive-month>h3{padding:11px 12px;font-size:14px}
+  .archive-record{padding:12px}
+  .archive-filename{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
+  .archive-meta{grid-template-columns:minmax(0,1fr);gap:7px}
+  .archive-meta span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+  .archive-record .btn,.archive-record button{min-height:44px}
+  .modal{padding:0;align-items:flex-end}
+  .modalbox{width:100%;max-width:100%;max-height:90dvh;padding:16px 12px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain}
+  .modalactions{position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));padding:12px 0 calc(2px + env(safe-area-inset-bottom));margin-top:10px}
+  .modalactions .btn{min-height:46px;min-width:0}
+  .photo-viewer{padding:60px 10px calc(16px + env(safe-area-inset-bottom))}
+  .photo-viewer img{max-width:96vw;max-height:80dvh}
+}
+@media(max-width:380px){
+  #inicioPanel{column-gap:7px;padding:11px}
+  #inicioPanel .field:has(#dateFrom) input,#inicioPanel .field:has(#dateTo) input{font-size:14px;padding:8px 3px}
+  .main{padding-left:8px;padding-right:8px}
+  .nav{padding-left:9px;padding-right:9px;font-size:11px}
+  .modalactions{flex-direction:column}
+  .modalactions .btn{width:100%}
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
