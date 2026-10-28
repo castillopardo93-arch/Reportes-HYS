@@ -432,6 +432,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&photoViewer.classLi
     }
     driveStatus("Conectado a Google Drive. Cargando respaldos…");
     await listDriveBackups();
+    scheduleDriveAutoSave();
   }
   async function driveFetch(url,options={},retried=false){
     if(!driveToken)throw new Error("Google Drive no está conectado.");
@@ -537,7 +538,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&photoViewer.classLi
       }else{
         const boundary="-------ReportesHYSDriveAuto"+Date.now();
         const metadata={name:fixedName,mimeType:"application/json",description:"Respaldo automático de Reportes HYS (versión de prueba v190)"};
-        const body="--"+boundary+"\\r\\nContent-Type: application/json; charset=UTF-8\\r\\n\\r\\n"+JSON.stringify(metadata)+"\\r\\n--"+boundary+"\\r\\nContent-Type: application/json; charset=UTF-8\\r\\n\\r\\n"+content+"\\r\\n--"+boundary+"--";
+        const body="--"+boundary+"\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+JSON.stringify(metadata)+"\r\n--"+boundary+"\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+content+"\r\n--"+boundary+"--";
         const res=await driveFetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,modifiedTime",
           {method:"POST",headers:{"Content-Type":"multipart/related; boundary="+boundary},body});
         file=await res.json();
