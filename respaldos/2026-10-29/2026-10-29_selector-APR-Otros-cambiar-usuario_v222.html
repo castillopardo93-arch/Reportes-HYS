@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporte Diario Higiene y Seguridad</title>
+<style>
+:root{--navy:#123b63;--navy2:#0b3157;--blue:#1876e8;--green:#119b70;--orange:#f18717;--purple:#6850dc;--cyan:#0aa3b8;--line:#c9def5;--ink:#173d68;--muted:#617d9e;--bg:#f4f8fc}
+*{box-sizing:border-box}body{margin:0;font:13px/1.45 "Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{height:66px;background:linear-gradient(110deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:18px}.brand{display:flex;align-items:center;gap:14px;font-size:19px;font-weight:800}.shield{width:40px;height:40px;display:grid;place-items:center;font-size:25px}.topmeta{display:flex;align-items:center;gap:24px;font-weight:600}.layout{display:grid;grid-template-columns:190px minmax(460px,1fr) 256px;gap:18px;max-width:1600px;margin:auto;min-height:calc(100vh - 66px)}.side{background:linear-gradient(var(--navy),#07365f);color:#fff;padding:28px 0;display:flex;flex-direction:column;gap:8px}.nav{padding:15px 18px;color:#e8f2ff;text-decoration:none;font-weight:650;display:flex;gap:12px;align-items:center}.nav.active{background:#2879bc;border-left:4px solid #b9ddff;padding-left:14px}.nav span{font-size:19px}.sidefoot{margin-top:auto;padding:18px;font-size:11px;color:#d4e6fa}.main{padding:28px 0 24px;min-width:0}.pagehead{display:flex;align-items:center;gap:18px;margin:0 0 22px}.pagehead .bigicon{font-size:42px;color:#1d68b5}.pagehead h1{font-size:23px;margin:0 0 4px}.pagehead p{margin:0;color:#53749c;font-size:14px}.panel{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 1px #123b6308}.metaform{padding:16px;display:grid;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr));gap:14px}.metaform .field input,.metaform .field select{min-height:40px}.rangehead{grid-column:1/-1;font-weight:800;color:#1766b5;border-bottom:1px solid #e2edf9;padding-bottom:8px;margin-bottom:0}.daybadge{border:1px solid #b8d2f0;border-radius:7px;padding:10px;background:#f3f8ff;font-weight:800;color:#1766b5;min-height:40px;display:flex;align-items:center}.metasubhead{grid-column:1/-1;font-weight:800;color:#1766b5;border-bottom:1px solid #e2edf9;padding:6px 0 8px;margin-top:4px}.field label{font-weight:700;display:block;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid #b8d2f0;border-radius:7px;padding:10px;background:#fff;color:var(--ink);min-width:0}.section-title{padding:11px 16px;color:#fff;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:800}.section-title .ico{font-size:23px}.section-title .add{margin-left:auto;border:1px solid #ffffff8a;background:#ffffff20;color:white;border-radius:7px;padding:6px 10px;font-weight:700}.blue{background:linear-gradient(90deg,#1978e8,#1264d4)}.green{background:linear-gradient(90deg,#11a477,#09895f)}.orange{background:linear-gradient(90deg,#f18a17,#df6b0a)}.purple{background:linear-gradient(90deg,#7055e6,#6042d1)}.cyan{background:linear-gradient(90deg,#0da8bd,#078fa8)}.tablewrap{padding:14px 12px 12px;overflow-x:auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:11.5px}th{background:#eef5fc;text-align:left;font-weight:750;padding:10px 9px;border-top:1px solid #e0edf9;border-bottom:1px solid #e0edf9}th:first-child{border-radius:7px 0 0 0}th:last-child{border-radius:0 7px 0 0}td{padding:12px 9px;border-bottom:1px solid #e5eef8;vertical-align:middle}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:20px;padding:4px 9px;font-weight:750;white-space:nowrap}.ok{background:#d5f7e5;color:#087950}.warn{background:#fff0cb;color:#a85a00}.danger{background:#ffe0e4;color:#b42338}.pending{background:#d8f0ff;color:#076ba8}.act{border:0;background:transparent;color:#1766b5;font-size:16px;padding:3px 5px}.sidepanels{padding:22px 0 24px 0;margin-right:18px}.summary{padding:15px}.summary h3,.mini h3{margin:0 0 14px;font-size:14px;display:flex;align-items:center;gap:10px}.sumrow{display:flex;align-items:center;gap:12px;padding:8px 0;font-weight:650}.sumrow .n{margin-left:auto;border-radius:50%;color:#fff;background:#2179e8;width:27px;height:27px;display:grid;place-items:center}.sumrow:nth-of-type(3) .n{background:#109b70}.sumrow:nth-of-type(4) .n{background:#ed8214}.sumrow:nth-of-type(5) .n{background:#6b55df}.sumrow:nth-of-type(6) .n{background:#0ba3b8}.status{border-top:1px solid #d9e8f7;margin-top:12px;padding-top:14px;font-weight:700}.mini{padding:15px}.upload{border:1px dashed #a7c7ec;border-radius:9px;background:#f8fbff;text-align:center;padding:24px 12px;color:#4b77a8;margin-top:8px}.file{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #e7eef8}.file:last-child{border:0}.file small{margin-left:auto;color:#6985a6}.photo-delete{color:#dc2626!important;font-weight:900;font-size:21px;line-height:1;padding:2px 7px;border-radius:5px}.photo-delete:hover{background:#fee2e2}.historyitem{border-left:2px solid #d7e6f7;margin-left:8px;padding:0 0 14px 18px;position:relative}.historyitem:before{content:"●";position:absolute;left:-7px;top:0;color:#2874bd;background:white;font-size:12px}.historyitem small{display:block;color:#6b86a5;margin-top:3px}.footeractions{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:12px 4px}.btn{border:1px solid #b9d2ef;background:#fff;color:#145a9d;border-radius:8px;padding:11px 14px;font-weight:750}.btn.primary{background:#176df0;color:white;border-color:#176df0}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#123b63;color:#fff;padding:12px 18px;border-radius:9px;display:none;box-shadow:0 6px 25px #0002}.smallnote{color:#7089a7;font-size:11px}.modal{display:none;position:fixed;inset:0;background:#0b294c66;align-items:center;justify-content:center;padding:18px}.modalbox{background:white;border-radius:12px;padding:22px;width:min(520px,100%);box-shadow:0 20px 60px #001b3c55}.modalbox h2{margin:0 0 14px}.modalbox .field{margin-bottom:12px}.modalactions{display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:1100px){.layout{grid-template-columns:160px minmax(0,1fr)}.sidepanels{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-top:0}.main{padding-right:0}.side{grid-row:1 / span 2}.mini{min-width:0}}
+@media(max-width:700px){.metaform{grid-template-columns:1fr}.rangehead,.metasubhead{grid-column:1}.top{height:auto;min-height:62px;padding:12px 15px;flex-wrap:wrap}.brand{font-size:16px}.topmeta{font-size:11px;gap:10px}.layout{display:block}.side{display:flex;flex-direction:row;padding:0;overflow:auto;position:sticky;top:0;z-index:3}.nav{white-space:nowrap;padding:12px;font-size:12px}.nav.active{padding-left:12px;border-left:0;border-bottom:3px solid #c2e2ff}.sidefoot{display:none}.main{padding:20px 12px}.pagehead h1{font-size:20px}.pagehead .bigicon{font-size:34px}.metaform{grid-template-columns:1fr;gap:14px}.sidepanels{display:block;margin:0;padding:0 12px 18px}.tablewrap{padding:9px 8px}table{min-width:650px}.footeractions{align-items:stretch}.btnrow{width:100%}.btnrow .btn{flex:1}.footeractions>.btn{width:100%}}
+
+/* Ajustes v30: experiencia táctil y adaptable para móviles */
+@media(max-width:700px){
+  html{scroll-padding-top:112px}
+  body{font-size:14px;line-height:1.5}
+  .top{position:relative;align-items:flex-start;gap:8px}
+  .brand{gap:8px;font-size:15px}
+  .shield{width:32px;height:32px;font-size:22px}
+  .topmeta{width:100%;justify-content:space-between;gap:6px;font-size:11px;flex-wrap:wrap}
+  .layout{display:flex;flex-direction:column;min-height:0}
+  .side{order:0;position:sticky;top:0;z-index:10;box-shadow:0 3px 10px #092d4c24;gap:0;scrollbar-width:thin}
+  .nav{flex:0 0 auto;justify-content:center;min-height:48px;padding:11px 13px;font-size:12px}
+  .main{order:1;padding:16px 10px 18px}
+  .pagehead{gap:10px;margin-bottom:14px}
+  .pagehead .bigicon{font-size:30px;min-width:30px}
+  .pagehead h1{font-size:19px;line-height:1.25}
+  .pagehead p{font-size:12px}
+  .panel{border-radius:12px;margin-bottom:13px}
+  .metaform{padding:13px;gap:12px}
+  .rangehead,.metasubhead{font-size:12px}
+  .field label{font-size:13px;margin-bottom:5px}
+  .field input,.field select,.field textarea{font-size:16px;min-height:44px;padding:11px;border-radius:9px}
+  .daybadge{min-height:44px}
+  .section-title{padding:12px;font-size:13px;gap:8px;flex-wrap:wrap}
+  .section-title .ico{font-size:20px}
+  .section-title .add{min-height:38px;padding:8px 12px;font-size:13px}
+  .tablewrap{padding:8px 7px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:620px;font-size:12px}
+  th{padding:11px 8px;position:sticky;top:0}
+  td{padding:11px 8px}
+  .act{font-size:19px;padding:7px;min-width:36px;min-height:36px}
+  .footeractions{padding:8px 0;gap:8px}
+  .btnrow{gap:8px}
+  .btnrow .btn,.footeractions>.btn{min-height:44px;font-size:13px;padding:10px}
+  .sidepanels{order:2;margin:0;padding:0 10px 18px;display:flex;flex-direction:column;gap:12px}
+  .summary,.mini{padding:13px}
+  .upload{padding:18px 10px;min-height:100px}
+  .modal{padding:10px;align-items:flex-end}
+  .modalbox{width:100%;max-height:88dvh;overflow-y:auto;border-radius:16px 16px 10px 10px;padding:17px}
+  .modalbox h2{font-size:18px}
+  .modalactions{position:sticky;bottom:-17px;background:white;padding:12px 0 2px;gap:10px}
+  .modalactions .btn{min-height:44px;flex:1}
+  .toast{width:calc(100% - 24px);bottom:12px;text-align:center}
+}
+@media(max-width:380px){
+  .nav{padding:10px 9px;font-size:11px}
+  .brand{font-size:13px}
+  .topmeta{font-size:10px}
+  .footeractions .btnrow .btn{font-size:12px;padding:9px 6px}
+}
+
+.print-inicio-header{display:none}
+.print-report-title{font-size:19pt!important;text-align:center;margin:0 0 14px!important;color:#111!important}.print-observation{margin:0 0 12px!important;font-size:10.5pt!important}
+@media print{.print-inicio-header{display:block!important;margin:0 0 16px;padding:0 0 10px;border-bottom:1px solid #777}.print-inicio-header h2,.print-inicio-header .print-observation{display:none!important}.print-inicio-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.print-inicio-grid>div{break-inside:avoid}}
+.photo-label{font-size:10px;font-weight:700;margin:0 0 4px;color:#222}.photo-links img{display:block;max-width:100%;height:auto;margin:0 auto 6px}.photo-links img.print-photo{display:none!important}@media print{.photo-label{display:block!important;color:#111!important}.photo-links img.print-photo{display:block!important;max-width:100%;height:auto;break-inside:avoid;page-break-inside:avoid;margin:0 auto 6px}}.record-evidence-row td{padding:10px 12px!important;background:#f8fafc;border-top:0!important}.activity-photos-toggle{border:1px solid #c9def5;background:#fff;color:#1766b5;border-radius:7px;padding:7px 10px;font-weight:750;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left}.activity-photos-toggle .photo-count{font-size:11px;color:#617d9e;font-weight:600}.activity-photos-details[open] .activity-photos-toggle{margin-bottom:10px}.activity-photos-details:not([open]) .record-evidence{display:none}@media print{.activity-photos-toggle{display:none!important}.activity-photos-details:not([open]) .record-evidence{display:grid!important}.activity-photos-details .record-evidence{display:grid!important}}.record-evidence{display:grid;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr));gap:6px;align-items:start;width:100%}.record-evidence a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-width:0;max-width:100%;aspect-ratio:var(--photo-ratio,4/3);height:auto;overflow:hidden;background:#fff}.record-evidence img.print-photo{display:block!important;flex:none;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;margin:0}@media print{.record-evidence a{display:flex!important;width:100%;max-width:100%;height:auto;aspect-ratio:var(--photo-ratio,4/3);break-inside:avoid;page-break-inside:avoid}.record-evidence img.print-photo{display:block!important;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}}.record-attachment-note{font-size:11px;color:#555}.photo-viewer{display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,18,35,.92);align-items:center;justify-content:center;padding:56px 16px 20px}.photo-viewer.open{display:flex}.photo-viewer img{display:block;max-width:96vw;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 8px 35px #0008}.photo-viewer-close{position:absolute;top:12px;right:14px;width:44px;height:44px;border:1px solid #ffffff80;border-radius:50%;background:#ffffff18;color:#fff;font-size:30px;line-height:1}.photo-viewer-hint{position:absolute;top:20px;left:16px;color:#fff;font-size:13px}@media print{.photo-viewer{display:none!important}}@media print{.record-evidence-row td{background:#fff!important}.record-evidence{display:grid!important;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr))!important;gap:2mm!important;width:100%!important;align-items:start!important}.record-evidence a{display:flex!important;align-items:center;justify-content:center;width:100%!important;min-width:0!important;max-width:100%!important;aspect-ratio:var(--photo-ratio,4/3)!important;height:auto!important;break-inside:avoid!important;page-break-inside:avoid!important}.record-evidence img.print-photo{display:block!important;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;break-inside:avoid;page-break-inside:avoid;margin:0}}
+@media print{
+@page{size:A4 portrait;margin:10mm}
+html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{padding:0!important}
+.top,.side,.sidepanels,.add,.footeractions,.act,.toast,.modal,.pagehead,#inicioPanel,#config,#saveOptionsPanel{display:none!important}
+.layout{display:block!important;max-width:none!important;min-height:0!important;margin:0!important}
+.main{padding:0!important}
+.panel{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;break-after:auto;margin-bottom:7px!important}
+.tablewrap{overflow:visible!important;padding:7px 7px 5px!important}
+table{width:100%;border-collapse:collapse!important;font-size:10.5px!important}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+th,td{overflow-wrap:anywhere;padding:7px 6px!important;line-height:1.25!important}
+.photo-label,.photo-empty{display:none!important}.photo-links a{display:block!important;text-decoration:none!important;break-inside:avoid!important;page-break-inside:avoid!important;margin:5px 0!important}table tr:not(.record-evidence-row) th:last-child,table tr:not(.record-evidence-row) td:last-child{display:none!important}table th:nth-last-child(2),table td:nth-last-child(2){text-align:center!important}
+.print-photo{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:var(--photo-max-height,48mm)!important;object-fit:contain!important;break-inside:avoid!important;page-break-inside:avoid!important;margin:3px 0!important}
+body{background:#fff!important}
+}
+
+/* v172: archivo PDF principal agrupado por mes */
+#historial.archive-main{display:none;width:100%;margin:0 0 18px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 1px #123b6308}
+#historial.archive-main h3{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.archive-month{border:1px solid #d8e7f7;border-radius:10px;margin:14px 0;overflow:hidden;background:#fff}
+.archive-month>h3{margin:0;padding:13px 15px;background:#eef5fc;color:#145a9d;font-size:15px;text-transform:none;border-bottom:1px solid #d8e7f7}
+.archive-count{font-size:12px;font-weight:700;color:#486b91;background:#fff;border:1px solid #d5e4f5;border-radius:20px;padding:4px 9px;white-space:nowrap}
+.archive-record{padding:14px 15px;border-bottom:1px solid #e5eef8}.archive-record:last-child{border-bottom:0}.archive-filename{display:block;overflow-wrap:anywhere;margin-bottom:8px;color:#173d68;font-size:14px}
+.archive-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px;font-size:12px;color:#526f91}.archive-meta span{overflow-wrap:anywhere}.archive-empty{padding:18px;border:1px dashed #b8d2f0;border-radius:9px;background:#f8fbff;color:#456b95}.archive-empty p{margin:7px 0 0}
+@media(max-width:700px){#historial.archive-main{padding:12px}.archive-meta{grid-template-columns:1fr}.archive-record{padding:12px}}
+
+
+/* v174: adaptación móvil reforzada, sin alterar lógica de informes ni PDF */
+html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{width:100%;max-width:100%;overflow-x:hidden}
+img,canvas,video,iframe{max-width:100%}
+input,select,textarea{max-width:100%;min-width:0}
+.panel,.main,.sidepanels,#historial,.archive-record,.archive-month{min-width:0;max-width:100%}
+button,.btn,.nav{touch-action:manipulation}
+:focus-visible{outline:3px solid #75baff;outline-offset:2px}
+@media(max-width:700px){
+  html{font-size:16px;scroll-padding-top:62px}
+  body{font-size:14px}
+  .top{padding:10px 12px;gap:8px}
+  .brand{min-width:0;overflow-wrap:anywhere}
+  .topmeta{min-width:0;line-height:1.4}
+  .topmeta>span{overflow-wrap:anywhere}
+  .side{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .nav{min-height:48px;flex:0 0 auto}
+  .main{width:100%;min-width:0;padding:14px 10px 20px}
+  .pagehead{align-items:flex-start}
+  .pagehead>div:last-child{min-width:0}
+  .pagehead h1,.pagehead p{overflow-wrap:anywhere}
+  .panel{width:100%;min-width:0}
+  .field{min-width:0;width:100%}
+  .field input,.field select,.field textarea{width:100%;min-width:0;min-height:46px;font-size:16px}
+  /* Período: ambas fechas visibles en una fila; el resto sigue en una columna */
+  #inicioPanel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:10px;row-gap:12px}
+  #inicioPanel>.rangehead,#inicioPanel>.metasubhead{grid-column:1/-1}
+  #inicioPanel>.field:has(#dateFrom),#inicioPanel>.field:has(#dateTo){grid-column:span 1;min-width:0}
+  #inicioPanel>.field:has(#turnDay),#inicioPanel>.field:has(#date):not(:has(#dateFrom)),#inicioPanel>.field:has(#owner),#inicioPanel>.field:has(#shift),#inicioPanel>.field:has(#project),#inicioPanel>.field:has(#area){grid-column:1/-1}
+  #inicioPanel #dateFrom,#inicioPanel #dateTo{padding:9px 5px;letter-spacing:-.2px}
+  #inicioPanel .daybadge{width:100%;white-space:normal}
+  .section-title{align-items:flex-start}
+  .section-title>span:first-child{min-width:0;overflow-wrap:anywhere}
+  .section-title .add{max-width:100%;white-space:normal}
+  .btnrow{display:flex;flex-wrap:wrap;width:100%;gap:8px}
+  .btnrow .btn{flex:1 1 130px;min-width:0;min-height:44px;white-space:normal}
+  .footeractions{display:flex;flex-direction:column;width:100%}
+  .footeractions>.btn,.footeractions .btnrow,.footeractions .btnrow .btn{width:100%;min-height:46px}
+  .tablewrap{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .tablewrap table{min-width:600px}
+  .sidepanels{width:100%;min-width:0}
+  .upload{width:100%;max-width:100%;overflow-wrap:anywhere}
+  #historial.archive-main{width:100%;max-width:100%;padding:12px}
+  #historial.archive-main h3{align-items:flex-start}
+  .archive-month{margin:10px 0}
+  .archive-month>h3{padding:11px 12px;font-size:14px}
+  .archive-record{padding:12px}
+  .archive-filename{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
+  .archive-meta{grid-template-columns:minmax(0,1fr);gap:7px}
+  .archive-meta span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+  .archive-record .btn,.archive-record button{min-height:44px}
+  .modal{padding:0;align-items:flex-end}
+  .modalbox{width:100%;max-width:100%;max-height:90dvh;padding:16px 12px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain}
+  .modalactions{position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));padding:12px 0 calc(2px + env(safe-area-inset-bottom));margin-top:10px}
+  .modalactions .btn{min-height:46px;min-width:0}
+  .photo-viewer{padding:60px 10px calc(16px + env(safe-area-inset-bottom))}
+  .photo-viewer img{max-width:96vw;max-height:80dvh}
+}
+@media(max-width:380px){
+  #inicioPanel{column-gap:7px;padding:11px}
+  #inicioPanel .field:has(#dateFrom) input,#inicioPanel .field:has(#dateTo) input{font-size:14px;padding:8px 3px}
+  .main{padding-left:8px;padding-right:8px}
+  .nav{padding-left:9px;padding-right:9px;font-size:11px}
+  .modalactions{flex-direction:column}
+  .modalactions .btn{width:100%}
+}
+
+
+/* v205: distribución compacta de columnas en Actividades HYS */
+table:has(> tbody#activities){table-layout:fixed;width:100%}
+table:has(> tbody#activities) th,
+table:has(> tbody#activities) td{padding:8px 6px;overflow-wrap:anywhere}
+table:has(> tbody#activities) th:nth-child(1),
+table:has(> tbody#activities) td:nth-child(1){width:6%;text-align:center}
+table:has(> tbody#activities) th:nth-child(2),
+table:has(> tbody#activities) td:nth-child(2){width:14%}
+table:has(> tbody#activities) th:nth-child(3),
+table:has(> tbody#activities) td:nth-child(3){width:12%}
+table:has(> tbody#activities) th:nth-child(4),
+table:has(> tbody#activities) td:nth-child(4){width:45%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#activities) th:nth-child(5),
+table:has(> tbody#activities) td:nth-child(5){width:14%}
+table:has(> tbody#activities) th:nth-child(6),
+table:has(> tbody#activities) td:nth-child(6){width:9%;text-align:center}
+table:has(> tbody#activities) td:nth-child(6) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#activities){min-width:620px}
+ table:has(> tbody#activities) th,
+ table:has(> tbody#activities) td{padding:8px 5px}
+ table:has(> tbody#activities) th:nth-child(4),
+ table:has(> tbody#activities) td:nth-child(4){width:45%}
+}
+
+/* v206: distribución proporcional para la tarjeta 2 - Actividades por área */
+table:has(> tbody#inspections){table-layout:fixed;width:100%}
+table:has(> tbody#inspections) th,
+table:has(> tbody#inspections) td{padding:8px 6px;overflow-wrap:anywhere;white-space:normal}
+table:has(> tbody#inspections) th:nth-child(1),
+table:has(> tbody#inspections) td:nth-child(1){width:5%;text-align:center}
+table:has(> tbody#inspections) th:nth-child(2),
+table:has(> tbody#inspections) td:nth-child(2){width:10%}
+table:has(> tbody#inspections) th:nth-child(3),
+table:has(> tbody#inspections) td:nth-child(3){width:45%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#inspections) th:nth-child(4),
+table:has(> tbody#inspections) td:nth-child(4){width:16%}
+table:has(> tbody#inspections) th:nth-child(5),
+table:has(> tbody#inspections) td:nth-child(5){width:13%}
+table:has(> tbody#inspections) th:nth-child(6),
+table:has(> tbody#inspections) td:nth-child(6){width:11%;text-align:center}
+table:has(> tbody#inspections) td:nth-child(6) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#inspections){min-width:620px}
+ table:has(> tbody#inspections) th,
+ table:has(> tbody#inspections) td{padding:8px 5px}
+}
+
+/* v207: distribución proporcional para la tarjeta 3 - Hallazgos */
+table:has(> tbody#findings){table-layout:fixed;width:100%}
+table:has(> tbody#findings) th,
+table:has(> tbody#findings) td{padding:8px 6px;overflow-wrap:anywhere;white-space:normal}
+table:has(> tbody#findings) th:nth-child(1),
+table:has(> tbody#findings) td:nth-child(1){width:5%;text-align:center}
+table:has(> tbody#findings) th:nth-child(2),
+table:has(> tbody#findings) td:nth-child(2){width:27%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#findings) th:nth-child(3),
+table:has(> tbody#findings) td:nth-child(3){width:9%}
+table:has(> tbody#findings) th:nth-child(4),
+table:has(> tbody#findings) td:nth-child(4){width:27%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#findings) th:nth-child(5),
+table:has(> tbody#findings) td:nth-child(5){width:13%}
+table:has(> tbody#findings) th:nth-child(6),
+table:has(> tbody#findings) td:nth-child(6){width:9%}
+table:has(> tbody#findings) th:nth-child(7),
+table:has(> tbody#findings) td:nth-child(7){width:10%;text-align:center}
+table:has(> tbody#findings) td:nth-child(7) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#findings){min-width:760px}
+ table:has(> tbody#findings) th,
+ table:has(> tbody#findings) td{padding:8px 5px}
+}
+
+/* v208 descripcion multilinea */
+table:has(> tbody#activities) td.multiline-detail{white-space:pre-line;overflow-wrap:anywhere;vertical-align:top}
+table:has(> tbody#inspections) td.multiline-detail,
+table:has(> tbody#findings) td.multiline-detail{white-space:pre-line;overflow-wrap:anywhere;vertical-align:top}
+#modalFields textarea[data-bullet-list=true]{min-height:100px;line-height:1.55;white-space:pre-wrap}
+
+/* v221: selector independiente de formularios APR / Otros */
+body.module-choice>header,body.module-choice>.layout{display:none!important}
+#moduleChooser{min-height:100vh;padding:clamp(24px,6vw,72px) 20px;background:linear-gradient(145deg,#edf5ff,#f8fbff);color:#173d68}
+#moduleChooser .chooser-inner{max-width:980px;margin:0 auto}
+#moduleChooser .chooser-kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:#1876e8;text-transform:uppercase}
+#moduleChooser h1{font-size:clamp(28px,4vw,42px);margin:8px 0;color:#123b63}
+#moduleChooser .chooser-sub{font-size:16px;color:#617d9e;margin:0 0 28px}
+.module-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.module-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:28px;border:1px solid #c9def5;border-radius:18px;background:#fff;box-shadow:0 8px 28px #123b630d}
+.module-card .module-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:15px;background:#e8f3ff;font-size:30px}
+.module-card h2{margin:0;font-size:24px;color:#123b63}
+.module-card p{margin:0;color:#617d9e;line-height:1.6;min-height:48px}
+.module-card button{margin-top:auto;width:100%;border:0;border-radius:9px;padding:13px 16px;background:#1766b5;color:white;font-weight:800}
+.module-card.other button{background:#119b70}
+#otherModule{display:none;min-height:100vh;padding:22px;background:#f4f8fc;color:#173d68}
+.other-wrap{max-width:1000px;margin:0 auto}
+.other-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.other-panel{background:#fff;border:1px solid #c9def5;border-radius:12px;padding:20px;margin-bottom:18px;box-shadow:0 2px 8px #123b6308}
+.other-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.other-grid .field{min-width:0}
+.other-grid input,.other-grid select,.other-grid textarea{width:100%;border:1px solid #c9def5;border-radius:7px;padding:10px;background:#fff;color:#173d68}
+.other-grid textarea{min-height:100px;resize:vertical}
+.other-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.other-actions button,.other-top button{border:1px solid #c9def5;border-radius:8px;padding:10px 14px;font-weight:750;background:#fff;color:#1766b5}
+.other-actions .save-other{background:#119b70;color:white;border-color:#119b70}
+.other-record{padding:13px 0;border-bottom:1px solid #e2edf9}
+.other-record:last-child{border-bottom:0}
+.other-record h3{margin:0 0 5px;font-size:15px}
+.other-record p{margin:4px 0;color:#617d9e;white-space:pre-wrap;overflow-wrap:anywhere}
+#moduleSwitch{border:1px solid #ffffff80;background:#ffffff12;color:white;border-radius:7px;padding:8px 11px;font-weight:700}
+@media(max-width:680px){.module-cards,.other-grid{grid-template-columns:1fr}#moduleChooser{padding:28px 16px}.module-card{padding:22px}#otherModule{padding:14px}.other-panel{padding:15px}}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
+  <div class="chooser-inner">
+    <div class="chooser-kicker">Reportes H y S</div>
+    <h1 id="moduleChooserTitle">¿Qué formulario necesitas?</h1>
+    <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
+    <div class="module-cards">
+      <article class="module-card">
+        <div class="module-icon" aria-hidden="true">🛡️</div>
+        <h2>APR</h2>
+        <p>Abre el formato actual de Reportes HYS, con sus funciones y reportes anteriores.</p>
+        <button type="button" id="openAprModule">Ingresar a APR</button>
+      </article>
+      <article class="module-card other">
+        <div class="module-icon" aria-hidden="true">📋</div>
+        <h2>Otros</h2>
+        <p>Formulario independiente para registrar actividades de otras áreas, con campos propios e historial separado.</p>
+        <button type="button" id="openOtherModule">Ingresar a Otros</button>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="otherModule" aria-labelledby="otherModuleTitle">
+  <div class="other-wrap">
+    <div class="other-top">
+      <div><div class="chooser-kicker">Reportes H y S · Formulario independiente</div><h1 id="otherModuleTitle" style="margin:5px 0 0">Otros</h1></div>
+      <button type="button" id="backToModuleChooser">← Cambiar usuario</button>
+    </div>
+    <form id="otherReportForm">
+      <section class="other-panel">
+        <h2 style="margin:0 0 16px">Datos generales</h2>
+        <div class="other-grid">
+          <div class="field"><label for="otherDate">Fecha del informe</label><input id="otherDate" name="date" type="date" required></div>
+          <div class="field"><label for="otherArea">Área / departamento</label><input id="otherArea" name="area" type="text" placeholder="Ej.: Operaciones, mantenimiento" required></div>
+          <div class="field"><label for="otherResponsible">Responsable del informe</label><input id="otherResponsible" name="responsible" type="text" placeholder="Nombre y apellido" required></div>
+          <div class="field"><label for="otherCategory">Tipo de actividad</label><select id="otherCategory" name="category" required><option value="">Seleccione una opción</option><option>Inspección</option><option>Actividad operacional</option><option>Mantenimiento</option><option>Hallazgo</option><option>Seguimiento</option><option>Otro</option></select></div>
+          <div class="field"><label for="otherLocation">Lugar / instalación</label><input id="otherLocation" name="location" type="text" placeholder="Lugar donde se realizó la actividad"></div>
+          <div class="field"><label for="otherStatus">Estado</label><select id="otherStatus" name="status"><option>Pendiente</option><option>En proceso</option><option>Finalizado</option></select></div>
+          <div class="field" style="grid-column:1/-1"><label for="otherDescription">Descripción de la actividad o situación</label><textarea id="otherDescription" name="description" placeholder="Describe qué se realizó, observó o informó…" required></textarea></div>
+          <div class="field" style="grid-column:1/-1"><label for="otherActions">Acciones, medidas o acuerdos</label><textarea id="otherActions" name="actions" placeholder="Medidas adoptadas, responsables y próximos pasos"></textarea></div>
+          <div class="field" style="grid-column:1/-1"><label for="otherNotes">Observaciones adicionales</label><textarea id="otherNotes" name="notes" placeholder="Información complementaria (opcional)"></textarea></div>
+        </div>
+        <div class="other-actions"><button class="save-other" type="submit">Guardar informe</button><button type="button" id="clearOtherForm">Limpiar formulario</button></div>
+        <p id="otherFormStatus" role="status" class="smallnote" aria-live="polite">Los informes de Otros se guardan en este navegador y no se mezclan con APR.</p>
+      </section>
+    </form>
+    <section class="other-panel">
+      <h2 style="margin:0 0 8px">Reportes anteriores · Otros</h2>
+      <p class="smallnote">Este historial es independiente del historial APR y se guarda en este navegador.</p>
+      <div id="otherRecordsList"><p class="smallnote">Todavía no hay informes guardados.</p></div>
+    </section>
+  </div>
+</section>
+
+<header class="top"><div class="brand"><div class="shield">🛡</div><span>REPORTES H Y S</span></div><div class="topmeta"><span>▦ &nbsp;<span id="topDate"></span></span><button type="button" id="moduleSwitch" title="Volver a la selección de usuarios">Cambiar usuario</button></div></header>
+<div class="layout">
+<nav class="side"><a class="nav active" href="#inicio" data-tab="inicio"><span>⌂</span> Inicio</a><a class="nav" href="#informe" data-tab="informe"><span>▤</span> Informe diario</a><a class="nav" href="#historial" data-tab="historial"><span>▤</span> Reportes anteriores</a><a class="nav" href="#config" data-tab="config"><span>⚙</span> Configuración</a><div class="sidefoot">🛡 &nbsp; Seguridad<br>&nbsp;&nbsp;&nbsp;&nbsp; es trabajo de todos</div></nav>
+<main class="main" id="inicio">
+<div class="pagehead" id="mainPagehead"><div class="bigicon" id="pageIcon">⌂</div><div><h1 id="pageTitle">Inicio</h1><p id="pageDescription">Complete el período del turno y los datos generales del informe.</p></div></div><section class="panel" id="config" style="display:none"><details id="configSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px;background:#fff"><summary style="cursor:pointer;list-style-position:inside;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800"><span class="ico">⚙</span> &nbsp; LISTAS DESPLEGABLES</summary><div style="padding:16px"><details id="aprSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">♟ &nbsp; APR RESPONSABLES </summary><div style="padding:15px"><p class="smallnote">Administre la lista de APR disponibles en Inicio. Puede agregar, editar o eliminar nombres.</p><div class="field"><label for="aprNewName">Nombre del APR</label><input id="aprNewName" type="text" placeholder="Escriba nombre y apellido"></div><div class="btnrow" style="margin:10px 0"><button class="btn primary" id="aprAdd">＋ Agregar APR</button></div><div id="aprList"></div></div></details><details id="areaSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">▦ &nbsp; ÁREAS </summary><div style="padding:15px"><p class="smallnote">Administre las áreas disponibles en los formularios. Puede agregar, editar o eliminar opciones.</p><div class="field"><label for="areaNewName">Nombre del área</label><input id="areaNewName" type="text" placeholder="Escriba el nombre del área"></div><div class="btnrow" style="margin:10px 0"><button class="btn primary" id="areaAdd">＋ Agregar área</button></div><div id="areaList"></div></div></details></div></details><details id="photoSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">▧ &nbsp; FOTOGRAFÍAS DEL INFORME</summary><div style="padding:15px"><div class="field"><label for="photoColumns">Fotografías por fila</label><select id="photoColumns"><option value="5">5 por fila</option><option value="6">6 por fila</option><option value="7">7 por fila</option><option value="8">8 por fila</option></select></div><p class="smallnote" id="photoRatioStatus" role="status">Configuración guardada en este navegador.</p></div></details></section><section class="panel" id="saveOptionsPanel" style="display:none"><details id="saveSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">▣ &nbsp; CONFIGURACIÓN DE GUARDADO</summary><div style="padding:15px"><p class="smallnote">Los informes se guardan localmente en este dispositivo. Esta copia de prueba también permite crear y restaurar respaldos en Google Drive.</p>
+<div class="file" style="display:block;padding:12px;margin:12px 0;background:#eef5fc;border:1px solid #c9def5;border-radius:8px">
+<strong>Google Drive — versión de prueba v183</strong>
+<p class="smallnote">Permite guardar y restaurar respaldos JSON de los informes. El guardado local sigue funcionando.</p>
+<div id="driveStatus" class="smallnote" role="status" style="padding:8px 0">Drive desconectado. Conecta tu cuenta para comenzar.</div>
+<div class="btnrow" style="margin:8px 0">
+<button class="btn" id="driveConnect" type="button" style="background:#c62828;color:#fff;border-color:#c62828">DESCONECTADO — Conectar Google Drive</button>
+<button class="btn" id="driveConnectionIndicator" type="button" disabled style="background:#fff0f0;color:#a61b1b;border-color:#e5a0a0">DESCONECTAR</button>
+<a class="btn" id="openDriveStorage" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener noreferrer">Abrir almacenamiento en Drive ↗</a>
+<button class="btn" id="driveSave" type="button" disabled>Guardar respaldo en Drive</button>
+</div>
+<div class="btnrow" style="margin:8px 0;align-items:center">
+<select id="driveBackupList" aria-label="Respaldo de Google Drive" style="flex:1;min-width:180px;padding:9px;border:1px solid #c9def5;border-radius:7px"><option value="">Conecta Drive para listar respaldos</option></select>
+<button class="btn" id="driveRefresh" type="button" disabled>Actualizar lista</button>
+<button class="btn" id="driveRestore" type="button" disabled>Restaurar seleccionado</button>
+</div>
+<p class="smallnote">La restauración reemplaza los datos actuales solo después de confirmar y conserva una copia local previa. Usa únicamente respaldos creados por esta aplicación.</p>
+</div><div class="file"><span>▣</span><span style="flex:1">Guardado automático</span><label style="display:flex;align-items:center;gap:7px"><input id="autosaveToggle" type="checkbox" checked style="width:18px;height:18px"> Activado</label></div><div id="storageStatus" class="smallnote" style="padding:10px 0">Estado del almacenamiento local pendiente de revisar.</div><div class="file" style="display:block;padding:12px;margin:8px 0;background:#f4f8fc;border-radius:8px"><strong>Ubicación del archivo</strong><div id="backupLocationStatus" class="smallnote" style="padding-top:6px">Consulta del estado del respaldo...</div><div id="backupReminder" class="smallnote" style="padding-top:6px;color:#9a5a08">Se mostrará una recomendación de respaldo aquí.</div></div><div class="btnrow" style="margin:8px 0"><button class="btn primary" id="saveNow" type="button">▣ Guardar ahora</button><button class="btn" id="backupLocal" type="button">＋ Crear respaldo local</button></div><div class="btnrow" style="margin:8px 0"><button class="btn" id="restoreLocal" type="button">↶ Restaurar respaldo local</button><button class="btn" id="export" type="button">⇩ Descargar copia JSON</button></div><div class="btnrow" style="margin:8px 0"><label class="btn" for="import" style="display:inline-block">⇧ Importar copia JSON</label><input type="file" id="import" accept="application/json" hidden><button class="btn" id="resetLocal" type="button">⟲ Restablecer datos</button></div><p class="smallnote">La copia JSON se descarga a tu equipo para guardarla fuera del navegador. Importar una copia reemplaza los datos actuales de este informe. El restablecimiento elimina los datos locales de esta versión.</p></div></details></section>
+<section id="printInicioHeader" class="print-inicio-header"><h1 class="print-report-title">Reporte Diario Higiene y Seguridad</h1><h2>INFORMACIÓN DE INICIO</h2><p class="print-observation"><strong>Observación:</strong> Herramientas se observan en buen estado, codificadas de acuerdo con el color del mes.</p><div class="print-inicio-grid"><div><strong>Período del turno:</strong> <span id="printPeriodo">—</span></div><div><strong>Día del turno:</strong> <span id="printDiaTurno">—</span></div><div><strong>Fecha de informe:</strong> <span id="printFechaInforme">—</span></div><div><strong>APR responsable:</strong> <span id="printApr">—</span></div><div><strong>Turno:</strong> <span id="printTurno">—</span></div><div><strong>Proyecto:</strong> <span id="printProyecto">—</span></div><div><strong>Área:</strong> <span id="printArea">—</span></div></div></section>
+<section class="panel metaform" id="inicioPanel"><div class="rangehead">PERÍODO DEL TURNO</div><div class="field"><label>Fecha desde</label><input id="dateFrom" type="date"></div><div class="field"><label>Fecha hasta</label><input id="dateTo" type="date"></div><div class="field"><label>Día del turno según las fechas</label><div id="turnDay" class="daybadge">Ingrese el período</div></div><div class="metasubhead">DATOS DEL INFORME</div><div class="field"><label>▣ &nbsp; Fecha de informe</label><input id="date" type="date"></div><div class="field"><label>♟ &nbsp; APR responsable</label><select id="owner"><option value="">Seleccione APR responsable...</option></select></div><div class="field"><label>Turno</label><select id="shift"><option value="">Seleccione turno...</option><option>Día/Propio</option><option>Noche/Propio</option><option>Día/Reemplazo</option><option>Noche/Reemplazo</option></select></div><div class="field"><label>Proyecto</label><select id="project"><option value="">Seleccione proyecto...</option><option>PHAM 1</option><option>PHAM 2</option></select></div><div class="field"><label>Área</label><select id="area"><option value="">Seleccione área...</option></select></div></section>
+<section class="panel report-section"><div class="section-title blue"><span class="ico">▤</span>1. Actividades HYS<button class="add" data-add="activities">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>APR u otro responsable</th><th>Área</th><th>Descripción</th><th>Resultado</th><th></th></tr></thead><tbody id="activities"><tr><td colspan="7" class="smallnote">No hay actividades registradas.</td></tr></tbody></table></div></section>
+<section class="panel report-section"><div class="section-title green"><span class="ico">⌕</span>2. Actividades por área<button class="add" data-add="inspections">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>Área</th><th>Actividad</th><th>Responsable</th><th>Estado</th><th></th></tr></thead><tbody id="inspections"><tr><td colspan="6" class="smallnote">No hay inspecciones registradas.</td></tr></tbody></table></div></section>
+<section class="panel report-section"><div class="section-title purple"><span class="ico">☑</span>3. Hallazgos<button class="add" data-add="findings">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>Condición detectada</th><th>Prioridad</th><th>Medida propuesta</th><th>Responsable</th><th>Estado</th><th></th></tr></thead><tbody id="findings"><tr><td colspan="7" class="smallnote">No hay hallazgos registrados.</td></tr></tbody></table></div></section>
+<div class="footeractions report-section"><div class="btnrow"><button class="btn" id="save">▣ Guardar borrador</button><button class="btn primary" id="finalize">✓ Finalizar informe</button></div><div class="btnrow"><button class="btn primary" id="pdfShare">↗ Generar PDF y compartir</button><button class="btn" id="print">▣ Imprimir</button></div></div>
+</main>
+<aside class="sidepanels">
+<section class="panel summary"><h3>▤ &nbsp; Resumen del informe</h3><div class="sumrow">▤ &nbsp; Actividades <span class="n" id="count-activities">0</span></div><div class="sumrow">⌕ &nbsp; Actividades por área <span class="n" id="count-inspections">0</span></div><div class="sumrow">☑ &nbsp; Hallazgos <span class="n" id="count-findings">0</span></div><div class="status">Estado del informe<br><span class="pill warn" id="status">● En edición</span></div></section>
+
+<section class="panel mini" id="historial"><h3>◷ &nbsp; Reportes anteriores</h3><p class="smallnote">Los PDF generados o compartidos se archivarán automáticamente en este navegador.</p><div id="archivedReports"><div class="historyitem">Todavía no hay PDF archivados<small>Genera o comparte un PDF para crear el primer registro.</small></div></div><h3 style="margin-top:16px">◷ &nbsp; Actividad reciente</h3><div id="history"><div class="historyitem">Informe listo para completar<small>El historial local se inicia al guardar.</small></div></div></section>
+
+</aside></div>
+<div class="photo-viewer" id="photoViewer" role="dialog" aria-modal="true" aria-label="Fotografía ampliada"><span class="photo-viewer-hint">Toca fuera de la foto o ✕ para cerrar</span><button type="button" class="photo-viewer-close" id="photoViewerClose" aria-label="Cerrar fotografía">×</button><img id="photoViewerImage" alt="Fotografía ampliada"></div><div class="modal" id="modal"><div class="modalbox"><h2 id="modalTitle">Agregar registro</h2><form id="recordForm"><div id="modalFields"></div><div class="modalactions"><button type="button" class="btn" id="cancel">Cancelar</button><button class="btn primary" type="submit">Guardar registro</button></div></form></div></div><div class="toast" id="toast"></div>
+<script>
+const keys={activities:["APR u otro responsable","Área","Descripción","Resultado"],inspections:["Área","Actividad","Responsable","Estado"],findings:["Condición detectada","Prioridad","Medida propuesta","Responsable","Estado"]};
+const labels={activities:["APR u otro responsable","Área","Descripción","Resultado"],inspections:["Área","Actividad","Responsable","Estado"],findings:["Condición detectada","Prioridad","Medida propuesta","Responsable","Estado"]};
+const choices={"Resultado":["Sin novedades","Con observaciones","Requiere seguimiento","Otro"],"Prioridad":["Baja","Media","Alta","Crítica"],"Estado":["Pendiente","En proceso","Completado"]};
+let data={activities:[],inspections:[],findings:[]},editRef=null,status="En edición",history=[],aprNames=[],areaNames=[]; let pendingActivityPhotos=[],editingActivityPhotos=[],editingAprIndex=null,editingAreaIndex=null;
+const $=id=>document.getElementById(id);
+const today=new Date(),localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);$("date").value=localDate;$("dateFrom").value=localDate;$("dateTo").value=localDate;$("topDate").textContent=today.toLocaleDateString("es-CL",{day:"2-digit",month:"long",year:"numeric"});
+function updateTurnDay(){const from=$("dateFrom").value,to=$("dateTo").value,day=$("date").value;if(!from||!to||!day){$("turnDay").textContent="Ingrese las fechas";return}const a=new Date(from+"T12:00:00"),b=new Date(to+"T12:00:00"),d=new Date(day+"T12:00:00");if(b<a){$("turnDay").textContent="Rango de fechas inválido";return}const total=Math.round((b-a)/86400000)+1,index=Math.round((d-a)/86400000)+1;$("turnDay").textContent=index<1||index>total?"Fuera del período":"Día "+index+" de "+total;}
+["dateFrom","dateTo","date"].forEach(id=>$(id).addEventListener("change",updateTurnDay));updateTurnDay();
+function renderAreaSelect(selected=$("area").value){const sel=$("area");const safe=String(selected||"");sel.innerHTML='<option value="">Seleccione área...</option>'+areaNames.map(n=>'<option value="'+esc(n)+'"'+(n===safe?' selected':'')+' >'+esc(n)+'</option>').join("");if(safe&&!areaNames.includes(safe)){const opt=document.createElement("option");opt.value=safe;opt.textContent=safe;opt.selected=true;sel.appendChild(opt)}}
+function renderAreaList(){const el=$("areaList");if(!areaNames.length){el.innerHTML='<p class="smallnote">Todavía no hay áreas registradas. Agregue la primera usando el campo superior.</p>';return}el.innerHTML=areaNames.map((n,i)=>'<div class="file"><span>▦</span><span style="flex:1;overflow-wrap:anywhere">'+esc(n)+'</span><button class="act" data-area-edit="'+i+'" title="Editar área">✎</button><button class="act" data-area-delete="'+i+'" title="Eliminar área">×</button></div>').join("")}
+function persistArea(){localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));renderAreaSelect();renderAreaList();save(false)}
+function renderAprSelect(selected=$("owner").value){const sel=$("owner");const safe=String(selected||"");sel.innerHTML='<option value="">Seleccione APR responsable...</option>'+aprNames.map(n=>'<option value="'+esc(n)+'"'+(n===safe?' selected':'')+' >'+esc(n)+'</option>').join("");if(safe&&!aprNames.includes(safe)){const opt=document.createElement("option");opt.value=safe;opt.textContent=safe;opt.selected=true;sel.appendChild(opt)}}
+function renderAprList(){const el=$("aprList");if(!aprNames.length){el.innerHTML='<p class="smallnote">Todavía no hay APR registrados. Agregue el primero usando el campo superior.</p>';return}el.innerHTML=aprNames.map((n,i)=>'<div class="file"><span>♟</span><span style="flex:1;overflow-wrap:anywhere">'+esc(n)+'</span><button class="act" data-apr-edit="'+i+'" title="Editar APR">✎</button><button class="act" data-apr-delete="'+i+'" title="Eliminar APR">×</button></div>').join("")}
+function persistApr(){localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));renderAprSelect();renderAprList();save(false)}
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function toast(s){$("toast").textContent=s;$("toast").style.display="block";setTimeout(()=>{$("toast").style.display="none"},2300)}
+function addHistory(action){history.unshift({action,by:$("owner").value||"Usuario local",at:new Date().toLocaleString("es-CL")});renderHistory()}
+function renderHistory(){$("history").innerHTML=history.length?history.slice(0,8).map(h=>'<div class="historyitem">'+esc(h.action)+'<small>'+esc(h.by)+' · '+esc(h.at)+'</small></div>').join(""):'<div class="historyitem">Sin modificaciones registradas<small>El historial aparecerá al guardar.</small></div>'}
+function render(){Object.keys(data).forEach(k=>{let body=$(k);if(!data[k].length){body.innerHTML='<tr><td colspan="'+(keys[k].length+2)+'" class="smallnote">No hay registros. Usa “＋ Agregar” para comenzar.</td></tr>';return}body.innerHTML=data[k].map((r,i)=>{const files=r[k==="activities"?4:keys[k].length]||[];const isImageFile=p=>{const type=String(p.type||"").toLowerCase(),name=String(p.name||"").toLowerCase(),url=String(p.data||"").toLowerCase();return type.startsWith("image/")||url.startsWith("data:image/")||/\.(jpg|jpeg|png|gif|webp|bmp|heic|heif)$/.test(name)};const photos=files.filter(p=>isImageFile(p)&&p.data);const detailRow=keys[k].map((field,j)=>'<td'+(field==='Descripción'?' class="multiline-detail"':'')+'>'+(field==="Prioridad"||field==="Estado"||field==="Resultado"?'<span class="pill '+(String(r[j]).match(/Alta|Crítica/i)?'danger':String(r[j]).match(/Pendiente|seguimiento|observaciones/i)?'warn':'ok')+'">'+esc(r[j])+'</span>':esc(r[j]))+'</td>').join('');const mainRow='<tr><td>'+(i+1)+'</td>'+detailRow+'<td><button class="act" data-edit="'+k+':'+i+'" title="Editar">✎</button><button class="act photo-delete" data-delete="'+k+':'+i+'" title="Eliminar registro">×</button></td></tr>';const evidence=photos.length?'<tr class="record-evidence-row"><td colspan="'+(keys[k].length+2)+'"><details class="activity-photos-details"><summary class="activity-photos-toggle"><span>📷 Fotografías de esta actividad</span><span class="photo-count">'+photos.length+' imagen'+(photos.length===1?'':'es')+' · Mostrar / ocultar</span></summary><div class="record-evidence" aria-label="Evidencia fotográfica">'+photos.map(p=>'<a href="'+p.data+'" data-photo-preview="true" title="Abrir fotografía en grande"><img class="print-photo" src="'+p.data+'" alt="Evidencia fotográfica"></a>').join('')+'</div></details></td></tr>':(files.length?'<tr class="record-evidence-row"><td colspan="'+(keys[k].length+2)+'"><div class="record-attachment-note">'+(files.length===1?'1 archivo adjunto':files.length+' archivos adjuntos')+'</div></td></tr>':'');return mainRow+evidence}).join('');});Object.keys(data).forEach(k=>$("count-"+k).textContent=data[k].length)}
+function renderActivityPhotoList(){const box=$("existingPhotos");if(!box)return;const existing=editingActivityPhotos.map((p,i)=>'<div class="file"><span>'+(String(p.type||"").startsWith("image/")||p.data&&p.data.startsWith("data:image/")?'🖼':'📎')+'</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">'+esc(p.name||("Archivo "+(i+1)))+'</span><button type="button" class="act photo-delete" data-photo-delete="existing:'+i+'" title="Eliminar archivo" aria-label="Eliminar archivo">×</button></div>').join("");const pending=pendingActivityPhotos.map((p,i)=>'<div class="file"><span>'+(p.type&&p.type.startsWith("image/")?'🖼':'📎')+'</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">'+esc(p.name)+'</span><button type="button" class="act photo-delete" data-photo-delete="pending:'+i+'" title="Quitar archivo seleccionado" aria-label="Quitar archivo seleccionado">×</button></div>').join("");box.innerHTML=existing+pending||'<div class="smallnote" style="padding-top:8px">No hay archivos cargados.</div>'}
+function openModal(k,i=null){editRef={k,i};pendingActivityPhotos=[];editingActivityPhotos=[];$("modalTitle").textContent=(i===null?"Agregar":"Editar")+" · "+({activities:"Actividad HYS",inspections:"Actividad por área",findings:"Hallazgo"}[k]);let current=i===null?[]:data[k][i];$("modalFields").innerHTML=labels[k].map((label,j)=>'<div class="field"><label>'+esc(label)+'</label>'+(label==="Área"?'<select name="f'+j+'"><option value="">Seleccione área...</option>'+areaNames.map(n=>'<option '+(current[j]===n?'selected':'')+'>'+esc(n)+'</option>').join('')+'</select>':(choices[label]?'<select name="f'+j+'" '+(j===0&&k==="activities"?'id="responsibleType"':'')+' required><option value="">Seleccione...</option>'+choices[label].map(c=>'<option '+((j===0&&k==="activities"?String(current[j]||"").startsWith(c):current[j]===c)?'selected':'')+'>'+esc(c)+'</option>').join('')+'</select>':(label==="Fecha comprometida"?'<input type="date" name="f'+j+'" value="'+esc(current[j]||"")+'">':'<textarea name="f'+j+'" rows="2" '+(j===0?'required':'')+' placeholder="'+esc(label)+'">'+esc(current[j]||"")+'</textarea>')))+'</div>').join('')+'<div class="field"><label>Adjuntar fotos o archivos (opcional)</label><input id="recordFiles" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt,.csv" multiple><small class="smallnote">Puedes cargar una o varias fotos o documentos. Los archivos seleccionados aparecerán debajo y podrás quitar cada uno con la X antes de guardar.</small><div id="existingPhotos" class="smallnote" style="margin-top:8px"></div></div>';$("modal").style.display="flex";editingActivityPhotos=(current[k==="activities"?4:labels[k].length]||[]).map(p=>({...p}));renderActivityPhotoList();$("recordFiles").addEventListener("change",e=>{pendingActivityPhotos.push(...Array.from(e.target.files));e.target.value="";renderActivityPhotoList()});}
+function setupDescriptionBullets(){
+ const f=$("modalFields");if(!f||f.dataset.bulletSetup)return;f.dataset.bulletSetup="1";
+ const isD=t=>{if(t.tagName!=="TEXTAREA")return false;const label=t.closest(".field")?.querySelector("label")?.textContent.trim();const k=editRef?.k;return (k==="activities"&&label==="Descripción")||(k==="inspections"&&["Actividad","Responsable"].includes(label))||(k==="findings"&&["Condición detectada","Medida propuesta","Responsable"].includes(label));};const b="• ";
+ f.addEventListener("keydown",e=>{const t=e.target;if(!isD(t))return;
+  if(e.key==="Enter"&&!e.shiftKey){
+   e.preventDefault();const v=t.value,p=t.selectionStart,q=t.selectionEnd,ls=v.lastIndexOf("\n",p-1)+1,z=v.indexOf("\n",q),le=z<0?v.length:z,line=v.slice(ls,le),before=v.slice(0,ls),after=v.slice(le);
+   const hasBullets=v.split("\n").some(x=>x.startsWith(b));
+   if(line.startsWith(b)&&line.slice(b.length).trim()===""){
+    const next=before+line.slice(b.length)+after;t.value=next;const pos=before.length+line.slice(b.length).length;t.setSelectionRange(pos,pos);
+   }else if(!hasBullets&&line.trim()!==""){
+    const raw=v.slice(ls,p)+v.slice(q,le);const first=raw.startsWith(b)?raw:b+raw;const rest=v.slice(le);t.value=v.slice(0,ls)+first+"\n"+b+rest;const pos=ls+first.length+1+b.length;t.setSelectionRange(pos,pos);
+   }else if(line.trim()===""&&hasBullets){
+    const prevStart=v.lastIndexOf("\n",Math.max(0,ls-2))+1;const prevLine=v.slice(prevStart,ls-1);
+    if(prevLine.trim()===""){const ins="\n"+b;t.value=v.slice(0,p)+ins+v.slice(q);const pos=p+ins.length;t.setSelectionRange(pos,pos)}
+    else{const ins="\n";t.value=v.slice(0,p)+ins+v.slice(q);t.setSelectionRange(p+1,p+1)}
+   }else{const ins="\n"+b;t.value=v.slice(0,p)+ins+v.slice(q);const pos=p+ins.length;t.setSelectionRange(pos,pos)}
+   t.dispatchEvent(new Event("input",{bubbles:true}));return;
+  }
+  if(e.key==="Backspace"&&t.selectionStart===t.selectionEnd){const v=t.value,p=t.selectionStart,ls=v.lastIndexOf("\n",p-1)+1;if(v.slice(ls,ls+b.length)===b&&p===ls+b.length){e.preventDefault();t.value=v.slice(0,ls)+v.slice(ls+b.length);t.setSelectionRange(ls,ls);t.dispatchEvent(new Event("input",{bubbles:true}))}}
+ });
+}
+setupDescriptionBullets();
+document.addEventListener("click",e=>{let photo=e.target.closest("[data-photo-delete]");if(photo){const [kind,index]=photo.dataset.photoDelete.split(":");if(kind==="existing")editingActivityPhotos.splice(+index,1);else pendingActivityPhotos.splice(+index,1);renderActivityPhotoList();return}let a=e.target.closest("[data-add]"),ed=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");if(a)openModal(a.dataset.add);if(ed){let [k,i]=ed.dataset.edit.split(":");openModal(k,+i)}if(del){let [k,i]=del.dataset.delete.split(":");if(confirm("¿Eliminar este registro?")){data[k].splice(+i,1);render();addHistory("Registro eliminado de "+k);save(false)}}});
+$("recordForm").addEventListener("submit",async e=>{e.preventDefault();let {k,i}=editRef,values=labels[k].map((_,j)=>new FormData(e.target).get("f"+j)||"");let attachments=editingActivityPhotos.map(p=>({...p}));for(const file of pendingActivityPhotos){let dataUrl;if(file.type&&file.type.startsWith("image/")){dataUrl=await compressImage(file)}else{dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file)})}attachments.push({name:file.name,type:file.type||"application/octet-stream",data:dataUrl})}values[k==="activities"?4:labels[k].length]=attachments;if(i===null)data[k].push(values);else data[k][i]=values;$("modal").style.display="none";render();addHistory((i===null?"Registro creado en ":"Registro modificado en ")+k);save(false);toast("Registro guardado")});
+function compressImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const max=1600,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",0.78));};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
+$("cancel").onclick=()=>$("modal").style.display="none";$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").style.display="none"});
+function pack(){return {version:"v40",aprNames,areaNames,date:$("date").value,dateFrom:$("dateFrom").value,dateTo:$("dateTo").value,owner:$("owner").value,shift:$("shift").value,project:$("project").value,area:$("area").value,status,data,history}}
+function save(show=true){try{localStorage.setItem("reportes-hys-v30-daily",JSON.stringify(pack()));updateStorageStatus();window.dispatchEvent(new CustomEvent("reportes-hys-data-saved"));if(show)toast("Borrador guardado en este navegador")}catch(e){toast("No se pudo guardar: almacenamiento local lleno")}}
+function autosaveEnabled(){return localStorage.getItem("reportes-hys-v30-autosave")!=="false"}
+function updateStorageStatus(){const el=$("storageStatus");if(!el)return;let used=0;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith("reportes-hys-"))used+=(localStorage.getItem(k)||"").length*2}const last=readBackupRecord();const age=last?Math.floor((Date.now()-new Date(last.createdAt).getTime())/86400000):null;el.textContent="Guardado local: "+(localStorage.getItem("reportes-hys-v30-daily")?"hay un borrador guardado":"todavía no hay un borrador guardado")+" · Espacio aproximado usado por Reportes H y S: "+(used/1024).toFixed(1)+" KB."+(last?" · Último respaldo: "+new Date(last.createdAt).toLocaleString("es-CL"):" · No hay respaldos creados")+(last&&age<7?" · Respaldo reciente":!last?" · Recomendación: crear un respaldo":" · Recomendación: crear un respaldo actualizado");const loc=$("backupLocationStatus");if(loc)loc.textContent=last?"Último respaldo: "+new Date(last.createdAt).toLocaleString("es-CL")+". Copia interna del navegador y descarga JSON al dispositivo.":"Aún no se ha creado un respaldo. Al crearlo se guardará en este navegador y se descargará un archivo JSON.";const warn=$("backupReminder");if(warn)warn.textContent=!last?"Recomendación: crea tu primer respaldo local y guarda el archivo descargado.":age>=7?"Han pasado "+age+" días desde el último respaldo. Conviene crear uno actualizado.":"Tu respaldo tiene "+Math.max(0,age)+" días. Recuerda descargar una copia cuando hagas cambios importantes."}
+function applyPack(obj){if(!obj||!obj.data)throw Error("Copia no válida");data=obj.data;$("date").value=obj.date||localDate;$("dateFrom").value=obj.dateFrom||obj.date||localDate;$("dateTo").value=obj.dateTo||obj.date||localDate;aprNames=Array.isArray(obj.aprNames)?obj.aprNames:aprNames;areaNames=Array.isArray(obj.areaNames)?obj.areaNames:areaNames;renderAprSelect(obj.owner||"");renderAprList();renderAreaSelect(obj.area||"");renderAreaList();$("owner").value=obj.owner||"";$("shift").value=obj.shift||"";$("project").value=obj.project||"";$("area").value=obj.area||"";updateTurnDay();history=obj.history||[];status=obj.status||"En edición";$("status").textContent=status;$("status").className=status==="Finalizado"?"pill ok":"pill warn";render();renderHistory();localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));save(false);updateStorageStatus()}
+$("save").onclick=()=>{save();addHistory("Borrador guardado");save(false)};
+function archiveFinalizedSnapshot(){try{const key="reportes-hys-finalized-snapshots";const list=JSON.parse(localStorage.getItem(key)||"[]");const snapshot={id:"final-"+Date.now().toString(36),createdAt:new Date().toISOString(),report:JSON.parse(JSON.stringify(pack()))};list.unshift(snapshot);localStorage.setItem(key,JSON.stringify(list.slice(0,50)));return true}catch(e){console.error("No se pudo archivar la copia del informe finalizado:",e);return false}}
+$("finalize").onclick=()=>{status="Finalizado";$("status").textContent="✓ Finalizado";$("status").className="pill ok";addHistory("Informe finalizado");save(false);const archived=archiveFinalizedSnapshot();if(!archived){status="En edición";$("status").textContent="● En edición";$("status").className="pill warn";addHistory("No se pudo finalizar: falló el respaldo local");save(false);alert("No se limpiaron las tarjetas porque no se pudo guardar una copia del informe. Intenta nuevamente o crea un respaldo.");return}clearThreeCards(false);status="En edición";$("status").textContent="● En edición";$("status").className="pill warn";addHistory("Nuevo informe iniciado después de finalizar");save(false);toast("Informe finalizado y copia guardada. Las tres tarjetas están listas para un nuevo informe.")};
+function updatePrintInicio(){const val=id=>{const el=$(id);return el?(el.tagName==="SELECT"?(el.options[el.selectedIndex]?.text||""):el.value)||"—":"—"};const dateFmt=v=>v&&v!=="—"?v.split("-").reverse().join("-"):"—";$("printPeriodo").textContent=dateFmt(val("dateFrom"))+" al "+dateFmt(val("dateTo"));$("printDiaTurno").textContent=($("turnDay")?.textContent||"").trim()||"—";$("printFechaInforme").textContent=dateFmt(val("date"));$("printApr").textContent=val("owner");$("printTurno").textContent=val("shift");$("printProyecto").textContent=val("project");$("printArea").textContent=val("area")}const originalDocumentTitle=document.title;function nombreBaseArchivo(){const now=new Date();const fechaGeneracion=[now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");const aprSelect=$("owner");const aprName=(aprSelect?.options[aprSelect.selectedIndex]?.text||"APR no seleccionado").trim();const turnoSelect=$("shift");const turno=(turnoSelect?.options[turnoSelect.selectedIndex]?.text||"Turno no seleccionado").trim().replace(/-/g,"/");const turnoArchivo=turno.replace(/\//g,"∕");return fechaGeneracion+"_"+aprName+"_Informe Diario_"+turnoArchivo}function nombreArchivoPDF(){return nombreBaseArchivo()+".pdf"}function validarDatosInicioParaPDF(){const required=[["dateFrom","Fecha desde"],["dateTo","Fecha hasta"],["date","Fecha de informe"],["owner","APR responsable"],["shift","Turno"],["project","Proyecto"],["area","Área"]];const missing=required.filter(([id])=>!($(id)?.value||"").trim());if(missing.length){alert("No se puede generar el PDF. Completa todas las casillas de la pestaña Inicio:\\n\\n• "+missing.map(([,label])=>label).join("\\n• "));const first=$(missing[0][0]);if(first){first.focus();first.scrollIntoView({behavior:"smooth",block:"center"});}return false;}if($("dateFrom").value>$("dateTo").value){alert("No se puede generar el PDF: la Fecha desde no puede ser posterior a la Fecha hasta.");$("dateFrom").focus();return false;}return true}function printReporte(){if(!validarDatosInicioParaPDF())return;save(false);updatePrintInicio();document.title=nombreArchivoPDF();window.print()}window.addEventListener("afterprint",()=>{document.title=originalDocumentTitle});async function ensurePdfLibraries(){const load=(urls,ready)=>new Promise((resolve,reject)=>{if(ready())return resolve();let i=0;const next=()=>{if(ready())return resolve();if(i>=urls.length)return reject(Error("Bibliotecas PDF no disponibles"));const sc=document.createElement("script");sc.src=urls[i++];sc.async=true;sc.onload=()=>ready()?resolve():next();sc.onerror=next;document.head.appendChild(sc)};next()});await load(["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"],()=>typeof window.html2canvas==="function");await load(["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"],()=>!!(window.jspdf&&window.jspdf.jsPDF))}
+function clearThreeCards(showMessage=true){data.activities=[];data.inspections=[];data.findings=[];render();save(false);addHistory("Se limpiaron los registros de las tres tarjetas");save(false);if(showMessage)toast("Se limpiaron las tres tarjetas. Los datos del informe y del turno se conservaron.");}
+
+$("pdfShare").onclick=async()=>{
+if(!validarDatosInicioParaPDF())return;
+save(false);updatePrintInicio();
+const area=document.querySelector(".main");
+if(!area){alert("No se encontró el contenido del informe.");return}
+if(typeof html2canvas==="undefined"||typeof window.jspdf==="undefined"){alert("No se pudo cargar el generador PDF. Revisa tu conexión e inténtalo nuevamente.");return}
+const filename=nombreArchivoPDF();
+let blob,pages=0; const safeBreaks=[];
+try{
+ let canvas=await html2canvas(area,{scale:2,useCORS:true,allowTaint:false,scrollX:0,scrollY:0,backgroundColor:"#ffffff",windowWidth:Math.max(900,area.scrollWidth,area.clientWidth),windowHeight:Math.max(document.documentElement.scrollHeight,area.scrollHeight),onclone:(clonedDoc)=>{
+  const style=clonedDoc.createElement("style");
+  style.textContent=".record-evidence{display:grid!important;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr))!important;gap:6px!important;align-items:start!important;width:100%!important}.record-evidence a{display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;aspect-ratio:var(--photo-ratio,4/3)!important;height:auto!important;overflow:hidden!important}.record-evidence a img,.record-evidence img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;margin:0!important}.photo-links{display:grid!important;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr))!important;gap:6px!important}.photo-links img{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;margin:0 auto!important}.main{display:block!important;width:733px!important;min-width:733px!important;max-width:none!important;box-sizing:border-box!important;height:auto!important;max-height:none!important;overflow:visible!important;min-height:0!important;padding:19px!important;font-size:9pt!important;line-height:1.28!important;color:#172b3a!important}.print-inicio-header{display:block!important;visibility:visible!important;height:auto!important;max-height:none!important;overflow:visible!important;margin:0 0 5mm!important;padding:0 0 3mm!important;border-bottom:1px solid #777!important}.print-report-title{display:block!important;font-size:16pt!important;text-align:center!important;margin:0 0 3mm!important;color:#111!important}.print-inicio-header h2{display:block!important;font-size:10pt!important;margin:0 0 2mm!important;color:#111!important}.print-observation{display:block!important;font-size:8.5pt!important;margin:0 0 3mm!important;color:#111!important}.print-inicio-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:2mm 5mm!important;font-size:8.5pt!important;color:#111!important}.print-inicio-grid>div{break-inside:avoid!important}.report-section{display:block!important;visibility:visible!important;height:auto!important;max-height:none!important;overflow:visible!important}.footeractions,.btnrow,.btn,#save,#finalize,#pdfShare,#print,button,.act,.photo-delete,.photo-label,.photo-empty{display:none!important}.panel{break-inside:auto!important;page-break-inside:auto!important;overflow:visible!important;height:auto!important;max-height:none!important;margin:0 0 3mm!important;box-shadow:none!important;border-radius:3px!important}.panel h2,.panel h3{font-size:10pt!important;margin:0!important;padding:2.5mm 3mm!important}.panel-body,.panel-content{padding:2.5mm 3mm!important}.tablewrap{height:auto!important;max-height:none!important;overflow:visible!important}table{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;font-size:8pt!important}th,td{padding:1.5mm!important;overflow-wrap:anywhere!important;word-break:normal!important;vertical-align:top!important}tr{break-inside:avoid;page-break-inside:avoid}.pagehead{margin:0 0 3mm!important;gap:3mm!important}.pagehead .bigicon{font-size:22pt!important}.pagehead h1{font-size:16pt!important;margin:0 0 1mm!important}.pagehead p{font-size:9pt!important}.field{margin-bottom:1.5mm!important}.field label{font-size:8pt!important;margin-bottom:1mm!important}.photo-links a,.photo-links img{break-inside:avoid;page-break-inside:avoid}.photo-links img{max-width:90%!important;max-height:55mm!important;object-fit:contain!important;margin:1mm auto!important}.metaform{padding:3mm!important;gap:2mm!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}.layout{display:block!important;min-height:0!important}.side,.sidepanels,.top{display:none!important}*{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}";
+  clonedDoc.head.appendChild(style);
+  clonedDoc.querySelectorAll(".report-section").forEach(el=>{el.style.setProperty("display","block","important");el.style.setProperty("visibility","visible","important");el.style.setProperty("height","auto","important");el.style.setProperty("max-height","none","important");el.style.setProperty("overflow","visible","important");});
+  clonedDoc.querySelectorAll("table").forEach(table=>{const body=table.tBodies&&table.tBodies[0];if(!body||!body.querySelector("tr.record-evidence-row"))return;const rows=Array.from(body.rows);const headers=table.tHead&&table.tHead.rows[0]?Array.from(table.tHead.rows[0].cells).map(cell=>cell.textContent.trim()):[];const list=clonedDoc.createElement("div");list.className="pdf-record-list";list.style.cssText="display:block!important;visibility:visible!important;width:100%!important;";for(let n=0;n<rows.length;n++){const row=rows[n];if(row.classList.contains("record-evidence-row"))continue;const evidenceRow=rows[n+1]&&rows[n+1].classList.contains("record-evidence-row")?rows[n+1]:null;const imgs=evidenceRow?Array.from(evidenceRow.querySelectorAll(".record-evidence img")).map(img=>img.getAttribute("src")).filter(src=>src&&src.trim()):[];const card=clonedDoc.createElement("div");card.className="pdf-record-card";card.style.cssText="display:block!important;visibility:visible!important;width:100%!important;box-sizing:border-box!important;border:1px solid #d8e1ea!important;border-radius:5px!important;margin:0 0 3mm!important;padding:2.5mm!important;background:#fff!important;break-inside:avoid!important;";const summary=clonedDoc.createElement("div");summary.className="pdf-record-summary";summary.style.cssText="display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2mm!important;font-size:8pt!important;line-height:1.3!important;margin-bottom:"+(imgs.length?"2mm":"0")+"!important;";Array.from(row.cells).slice(1,-1).forEach((cell,index)=>{const field=clonedDoc.createElement("div");field.style.cssText="display:block!important;min-width:0!important;overflow-wrap:anywhere!important;";const label=headers[index+1]||("Dato "+(index+1));const strong=clonedDoc.createElement("strong");strong.textContent=label+": ";field.appendChild(strong);field.appendChild(clonedDoc.createTextNode(cell.textContent.trim()));summary.appendChild(field);});card.appendChild(summary);if(imgs.length){const gallery=clonedDoc.createElement("div");gallery.className="record-evidence";gallery.style.cssText="display:grid!important;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr))!important;gap:6px!important;align-items:start!important;width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important;";imgs.forEach(src=>{const tile=clonedDoc.createElement("div");tile.style.cssText="display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;aspect-ratio:var(--photo-ratio,4/3)!important;overflow:hidden!important;";const img=clonedDoc.createElement("img");img.src=src;img.alt="";img.style.cssText="display:block!important;visibility:visible!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;margin:0!important;";tile.appendChild(img);gallery.appendChild(tile);});card.appendChild(gallery);}list.appendChild(card);n+=evidenceRow?1:0;}table.replaceWith(list);});;
+  ["inicioPanel","config","saveOptionsPanel"].forEach(id=>{const el=clonedDoc.getElementById(id);if(el)el.style.setProperty("display","none","important");});const printHeader=clonedDoc.getElementById("printInicioHeader");if(printHeader){printHeader.style.setProperty("display","block","important");printHeader.style.setProperty("visibility","visible","important");const subTitle=printHeader.querySelector("h2");if(subTitle)subTitle.style.setProperty("display","none","important");const observation=printHeader.querySelector(".print-observation");if(observation)observation.style.setProperty("display","none","important");}const pageHead=clonedDoc.getElementById("mainPagehead");if(pageHead)pageHead.style.setProperty("display","none","important");
+  const head=clonedDoc.getElementById("mainPagehead");if(head){const title=head.querySelector("h1"),desc=head.querySelector("p");if(title)title.textContent="Informe diario HYS";if(desc)desc.textContent="Reporte completo del período seleccionado.";}
+  const clonedArea=clonedDoc.querySelector(".main");if(clonedArea){clonedArea.style.setProperty("display","block","important");clonedArea.style.setProperty("width","733px","important");clonedArea.style.setProperty("min-width","733px","important");clonedArea.style.setProperty("max-width","none","important");clonedArea.style.setProperty("box-sizing","border-box","important");clonedArea.style.setProperty("height","auto","important");clonedArea.style.setProperty("max-height","none","important");clonedArea.style.setProperty("overflow","visible","important");} if(clonedArea){const top=clonedArea.getBoundingClientRect().top+clonedDoc.defaultView.scrollY;const candidates=Array.from(clonedArea.querySelectorAll(".pdf-record-card,.panel,.print-inicio-header,.metaform,.report-section > h2,.report-section > h3"));for(const el of candidates){const r=el.getBoundingClientRect();const blockTop=r.top+clonedDoc.defaultView.scrollY-top;const blockBottom=r.bottom+clonedDoc.defaultView.scrollY-top;if(Number.isFinite(blockTop)&&blockTop>0)safeBreaks.push(blockTop);if(Number.isFinite(blockBottom)&&blockBottom>0)safeBreaks.push(blockBottom);}safeBreaks.sort((a,b)=>a-b);}
+  clonedDoc.querySelectorAll(".photo-label,.photo-empty,.act,.photo-delete").forEach(el=>el.style.setProperty("display","none","important"));
+  clonedDoc.querySelectorAll("table th:last-child,table td:last-child").forEach(el=>el.style.setProperty("display","none","important"));
+  clonedDoc.querySelectorAll(".photo-links img.print-photo").forEach(img=>{img.style.setProperty("display","block","important");img.style.maxWidth="100%";img.style.height="auto";});
+ }});
+ if(!canvas||canvas.width===0||canvas.height===0)throw new Error("No se pudo capturar el contenido del informe");
+ // Recorta únicamente el espacio blanco sobrante al final de la captura para evitar una última hoja vacía.
+ const scanCtx=canvas.getContext("2d",{willReadFrequently:true});
+ if(scanCtx){
+  const pixels=scanCtx.getImageData(0,0,canvas.width,canvas.height).data;
+  let lastContentY=-1;
+  for(let y=canvas.height-1;y>=0&&lastContentY<0;y--){
+   const row=y*canvas.width*4;
+   for(let x=0;x<canvas.width;x+=4){
+    const p=row+x*4;
+    if(pixels[p]<245||pixels[p+1]<245||pixels[p+2]<245||pixels[p+3]<250){lastContentY=y;break;}
+   }
+  }
+  if(lastContentY>=0&&lastContentY<canvas.height-1){
+   const cropped=document.createElement("canvas");
+   cropped.width=canvas.width;
+   cropped.height=Math.min(canvas.height,lastContentY+25);
+   const croppedCtx=cropped.getContext("2d");
+   if(croppedCtx){croppedCtx.fillStyle="#ffffff";croppedCtx.fillRect(0,0,cropped.width,cropped.height);croppedCtx.drawImage(canvas,0,0,canvas.width,cropped.height,0,0,canvas.width,cropped.height);canvas=cropped;}
+  }
+ }
+ const {jsPDF}=window.jspdf;
+ const pdf=new jsPDF({unit:"mm",format:"a4",orientation:"portrait",compress:true});
+ const pageW=210,pageH=297,margin=8,contentW=pageW-margin*2,contentH=pageH-margin*2;
+ const pxPerMm=canvas.width/contentW;
+ const sliceHeight=Math.floor(contentH*pxPerMm);
+ const scaleFactor=canvas.width/733;
+ const breaks=[...new Set(safeBreaks.map(v=>Math.round(v*scaleFactor)).filter(v=>v>0&&v<canvas.height))].sort((a,b)=>a-b);
+ const ranges=[];let start=0;while(start<canvas.height){const target=Math.min(canvas.height,start+sliceHeight);let end=target;if(target<canvas.height){const minRoom=Math.round(18*pxPerMm);const prior=breaks.filter(v=>v>start+minRoom&&v<=target);if(prior.length){end=prior[prior.length-1];}else{const next=breaks.find(v=>v>target);if(next&&next-start<=sliceHeight){end=next;}else{const cardStart=breaks.filter(v=>v>start+minRoom&&v<target).pop();if(cardStart)end=cardStart;}}}if(end<=start)end=target;ranges.push({y:start,h:Math.min(end,canvas.height)-start});start=end;}
+ pages=ranges.length;
+ for(let page=0;page<pages;page++){
+  const {y,h}=ranges[page];
+  const slice=document.createElement("canvas");slice.width=canvas.width;slice.height=h;
+  const ctx=slice.getContext("2d");if(!ctx)throw new Error("No se pudo preparar una página del PDF");
+  ctx.fillStyle="#ffffff";ctx.fillRect(0,0,slice.width,slice.height);ctx.drawImage(canvas,0,y,canvas.width,h,0,0,canvas.width,h);
+  if(page>0)pdf.addPage();
+  const img=slice.toDataURL("image/jpeg",0.94);
+  pdf.addImage(img,"JPEG",margin,margin,contentW,h/pxPerMm,undefined,"FAST");
+ }
+ blob=pdf.output("blob");
+ if(!(blob instanceof Blob)||blob.size===0)throw new Error("PDF vacío");
+ if(pages<2)console.warn("El informe se capturó en una sola página. Altura capturada:",canvas.height);
+}catch(e){console.error("Error al generar PDF completo:",e);alert("No se pudo generar el PDF completo. Comprueba tu conexión y vuelve a intentarlo.");return}
+await archiveGeneratedPdf(blob,filename);
+const url=URL.createObjectURL(blob);
+const modal=document.createElement("div");modal.style.cssText="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:12px";
+modal.innerHTML='<div style="background:#fff;color:#172b3a;width:min(100%,1000px);height:min(94vh,900px);border-radius:12px;display:flex;flex-direction:column;overflow:hidden"><div style="padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid #ddd"><strong>Vista previa del PDF</strong><span style="font-size:14px">Páginas detectadas: '+pages+'</span></div><iframe title="Vista previa del PDF" style="border:0;flex:1;width:100%;min-height:0" src="'+url+'"></iframe><div style="padding:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid #ddd"><button type="button" data-pdf-action="close">Cancelar</button><button type="button" data-pdf-action="download">Descargar PDF</button><button type="button" data-pdf-action="share">Compartir PDF</button></div></div>';
+document.body.appendChild(modal);
+const close=()=>{modal.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)};
+modal.querySelector('[data-pdf-action="close"]').onclick=close;
+modal.querySelector('[data-pdf-action="download"]').onclick=()=>{const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();close()};
+modal.querySelector('[data-pdf-action="share"]').onclick=async()=>{try{const file=new File([blob],filename,{type:"application/pdf"});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:filename,text:filename});close();}else{const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();close();alert("El PDF se descargó. Adjunta ese archivo desde la aplicación que prefieras.");}}catch(e){if(e.name!=="AbortError"){console.error("Error al compartir PDF:",e);alert("No se pudo compartir directamente. Puedes usar Descargar PDF y enviarlo manualmente.");}}};
+};;$("print").onclick=printReporte;
+const ARCHIVE_DB_NAME="reportes-hys-pdf-archive",ARCHIVE_DB_STORE="pdfs";function openArchiveDB(){return new Promise((resolve,reject)=>{if(!("indexedDB"in window)){reject(Error("Este navegador no permite IndexedDB"));return}const req=indexedDB.open(ARCHIVE_DB_NAME,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(ARCHIVE_DB_STORE))db.createObjectStore(ARCHIVE_DB_STORE,{keyPath:"id"})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||Error("No se pudo abrir el archivo local"))})}async function getArchivedReports(){const db=await openArchiveDB();return new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readonly"),req=tx.objectStore(ARCHIVE_DB_STORE).getAll();req.onsuccess=()=>{db.close();resolve((req.result||[]).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)) ))};req.onerror=()=>{db.close();reject(req.error||Error("No se pudieron leer los reportes"))}})}async function getArchivedReport(id){const db=await openArchiveDB();return new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readonly"),req=tx.objectStore(ARCHIVE_DB_STORE).get(id);req.onsuccess=()=>{db.close();resolve(req.result||null)};req.onerror=()=>{db.close();reject(req.error||Error("No se pudo abrir el PDF"))}})}function archiveMonthKey(r){const raw=r.dateFrom||r.date||r.dateLabel||r.createdAt||"";let d=null;if(/^\\d{4}-\\d{2}-\\d{2}$/.test(raw))d=new Date(raw+"T12:00:00");else if(r.createdAt)d=new Date(r.createdAt);if(!d||Number.isNaN(d.getTime()))d=new Date();return {key:d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"),label:d.toLocaleDateString("es-CL",{month:"long",year:"numeric"})}}async function renderArchivedReports(){const el=$("archivedReports");if(!el)return;let list;try{list=await getArchivedReports()}catch(e){el.innerHTML='<div class="historyitem">No se pudo leer el archivo de PDF<small>'+esc(e.message||"Error de almacenamiento")+'</small></div>';return}if(!list.length){el.innerHTML='<div class="archive-empty"><strong>No hay informes PDF archivados todavía.</strong><p>Completa Inicio y genera el PDF. Cada archivo guardado aparecerá aquí agrupado por mes, con opciones para abrirlo o descargarlo.</p></div>';return}const groups={};list.forEach(r=>{const m=archiveMonthKey(r);if(!groups[m.key])groups[m.key]={label:m.label,items:[]};groups[m.key].items.push(r)});el.innerHTML=Object.keys(groups).sort((a,b)=>b.localeCompare(a)).map(key=>{const g=groups[key];return '<section class="archive-month"><h3>'+esc(g.label.charAt(0).toLocaleUpperCase("es")+g.label.slice(1))+' <span class="archive-count">'+g.items.length+' archivo(s)</span></h3>'+g.items.map(r=>'<article class="archive-record"><strong class="archive-filename">'+esc(r.filename||"Informe PDF")+'</strong><div class="archive-meta"><span><b>Fecha del informe:</b> '+esc(r.dateLabel||r.date||"No indicada")+'</span><span><b>Período:</b> '+esc(r.period||"No indicado")+'</span><span><b>APR responsable:</b> '+esc(r.owner||"No indicado")+'</span><span><b>Turno:</b> '+esc(r.shift||"No indicado")+'</span><span><b>Proyecto:</b> '+esc(r.project||"No indicado")+'</span><span><b>Área:</b> '+esc(r.area||"No indicada")+'</span><span><b>Archivado:</b> '+esc(r.createdAt?new Date(r.createdAt).toLocaleString("es-CL"):"Fecha no registrada")+'</span></div><div class="btnrow" style="margin-top:9px"><button class="btn" data-archive-open="'+esc(r.id)+'">Ver PDF</button><button class="btn" data-archive-download="'+esc(r.id)+'">Descargar PDF</button><button class="btn" data-archive-share="'+esc(r.id)+'">Compartir</button><button class="btn" data-archive-edit="'+esc(r.id)+'" title="'+(r.reportData?'Cargar los datos guardados para editarlos':'Este PDF antiguo no conserva los datos del formulario')+'">'+(r.reportData?'Editar datos del informe':'Edición no disponible')+'</button><button class="btn" data-archive-history="'+esc(r.id)+'">Ver historial ('+(Array.isArray(r.history)?r.history.length:0)+')</button></div></article>').join("")+'</section>'}).join("");el.querySelectorAll("[data-archive-open]").forEach(b=>b.onclick=async()=>{try{const r=await getArchivedReport(b.dataset.archiveOpen);if(!r||!r.pdfBlob)throw Error("No se encontró el archivo PDF");const url=URL.createObjectURL(r.pdfBlob),w=window.open(url,"_blank");if(!w){const a=document.createElement("a");a.href=url;a.target="_blank";document.body.appendChild(a);a.click();a.remove()}setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){alert("No se pudo abrir el PDF: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-download]").forEach(b=>b.onclick=async()=>{try{const r=await getArchivedReport(b.dataset.archiveDownload);if(!r||!r.pdfBlob)throw Error("No se encontró el archivo PDF");const url=URL.createObjectURL(r.pdfBlob),a=document.createElement("a");a.href=url;a.download=r.filename||"informe.pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){alert("No se pudo descargar el PDF: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-share]").forEach(b=>b.onclick=async()=>{try{const r=await getArchivedReport(b.dataset.archiveShare);if(!r||!r.pdfBlob)throw Error("No se encontró el PDF para compartir");const filename=r.filename||"informe.pdf";const file=new File([r.pdfBlob],filename,{type:"application/pdf"});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:filename,text:"Informe HYS: "+filename});}else{const url=URL.createObjectURL(r.pdfBlob),a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);alert("Este navegador no permite compartir el PDF directamente. Se descargó el archivo para que puedas adjuntarlo en WhatsApp, correo u otra aplicación.");}}catch(e){if(e.name!=="AbortError"){console.error("Error al compartir informe:",e);alert("No se pudo compartir el informe: "+(e.message||"error"));}}});el.querySelectorAll("[data-archive-history]").forEach(b=>b.onclick=async()=>{try{const r=await getArchivedReport(b.dataset.archiveHistory);if(!r)throw Error("No se encontró el informe.");const entries=Array.isArray(r.history)?r.history:[];let modal=document.getElementById("changeHistoryModal");if(modal)modal.remove();modal=document.createElement("div");modal.id="changeHistoryModal";modal.style.cssText="position:fixed;inset:0;background:#071b30b8;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px";const cards=entries.map((h,i)=>{const changes=(h.changes||[]).map(c=>{const imgs=(c.beforeImage||c.afterImage)?`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px">${c.beforeImage?`<div><b>Imagen anterior</b><img src="${c.beforeImage}" alt="Imagen anterior" style="display:block;width:100%;max-height:220px;object-fit:contain;border:1px solid #c9def5;border-radius:8px;margin-top:4px"></div>`:""}${c.afterImage?`<div><b>Imagen nueva</b><img src="${c.afterImage}" alt="Imagen nueva" style="display:block;width:100%;max-height:220px;object-fit:contain;border:1px solid #c9def5;border-radius:8px;margin-top:4px"></div>`:""}</div>`:"";return `<article style="border:1px solid #d8e7f7;border-radius:9px;padding:11px;margin-top:8px"><div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:#456b95"><b>Pestaña:</b> ${esc(c.tab||"Datos generales")} <b>· Actividad:</b> ${esc(c.activity||c.field||"Campo")}</div><div style="margin-top:5px"><b>Tipo:</b> ${esc(c.type||"Campo")} · <b>Acción:</b> ${esc(c.action||"Modificación")}</div>${c.beforeImage||c.afterImage?"":`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px"><div><small style="color:#617d9e">Anterior</small><div style="overflow-wrap:anywhere">${esc(c.before||"(vacío)")}</div></div><div><small style="color:#119b70">Nuevo</small><div style="overflow-wrap:anywhere">${esc(c.after||"(vacío)")}</div></div></div>`}${imgs}</article>`}).join("");return `<section style="border:1px solid #d8e7f7;border-radius:10px;padding:12px;margin:12px 0"><b>${i+1}. ${esc(new Date(h.at).toLocaleString("es-CL"))}</b><div style="margin:4px 0 8px;color:#456b95">${esc(h.action||"Modificación")}</div>${changes||`<p>${esc(h.note||"Sin detalle de campos.")}</p>`}</section>`}).join("");modal.innerHTML=`<div style="background:white;color:#173d68;border-radius:14px;width:min(900px,100%);max-height:90vh;overflow:auto;padding:18px;box-shadow:0 15px 50px #0005"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div><h2 style="margin:0">Historial de modificaciones</h2><p style="margin:4px 0;color:#617d9e">${esc(r.filename||"Informe")}</p></div><button type="button" id="closeChangeHistory" class="btn">Cerrar ✕</button></div>${cards||`<p>Este informe todavía no tiene historial registrado. Las modificaciones se registrarán a partir de esta versión.</p>`}</div>`;document.body.appendChild(modal);modal.addEventListener("click",e=>{if(e.target===modal)modal.remove()});modal.querySelector("#closeChangeHistory").onclick=()=>modal.remove()}catch(e){alert("No se pudo mostrar el historial: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-edit]").forEach(b=>b.onclick=async()=>{try{const r=await getArchivedReport(b.dataset.archiveEdit);if(!r)throw Error("No se encontró el informe archivado.");if(!r.reportData){alert("Este PDF se guardó antes de habilitar la edición y no contiene los datos originales del formulario. Los informes archivados a partir de esta versión conservarán sus datos editables.");return}if(!confirm("Se cargarán los datos de este informe anterior en el formulario actual. Antes de reemplazarlos, se guardará una copia local del estado actual. ¿Continuar?"))return;try{sessionStorage.setItem("reportes-hys-editing-archive-id",r.id)}catch{}safeRestore(r.reportData,r.createdAt,r.filename);showTab("inicio");const notice=$("toast");if(notice){notice.textContent="Informe anterior cargado para editar. Guarda los cambios y genera el PDF nuevamente.";notice.style.display="block"}window.scrollTo({top:0,behavior:"smooth"})}catch(e){alert("No se pudo editar el informe: "+(e.message||"error"))}})}function reportChangeList(before,after){
+ const out=[],tabNames={activities:"Actividades HYS",inspections:"Actividades por área",findings:"Hallazgos"};
+ const fieldNames={date:"Fecha del informe",dateFrom:"Inicio del período",dateTo:"Fin del período",owner:"APR responsable",shift:"Turno",project:"Proyecto",area:"Área",status:"Estado"};
+ const fmt=v=>{if(v===undefined)return"(vacío)";if(v===null)return"(sin dato)";if(typeof v==="string"&&/^data:image\//i.test(v))return"[Imagen adjunta]";if(Array.isArray(v))return v.length+" elemento(s)";if(typeof v==="object"){if(v&&(/^image\//i.test(v.type||"")||/^data:image\//i.test(v.data||"")))return v.name||"Imagen adjunta";return JSON.stringify(v).slice(0,180)}const t=String(v).replace(/\s+/g," ").trim();return(t||"(vacío)").slice(0,180)};
+ const isImg=v=>typeof v==="string"&&/^data:image\//i.test(v)||v&&typeof v==="object"&&(/^image\//i.test(v.type||"")||/^data:image\//i.test(v.data||"")||/\.(png|jpe?g|gif|webp|bmp|heic|heif)$/i.test(v.name||""));
+ const walk=(a,b,path,tab,activity)=>{
+  if(JSON.stringify(a)===JSON.stringify(b))return;
+  if(isImg(a)||isImg(b)){
+   out.push({tab:tab||"Datos generales",activity:activity||"Evidencia adjunta",type:"Imagen",action:!a?"Imagen agregada":!b?"Imagen eliminada":"Imagen reemplazada",field:path,before:fmt(a),after:fmt(b),beforeImage:isImg(a)?(typeof a==="string"?a:a.data):null,afterImage:isImg(b)?(typeof b==="string"?b:b.data):null});return;
+  }
+  if(a&&b&&typeof a==="object"&&typeof b==="object"&&!Array.isArray(a)&&!Array.isArray(b)){
+   const keys=new Set([...Object.keys(a),...Object.keys(b)]);keys.forEach(k=>walk(a[k],b[k],path?path+" / "+k:k,tab,activity));return;
+  }
+  if(Array.isArray(a)||Array.isArray(b)){
+   const aa=Array.isArray(a)?a:[],bb=Array.isArray(b)?b:[],n=Math.max(aa.length,bb.length);
+   for(let i=0;i<n;i++){const item=bb[i]||aa[i],label=typeof item==="object"&&item?String(item.title||item.activity||item.description||item[2]||item[1]||("Registro "+(i+1))):"Registro "+(i+1);walk(aa[i],bb[i],path+" / "+label,tab, label||activity)}
+   return;
+  }
+  const root=path.split(" / ")[0],type=(typeof a==="string"||typeof b==="string")?"Texto":"Campo";
+  out.push({tab:tab||"Datos generales",activity:activity||fieldNames[root]||root||"Datos generales",type,action:a===undefined?"Registro agregado":b===undefined?"Registro eliminado":"Texto"===type?"Texto modificado":"Campo modificado",field:(fieldNames[root]||root)+(path.includes(" / ")? " / "+path.split(" / ").slice(1).join(" / "):""),before:fmt(a),after:fmt(b)});
+ };
+ const roots=new Set([...Object.keys(before||{}),...Object.keys(after||{})]);
+ roots.forEach(k=>{
+  if(k==="data"){
+   const ad=before&&before.data||{},bd=after&&after.data||{};
+   new Set([...Object.keys(ad),...Object.keys(bd)]).forEach(section=>walk(ad[section],bd[section],section,tabNames[section]||section,""));
+  }else walk(before&&before[k],after&&after[k],k, "Datos generales",fieldNames[k]||k);
+ });
+ return out;
+}
+async function archiveGeneratedPdf(blob,filename){try{const p=pack(),db=await openArchiveDB(),list=await new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readonly"),req=tx.objectStore(ARCHIVE_DB_STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error||Error("No se pudo consultar el archivo"))});const signature=[p.dateFrom,p.dateTo,p.date,p.owner,p.shift,p.project,p.area,filename].join("|");let editingId=null;try{editingId=sessionStorage.getItem("reportes-hys-editing-archive-id")}catch{}const existing=list.find(r=>(editingId&&r.id===editingId)||r.signature===signature);const now=new Date().toISOString();let history=existing&&Array.isArray(existing.history)?existing.history.slice():[];if(!existing){history.push({at:now,action:"Creación del informe",changes:[],note:"Se archivó la primera versión disponible en esta aplicación."})}else{if(!history.length)history.push({at:existing.createdAt||now,action:"Inicio del historial",changes:[],note:"No existen registros de modificaciones anteriores a esta versión."});if(existing.reportData){const changes=reportChangeList(existing.reportData,p);if(changes.length)history.push({at:now,action:"Modificación del informe",changes});}else{history.push({at:now,action:"Datos editables incorporados",changes:[],note:"Se guardaron los datos estructurados para permitir futuras modificaciones."})}}const entry={id:existing?existing.id:signature,signature,reportId:existing&&existing.reportId?existing.reportId:"hys-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10),filename,pdfBlob:blob,reportData:p,history,createdAt:existing&&existing.createdAt?existing.createdAt:now,updatedAt:now,dateLabel:p.date?p.date.split("-").reverse().join("-"):new Date().toLocaleDateString("es-CL"),dateFrom:p.dateFrom,dateTo:p.dateTo,owner:p.owner,shift:p.shift,project:p.project,area:p.area,period:(p.dateFrom||"—")+" al "+(p.dateTo||"—")};await new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readwrite"),store=tx.objectStore(ARCHIVE_DB_STORE);store.put(entry);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||Error("No se pudo guardar el PDF"));tx.onabort=()=>reject(tx.error||Error("Se canceló el guardado"))});db.close();try{if(editingId)sessionStorage.removeItem("reportes-hys-editing-archive-id")}catch{}addHistory("PDF archivado automáticamente: "+filename);save(false);await renderArchivedReports();return true}catch(e){console.error("No se pudo archivar el PDF:",e);alert("El PDF se generó, pero no se pudo guardar en Reportes anteriores: "+(e.message||"almacenamiento no disponible")+". Descárgalo para conservarlo.");return false}}function readBackupRecord(){try{const raw=localStorage.getItem("reportes-hys-v30-backup");if(!raw)return null;const obj=JSON.parse(raw);return obj&&obj.backupFormat==="ReportesHYSBackup"?obj:null}catch{return null}}
+function normalizeBackup(obj){if(obj&&obj.backupFormat==="ReportesHYSBackup")return {payload:obj.payload,createdAt:obj.createdAt,appVersion:obj.appVersion||"v78"};return {payload:obj,createdAt:null,appVersion:obj&&obj.version||"anterior"}}
+function backupSummary(obj,createdAt,filename){const p=obj||{};const date=p.date||"Sin fecha";const from=p.dateFrom||date,to=p.dateTo||date;const owner=p.owner||"Sin APR seleccionado";const activityCount=Array.isArray(p.data&&p.data.activities)?p.data.activities.length:0;const findingCount=Array.isArray(p.data&&p.data.findings)?p.data.findings.length:0;const areaCount=Array.isArray(p.data&&p.data.inspections)?p.data.inspections.length:0;return "Archivo: "+(filename||"respaldo guardado en navegador")+"\\nFecha de respaldo: "+(createdAt?new Date(createdAt).toLocaleString("es-CL"):"fecha no registrada (copia antigua)")+"\\nFecha del informe: "+date+"\\nPeríodo: "+from+" a "+to+"\\nAPR: "+owner+"\\nRegistros de actividades: "+activityCount+"\\nRegistros por área: "+areaCount+"\\nHallazgos: "+findingCount+"\\n\\nLa restauración reemplazará los datos actuales. Se guardará primero una copia de seguridad del estado actual. ¿Deseas continuar?"}
+function downloadBackup(record){const blob=new Blob([JSON.stringify(record,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=nombreBaseArchivo()+"_Respaldo_"+new Date(record.createdAt).toISOString().replace(/[:.]/g,"-").slice(0,19)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
+function makeBackup(download=true){const record={backupFormat:"ReportesHYSBackup",appVersion:"v78",createdAt:new Date().toISOString(),payload:pack()};const raw=JSON.stringify(record);localStorage.setItem("reportes-hys-v30-backup",raw);if(download)downloadBackup(record);updateStorageStatus();return record}
+function safeRestore(obj,createdAt,filename){if(!obj||!obj.data)throw Error("Copia no válida o incompatible");save(false);addHistory("Respaldo previo a restauración");const current={backupFormat:"ReportesHYSBackup",appVersion:"v78",createdAt:new Date().toISOString(),payload:pack()};localStorage.setItem("reportes-hys-v30-backup-before-restore",JSON.stringify(current));applyPack(obj);toast("Respaldo restaurado. Se conservó una copia previa en el navegador.");updateStorageStatus()}
+$("export").onclick=()=>{try{const record=makeBackup(true);toast("Respaldo guardado en el navegador y descargado al dispositivo")}catch(e){console.error(e);toast("No se pudo crear el archivo. Revisa el espacio disponible")}};
+$("import").onchange=async e=>{try{if(!e.target.files||!e.target.files[0])return;const file=e.target.files[0];const raw=JSON.parse(await file.text());const n=normalizeBackup(raw);if(!n.payload||!n.payload.data)throw Error("Formato no válido");if(!confirm(backupSummary(n.payload,n.createdAt,file.name)))return;safeRestore(n.payload,n.createdAt,file.name)}catch(err){console.error(err);toast("No se pudo importar: el archivo no es válido o no es compatible")}finally{e.target.value=""}};
+$("autosaveToggle").checked=autosaveEnabled();$("autosaveToggle").addEventListener("change",e=>{localStorage.setItem("reportes-hys-v30-autosave",e.target.checked?"true":"false");toast(e.target.checked?"Guardado automático activado":"Guardado automático desactivado");updateStorageStatus()});$("saveNow").addEventListener("click",()=>{save(false);addHistory("Guardado manual local");save(false);toast("Guardado en este navegador")});$("backupLocal").addEventListener("click",()=>{try{makeBackup(true);toast("Respaldo creado en el navegador y archivo descargado")}catch(e){console.error(e);toast("No se pudo crear el respaldo. Revisa el espacio disponible")}});$("restoreLocal").addEventListener("click",()=>{try{const raw=localStorage.getItem("reportes-hys-v30-backup");if(!raw){toast("Todavía no existe un respaldo local");return}const n=normalizeBackup(JSON.parse(raw));if(!n.payload||!n.payload.data)throw Error("Copia no válida");if(!confirm(backupSummary(n.payload,n.createdAt,"Respaldo local del navegador")))return;safeRestore(n.payload,n.createdAt,"Respaldo local del navegador")}catch(e){console.error(e);toast("No se pudo restaurar el respaldo local")}});$("resetLocal").addEventListener("click",()=>{if(!confirm("Esto eliminará el borrador, respaldo local y listas guardadas de la versión v30 en este navegador. Los archivos JSON descargados no se eliminarán. ¿Continuar?"))return;["reportes-hys-v30-daily","reportes-hys-v30-backup","reportes-hys-v30-apr","reportes-hys-v30-areas","reportes-hys-v30-autosave"].forEach(k=>localStorage.removeItem(k));location.reload()});["date","dateFrom","dateTo","owner","shift","project","area"].forEach(id=>$(id).addEventListener("change",()=>{if(autosaveEnabled())save(false)}));updateStorageStatus();
+const configPanel=$("config"),saveOptionsPanel=$("saveOptionsPanel");const archivePanel=$("historial");archivePanel.classList.add("archive-main");$("mainPagehead").insertAdjacentElement("afterend",archivePanel);function showTab(tab){if(["inicio","config","informe","historial"].includes(tab)){try{sessionStorage.setItem("reportes-hys-active-tab",tab)}catch{}}const isHome=tab==="inicio",isConfig=tab==="config",isReport=tab==="informe",isArchive=tab==="historial";$("inicioPanel").style.display=isHome?"grid":"none";configPanel.style.display=isConfig?"block":"none";saveOptionsPanel.style.display=isConfig?"block":"none";document.querySelectorAll(".report-section").forEach(el=>el.style.display=isReport?"":"none");$("historial").style.display=isArchive?"block":"none";const summaryPanel=document.querySelector(".sidepanels .summary");if(summaryPanel)summaryPanel.style.display=isArchive?"none":"";$("pageIcon").textContent=isHome?"⌂":isConfig?"⚙":isArchive?"◷":"▤";$("pageTitle").textContent=isHome?"Inicio":isConfig?"Listas y opciones":isArchive?"Reportes anteriores":"Informe diario";$("pageDescription").textContent=isHome?"Complete el período del turno y los datos generales del informe.":isConfig?"Administre las listas y las opciones de guardado local.":isArchive?"Consulta los PDF generados o compartidos desde este navegador.":"Registre las actividades HYS, las actividades por área y los hallazgos de la jornada.";document.querySelectorAll(".nav[data-tab]").forEach(el=>el.classList.toggle("active",el.dataset.tab===tab));if(isArchive)renderArchivedReports();}
+document.querySelectorAll(".nav[data-tab]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();showTab(el.dataset.tab)}));
+const configSettings=$("configSettings"),aprSettings=$("aprSettings"),areaSettings=$("areaSettings");configSettings.open=false;aprSettings.open=false;areaSettings.open=false;
+function getPhotoRatio(){const allowed=["4:3","16:9","3:2","2:1","5:4","3:4","1:1","2:3","9:16"];const saved=localStorage.getItem("reportes-hys-photo-ratio");return allowed.includes(saved)?saved:"4:3"}
+function applyPhotoRatio(value,notify=false){const allowed=["4:3","16:9","3:2","2:1","5:4","3:4","1:1","2:3","9:16"];const ratio=allowed.includes(value)?value:"4:3";document.documentElement.style.setProperty("--photo-ratio",ratio.replace(":"," / "));const selector=$("photoRatio");if(selector)selector.value=ratio;localStorage.setItem("reportes-hys-photo-ratio",ratio);const status=$("photoRatioStatus");if(status)status.textContent="Relación seleccionada: "+ratio+". Se aplicará al informe y al PDF.";if(notify)toast("Relación de fotografías guardada: "+ratio)}
+function getPhotoColumns(){const n=localStorage.getItem("reportes-hys-photo-columns");return ["5","6","7","8"].includes(n)?n:"5"}function applyPhotoSettings(c,notify=false){c=["5","6","7","8"].includes(String(c))?String(c):"5";document.documentElement.style.setProperty("--photo-columns",c);document.documentElement.style.setProperty("--photo-max-height","48mm");localStorage.setItem("reportes-hys-photo-columns",c);$("photoColumns").value=c;const status=$("photoRatioStatus");if(status)status.textContent=c+" fotografías por fila.";if(notify)toast("Configuración de fotografías guardada")}applyPhotoSettings(getPhotoColumns());$("photoColumns").addEventListener("change",e=>applyPhotoSettings(e.target.value,true));aprSettings.addEventListener("toggle",()=>{if(aprSettings.open&&areaSettings.open)areaSettings.open=false});areaSettings.addEventListener("toggle",()=>{if(areaSettings.open&&aprSettings.open)aprSettings.open=false});
+$("areaAdd").addEventListener("click",()=>{const name=$("areaNewName").value.trim();if(!name){toast("Escriba el nombre del área");return}if(areaNames.some((n,i)=>n.toLocaleLowerCase("es")===name.toLocaleLowerCase("es")&&i!==editingAreaIndex)){toast("Esa área ya está registrada");return}if(editingAreaIndex!==null){const old=areaNames[editingAreaIndex];areaNames[editingAreaIndex]=name;if($("area").value===old)$("area").value=name;editingAreaIndex=null;$("areaAdd").textContent="＋ Agregar área";toast("Área actualizada")}else{areaNames.push(name);toast("Área agregada")}areaNames.sort((a,b)=>a.localeCompare(b,"es"));$("areaNewName").value="";persistArea();addHistory("Lista de áreas actualizada")});document.addEventListener("click",e=>{const edit=e.target.closest("[data-area-edit]"),del=e.target.closest("[data-area-delete]");if(edit){editingAreaIndex=Number(edit.dataset.areaEdit);$("areaNewName").value=areaNames[editingAreaIndex];$("areaAdd").textContent="Guardar cambios";$("areaNewName").focus()}if(del){const i=Number(del.dataset.areaDelete),name=areaNames[i];if(confirm('¿Eliminar "'+name+'" de la lista de áreas? Los informes anteriores conservarán sus datos.')){areaNames.splice(i,1);if($("area").value===name)$("area").value="";editingAreaIndex=null;$("areaNewName").value="";$("areaAdd").textContent="＋ Agregar área";persistArea();addHistory("Área eliminada de la lista");toast("Área eliminada")}}});
+$("aprAdd").addEventListener("click",()=>{const name=$("aprNewName").value.trim();if(!name){toast("Escriba el nombre del APR");return}if(aprNames.some((n,i)=>n.toLocaleLowerCase("es")===name.toLocaleLowerCase("es")&&i!==editingAprIndex)){toast("Ese APR ya está registrado");return}if(editingAprIndex!==null){const old=aprNames[editingAprIndex];aprNames[editingAprIndex]=name;if($("owner").value===old)$("owner").value=name;editingAprIndex=null;$("aprAdd").textContent="＋ Agregar APR";toast("APR actualizado")}else{aprNames.push(name);toast("APR agregado")}aprNames.sort((a,b)=>a.localeCompare(b,"es"));$("aprNewName").value="";persistApr();addHistory("Lista de APR actualizada")});
+document.addEventListener("click",e=>{const edit=e.target.closest("[data-apr-edit]"),del=e.target.closest("[data-apr-delete]");if(edit){editingAprIndex=Number(edit.dataset.aprEdit);$("aprNewName").value=aprNames[editingAprIndex];$("aprAdd").textContent="Guardar cambios";$("aprNewName").focus()}if(del){const i=Number(del.dataset.aprDelete),name=aprNames[i];if(confirm('¿Eliminar a "'+name+'" de la lista de APR? Los informes anteriores conservarán sus datos.')){aprNames.splice(i,1);if($("owner").value===name)$("owner").value="";editingAprIndex=null;$("aprNewName").value="";$("aprAdd").textContent="＋ Agregar APR";persistApr();addHistory("APR eliminado de la lista");toast("APR eliminado")}}});
+$("owner").addEventListener("change",()=>save(false));$("area").addEventListener("change",()=>save(false));
+try{const defaultAprNames=["Bladimir Diaz","Isabel Mora","Ivan Mieres","Manuel Suazo","Marcelo Aguilera","Marcelo Guerrero"];const storedApr=JSON.parse(localStorage.getItem("reportes-hys-v30-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v26-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v25-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v21-apr"));aprNames=Array.isArray(storedApr)&&storedApr.length?storedApr:defaultAprNames.slice();localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));const defaultAreaNames=["VA4","V5","VA4/V5","VOLCAN","AUCAYES","MAITENES","VA1","VA2","COLORADO","VL4","VL5"];const storedAreas=JSON.parse(localStorage.getItem("reportes-hys-v30-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v26-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v25-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v21-areas"));areaNames=Array.isArray(storedAreas)&&storedAreas.length?storedAreas:defaultAreaNames.slice();localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));let saved=JSON.parse(localStorage.getItem("reportes-hys-v30-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v26-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v25-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v21-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v14-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v12-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v9-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v4-daily"));if(saved){data=saved.data||data;if(Array.isArray(saved.aprNames)&&!aprNames.length)aprNames=saved.aprNames;$("date").value=saved.date||localDate;$("dateFrom").value=saved.dateFrom||saved.date||localDate;$("dateTo").value=saved.dateTo||saved.date||localDate;$("owner").value=saved.owner||"";$("shift").value=saved.shift||"";$("project").value=saved.project||"";$("area").value=saved.area||"";updateTurnDay();history=saved.history||[];status=saved.status||"En edición";$("status").textContent=status;renderHistory();}}catch{}renderAprSelect($("owner").value);renderAprList();renderAreaSelect($("area").value);renderAreaList();render();if(!$("date").value)$("date").value=localDate;updateTurnDay();save(false);renderArchivedReports();let restoreTab="inicio";try{const candidate=sessionStorage.getItem("reportes-hys-active-tab");if(["inicio","config","informe","historial"].includes(candidate))restoreTab=candidate;}catch{}let restoreScroll=0;try{restoreScroll=Number(sessionStorage.getItem("reportes-hys-scroll-y")||0)||0;}catch{}showTab(restoreTab);if(restoreScroll>0){requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,restoreScroll)));}window.addEventListener("pagehide",()=>{try{sessionStorage.setItem("reportes-hys-scroll-y",String(window.scrollY||0));}catch{}});
+
+const photoViewer=$("photoViewer"),photoViewerImage=$("photoViewerImage");
+function closePhotoViewer(){photoViewer.classList.remove("open");photoViewerImage.removeAttribute("src");document.body.style.overflow="";}
+document.addEventListener("click",e=>{const link=e.target.closest("a[data-photo-preview]");if(link){e.preventDefault();const image=link.querySelector("img");const src=image?.currentSrc||image?.src||link.href;if(src){photoViewerImage.src=src;photoViewer.classList.add("open");document.body.style.overflow="hidden";}return;}if(e.target===photoViewer||e.target.closest("#photoViewerClose"))closePhotoViewer();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&photoViewer.classList.contains("open"))closePhotoViewer();});
+
+/* Google Drive OAuth / REST — copia de prueba v194 */
+(function(){
+  const DRIVE_CLIENT_ID="272549247302-v341bm9k73qvvd9hmeuonja67d2u85jn.apps.googleusercontent.com";
+  const DRIVE_SCOPE="https://www.googleapis.com/auth/drive.file";
+  const DRIVE_PREFIX="ReportesHYS_Respaldo_";
+  let driveToken="",driveTokenClient=null,driveTokenResolve=null,driveReady=false,googleLoadError=false;
+  const byId=id=>document.getElementById(id);
+  function driveStatus(msg){const el=byId("driveStatus");if(el)el.textContent=msg;}
+  function paintConnection(connected){
+    const btn=byId("driveConnect");
+    const disconnect=byId("driveConnectionIndicator");
+    if(disconnect){
+      disconnect.textContent="DESCONECTAR";
+      disconnect.style.background=connected?"#c62828":"#f3f4f6";
+      disconnect.style.color=connected?"#fff":"#7b8794";
+      disconnect.style.borderColor=connected?"#c62828":"#d1d5db";
+      disconnect.disabled=!connected;
+      disconnect.setAttribute("aria-label",connected?"Desconectar Google Drive":"Google Drive ya está desconectado");
+    }
+    if(!btn)return;
+    if(connected){
+      btn.textContent="CONECTADO — Google Drive";
+      btn.style.background="#16803c";
+      btn.style.borderColor="#16803c";
+      btn.style.color="#fff";
+      btn.disabled=true;
+      btn.setAttribute("aria-label","Google Drive conectado");
+    }else{
+      btn.textContent="DESCONECTADO — Conectar Google Drive";
+      btn.style.background="#c62828";
+      btn.style.borderColor="#c62828";
+      btn.style.color="#fff";
+      btn.disabled=false;
+      btn.setAttribute("aria-label","Google Drive desconectado; conectar");
+    }
+  }
+  function driveButtons(on){
+    ["driveSave","driveRefresh","driveRestore"].forEach(id=>{const el=byId(id);if(el)el.disabled=!on;});
+    paintConnection(on);
+  }
+  function loadGoogleIdentity(){
+    if(window.google&&window.google.accounts&&window.google.accounts.oauth2)return Promise.resolve(true);
+    if(window.__reportesDriveGISLoading)return window.__reportesDriveGISLoading;
+    window.__reportesDriveGISLoading=new Promise((resolve)=>{
+      const sc=document.createElement("script");
+      sc.src="https://accounts.google.com/gsi/client";
+      sc.async=true;
+      sc.onload=()=>resolve(true);
+      sc.onerror=()=>{googleLoadError=true;resolve(false);};
+      document.head.appendChild(sc);
+    });
+    return window.__reportesDriveGISLoading;
+  }
+  function ensureDriveTokenClient(){
+    if(driveTokenClient)return true;
+    if(!(window.google&&window.google.accounts&&window.google.accounts.oauth2))return false;
+    driveTokenClient=google.accounts.oauth2.initTokenClient({
+      client_id:DRIVE_CLIENT_ID,
+      scope:DRIVE_SCOPE,
+      callback:response=>{
+        const resolve=driveTokenResolve;
+        driveTokenResolve=null;
+        if(response.error||!response.access_token){
+          driveReady=false;driveToken="";driveButtons(false);
+          try{if(localStorage.getItem("reportes-hys-drive-was-connected")==="true")driveStatus("La sesión se actualizó. Google Drive necesita renovar el permiso; pulsa Conectar Google Drive si no se reconecta automáticamente.");}catch{}
+          if(resolve)resolve("");
+          return;
+        }
+        driveToken=response.access_token;
+        driveReady=true;driveButtons(true);
+        try{localStorage.setItem("reportes-hys-drive-was-connected","true");}catch{}
+        if(resolve)resolve(driveToken);
+      }
+    });
+    return true;
+  }
+  function requestDriveToken(promptValue){
+    return new Promise(resolve=>{
+      if(!ensureDriveTokenClient()){resolve("");return;}
+      driveTokenResolve=resolve;
+      try{driveTokenClient.requestAccessToken({prompt:promptValue||""});}
+      catch(e){driveTokenResolve=null;resolve("");}
+    });
+  }
+  async function disconnectDrive(){
+    const btn=byId("driveConnectionIndicator");
+    if(!driveReady&&!driveToken){driveStatus("Google Drive ya está desconectado.");driveButtons(false);return;}
+    const token=driveToken;
+    driveReady=false;
+    driveToken="";
+    try{localStorage.removeItem("reportes-hys-drive-was-connected");}catch{}
+    driveButtons(false);
+    if(btn)btn.disabled=true;
+    driveStatus("Desconectando Google Drive…");
+    try{
+      if(token&&window.google&&window.google.accounts&&window.google.accounts.oauth2){
+        await new Promise(resolve=>{
+          try{google.accounts.oauth2.revoke(token,()=>resolve());}
+          catch(e){resolve();}
+          setTimeout(resolve,1500);
+        });
+      }
+      if(autoSaveTimer){clearTimeout(autoSaveTimer);autoSaveTimer=null;}
+      driveStatus("Google Drive desconectado. Para volver a usarlo, pulsa Conectar Google Drive.");
+    }catch(e){
+      driveStatus("La aplicación quedó desconectada. Google podría requerir revocar el permiso desde la configuración de tu cuenta.");
+    }finally{driveButtons(false);}
+  }
+  async function connectDrive(){
+    if(!(window.google&&window.google.accounts&&window.google.accounts.oauth2)){
+      driveStatus(googleLoadError
+        ?"No se pudo cargar el servicio de Google. Revisa la conexión a Internet y recarga esta página."
+        :"Google todavía está cargando. Espera unos segundos y vuelve a pulsar Conectar.");
+      loadGoogleIdentity();
+      return;
+    }
+    driveStatus("Solicitando conexión con Google Drive…");
+    const token=await requestDriveToken("consent");
+    if(!token){
+      driveStatus("No se pudo conectar automáticamente. Pulsa Conectar Google Drive e inténtalo nuevamente.");
+      return;
+    }
+    driveStatus("Conectado a Google Drive. Cargando respaldos…");
+    await listDriveBackups();
+    scheduleDriveAutoSave();
+  }
+  async function driveFetch(url,options={},retried=false){
+    if(!driveToken)throw new Error("Google Drive no está conectado.");
+    const headers=Object.assign({},options.headers||{},{Authorization:"Bearer "+driveToken});
+    let response;
+    try{response=await fetch(url,Object.assign({},options,{headers}));}
+    catch(e){
+      throw new Error("No se pudo contactar Google Drive. Si la conexión a Internet se interrumpió, se intentará recuperar al volver la conexión.");
+    }
+    if(!response.ok){
+      let detail="";
+      try{detail=(await response.json()).error?.message||"";}catch{}
+      if(response.status===401&&!retried){
+        driveReady=false;driveToken="";driveButtons(false);
+        driveStatus("Conexión interrumpida. Intentando reconectar con Google Drive…");
+        const token=await requestDriveToken("");
+        if(token){
+          driveStatus("Conexión recuperada. Reintentando operación…");
+          return driveFetch(url,options,true);
+        }
+        driveStatus("No fue posible renovar la conexión en segundo plano. Pulsa Conectar Google Drive para volver a autorizar.");
+      }
+      throw new Error("Google Drive respondió "+response.status+(detail?": "+detail:""));
+    }
+    return response;
+  }
+  async function listDriveBackups(){
+    if(!driveReady)return;
+    const select=byId("driveBackupList");
+    select.innerHTML='<option value="">Cargando respaldos...</option>';
+    try{
+      const q="trashed = false and name contains '"+DRIVE_PREFIX+"'";
+      const url="https://www.googleapis.com/drive/v3/files?"+new URLSearchParams({
+        q,spaces:"drive",pageSize:"100",orderBy:"createdTime desc",
+        fields:"files(id,name,createdTime,mimeType,size)"
+      });
+      const response=await driveFetch(url);
+      const json=await response.json();
+      const files=json.files||[];
+      select.innerHTML="";
+      if(!files.length){
+        select.add(new Option("Todavía no hay respaldos de esta aplicación",""));
+        driveStatus("Conectado a Google Drive. Aún no hay respaldos creados por esta versión.");
+        return;
+      }
+      select.add(new Option("Selecciona un respaldo…",""));
+      files.forEach(f=>select.add(new Option(
+        f.name+" — "+(f.createdTime?new Date(f.createdTime).toLocaleString("es-CL"):"fecha desconocida"),f.id
+      )));
+      driveStatus("Conectado a Google Drive. Respaldos encontrados: "+files.length+".");
+    }catch(e){
+      select.innerHTML='<option value="">No se pudo listar los respaldos</option>';
+      driveStatus("Conexión iniciada, pero no se pudieron listar los respaldos: "+e.message);
+    }
+  }
+  async function saveDriveBackup(){
+    if(!driveReady){driveStatus("Conecta Google Drive antes de guardar.");return;}
+    const btn=byId("driveSave");btn.disabled=true;
+    try{
+      const payload=pack();
+      const record={backupFormat:"ReportesHYSBackup",appVersion:"v197",createdAt:new Date().toISOString(),payload};
+      const boundary="-------ReportesHYSDrive"+Date.now();
+      const metadata={
+        name:DRIVE_PREFIX+new Date().toISOString().replace(/[:.]/g,"-")+".json",
+        mimeType:"application/json",
+        description:"Respaldo de Reportes HYS creado desde la versión de prueba v197"
+      };
+      const body="--"+boundary+"\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+
+        JSON.stringify(metadata)+"\r\n--"+boundary+
+        "\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+
+        JSON.stringify(record,null,2)+"\r\n--"+boundary+"--";
+      const response=await driveFetch(
+        "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,createdTime",
+        {method:"POST",headers:{"Content-Type":"multipart/related; boundary="+boundary},body}
+      );
+      const file=await response.json();
+      driveStatus("Respaldo guardado en Google Drive: "+file.name);
+      await listDriveBackups();
+      byId("driveBackupList").value=file.id;
+    }catch(e){driveStatus("No se pudo guardar el respaldo: "+e.message);}
+    finally{btn.disabled=!driveReady;}
+  }
+  let autoSaveTimer=null,autoSaveBusy=false,autoSavePending=false,lastAutoSaveSignature="";
+  async function saveDriveAutoBackup(){
+    if(!driveReady||!driveToken)return;
+    if(autoSaveBusy){autoSavePending=true;return;}
+    autoSaveBusy=true;
+    try{
+      const record={backupFormat:"ReportesHYSBackup",appVersion:"v202",createdAt:new Date().toISOString(),payload:pack()};
+      const content=JSON.stringify(record,null,2);
+      const signature=JSON.stringify(record.payload);
+      if(signature===lastAutoSaveSignature)return;
+      const fixedName="ReportesHYS_Respaldo_AUTOMATICO.json";
+      const q="trashed = false and name = '"+fixedName+"'";
+      const findUrl="https://www.googleapis.com/drive/v3/files?"+new URLSearchParams({q,spaces:"drive",pageSize:"10",fields:"files(id,name,modifiedTime)"});
+      const found=await (await driveFetch(findUrl)).json();
+      let file;
+      if(found.files&&found.files.length){
+        const id=found.files[0].id;
+        const res=await driveFetch("https://www.googleapis.com/upload/drive/v3/files/"+encodeURIComponent(id)+"?uploadType=media&fields=id,name,modifiedTime",
+          {method:"PATCH",headers:{"Content-Type":"application/json"},body:content});
+        file=await res.json();
+      }else{
+        const boundary="-------ReportesHYSDriveAuto"+Date.now();
+        const metadata={name:fixedName,mimeType:"application/json",description:"Respaldo automático de Reportes HYS (versión de prueba v197)"};
+        const body="--"+boundary+"\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+JSON.stringify(metadata)+"\r\n--"+boundary+"\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n"+content+"\r\n--"+boundary+"--";
+        const res=await driveFetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,modifiedTime",
+          {method:"POST",headers:{"Content-Type":"multipart/related; boundary="+boundary},body});
+        file=await res.json();
+      }
+      lastAutoSaveSignature=signature;
+      driveStatus("Guardado automático en Google Drive: "+(file.name||fixedName)+" · "+new Date().toLocaleTimeString("es-CL"));
+    }catch(e){
+      driveStatus("No se pudo completar el guardado automático en Drive: "+e.message+" · El borrador sigue guardado en este navegador.");
+    }finally{
+      autoSaveBusy=false;
+      if(autoSavePending){autoSavePending=false;scheduleDriveAutoSave();}
+    }
+  }
+  function scheduleDriveAutoSave(){
+    if(!driveReady)return;
+    if(autoSaveTimer)clearTimeout(autoSaveTimer);
+    autoSaveTimer=setTimeout(saveDriveAutoBackup,1800);
+  }
+  window.addEventListener("reportes-hys-data-saved",scheduleDriveAutoSave);
+  async function restoreDriveBackup(){
+    if(!driveReady){driveStatus("Conecta Google Drive antes de restaurar.");return;}
+    const id=byId("driveBackupList").value;
+    if(!id){driveStatus("Selecciona un respaldo de la lista.");return;}
+    const selected=byId("driveBackupList").selectedOptions[0]?.textContent||"el respaldo seleccionado";
+    if(!confirm("Se restaurarán los datos de "+selected+". Los datos actuales serán reemplazados y se conservará primero una copia local previa. ¿Deseas continuar?"))return;
+    const btn=byId("driveRestore");btn.disabled=true;
+    try{
+      const response=await driveFetch("https://www.googleapis.com/drive/v3/files/"+encodeURIComponent(id)+"?alt=media");
+      const obj=await response.json();
+      const normalized=normalizeBackup(obj);
+      if(!normalized.payload||!normalized.payload.data)throw new Error("El archivo seleccionado no tiene el formato de respaldo de Reportes HYS.");
+      safeRestore(normalized.payload,normalized.createdAt,selected);
+      driveStatus("Restauración completada desde Google Drive. Se conservó una copia previa local.");
+    }catch(e){driveStatus("No se pudo restaurar el respaldo: "+e.message);}
+    finally{btn.disabled=!driveReady;}
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const connect=byId("driveConnect"),disconnect=byId("driveConnectionIndicator"),saveBtn=byId("driveSave"),refresh=byId("driveRefresh"),restore=byId("driveRestore");
+    if(connect)connect.addEventListener("click",connectDrive);
+    if(disconnect)disconnect.addEventListener("click",disconnectDrive);
+    if(saveBtn)saveBtn.addEventListener("click",saveDriveBackup);
+    window.addEventListener("online",async()=>{
+      if(!driveReady&&driveTokenClient){
+        driveStatus("Internet recuperado. Intentando restablecer Google Drive…");
+        const token=await requestDriveToken("");
+        if(token){driveStatus("Conexión recuperada. Actualizando respaldos…");await listDriveBackups();scheduleDriveAutoSave();}
+        else driveStatus("Internet recuperado, pero Google requiere reconectar. Pulsa Conectar Google Drive.");
+      }
+    });
+    if(refresh)refresh.addEventListener("click",listDriveBackups);
+    if(restore)restore.addEventListener("click",restoreDriveBackup);
+    driveButtons(false);
+    /* Intentar recuperar el permiso existente después de actualizar. GIS puede exigir una acción del usuario si no permite renovar en silencio. */
+    loadGoogleIdentity().then(async loaded=>{
+      if(!loaded)return;
+      let hadConnection=false;
+      try{hadConnection=localStorage.getItem("reportes-hys-drive-was-connected")==="true";}catch{}
+      if(hadConnection){
+        driveStatus("Página actualizada. Intentando recuperar Google Drive…");
+        const token=await requestDriveToken("");
+        if(token){
+          driveStatus("Conexión recuperada tras actualizar. Cargando respaldos…");
+          await listDriveBackups();
+          scheduleDriveAutoSave();
+        }else{
+          driveStatus("Google no permitió recuperar el permiso en segundo plano. Pulsa Conectar Google Drive una vez para restablecerlo.");
+        }
+      }
+    });
+  });
+})();
+
+</script>
+<script>
+
+/* v221: selector APR/Otros y formulario local independiente */
+(function(){
+  const $ = id => document.getElementById(id);
+  const MODE_KEY = "reportes-hys-selected-module";
+  const OTHER_KEY = "reportes-hys-otros-records";
+  const chooser = $("moduleChooser"), otherModule = $("otherModule"), layout = document.querySelector(".layout"), header = document.querySelector("body>header");
+  function readOtherRecords(){try{const value=JSON.parse(localStorage.getItem(OTHER_KEY)||"[]");return Array.isArray(value)?value:[]}catch{return []}}
+  function setMode(mode){
+    try{if(mode)localStorage.setItem(MODE_KEY,mode);else localStorage.removeItem(MODE_KEY)}catch{}
+    document.body.classList.toggle("module-choice",!mode);
+    chooser.style.display=mode?"none":"block";
+    otherModule.style.display=mode==="otros"?"block":"none";
+    layout.style.display=mode==="apr"?"grid":"none";
+    header.style.display=mode==="apr"?"flex":"none";
+  }
+  function renderOtherRecords(){
+    const list=$("otherRecordsList"), records=readOtherRecords();
+    if(!records.length){list.innerHTML='<p class="smallnote">Todavía no hay informes guardados.</p>';return}
+    list.innerHTML=records.slice().reverse().map(r=>{
+      const el=document.createElement("article");el.className="other-record";
+      const title=document.createElement("h3");title.textContent=(r.area||"Sin área")+" · "+(r.category||"Informe")+" · "+(r.date||"Sin fecha");el.appendChild(title);
+      const meta=document.createElement("p");meta.textContent="Responsable: "+(r.responsible||"—")+" | Estado: "+(r.status||"Pendiente")+(r.location?" | Lugar: "+r.location:"");el.appendChild(meta);
+      const desc=document.createElement("p");desc.textContent=r.description||"";el.appendChild(desc);
+      if(r.actions){const a=document.createElement("p");a.textContent="Acciones: "+r.actions;el.appendChild(a)}
+      if(r.notes){const n=document.createElement("p");n.textContent="Observaciones: "+r.notes;el.appendChild(n)}
+      const actions=document.createElement("div");actions.className="other-actions";
+      const download=document.createElement("button");download.type="button";download.textContent="Descargar informe";
+      download.addEventListener("click",()=>{const text=["REPORTE HYS · OTROS","Fecha: "+(r.date||""),"Área: "+(r.area||""),"Responsable: "+(r.responsible||""),"Tipo: "+(r.category||""),"Lugar: "+(r.location||""),"Estado: "+(r.status||""),"Descripción:",r.description||"","Acciones:",r.actions||"","Observaciones:",r.notes||""].join("\n");const blob=new Blob([text],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="Reporte-Otros-"+(r.date||"sin-fecha")+".txt";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+      actions.appendChild(download);el.appendChild(actions);list.appendChild(el);
+    });
+  }
+  $("openAprModule").addEventListener("click",()=>setMode("apr"));
+  $("openOtherModule").addEventListener("click",()=>{setMode("otros");if(!$("otherDate").value)$("otherDate").value=new Date().toISOString().slice(0,10);renderOtherRecords()});
+  $("moduleSwitch").addEventListener("click",()=>setMode(""));
+  $("backToModuleChooser").addEventListener("click",()=>setMode(""));
+  $("clearOtherForm").addEventListener("click",()=>{$("otherReportForm").reset();$("otherDate").value=new Date().toISOString().slice(0,10);$("otherFormStatus").textContent="Formulario limpio. No se eliminaron los informes guardados."});
+  $("otherReportForm").addEventListener("submit",event=>{
+    event.preventDefault();
+    const form=$("otherReportForm");
+    if(!form.reportValidity())return;
+    const data=new FormData(form), record={id:Date.now().toString(),date:data.get("date"),area:String(data.get("area")||"").trim(),responsible:String(data.get("responsible")||"").trim(),category:data.get("category"),location:String(data.get("location")||"").trim(),status:data.get("status"),description:String(data.get("description")||"").trim(),actions:String(data.get("actions")||"").trim(),notes:String(data.get("notes")||"").trim(),savedAt:new Date().toISOString()};
+    const records=readOtherRecords();records.push(record);
+    try{localStorage.setItem(OTHER_KEY,JSON.stringify(records));$("otherFormStatus").textContent="Informe guardado correctamente en este navegador.";form.reset();$("otherDate").value=new Date().toISOString().slice(0,10);renderOtherRecords()}
+    catch{$("otherFormStatus").textContent="No se pudo guardar el informe. Revisa el espacio disponible del navegador; el formulario no se ha borrado."}
+  });
+  const initial=(()=>{try{return localStorage.getItem(MODE_KEY)||""}catch{return ""}})();
+  if(initial==="apr"||initial==="otros")setMode(initial);else setMode("");
+  if(!$("otherDate").value)$("otherDate").value=new Date().toISOString().slice(0,10);
+  renderOtherRecords();
+})();
+
+</script></body></html>
