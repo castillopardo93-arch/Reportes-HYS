@@ -75,7 +75,7 @@ begin
     module_name,
     true,
     p_puede_editar
-  from unnest(p_requested_modules) as m;
+  from unnest(p_requested_modules) as item(module_name);
 end;
 $$;
 
