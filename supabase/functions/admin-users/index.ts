@@ -59,7 +59,7 @@ Deno.serve(async (req) => {
   }
 
   let body: any;
-  try { body = await req.json(); } catch { return json({ error: "Solicitud inválida" }, 400); }
+  try { body = await req.json(); } catch { return json({ error: "Solicitud inválida" }, 400, origin); }
   const action = body?.action;
 
   const targetIsManageable = async (uid: string) => {
@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
     if (!uid || uid === callerId) return false;
     const { data, error } = await admin.from("permisos_usuario").select("modulo")
       .eq("usuario_id", uid);
-    if (error) throw error;
+    if (error) return false;
     // No basta con que comparta un módulo: todos sus permisos deben pertenecer
     // al ámbito del administrador que realiza la operación.
     return !!data?.length && data.every((p: any) => manageableModules.includes(p.modulo));
@@ -78,19 +78,19 @@ Deno.serve(async (req) => {
     if (!isGlobal) {
       const { data, error } = await admin.from("permisos_usuario").select("usuario_id")
         .in("modulo", manageableModules);
-      if (error) return json({ error: "No se pudieron consultar los usuarios del área" }, 500);
+      if (error) return json({ error: "No se pudieron consultar los usuarios del área" }, 500, origin);
       ids = [...new Set((data || []).map((x: any) => x.usuario_id))];
       if (!ids.length) return json({ users: [] }, 200, origin);
     }
     let query = admin.from("perfiles").select("usuario_id,nombre,rol,activo,creado_en").order("nombre");
     if (ids) query = query.in("usuario_id", ids);
     const { data: users, error } = await query;
-    if (error) return json({ error: "No se pudieron cargar los usuarios" }, 500);
+    if (error) return json({ error: "No se pudieron cargar los usuarios" }, 500, origin);
     const userIds = (users || []).map((u: any) => u.usuario_id);
     const { data: permissions, error: pError } = userIds.length
       ? await admin.from("permisos_usuario").select("usuario_id,area_id,modulo,puede_ver,puede_editar").in("usuario_id", userIds)
       : { data: [], error: null };
-    if (pError) return json({ error: "No se pudieron cargar los permisos" }, 500);
+    if (pError) return json({ error: "No se pudieron cargar los permisos" }, 500, origin);
     // Un administrador de área solo puede ver usuarios cuyos permisos estén
     // íntegramente dentro de su módulo. Se excluyen cuentas compartidas entre APR y OTROS.
     const filtered = isGlobal ? (users || []) : (users || []).filter((u: any) => {
@@ -114,42 +114,41 @@ Deno.serve(async (req) => {
     OTROS: "38ff7823-7f5c-4e39-abed-6b0f9e8e01e1",
   };
   const requestedModules = Array.isArray(body?.modulos) ? [...new Set(body.modulos)] : [];
-  if (requestedModules.some((m: string) => !["APR", "OTROS"].includes(m))) return json({ error: "Módulo inválido" }, 400);
-  if (!isGlobal && requestedModules.some((m: string) => !manageableModules.includes(m))) return json({ error: "No puedes asignar permisos fuera de tu área" }, 403);
+  if (requestedModules.some((m: string) => !["APR", "OTROS"].includes(m))) return json({ error: "Módulo inválido" }, 400, origin);
+  if (!isGlobal && requestedModules.some((m: string) => !manageableModules.includes(m))) return json({ error: "No puedes asignar permisos fuera de tu área" }, 403, origin);
 
   if (action === "create") {
     const email = String(body.email || "").trim().toLowerCase();
     const password = String(body.password || "");
     const nombre = String(body.nombre || "").trim();
     const rol = String(body.rol || "usuario");
-    if (!email || !nombre || password.length < 8) return json({ error: "Completa nombre, correo y contraseña de al menos 8 caracteres" }, 400);
-    if (!validRoles.includes(rol) || (!isGlobal && rol === "administrador_area")) return json({ error: "Rol no permitido" }, 403);
-    if (!requestedModules.length) return json({ error: "Asigna al menos un módulo" }, 400);
-    if (!requestedModules.length) return json({ error: "Asigna al menos un módulo" }, 400);
-    if (rol === "administrador_area" && requestedModules.length !== 1) return json({ error: "Un administrador de área debe quedar limitado a un solo módulo" }, 400);
+    if (!email || !nombre || password.length < 8) return json({ error: "Completa nombre, correo y contraseña de al menos 8 caracteres" }, 400, origin);
+    if (!validRoles.includes(rol) || (!isGlobal && rol === "administrador_area")) return json({ error: "Rol no permitido" }, 403, origin);
+    if (!requestedModules.length) return json({ error: "Asigna al menos un módulo" }, 400, origin);
+    if (rol === "administrador_area" && requestedModules.length !== 1) return json({ error: "Un administrador de área debe quedar limitado a un solo módulo" }, 400, origin);
     const { data: created, error: createError } = await admin.auth.admin.createUser({ email, password, email_confirm: true });
-    if (createError || !created.user) return json({ error: createError?.message || "No se pudo crear la cuenta" }, 400);
+    if (createError || !created.user) return json({ error: createError?.message || "No se pudo crear la cuenta" }, 400, origin);
     const uid = created.user.id;
     const { error: profileInsertError } = await admin.from("perfiles").insert({ usuario_id: uid, nombre, rol, activo: true });
     if (profileInsertError) {
       await admin.auth.admin.deleteUser(uid);
-      return json({ error: "No se pudo guardar el perfil: " + profileInsertError.message }, 500);
+      return json({ error: "No se pudo guardar el perfil: " + profileInsertError.message }, 500, origin);
     }
     const rows = requestedModules.map((m: string) => ({ usuario_id: uid, area_id: areaIds[m], modulo: m, puede_ver: true, puede_editar: body.puede_editar === true }));
     const { error: insertPermError } = await admin.from("permisos_usuario").insert(rows);
     if (insertPermError) {
       await admin.from("perfiles").delete().eq("usuario_id", uid);
       await admin.auth.admin.deleteUser(uid);
-      return json({ error: "No se pudieron guardar los permisos: " + insertPermError.message }, 500);
+      return json({ error: "No se pudieron guardar los permisos: " + insertPermError.message }, 500, origin);
     }
-    return json({ success: true, usuario_id: uid });
+    return json({ success: true, usuario_id: uid }, 200, origin);
   }
 
   if (action === "update") {
     const uid = String(body.usuario_id || "");
-    if (!uid || !(await targetIsManageable(uid))) return json({ error: "Usuario fuera de tu ámbito de administración" }, 403);
+    if (!uid || !(await targetIsManageable(uid))) return json({ error: "Usuario fuera de tu ámbito de administración" }, 403, origin);
     const { data: targetProfile, error: targetProfileError } = await admin.from("perfiles").select("rol").eq("usuario_id", uid).maybeSingle();
-    if (targetProfileError || !targetProfile) return json({ error: "No se encontró el perfil del usuario" }, 404);
+    if (targetProfileError || !targetProfile) return json({ error: "No se encontró el perfil del usuario" }, 404, origin);
     if (!isGlobal && ["administrador_global", "administrador_area"].includes(targetProfile.rol)) {
       return json({ error: "Solo el administrador global puede modificar cuentas administradoras" }, 403, origin);
     }
@@ -169,16 +168,16 @@ Deno.serve(async (req) => {
     const { error: profileUpdateError } = await admin.from("perfiles")
       .update({ nombre, rol, activo: body.activo })
       .eq("usuario_id", uid);
-    if (profileUpdateError) return json({ error: "No se pudo actualizar el perfil" }, 500);
+    if (profileUpdateError) return json({ error: "No se pudo actualizar el perfil" }, 500, origin);
     const { error: deleteError } = await admin.from("permisos_usuario").delete().eq("usuario_id", uid)
       .in("modulo", isGlobal ? ["APR", "OTROS"] : manageableModules);
-    if (deleteError) return json({ error: "Perfil actualizado, pero no se pudieron reemplazar los permisos" }, 500);
+    if (deleteError) return json({ error: "Perfil actualizado, pero no se pudieron reemplazar los permisos" }, 500, origin);
     const rows = requestedModules.map((m: string) => ({ usuario_id: uid, area_id: areaIds[m], modulo: m, puede_ver: true, puede_editar: body.puede_editar === true }));
     if (rows.length) {
       const { error: insertError } = await admin.from("permisos_usuario").insert(rows);
-      if (insertError) return json({ error: "Perfil actualizado, pero falló el guardado de permisos" }, 500);
+      if (insertError) return json({ error: "Perfil actualizado, pero falló el guardado de permisos" }, 500, origin);
     }
-    return json({ success: true });
+    return json({ success: true }, 200, origin);
   }
-  return json({ error: "Acción no reconocida" }, 400);
+  return json({ error: "Acción no reconocida" }, 400, origin);
 });
