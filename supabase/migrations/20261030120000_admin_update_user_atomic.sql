@@ -32,8 +32,8 @@ begin
      or cardinality(p_manageable_modules) = 0
      or exists (
        select 1
-       from unnest(p_manageable_modules) as m
-       where m not in ('APR', 'OTROS')
+       from unnest(p_manageable_modules) as item(module_name)
+       where module_name not in ('APR', 'OTROS')
      ) then
     raise exception 'Áreas administrables inválidas';
   end if;
@@ -42,9 +42,9 @@ begin
      or cardinality(p_requested_modules) = 0
      or exists (
        select 1
-       from unnest(p_requested_modules) as m
-       where m not in ('APR', 'OTROS')
-          or not (m = any(p_manageable_modules))
+       from unnest(p_requested_modules) as item(module_name)
+       where module_name not in ('APR', 'OTROS')
+          or not (module_name = any(p_manageable_modules))
      ) then
     raise exception 'Los módulos solicitados no están dentro del ámbito permitido';
   end if;
@@ -68,11 +68,11 @@ begin
     (usuario_id, area_id, modulo, puede_ver, puede_editar)
   select
     p_usuario_id,
-    case m
+    case module_name
       when 'APR' then '397ca24b-5700-4491-8b37-429e51b8c682'::uuid
       when 'OTROS' then '38ff7823-7f5c-4e39-abed-6b0f9e8e01e1'::uuid
     end,
-    m,
+    module_name,
     true,
     p_puede_editar
   from unnest(p_requested_modules) as m;
