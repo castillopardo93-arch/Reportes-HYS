@@ -99,6 +99,7 @@ Deno.serve(async (req) => {
     if (!email || !nombre || password.length < 8) return json({ error: "Completa nombre, correo y contraseña de al menos 8 caracteres" }, 400);
     if (!validRoles.includes(rol) || (!isGlobal && rol === "administrador_area")) return json({ error: "Rol no permitido" }, 403);
     if (!requestedModules.length) return json({ error: "Asigna al menos un módulo" }, 400);
+    if (rol === "administrador_area" && requestedModules.length !== 1) return json({ error: "Un administrador de área debe quedar limitado a un solo módulo" }, 400);
     const { data: created, error: createError } = await admin.auth.admin.createUser({ email, password, email_confirm: true });
     if (createError || !created.user) return json({ error: createError?.message || "No se pudo crear la cuenta" }, 400);
     const uid = created.user.id;
@@ -120,8 +121,12 @@ Deno.serve(async (req) => {
   if (action === "update") {
     const uid = String(body.usuario_id || "");
     if (!uid || !(await targetIsManageable(uid))) return json({ error: "Usuario fuera de tu ámbito de administración" }, 403);
+    const { data: targetProfile, error: targetProfileError } = await admin.from("perfiles").select("rol").eq("usuario_id", uid).maybeSingle();
+    if (targetProfileError || !targetProfile) return json({ error: "No se encontró el perfil del usuario" }, 404);
+    if (!isGlobal && targetProfile.rol === "administrador_global") return json({ error: "No puedes modificar al administrador global" }, 403);
     const rol = String(body.rol || "usuario");
     if (!validRoles.includes(rol) || (!isGlobal && rol === "administrador_area")) return json({ error: "Rol no permitido" }, 403);
+    if (rol === "administrador_area" && requestedModules.length !== 1) return json({ error: "Un administrador de área debe quedar limitado a un solo módulo" }, 400);
     const { error: profileUpdateError } = await admin.from("perfiles")
       .update({ nombre: String(body.nombre || "").trim(), rol, activo: body.activo === true })
       .eq("usuario_id", uid);
