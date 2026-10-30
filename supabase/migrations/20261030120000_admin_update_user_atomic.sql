@@ -21,6 +21,7 @@ declare
 begin
   if p_usuario_id is null
      or nullif(btrim(p_nombre), '') is null
+     or p_rol is null
      or p_rol not in ('usuario', 'supervisor', 'administrador_area')
      or p_activo is null
      or p_puede_editar is null then
