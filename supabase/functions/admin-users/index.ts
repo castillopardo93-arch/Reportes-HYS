@@ -165,17 +165,18 @@ Deno.serve(async (req) => {
     if (typeof body.activo !== "boolean") {
       return json({ error: "Estado activo inválido" }, 400, origin);
     }
-    const { error: profileUpdateError } = await admin.from("perfiles")
-      .update({ nombre, rol, activo: body.activo })
-      .eq("usuario_id", uid);
-    if (profileUpdateError) return json({ error: "No se pudo actualizar el perfil" }, 500, origin);
-    const { error: deleteError } = await admin.from("permisos_usuario").delete().eq("usuario_id", uid)
-      .in("modulo", isGlobal ? ["APR", "OTROS"] : manageableModules);
-    if (deleteError) return json({ error: "Perfil actualizado, pero no se pudieron reemplazar los permisos" }, 500, origin);
-    const rows = requestedModules.map((m: string) => ({ usuario_id: uid, area_id: areaIds[m], modulo: m, puede_ver: true, puede_editar: body.puede_editar === true }));
-    if (rows.length) {
-      const { error: insertError } = await admin.from("permisos_usuario").insert(rows);
-      if (insertError) return json({ error: "Perfil actualizado, pero falló el guardado de permisos" }, 500, origin);
+    const { error: atomicUpdateError } = await admin.rpc("admin_update_user_atomic", {
+      p_usuario_id: uid,
+      p_nombre: nombre,
+      p_rol: rol,
+      p_activo: body.activo,
+      p_requested_modules: requestedModules,
+      p_manageable_modules: isGlobal ? ["APR", "OTROS"] : manageableModules,
+      p_puede_editar: body.puede_editar === true,
+    });
+    if (atomicUpdateError) {
+      console.error("admin_update_user_atomic failed:", atomicUpdateError.message);
+      return json({ error: "No se pudo completar la actualización. No se aplicaron cambios." }, 500, origin);
     }
     return json({ success: true }, 200, origin);
   }
