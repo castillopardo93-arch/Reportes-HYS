@@ -2,7 +2,7 @@
 (function(){
  'use strict';
  const B=window.Hys238Bridge,$=id=>document.getElementById(id);
- const moduleLabel=m=>({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[m]||m);
+ const moduleLabel=m=>window.HysAppearance238?.moduleLabel(m)||({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[m]||m);
  let current=null,generation=0,suppress=false,queue=null,store=null,timer=null,scope='',draftId='',catalog=null,conflict=false;
  const revisions=new Map();
  function message(s){const el=$('cloudStatus238');if(el)el.textContent=s}

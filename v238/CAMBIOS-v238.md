@@ -16,3 +16,5 @@ Nombres visibles de módulos: APR → Prevencionista de riesgos; OTROS → Super
 
 Los dos botones de las tarjetas muestran únicamente Ingresar.
 
+Apariencia global: nueva tarjeta exclusiva del Administrador Global, tres estilos, colores por zona, galería de iconos, textos/logotipo y presentación. Vista previa local, aplicación compartida y restauración con historial. Configuración original preservada hasta que el usuario publique.
+

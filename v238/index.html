@@ -358,7 +358,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
-<link rel="stylesheet" href="v238.css"></head>
+<link rel="stylesheet" href="v238.css"><link rel="stylesheet" href="appearance-v238.css"></head>
 <body class="auth-locked">
 
 <div id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
@@ -901,6 +901,8 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
 </script>
 <script src="sync-core-v238.js"></script>
 <script src="cloud-v238.js"></script>
+<script src="appearance-core-v238.js"></script>
+<script src="appearance-v238.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* v235: ingreso único, destino según permisos y cierre de sesión */
@@ -922,6 +924,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
     document.body.classList.add("auth-locked");
     window.__REPORTES_HYS_ACCESS__=null;
     window.Hys238?.onAccess(null);
+    window.HysAppearance238?.syncAccess(null);
     window.reportesHysAdminSync?.();
     $("authUserLabel").replaceChildren();
     $("authIdentityChooser").replaceChildren();
@@ -948,7 +951,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
       usuario:"Usuario"
     };
     const role=roleNames[profile.rol]||profile.rol||"Rol no definido";
-    const areaText="Áreas habilitadas: "+(modules.length?modules.map(m=>({APR:"Prevencionista de riesgos",OTROS:"Supervisores, capataces y otros"}[m]||m)).join(" · "):"Ninguna");
+    const areaText="Áreas habilitadas: "+(modules.length?modules.map(m=>window.HysAppearance238?.moduleLabel(m)||({APR:"Prevencionista de riesgos",OTROS:"Supervisores, capataces y otros"}[m]||m)).join(" · "):"Ninguna");
     [document.getElementById("authUserLabel"),document.getElementById("authIdentityChooser")].forEach(node=>{
       if(!node)return;
       node.replaceChildren();
@@ -1056,6 +1059,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
       window.__REPORTES_HYS_ACCESS__={userId:session.user.id,profile,modules,selectedModule:selected};
       renderIdentity(profile,modules,session.user.email);
       window.Hys238?.onAccess(window.__REPORTES_HYS_ACCESS__);
+      window.HysAppearance238?.syncAccess(window.__REPORTES_HYS_ACCESS__);
       window.reportesHysAdminSync?.();
       document.body.classList.remove("auth-locked");
       gate.hidden=true;
@@ -1096,6 +1100,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
     if(!access || (module? !access.modules.includes(module):access.modules.length<2)||closing||submitting)return;
     selected=module||null;access.selectedModule=selected;
     window.Hys238?.onAccess(access);
+    window.HysAppearance238?.syncAccess(access);
     rememberModule(access.userId,selected);
     window.reportesHysSetMode(module.toLowerCase());
     if(!module)$("otherAprApp").src="about:blank";
@@ -1276,7 +1281,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
     const list=$('adminList');list.replaceChildren();const query=$('adminSearch').value.toLowerCase();
     const filtered=rows.filter(u=>(u.nombre+' '+u.email).toLowerCase().includes(query));
     if(!filtered.length){const p=document.createElement('p');p.className='admin-note';p.textContent='No hay usuarios para mostrar.';list.append(p);}
-    filtered.forEach(u=>{const button=document.createElement('button');button.type='button';button.className='admin-user';button.textContent=u.nombre||u.email;const meta=document.createElement('span');meta.textContent=[u.email,u.rol,u.activo?'Activo':'Desactivado',(u.permisos||[]).filter(p=>p.puede_ver).map(p=>({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[p.modulo]||p.modulo)).join(' / ')].join(' · ');button.append(meta);button.addEventListener('click',()=>{if(busy)return;reset();selected=u;$('adminName').value=u.nombre||'';$('adminEmail').value=u.email||'';$('adminRole').value=u.rol;$('adminApr').checked=(u.permisos||[]).some(p=>p.modulo==='APR'&&p.puede_ver);$('adminOtros').checked=(u.permisos||[]).some(p=>p.modulo==='OTROS'&&p.puede_ver);$('adminEdit').checked=(u.permisos||[]).some(p=>p.puede_editar);$('adminActive').checked=u.activo===true;$('adminFormTitle').textContent='Editar usuario';$('adminSave').textContent='Guardar cambios';$('adminRecover').hidden=false;$('adminDelete').hidden=false;$('adminFormHelp').textContent=u.rol==='administrador_global'?'Las cuentas de administrador global están protegidas.':!capabilities.delete?'Puedes desactivar la cuenta. La eliminación definitiva requiere habilitación del servidor tras revisar sus informes.':'Para eliminar la cuenta, primero debes desactivarla y guardar el cambio.';controls();});list.append(button);});
+    filtered.forEach(u=>{const button=document.createElement('button');button.type='button';button.className='admin-user';button.textContent=u.nombre||u.email;const meta=document.createElement('span');meta.textContent=[u.email,u.rol,u.activo?'Activo':'Desactivado',(u.permisos||[]).filter(p=>p.puede_ver).map(p=>window.HysAppearance238?.moduleLabel(p.modulo)||({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[p.modulo]||p.modulo)).join(' / ')].join(' · ');button.append(meta);button.addEventListener('click',()=>{if(busy)return;reset();selected=u;$('adminName').value=u.nombre||'';$('adminEmail').value=u.email||'';$('adminRole').value=u.rol;$('adminApr').checked=(u.permisos||[]).some(p=>p.modulo==='APR'&&p.puede_ver);$('adminOtros').checked=(u.permisos||[]).some(p=>p.modulo==='OTROS'&&p.puede_ver);$('adminEdit').checked=(u.permisos||[]).some(p=>p.puede_editar);$('adminActive').checked=u.activo===true;$('adminFormTitle').textContent='Editar usuario';$('adminSave').textContent='Guardar cambios';$('adminRecover').hidden=false;$('adminDelete').hidden=false;$('adminFormHelp').textContent=u.rol==='administrador_global'?'Las cuentas de administrador global están protegidas.':!capabilities.delete?'Puedes desactivar la cuenta. La eliminación definitiva requiere habilitación del servidor tras revisar sus informes.':'Para eliminar la cuenta, primero debes desactivarla y guardar el cambio.';controls();});list.append(button);});
   }
   async function request(body){
     if(!allowed())throw new Error('Solo el administrador global puede gestionar usuarios.');
@@ -1330,6 +1335,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
 
   window.reportesHysAdminSync=()=>{const usersVisible=showTools(),managementVisible=window.Hys238?.syncManagementRail()===true,visible=usersVisible||managementVisible;buttons.forEach(b=>b.hidden=!usersVisible);rail.hidden=!visible;document.body.classList.toggle('hys-tools-visible',visible);if(!visible){panel.hidden=true;railExpanded=false;rail.classList.toggle('expanded',false);document.body.classList.toggle('hys-tools-expanded',false);$('hysToolsToggle').setAttribute('aria-expanded','false');}const uid=allowed()?access().userId:null;if(owner!==uid){epoch++;forgetSecret();owner=uid;rows=[];selected=null;pending=null;panel.hidden=true;$('adminList').replaceChildren();$('adminForm').reset();$('adminConfirm').hidden=true;status('');}};
   window.Hys238?.mountManagementRail();
+  window.HysAppearance238?.mount();
   window.reportesHysAdminSync();
 })();
 
