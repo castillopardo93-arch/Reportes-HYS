@@ -253,7 +253,7 @@ body.embedded-otros #moduleChooser,body.embedded-otros #otherModule{display:none
 body.embedded-otros>header{display:flex!important}
 body.embedded-otros>.layout{display:grid!important}
 body.embedded-otros .brand span{font-size:0}
-body.embedded-otros .brand span:after{content:"REPORTES H Y S · OTROS";font-size:19px}
+body.embedded-otros .brand span:after{content:"REPORTES H Y S · Supervisores, capataces y otros";font-size:19px}
 .other-wrap{max-width:1600px;margin:0 auto;padding:22px clamp(14px,2.5vw,32px) 30px}
 .other-top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid var(--line)}
 .other-top h1{font-size:23px;color:var(--navy);margin:0}
@@ -379,7 +379,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
     </form>
     <a id="authReturn" href="./" hidden>Volver al ingreso</a>
     <div id="authStatus" class="auth-status" role="status" aria-live="polite"></div>
-    <div class="auth-foot">El acceso a APR y OTROS depende de los permisos asignados a tu cuenta.</div>
+    <div class="auth-foot">El acceso a Prevencionista de riesgos y a Supervisores, capataces y otros depende de los permisos asignados a tu cuenta.</div>
   </div>
 </div>
 
@@ -393,23 +393,23 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
     <div class="module-cards">
       <article class="module-card">
         <div class="module-icon" aria-hidden="true">🛡️</div>
-        <h2>APR</h2>
+        <h2>Prevencionista de riesgos</h2>
         <p>Abre el formato actual de Reportes HYS, con sus funciones y reportes anteriores.</p>
-        <button type="button" id="openAprModule">Ingresar a APR</button>
+        <button type="button" id="openAprModule">Ingresar</button>
       </article>
       <article class="module-card other">
         <div class="module-icon" aria-hidden="true">📋</div>
-        <h2>Otros</h2>
+        <h2>Supervisores, capataces y otros</h2>
         <p>Formulario independiente para registrar actividades de otras áreas, con campos propios e historial separado.</p>
-        <button type="button" id="openOtherModule">Ingresar a Otros</button>
+        <button type="button" id="openOtherModule">Ingresar</button>
       </article>
     </div>
   </div>
 </section>
-<section id="otherModule" aria-labelledby="otherModuleTitle"><iframe id="otherAprApp" title="Interfaz completa independiente de Otros" src="about:blank" loading="eager" referrerpolicy="same-origin"></iframe>
+<section id="otherModule" aria-labelledby="otherModuleTitle"><iframe id="otherAprApp" title="Módulo Supervisores, capataces y otros" src="about:blank" loading="eager" referrerpolicy="same-origin"></iframe>
   <div class="other-wrap">
     <div class="other-top">
-      <div><div class="chooser-kicker">Reportes H y S · Formulario independiente</div><h1 id="otherModuleTitle" style="margin:5px 0 0">Otros</h1></div>
+      <div><div class="chooser-kicker">Reportes H y S · Formulario independiente</div><h1 id="otherModuleTitle" style="margin:5px 0 0">Supervisores, capataces y otros</h1></div>
       <button type="button" id="backToModuleChooser">← Cambiar módulo</button>
     </div>
     <form id="otherReportForm">
@@ -427,18 +427,18 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
           <div class="field" style="grid-column:1/-1"><label for="otherNotes">Observaciones adicionales</label><textarea id="otherNotes" name="notes" placeholder="Información complementaria (opcional)"></textarea></div>
         </div>
         <div class="other-actions"><button class="save-other" type="submit">Guardar informe</button><button type="button" id="clearOtherForm">Limpiar formulario</button></div>
-        <p id="otherFormStatus" role="status" class="smallnote" aria-live="polite">Los informes de Otros se guardan en este navegador y no se mezclan con APR.</p>
+        <p id="otherFormStatus" role="status" class="smallnote" aria-live="polite">Los informes de Supervisores, capataces y otros se mantienen separados de los de Prevencionista de riesgos.</p>
       </section>
     </form>
     <section class="other-panel">
-      <h2 style="margin:0 0 8px">Reportes anteriores · Otros</h2>
-      <p class="smallnote">Este historial es independiente del historial APR y se guarda en este navegador.</p>
+      <h2 style="margin:0 0 8px">Reportes anteriores · Supervisores, capataces y otros</h2>
+      <p class="smallnote">Este historial es independiente del módulo Prevencionista de riesgos.</p>
       <div id="otherRecordsList"><p class="smallnote">Todavía no hay informes guardados.</p></div>
     </section>
   </div>
 </section>
 
-<header class="top"><div class="brand"><div class="shield">🛡</div><span>REPORTES H Y S</span></div><div class="topmeta"><span>▦ &nbsp;<span id="topDate"></span></span><div id="authUserLabel" aria-label="Usuario y permisos"></div><button type="button" id="moduleChange" hidden>Cambiar módulo</button><button type="button" id="authLogout">Cerrar sesión</button></div></header>
+<header class="top"><div class="brand"><div class="shield">🛡</div><span>REPORTES H Y S · Prevencionista de riesgos</span></div><div class="topmeta"><span>▦ &nbsp;<span id="topDate"></span></span><div id="authUserLabel" aria-label="Usuario y permisos"></div><button type="button" id="moduleChange" hidden>Cambiar módulo</button><button type="button" id="authLogout">Cerrar sesión</button></div></header>
 <div class="layout">
 <nav class="side"><a class="nav active" href="#inicio" data-tab="inicio"><span>⌂</span> Inicio</a><a class="nav" href="#informe" data-tab="informe"><span>▤</span> Informe diario</a><a class="nav" href="#historial" data-tab="historial"><span>▤</span> Reportes anteriores</a><a class="nav" href="#config" data-tab="config"><span>⚙</span> Configuración</a><div class="sidefoot">🛡 &nbsp; Seguridad<br>&nbsp;&nbsp;&nbsp;&nbsp; es trabajo de todos</div></nav>
 <main class="main" id="inicio">
@@ -875,7 +875,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&photoViewer.classLi
   if(embeddedOtros){
     setMode("apr");
     document.body.classList.add("embedded-otros");
-    const label=document.querySelector(".brand span");if(label)label.textContent="REPORTES H Y S · OTROS";
+    const label=document.querySelector(".brand span");if(label)label.textContent="REPORTES H Y S · Supervisores, capataces y otros";
 
     /* v229: el selector de sección debe nombrar el único formulario disponible */
     const findingHeading=document.querySelector(".section-title.purple");
@@ -948,7 +948,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
       usuario:"Usuario"
     };
     const role=roleNames[profile.rol]||profile.rol||"Rol no definido";
-    const areaText="Áreas habilitadas: "+(modules.length?modules.join(" y "):"Ninguna");
+    const areaText="Áreas habilitadas: "+(modules.length?modules.map(m=>({APR:"Prevencionista de riesgos",OTROS:"Supervisores, capataces y otros"}[m]||m)).join(" · "):"Ninguna");
     [document.getElementById("authUserLabel"),document.getElementById("authIdentityChooser")].forEach(node=>{
       if(!node)return;
       node.replaceChildren();
@@ -973,7 +973,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
         parentClient=parent.reportesHysSupabase;
       }
     }catch{}
-    if(!parentClient){showGate("Abre OTROS desde la pantalla principal.");return;}
+    if(!parentClient){showGate("Abre Supervisores, capataces y otros desde la pantalla principal.");return;}
   }
   if(!parentClient && (!window.supabase || typeof window.supabase.createClient!=="function")){
     if(embeddedOtros)showGate("No se pudo cargar el servicio de autenticación.");
@@ -1146,15 +1146,15 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
     return;
   }
   if(embeddedOtros){
-    selected="OTROS";showGate("Verificando acceso a OTROS…");
+    selected="OTROS";showGate("Verificando acceso a Supervisores, capataces y otros…");
     let parentAccess;
     try{parentAccess=window.parent!==window && window.parent.location.origin===location.origin && window.parent.__REPORTES_HYS_ACCESS__;}catch{}
     if(!parentAccess || parentAccess.selectedModule!=="OTROS"){
-      selected=null;form.hidden=true;showGate("Selecciona OTROS desde la pantalla principal.");return;
+      selected=null;form.hidden=true;showGate("Selecciona Supervisores, capataces y otros desde la pantalla principal.");return;
     }
     $("authBack").textContent="Cerrar sesión";$("authBack").hidden=false;
     client.auth.getSession().then(({data,error})=>{
-      if(error || !data.session || data.session.user.id!==parentAccess.userId){showGate("No se pudo recuperar la sesión. Vuelve a ingresar desde OTROS.");return;}
+      if(error || !data.session || data.session.user.id!==parentAccess.userId){showGate("No se pudo recuperar la sesión. Vuelve a ingresar desde Supervisores, capataces y otros.");return;}
       loadAccess(data.session);
     }).catch(()=>showGate("No se pudo recuperar la sesión."));
   }else{
@@ -1233,7 +1233,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
   <label for="adminEmail">Correo electrónico</label><input id="adminEmail" type="email" required maxlength="254">
   <div id="adminMethodField"><label for="adminMethod">Entrega del acceso inicial</label><select id="adminMethod"><option value="invite">Invitación por correo</option><option value="temporary_create">Generar contraseña temporal</option></select></div>
   <label for="adminRole">Rol</label><select id="adminRole"><option value="usuario">Usuario</option><option value="supervisor">Supervisor</option><option value="administrador_area">Administrador de área</option></select>
-  <fieldset><legend>Módulos autorizados</legend><label><input id="adminApr" type="checkbox"> APR</label><label><input id="adminOtros" type="checkbox"> OTROS</label></fieldset>
+  <fieldset><legend>Módulos autorizados</legend><label><input id="adminApr" type="checkbox"> Prevencionista de riesgos</label><label><input id="adminOtros" type="checkbox"> Supervisores, capataces y otros</label></fieldset>
   <label><input id="adminEdit" type="checkbox"> Puede crear y editar informes</label>
   <label><input id="adminActive" type="checkbox" checked> Cuenta activa</label>
   <p id="adminFormHelp" class="admin-note">El nuevo usuario recibirá una invitación por correo para elegir su contraseña.</p>
@@ -1276,7 +1276,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
     const list=$('adminList');list.replaceChildren();const query=$('adminSearch').value.toLowerCase();
     const filtered=rows.filter(u=>(u.nombre+' '+u.email).toLowerCase().includes(query));
     if(!filtered.length){const p=document.createElement('p');p.className='admin-note';p.textContent='No hay usuarios para mostrar.';list.append(p);}
-    filtered.forEach(u=>{const button=document.createElement('button');button.type='button';button.className='admin-user';button.textContent=u.nombre||u.email;const meta=document.createElement('span');meta.textContent=[u.email,u.rol,u.activo?'Activo':'Desactivado',(u.permisos||[]).filter(p=>p.puede_ver).map(p=>p.modulo).join(' / ')].join(' · ');button.append(meta);button.addEventListener('click',()=>{if(busy)return;reset();selected=u;$('adminName').value=u.nombre||'';$('adminEmail').value=u.email||'';$('adminRole').value=u.rol;$('adminApr').checked=(u.permisos||[]).some(p=>p.modulo==='APR'&&p.puede_ver);$('adminOtros').checked=(u.permisos||[]).some(p=>p.modulo==='OTROS'&&p.puede_ver);$('adminEdit').checked=(u.permisos||[]).some(p=>p.puede_editar);$('adminActive').checked=u.activo===true;$('adminFormTitle').textContent='Editar usuario';$('adminSave').textContent='Guardar cambios';$('adminRecover').hidden=false;$('adminDelete').hidden=false;$('adminFormHelp').textContent=u.rol==='administrador_global'?'Las cuentas de administrador global están protegidas.':!capabilities.delete?'Puedes desactivar la cuenta. La eliminación definitiva requiere habilitación del servidor tras revisar sus informes.':'Para eliminar la cuenta, primero debes desactivarla y guardar el cambio.';controls();});list.append(button);});
+    filtered.forEach(u=>{const button=document.createElement('button');button.type='button';button.className='admin-user';button.textContent=u.nombre||u.email;const meta=document.createElement('span');meta.textContent=[u.email,u.rol,u.activo?'Activo':'Desactivado',(u.permisos||[]).filter(p=>p.puede_ver).map(p=>({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[p.modulo]||p.modulo)).join(' / ')].join(' · ');button.append(meta);button.addEventListener('click',()=>{if(busy)return;reset();selected=u;$('adminName').value=u.nombre||'';$('adminEmail').value=u.email||'';$('adminRole').value=u.rol;$('adminApr').checked=(u.permisos||[]).some(p=>p.modulo==='APR'&&p.puede_ver);$('adminOtros').checked=(u.permisos||[]).some(p=>p.modulo==='OTROS'&&p.puede_ver);$('adminEdit').checked=(u.permisos||[]).some(p=>p.puede_editar);$('adminActive').checked=u.activo===true;$('adminFormTitle').textContent='Editar usuario';$('adminSave').textContent='Guardar cambios';$('adminRecover').hidden=false;$('adminDelete').hidden=false;$('adminFormHelp').textContent=u.rol==='administrador_global'?'Las cuentas de administrador global están protegidas.':!capabilities.delete?'Puedes desactivar la cuenta. La eliminación definitiva requiere habilitación del servidor tras revisar sus informes.':'Para eliminar la cuenta, primero debes desactivarla y guardar el cambio.';controls();});list.append(button);});
   }
   async function request(body){
     if(!allowed())throw new Error('Solo el administrador global puede gestionar usuarios.');
@@ -1305,7 +1305,7 @@ window.Hys238Bridge={pack,applyPack,save,renderArchivedReports,showTab,openArchi
   }
   async function run(fn){if(busy)return;busy=true;controls();try{await fn();}catch(e){status(e.message);}finally{busy=false;controls();}}
   function confirmation(text,action){pending=action;$('adminConfirmText').textContent=text;$('adminConfirmEmail').value='';$('adminConfirm').hidden=false;$('adminConfirmEmail').focus();}
-  $('adminForm').addEventListener('submit',event=>{event.preventDefault();if(!allowed()||busy)return;if(!modules().length){status('Selecciona APR, OTROS o ambos.');return;}if($('adminRole').value==='administrador_area'&&modules().length!==1){status('Un administrador de área debe tener un solo módulo.');return;}
+  $('adminForm').addEventListener('submit',event=>{event.preventDefault();if(!allowed()||busy)return;if(!modules().length){status('Selecciona Prevencionista de riesgos, Supervisores, capataces y otros, o ambos.');return;}if($('adminRole').value==='administrador_area'&&modules().length!==1){status('Un administrador de área debe tener un solo módulo.');return;}
     const body={action:selected?'update':$('adminMethod').value,usuario_id:selected?.usuario_id,nombre:$('adminName').value.trim(),email:$('adminEmail').value.trim().toLowerCase(),rol:$('adminRole').value,modulos:modules(),puede_editar:$('adminEdit').checked,activo:$('adminActive').checked};
     confirmation(selected?'Guardarás el perfil y los permisos de esta cuenta.':body.action==='temporary_create'?'Crearás una cuenta con una contraseña temporal que deberás entregar al trabajador.':'Se creará una cuenta y se enviará una invitación a este correo.',{body,email:body.email});});
   $('adminConfirmYes').addEventListener('click',()=>{if(!pending||busy)return;if($('adminConfirmEmail').value.trim().toLowerCase()!==pending.email){status('El correo de confirmación no coincide.');return;}const action=pending;run(async()=>{const data=await request(action.body);pending=null;$('adminConfirm').hidden=true;reset();status(data.message||'Operación completada.');if(data.temporary_password){await showSecret(data);return;}await refresh();});});

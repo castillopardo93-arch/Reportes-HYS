@@ -12,3 +12,7 @@
 
 #hysToolsOptions #manageOpen238 .tools-option-label{overflow-wrap:anywhere;text-align:center}
 
+/* Nombres visibles de módulos; claves APR/OTROS permanecen compatibles. */
+.module-card h2,.module-card button{overflow-wrap:anywhere}.module-card button{white-space:normal}
+.brand{min-width:0}.brand>span,body.embedded-otros .brand span{font-size:clamp(12px,1.2vw,16px);white-space:normal;line-height:1.25}body.embedded-otros .brand span:after{content:none}
+

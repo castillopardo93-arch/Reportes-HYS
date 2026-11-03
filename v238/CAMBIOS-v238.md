@@ -12,3 +12,7 @@ Futuras versiones: crear carpetas y ramas de desarrollo independientes, registra
 
 Corrección adicional: un solo campo visible de responsable por módulo. Global ve el campo editable; los demás roles ven el nombre bloqueado desde su perfil.
 
+Nombres visibles de módulos: APR → Prevencionista de riesgos; OTROS → Supervisores, capataces y otros. Se actualizan tarjetas, accesos, encabezados, identidad y selectores de administración. Se conservan los identificadores internos, permisos y datos.
+
+Los dos botones de las tarjetas muestran únicamente Ingresar.
+
