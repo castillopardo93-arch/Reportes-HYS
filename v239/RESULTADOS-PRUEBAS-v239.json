@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-03",
+  "environment": "Local; perfiles ficticios y PostgreSQL WASM. Sin escrituras Supabase real.",
+  "results": [
+    {
+      "file": "test-auth.cjs",
+      "ok": true,
+      "output": "OK Un único formulario inicial, sin selección previa\nOK Credenciales APR abren automáticamente APR\nOK Credenciales OTROS abren automáticamente OTROS\nOK Sin credenciales no se puede elegir un módulo\nOK Cuenta con ambos accesos elige después del login {\"modules\":[\"APR\",\"OTROS\"]}\nOK Cuenta con ambos accesos elige después del login {\"role\":\"administrador_global\",\"modules\":[]}\nOK Bloqueo seguro {\"modules\":[]}\nOK Bloqueo seguro {\"active\":false}\nOK Bloqueo seguro {\"missingProfile\":true}\nOK Bloqueo seguro {\"queryError\":true}\nOK Bloqueo seguro {\"badPassword\":true}\nOK Cambiar usuario vuelve al ingreso único y cierra la sesión local\nOK Cierre fallido bloquea otro ingreso hasta reintentar con éxito\nOK Cancelar durante consulta descarta resultado tardío\nOK Cancelar durante login descarta sesión tardía\nOK Renovación conserva módulo y revisa permisos otra vez\nOK Cierre externo regresa al formulario único\nOK OTROS directo sin padre autorizado permanece bloqueado\nOK Iframe OTROS verifica permisos true\nOK Iframe OTROS verifica permisos false\nOK OTROS reutiliza el cliente de la sesión principal\nOK Sin SDK no se muestran módulos\nOK Sintaxis válida, navegación y mensajes protegidos\nOK Cambiar modulo conserva usuario sin otro login ni logout\nOK Recarga restaura sesion APR\nOK Recarga restaura sesion OTROS\nOK Recarga con ambos conserva el ultimo modulo autorizado\nOK Recarga no restaura permiso revocado\nOK Cerrar iframe elimina su suscripcion compartida\nOK Recuperacion requiere correo valido\nOK Recuperacion envia correo y retorno local sin cambiar contrasena\nOK Error al solicitar recuperacion permite reintentar\nOK Sesion normal no habilita cambio desde URL de recuperacion\nOK Enlace de recuperacion valido cambia solo password y cierra sesion\nOK Contrasenas diferentes no actualizan la cuenta\nOK Recuperacion distingue error over_email_send_rate_limit\nOK Recuperacion distingue error email_address_not_authorized\nOK Recuperacion distingue error AuthRetryableFetchError\n38 pruebas aprobadas. Autenticación simulada; sin cambios en Supabase.\n"
+    },
+    {
+      "file": "test-admin-ui.cjs",
+      "ok": true,
+      "output": "OK Panel oculto para usuario\nOK Panel oculto para supervisor\nOK Panel oculto para administrador_area\nOK Global puede abrir formulario sin escrituras ni consulta automatica\nOK Listado se consulta solo al pulsar Actualizar\nOK Guardar permisos requiere confirmar correo antes de escribir\nOK Propia cuenta global protegida en formulario\nOK Invitacion no se envia al completar campos, requiere confirmacion\nOK Logout oculta panel y borra datos consultados\nOK Falta de conexion se informa sin inventar usuarios\nOK Eliminacion bloqueada cuando el servidor no la habilita\nOK Temporal se muestra solo al generarla, historial no contiene clave\nOK Cerrar panel borra la temporal visible\nOK Cambiar usuario borra temporal e historial consultado\nOK Entrega es explicita y se registra sin reenviar contraseña\nOK Un solo acceso administrativo en la cinta independiente\nOK La cinta se oculta sin sesion y para cuentas inactivas\nOK Ampliar cinta no consulta ni modifica usuarios\nOK Cinta global solo en la pantalla de las dos tarjetas\nOK Cinta no se muestra si el selector de tarjetas esta oculto\n20 pruebas de pantalla administrativa aprobadas. Sin usuarios reales.\n"
+    },
+    {
+      "file": "test-apariencia-v239.cjs",
+      "ok": true,
+      "output": "OK Tres estilos legibles\nOK Color malicioso no se incorpora\nOK HTML no se interpreta en el modelo\nOK Logo SVG y URL externa rechazados\nOK Icono arbitrario descartado\nOK Propiedades desconocidas descartadas\nOK Contraste insuficiente bloquea aplicar\nOK Tamaños y espaciado fuera de rango descartados\nOK Texto de contraste automático para botones\nOK Normalizar no altera el modelo original\n10 pruebas de apariencia aprobadas.\n"
+    },
+    {
+      "file": "test-inicio-pdf-v239.cjs",
+      "ok": true,
+      "output": "9 pruebas aprobadas: PDF exige los siete campos de Inicio y un período válido; permite todos completos.\n"
+    },
+    {
+      "file": "test-storage-v239.cjs",
+      "ok": true,
+      "output": "12 comprobaciones de aislamiento y recuperación de módulo aprobadas.\nOK Huella canónica independiente del orden de JSON.\n"
+    },
+    {
+      "file": "test-sync-v239.cjs",
+      "ok": true,
+      "output": "OK Error de conexión conserva la cola para recarga\nOK Edición durante envío conserva el cambio más nuevo\nOK Conflicto conserva datos sin sobrescribir otra versión\nOK Siguiente edición utiliza la revisión confirmada\nOK Respuesta perdida reintenta con el mismo token\nOK Colas de distintos usuarios y módulos independientes\n6 pruebas de cola durable aprobadas.\n"
+    },
+    {
+      "file": "test-runtime-v239.cjs",
+      "ok": true,
+      "output": "OK administrador_global APR: fallo IndexedDB no bloquea; responsable correcto\nOK administrador_global OTROS: fallo IndexedDB no bloquea; responsable correcto\nOK administrador_area APR: fallo IndexedDB no bloquea; responsable correcto\nOK administrador_area OTROS: fallo IndexedDB no bloquea; responsable correcto\nOK supervisor APR: fallo IndexedDB no bloquea; responsable correcto\nOK supervisor OTROS: fallo IndexedDB no bloquea; responsable correcto\nOK usuario APR: fallo IndexedDB no bloquea; responsable correcto\nOK usuario OTROS: fallo IndexedDB no bloquea; responsable correcto\nOK administrador_area APR: solo lectura bloquea todos los controles y escrituras\nOK administrador_area OTROS: solo lectura bloquea todos los controles y escrituras\nOK supervisor APR: solo lectura bloquea todos los controles y escrituras\nOK supervisor OTROS: solo lectura bloquea todos los controles y escrituras\nOK usuario APR: solo lectura bloquea todos los controles y escrituras\nOK usuario OTROS: solo lectura bloquea todos los controles y escrituras\nOK Finalización offline conserva todos los registros con el mismo ID\nOK Cuota llena impide finalizar sin limpiar ni anunciar conservación\nOK Nuevo informe preserva el anterior antes de crear otra identidad\nOK Cambiar usuario durante un guardado no cruza borradores ni colas\nOK Guardar con autosincronización apagada distingue envío manual pendiente\nOK Revocar permiso al mismo usuario bloquea inmediatamente sin borrar su borrador\nOK Una importación no puede cambiar el responsable bloqueado\nOK Supervisor conserva el nombre del informe cargado aunque su perfil sea otro\nOK La distribución sin activación no envía informes a Supabase\n23 pruebas del runtime real aprobadas; solo almacenamiento simulado.\n"
+    },
+    {
+      "file": "test-database-v239.cjs",
+      "ok": true,
+      "output": "OK administrador_global APR: guarda y conserva identidad/responsable\nOK administrador_global OTROS: guarda y conserva identidad/responsable\nOK administrador_area APR: guarda y conserva identidad/responsable\nOK administrador_area OTROS: guarda y conserva identidad/responsable\nOK supervisor APR: guarda y conserva identidad/responsable\nOK supervisor OTROS: guarda y conserva identidad/responsable\nOK usuario APR: guarda y conserva identidad/responsable\nOK usuario OTROS: guarda y conserva identidad/responsable\nOK administrador_area APR: sin permiso de edición no guarda ni finaliza\nOK administrador_area OTROS: sin permiso de edición no guarda ni finaliza\nOK supervisor APR: sin permiso de edición no guarda ni finaliza\nOK supervisor OTROS: sin permiso de edición no guarda ni finaliza\nOK usuario APR: sin permiso de edición no guarda ni finaliza\nOK usuario OTROS: sin permiso de edición no guarda ni finaliza\nOK Supervisor conserva responsable original y registra actor real\nOK Global puede modificar responsable sin sustituir actor\nOK Usuario no puede sobrescribir informes ajenos\nOK Idempotencia después de perder la respuesta\nOK Conflicto no sobrescribe el registro central\nOK PDF tiene el mismo ID, payload y dueño; edición invalida PDF anterior\nOK PDF con identidad o responsable distinto se rechaza\nOK Listas ordinarias: administrador_global\nOK Listas ordinarias: administrador_area\nOK Listas ordinarias: supervisor\nOK Listas ordinarias: usuario\nOK Áreas y auditoría: administrador_global\nOK Áreas y auditoría: administrador_area\nOK Áreas y auditoría: supervisor\nOK Áreas y auditoría: usuario\nOK Usuario no ve informes de otros propietarios ni otro módulo\nOK Área de permisos inactiva bloquea lectura y escritura\n31 pruebas PostgreSQL locales aprobadas; sin conexión a Supabase real.\n"
+    },
+    {
+      "file": "test-pdf-flow.cjs",
+      "ok": true,
+      "output": "OK APR: vista previa, archivo local, descarga y compartido reutilizan el mismo PDF\nOK OTROS: vista previa, archivo local, descarga y compartido reutilizan el mismo PDF\n"
+    },
+    {
+      "file": "test-pdf-real-v239.cjs",
+      "ok": true,
+      "output": "OK APR-paginacion: 10 páginas, fotografías y límites verificados\nOK OTROS-paginacion: 12 páginas, fotografías y límites verificados\nOK APR-texto-extenso: 4 páginas, fotografías y límites verificados\n3 PDF reales verificados. Solo datos sintéticos.\n"
+    }
+  ]
+}

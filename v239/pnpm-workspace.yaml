@@ -1,0 +1,4 @@
+allowBuilds:
+  core-js: false
+minimumReleaseAgeExclude:
+  - '@electric-sql/pglite@0.5.15'

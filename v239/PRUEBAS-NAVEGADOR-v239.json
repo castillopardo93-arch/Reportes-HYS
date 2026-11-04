@@ -1,0 +1,103 @@
+{
+  "environment": "QA local simulado, sin usuarios reales",
+  "roles": [
+    {
+      "role": "administrador_area",
+      "module": "APR",
+      "date": true,
+      "ownerGlobal": false,
+      "ownerLocked": true,
+      "record": "1",
+      "status": "Finalizado"
+    },
+    {
+      "role": "administrador_area",
+      "module": "OTROS",
+      "date": true,
+      "ownerGlobal": false,
+      "ownerLocked": true,
+      "record": "1",
+      "status": "Finalizado"
+    },
+    {
+      "role": "supervisor",
+      "module": "APR",
+      "date": true,
+      "ownerGlobal": false,
+      "ownerLocked": true,
+      "record": "1",
+      "status": "Finalizado"
+    },
+    {
+      "role": "supervisor",
+      "module": "OTROS",
+      "date": true,
+      "ownerGlobal": false,
+      "ownerLocked": true,
+      "record": "1",
+      "status": "Finalizado"
+    },
+    {
+      "role": "administrador_global",
+      "module": "APR",
+      "date": true,
+      "ownerGlobal": true,
+      "ownerLocked": false,
+      "record": "1",
+      "status": "Finalizado"
+    },
+    {
+      "role": "administrador_global",
+      "module": "OTROS",
+      "date": true,
+      "ownerGlobal": true,
+      "ownerLocked": false,
+      "record": "1",
+      "status": "Finalizado"
+    }
+  ],
+  "readonly": [
+    {
+      "role": "usuario",
+      "module": "APR",
+      "allDisabled": true,
+      "controls": 18
+    },
+    {
+      "role": "usuario",
+      "module": "OTROS",
+      "allDisabled": true,
+      "controls": 18
+    },
+    {
+      "role": "administrador_area",
+      "module": "APR",
+      "allDisabled": true,
+      "controls": 18
+    },
+    {
+      "role": "administrador_area",
+      "module": "OTROS",
+      "allDisabled": true,
+      "controls": 18
+    },
+    {
+      "role": "supervisor",
+      "module": "APR",
+      "allDisabled": true,
+      "controls": 18
+    },
+    {
+      "role": "supervisor",
+      "module": "OTROS",
+      "allDisabled": true,
+      "controls": 18
+    }
+  ],
+  "user": {
+    "APR": "Actividad con fotografía; ampliación; finalización desconectada; PDF descargado e historial",
+    "OTROS": "Hallazgo con categoría y estado central; finalización y recarga"
+  },
+  "recovery": "Fallo IndexedDB, respaldo alternativo, vuelta a IndexedDB conserva dos hallazgos; conflicto como nuevo deja original central intacto",
+  "final": "Nuevo informe vacío, histórico final sin PDF recuperado y mostrado; sin errores en consola final"
+}
