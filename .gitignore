@@ -1,0 +1,6 @@
+privado-*/
+herramientas-respaldo/
+*.dump
+*.pgpass
+.env
+.env.*
