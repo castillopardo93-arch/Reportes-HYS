@@ -10,8 +10,8 @@ create table public.historial_apariencia_v241(
 create index historial_apariencia_v241_actor on public.historial_apariencia_v241(actor_id);
 create index apariencia_v241_actor on public.apariencia_v241(actor_id);
 do $$ begin
- if to_regclass('public.apariencia_v238') is not null then
-  execute 'insert into public.apariencia_v241(id,config) select 1,config from public.apariencia_v238 where id=1';
+ if to_regclass('public.apariencia_v239') is not null then
+  execute 'insert into public.apariencia_v241(id,config) select 1,config from public.apariencia_v239 where id=1';
  else insert into public.apariencia_v241(id,config) values(1,'{}'); end if;
 end $$;
 insert into public.historial_apariencia_v241(revision,config,actor_nombre) select 0,config,'Inicialización v241 desde configuración de origen' from public.apariencia_v241 where id=1;

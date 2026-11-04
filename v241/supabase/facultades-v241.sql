@@ -50,12 +50,14 @@ begin
  if not hys241_private.general_unico() then raise exception 'Solo Administrador general' using errcode='42501';end if;
  select * into actor from public.perfiles where usuario_id=auth.uid();
  select * into target from public.perfiles where usuario_id=p_usuario for share;
- if not found or target.rol<>'administrador_area' or p_usuario=actor.usuario_id then raise exception 'Cuenta protegida o destino inválido' using errcode='42501';end if;
+ if found and to_regclass('public.cuentas_v241') is not null then execute 'select coalesce((select rol from public.cuentas_v241 where usuario_id=$1),$2)' into target.rol using p_usuario,target.rol;end if;
+ if target.usuario_id is null or target.rol<>'administrador_area' or p_usuario=actor.usuario_id then raise exception 'Cuenta protegida o destino inválido' using errcode='42501';end if;
  if p_modulo is null or p_modulo not in ('APR','OTROS') or p_areas is null or p_facultades is null or jsonb_typeof(p_facultades)<>'object' or nullif(btrim(p_motivo),'') is null or length(p_motivo)>500 or p_revision is null or p_revision<0 then raise exception 'Solicitud inválida';end if;
  for item in select key,value from jsonb_each(p_facultades) loop
   if item.key not in ('view','pdf','review','approve','close','editOthers','areas','users','activation','audit') or jsonb_typeof(item.value)<>'boolean' then raise exception 'Facultad no permitida';end if;
  end loop;
  if cardinality(p_areas)<> (select count(distinct a) from unnest(p_areas) a) or exists(select 1 from unnest(p_areas) a where not exists(select 1 from public.areas_trabajo_v241 t where t.id=a and t.modulo=p_modulo)) then raise exception 'Áreas fuera del módulo o duplicadas';end if;
+ if (p_facultades->'pdf'='true'::jsonb or p_facultades->'review'='true'::jsonb or p_facultades->'approve'='true'::jsonb or p_facultades->'close'='true'::jsonb or p_facultades->'editOthers'='true'::jsonb) and coalesce(p_facultades->'view','false'::jsonb)<>'true'::jsonb then raise exception 'Descarga, edición y revisión requieren permiso de consulta';end if;
  if cardinality(p_areas)=0 and exists(select 1 from jsonb_each(p_facultades) e where e.value='true'::jsonb) then raise exception 'Las facultades requieren áreas explícitas';end if;
  -- Serializa altas y actualizaciones del mismo administrador/módulo.
  perform pg_advisory_xact_lock(hashtextextended(p_usuario::text||':'||p_modulo,241));

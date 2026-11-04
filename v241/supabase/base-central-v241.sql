@@ -27,8 +27,10 @@ create table public.auditoria_areas_v241(
 create function hys241_private.area_audit() returns trigger language plpgsql security definer set search_path='' as $$
 declare actor public.perfiles; action text;
 begin
+ if tg_op='UPDATE' then if new.id<>old.id or new.modulo<>old.modulo then raise exception 'El módulo y la identidad del área no se cambian';end if;new.creado_en:=old.creado_en;end if;
  if not hys241_private.allowed(new.modulo,'manage') then raise exception 'Área fuera de tu ámbito autorizado' using errcode='42501'; end if;
  select * into strict actor from public.perfiles where usuario_id=auth.uid() and activo;
+ if to_regclass('public.cuentas_v241') is not null then execute 'select coalesce((select nombre from public.cuentas_v241 where usuario_id=$1),$2)' into actor.nombre using auth.uid(),actor.nombre;end if;
  new.nombre:=regexp_replace(btrim(new.nombre),'\s+',' ','g'); new.actualizado_en:=clock_timestamp();
  if TG_OP='UPDATE' then
   if new.id<>old.id or new.modulo<>old.modulo then raise exception 'Identidad y módulo inmutables'; end if;
@@ -100,6 +102,7 @@ begin
   if p_archivo is null and (p_payload-array['history','authenticatedUser','aprNames','areaNames','version'])=(previous.payload-array['history','authenticatedUser','aprNames','areaNames','version']) then p_archivo:=previous.archivo; end if;
   if p_archivo is not null and (p_archivo#>>'{metadata,reportId}' is distinct from p_id or p_archivo#>>'{metadata,reportData,owner}' is distinct from p_payload->>'owner' or ((p_archivo#>'{metadata,reportData}')-array['history','authenticatedUser','aprNames','areaNames','version']) is distinct from (p_payload-array['history','authenticatedUser','aprNames','areaNames','version'])) then raise exception 'El PDF no corresponde al informe'; end if;
   if p_archivo is not null then p_archivo:=jsonb_set(p_archivo,'{metadata,reportData}',p_payload,true); end if;
+  if (p_payload-array['history','authenticatedUser','aprNames','areaNames','version']) is not distinct from (previous.payload-array['history','authenticatedUser','aprNames','areaNames','version']) and p_archivo is not distinct from previous.archivo then return previous;end if;
   update public.informes_v241 set payload=p_payload,archivo=p_archivo,revision=revision+1,ultimo_token=p_token,
    ultimo_actor_id=actor.usuario_id,ultimo_actor_nombre=actor.nombre,actualizado_en=clock_timestamp() where id=p_id returning * into result;
  else
@@ -117,15 +120,15 @@ grant execute on function public.hys241_guardar_informe(text,text,jsonb,jsonb,in
 -- Inicialización de las once áreas conocidas: baseline de despliegue, sin suplantar a ningún usuario.
 alter table public.areas_trabajo_v241 disable trigger area_audit_v241;
 do $$ begin
- if to_regclass('public.areas_trabajo_v238') is not null then
-  execute 'insert into public.areas_trabajo_v241(modulo,nombre,activa) select modulo,nombre,activa from public.areas_trabajo_v238';
+ if to_regclass('public.areas_trabajo_v239') is not null then
+  execute 'insert into public.areas_trabajo_v241(modulo,nombre,activa) select modulo,nombre,activa from public.areas_trabajo_v239';
  else insert into public.areas_trabajo_v241(modulo,nombre) select m,n from unnest(array['APR','OTROS'])m cross join unnest(array['VA4','V5','VA4/V5','VOLCAN','AUCAYES','MAITENES','VA1','VA2','COLORADO','VL4','VL5'])n; end if;
 end $$;
 insert into public.auditoria_areas_v241(usuario_nombre,rol,modulo,area_id,accion,nuevo) select 'Inicialización v241','sistema',modulo,id,'creacion',to_jsonb(a) from public.areas_trabajo_v241 a;
 alter table public.areas_trabajo_v241 enable trigger area_audit_v241;
 do $$ begin
- if to_regclass('public.listas_v238') is not null then
-  execute 'insert into public.listas_v241(modulo,campo,valor,activa) select modulo,campo,valor,activa from public.listas_v238';
+ if to_regclass('public.listas_v239') is not null then
+  execute 'insert into public.listas_v241(modulo,campo,valor,activa) select modulo,campo,valor,activa from public.listas_v239';
  else insert into public.listas_v241(modulo,campo,valor)
  select m,c,v from unnest(array['APR','OTROS'])m cross join (values
  ('shift','Día/Propio'),('shift','Noche/Propio'),('shift','Día/Reemplazo'),('shift','Noche/Reemplazo'),
