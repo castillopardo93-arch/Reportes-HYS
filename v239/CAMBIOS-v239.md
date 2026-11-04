@@ -1,3 +1,5 @@
+> Actualización: el usuario autorizó conectar Supabase para pruebas generales. Se instalaron y verificaron los objetos aislados v239 y se activó config-v239.js. Ver CONEXION-SUPABASE-v239.md. El despliegue HTTPS de la app sigue sin publicar. Los estados anteriores de este documento describen la revisión inicial.
+
 # Reportes HYS v239 — registro de estabilización
 
 Estado: copia de desarrollo preparada para revisión; NO aprobada ni publicada. Fecha: 2026-11-03 (America/Santiago).

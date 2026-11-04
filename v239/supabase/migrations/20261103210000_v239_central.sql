@@ -1,4 +1,4 @@
--- PROPUESTA v239. NO APLICADA. Requiere autorización para activar desarrollo.
+-- v239: almacenamiento aislado autorizado para pruebas generales.
 -- v239: objetos nuevos e independientes. No altera perfiles, permisos_usuario ni areas.
 begin;
 create schema hys239_private;
@@ -116,16 +116,24 @@ revoke all on function public.hys239_guardar_informe(text,text,jsonb,jsonb,integ
 grant execute on function public.hys239_guardar_informe(text,text,jsonb,jsonb,integer,uuid) to authenticated;
 -- Inicialización de las once áreas conocidas: baseline de despliegue, sin suplantar a ningún usuario.
 alter table public.areas_trabajo_v239 disable trigger area_audit_v239;
-insert into public.areas_trabajo_v239(modulo,nombre) select m,n from unnest(array['APR','OTROS'])m cross join unnest(array['VA4','V5','VA4/V5','VOLCAN','AUCAYES','MAITENES','VA1','VA2','COLORADO','VL4','VL5'])n;
+do $$ begin
+ if to_regclass('public.areas_trabajo_v238') is not null then
+  execute 'insert into public.areas_trabajo_v239(modulo,nombre,activa) select modulo,nombre,activa from public.areas_trabajo_v238';
+ else insert into public.areas_trabajo_v239(modulo,nombre) select m,n from unnest(array['APR','OTROS'])m cross join unnest(array['VA4','V5','VA4/V5','VOLCAN','AUCAYES','MAITENES','VA1','VA2','COLORADO','VL4','VL5'])n; end if;
+end $$;
 insert into public.auditoria_areas_v239(usuario_nombre,rol,modulo,area_id,accion,nuevo) select 'Inicialización v239','sistema',modulo,id,'creacion',to_jsonb(a) from public.areas_trabajo_v239 a;
 alter table public.areas_trabajo_v239 enable trigger area_audit_v239;
-insert into public.listas_v239(modulo,campo,valor)
+do $$ begin
+ if to_regclass('public.listas_v238') is not null then
+  execute 'insert into public.listas_v239(modulo,campo,valor,activa) select modulo,campo,valor,activa from public.listas_v238';
+ else insert into public.listas_v239(modulo,campo,valor)
  select m,c,v from unnest(array['APR','OTROS'])m cross join (values
  ('shift','Día/Propio'),('shift','Noche/Propio'),('shift','Día/Reemplazo'),('shift','Noche/Reemplazo'),
  ('project','PHAM 1'),('project','PHAM 2'),('Resultado','Sin novedades'),('Resultado','Con observaciones'),('Resultado','Requiere seguimiento'),('Resultado','Otro'),
  ('Prioridad','Baja'),('Prioridad','Media'),('Prioridad','Alta'),('Prioridad','Crítica'),('Estado','Pendiente'),('Estado','En proceso'),('Estado','Completado'),
  ('otherCategory','Inspección'),('otherCategory','Actividad operacional'),('otherCategory','Mantenimiento'),('otherCategory','Hallazgo'),('otherCategory','Seguimiento'),('otherCategory','Otro'),
- ('otherStatus','Pendiente'),('otherStatus','En proceso'),('otherStatus','Finalizado'))x(c,v);
+ ('otherStatus','Pendiente'),('otherStatus','En proceso'),('otherStatus','Finalizado'))x(c,v); end if;
+end $$;
 commit;
 
 

@@ -1,2 +1,2 @@
-/* Desarrollo v239: activar únicamente después de aprobar los objetos aislados de Supabase. */
-window.HYS239_ENABLE_CENTRAL=false;
+/* Desarrollo v239: Supabase aislado activado por autorización del usuario para pruebas generales. */
+window.HYS239_ENABLE_CENTRAL=true;

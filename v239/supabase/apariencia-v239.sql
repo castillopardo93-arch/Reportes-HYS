@@ -9,8 +9,12 @@ create table public.historial_apariencia_v239(
  actor_id uuid references public.perfiles(usuario_id),actor_nombre text not null);
 create index historial_apariencia_v239_actor on public.historial_apariencia_v239(actor_id);
 create index apariencia_v239_actor on public.apariencia_v239(actor_id);
-insert into public.apariencia_v239(id,config) values(1,'{}');
-insert into public.historial_apariencia_v239(revision,config,actor_nombre) values(0,'{}','Apariencia original de v239');
+do $$ begin
+ if to_regclass('public.apariencia_v238') is not null then
+  execute 'insert into public.apariencia_v239(id,config) select 1,config from public.apariencia_v238 where id=1';
+ else insert into public.apariencia_v239(id,config) values(1,'{}'); end if;
+end $$;
+insert into public.historial_apariencia_v239(revision,config,actor_nombre) select 0,config,'Inicialización v239 desde configuración de origen' from public.apariencia_v239 where id=1;
 alter table public.apariencia_v239 enable row level security;
 alter table public.historial_apariencia_v239 enable row level security;
 revoke all on public.apariencia_v239,public.historial_apariencia_v239 from public,anon,authenticated;
