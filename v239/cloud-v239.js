@@ -74,7 +74,7 @@
  const fieldLabels={shift:'Turno',project:'Proyecto',Resultado:'Resultado',Prioridad:'Prioridad',Estado:'Estado',owner:'Responsables (administrador global)',otherCategory:'Tipo de actividad',otherStatus:'Estado alternativo'};
  for(const [id,label] of Object.entries(fieldLabels))$('catalogField239').add(new Option(label,id));
  let section='areas',auditPage=0,manageVersion=0;
- function syncManagementRail(){const a=access();const chooser=$('moduleChooser');const visible=!!(a&&a.profile.activo===true&&['administrador_global','administrador_area','supervisor'].includes(a.profile.rol)&&!window.__REPORTES_HYS_OTROS_EMBEDDED__&&(a.selectedModule||(!a.selectedModule&&chooser&&chooser.style.display!=='none')));button.hidden=!visible;return visible}
+ function syncManagementRail(){const a=access();const chooser=$('moduleChooser');const visible=!!(a&&a.profile.activo===true&&['administrador_global','administrador_area','supervisor'].includes(a.profile.rol)&&!window.__REPORTES_HYS_OTROS_EMBEDDED__&&!a.selectedModule&&chooser&&chooser.style.display==='block');button.hidden=!visible;return visible}
  function mountManagementRail(){const options=$('hysToolsOptions');if(options&&button.parentElement!==options)options.append(button);updateManagement()}
  function updateManagement(){const a=access();const allowed=a&&['administrador_global','administrador_area','supervisor'].includes(a.profile.rol);syncManagementRail();$('manageLists239').hidden=a?.profile.rol!=='administrador_global';if(!allowed){panel.hidden=true;$('manageRows239').replaceChildren()}window.reportesHysAdminSync?.() }
 
