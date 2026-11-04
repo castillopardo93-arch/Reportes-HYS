@@ -5,12 +5,16 @@ Add-Type -AssemblyName System.Drawing
 $privateRoot=Join-Path $Workspace 'privado-respaldo-v241'
 [IO.Directory]::CreateDirectory($privateRoot)|Out-Null
 # No heredar permisos de otros usuarios. Nunca subir este directorio a GitHub.
-$acl=New-Object Security.AccessControl.DirectorySecurity
+$dir=Get-Item -LiteralPath $privateRoot
+# Leer y escribir SOLO la DACL. No solicitar SACL/auditoría ni cambiar propietario.
+# Una ACL creada desde cero hacía que Set-Acl solicitara SeSecurityPrivilege.
+$acl=[IO.FileSystemAclExtensions]::GetAccessControl($dir,[Security.AccessControl.AccessControlSections]::Access)
 $acl.SetAccessRuleProtection($true,$false)
+foreach($existing in @($acl.Access)){$acl.RemoveAccessRuleSpecific($existing)}
 $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User
 $rule=New-Object Security.AccessControl.FileSystemAccessRule($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow')
-$acl.SetOwner($sid);$acl.AddAccessRule($rule)
-Set-Acl -LiteralPath $privateRoot -AclObject $acl
+$acl.AddAccessRule($rule)
+[IO.FileSystemAclExtensions]::SetAccessControl($dir,$acl)
 $statusPath=Join-Path $privateRoot 'estado.json'
 function Status($state,$message){ @{estado=$state;mensaje=$message;fecha=[DateTime]::UtcNow.ToString('o')}|ConvertTo-Json|Set-Content -LiteralPath $statusPath -Encoding UTF8 }
 $bin=Join-Path $Workspace 'herramientas-respaldo/pgsql/bin'
