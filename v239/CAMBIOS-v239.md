@@ -1,3 +1,5 @@
+> Actualización móvil: la interfaz de v239 se adaptó a teléfono, tableta y horizontal después de conectar Supabase. Ver MOVIL-v239.md y PRUEBAS-MOVIL-v239.json. El motor PDF se conserva y la copia sigue sin desplegar.
+
 > Actualización: el usuario autorizó conectar Supabase para pruebas generales. Se instalaron y verificaron los objetos aislados v239 y se activó config-v239.js. Ver CONEXION-SUPABASE-v239.md. El despliegue HTTPS de la app sigue sin publicar. Los estados anteriores de este documento describen la revisión inicial.
 
 # Reportes HYS v239 — registro de estabilización

@@ -20,3 +20,5 @@
  if(params.get('failStorage')==='1')window.HysStorage239.openNative=()=>{throw Error('IndexedDB no disponible (QA)')};
 })();
 
+
+const qaStyle239=document.createElement('style');qaStyle239.textContent='@media(max-width:760px){#qaState239{position:static!important;width:auto!important;max-height:none!important;margin:14px;font-size:11px!important}#qaState239 button{font-size:12px;min-height:40px}}';document.head.append(qaStyle239);
