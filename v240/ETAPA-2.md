@@ -1,3 +1,5 @@
+> Revisión solicitada: se retiró la portada alternativa. La entrada actual conserva los diez recursos de interfaz v239 y añade global-panel.js. Las mejoras ficticias se muestran dentro de un panel accesible desde la cinta principal; la demostración anterior se conserva bajo global-demo/ como contenido del panel. El cliente real se sustituye por demo-client.js y CSP bloquea conexiones. El simulador heredado puede conservar borradores ficticios locales; la simulación Global sigue en memoria. El servidor mantiene una lista cerrada de recursos y no expone documentación ni pruebas. Las referencias anteriores a una portada propia y ausencia total de almacenamiento describen el primer diseño, ya descartado.
+
 # v240 — Prototipo independiente de Administración Global
 
 4 de noviembre de 2026. Etapa autorizada: prototipo local con datos ficticios. Sin publicación ni conexión a producción.
