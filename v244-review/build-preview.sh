@@ -13,6 +13,7 @@ for name in \
   reassignment-v243.js \
   audit-v243.js \
   activity-workflow-v244.js \
+  people-areas-v244.js \
   sync-core-v242.js \
   appearance-core-v242.js \
   appearance-v242.js \
@@ -27,7 +28,8 @@ for name in \
   actions-v243.css \
   reassignment-v243.css \
   audit-v243.css \
-  activity-workflow-v244.css
+  activity-workflow-v244.css \
+  people-areas-v244.css
 do
   cp "v244/$name" "v244-review/$name"
 done

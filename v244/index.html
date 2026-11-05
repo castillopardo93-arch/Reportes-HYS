@@ -290,7 +290,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
-<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script>
+<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script>
 
 <style id="supabase-auth-styles">
 #authGate[hidden]{display:none!important}
@@ -359,7 +359,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
-<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css">
+<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css">
 </head>
 <body class="auth-locked">
 
@@ -1288,7 +1288,14 @@ window.Hys242Bridge={pack,applyPack,save,restorePreferences(){applyPhotoSettings
 })();
 
 </script>
-<script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script></body></html>
+<script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><script>
+/* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
+document.addEventListener('DOMContentLoaded',()=>{
+ const host=document.getElementById('config');
+ const modulo=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
+ try{window.Hys244People?.mount({host,module:modulo});}catch(error){console.warn('No se pudo montar la maqueta de áreas y perfiles:',error.message);}
+});
+</script></body></html>
 
 
 

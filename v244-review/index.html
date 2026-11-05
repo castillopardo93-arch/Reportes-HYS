@@ -290,7 +290,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
-<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script>
+<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script>
 
 <style id="supabase-auth-styles">
 #authGate[hidden]{display:none!important}
@@ -359,7 +359,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
-<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css">
+<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css">
 <style>
 .hys243-preview-banner{position:sticky;top:0;z-index:40000;text-align:center;background:#fff0c9;color:#67471e;border-bottom:1px solid #dab36d;padding:8px 12px;font-size:13px;font-weight:600}
 .review-only #authGate[hidden]{display:none!important}
@@ -882,6 +882,19 @@ window.Hys242Bridge={pack,applyPack,save,restorePreferences(){applyPhotoSettings
   permissions:[],facultades:[],offline:true
  };
  window.HYS243_PREVIEW_ONLY=true;
+ window.HYS244_REVIEW_ONLY=true;
+ const orgId244='aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',projectId244='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
+ const arApr244='cccccccc-cccc-4ccc-8ccc-cccccccccccc',arOtros244='dddddddd-dddd-4ddd-8ddd-dddddddddddd';
+ const fakeProfiles244=people.map((p,i)=>({
+  userId:p.usuario_id,name:p.nombre,role:i===0?'supervisor':'usuario',
+  scope:{organizationId:orgId244,projectId:projectId244,module:p.modulo,areaId:p.modulo==='APR'?arApr244:arOtros244},
+  cargo:i===0?'Prevencionista de prueba':'Participante de prueba',telefono:'',correo:'',preferencia:'ninguno'
+ }));
+ window.Hys244People?.setPreviewData({people:fakeProfiles244,areas:[
+  {areaId:arApr244,organizationId:orgId244,projectId:projectId244,module:'APR',nombre:'VA4 (ejemplo)',activa:true},
+  {areaId:'eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee',organizationId:orgId244,projectId:projectId244,module:'APR',nombre:'V5 (ejemplo)',activa:true},
+  {areaId:arOtros244,organizationId:orgId244,projectId:projectId244,module:'OTROS',nombre:'Sector OTROS (ejemplo)',activa:true}
+ ]});
  window.HYS243_DIRECTORY_ENABLED=true;window.HYS243_DIRECTORY_ISOLATED=true;
  window.HYS243_ACTIONS_ENABLED=false;window.HYS243_ACTIONS_ISOLATED=false;
  window.HYS243_TASKS_ENABLED=false;window.HYS243_TASKS_ISOLATED=false;
@@ -931,7 +944,14 @@ window.Hys242Bridge={pack,applyPack,save,restorePreferences(){applyPhotoSettings
  const logout=document.getElementById('authLogout');if(logout)logout.onclick=()=>window.reportesHysChooseModule('');
 })();
 </script>
-</body></html>
+<script>
+/* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
+document.addEventListener('DOMContentLoaded',()=>{
+ const host=document.getElementById('config');
+ const modulo=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
+ try{window.Hys244People?.mount({host,module:modulo});}catch(error){console.warn('No se pudo montar la maqueta de áreas y perfiles:',error.message);}
+});
+</script></body></html>
 
 
 

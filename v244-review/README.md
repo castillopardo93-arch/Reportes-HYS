@@ -1,16 +1,13 @@
-# Reportes HYS — Vista previa aislada del bloque C01–C10
+# Reportes HYS — Demostración aislada v244 (D + E)
 
-**Carpeta:** `v243-review/`. **Origen:** copia de trabajo `desarrollo/v243`. **Objetivo:** sitio estático independiente para revisión por el usuario, sin cuentas ni datos reales.
+**Rama:** `desarrollo/v244`, **carpeta:** `v244-review/`.
 
-## Reglas explícitas
-- El `index.html` de revisión deriva del mismo HTML de v243, conservando tabla Hallazgos, PDF, APR/OTROS y componentes C01–C09.
-- Se quitaron del archivo de demostración la autenticación Supabase, el SDK de Supabase, el código administrativo de cuentas, `cloud-v242.js`, `facultades-v242.js` y `operaciones-v242.js`. **Ninguna conexión real** a la base de producción se realiza desde la demo.
-- `review-runtime-v243.js` aporta únicamente funciones locales simuladas de `Hys242`; no altera los scripts que se publicarán oficialmente.
-- El inicio usa datos ficticios, catálogos de riesgos ficticios y personas con UUID sintéticos. Todo se conserva solamente en almacenamiento del navegador de este sitio independiente.
-- Los formularios C03, C04, C05, C06 y la planificación C08 pueden revisarse. Las acciones de ejecución, verificación, cierre, reapertura, reasignación y avisos por correo **siguen bloqueadas** porque requieren el backend de ensayo.
-- No utilizar esta demostración para registrar información de trabajadores reales, hallazgos de producción o evidencias sensibles.
-- Esta carpeta es de **demostración visual**, no una segunda versión de producción. No se debe copiar el runtime de revisión a `v243/` o `main`.
-- El script `build-preview.sh` contiene una lista explícita de archivos públicos permitidos. **No copia los clientes de Supabase ni las funciones administrativas**.
+Esta revisión usa copia autónoma de v244 con cuentas ficticias, sin SDK, URL ni claves de Supabase. Se mantiene aislada de la publicación oficial y de la revisión v243, previamente aprobada.
 
-## Validación pendiente
-Desplegar en dominio independiente (sin modificar GitHub Pages oficial), comprobar la URL, navegación APR/OTROS, selector, campos, tareas y PDF en navegador real. Este documento por sí solo no confirma que ya exista un despliegue.
+**Nuevas pruebas visuales:** Actividades HYS y Actividades por área ahora tienen clasificación informativa/tarea, fecha compromiso, vínculo opcional a Hallazgos y selector ficticio de persona registrada APR. La tabla histórica y el PDF conservan los cuatro campos originales y fotografías. En Configuración se incorpora un panel plegable de fichas con cargo/teléfono/correo/preferencia de contacto, áreas operativas ficticias por módulo y espacio vacío de auditoría.
+
+**Limitaciones:** todo es ficticio, solo los datos de formulario histórico se guardan localmente; las modificaciones de fichas y áreas operativas se mantienen exclusivamente en memoria y desaparecen al recargar. Los avisos, acciones reales, verificación, reasignación, cierre formal, permisos RLS y auditoría central siguen deshabilitados.
+
+**Construcción:** `sh v244-review/build-preview.sh` copia una lista explícita de recursos seguros desde `v244/`. No copiar archivos de administración de Supabase, claves ni SDK real. **No** publicar este directorio como aplicación oficial.
+
+La vista v244 requiere una nueva revisión visual: la aceptación de v243 no la aprueba automáticamente.
