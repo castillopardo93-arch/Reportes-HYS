@@ -1,5 +1,7 @@
 # v241 — Copia real independiente: preparación de integración
 
+> Actualización 5 de noviembre de 2026: respaldo aplicación/Auth restaurado localmente y base SQL v241 instalada. Web desactivada; endpoint pendiente por rechazo de revisión automática. Estado vigente: [INSTALACION-BASE-20261105.md](INSTALACION-BASE-20261105.md). El texto inferior es histórico.
+
 > Estado anterior conservado como registro. La etapa de integración ya está completada en código y pruebas locales: consultar [INTEGRACION-SEGURIDAD-v241.md](INTEGRACION-SEGURIDAD-v241.md). Continúa sin instalación ni publicación remota. Las limitaciones de integración indicadas abajo corresponden a la etapa anterior.
 
 Fecha: 4 de noviembre de 2026. Base: desarrollo/v239. Nueva rama: desarrollo/v241; nueva carpeta v241/. Numeración consultada antes de crear: no había rama ni carpeta v241.

@@ -1,5 +1,7 @@
 # v241 — Integración y seguridad
 
+> Estado posterior: base SQL instalada el 5 de noviembre. Ver [INSTALACION-BASE-20261105.md](INSTALACION-BASE-20261105.md). El informe inferior registra la etapa anterior de código y pruebas locales; no representa el estado remoto actual.
+
 4 de noviembre de 2026. Rama desarrollo/v241, carpeta v241/. Base protegida v239. Sustituye el estado de preparación de la etapa anterior.
 
 **Código integrado y validado localmente; NO instalado, activado ni publicado.** HYS241_DEPLOYMENT_READY=false. No se ejecutó SQL remoto, no se desplegó el endpoint, no se enviaron correos y no se modificaron usuarios, informes ni datos de producción. No existe todavía un enlace web operativo v241.
