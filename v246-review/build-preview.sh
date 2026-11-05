@@ -15,6 +15,7 @@ for name in \
   activity-workflow-v244.js \
   people-areas-v244.js \
   inbox-v245.js \
+  pending-detail-v246.js \
   sync-core-v242.js \
   appearance-core-v242.js \
   appearance-v242.js \
@@ -31,8 +32,9 @@ for name in \
   audit-v243.css \
   activity-workflow-v244.css \
   people-areas-v244.css \
-  inbox-v245.css
+  inbox-v245.css \
+  pending-detail-v246.css
 do
-  cp "v245/$name" "v245-review/$name"
+  cp "v246/$name" "v246-review/$name"
 done
 printf '%s\n' 'Revisión HYS: recursos aislados copiados sin Supabase.'

@@ -1,9 +1,9 @@
-# Reportes HYS v245 — vista previa aislada
+# Revisión aislada Reportes HYS v246
 
-La demostración v245 parte de la versión v244, que superó la revisión visual de los bloques D y E. Su nueva función F01 agrega una campana de **pendientes de planificación local**, sin notificaciones enviadas.
+Copia independiente basada en v245. Agrega **Mis pendientes**, una pantalla de consulta por tarjeta APR u OTROS, con detalles individuales. La campana ahora la abre directamente; los formularios originales y el PDF permanecen donde estaban.
 
-Abre APR u OTROS, crea acciones individuales en Hallazgos o actividades clasificadas como tarea (solo APR), guarda y usa la campana para ver el contador y la bandeja. En la **vista ficticia**, puedes filtrar por todo el equipo simulado o por uno de sus usuarios sin alterar credenciales ni permisos. El botón «Ver en Informe Diario» navega al bloque correspondiente. Ninguna acción marca una tarea como leída o cumplida.
+La vista de revisión usa datos ficticios y almacenamiento del navegador. No autentica usuarios reales, no escribe en Supabase, no finaliza informes, no gestiona evidencias o verificación ni envía notificaciones.
 
-No usar esta demostración para información real. Los cambios de formularios quedan solo en el navegador, las fichas y las áreas de E solo en memoria temporal. No hay Supabase, correo, push, autorizaciones reales ni auditoría central.
+Para desplegar esta versión: rama `desarrollo/v246`, comando `sh v246-review/build-preview.sh`, directorio `v246-review`, autoDeploy desactivado. No publicar sobre `main` ni sobre el sitio v245.
 
-**Publicar la demo exclusivamente como sitio aislado**, ejecutando `sh v245-review/build-preview.sh` en el repositorio y sirviendo `v245-review/` con **autoDeploy desactivado**. Nunca modificar la aplicación oficial o usar claves de producción.
+El único proyecto ofrecido en APR y OTROS es **Proyecto Hidroeléctrico Alto Maipo**.
