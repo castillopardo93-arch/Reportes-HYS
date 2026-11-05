@@ -137,11 +137,20 @@ function mount({panel,module,reportReader,userIdReader}={}){
    content.replaceChildren();
    for(const btn of tabs.querySelectorAll('button')){const active=btn.dataset.tab===activeTab;btn.classList.toggle('selected',active);btn.setAttribute('aria-selected',String(active));}
    if(activeTab==='notifications'){
-    content.append(el('h4','Notificaciones del pendiente'),el('p','No hay confirmación de avisos enviados. Los recordatorios y notificaciones reales requieren un servicio autorizado.','hys250-muted'));
+    const allowed=readAllowed(report,module,userIdReader(),context(),allowedAreas,hierarchy,root.HYS245_REVIEW_ONLY===true).items;
+    if(root.Hys251Notifications?.renderInPanel)root.Hys251Notifications.renderInPanel(content,{item,visible:allowed,report});
+    else content.append(el('p','Avisos disponibles cuando se active el planificador local.','hys250-muted'));
+    const exportButton=el('button','Exportar anexo PDF (solo planificación)','hys251-export');
+    exportButton.type='button';
+    exportButton.addEventListener('click',()=>{
+      if(root.Hys251Notifications?.exportAnnex?.({item,visible:allowed})!==true)
+       exportButton.insertAdjacentElement('afterend',el('p','No se pudo generar el anexo; verifica si existen avisos preparados y si está disponible la biblioteca PDF.','hys251-muted'));
+    });
+    content.append(exportButton);
     return;
    }
    if(activeTab==='history'){
-    content.append(el('h4','Historial de seguimiento'),el('p','Los cambios de estado, responsables y evidencias solo se considerarán confirmados cuando exista auditoría respaldada por el servidor.','hys250-muted'));
+    content.append(el('h4','Historial de seguimiento'),el('p','Los eventos de planificación se muestran en la pestaña Notificaciones; los cambios de entrega, recepción, verificación y cierre únicamente podrán acreditarse mediante auditoría real del servidor.','hys250-muted'));
     return;
    }
    const fields=el('dl',null,'hys250-fields');
