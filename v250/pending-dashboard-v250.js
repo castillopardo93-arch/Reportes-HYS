@@ -262,6 +262,10 @@ function mount({panel,module,reportReader,userIdReader}={}){
   const scope=readAllowed(report,module,uid,c,allowedAreas,hierarchy,root.HYS245_REVIEW_ONLY===true);
   const all=scope.items.slice().sort((a,b)=>urgency(a)-urgency(b)||(a.dueDate||'9999').localeCompare(b.dueDate||'9999'));
   scopeRole(scope);
+  // Panel ejecutivo completo exclusivo del administrador general.
+  // Administradores delegados solo consultan sus áreas; supervisores y usuarios, su ámbito.
+  summary.hidden=scope.role!=='administrador_global';
+  filters.hidden=!['administrador_global','administrador_area'].includes(scope.role);
   summary.replaceChildren(
    makeMetric('Vencidos',all.filter(isOverdue).length,'danger'),
    makeMetric('Por vencer',all.filter(isSoon).length,'warning'),
