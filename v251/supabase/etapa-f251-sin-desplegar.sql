@@ -78,7 +78,7 @@ END;
 $$;
 DROP TRIGGER IF EXISTS hys251_auditoria_trg ON public.hys251_avisos;
 CREATE TRIGGER hys251_auditoria_trg
-AFTER INSERT OR UPDATE ON public.hys251_avisos
+AFTER INSERT OR UPDATE OR DELETE ON public.hys251_avisos
 FOR EACH ROW EXECUTE FUNCTION public.hys251_auditar_aviso();
 
 -- Solo el destinatario, administradores globales, administradores del area con
@@ -163,7 +163,7 @@ RETURNS SETOF public.hys251_avisos
 LANGUAGE plpgsql SECURITY DEFINER SET search_path=''
 AS $$
 BEGIN
- IF current_user<>'service_role' THEN
+ IF coalesce(auth.jwt()->>'role','')<>'service_role' THEN
   RAISE EXCEPTION 'Operación exclusiva de servicio' USING errcode='42501';
  END IF;
  IF p_limite NOT BETWEEN 1 AND 50 THEN
