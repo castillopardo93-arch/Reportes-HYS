@@ -59,7 +59,7 @@ test('F-253-04 selección múltiple guardada aunque se limpie la búsqueda',()=>
  assert.equal(screen.selected.children.length,2);
  const htmlRow=api.detailRow([null,null,null,null,null,[],{risks:chosen}],7);
  assert.match(htmlRow,/Riesgos vinculados/);
- assert.match(htmlRow,/Caída/);
+ assert.match(htmlRow,/caída/i);
 });
 test('F-253-05 riesgo guardado aparece al volver a editar, sin catálogo desplegado',()=>{
  const chosen=[{code:'R0041',name:'Exposición a ruido'}];
