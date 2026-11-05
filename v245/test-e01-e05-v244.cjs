@@ -1,0 +1,27 @@
+'use strict';
+// E01-E05: validaciones de diseño sin ejecutar SQL, RLS ni acciones reales.
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const api=require('./people-areas-v244.js');
+const code=fs.readFileSync(path.join(__dirname,'people-areas-v244.js'),'utf8');
+const html=fs.readFileSync(path.join(__dirname,'index.html'),'utf8');
+const review=fs.readFileSync(path.join(__dirname,'../v244-review/index.html'),'utf8');
+const css=fs.readFileSync(path.join(__dirname,'people-areas-v244.css'),'utf8');
+const O='aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',P='bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',A='cccccccc-cccc-4ccc-8ccc-cccccccccccc',B='dddddddd-dddd-4ddd-8ddd-dddddddddddd';
+const scope={organizationId:O,projectId:P,module:'APR',areaId:A};
+test('E01-01 identidad consistente requiere UUID, rol válido y ámbito',()=>assert.equal(api.normalizePerson({userId:A,name:'Persona de prueba',role:'supervisor',scope})?.role,'supervisor'));
+test('E01-02 no se aceptan roles inventados',()=>assert.equal(api.normalizePerson({userId:A,name:'Persona de prueba',role:'superusuario',scope}),null));
+test('E02-01 cargo, teléfono y correo se normalizan',()=>assert.deepEqual(api.validateContact({cargo:' APR ',telefono:'+56 9 1234 5678',correo:'ficticio@ejemplo.test',preferencia:'correo'}),{cargo:'APR',telefono:'+56 9 1234 5678',correo:'ficticio@ejemplo.test',preferencia:'correo'}));
+test('E02-02 teléfono inválido rechazado',()=>assert.throws(()=>api.validateContact({telefono:'abc'}),/Teléfono/));
+test('E02-03 correo inválido rechazado',()=>assert.throws(()=>api.validateContact({correo:'persona@'}),/Correo/));
+test('E02-04 contacto preferido exige canal disponible',()=>{assert.throws(()=>api.validateContact({preferencia:'telefono'}),/primero indica/);assert.throws(()=>api.validateContact({preferencia:'correo'}),/primero indica/);});
+test('E03-01 ámbitos exigen organización, proyecto, módulo y área UUID',()=>{assert.equal(api.validScope(scope),true);assert.equal(api.validScope({...scope,projectId:''}),false);assert.equal(api.validScope({...scope,module:'OPERACIONES'}),false);});
+test('E03-02 ninguna coincidencia entre módulos APR/OTROS',()=>assert.equal(api.sameScope(scope,{...scope,module:'OTROS'}),false));
+test('E03-03 ningún permiso por semejanza de nombre de proyecto',()=>assert.equal(api.sameScope(scope,{...scope,projectId:B}),false));
+test('E04-01 áreas operativas no son tabla de permisos',()=>{const area=api.normalizeArea({areaId:A,organizationId:O,projectId:P,module:'APR',nombre:'VA4',activa:true});assert.equal(area.nombre,'VA4');assert.equal(area.activa,true);});
+test('E04-02 áreas de otros módulos se distinguen por alcance',()=>{const a=api.normalizeArea({areaId:A,organizationId:O,projectId:P,module:'APR',nombre:'VA4',activa:true});const other={...a,areaId:B,module:'OTROS'};assert.equal(api.uniqueAreaName([a],other),true);});
+test('E04-03 no se duplica un área en el mismo proyecto/módulo',()=>{const a=api.normalizeArea({areaId:A,organizationId:O,projectId:P,module:'APR',nombre:'VA4',activa:true});assert.equal(api.uniqueAreaName([a],{...a,areaId:B,nombre:'va4'}),false);});
+test('E05-01 no se inventa auditoría central ni se envían operaciones de red',()=>{assert.match(code,/No hay eventos confirmados por servidor/);assert.doesNotMatch(code,/\bfetch\s*\(/);});
+test('E05-02 datos ficticios solo se habilitan en la demostración',()=>assert.throws(()=>api.setPreviewData({people:[],areas:[]}),/demostración aislada/));
+test('E UI-01 montaje en Configuración ambos módulos',()=>{assert.match(html,/Hys244People\?\.mount\(\{host,module:modulo\}\)/);assert.match(review,/Hys244People\?\.setPreviewData\(\{people:fakeProfiles244/);});
+test('E UI-02 pantallas adaptables',()=>assert.match(css,/@media\(max-width:760px\)/));
+test('E UI-03 no habilita escritura real sin backend',()=>{assert.match(code,/root\.HYS244_REVIEW_ONLY===true/);assert.match(code,/if\(!active\)\{personSelect\.disabled=true/);assert.doesNotMatch(code,/supabase\.from/);});
