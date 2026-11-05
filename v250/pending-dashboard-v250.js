@@ -21,7 +21,7 @@ const urgency=item=>isOverdue(item)?0:isSoon(item)?1:isReview(item)?2:item.statu
 function sourceRow(report,item){
  const rows=report?.data?.[item.kind==='finding'?'findings':item.kind]||[];
  if(item.kind==='finding'){
-  const index=rows.findIndex(r=>Array.isArray(r)&&r[6]?.findingId===item.sourceId);
+  const index=item.sourceId?rows.findIndex(r=>Array.isArray(r)&&r[6]?.findingId===item.sourceId):-1;
   if(index>=0)return rows[index];
   const local=item.key.match(/^hallazgo:local-(\d+)$/);
   return local?rows[Number(local[1])]||null:null;
@@ -157,7 +157,7 @@ function mount({panel,module,reportReader,userIdReader}={}){
    content.append(evidence);
    if(item.kind==='finding'&&role()==='administrador_global'&&root.Hys243FindingDetail?.detailRow){
     const rows=report?.data?.findings||[];
-    const i=rows.findIndex(r=>Array.isArray(r)&&r[6]?.findingId===item.sourceId);
+    const i=item.sourceId?rows.findIndex(r=>Array.isArray(r)&&r[6]?.findingId===item.sourceId):-1;
     const index=i>=0?i:(item.key.startsWith('hallazgo:local-')?Number(item.key.slice(15)):-1);
     if(Number.isInteger(index)&&index>=0&&Array.isArray(rows[index])){
       const details=el('details',null,'hys250-original');
@@ -184,16 +184,6 @@ function mount({panel,module,reportReader,userIdReader}={}){
   const bottom=el('div','Supervisor · personal directamente a cargo','hys250-org-node');
   tree.append(top,mid,bottom);orgPanel.append(tree);
   orgPanel.append(el('p','La asignación de personal se habilitará cuando exista el servicio de organigrama con control de acceso y auditoría en Supabase. No se han creado relaciones ni cambiado permisos.','hys250-caution'));
- }
- function render(){
-  if(!view.isConnected)return;
-  const report=reportReader(),c=context(),uid=userIdReader();
-  const scope=readAllowed(report,module,uid,c,allowedAreas,hierarchy,root.HYS245_REVIEW_ONLY===true);
-  const all=scope.items.slice().sort((a,b)=>urgency(a)-urgency(b)||(a.dueDate||'9999').localeCompare(b.dueDate||'9999'));
-  scope.role=scope.role||role();
-  scope.role==='administrador_global'?scope.text='Administrador general · Vista completa':scope.role==='administrador_area'?scope.text='Administrador de área · Ámbito autorizado':scope.role==='supervisor'?scope.text='Supervisor · Personal a cargo':scope.text='Pendientes personales';
-  scope.text=scope.role==='demostracion'?'Demostración':scope.text;
-  scope=document; // no-op
  }
  function paint(){
   if(!view.isConnected)return;
