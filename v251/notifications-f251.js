@@ -132,6 +132,7 @@ function annexRows(report,visible,ledger,{includePrepared=true}={}){
 let active=null;
 function mount({module,reportReader,userIdReader,readVisible}={}){
  if(!MODULES.has(module)||typeof reportReader!=='function'||typeof userIdReader!=='function'||typeof readVisible!=='function')return null;
+ if(active?.stop)active.stop();
  const STORAGE='hys251-planificacion-v1::'+module;
  let snapshot=null,ledger=[],lastReport='',enabled=true;
  try{const raw=JSON.parse(root.localStorage.getItem(STORAGE)||'null');if(raw?.module===module){
