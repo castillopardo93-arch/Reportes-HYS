@@ -1,13 +1,9 @@
-# Reportes HYS — Demostración aislada v244 (D + E)
+# Reportes HYS v245 — vista previa aislada
 
-**Rama:** `desarrollo/v244`, **carpeta:** `v244-review/`.
+La demostración v245 parte de la versión v244, que superó la revisión visual de los bloques D y E. Su nueva función F01 agrega una campana de **pendientes de planificación local**, sin notificaciones enviadas.
 
-Esta revisión usa copia autónoma de v244 con cuentas ficticias, sin SDK, URL ni claves de Supabase. Se mantiene aislada de la publicación oficial y de la revisión v243, previamente aprobada.
+Abre APR u OTROS, crea acciones individuales en Hallazgos o actividades clasificadas como tarea (solo APR), guarda y usa la campana para ver el contador y la bandeja. En la **vista ficticia**, puedes filtrar por todo el equipo simulado o por uno de sus usuarios sin alterar credenciales ni permisos. El botón «Ver en Informe Diario» navega al bloque correspondiente. Ninguna acción marca una tarea como leída o cumplida.
 
-**Nuevas pruebas visuales:** Actividades HYS y Actividades por área ahora tienen clasificación informativa/tarea, fecha compromiso, vínculo opcional a Hallazgos y selector ficticio de persona registrada APR. La tabla histórica y el PDF conservan los cuatro campos originales y fotografías. En Configuración se incorpora un panel plegable de fichas con cargo/teléfono/correo/preferencia de contacto, áreas operativas ficticias por módulo y espacio vacío de auditoría.
+No usar esta demostración para información real. Los cambios de formularios quedan solo en el navegador, las fichas y las áreas de E solo en memoria temporal. No hay Supabase, correo, push, autorizaciones reales ni auditoría central.
 
-**Limitaciones:** todo es ficticio, solo los datos de formulario histórico se guardan localmente; las modificaciones de fichas y áreas operativas se mantienen exclusivamente en memoria y desaparecen al recargar. Los avisos, acciones reales, verificación, reasignación, cierre formal, permisos RLS y auditoría central siguen deshabilitados.
-
-**Construcción:** `sh v244-review/build-preview.sh` copia una lista explícita de recursos seguros desde `v244/`. No copiar archivos de administración de Supabase, claves ni SDK real. **No** publicar este directorio como aplicación oficial.
-
-La vista v244 requiere una nueva revisión visual: la aceptación de v243 no la aprueba automáticamente.
+**Publicar la demo exclusivamente como sitio aislado**, ejecutando `sh v245-review/build-preview.sh` en el repositorio y sirviendo `v245-review/` con **autoDeploy desactivado**. Nunca modificar la aplicación oficial o usar claves de producción.
