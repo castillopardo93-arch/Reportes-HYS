@@ -29,10 +29,15 @@
   if(!validMode(module)||!report||typeof report!=='object'||report.module!==module)
    return {items:[],warnings:[],invalidModule:true};
   const data=report.data||{},items=[],warnings=[],seen=new Set();
+  const summary={activities:0,inspections:0,findings:0,activitiesNotAssigned:0,inspectionsNotAssigned:0};
+
   const dueRef=safeDay(today)||new Date().toISOString().slice(0,10);
   const add=item=>{
    if(seen.has(item.key)){warnings.push('Una tarea tiene identificador duplicado y requiere revisión.');return;}
-   seen.add(item.key);items.push({...item,dueStatus:item.dueDate?(item.dueDate<dueRef?'overdue':item.dueDate===dueRef?'today':'upcoming'):'undated'});
+   seen.add(item.key);
+   const card=item.kind==='finding'?'findings':item.kind;
+   if(Object.hasOwn(summary,card))summary[card]++;
+   items.push({...item,dueStatus:item.dueDate?(item.dueDate<dueRef?'overdue':item.dueDate===dueRef?'today':'upcoming'):'undated'});
   };
   const findings=Array.isArray(data.findings)?data.findings:[];
   findings.forEach((record,index)=>{
@@ -40,9 +45,25 @@
    const metadata=record[6];
    const findingId=safeId(metadata?.findingId);
    const actions=metadata?.actions;
+   const members=Array.isArray(metadata?.assignees)?metadata.assignees:[];
+   const validMembers=members.filter(p=>p?.modulo===module&&safeId(p.user_id));
+   const validPeople=new Set(validMembers.map(p=>safeId(p.user_id)));
+   if(actions!==null&&actions!==undefined&&!Array.isArray(actions)){
+    warnings.push('Hallazgo con acciones históricas de formato incorrecto. Requiere revisión.');return;
+   }
+   if((!actions||actions.length===0)&&['pendiente','en proceso','por revisar','abierto'].includes(safeText(record[4]).toLocaleLowerCase('es'))){
+    if(!findingId)warnings.push('Un hallazgo antiguo necesita identificador estable; edítalo para vincularlo formalmente.');
+    const unique=validMembers.length===1?validMembers[0]:null;
+    add({key:'hallazgo:'+(findingId||'local-'+index),kind:'finding',sourceId:findingId||null,
+     title:safeText(record[0],180)||'Hallazgo N.º '+(index+1),
+     description:safeText(record[2],500)||'Medida propuesta pendiente de definir',
+     assignedId:findingId?safeId(unique?.user_id):'',assignedName:unique?safeText(unique.nombre,160):validMembers.length>1?'Varios responsables sin acciones individuales':'Sin persona vinculada',
+     dueDate:safeDay(metadata?.dueDate),status:'planning',required:null,
+     type:'Hallazgo pendiente de seguimiento',module});
+    if(validMembers.length!==1)warnings.push('Un hallazgo requiere definir una acción individual por responsable para asignar el pendiente a una cuenta.');
+    return;
+   }
    if(!Array.isArray(actions))return;
-   const members=Array.isArray(metadata.assignees)?metadata.assignees:[];
-   const validPeople=new Set(members.filter(p=>p?.modulo===module&&safeId(p.user_id)).map(p=>safeId(p.user_id)));
    for(const a of actions){
     if(!a||typeof a!=='object'||!safeId(a.actionId)||!safeId(a.assigneeId)||!findingId){
      warnings.push('Hay una acción de hallazgo con identificadores pendientes de revisión.');continue;
@@ -69,7 +90,26 @@
     rows.forEach((record,index)=>{
      if(!Array.isArray(record))return;
      const m=record[5];
-     if(!m||m.activityType!=='assigned')return;
+     if(!m||m.activityType!=='assigned'){
+      // Registrar únicamente una advertencia de seguimiento en la vista de equipo,
+      // nunca una tarea asignada o una notificación ficticia.
+      summary[kind+'NotAssigned']++;
+      const state=safeText(record[3]).toLocaleLowerCase('es');
+      const needsReview=kind==='activities'
+       ?['con observaciones','requiere seguimiento'].includes(state)
+       :['pendiente','en proceso','por revisar'].includes(state);
+      if(needsReview){
+       const id=safeId(m?.activityId);
+       add({key:'clasificar:'+kind+':'+(id||'local-'+index),kind,sourceId:id||null,
+        title:safeText(record[kind==='activities'?2:1],180)||'Actividad N.º '+(index+1),
+        description:safeText(record[kind==='activities'?0:2],240),
+        assignedId:'',assignedName:'Pendiente de asignación individual',
+        dueDate:'',status:'needs_classification',required:null,
+        type:kind==='activities'?'Actividad HYS por clasificar':'Actividad por área por clasificar',module});
+       if(!id)warnings.push('Una actividad anterior requiere seguimiento. Edítala y guarda para obtener identificación estable.');
+      }
+      return;
+     }
      const id=safeId(m.activityId);
      if(!id){warnings.push('Hay una tarea APR sin identificador estable.');return;}
      const identity=m.identity;
@@ -86,7 +126,7 @@
    }
   }
   items.sort((a,b)=>priority(a,dueRef)-priority(b,dueRef)||(a.dueDate||'9999').localeCompare(b.dueDate||'9999')||a.title.localeCompare(b.title,'es'));
-  return {items,warnings,invalidModule:false};
+  return {items,warnings,invalidModule:false,summary};
  }
  function mineOnly(items,userId){
   const id=safeId(userId);
@@ -119,7 +159,7 @@
   const panel=node('section',null,'hys245-inbox-panel');panel.hidden=true;
   panel.setAttribute('role','region');panel.setAttribute('aria-label','Bandeja de tareas pendientes');
   const heading=node('h3','Bandeja de pendientes · F01');
-  const safeNote=node('p','Esta bandeja resume tareas planificadas en este informe local. No son avisos entregados ni confirmaciones de lectura.','hys245-inbox-note');
+  const safeNote=node('p','Esta bandeja muestra tareas asignadas y hallazgos pendientes de seguimiento del informe local. Las actividades informativas quedan fuera. No son notificaciones enviadas ni confirmaciones de lectura.','hys245-inbox-note');
   const chooserLabel=node('label','Vista de prueba · solo filtra datos ficticios');
   const chooser=node('select');chooser.setAttribute('aria-label','Filtro de pendientes ficticios');
   chooserLabel.append(chooser);chooserLabel.hidden=!isPreview;
@@ -146,10 +186,15 @@
    const selected=isPreview?getChoice():'mine';
    const visible=selected==='team'?result.items:selected.startsWith('person:')?mineOnly(result.items,selected.slice(7)):mineOnly(result.items,userId);
    badge.textContent=String(visible.length);
-   status.textContent=visible.length+' tarea(s) de planificación '+(isPreview?(selected==='team'?'del módulo ficticio':'del filtro ficticio'):'asignadas a esta cuenta')+'.'+
-     (result.warnings.length?' '+result.warnings.length+' registro(s) necesitan revisión de datos.':'');
+   const summary=result.summary||{};
+   status.textContent=visible.length+' pendiente(s) '+(isPreview?(selected==='team'?'del módulo ficticio':'del filtro ficticio'):'asignados a esta cuenta')+'. '+
+     'En el informe local: Actividades HYS '+(summary.activities||0)+' · Actividades por área '+(summary.inspections||0)+' · Hallazgos '+(summary.findings||0)+'. '+
+     ((summary.activitiesNotAssigned||0)+(summary.inspectionsNotAssigned||0)>0?'Las actividades informativas no aparecen como tareas. ':'')+
+     (result.warnings.length?result.warnings.length+' registro(s) necesitan revisión de datos.':'');
    if(!visible.length){
-    list.append(node('p','No hay tareas planificadas para este filtro. No equivale a una confirmación de cumplimiento.','hys245-inbox-empty'));return;
+    list.append(node('p',isPreview&&selected!=='team'
+      ?'No hay pendientes vinculados a esta persona. Prueba «Todas las tareas ficticias» para ver tareas sin responsable vinculado.'
+      :'No hay tareas planificadas para este filtro. No equivale a una confirmación de cumplimiento.','hys245-inbox-empty'));return;
    }
    for(const item of visible){
     const article=node('article',null,'hys245-inbox-item');
