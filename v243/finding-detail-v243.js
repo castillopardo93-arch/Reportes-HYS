@@ -27,6 +27,7 @@ function detailRow(record,index,colspan=7){
   '</div>'+
   '<p class="hys243-detail-pending">La corrección y el cierre directo siguen bloqueados hasta disponer de un servidor aislado. C08 incorpora acciones individuales planificadas, pero su ejecución y verificación aún requieren autorización y evidencia del servidor; la auditoría de cierre continúa pendiente de C09.</p>'+
   (root.Hys243Actions?.listMarkup(record,root.Hys243Actions.context())||'')+
+  (root.Hys243Reassignment?.panel(record)||'')+
   (root.Hys243Corrections?.panel(record,i)||'');
  const notifications='<p class="hys243-detail-empty">Aún no hay un historial de notificaciones por hallazgo.</p>'+
   '<p class="hys243-detail-pending">La bandeja, los avisos internos y el correo con seguimiento se desarrollarán en F01–F07. No se ha enviado ni confirmado ningún aviso desde este panel.</p>';

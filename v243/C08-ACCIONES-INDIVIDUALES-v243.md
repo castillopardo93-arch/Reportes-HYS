@@ -52,3 +52,19 @@ El sitio v243 sigue marcado como NO PUBLICABLE y con `HYS242_ENABLE_CENTRAL=fals
 
 ## Validaciones pendientes
 Ejecución nativa de Node, navegación en escritorio/móvil, fotografías en PDF, flujos APR/OTROS, cambios de asignación y de tareas, evidencia real en servidor de ensayo y matriz de seguridad de usuarios. Enlace de revisión web después de C10, si se puede habilitar un entorno aislado y seguro.
+
+---
+
+## C08-R — Reasignación por renuncia, desvinculación o ausencia (aprobado por el usuario)
+
+Se incorpora como **requisito obligatorio**, no como acción automática. Cuando una persona renuncie, sea desvinculada, trasladada o permanezca ausente un período prolongado, sus acciones **pendientes, en proceso o devueltas** podrán solicitarse para reasignación por un supervisor o administrador autorizado del **mismo ámbito**. Las acciones ya verificadas no se transfieren: conservan evidencia y autoría histórica. Las acciones enviadas a verificación se revisarán antes de transferirlas.
+
+**Regla de control:** supervisor y administrador de área únicamente en su ámbito autorizado; administrador global según permisos del proyecto. El usuario común no puede reasignar. La autenticación, el estado activo, la pertenencia al proyecto/área/módulo y la capacidad de reasignación se verifican **en el servidor**.
+
+El trabajador saliente debe quedar **inactivo, no borrado**. Cada acción transferida conserva un registro permanente con `actionId`, UUID/nombre anteriores, UUID/nombre nuevos, actor que reasignó, rol/ámbito, motivo, justificación, fecha/hora de servidor, revisión previa y nueva, estado inicial y final, y referencia de evento de auditoría. Nunca se marca como verificada una tarea por renuncia/desvinculación.
+
+**Flujo de preparación en v243:** panel de consulta de candidatos dentro de Seguimiento; solo consulta un proveedor aislado, no muestra cuentas de otras áreas/proyectos y guarda un recibo **solo de forma remota**. Sin proveedor autenticado y verificado, todas las acciones quedan bloqueadas. No se concede autorización por controles de JavaScript.
+
+**Regla C09 asociada:** el cierre global solo procede después de una verificación de acciones obligatorias, evidencias y auditoría con el responsable vigente. Si existía evidencia aportada por un trabajador saliente, el supervisor autorizado puede revisarla y verificarla sin atribuir su autoría al reemplazante; si falta evidencia, se reasigna la ejecución. La reasignación no otorga automáticamente permiso de cierre.
+
+Pruebas adicionales: `test-c08-reassignment-v243.cjs`, más las pruebas de C08 y C09. El backend real, los permisos y la auditoría se desarrollarán y validarán exclusivamente en un entorno aislado con aprobación posterior.
