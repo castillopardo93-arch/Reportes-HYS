@@ -7,7 +7,7 @@
 const STORAGE_KEY='reportes-hys-v243-risk-catalog-v1';
 const MAX_ITEMS=15000;
 const MAX_FILE_BYTES=2*1024*1024;
-const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').replace(/\s+/g,' ').trim();
+const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
 const clean=(value,limit)=>String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,limit);
 const escape=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const asItem=entry=>{
@@ -15,7 +15,8 @@ const asItem=entry=>{
  const code=clean(entry.code??entry.codigo??entry.código??entry.Codigo??entry.Código,80);
  const name=clean(entry.name??entry.nombre??entry.Nombre??entry.descripcion??entry.descripción,240);
  if(!code||!name)throw Error('Se encontró un riesgo sin código o nombre.');
- return {code,name};
+ const lists={};for(const key of ['aliases','keywords']){const raw=Array.isArray(entry[key])?entry[key]:[];const unique=new Set();lists[key]=raw.map(v=>clean(v,240)).filter(v=>{const k=normalize(v);if(!k||unique.has(k)||k===normalize(name))return false;unique.add(k);return true}).slice(0,25)}
+ return {code,name,...(lists.aliases.length?{aliases:lists.aliases}:{}),...(lists.keywords.length?{keywords:lists.keywords}:{})};
 };
 function validateCatalog(entries){
  if(!Array.isArray(entries))throw Error('El catálogo debe contener un arreglo de riesgos.');
@@ -70,16 +71,52 @@ function parseCatalogText(text,filename='catalogo.json'){
  }
  return {version,risks:validateCatalog(records)};
 }
+function editWithin(a,b,max){
+ if(Math.abs(a.length-b.length)>max)return false;
+ if(a===b)return true;
+ let prev=Array.from({length:b.length+1},(_,i)=>i);
+ for(let i=1;i<=a.length;i++){
+  const cur=[i];let best=i;
+  for(let j=1;j<=b.length;j++){
+   const cost=a[i-1]===b[j-1]?0:1;
+   const v=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+cost);
+   cur.push(v);if(v<best)best=v;
+  }
+  if(best>max)return false;
+  prev=cur;
+ }
+ return prev[b.length]<=max;
+}
 function filterCatalog(items,query,limit=40){
- const words=normalize(query).split(' ').filter(Boolean);
  if(!Array.isArray(items))return [];
- return items.filter(item=>words.every(word=>normalize(item.code+' '+item.name).includes(word))).slice(0,limit);
+ const words=normalize(query).split(' ').filter(Boolean);
+ if(!words.length)return items.slice(0,limit);
+ const found=[];
+ for(const item of items){
+  const base=normalize(item.code+' '+item.name);
+  const aliases=(item.aliases||[]).map(normalize);
+  const keys=(item.keywords||[]).map(normalize);
+  const texts=[base,...aliases,...keys],allTokens=[...new Set(texts.join(' ').split(' ').filter(Boolean))];
+  let fuzzy=false;
+  if(!words.every(word=>{
+    if(texts.some(t=>t.includes(word)))return true;
+    if(word.length<5)return false;
+    const distance=word.length>8?2:1;
+    const approximate=allTokens.some(token=>token.length>=5&&token[0]===word[0]&&editWithin(word,token,distance));
+    if(approximate)fuzzy=true;
+    return approximate;
+  }))continue;
+  const score=fuzzy?3:base.includes(words.join(' '))?0:aliases.some(x=>words.every(w=>x.includes(w)))?1:2;
+  found.push({item,score});
+ }
+ found.sort((a,b)=>a.score-b.score||a.item.name.localeCompare(b.item.name,'es'));
+ return found.slice(0,limit).map(x=>x.item);
 }
 function snapshots(input){
  if(!Array.isArray(input))return [];
  const out=[],seen=new Set();
  for(const item of input){
-  try{const safe=asItem(item),key=normalize(safe.code);if(seen.has(key))continue;seen.add(key);out.push(safe);}catch{}
+  try{const safe=asItem(item),key=normalize(safe.code);if(seen.has(key))continue;seen.add(key);out.push({code:safe.code,name:safe.name});}catch{}
  }
  return out;
 }
@@ -94,8 +131,8 @@ let catalog=[],catalogVersion='',catalogError='',current=[],mounted=false,refres
 function readCatalog(){
  try{
   const raw=root.localStorage?.getItem(STORAGE_KEY);
-  if(!raw){catalog=[];catalogVersion='';catalogError='';return;}
-  const saved=JSON.parse(raw);
+  const saved=raw?JSON.parse(raw):root.HYS252_RISK_SEED;
+  if(!saved){catalog=[];catalogVersion='';catalogError='';return;}
   catalog=validateCatalog(saved.risks);
   catalogVersion=clean(saved.version,100);
   catalogError='';
@@ -117,7 +154,7 @@ function mount(host,initial){
  readCatalog();current=snapshots(initial);mounted=true;
  const section=root.document.createElement('section');section.className='hys243-risk-picker';
  const label=root.document.createElement('label');label.className='hys243-risk-label';label.textContent='Riesgos asociados (selección múltiple)';
- const help=root.document.createElement('p');help.className='hys243-risk-help';help.textContent='Busca por código o nombre, con o sin tildes. Los riesgos seleccionados se guardan con este hallazgo.';
+ const help=root.document.createElement('p');help.className='hys243-risk-help';help.textContent='Busca por código, nombre o términos relacionados, incluso con errores menores. Puedes seleccionar varios riesgos.';
  const input=root.document.createElement('input');input.type='search';input.placeholder='Buscar código o nombre del riesgo';input.setAttribute('aria-label','Buscar riesgos');input.autocomplete='off';
  const status=root.document.createElement('p');status.className='hys243-risk-status';status.setAttribute('aria-live','polite');
  const chosen=root.document.createElement('div');chosen.className='hys243-risk-chosen';
@@ -130,7 +167,7 @@ function mount(host,initial){
  section.append(label,help,input,status,chosen,results,importWrap);host.append(section);
  const rerender=()=>{
   if(!section.isConnected)return;
-  status.textContent=catalogError||('Catálogo local: '+catalog.length+' riesgos'+(catalogVersion?' · '+catalogVersion:'')+' · Seleccionados: '+current.length+(catalog.length?'':' · Importa un catálogo para buscar.'));
+  status.textContent=catalogError||('Catálogo disponible: '+catalog.length+' riesgos'+(catalogVersion?' · '+catalogVersion:'')+' · Seleccionados: '+current.length+(catalog.length?'':' · Importa un catálogo para buscar.'));
   chosen.replaceChildren();
   if(current.length){
    const tag=root.document.createElement('strong');tag.textContent='Seleccionados: ';chosen.append(tag);
@@ -149,7 +186,7 @@ function mount(host,initial){
    const button=root.document.createElement('button');button.type='button';button.className='hys243-risk-result'+(active?' selected':'');
    button.setAttribute('aria-pressed',String(active));button.textContent=(active?'✓ ':'＋ ')+item.code+' · '+item.name;
    button.addEventListener('click',()=>{
-    if(active)current=current.filter(x=>normalize(x.code)!==normalize(item.code));else current.push({...item});
+    if(active)current=current.filter(x=>normalize(x.code)!==normalize(item.code));else current.push({code:item.code,name:item.name});
     rerender();
    });
    results.append(button);
