@@ -290,7 +290,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
-<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script>
+<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script>
 
 <style id="supabase-auth-styles">
 #authGate[hidden]{display:none!important}
@@ -359,7 +359,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
-<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css">
+<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css">
 </head>
 <body class="auth-locked">
 
@@ -634,7 +634,8 @@ const labels={activities:["APR u otro responsable","Área","Descripción","Resul
 const choices={"Resultado":["Sin novedades","Con observaciones","Requiere seguimiento","Otro"],"Prioridad":["Baja","Media","Alta","Crítica"],"Estado":["Pendiente","En proceso","Completado"]};
 let data={activities:[],inspections:[],findings:[]},editRef=null,status="En edición",history=[],aprNames=[],areaNames=[];
 window.Hys243Corrections?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()}));
-window.Hys243Actions?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()})); let pendingActivityPhotos=[],editingActivityPhotos=[],editingAprIndex=null,editingAreaIndex=null;
+window.Hys243Actions?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()}));
+window.Hys243Audit?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()})); let pendingActivityPhotos=[],editingActivityPhotos=[],editingAprIndex=null,editingAreaIndex=null;
 const $=id=>document.getElementById(id);
 const today=new Date(),localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);$("date").value=localDate;$("dateFrom").value=localDate;$("dateTo").value=localDate;$("topDate").textContent=today.toLocaleDateString("es-CL",{day:"2-digit",month:"long",year:"numeric"});
 function updateTurnDay(){const from=$("dateFrom").value,to=$("dateTo").value,day=$("date").value;if(!from||!to||!day){$("turnDay").textContent="Ingrese las fechas";return}const a=new Date(from+"T12:00:00"),b=new Date(to+"T12:00:00"),d=new Date(day+"T12:00:00");if(b<a){$("turnDay").textContent="Rango de fechas inválido";return}const total=Math.round((b-a)/86400000)+1,index=Math.round((d-a)/86400000)+1;$("turnDay").textContent=index<1||index>total?"Fuera del período":"Día "+index+" de "+total;}

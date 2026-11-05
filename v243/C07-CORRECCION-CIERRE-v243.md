@@ -37,3 +37,7 @@ Para aprobar el cierre funcional de C07 será necesario el backend de pruebas ai
 - `v243/test-c07-v243.cjs` — 20 pruebas de contrato con identidades y evidencias sintéticas.
 
 **Siguiente punto:** C08, acciones individuales por responsable; sin cierres globales hasta cumplir todas las acciones obligatorias.
+
+
+### Endurecimiento obligatorio de C09
+La ruta de cierre directo de C07 **no se habilita** por tener un único responsable o estado «Completado»: además debe estar activo el servicio aislado de auditoría C09 y existir acción obligatoria verificada con evidencia por una persona distinta de quien la ejecutó. El backend revalida permisos, evidencia y revisión. Los formularios de corrección siguen separados de los de cierre. No se autoriza cerrar sin esta condición.

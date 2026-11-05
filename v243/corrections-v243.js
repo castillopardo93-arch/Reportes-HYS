@@ -33,7 +33,9 @@ function requiredActionsComplete(record){
  return (items===undefined||items===null)&&Array.isArray(record?.[6]?.assignees)&&record[6].assignees.length===1;
 }
 function mayRequestClose(record,context){
- return eligible(record,context)&&assignments(record,context.module).length===1&&requiredActionsComplete(record)&&record?.[6]?.closure?.status!=='closed';
+ return eligible(record,context)&&assignments(record,context.module).length===1&&requiredActionsComplete(record)&&
+  root.Hys243Audit?.enabled()===true&&root.Hys243Audit?.verifiedTasks(record)===true&&
+  record?.[6]?.closure?.status!=='closed';
 }
 function validateEvidence(files){
  const list=Array.from(files||[]);

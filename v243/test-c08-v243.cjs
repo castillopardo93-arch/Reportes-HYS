@@ -54,7 +54,7 @@ test('C08-07 verificación requiere fecha, verificador y evidencia con UUID',()=
 });
 test('C08-08 sin acciones un único responsable mantiene compatibilidad C07',()=>{
  assert.equal(api.allRequiredVerified(record(undefined,[assigned[0]])),true);
- assert.equal(closure.mayRequestClose(record(undefined,[assigned[0]]),context()),true);
+ assert.equal(closure.mayRequestClose(record(undefined,[assigned[0]]),context()),false); // Requiere C09 y verificación independiente
 });
 test('C08-09 varios responsables sin acciones no pueden cerrar globalmente',()=>{
  assert.equal(api.allRequiredVerified(record(undefined)),false);

@@ -67,8 +67,8 @@ test('C06-06 notificaciones en estado no implementado, sin fingir envíos',()=>{
 });
 test('C06-07 historial no confunde Completado con cierre auditado',()=>{
  const row=detail.detailRow([...record.slice(0,4),'Completado',...record.slice(5)],0,7);
- assert.match(row,/Un estado «Completado» no demuestra por sí solo/);
- assert.match(row,/no existe un historial individual de cierre/);
+ assert.match(row,/El estado del formulario no es una evidencia de cierre/);
+ assert.match(row,/ningún cierre o reapertura se ejecuta desde esta vista sin servidor aislado/);
 });
 test('C06-08 ARIA tabs tienen paneles asociados y primera pestaña visible',()=>{
  const row=detail.detailRow(record,1,7);

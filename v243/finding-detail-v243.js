@@ -32,8 +32,8 @@ function detailRow(record,index,colspan=7){
  const notifications='<p class="hys243-detail-empty">Aún no hay un historial de notificaciones por hallazgo.</p>'+
   '<p class="hys243-detail-pending">La bandeja, los avisos internos y el correo con seguimiento se desarrollarán en F01–F07. No se ha enviado ni confirmado ningún aviso desde este panel.</p>';
  const history='<p><strong>Estado registrado</strong> '+summaryText(status)+'</p>'+
-  '<p class="hys243-detail-empty">Todavía no existe un historial individual de cierre y reapertura para este hallazgo.</p>'+
-  '<p class="hys243-detail-pending">Un estado «Completado» no demuestra por sí solo que el hallazgo esté cerrado y verificado. La interfaz de corrección/cierre se prepara en C07; su autorización real requiere servidor aislado. Las acciones por responsable se preparan en C08; la validación y auditoría completa de cierre siguen pendientes de C09.</p>';
+  '<p class="hys243-detail-pending">El estado del formulario no es una evidencia de cierre. C09 solo muestra eventos confirmados por un servicio autorizado; ningún cierre o reapertura se ejecuta desde esta vista sin servidor aislado.</p>'+ 
+  (root.Hys243Audit?.panel(record)||'');
  const panels={followup,notifications,history};
  const tabs=TABS.map((key,j)=>
   '<button type="button" role="tab" id="'+id+'-tab-'+key+'" data-hys243-tab="'+key+

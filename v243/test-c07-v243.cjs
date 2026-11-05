@@ -52,7 +52,7 @@ test('C07-08 distingue tareas completadas de verificadas con evidencia',()=>{
 });
 test('C07-09 cierre ya confirmado no se vuelve a ofrecer',()=>{
  assert.equal(api.mayRequestClose(record(undefined,{closure:{status:'closed'}}),context()),false);
- assert.equal(api.mayRequestClose(record(),context()),true);
+ assert.equal(api.mayRequestClose(record(),context()),false); // Sin C09 y evidencia auditada, el cierre se bloquea
 });
 test('C07-10 exige al menos una foto de evidencia',()=>{
  assert.throws(()=>api.validateEvidence([]),/entre 1 y 8/);
@@ -80,8 +80,9 @@ test('C07-15 requiere un informe persistido para enviar la solicitud',()=>{
  assert.throws(()=>api.validateRequest({record:record(),context:context({reportId:null}),action:'correct',comment:'Se corrigió la protección existente',files:pictures()}),/informe/);
 });
 test('C07-16 el cierre directo depende de asignación única y corrección con foto',()=>{
- const result=api.validateRequest({record:record(),context:context(),action:'close',comment:'Protección reparada y verificada en terreno',files:pictures()});
- assert.match(result.description,/reparada/);
+ assert.throws(()=>api.validateRequest({record:record(),context:context(),action:'close',comment:'Protección reparada y verificada en terreno',files:pictures()}),/Cierre no permitido/);
+ const correction=api.validateRequest({record:record(),context:context(),action:'correct',comment:'Protección reparada y verificada en terreno',files:pictures()});
+ assert.match(correction.description,/reparada/);
  assert.throws(()=>api.validateRequest({record:record([{user_id:U1,modulo:'APR'},{user_id:U2,modulo:'APR'}]),context:context(),action:'close',comment:'Protección reparada y verificada en terreno',files:pictures()}),/Cierre no permitido/);
 });
 test('C07-17 proveedor y backend ausentes no permiten envío',()=>{
