@@ -75,7 +75,8 @@ BEGIN
         to_jsonb(NEW));
  RETURN NEW;
 END;
-$$;
+$;
+REVOKE ALL ON FUNCTION public.hys251_auditar_aviso() FROM PUBLIC,anon,authenticated;
 DROP TRIGGER IF EXISTS hys251_auditoria_trg ON public.hys251_avisos;
 CREATE TRIGGER hys251_auditoria_trg
 AFTER INSERT OR UPDATE OR DELETE ON public.hys251_avisos
@@ -133,7 +134,8 @@ BEGIN
   RAISE EXCEPTION 'Sesion no autorizada' USING errcode='42501';
  END IF;
  SELECT * INTO current_row FROM public.hys251_avisos WHERE id=p_aviso FOR UPDATE;
- IF NOT FOUND OR current_row.destinatario_id<>auth.uid() THEN
+ IF NOT FOUND OR current_row.destinatario_id<>auth.uid()
+   OR NOT (hys242_private.modulo(current_row.modulo) OR hys242_private.facultad(current_row.modulo,'view')) THEN
   RAISE EXCEPTION 'Aviso ajeno o inexistente' USING errcode='42501';
  END IF;
  IF current_row.estado NOT IN ('sent','viewed','confirmed') THEN
