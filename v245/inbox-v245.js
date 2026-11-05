@@ -118,7 +118,7 @@
   const badge=node('span','0','hys245-bell-count');badge.setAttribute('aria-label','Cantidad de tareas planificadas');bell.append(badge);
   const panel=node('section',null,'hys245-inbox-panel');panel.hidden=true;
   panel.setAttribute('role','region');panel.setAttribute('aria-label','Bandeja de tareas pendientes');
-  const heading=node('h3','Mis pendientes · F01');
+  const heading=node('h3','Bandeja de pendientes · F01');
   const safeNote=node('p','Esta bandeja resume tareas planificadas en este informe local. No son avisos entregados ni confirmaciones de lectura.','hys245-inbox-note');
   const chooserLabel=node('label','Vista de prueba · solo filtra datos ficticios');
   const chooser=node('select');chooser.setAttribute('aria-label','Filtro de pendientes ficticios');

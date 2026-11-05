@@ -30,7 +30,7 @@ function detailRow(record,index,colspan=7){
   (root.Hys243Reassignment?.panel(record)||'')+
   (root.Hys243Corrections?.panel(record,i)||'');
  const notifications='<p class="hys243-detail-empty">Aún no hay un historial de notificaciones por hallazgo.</p>'+
-  '<p class="hys243-detail-pending">La bandeja, los avisos internos y el correo con seguimiento se desarrollarán en F01–F07. No se ha enviado ni confirmado ningún aviso desde este panel.</p>';
+  '<p class="hys243-detail-pending">F01 incorpora una bandeja de tareas planificadas en el encabezado, sin avisos enviados. Los avisos internos, correos y confirmaciones reales se desarrollarán en F02–F07.</p>';
  const history='<p><strong>Estado registrado</strong> '+summaryText(status)+'</p>'+
   '<p class="hys243-detail-pending">El estado del formulario no es una evidencia de cierre. C09 solo muestra eventos confirmados por un servicio autorizado; ningún cierre o reapertura se ejecuta desde esta vista sin servidor aislado.</p>'+ 
   (root.Hys243Audit?.panel(record)||'');
