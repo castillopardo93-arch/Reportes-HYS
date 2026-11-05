@@ -29,3 +29,8 @@
 .hys246-empty{font-size:13px;color:#647b8e}
 .hys246-view-footer{display:flex;justify-content:flex-end}
 @media(max-width:720px){.hys246-pending-panel{padding:12px!important}.hys246-pending-grid{grid-template-columns:1fr}.hys246-fields{grid-template-columns:1fr}.hys246-pending-list{max-height:280px}}
+
+/* v248: detalle y seguimiento trasladado a Mis pendientes, sin ancho de tabla de informe. */
+.hys246-pending-detail .hys246-embedded-followup{display:block;width:100%;min-width:0!important;border-collapse:collapse;background:transparent}
+.hys246-embedded-followup tbody,.hys246-embedded-followup tr,.hys246-embedded-followup td{display:block;width:100%;min-width:0!important;max-width:100%;box-sizing:border-box}
+.hys246-embedded-followup .hys243-finding-details{max-width:100%;overflow-wrap:anywhere}
