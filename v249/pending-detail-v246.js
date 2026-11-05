@@ -47,7 +47,7 @@ function mount({head,module,reportReader,userIdReader,onTabChange}={}){
  panel.style.display='none';
  panel.setAttribute('aria-label','Pantalla de consulta y seguimiento de pendientes');
  const intro=node('div',null,'hys246-pending-intro');
- const name=node('h2','Mis pendientes · Seguimiento');
+ const name=node('h2','Pendientes · Seguimiento');
  const note=node('p','Consulta independiente del Informe Diario. Seleccionar un pendiente no abre el formulario editable.','hys246-pending-note');
  const demoNote=node('p',preview?'Vista de demostración: se muestran tareas del equipo ficticio para comprobar el diseño. No concede acceso a datos de otras personas.':'Solo se consultan pendientes vinculados al usuario actual. El servidor deberá confirmar sus permisos.','hys246-safety');
  const state=node('p',null,'hys246-view-status');state.setAttribute('role','status');
@@ -127,6 +127,23 @@ function mount({head,module,reportReader,userIdReader,onTabChange}={}){
   next.append(node('h4','Próximas funciones del seguimiento'),
    node('p','Avance de la tarea · Evidencia fotográfica · Revisión del supervisor o administrador · Historial auditado de cambios.'));
   right.append(tag,h,fields,description,caution,next);
+  // Reutilizar el mismo detalle desplegable del informe, ahora dentro de Mis pendientes.
+  if(item.kind==='finding'&&root.Hys243FindingDetail?.detailRow){
+   const findings=Array.isArray(scoped.report?.data?.findings)?scoped.report.data.findings:[];
+   const source=item.sourceId;
+   const index=source
+    ?findings.findIndex(record=>Array.isArray(record)&&record[6]?.findingId===source)
+    :item.key.startsWith('hallazgo:local-')?Number(item.key.slice('hallazgo:local-'.length)):-1;
+   if(Number.isInteger(index)&&index>=0&&index<findings.length&&Array.isArray(findings[index])){
+    const table=node('table',null,'hys246-embedded-followup');
+    const tbody=node('tbody');
+    tbody.innerHTML=root.Hys243FindingDetail.detailRow(findings[index],index,1);
+    table.append(tbody);
+    right.append(table);
+    const details=table.querySelector('.hys243-finding-details');
+    if(details)details.open=true;
+   }
+  }
  }
  function open(item){
   if(!item||typeof item.key!=='string')return false;
