@@ -290,7 +290,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
-<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script><script src="inbox-v245.js"></script><script src="pending-detail-v246.js"></script><script src="pending-dashboard-v250.js"></script>
+<script src="storage-v242.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script><script src="inbox-v245.js"></script><script src="pending-detail-v246.js"></script><script src="notifications-f251.js"></script><script src="pending-dashboard-v250.js"></script>
 
 <style id="supabase-auth-styles">
 #authGate[hidden]{display:none!important}
@@ -359,7 +359,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
-<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css"><link rel="stylesheet" href="inbox-v245.css"><link rel="stylesheet" href="pending-detail-v246.css"><link rel="stylesheet" href="pending-dashboard-v250.css">
+<link rel="stylesheet" href="v242.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css"><link rel="stylesheet" href="inbox-v245.css"><link rel="stylesheet" href="pending-detail-v246.css"><link rel="stylesheet" href="pending-dashboard-v250.css"><link rel="stylesheet" href="notifications-f251.css">
 <style id="hys246-pdf-actions-css">.footeractions .pdf-final-row{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:8px}.footeractions .pdf-final-row>.btn{flex:1 1 50%;width:auto!important;min-width:0!important;white-space:normal!important}@media(max-width:560px){.footeractions .pdf-final-row>.btn{font-size:12px!important;padding:10px 5px!important}}.nav-bell{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:inherit}.nav-bell-icon{display:block;flex:none;stroke:currentColor}#pageIcon .nav-bell-icon{width:40px;height:40px}</style></head>
 <body class="auth-locked">
 
@@ -1030,6 +1030,7 @@ window.Hys242Bridge={pack,applyPack,save,restorePreferences(){applyPhotoSettings
       await window.Hys242?.onAccess(window.__REPORTES_HYS_ACCESS__);
       window.HysAppearance242?.syncAccess(window.__REPORTES_HYS_ACCESS__);
       window.reportesHysAdminSync?.();
+      window.dispatchEvent(new CustomEvent("reportes-hys-access-changed"));
       document.body.classList.remove("auth-locked");
       gate.hidden=true;
       if(!embeddedOtros){
@@ -1356,6 +1357,18 @@ document.addEventListener('DOMContentLoaded',()=>{
    reportReader:()=>window.Hys242Bridge.pack(),
    userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null
   });
+  const mountF251=()=>{
+   const a=window.__REPORTES_HYS_ACCESS__;
+   if(!a?.userId||a.selectedModule!==module)return;
+   window.Hys251Notifications?.mount?.({
+     module,reportReader:()=>window.Hys242Bridge.pack(),
+     userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null,
+     readVisible:()=>[]
+   });
+   window.Hys250Dashboard?.refresh?.();
+  };
+  window.addEventListener('reportes-hys-access-changed',mountF251);
+  if(window.__REPORTES_HYS_ACCESS__?.userId)mountF251();
   const savedTab=(()=>{try{return sessionStorage.getItem('reportes-hys-active-tab')}catch{return null}})();
   if(savedTab==='pendientes')window.Hys242Bridge.showTab('pendientes');
  };
