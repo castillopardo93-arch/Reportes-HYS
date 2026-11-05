@@ -1009,11 +1009,11 @@ window.Hys242Bridge={pack,applyPack,save,restorePreferences(){applyPhotoSettings
     document.body.classList.add("auth-locked");showGate("Verificando perfil y permisos…");
     try{
       let profile,permissions=[],facultades=[];
-      if(window.HYS242_DEPLOYMENT_READY===true){const r=await client.rpc('hys242_contexto');if(r.error)throw r.error;profile=r.data.profile;permissions=r.data.permissions||[];facultades=r.data.facultades||[];}else{const r=await client.from('perfiles').select('usuario_id,nombre,rol,activo').eq('usuario_id',session.user.id).maybeSingle();if(r.error)throw r.error;profile=r.data;}
+      if(window.HYS242_DEPLOYMENT_READY===true||window.HYS250_LOCAL_EDIT===true){const r=await client.rpc('hys242_contexto');if(r.error)throw r.error;profile=r.data.profile;permissions=r.data.permissions||[];facultades=r.data.facultades||[];}else{const r=await client.from('perfiles').select('usuario_id,nombre,rol,activo').eq('usuario_id',session.user.id).maybeSingle();if(r.error)throw r.error;profile=r.data;}
       if(profile?.usuario_id!==session.user.id)throw Error('La identidad de la sesión cambió');
       if(!profile||profile.activo!==true)throw Error('Perfil inactivo o inexistente');
       let modules=profile.rol==='administrador_global'?['APR','OTROS']:[...new Set(permissions.filter(p=>p.puede_ver).map(p=>p.modulo))];
-      if(window.HYS242_DEPLOYMENT_READY!==true)modules=['APR','OTROS'];
+      if(window.HYS242_DEPLOYMENT_READY!==true&&window.HYS250_LOCAL_EDIT!==true)modules=['APR','OTROS'];
       if(version!==revision || module!==selected || closing)return;
       if((embeddedOtros && !modules.includes("OTROS")) || modules.length===0){
         lock();
