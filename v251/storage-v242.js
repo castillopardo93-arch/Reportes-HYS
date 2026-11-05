@@ -1,10 +1,10 @@
-/* Aislamiento de almacenamiento v250: sin mezclar borradores o sesiones con v242-v249. */
+/* Aislamiento de almacenamiento v251: sin mezclar borradores o sesiones con v242-v249. */
 (function(){
  const native=window.localStorage, session=window.sessionStorage;
  const open=window.indexedDB.open.bind(window.indexedDB);
  let scope='sin-sesion';const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
- const prefix=()=>`hys-v250::${scope}::${module}::`;
- function wrapper(store,base){return {get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v250::auth::':base())+k)},setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v250::auth::':base())+k,String(v))},removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v250::auth::':base())+k)},clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}}}
+ const prefix=()=>`hys-v251::${scope}::${module}::`;
+ function wrapper(store,base){return {get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v251::auth::':base())+k)},setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v251::auth::':base())+k,String(v))},removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v251::auth::':base())+k)},clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}}}
  Object.defineProperty(window,'localStorage',{configurable:true,value:wrapper(native,prefix)});
  Object.defineProperty(window,'sessionStorage',{configurable:true,value:wrapper(session,()=> prefix()+'session::')});
  window.indexedDB.open=(name,...args)=>open(prefix()+name,...args);
