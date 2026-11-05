@@ -84,6 +84,7 @@ function mount(host,{existing=[],getAssignees}={}){
  const label=root.document.createElement('label');label.textContent='Responsable de la acción';
  const select=root.document.createElement('select');select.setAttribute('aria-label','Responsable de la acción');label.append(select);
  const description=root.document.createElement('textarea');description.rows=2;description.maxLength=500;description.placeholder='Descripción de la tarea individual (mínimo 10 caracteres)';description.setAttribute('aria-label','Descripción de la acción');
+ const minHelp=root.document.createElement('small');minHelp.className='hys243-action-minimum';minHelp.textContent='Para añadir una acción, escribe una descripción de al menos 10 caracteres (máximo 500).';
  const requiredLabel=root.document.createElement('label');
  const required=root.document.createElement('input');required.type='checkbox';required.checked=true;requiredLabel.append(required,root.document.createTextNode(' Acción obligatoria'));
  const add=root.document.createElement('button');add.type='button';add.className='btn';add.textContent='Añadir acción pendiente';
@@ -128,7 +129,7 @@ function mount(host,{existing=[],getAssignees}={}){
    newItems.push(draft);description.value='';status.textContent='Acción pendiente añadida al formulario. Debes guardar el hallazgo.';render();
   }catch(error){status.textContent=String(error.message||'No se pudo añadir la tarea.');}
  });
- wrap.append(title,note,list,label,description,requiredLabel,add,status);
+ wrap.append(title,note,list,label,description,minHelp,requiredLabel,add,status);
  host.append(wrap);refreshAssignees();render();
  activeEditor={wrap,read(members){
    if(!wrap.isConnected)throw Error('El editor de acciones ya no está abierto.');
