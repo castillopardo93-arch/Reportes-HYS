@@ -44,7 +44,7 @@ function readAllowed(report,module,userId,context,areas,hierarchy,preview=false)
  const own=root.Hys245Inbox.mineOnly(full.items,userId);
  if(!profile.activo||context?.userId!==userId)return {items:[],role,invalid:false,notice:'Sin sesión autorizada.'};
  if(role==='administrador_global')return {items:full.items,role,invalid:false,notice:'Vista global del informe abierto. No incluye pendientes de otros informes.'};
- if(root.HYS242_DEPLOYMENT_READY!==true)return {items:own,role,invalid:false,notice:'La revisión de otras personas requiere validación central. Solo se muestran los pendientes propios.'};
+ if(root.HYS242_DEPLOYMENT_READY!==true&&root.HYS250_LOCAL_EDIT!==true)return {items:own,role,invalid:false,notice:'La revisión de otras personas requiere validación central. Solo se muestran los pendientes propios.'};
  // Administrador de área: facultad de revisión y áreas nominadas recuperadas del servidor.
  if(role==='administrador_area'){
   const f=(context.facultades||[]).find(v=>v?.modulo===module);
@@ -100,7 +100,7 @@ function mount({panel,module,reportReader,userIdReader}={}){
   const idScope=[uid,module,role(),root.HYS242_DEPLOYMENT_READY===true].join(':');
   if(lastScope===idScope)return;
   lastScope=idScope;allowedAreas=new Set();hierarchy=[];
-  if(root.HYS242_DEPLOYMENT_READY!==true||!root.reportesHysSupabase)return;
+  if((root.HYS242_DEPLOYMENT_READY!==true&&root.HYS250_LOCAL_EDIT!==true)||!root.reportesHysSupabase)return;
   busy=true;
   try{
    if(role()==='administrador_area'){
