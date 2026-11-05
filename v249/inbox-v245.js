@@ -152,7 +152,7 @@
   if(instance?.host?.isConnected)instance.host.remove();
   const isPreview=root.HYS245_REVIEW_ONLY===true;
   const host=node('div',null,'hys245-inbox');
-  const bell=node('button','🔔 Pendientes','hys245-bell');bell.type='button';
+  const bell=node('button','Pendientes','hys245-bell');const bellIcon=document.createElementNS('http://www.w3.org/2000/svg','svg');bellIcon.setAttribute('viewBox','0 0 24 24');bellIcon.setAttribute('width','17');bellIcon.setAttribute('height','17');bellIcon.setAttribute('fill','none');bellIcon.setAttribute('stroke','currentColor');bellIcon.setAttribute('stroke-width','2');bellIcon.setAttribute('stroke-linecap','round');bellIcon.setAttribute('stroke-linejoin','round');bellIcon.setAttribute('aria-hidden','true');for(const d of ['M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9','M10 21h4']){const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',d);bellIcon.append(path);}bell.prepend(bellIcon);bell.type='button';
   bell.setAttribute('aria-label','Abrir bandeja de pendientes de planificación');
   bell.setAttribute('aria-expanded','false');
   const badge=node('span','0','hys245-bell-count');badge.setAttribute('aria-label','Cantidad de tareas planificadas');bell.append(badge);
