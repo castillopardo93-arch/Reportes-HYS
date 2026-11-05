@@ -1,5 +1,7 @@
 # v241 — Función desplegada y alojamiento independiente
 
+> Actualización: con autorización explícita posterior del usuario, audiencia v241 cambiada a public el 5 de noviembre de 2026. Política de acceso revisión 2. Verificación HTTP sin sesión: 200, título v241 y formulario «Ingresar a Reportes HYS» presentes. Ya no requiere ChatGPT para abrir el sitio. Conserva autenticación y permisos propios de Reportes HYS. GitHub sigue público; respaldos reales privados. El rechazo y acceso privado descritos abajo son antecedentes de la etapa anterior. No se modificaron código desplegado, usuarios, informes ni versiones protegidas en este cambio de audiencia.
+
 Estado 5 de noviembre de 2026. Informe posterior a INSTALACION-BASE-20261105.md.
 
 ## Cambios
@@ -31,3 +33,4 @@ Observación en navegador remoto: pantalla «Inicia sesión para acceder» de Ch
 ## Reversión
 
 Desactivar exclusivamente HYS241_DEPLOYMENT_READY y conservar datos v241; regresar al enlace protegido v239. No borrar usuarios/informes/tablas ni sustituir las funciones administrativas anteriores. No se modifica main ni el alojamiento oficial.
+
