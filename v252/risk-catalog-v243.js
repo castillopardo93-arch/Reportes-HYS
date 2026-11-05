@@ -30,6 +30,7 @@ function validateCatalog(entries){
   seen.add(key);return item;
  });
 }
+function sortCatalog(rows){return rows.sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'})||a.code.localeCompare(b.code,'es'));}
 function csvRows(text){
  const out=[],row=[];let cell='',quoted=false;
  for(let i=0;i<text.length;i++){
@@ -134,7 +135,7 @@ function readCatalog(){
   const raw=root.localStorage?.getItem(STORAGE_KEY);
   const saved=raw?JSON.parse(raw):root.HYS252_RISK_SEED;
   if(!saved){catalog=[];catalogVersion='';catalogError='';return;}
-  catalog=validateCatalog(saved.risks);
+  catalog=sortCatalog(validateCatalog(saved.risks));
   catalogVersion=clean(saved.version,100);
   catalogError='';
  }catch(e){catalog=[];catalogVersion='';catalogError='Catálogo local no disponible: '+String(e.message||e);}
