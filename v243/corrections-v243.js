@@ -26,10 +26,11 @@ function eligible(record,context){
  return assignments(record,context.module).some(item=>item.user_id.toLowerCase()===context.actorId.toLowerCase());
 }
 function requiredActionsComplete(record){
+ // C08 exige evidencia de verificación para todas las acciones obligatorias.
+ // Si no se carga el módulo de C08, se bloquean cierres de hallazgos con acciones.
+ if(root.Hys243Actions?.allRequiredVerified)return root.Hys243Actions.allRequiredVerified(record);
  const items=record?.[6]?.actions;
- if(items===undefined||items===null)return true; // En C08 el servidor deberá consultar acciones definitivas.
- if(!Array.isArray(items))return false;
- return items.every(item=>item&&item.required===false||item?.status==='completed'||item?.status==='verified');
+ return (items===undefined||items===null)&&Array.isArray(record?.[6]?.assignees)&&record[6].assignees.length===1;
 }
 function mayRequestClose(record,context){
  return eligible(record,context)&&assignments(record,context.module).length===1&&requiredActionsComplete(record)&&record?.[6]?.closure?.status!=='closed';
@@ -51,6 +52,7 @@ function validateRequest({record,context,action,comment,files}){
  if(!ACTIONS.includes(action))throw Error('Acción desconocida.');
  if(!safeId(record?.[6]?.findingId))throw Error('El hallazgo aún no tiene identificador persistente.');
  if(!eligible(record,context))throw Error('La persona no está autorizada para este hallazgo.');
+ if(action==='correct'&&assignments(record,context.module).length>1)throw Error('Con varios responsables, cada persona debe ejecutar su tarea individual C08.');
  if(action==='close'&&!mayRequestClose(record,context))throw Error('Cierre no permitido: revisa responsables y acciones obligatorias.');
  const text=String(comment??'').trim();
  if(text.length<15||text.length>2000)throw Error('Describe la corrección con 15 a 2000 caracteres.');
@@ -75,12 +77,15 @@ function panel(record,index){
  if(!Array.isArray(record)||!Number.isInteger(index)||index<0)return '';
  const ctx=context();
  const available=enabled()&&eligible(record,ctx)&&safeId(record?.[6]?.findingId)&&Boolean(ctx?.reportId);
+ const multiple=assignments(record,ctx?.module).length>1;
+ const canCorrect=available&&!multiple;
  const canClose=available&&mayRequestClose(record,ctx);
  const reason=!enabled()?'Acciones deshabilitadas: falta un servidor de pruebas aislado con permisos y auditoría verificados.':
   !eligible(record,ctx)?'Acciones no habilitadas para este usuario: requiere asignación vigente y permiso de edición.':
+  multiple?'Varios responsables: cada persona debe usar su acción individual C08. El cierre global requiere verificación y control adicional.':
   !safeId(record?.[6]?.findingId)?'Guarda primero el hallazgo para asignarle un identificador único.':
   !ctx?.reportId?'Guarda primero el informe.':'El servidor volverá a comprobar el permiso al recibir la solicitud.';
- const disabled=available?'':' disabled';
+ const disabled=canCorrect?'':' disabled';
  const closeDisabled=canClose?'':' disabled';
  return '<section class="hys243-correction-box">'+
   '<h4>Corrección y cierre · C07</h4><p class="hys243-correction-status">'+esc(reason)+'</p>'+
@@ -91,7 +96,7 @@ function panel(record,index){
   '<button type="submit" name="action" value="correct"'+disabled+'>Registrar corrección</button>'+
   '<button type="submit" name="action" value="close"'+closeDisabled+'>Cerrar hallazgo</button>'+
   '</div><p class="hys243-correction-result" role="status" aria-live="polite"></p></form>'+
-  '<small>El cierre no altera datos hasta recibir una respuesta y recargar el estado verificado del servidor. Para varios responsables, C08 definirá acciones obligatorias por persona.</small>'+
+  '<small>El cierre no altera datos hasta recibir una respuesta y recargar el estado verificado del servidor. Las acciones C08 deben quedar verificadas. Con varios responsables, el cierre global requerirá autorización separada y auditoría en C09.</small>'+
  '</section>';
 }
 async function onSubmit(event){

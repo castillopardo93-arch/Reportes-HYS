@@ -25,13 +25,14 @@ function detailRow(record,index,colspan=7){
    '<p><strong>Estado actual</strong> '+summaryText(status)+'</p>'+
    '<p><strong>Fecha compromiso</strong> '+summaryText(due||'No definida')+'</p>'+
   '</div>'+
-  '<p class="hys243-detail-pending">La corrección y el cierre directo están bloqueados hasta habilitar un servidor aislado que verifique responsables, evidencias y auditoría. Las acciones individuales siguen pendientes de C08 y la trazabilidad completa de C09.</p>'+
+  '<p class="hys243-detail-pending">La corrección y el cierre directo siguen bloqueados hasta disponer de un servidor aislado. C08 incorpora acciones individuales planificadas, pero su ejecución y verificación aún requieren autorización y evidencia del servidor; la auditoría de cierre continúa pendiente de C09.</p>'+
+  (root.Hys243Actions?.listMarkup(record,root.Hys243Actions.context())||'')+
   (root.Hys243Corrections?.panel(record,i)||'');
  const notifications='<p class="hys243-detail-empty">Aún no hay un historial de notificaciones por hallazgo.</p>'+
   '<p class="hys243-detail-pending">La bandeja, los avisos internos y el correo con seguimiento se desarrollarán en F01–F07. No se ha enviado ni confirmado ningún aviso desde este panel.</p>';
  const history='<p><strong>Estado registrado</strong> '+summaryText(status)+'</p>'+
   '<p class="hys243-detail-empty">Todavía no existe un historial individual de cierre y reapertura para este hallazgo.</p>'+
-  '<p class="hys243-detail-pending">Un estado «Completado» no demuestra por sí solo que el hallazgo esté cerrado y verificado. La interfaz de corrección/cierre se prepara en C07; su autorización real requiere servidor aislado. Los controles por acción y la auditoría individual siguen pendientes de C08–C09.</p>';
+  '<p class="hys243-detail-pending">Un estado «Completado» no demuestra por sí solo que el hallazgo esté cerrado y verificado. La interfaz de corrección/cierre se prepara en C07; su autorización real requiere servidor aislado. Las acciones por responsable se preparan en C08; la validación y auditoría completa de cierre siguen pendientes de C09.</p>';
  const panels={followup,notifications,history};
  const tabs=TABS.map((key,j)=>
   '<button type="button" role="tab" id="'+id+'-tab-'+key+'" data-hys243-tab="'+key+

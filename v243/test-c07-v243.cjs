@@ -44,9 +44,11 @@ test('C07-07 no permite cierre con acciones obligatorias incompletas',()=>{
  assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{required:true,status:'pending'}]})),false);
  assert.equal(api.mayRequestClose(record(undefined,{actions:[{required:true,status:'pending'}]}),context()),false);
 });
-test('C07-08 distingue acciones completadas de pendientes',()=>{
- assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{required:true,status:'completed'},{required:true,status:'verified'}]})),true);
- assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{required:true,status:'completed'},{required:true,status:'pending'}]})),false);
+test('C07-08 distingue tareas completadas de verificadas con evidencia',()=>{
+ const base={actionId:U2,assigneeId:U1,assigneeName:'Primero',description:'Reparar barrera de seguridad',required:true};
+ assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{...base,status:'completed'}]})),false);
+ assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{...base,status:'verified'}]})),false);
+ assert.equal(api.requiredActionsComplete(record(undefined,{actions:[{...base,status:'verified',verifiedAt:'2026-11-05T12:00:00Z',verifiedBy:U2,evidenceIds:[FINDING]}]})),true);
 });
 test('C07-09 cierre ya confirmado no se vuelve a ofrecer',()=>{
  assert.equal(api.mayRequestClose(record(undefined,{closure:{status:'closed'}}),context()),false);
