@@ -1,5 +1,7 @@
 # Herramienta privada de respaldo
 
+Segunda corrección de inicio: una colección Access vacía producía una entrada nula en RemoveAccessRuleSpecific. Se enumeran reglas explícitas mediante GetAccessRules con comprobación de nulos. Se ejecutó correctamente el bloque completo de creación, restricción y escritura DACL en una carpeta de prueba y se verificó sintaxis. La exportación real continúa pendiente; ninguna contraseña se recibió por chat.
+
 Corrección posterior: el inicio fallaba en Set-Acl por SeSecurityPrivilege antes de mostrar el formulario. Se reemplazó por lectura/escritura exclusiva de DACL (AccessControlSections.Access), sin cambiar propietario ni solicitar auditoría/SACL. Sintaxis PowerShell aprobada y API DACL comprobada en carpeta local sin solicitar privilegios de auditoría. Falta confirmar ejecución completa del formulario por el usuario y exportación; no se declara respaldo realizado.
 
 Se preparó respaldo-privado.ps1 con entrada local enmascarada de contraseña. No contiene credenciales. Destino privado: privado-respaldo-v241/, permisos restringidos al usuario de Windows, excluido de Git junto con herramientas-respaldo/ y archivos dump.

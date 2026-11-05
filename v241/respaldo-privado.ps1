@@ -10,7 +10,7 @@ $dir=Get-Item -LiteralPath $privateRoot
 # Una ACL creada desde cero hacía que Set-Acl solicitara SeSecurityPrivilege.
 $acl=[IO.FileSystemAclExtensions]::GetAccessControl($dir,[Security.AccessControl.AccessControlSections]::Access)
 $acl.SetAccessRuleProtection($true,$false)
-foreach($existing in @($acl.Access)){$acl.RemoveAccessRuleSpecific($existing)}
+foreach($existing in @($acl.GetAccessRules($true,$false,[Security.Principal.SecurityIdentifier]))){if($null -ne $existing){$acl.RemoveAccessRuleSpecific($existing)}}
 $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User
 $rule=New-Object Security.AccessControl.FileSystemAccessRule($sid,'FullControl','ContainerInherit,ObjectInherit','None','Allow')
 $acl.AddAccessRule($rule)
