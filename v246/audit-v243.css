@@ -1,0 +1,18 @@
+/* C09 — Historial y cierre auditado, sin alterar columnas originales */
+.hys243-audit-panel{border:1px solid #b8d3e7;border-radius:10px;background:#f8fbff;padding:12px;margin:10px 0;color:#173d68;min-width:0}
+.hys243-audit-panel h4{margin:0 0 7px;font-size:14px}
+.hys243-audit-notice{font-size:12px;color:#516c84;background:#edf5fd;padding:8px;border-radius:6px}
+.hys243-audit-panel button{border:1px solid #4f88b8;border-radius:7px;padding:9px 11px;background:#eff7ff;color:#194d78}
+.hys243-audit-panel button:disabled{opacity:.66;border-color:#c5d2e0;background:#eef1f6;cursor:not-allowed}
+.hys243-audit-events{padding:10px;margin-top:9px;background:#fff;border-radius:7px;border:1px solid #d4e1ed;overflow-wrap:anywhere}
+.hys243-audit-log{padding-left:22px;margin:6px 0}
+.hys243-audit-log li{padding:9px 7px;border-bottom:1px solid #e5edf3}
+.hys243-audit-log li p{margin:4px 0;font-size:12px}
+.hys243-audit-log small{font-size:10px;overflow-wrap:anywhere;color:#687c8d}
+.hys243-audit-operations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.hys243-audit-operations form{border:1px solid #d2e1ee;border-radius:8px;background:#fff;padding:10px;display:grid;gap:8px;align-content:start}
+.hys243-audit-operations label{font-weight:700;font-size:12px;display:grid;gap:5px}
+.hys243-audit-operations textarea{border:1px solid #afc9df;padding:8px;border-radius:7px;min-width:0;width:100%;resize:vertical}
+.hys243-audit-feedback{font-size:12px;font-weight:700;overflow-wrap:anywhere}
+.hys243-audit-panel>small{font-size:11px;color:#607586;display:block;margin-top:9px}
+@media(max-width:760px){.hys243-audit-panel{padding:9px}.hys243-audit-operations{grid-template-columns:1fr}.hys243-audit-panel button{min-height:42px;width:100%}}
