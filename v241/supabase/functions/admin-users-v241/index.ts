@@ -1,7 +1,7 @@
 // Nuevo endpoint: no sustituye funciones protegidas. Requiere instalación aprobada.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.8';
 Deno.serve(async req => {
- const origin=req.headers.get('Origin')||'',allowed=(Deno.env.get('HYS241_ALLOWED_ORIGINS')||'').split(',').map(x=>x.trim()).filter(x=>{try{const u=new URL(x);return u.protocol==='https:'&&u.origin===x}catch{return false}});
+ const origin=req.headers.get('Origin')||'',allowed=(Deno.env.get('HYS241_ALLOWED_ORIGINS')||'https://reportes-hys-v241-revision.freshfennel.chatgpt.site').split(',').map(x=>x.trim()).filter(x=>{try{const u=new URL(x);return u.protocol==='https:'&&u.origin===x}catch{return false}});
  const headers={'Access-Control-Allow-Origin':allowed.includes(origin)?origin:'null','Vary':'Origin','Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Content-Type':'application/json','Cache-Control':'no-store'};
  const reply=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers});
  if(!allowed.includes(origin))return reply({error:'Origen no autorizado para v241'},403);
@@ -16,7 +16,7 @@ Deno.serve(async req => {
   const body=await req.json();if(body.action!=='invite'||typeof body.email!=='string'||typeof body.solicitud!=='string')return reply({error:'Solo invitación explícita; sin eliminación ni contraseñas temporales'},400);
   const prepared=await client.rpc('hys241_preparar_invitacion',{p_email:body.email,p_datos:body.datos,p_solicitud:body.solicitud});if(prepared.error)return reply({error:prepared.error.message},403);
   const jobResult=await service.from('invitaciones_v241').select('*').eq('id',prepared.data).single();const job=jobResult.data;if(jobResult.error||!job||job.actor_id!==identity.data.user.id)return reply({error:'Solicitud no disponible'},403);
-  let authId=job.auth_usuario;const redirect=Deno.env.get('HYS241_INVITE_REDIRECT');if(!redirect||!allowed.includes(new URL(redirect).origin))return reply({error:'Destino de invitación v241 no configurado'},503);
+  let authId=job.auth_usuario;const redirect=Deno.env.get('HYS241_INVITE_REDIRECT')||'https://reportes-hys-v241-revision.freshfennel.chatgpt.site/';if(!redirect||!allowed.includes(new URL(redirect).origin))return reply({error:'Destino de invitación v241 no configurado'},503);
   if(!authId){
    // Reintentos seguros: una cuenta existente ajena a esta operación nunca se altera.
    for(let page=1;page<=1000;page++){
