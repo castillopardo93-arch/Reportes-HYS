@@ -7,7 +7,8 @@
 const STORAGE_KEY='reportes-hys-v243-risk-catalog-v1';
 const MAX_ITEMS=15000;
 const MAX_FILE_BYTES=2*1024*1024;
-const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
+const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es').replace(/\s+/g,' ').trim();
+const searchNormalize=value=>normalize(value).replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
 const clean=(value,limit)=>String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,limit);
 const escape=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const asItem=entry=>{
@@ -89,13 +90,13 @@ function editWithin(a,b,max){
 }
 function filterCatalog(items,query,limit=40){
  if(!Array.isArray(items))return [];
- const words=normalize(query).split(' ').filter(Boolean);
+ const words=searchNormalize(query).split(' ').filter(Boolean);
  if(!words.length)return items.slice(0,limit);
  const found=[];
  for(const item of items){
-  const base=normalize(item.code+' '+item.name);
-  const aliases=(item.aliases||[]).map(normalize);
-  const keys=(item.keywords||[]).map(normalize);
+  const base=searchNormalize(item.code+' '+item.name);
+  const aliases=(item.aliases||[]).map(searchNormalize);
+  const keys=(item.keywords||[]).map(searchNormalize);
   const texts=[base,...aliases,...keys],allTokens=[...new Set(texts.join(' ').split(' ').filter(Boolean))];
   let fuzzy=false;
   if(!words.every(word=>{
