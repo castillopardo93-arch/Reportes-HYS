@@ -13,3 +13,6 @@
 tr.hys243-risk-detail td{background:#f3f8fe;border-top:0!important;padding:9px 12px!important;overflow-wrap:anywhere}
 .hys243-risk-tag{display:inline-block;vertical-align:middle;border-radius:6px;border:1px solid #bcd6ed;padding:3px 6px;margin:3px 4px 2px 0;font-size:11px;background:white;white-space:normal}
 @media(max-width:760px){.hys243-risk-picker{padding:10px}.hys243-risk-results{grid-template-columns:1fr;max-height:170px}tr.hys243-risk-detail td{display:block;width:100%}.hys243-risk-import .btn{min-height:40px}}
+
+/* v253: ocultar completamente los resultados cuando aún no se ha buscado. */
+.hys243-risk-results[hidden]{display:none!important}
