@@ -112,6 +112,8 @@ BEGIN
         SELECT 1 FROM public.organigrama_v250 o WHERE o.modulo=p_modulo
          AND o.area_id=a.area_id AND o.subordinado_id=a.destinatario_id
          AND o.supervisor_id=auth.uid() AND o.activo
+         AND hys242_private.modulo(p_modulo)
+         AND EXISTS(SELECT 1 FROM public.areas_trabajo_v242 ar WHERE ar.id=o.area_id AND ar.activa AND ar.modulo=p_modulo)
       )
     )
  ) ORDER BY a.creado_en DESC LIMIT p_max;
