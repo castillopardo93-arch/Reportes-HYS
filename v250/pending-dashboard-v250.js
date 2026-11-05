@@ -90,6 +90,7 @@ function mount({panel,module,reportReader,userIdReader}={}){
  view.append(heading,summary,filters,info,body,orgPanel);
  panel.prepend(view);
  let chosen='',allowedAreas=new Set(),hierarchy=[],lastScope='',busy=false;
+ let orgLoaded=false,orgLoading=false,orgData=[],orgUsers=[],orgAreas=[],orgError='';
  const context=()=>root.__REPORTES_HYS_ACCESS__||null;
  const role=()=>context()?.profile?.rol||'usuario';
  async function validateScopes(){
@@ -172,18 +173,88 @@ function mount({panel,module,reportReader,userIdReader}={}){
   for(const [label,key] of choices){const btn=el('button',label);btn.type='button';btn.dataset.tab=key;btn.setAttribute('role','tab');btn.addEventListener('click',()=>{activeTab=key;draw();});tabs.append(btn);}
   tabs.setAttribute('role','tablist');detail.append(tabs,content);draw();
  }
+
+ async function loadOrg(){
+  if(orgLoading||orgLoaded)return;
+  const c=context();
+  if(c?.profile?.rol!=='administrador_global'||c.profile.activo!==true||
+     root.HYS242_DEPLOYMENT_READY!==true||!root.reportesHysSupabase)return;
+  orgLoading=true;orgError='';
+  try{
+   const api=root.reportesHysSupabase;
+   const [u,a,h]=await Promise.all([
+    api.rpc('hys242_listar_usuarios'),
+    api.from('areas_trabajo_v242').select('id,nombre,modulo,activa').eq('modulo',module).eq('activa',true).order('nombre'),
+    api.rpc('hys250_equipo_autorizado',{p_modulo:module})
+   ]);
+   if(u.error||a.error||h.error)throw u.error||a.error||h.error;
+   if(!Array.isArray(u.data)||!Array.isArray(a.data)||!Array.isArray(h.data))throw Error('El servidor no devolvió un directorio válido');
+   orgUsers=u.data.filter(p=>p.activo===true&&p.usuario_id&&p.nombre);
+   orgAreas=a.data;orgData=h.data;orgLoaded=true;
+  }catch(error){orgError='El organigrama todavía no está habilitado o autorizado en Supabase.';orgLoaded=false;}
+  finally{orgLoading=false;paint();}
+ }
  function renderOrg(scope){
   orgPanel.replaceChildren();orgPanel.hidden=scope.role!=='administrador_global';
   if(orgPanel.hidden)return;
   const head=el('div',null,'hys250-org-head');
   head.append(el('h3','Organigrama y personal a cargo'),el('span','Solo administrador general','hys250-org-label'));
-  orgPanel.append(head,el('p','La relación Supervisor → Personal a cargo debe asignarse por módulo y área. Cada supervisor solo podrá revisar a sus subordinados directos autorizados. No se heredan permisos hacia otras áreas.','hys250-muted'));
+  orgPanel.append(head,el('p','La jerarquía define qué personal puede revisar cada supervisor por módulo y área. La relación es directa: el supervisor eléctrico no podrá revisar trabajadores asignados a otros supervisores.','hys250-muted'));
   const tree=el('div',null,'hys250-org-tree');
-  const top=el('div','Administrador general','hys250-org-node');
-  const mid=el('div','Administrador de área · áreas autorizadas','hys250-org-node');
-  const bottom=el('div','Supervisor · personal directamente a cargo','hys250-org-node');
-  tree.append(top,mid,bottom);orgPanel.append(tree);
-  orgPanel.append(el('p','La asignación de personal se habilitará cuando exista el servicio de organigrama con control de acceso y auditoría en Supabase. No se han creado relaciones ni cambiado permisos.','hys250-caution'));
+  tree.append(el('div','Administrador general','hys250-org-node'),
+   el('div','Administradores autorizados por área','hys250-org-node'),
+   el('div','Supervisor → Personal directo','hys250-org-node'));
+  orgPanel.append(tree);
+  const ready=root.HYS242_DEPLOYMENT_READY===true&&orgLoaded&&
+    context()?.profile?.rol==='administrador_global';
+  if(root.HYS242_DEPLOYMENT_READY===true&&!orgLoading&&!orgLoaded&&!orgError)void loadOrg();
+  const label=el('p',ready?'Relaciones vigentes y administración auditada.':orgLoading?'Consultando directorio y relaciones autorizadas…':orgError||'Configuración pendiente: falta habilitar la integración aislada de organigrama en Supabase.','hys250-muted');
+  orgPanel.append(label);
+  const form=el('form',null,'hys250-org-form');form.setAttribute('aria-label','Vincular supervisor con personal a cargo');
+  const control=(title,choices)=>{
+   const wrapper=el('label',title,'hys250-org-field');
+   const select=el('select');select.required=true;select.disabled=!ready;
+   select.add(new Option('Seleccione…',''));
+   for(const option of choices)select.add(new Option(option.label,option.value));
+   wrapper.append(select);form.append(wrapper);return select;
+  };
+  const area=control('Área de trabajo',orgAreas.map(a=>({value:a.id,label:a.nombre})));
+  const leaders=orgUsers.filter(p=>['supervisor','administrador_area'].includes(p.rol));
+  const supervisor=control('Supervisor responsable',leaders.map(p=>({value:p.usuario_id,label:p.nombre})));
+  const worker=control('Personal a cargo',orgUsers.map(p=>({value:p.usuario_id,label:p.nombre+' · '+p.rol})));
+  const action=control('Acción',[{value:'assign',label:'Asignar o actualizar'},{value:'disable',label:'Desactivar relación'}]);
+  const motiveLabel=el('label','Motivo obligatorio','hys250-org-field');
+  const reason=el('input');reason.type='text';reason.maxLength=500;reason.minLength=5;reason.required=true;reason.disabled=!ready;
+  reason.placeholder='Motivo de asignación o cambio';
+  motiveLabel.append(reason);form.append(motiveLabel);
+  const submit=el('button','Guardar relación auditada','hys250-org-save');submit.type='submit';submit.disabled=!ready;form.append(submit);
+  const feedback=el('p','No se generan asignaciones sin confirmación del servidor.','hys250-muted');feedback.setAttribute('role','status');form.append(feedback);
+  form.addEventListener('submit',async event=>{
+   event.preventDefault();
+   if(!ready||context()?.profile?.rol!=='administrador_global'||!root.reportesHysSupabase)return;
+   if(!area.value||!supervisor.value||!worker.value||supervisor.value===worker.value||reason.value.trim().length<5){feedback.textContent='Selecciona un área, dos personas distintas y un motivo válido.';return;}
+   submit.disabled=true;
+   try{
+    const r=await root.reportesHysSupabase.rpc('hys250_asignar_supervision',{
+     p_modulo:module,p_area_id:area.value,p_supervisor_id:supervisor.value,
+     p_subordinado_id:worker.value,p_activo:action.value==='assign',p_motivo:reason.value.trim()
+    });
+    if(r.error||r.data!==true)throw r.error||Error('Confirmación ausente');
+    feedback.textContent='Relación confirmada y auditada por el servidor.';
+    orgLoaded=false;orgError='';void loadOrg();
+   }catch{feedback.textContent='No se aplicó ningún cambio: la autorización o validación del servidor no fue confirmada.';}
+   finally{submit.disabled=false;}
+  });
+  orgPanel.append(form);
+  if(orgData.length){
+   const list=el('div',null,'hys250-org-records');
+   list.append(el('h4','Relaciones directas autorizadas · '+module));
+   for(const r of orgData.slice(0,100)){
+    const name=uid=>orgUsers.find(p=>p.usuario_id===uid)?.nombre||'Persona autorizada';
+    list.append(el('p',name(r.supervisor_id)+' → '+name(r.subordinado_id)+' · '+(r.area_nombre||''),'hys250-org-record'));
+   }
+   orgPanel.append(list);
+  }
  }
  function paint(){
   if(!view.isConnected)return;
