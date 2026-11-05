@@ -12,6 +12,7 @@ for name in \
   actions-v243.js \
   reassignment-v243.js \
   audit-v243.js \
+  activity-workflow-v244.js \
   sync-core-v242.js \
   appearance-core-v242.js \
   appearance-v242.js \
@@ -25,8 +26,9 @@ for name in \
   corrections-v243.css \
   actions-v243.css \
   reassignment-v243.css \
-  audit-v243.css
+  audit-v243.css \
+  activity-workflow-v244.css
 do
-  cp "v243/$name" "v243-review/$name"
+  cp "v244/$name" "v244-review/$name"
 done
 printf '%s\n' 'Revisión HYS: recursos aislados copiados sin Supabase.'
