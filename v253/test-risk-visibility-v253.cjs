@@ -18,14 +18,11 @@ function node(tag){
  };
 }
 function mountPicker(initial=[]){
- const old=global.document,local=global.localStorage;
+ // Mantener el documento de prueba mientras se disparan eventos input/click.
  global.document={createElement:node};
  global.localStorage={getItem:()=>null,setItem(){}};
  const host=node('div');
- let section;
- try{section=api.mount(host,initial);}finally{
-  global.document=old;global.localStorage=local;
- }
+ const section=api.mount(host,initial);
  return {host,section,search:section.children[2],status:section.children[3],
   selected:section.children[4],results:section.children[5]};
 }
@@ -88,7 +85,7 @@ test('F-253-08 se mantiene un solo buscador en APR y OTROS',()=>{
 });
 test('F-253-09 no altera guardado e impresión de riesgos',()=>{
  assert.match(html,/risks:window\.Hys243Risks\.selected\(\)/);
- assert.match(html,/Hys243Risks\?\.detailRow/);
+ assert.match(html,/Hys243Risks\.detailRow/);
  assert.match(html,/label:'Riesgos vinculados',value:linked/);
 });
 test('F-253-10 buscador respeta filtros tolerantes a errores y sinónimos',()=>{
