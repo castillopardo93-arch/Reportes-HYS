@@ -1,3 +1,5 @@
+Actualización 2026-11-05: instalación y publicación autorizadas completadas. Estado vigente, pruebas remotas y límites en INSTALACION-PUBLICACION-20261105.md. Las referencias a instalación pendiente más abajo documentan la etapa previa.
+
 # v242 — Correcciones de la auditoría
 
 5 de noviembre de 2026. Base conservada: v241. Esta etapa modifica únicamente la nueva copia y pruebas/documentación. No se aplica SQL remoto ni se despliegan funciones o sitios.

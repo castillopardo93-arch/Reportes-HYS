@@ -2,7 +2,7 @@
 
 Copia independiente basada en v241, creada el 5 de noviembre de 2026 tras comprobar numeración libre. Rama pública `desarrollo/v242`, carpeta `v242/`. Base remota protegida: `078366a3b5dd4f0700622a999ef5fd15fee590fb`.
 
-**Cinco correcciones implementadas y probadas localmente. No instalada ni publicada.** No hay todavía enlace HTTPS v242. `HYS242_DEPLOYMENT_READY=false` bloquea escrituras. Es código real con autenticación Supabase, sin simulador ni cuentas ficticias en la aplicación.
+**Instalada en componentes independientes y publicada para revisión:** https://reportes-hys-v242-revision.freshfennel.chatgpt.site/ . `HYS242_DEPLOYMENT_READY=true`. Consulta INSTALACION-PUBLICACION-20261105.md para evidencia y pendientes. Es código real con autenticación Supabase, sin simulador ni cuentas ficticias en la aplicación.
 
 Se conservan la interfaz de v241, dos módulos, formularios, fotos, PDF, navegación de escritorio/móvil y roles internos. La administración de invitaciones se incorpora a Usuarios. Motor PDF idéntico y doce recursos de v241 comprobados mediante SHA256. No se cambian main, v241, versiones protegidas, usuarios, informes ni credenciales existentes.
 

@@ -1,7 +1,7 @@
 // Endpoint independiente v242. Requiere orígenes/retorno autorizados en servidor.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.8';
 Deno.serve(async req=>{
- const origin=req.headers.get('Origin')||'',allowed=(Deno.env.get('HYS242_ALLOWED_ORIGINS')||'').split(',').map(x=>x.trim()).filter(x=>{try{const u=new URL(x);return u.protocol==='https:'&&u.origin===x}catch{return false}});
+ const origin=req.headers.get('Origin')||'',allowed=(Deno.env.get('HYS242_ALLOWED_ORIGINS')??'https://reportes-hys-v242-revision.freshfennel.chatgpt.site').split(',').map(x=>x.trim()).filter(x=>{try{const u=new URL(x);return u.protocol==='https:'&&u.origin===x}catch{return false}});
  const headers={'Access-Control-Allow-Origin':allowed.includes(origin)?origin:'null','Vary':'Origin','Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Content-Type':'application/json','Cache-Control':'no-store'};
  const reply=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers});
  if(!allowed.includes(origin))return reply({error:'Origen no autorizado para v242'},403);
@@ -16,9 +16,10 @@ Deno.serve(async req=>{
  const result=async(state,id,detail)=>{const r=await service.rpc('hys242_resultado_invitacion',{p_id:reserved.id,p_revision:reserved.revision,p_estado:state,p_auth_usuario:id,p_detalle:detail});if(r.error)throw Error('Resultado pendiente de conciliación');return row(r.data)};
  try{
   const body=await req.json();if(body.action!=='invite'||typeof body.email!=='string'||typeof body.solicitud!=='string')return reply({error:'Solo invitación explícita'},400);
-  const configured=Deno.env.get('HYS242_INVITE_REDIRECT');if(!configured)return reply({error:'Retorno de invitación pendiente de configurar'},503);
+  const configured=Deno.env.get('HYS242_INVITE_REDIRECT')??'https://reportes-hys-v242-revision.freshfennel.chatgpt.site/';if(!configured)return reply({error:'Retorno de invitación pendiente de configurar'},503);
   const redirect=new URL(configured);if(!allowed.includes(redirect.origin)||redirect.username||redirect.password)return reply({error:'Retorno no autorizado'},503);
   redirect.hash='';redirect.searchParams.set('recuperar','1');redirect.searchParams.set('activar','1');
+  if((Deno.env.get('HYS242_AUTH_REDIRECT_VERIFIED')??'true')!=='true')return reply({error:'Antes de enviar invitaciones, confirma el dominio v242 en las URLs de redirección de Supabase. La solicitud no se ha preparado ni enviado.'},503);
   const prepared=await client.rpc('hys242_preparar_invitacion',{p_email:body.email,p_datos:body.datos,p_solicitud:body.solicitud});if(prepared.error)return reply({error:prepared.error.message},403);
   const foundJob=await service.from('invitaciones_v242').select('*').eq('id',prepared.data).single();let job=foundJob.data;
   if(foundJob.error||!job||job.actor_id!==identity.data.user.id)return reply({error:'Solicitud no disponible'},403);
