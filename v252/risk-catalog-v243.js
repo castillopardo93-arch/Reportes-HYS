@@ -143,9 +143,10 @@ function readCatalog(){
 function importCatalog(text,filename){
  const parsed=parseCatalogText(text,filename);
  if(!root.localStorage)throw Error('El navegador no permite almacenar el catálogo sin conexión.');
- try{root.localStorage.setItem(STORAGE_KEY,JSON.stringify({schema:1,version:parsed.version,importedAt:new Date().toISOString(),risks:parsed.risks}));}
+ const sorted=sortCatalog(parsed.risks);
+ try{root.localStorage.setItem(STORAGE_KEY,JSON.stringify({schema:1,version:parsed.version,importedAt:new Date().toISOString(),risks:sorted}));}
  catch{throw Error('No se pudo conservar el catálogo. Revisa el espacio del navegador; no se reemplazó la copia previa.');}
- catalog=parsed.risks;catalogVersion=parsed.version;catalogError='';
+ catalog=sorted;catalogVersion=parsed.version;catalogError='';
  if(refresh)refresh();
  return catalog.length;
 }
@@ -162,9 +163,10 @@ function mount(host,initial){
  const chosen=root.document.createElement('div');chosen.className='hys243-risk-chosen';
  const results=root.document.createElement('div');results.className='hys243-risk-results';results.setAttribute('role','group');results.setAttribute('aria-label','Resultados del catálogo de riesgos');
  const importWrap=root.document.createElement('div');importWrap.className='hys243-risk-import';
- const importBtn=root.document.createElement('button');importBtn.type='button';importBtn.className='btn';importBtn.textContent='Cargar catálogo local JSON/CSV';
+ const isGlobal=()=>root.__REPORTES_HYS_ACCESS__?.profile?.activo===true&&root.__REPORTES_HYS_ACCESS__?.profile?.rol==='administrador_global';
+ const importBtn=root.document.createElement('button');importBtn.type='button';importBtn.className='btn';importBtn.textContent='Actualizar catálogo (JSON/CSV)';importBtn.hidden=!isGlobal();
  const file=root.document.createElement('input');file.type='file';file.accept='.json,.csv,application/json,text/csv';file.hidden=true;file.setAttribute('aria-label','Seleccionar catálogo JSON o CSV');
- const note=root.document.createElement('small');note.textContent='Solo catálogo autorizado. La carga se guarda en este navegador; no envía archivos. Excel maestro: pendiente de H01.';
+ const note=root.document.createElement('small');note.textContent=isGlobal()?'La actualización se guarda solo en este navegador. Los informes anteriores conservan sus riesgos.':'Catálogo de riesgos disponible para selección; actualizaciones reservadas al administrador general.';
  importWrap.append(importBtn,file,note);
  section.append(label,help,input,status,chosen,results,importWrap);host.append(section);
  const rerender=()=>{
@@ -196,9 +198,10 @@ function mount(host,initial){
   if(!matches.length){const p=root.document.createElement('span');p.textContent='No se encontraron riesgos para esta búsqueda.';results.append(p);}
  };
  refresh=rerender;input.addEventListener('input',rerender);
- importBtn.addEventListener('click',()=>file.click());
+ importBtn.addEventListener('click',()=>{if(!isGlobal())return;file.click();});
  file.addEventListener('change',async()=>{
   const picked=file.files?.[0];if(!picked)return;
+  if(!isGlobal()){status.textContent='Solo el administrador general puede actualizar el catálogo local.';file.value='';return;}
   try{
    if(picked.size>MAX_FILE_BYTES)throw Error('Archivo mayor a 2 MB.');
    importCatalog(await picked.text(),picked.name);
