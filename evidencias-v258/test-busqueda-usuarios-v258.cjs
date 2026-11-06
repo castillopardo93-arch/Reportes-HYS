@@ -1,0 +1,6 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),vm=require('vm');const source=fs.readFileSync(__dirname+'/operaciones-v242.js','utf8');const c={role:r=>({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador'}[r]||r)};vm.createContext(c);vm.runInContext(source.match(/function userMatches258\([\s\S]*?\n}/)[0],c);const u={nombre:'José Castillo',rol:'usuario',activo:true,ambitos:{APR:{ver:true}}};
+test('Buscar nombres sin distinguir tildes y mayúsculas',()=>{assert(c.userMatches258(u,'JOSE','',''));assert(!c.userMatches258(u,'otro','',''))});
+test('Buscar por tarjeta y rol',()=>{assert(c.userMatches258(u,'APR','',''));assert(c.userMatches258(u,'usuario','',''));assert(!c.userMatches258(u,'OTROS','',''))});
+test('Filtros de rol y estado se combinan',()=>{assert(c.userMatches258(u,'Jose','usuario','active'));assert(!c.userMatches258(u,'Jose','supervisor','active'));assert(!c.userMatches258(u,'Jose','usuario','inactive'))});
+test('Cuentas inactivas y sin módulos siguen localizables',()=>{assert(c.userMatches258({...u,activo:false,ambitos:{}},'jose','usuario','inactive'))});
+test('Filtrar no modifica la cuenta ni sus ámbitos',()=>{const before=JSON.stringify(u);c.userMatches258(u,'jose','','');assert.equal(JSON.stringify(u),before)});

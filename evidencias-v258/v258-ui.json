@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "search": true,
+      "reset": true,
+      "saveAndUndo": true,
+      "audit": true,
+      "noDuplicatedForms": true,
+      "facultyAccountPreselected": true,
+      "revocation": true,
+      "undoConflictRejected": true
+    },
+    {
+      "width": 390,
+      "search": true,
+      "reset": true,
+      "saveAndUndo": true,
+      "audit": true,
+      "noDuplicatedForms": true,
+      "facultyAccountPreselected": true,
+      "revocation": true,
+      "undoConflictRejected": true
+    }
+  ],
+  "javascriptErrors": [],
+  "backendRequests": 0,
+  "authentication": "simulada; cambios de cuentas solo en memoria"
+}
