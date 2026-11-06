@@ -21,6 +21,16 @@
   capture(){const base=prefix(),ticket=epoch;return Object.assign(wrapper(native,()=>base),{valid:()=>ticket===epoch&&base===prefix()});},
   captureDatabase(name){const base=prefix(),ticket=epoch;return {scope:base,valid:()=>ticket===epoch&&base===prefix(),open:(...args)=>open(base+name,...args)};},
   matchesEvent(event,key){return (!event.storageArea||event.storageArea===native)&&(event.key===null||event.key===prefix()+key);},
+  // Acceso exclusivamente de lectura a registros ya guardados por Work v258
+  // en este mismo navegador. Nunca se escriben ni se eliminan.
+  readWork258Draft(uid,mod){
+   if(scope==='sin-sesion'||String(uid)!==scope||mod!==module)return null;
+   return native.getItem('hys-v255::'+scope+'::'+module+'::reportes-hys-v30-daily');
+  },
+  work258ArchiveName(uid,mod){
+   if(scope==='sin-sesion'||String(uid)!==scope||mod!==module)return null;
+   return 'hys-v255::'+scope+'::'+module+'::reportes-hys-pdf-archive-v242';
+  },
   openNative:open,
   legacySnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('reportes-hys-')&&!k.startsWith('sb-'))out[k]=native.getItem(k);return out;}
  };
