@@ -22,7 +22,43 @@ const allowedContext=()=>{
 };
 const rangeMatch=(d,from,to)=>Boolean(d)&&(!from||d>=from)&&(!to||d<=to);
 const localToday=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
-async function gather(bridge,from,to,includeArchive){
+async function readWork258Archived(storage,scope,from,to,errors){
+ const name=storage?.work258ArchiveName?.(scope.userId,scope.module);
+ if(!name)return [];
+ if(typeof root.indexedDB?.databases!=='function'){errors.push('El navegador no permite comprobar el archivo v258 sin alterarlo; solo se usará el borrador.');return [];}
+ let databases;
+ try{databases=await root.indexedDB.databases()}catch(e){errors.push('No se pudo inspeccionar el archivo v258.');return [];}
+ if(!databases.some(d=>d.name===name))return [];
+ return new Promise(resolve=>{
+  const reports=[];
+  try{
+   const req=storage.openNative(name);
+   req.onerror=()=>{errors.push('No se pudo abrir el archivo v258 en modo lectura.');resolve([]);};
+   req.onsuccess=()=>{
+    const db=req.result;
+    if(!db.objectStoreNames.contains('pdfs')){db.close();resolve([]);return;}
+    const tx=db.transaction('pdfs','readonly');
+    const cursor=tx.objectStore('pdfs').openCursor();
+    cursor.onsuccess=()=>{
+     const rec=cursor.result;
+     if(!rec)return;
+     const entry=rec.value||{},p=entry.reportData;
+     if(p&&(!entry.creador_id||String(entry.creador_id)===scope.userId)&&(!p.authenticatedUser||String(p.authenticatedUser)===scope.userId)){
+      const report=extractReport(p,{...entry,kind:'Archivo v258 (solo lectura)'});
+      if(report&&report.module===scope.module&&rangeMatch(report.date,from,to)&&Object.values(report.data).some(x=>x.length))reports.push(report);
+     }
+     if(reports.length<1000)rec.continue();
+     else errors.push('Se alcanzó el límite de 1000 informes del archivo v258.');
+    };
+    tx.oncomplete=()=>{db.close();resolve(reports);};
+    tx.onerror=()=>{db.close();errors.push('Error al leer el archivo v258.');resolve([]);};
+    tx.onabort=()=>{db.close();errors.push('Lectura del archivo v258 interrumpida.');resolve([]);};
+   };
+  }catch(e){errors.push('No se pudo iniciar la lectura del archivo v258.');resolve([]);}
+ });
+}
+
+async function gather(bridge,from,to,includeArchive,includeWork258=false){
  const scope=allowedContext(), reports=[],errors=[];
  if(from&&to&&from>to)throw Error('Fecha desde no puede superar fecha hasta.');
  const raw=bridge.pack(),live=extractReport(raw,{kind:'Informe actual'});
@@ -43,6 +79,26 @@ async function gather(bridge,from,to,includeArchive){
     const report=extractReport(rawReport,{...summary,kind:'Reporte anterior'});
     if(report&&report.module===scope.module&&rangeMatch(report.date,from,to)&&Object.values(report.data).some(x=>x.length))reports.push(report);
    }catch(e){errors.push('Un reporte anterior no pudo leerse: '+clean(e.message));}
+  }
+ }
+ if(includeWork258){
+  const storage=root.HysStorage242;
+  if(!storage?.readWork258Draft){errors.push('La lectura aislada de v258 no está disponible.');}
+  else{
+   try{
+    const text=storage.readWork258Draft(scope.userId,scope.module);
+    if(text){
+     const rawOriginal=JSON.parse(text);
+     if(!rawOriginal.authenticatedUser||String(rawOriginal.authenticatedUser)===scope.userId){
+      const original=extractReport(rawOriginal,{kind:'Borrador v258 (solo lectura)'});
+      if(original&&original.module===scope.module&&rangeMatch(original.date,from,to)&&Object.values(original.data).some(x=>x.length))reports.push(original);
+     }
+    }
+   }catch(e){errors.push('El borrador local de v258 no pudo leerse.');}
+   if(includeArchive){
+    const archived=await readWork258Archived(storage,scope,from,to,errors);
+    reports.push(...archived);
+   }
   }
  }
  if(allowedContext().key!==scope.key)throw Error('Cambió la sesión. Operación cancelada.');
@@ -183,6 +239,7 @@ function mount(){
   '<div class="field"><label for="hysxl-to">Fecha hasta</label><input id="hysxl-to" type="date"></div>',
   '</div>',
   '<label class="hysxl-archive-option" for="hysxl-archives"><input type="checkbox" id="hysxl-archives" checked><span>Incluir reportes anteriores accesibles en esta sesión</span></label>',
+  '<label class="hysxl-archive-option" for="hysxl-work258"><input type="checkbox" id="hysxl-work258" checked><span>Leer también los datos locales de v258, sin modificarlos</span></label>',
   '<div class="btnrow hysxl-actions"><button class="btn" type="button" id="hysxl-preview">Actualizar resumen</button><button class="btn primary" type="button" id="hysxl-download">▤ Generar Excel (.xlsx)</button></div>',
   '<div id="hysxl-summary" aria-live="polite" class="hysxl-summary" hidden></div>',
   '<p class="smallnote hysxl-disclaimer">No se agregan datos de otros usuarios ni módulos. Accidentes, cierres formales y notificaciones sin confirmación aparecen como «Sin datos». Esta versión es una prueba aislada.</p>',
@@ -216,7 +273,7 @@ function mount(){
   preview.disabled=download.disabled=true;status.textContent='Consultando registros disponibles...';
   try{
    const from=$('hysxl-from').value,to=$('hysxl-to').value;
-   const r=await gather(bridge,from,to,$('hysxl-archives').checked),a=assemble(r.reports);
+   const r=await gather(bridge,from,to,$('hysxl-archives').checked,$('hysxl-work258').checked),a=assemble(r.reports);
    present(a,r.errors);
    if(!exportIt){status.textContent='Vista previa actualizada para el período seleccionado.';return;}
    if(!a.findings.length&&!a.activities.length)throw Error('No hay hallazgos o actividades en el período seleccionado.');
