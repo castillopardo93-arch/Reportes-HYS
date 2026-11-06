@@ -59,6 +59,17 @@ function assemble(reports){
  const today=localToday();
  for(const p of reports){
   const base=[p.id,p.module,p.date,p.from,p.to,p.project,p.area,p.owner,p.shift,p.source];
+  const linkedActivities=new Map();
+  for(const [kind,label] of [['activities','Actividad HYS'],['inspections','Actividad por área']]){
+   (p.data[kind]||[]).forEach(row=>{
+    const meta=Array.isArray(row)?row[5]:null;
+    const target=clean(meta?.linkedFindingId||'');
+    if(!target)return;
+    const description=clean(kind==='activities'?row[2]:row[1]);
+    if(!linkedActivities.has(target))linkedActivities.set(target,[]);
+    if(description)linkedActivities.get(target).push(label+': '+description);
+   });
+  }
   (p.data.findings||[]).forEach((r,i)=>{
    if(!Array.isArray(r))return;
    const meta=r[6]&&typeof r[6]==='object'?r[6]:{},risks=riskNames(r),keys=riskKey(r);
@@ -69,11 +80,12 @@ function assemble(reports){
    const overdue=due&&!done&&due<today?Math.round((Date.parse(today+'T12:00:00')-Date.parse(due+'T12:00:00'))/86400000):0;
    const assignees=Array.isArray(meta.assignees)?meta.assignees.map(a=>clean(typeof a==='string'?a:a?.nombre||a?.name||a?.user_id||'')).filter(Boolean).join('; '):clean(item(r,3));
    const circumstance=clean(meta.circumstance||meta.contextoDeteccion||'');
+   const linkedContext=clean(meta.activityContext||(linkedActivities.get(fid)||[]).join('; '));
    const photos=Array.isArray(r[5])?r[5].length:0;
-   findings.push([...base,fid,clean(item(r,0)),clean(item(r,1)),clean(item(r,2)),assignees,state,due,verified,overdue,risks.join('; '),circumstance,clean(meta.activityContext||''),clean(meta.correction?.status||''),clean(meta.updatedAt||''),clean(meta.auditReference||''),photos]);
+   findings.push([...base,fid,clean(item(r,0)),clean(item(r,1)),clean(item(r,2)),assignees,state,due,verified,overdue,risks.join('; '),circumstance,linkedContext,clean(meta.correction?.status||''),clean(meta.updatedAt||''),clean(meta.auditReference||''),photos]);
    keys.forEach((key,k)=>{
-    if(!riskCounts.has(key))riskCounts.set(key,{name:risks[k]||key,count:0,areas:new Set(),turns:new Set(),circumstances:new Set()});
-    const r=riskCounts.get(key);r.count++;if(p.area)r.areas.add(p.area);if(p.shift)r.turns.add(p.shift);if(circumstance)r.circumstances.add(circumstance);
+    if(!riskCounts.has(key))riskCounts.set(key,{name:risks[k]||key,count:0,areas:new Set(),turns:new Set(),circumstances:new Set(),activities:new Set()});
+    const r=riskCounts.get(key);r.count++;if(p.area)r.areas.add(p.area);if(p.shift)r.turns.add(p.shift);if(circumstance)r.circumstances.add(circumstance);if(linkedContext)r.activities.add(linkedContext);
    });
    if(p.date){
     const d=new Date(p.date+'T12:00:00');
@@ -92,7 +104,7 @@ function assemble(reports){
  const total=findings.length, completed=findings.filter(r=>['completado','cerrado'].includes(r[15].toLocaleLowerCase('es'))).length;
  const expired=findings.filter(r=>r[18]>0).length,withDeadline=findings.filter(r=>Boolean(r[16])).length;
  const open=total-completed;
- const riskRows=[...riskCounts.entries()].map(([code,r])=>[code,r.name,r.count,[...r.areas].join('; '),[...r.turns].join('; '),[...r.circumstances].join('; ')||'Sin registro']).sort((a,b)=>b[2]-a[2]||String(a[1]).localeCompare(String(b[1]),'es'));
+ const riskRows=[...riskCounts.entries()].map(([code,r])=>[code,r.name,r.count,[...r.areas].join('; '),[...r.turns].join('; '),[...r.circumstances].join('; ')||'Sin registro',[...r.activities].join('; ')||'Sin actividad vinculada']).sort((a,b)=>b[2]-a[2]||String(a[1]).localeCompare(String(b[1]),'es'));
  const days=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].map(d=>[d,dayCounts.get(d)||0]);
  const indicators=[
   ['Hallazgos registrados',total,'Conteo de hallazgos, no de accidentes'],
@@ -117,7 +129,7 @@ function workbookData(a,from,to){
  {name:'REGISTROS',rows:[findingHeaders,...a.findings]},
  {name:'ACTIVIDADES',rows:[activityHeaders,...a.activities]},
  {name:'INDICADORES',rows:[['Indicador','Valor','Interpretación'],...a.indicators]},
- {name:'ANALISIS_PREVENTIVO',rows:[['Período desde',from||'Sin límite'],['Período hasta',to||'Sin límite'],[],['Código riesgo','Riesgo','Hallazgos asociados','Áreas','Turnos','Circunstancias observadas'],...a.riskRows,[],['Día de la semana','Hallazgos registrados (NO accidentes)'],...a.days,[],['Nota','La distribución por día corresponde a la fecha del informe. Los accidentes requieren un registro separado.']]},
+ {name:'ANALISIS_PREVENTIVO',rows:[['Período desde',from||'Sin límite'],['Período hasta',to||'Sin límite'],[],['Código riesgo','Riesgo','Hallazgos asociados','Áreas','Turnos','Circunstancias observadas','Actividades vinculadas'],...a.riskRows,[],['Día de la semana','Hallazgos registrados (NO accidentes)'],...a.days,[],['Nota','La distribución por día corresponde a la fecha del informe. Los accidentes requieren un registro separado.']]},
  {name:'INCIDENTES',rows:[['Fecha','Tipo evento','Área','Turno','Actividad','Circunstancia','Gravedad'],['SIN DATOS','El módulo de accidentes/incidentes aún no está implementado. No se infieren accidentes de hallazgos.']]},
  {name:'TRAZABILIDAD',rows:[['Campo','Origen','Alcance'],['Identificador informe','Informe actual / archivo local','Solo usuario y módulo de sesión'],['Fuente','Borrador o informe anterior','No constituye auditoría central'],['Fecha compromiso','Metadatos del hallazgo','Solo si está disponible'],['Verificación','Metadatos del hallazgo','No presupone aprobación formal'],['Notificaciones','Sin integración central','Sin datos confirmados']]}
  ];
@@ -195,7 +207,7 @@ function mount(){
   });summary.appendChild(container);
   const caption=root.document.createElement('p');caption.className='smallnote';caption.textContent='Riesgos con mayor frecuencia (hallazgos, NO accidentes).';summary.appendChild(caption);
   const table=root.document.createElement('table');table.className='hysxl-mini-table';let tr=root.document.createElement('tr');['Riesgo','Veces','Áreas y circunstancias'].forEach(v=>{const h=root.document.createElement('th');h.textContent=v;tr.appendChild(h)});table.appendChild(tr);
-  for(const risk of a.riskRows.slice(0,7)){tr=root.document.createElement('tr');td(tr,risk[1]);td(tr,risk[2]);td(tr,(risk[3]||'Sin área')+' · '+(risk[5]||'Sin registro'));table.appendChild(tr);}
+  for(const risk of a.riskRows.slice(0,7)){tr=root.document.createElement('tr');td(tr,risk[1]);td(tr,risk[2]);td(tr,(risk[3]||'Sin área')+' · '+(risk[5]||'Sin circunstancia registrada')+' · '+(risk[6]||'Sin actividad vinculada'));table.appendChild(tr);}
   if(!a.riskRows.length){tr=root.document.createElement('tr');td(tr,'No hay riesgos clasificados en los hallazgos consultados');table.appendChild(tr);}
   summary.appendChild(table);
   if(errors.length){const warning=root.document.createElement('p');warning.className='smallnote';warning.textContent=errors.length+' reporte(s) no se pudieron consultar. Resultado parcial.';summary.appendChild(warning);}
