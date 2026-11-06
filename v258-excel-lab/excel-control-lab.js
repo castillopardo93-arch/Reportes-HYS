@@ -2,7 +2,7 @@
    Una descarga explícita. Datos filtrados del módulo/usuario autenticado. */
 (function(root){
 'use strict';
-const clean=v=>String(v??'').replace(/[\u0000-\u001f]/g,' ').trim().slice(0,1500);
+const clean=v=>String(v??'').replace(/[\u0000-\u001f\u007f-\u009f\ufffe\uffff]/g,' ').replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g,'�').trim().slice(0,1500);
 const esc=v=>clean(v).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
 const date=v=>{const s=String(v||'');return /^\d{4}-\d{2}-\d{2}/.test(s)?s.slice(0,10):''};
 const item=(r,n)=>Array.isArray(r)?r[n]??'':'';
@@ -17,8 +17,8 @@ function extractReport(p,source){
 const allowedContext=()=>{
  const a=root.__REPORTES_HYS_ACCESS__;
  const m=new URLSearchParams(root.location.search).get('embedded')==='otros'?'OTROS':'APR';
- if(!a?.userId||a.selectedModule!==m)throw Error('Inicia sesión y selecciona el módulo correspondiente para exportar.');
- return {userId:String(a.userId),module:m,key:String(a.userId)+'|'+m};
+ if(!a?.userId||a.profile?.activo!==true||a.selectedModule!==m||!Array.isArray(a.modules)||!a.modules.includes(m))throw Error('Tu sesión no tiene acceso activo a este módulo. Vuelve a ingresar antes de exportar.');
+ return {userId:String(a.userId),module:m,key:JSON.stringify([a.userId,m,a.profile?.rol,a.profile?.activo,a.modules,a.permissions,a.facultades,root.Hys242?.sessionKey?.()])};
 };
 const rangeMatch=(d,from,to)=>Boolean(d)&&(!from||d>=from)&&(!to||d<=to);
 const localToday=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
@@ -34,11 +34,13 @@ async function readWork258Archived(storage,scope,from,to,errors){
   try{
    const req=storage.openNative(name);
    req.onerror=()=>{errors.push('No se pudo abrir el archivo v258 en modo lectura.');resolve([]);};
+   req.onblocked=()=>{errors.push('El archivo v258 está bloqueado por otra pestaña; cierra la otra pestaña y vuelve a intentar.');resolve([]);};
    req.onsuccess=()=>{
     const db=req.result;
     if(!db.objectStoreNames.contains('pdfs')){db.close();resolve([]);return;}
     const tx=db.transaction('pdfs','readonly');
     const cursor=tx.objectStore('pdfs').openCursor();
+    cursor.onerror=()=>{errors.push('No se pudo recorrer el archivo histórico v258.');};
     cursor.onsuccess=()=>{
      const rec=cursor.result;
      if(!rec)return;
@@ -105,7 +107,7 @@ async function gather(bridge,from,to,includeArchive,includeWork258=false){
  const unique=new Map();
  // Misma identidad de informe: priorizamos el borrador actual, no sumamos copias del mismo informe.
  for(const r of reports){
-  const id=r.id?r.module+'|'+r.id:r.module+'|'+r.date+'|'+r.owner+'|'+r.shift;
+  const id=r.id?r.module+'|'+r.id:r.module+'|'+r.date+'|'+r.owner+'|'+r.shift+'|'+r.area+'|'+JSON.stringify(r.data);
   if(!unique.has(id))unique.set(id,r);
  }
  return {reports:[...unique.values()],errors,scope};
@@ -139,7 +141,10 @@ function assemble(reports){
    const linkedContext=clean(meta.activityContext||(linkedActivities.get(fid)||[]).join('; '));
    const photos=Array.isArray(r[5])?r[5].length:0;
    findings.push([...base,fid,clean(item(r,0)),clean(item(r,1)),clean(item(r,2)),assignees,state,due,verified,overdue,risks.join('; '),circumstance,linkedContext,clean(meta.correction?.status||''),clean(meta.updatedAt||''),clean(meta.auditReference||''),photos]);
+   const seenRisks=new Set();
    keys.forEach((key,k)=>{
+    if(seenRisks.has(key))return;
+    seenRisks.add(key);
     if(!riskCounts.has(key))riskCounts.set(key,{name:risks[k]||key,count:0,areas:new Set(),turns:new Set(),circumstances:new Set(),activities:new Set()});
     const r=riskCounts.get(key);r.count++;if(p.area)r.areas.add(p.area);if(p.shift)r.turns.add(p.shift);if(circumstance)r.circumstances.add(circumstance);if(linkedContext)r.activities.add(linkedContext);
    });
@@ -232,7 +237,7 @@ function mount(){
  panel.innerHTML=[
   '<summary>▤ &nbsp; SEGUIMIENTO Y ANÁLISIS PREVENTIVO · EXCEL</summary>',
   '<div class="hysxl-card-body">',
-  '<p class="smallnote hysxl-help">Consulta los registros del módulo actual sin volver a digitarlos. La exportación incluye hallazgos, actividades, riesgos y trazabilidad disponible.</p>',
+  '<p class="smallnote hysxl-help">Consulta los registros del módulo actual sin volver a digitarlos. La exportación incluye hallazgos, actividades, riesgos y trazabilidad disponible. No constituye un informe central de todos los usuarios.</p>',
   '<div class="hysxl-fields">',
   '<div class="field"><label for="hysxl-month">Seleccionar mes</label><input id="hysxl-month" type="month"></div>',
   '<div class="field"><label for="hysxl-from">Fecha desde</label><input id="hysxl-from" type="date"></div>',
