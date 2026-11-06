@@ -1,0 +1,81 @@
+/* Reportes HYS v254 · Tarjeta de exportación con el formato de Configuración. */
+#hys254-export{
+  border:1px solid #c9def5;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:16px;
+  background:#fff;
+  color:var(--ink,#173d68);
+}
+#hys254-export > summary{
+  cursor:pointer;
+  padding:13px 15px;
+  background:#eef5fc;
+  color:#1766b5;
+  font-weight:800;
+  line-height:1.5;
+}
+#hys254-export > summary:focus-visible{
+  outline:3px solid #1876e8;
+  outline-offset:-3px;
+}
+#hys254-export .hys254-card-body{padding:15px;}
+#hys254-export .hys254-help{margin:0 0 16px;line-height:1.6;font-size:12px;}
+#hys254-export .hys254-fields{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 16px;
+}
+#hys254-export .hys254-fields .field{margin-bottom:0;min-width:0;}
+#hys254-export .hys254-fields label{
+  display:block;
+  font-weight:700;
+  margin-bottom:5px;
+  color:#173d68;
+}
+#hys254-export .hys254-fields input[type=date]{
+  display:block;
+  width:100%;
+  min-width:0;
+  min-height:40px;
+  background:#fff;
+  border:1px solid #b9d2ef;
+  border-radius:8px;
+  padding:8px 10px;
+  color:#173d68;
+  box-sizing:border-box;
+}
+#hys254-export .hys254-archive-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:16px 0 12px;
+  padding:12px;
+  border:1px solid #dce9f7;
+  border-radius:8px;
+  background:#f4f8fc;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+}
+#hys254-export #hys254-archives{
+  flex:0 0 auto;
+  width:18px;
+  height:18px;
+  margin:0;
+  accent-color:#176df0;
+}
+#hys254-export .hys254-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;}
+#hys254-export .hys254-actions .btn{min-height:42px;}
+#hys254-export .hys254-actions .btn:disabled{opacity:.65;cursor:wait;}
+#hys254-export .hys254-disclaimer{margin:0;font-size:11px;line-height:1.5;}
+#hys254-export #hys254-status{
+  min-height:1.5em;
+  margin:10px 0 0;
+  font-size:12px;
+  line-height:1.5;
+}
+@media(max-width:700px){
+  #hys254-export .hys254-fields{grid-template-columns:1fr;gap:12px;}
+  #hys254-export .hys254-actions .btn{width:100%;}
+}
