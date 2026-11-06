@@ -330,7 +330,7 @@ function mount(){
    const blob=makeXlsx(workbookData(a,from,to));
    if(allowedContext().key!==r.scope.key)throw Error('Cambió la sesión; no se descargó información.');
    const url=URL.createObjectURL(blob),link=root.document.createElement('a');
-   link.href=url;link.download='Control_Integral_HYS_'+r.scope.module+'_'+(from||'inicio')+'_'+(to||'actual')+'.xlsx';link.click();
+   link.href=url;link.download='Control_Integral_HYS_'+r.scope.module+'_'+(from||'inicio')+'_'+(to||'actual')+'.xlsx';root.document.body.appendChild(link);try{link.click()}finally{link.remove()}
    setTimeout(()=>URL.revokeObjectURL(url),30000);
    status.textContent='Excel generado: '+a.total+' hallazgos y '+a.activities.length+' actividades. '+(r.errors.length?'Exportación parcial; revisar avisos.':'Sin errores de lectura detectados.');
   }catch(e){status.textContent='No fue posible completar la consulta: '+clean(e.message||e);}
