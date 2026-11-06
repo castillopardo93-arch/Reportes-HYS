@@ -252,6 +252,10 @@ function mount(){
  ].join('');
  config.appendChild(panel);
  const $=id=>panel.querySelector('#'+id),status=$('hysxl-status'),preview=$('hysxl-preview'),download=$('hysxl-download'),summary=$('hysxl-summary');
+ // No conservar cifras ni nombres de otro usuario o módulo cuando cambian los permisos.
+ const resetSensitiveView=()=>{summary.replaceChildren();summary.hidden=true;status.textContent='';};
+ root.addEventListener('reportes-hys-access-changing',resetSensitiveView);
+ root.addEventListener('reportes-hys-access-changed',resetSensitiveView);
  $('hysxl-month').addEventListener('change',()=>{
   const m=$('hysxl-month').value;
   if(!/^\d{4}-\d{2}$/.test(m))return;
