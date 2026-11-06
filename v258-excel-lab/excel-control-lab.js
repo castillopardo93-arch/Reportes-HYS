@@ -2,7 +2,7 @@
    Una descarga explícita. Datos filtrados del módulo/usuario autenticado. */
 (function(root){
 'use strict';
-const clean=v=>String(v??'').replace(/[\u0000-\u001f\u007f-\u009f\ufffe\uffff]/g,' ').replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g,'�').trim().slice(0,1500);
+const clean=v=>String(v??'').replace(/[\u0000-\u001f\u007f-\u009f\ufffe\uffff]/g,' ').trim().slice(0,32000).replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g,'�');
 const esc=v=>clean(v).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
 const date=v=>{const s=String(v||'');return /^\d{4}-\d{2}-\d{2}/.test(s)?s.slice(0,10):''};
 const item=(r,n)=>Array.isArray(r)?r[n]??'':'';
