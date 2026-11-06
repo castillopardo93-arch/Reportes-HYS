@@ -131,8 +131,32 @@ function makeXlsx(sheets){
 function mount(){
  const bridge=root.Hys242Bridge, config=root.document.getElementById('config');if(!bridge||!config)return;
  if(root.document.getElementById('hys254-export'))return;
- const panel=root.document.createElement('section');panel.id='hys254-export';panel.style='border:1px solid #bfd5ec;border-radius:12px;background:#f5f9ff;padding:16px;margin:14px 0';
- panel.innerHTML='<h3 style="margin:0 0 6px;color:#123b63">Exportar seguimiento a Excel</h3><p style="margin:0 0 12px">Los datos existentes se reutilizan automáticamente. Exportación local por usuario y módulo, sin actualizar Supabase. No se incluyen fotografías, datos de accidentes no registrados ni confirmaciones de notificaciones inexistentes.</p><div style="display:flex;flex-wrap:wrap;align-items:end;gap:10px"><label>Desde <input type="date" id="hys254-from"></label><label>Hasta <input type="date" id="hys254-to"></label><label style="display:flex;align-items:center;gap:5px"><input type="checkbox" id="hys254-archives" checked> Incluir reportes anteriores accesibles</label><button type="button" id="hys254-download" style="border:0;border-radius:8px;background:#167650;color:white;padding:10px 14px;font-weight:700">Generar Excel (.xlsx)</button></div><p id="hys254-status" role="status" style="margin:10px 0 0"></p>';
+ const panel=root.document.createElement('details');
+ panel.id='hys254-export';
+ panel.innerHTML=`
+  <summary>▤ &nbsp; EXPORTACIÓN DE SEGUIMIENTO A EXCEL</summary>
+  <div class="hys254-card-body">
+   <p class="smallnote hys254-help">Genera un archivo Excel con los hallazgos, actividades e indicadores registrados en este módulo. La información existente se reutiliza automáticamente, sin volver a completar formularios.</p>
+   <div class="hys254-fields">
+    <div class="field">
+     <label for="hys254-from">Fecha desde</label>
+     <input type="date" id="hys254-from">
+    </div>
+    <div class="field">
+     <label for="hys254-to">Fecha hasta</label>
+     <input type="date" id="hys254-to">
+    </div>
+   </div>
+   <label class="hys254-archive-option" for="hys254-archives">
+    <input type="checkbox" id="hys254-archives" checked>
+    <span>Incluir reportes anteriores accesibles en este navegador</span>
+   </label>
+   <div class="btnrow hys254-actions">
+    <button type="button" class="btn primary" id="hys254-download">▤ Generar Excel (.xlsx)</button>
+   </div>
+   <p class="smallnote hys254-disclaimer">Exportación local del usuario y módulo actual. No modifica Supabase ni incluye archivos fotográficos. Los indicadores sin información verificada aparecerán como «Sin datos».</p>
+   <p id="hys254-status" role="status" aria-live="polite"></p>
+  </div>`;
  config.appendChild(panel);
  const status=panel.querySelector('#hys254-status'),btn=panel.querySelector('#hys254-download');
  btn.addEventListener('click',async()=>{
