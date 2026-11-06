@@ -22,6 +22,44 @@ const allowedContext=()=>{
 };
 const rangeMatch=(d,from,to)=>Boolean(d)&&(!from||d>=from)&&(!to||d<=to);
 const localToday=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
+async function readWork258Current(storage,scope,from,to,errors){
+ const name=storage?.work258QueueName?.(scope.userId,scope.module);
+ if(!name)return null;
+ if(typeof root.indexedDB?.databases!=='function'){
+  errors.push('No se pudo comprobar sin escritura la cola principal de v258; se intentará la copia secundaria.');
+  return null;
+ }
+ let names;
+ try{names=await root.indexedDB.databases()}catch(e){errors.push('No se pudo comprobar la cola v258.');return null;}
+ if(!names.some(x=>x.name===name))return null;
+ return new Promise(resolve=>{
+  let settled=false;
+  const finish=(result,db)=>{if(settled)return;settled=true;try{db?.close?.()}catch{}resolve(result)};
+  try{
+   const req=storage.openNative(name);
+   req.onerror=()=>{errors.push('No se pudo abrir la cola v258 para lectura.');finish(null)};
+   req.onblocked=()=>{errors.push('La cola v258 está bloqueada por otra pestaña.');finish(null)};
+   req.onsuccess=()=>{
+    const db=req.result;
+    if(settled){db.close();return;}
+    if(!db.objectStoreNames.contains('draft')){finish(null,db);return;}
+    let value=null;
+    const tx=db.transaction('draft','readonly');
+    const get=tx.objectStore('draft').get('current');
+    get.onsuccess=()=>{value=get.result?.payload||null};
+    tx.oncomplete=()=>{
+     const p=value;
+     if(!p||p.authenticatedUser&&String(p.authenticatedUser)!==scope.userId){finish(null,db);return;}
+     const report=extractReport(p,{kind:'Borrador principal v258 (solo lectura)'});
+     finish(report&&report.module===scope.module&&rangeMatch(report.date,from,to)&&Object.values(report.data).some(x=>x.length)?report:null,db);
+    };
+    tx.onerror=()=>{errors.push('Error leyendo borrador principal v258.');finish(null,db)};
+    tx.onabort=()=>{errors.push('Lectura del borrador principal v258 interrumpida.');finish(null,db)};
+   };
+  }catch(e){errors.push('No fue posible consultar la cola v258.');finish(null)}
+ });
+}
+
 async function readWork258Archived(storage,scope,from,to,errors){
  const name=storage?.work258ArchiveName?.(scope.userId,scope.module);
  if(!name)return [];
@@ -87,6 +125,9 @@ async function gather(bridge,from,to,includeArchive,includeWork258=false){
   const storage=root.HysStorage242;
   if(!storage?.readWork258Draft){errors.push('La lectura aislada de v258 no está disponible.');}
   else{
+   const canonical=await readWork258Current(storage,scope,from,to,errors);
+   if(canonical)reports.push(canonical);
+   if(allowedContext().key!==scope.key)throw Error('La sesión cambió durante la lectura del borrador v258.');
    try{
     const text=storage.readWork258Draft(scope.userId,scope.module);
     if(text){
