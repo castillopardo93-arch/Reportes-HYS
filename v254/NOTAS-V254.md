@@ -33,3 +33,11 @@ Se aprovechan los datos existentes (informe actual y archivo local) sin crear fo
 3. Usar filtro opcional y seleccionar «Incluir reportes anteriores accesibles».
 4. Pulsar «Generar Excel (.xlsx)»; verificar información real y ausencia de datos fuera de sesión.
 5. Abrir el archivo generado con Excel y revisar cada pestaña.
+
+## Ajuste de interfaz de Configuración (6 de noviembre de 2026)
+- Se reemplazó el bloque plano «Exportar seguimiento a Excel» por una tarjeta nativa plegable (`<details>` / `<summary>`), coherente con Fotografías del informe y Configuración de guardado.
+- Se agregó `excel-export-v254.css`, cargado desde la cabecera de `v254/index.html`.
+- Los campos de fecha y la opción de incluir informes anteriores mantienen sus identificadores originales; el botón conserva la misma acción de descarga.
+- Encabezado, espaciados, colores, botón `btn primary`, mensajes y diseño adaptable a móvil.
+- La tarjeta se aplica al formulario compartido APR / OTROS sin alterar lógica de informes, PDF o seguridad.
+- Verificación: sintaxis JS, referencias CSS/JS y estructura del DOM revisadas estáticamente. Sigue pendiente validación visual y funcional autenticada en navegador.
