@@ -30,9 +30,12 @@ Esta carpeta `v258-excel-lab/` es una copia **aislada** para evaluación, sin n�
 
 ## Pruebas realizadas
 - JS validado con `new Function` en el entorno de pruebas.
-- 13/13 aserciones de lógica/ZIP preliminar (datos de ejemplo ficticios), incluyendo agrupación de riesgos, vínculo a actividades, deduplicación, acceso por módulo, cantidad de fotografías y seis hojas.
+- 27/27 aserciones preliminares de lógica y estructura XLSX con datos ficticios. 13 sobre hallazgos, indicadores, relación actividad-riesgo, módulos y exportación; 14 adicionales sobre lectura exclusiva de v258, aislamiento por usuario/módulo, exclusión de información ajena, transacciones IndexedDB `readonly`, hojas y ZIP.
 - Pendiente: prueba autenticada completa en navegador para ambas tarjetas, validación de Excel en Microsoft Excel, lectura real de IndexedDB v258 en el mismo origen, controles de sesión, flujos PDF y regresión de los formularios de Work.
 - No representa aprobación de producción ni trabajo publicado.
 
 ## Plan de integración posterior
 Tras la validación en el laboratorio y comparación con el estado final de Work, trasladar solamente los archivos/aportes necesarios a una nueva versión autorizada.
+
+### Limitación de validación
+La generación XLSX se probó en lógica JavaScript con un entorno simulado; aún no se abrió el archivo resultante con Microsoft Excel ni se realizó una prueba integral autenticada en un navegador real. La exportación central desde Supabase permanece fuera de alcance.
