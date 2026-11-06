@@ -23,6 +23,10 @@
   matchesEvent(event,key){return (!event.storageArea||event.storageArea===native)&&(event.key===null||event.key===prefix()+key);},
   // Acceso exclusivamente de lectura a registros ya guardados por Work v258
   // en este mismo navegador. Nunca se escriben ni se eliminan.
+  work258QueueName(uid,mod){
+   if(scope==='sin-sesion'||String(uid)!==scope||mod!==module)return null;
+   return 'hys255-queue::'+scope+'::'+module;
+  },
   readWork258Draft(uid,mod){
    if(scope==='sin-sesion'||String(uid)!==scope||mod!==module)return null;
    return native.getItem('hys-v255::'+scope+'::'+module+'::reportes-hys-v30-daily');
