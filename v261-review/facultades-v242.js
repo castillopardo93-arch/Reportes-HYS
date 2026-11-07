@@ -7,7 +7,7 @@
 if(window.__REPORTES_HYS_OTROS_EMBEDDED__||!document.getElementById('hysToolsOptions'))return;
 const $=id=>document.getElementById(id);
 const C=window.Hys259Access, A=window.Hys256Access, F=window.Hys261FacultyModel, M=C.modules;
-const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',editOthers:'Modificar informes ajenos con motivo',áreas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
+const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',editOthers:'Modificar informes ajenos con motivo',areas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
 const dependent=['pdf','review','approve','close','editOthers'];
 const access=()=>window.__REPORTES_HYS_ACCESS__;
 const isGlobal=()=>access()?.profile?.activo===true&&access()?.profile?.rol==='administrador_global';
@@ -34,7 +34,7 @@ function allowedAreas(m){return F.availableAreas(areaRows,m,canArea)}
 function scopeSpecial(m){return F.unique(draftFac[m]?.areas_ids)}
 function updateScope(m,ids){
  const selection=F.unique(ids);
- if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,áreas:[]};
+ if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,areas:[]};
  draftAccess[m].areas=selection;
  if(isAdminTarget()){if(!draftFac[m])draftFac[m]={areas_ids:[],facultades:{}};draftFac[m].areas_ids=[...selection]}
 }
@@ -92,7 +92,7 @@ function renderCards(){
   const card=el('article','faculty-module261'+(enabled(m)?' faculty-module-enabled261':''));
   const header=el('div','faculty-module-header261');
   const left=el('div'),title=makeCheckbox(C.label(m),enabled(m),busy||!canEditModule(m),on=>{
-   if(on){if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,áreas:[]};draftAccess[m].ver=true;areaMode[m]='selected'}
+   if(on){if(!enabled(m)&&isAdminTarget())draftFac[m]={areas_ids:[],facultades:{}};if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,areas:[]};draftAccess[m].ver=true;areaMode[m]='selected'}
    else{delete draftAccess[m];if(isAdminTarget())draftFac[m]={areas_ids:[],facultades:{}}}
    renderCards();renderSpecial();renderSummary();
   },'faculty-module-title261');
@@ -268,7 +268,7 @@ $('facultadesForm242').onsubmit=async event=>{
    const step=steps[0];
    result=step.kind==='access'
      ?await window.reportesHysSupabase.rpc('hys242_guardar_usuario',{p_usuario:uid,p_datos:step.datos,p_revision:step.revision,p_motivo:reason})
-     :await window.reportesHysSupabase.rpc('hys242_asignar_facultades',{p_usuario:uid,p_modulo:step.module,p_áreas:step.scope.areas_ids,p_facultades:step.scope.facultades,p_revision:step.revision,p_motivo:reason});
+     :await window.reportesHysSupabase.rpc('hys242_asignar_facultades',{p_usuario:uid,p_modulo:step.module,p_areas:step.scope.areas_ids,p_facultades:step.scope.facultades,p_revision:step.revision,p_motivo:reason});
   }
   if(result.error)throw result.error;
   if(n!==seq||actor!==access()?.userId||!canManage())return;
