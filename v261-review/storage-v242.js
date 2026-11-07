@@ -4,13 +4,13 @@
  const open=window.indexedDB.open.bind(window.indexedDB);
  let scope='sin-sesion',epoch=0;
  const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
- const prefix=()=>`hys-v260-auditoria::${scope}::${module}::`;
+ const prefix=()=>`hys-v261-facultades::${scope}::${module}::`;
  function wrapper(store,base){return {
   get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},
   key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},
-  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v260-auditoria::auth::':base())+k)},
-  setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v260-auditoria::auth::':base())+k,String(v))},
-  removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v260-auditoria::auth::':base())+k)},
+  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v261-facultades::auth::':base())+k)},
+  setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v261-facultades::auth::':base())+k,String(v))},
+  removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v261-facultades::auth::':base())+k)},
   clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}
  }}
  Object.defineProperty(window,'localStorage',{configurable:true,value:wrapper(native,prefix)});
