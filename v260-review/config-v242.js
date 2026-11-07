@@ -7,4 +7,4 @@ window.HYS242_DEPLOYMENT_READY=false;
 window.HYS250_LOCAL_EDIT=true;
 
 // Gestión de cuentas existentes y facultades: habilitación independiente de informes.
-window.HYS257_ENABLE_USER_MANAGEMENT=true;
+window.HYS257_ENABLE_USER_MANAGEMENT=false;

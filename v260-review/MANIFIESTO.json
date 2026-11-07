@@ -1,13 +1,13 @@
 {
-  "version": 259,
-  "base": "d7c2df16a750449f49ba7cd9666e755779b30224",
+  "version": 260,
+  "base": "b2aa13465d9a9b50a950106257204a4010b5b943",
   "activada": false,
   "files": {
-    "index.html": "34f9e8d534ea27aa241e35aa5589414c1ee3d3602b7db6928f98f7ff96a07025",
-    "config-v242.js": "2527f22ccd56ae286640b3224e8cdda6b75046f8668a03af5082bd1b183a6ca2",
+    "index.html": "9f1b4abe373aadcc9352c91d5e64afc5d37767699962be65499b98e5163a8813",
+    "config-v242.js": "6a95ffb559d25d16756e23339beb0dddc7faabdcb9b01fd6330dce2f37c8b818",
     "access-policy-v256.js": "8e9d5047d318fda1b05722de5595a9fb3f161e1b98ab41d4aa399c7d5a37114b",
-    "access-settings-v259.js": "d5d2a5f05317badcc56ba1cc0c95be2917a88624c567bb93fbcd90f85c291ee9",
-    "storage-v242.js": "e88cc1c75d173be4a05f625d8368a383749b108181a5fcbe74bf7704517d740b",
+    "access-settings-v259.js": "d3090cafb3d357156c4deaaf46d899caa266771ee81d4daf5095faeda7b263a3",
+    "storage-v242.js": "b27a09074f46b1f70212e70c574944ea854c01e94b2ac57105dc0e3cea2a8672",
     "integrity-v255.js": "072e7da2f4537ebe74b341f295b7daf4fb649fe4bcac137ad57821b45ab10dac",
     "risk-seed-v252.js": "d358a43f6049b24932db2d63d3fc36a3d46dbc90d6386733c655fd3ec2054413",
     "risk-catalog-v243.js": "2bf1d2cae0ba58186e5712edef3070943c1c3a366ebd9ae85ba0209a1c6073a2",
@@ -44,10 +44,13 @@
     "pending-dashboard-v250.css": "114fcb99c591d21d12b7b8d302b1ec95a312ba93738be3ce3fe7a1448402fbe2",
     "notifications-f251.css": "928e1e5393f59462ab8eb71382a086ec09c8f48cb8ec4ff23bf9d4bb23eff9c7",
     "sync-core-v242.js": "4707d6bac5cfc01144e62b06e366b640836a90a89ce6eb1cde4ba147bc696699",
-    "cloud-v242.js": "88c9ee17f81a557ffe097896f149036d2b3afd07a609b6948cea21597bd27092",
+    "cloud-v242.js": "2b199bac034e9eb6678347195d68d522f2841d6bf5f1f3037e5f1fbe4a3046e6",
     "appearance-core-v242.js": "b313ee370da112f7f51ecab807ce346fbee37ece2e8886c613ed2164f28f3fc3",
     "appearance-v242.js": "f672d4e845cdfe014c3b546c1f3c2c2591f4e9fd43fb7a759178068a96a0aea0",
     "facultades-v242.js": "a1d7b73a0a846cd96a153b09c8aef45d91e704099c5fd2ef1839276dce073ad0",
-    "operaciones-v242.js": "46bb2ade17849b9f1e1a957398db72ba60a7b01f5871962051e27b3fa8317ee9"
-  }
+    "operaciones-v242.js": "f3b89d205bc42ecc919985ecf0819768e50033d636707b6320850709cff88cc7"
+  },
+  "origen_auditoria": "39da8b58a85c6dc83d6c2c5155b27f1529a7ffc3",
+  "objetivo": "Auditoría integral de interacciones; excluye modo sin conexión",
+  "entorno": "Copia de laboratorio aislada; administración de usuarios deshabilitada para evitar escrituras"
 }
