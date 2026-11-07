@@ -9,6 +9,6 @@ function plan(account,draftAccess,originalFac,draftFac,canDelegate){
  const steps=[...revoke];if(stable(account.ambitos||{})!==stable(draftAccess))steps.push({kind:'access',revision:account.revision||0,datos:{nombre:account.nombre,rol:account.rol,activo:account.activo,ambitos:clone(draftAccess)}});return [...steps,...grant];
 }
 const canAssignArea=(actor,m,id)=>actor?.profile?.activo===true&&(actor.profile.rol==='administrador_global'||actor.profile.rol==='administrador_area'&&actor.modules?.includes(m)&&(actor.facultades||[]).some(f=>f.modulo===m&&f.facultades?.users===true&&Array.isArray(f.areas_ids)&&f.areas_ids.includes(id)));
-const canGrantEdit=(actor,m)=>actor?.profile?.activo===true&&(actor.profile.rol==='administrador_global'||actor.modules?.includes(m)&&actor.permissions?.some(p=>p.modulo===m&&p.puede_ver===true&&p.puede_editar===true));
+const canGrantEdit=(actor,m)=>actor?.profile?.activo===true&&(actor.profile.rol==='administrador_global'||actor.profile.rol==='administrador_area'&&actor.modules?.includes(m)&&actor.permissions?.some(p=>p.modulo===m&&p.puede_ver===true&&p.puede_editar===true));
 const api={modules,clone,label,stable,normalizedScope,plan,canAssignArea,canGrantEdit};if(typeof module==='object'&&module.exports)module.exports=api;else root.Hys259Access=api;
 })(typeof window==='object'?window:globalThis);
