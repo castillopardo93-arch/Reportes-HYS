@@ -46,7 +46,7 @@ panel.hidden=true;
 panel.setAttribute('role','dialog');
 panel.setAttribute('aria-modal','true');
 panel.setAttribute('aria-labelledby','hys265Title');
-panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="roles" type="button">Crear y gestionar roles</button><button data-hys265-tab="history" type="button">Historial</button></nav><div id="hys265Content"></div></div>';
+panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button></nav><div id="hys265Content"></div></div>';
 document.body.append(panel);
 const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0};
 const notice=(msg,warning=false)=>{const e=$('hys265Notice');e.textContent=msg;e.dataset.warning=warning?'true':'false'};
@@ -173,12 +173,6 @@ function render(){
  const content=$('hys265Content');content.replaceChildren();
  if(state.tab==='directory')renderDirectory(content);
  else if(state.tab==='history')renderHistory(content);
- else if(state.tab==='roles'){
-  const card=element('section',undefined,'hys265-card');
-  card.append(element('h2','Crear y gestionar roles'),element('p','Define nombres, tarjetas y facultades en un catálogo de desarrollo. No modifica usuarios ni permisos reales.','hys265-muted'));
-  content.append(card);
-  if(!root.Hys267RoleCatalog?.mountInto(card))card.append(element('p','El catálogo de roles no está disponible en esta sesión.','hys265-muted'));
- }
  else renderWizard(content);
 }
 function element(tag,txt,cls){const e=document.createElement(tag);if(txt!==undefined)e.textContent=txt;if(cls)e.className=cls;return e}
