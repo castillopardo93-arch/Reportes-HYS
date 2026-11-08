@@ -292,20 +292,14 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
 <script>
-/* V273: QA EXCLUSIVAMENTE en copias de desarrollo explícitamente permitidas.
- * Nunca se activa en producción ni sin ?qa=1. */
-window.HYS266_PREVIEW_ONLY=location.hostname==='raw.githack.com'
-  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review|v276-review)\/index\.html$/.test(location.pathname)
-  &&new URLSearchParams(location.search).get('qa')==='1';
-window.HYS265_PREVIEW_ONLY=window.HYS266_PREVIEW_ONLY;
-if(window.HYS266_PREVIEW_ONLY){
- window.HYS263_SANDBOX=true;
- window.HYS265_LAB_MODE=true;
- window.HYS266_LAB_MODE=true;
- window.HYS242_ENABLE_CENTRAL=false;
- window.HYS242_DEPLOYMENT_READY=false;
- window.HYS243_PREVIEW_ONLY=true;
-}
+/* v277 · Prepublicación real: sin cuentas ficticias, simuladores ni accesos automáticos.
+   El login siempre utiliza Supabase Auth y los permisos existentes del servidor. */
+window.HYS266_PREVIEW_ONLY=false;
+window.HYS265_PREVIEW_ONLY=false;
+window.HYS265_LAB_MODE=false;
+window.HYS266_LAB_MODE=false;
+window.HYS263_SANDBOX=false;
+window.HYS243_PREVIEW_ONLY=false;
 </script>
 <script src="access-policy-v256.js"></script>
 <script src="access-settings-v259.js"></script>
@@ -442,7 +436,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v276 · Desarrollo</div>
+    <div class="chooser-kicker">Reportes H y S · v277 · Prepublicación</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
@@ -1443,7 +1437,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 })();
 
 </script>
-<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v266-punto3-01"><script src="worker-model-v265.js?build=v266-punto3-01"></script><script src="credentials-v274.js?build=v274-password-01"></script><script src="backend-simulador-v263.js?build=v266-punto3-01"></script><script src="gestion-usuarios-v265.js?build=v267-roles-05"></script><script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v266-punto3-01"><script src="worker-model-v265.js?build=v266-punto3-01"></script><script src="credentials-v274.js?build=v274-password-01"></script><script src="gestion-usuarios-v265.js?build=v267-roles-05"></script><script>
 /* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
 /* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
    Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
@@ -1512,7 +1506,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});
  else mount();
 })();
-</script><script src="vista-completa-preview-v265.js?build=v266-punto3-01"></script><script src="areas-opciones-qa-v265.js?build=v266-punto3-01"></script><link rel="stylesheet" href="verificacion-punto3-v266.css?build=v266-punto3-01"><script src="verificacion-punto3-v266.js?build=v266-punto3-01"></script><script src="qa-sesion-v276.js?build=v276-qa-01"></script></body></html>
+</script></body></html>
 
 
 
