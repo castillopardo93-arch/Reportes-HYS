@@ -119,3 +119,17 @@
     white-space:nowrap;overflow-wrap:normal;font-size:12px;
   }
 }
+
+/* v274: métodos de creación y entrega de contraseña temporal */
+#hys265UsersPanel .hys274-credential{display:grid;gap:10px;background:#f5faff;border-color:#a8cce6}
+#hys265UsersPanel .hys274-credential input{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:15px;letter-spacing:.03em;overflow-wrap:anywhere}
+#hys265UsersPanel .hys274-credential input[readonly]{background:#eaf3fc;color:#153e64;font-weight:700}
+#hys265UsersPanel .hys274-credential .hys265-inline{margin-top:4px}
+#hys265UsersPanel .hys274-delivery{max-width:740px;margin:20px auto;border-color:#91b8d8}
+#hys265UsersPanel .hys274-delivery input[readonly]{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eaf3fc;font-size:16px;font-weight:700}
+@media(max-width:760px){
+ #hys265UsersPanel .hys274-credential .hys265-inline{flex-direction:column;align-items:stretch}
+ #hys265UsersPanel .hys274-credential .hys265-inline .btn{width:100%}
+ #hys265UsersPanel .hys274-delivery .hys265-inline{flex-direction:column;align-items:stretch}
+ #hys265UsersPanel .hys274-delivery .hys265-inline .btn{width:100%}
+}
