@@ -92,3 +92,8 @@ Las capturas mostraron la banda lateral sin Apariencia y la pantalla de Áreas m
 ### Ajuste visual solicitado: eliminar barra bajo Apariencia (misma v265)
 
 Se eliminó la cinta de desplazamiento visible bajo el botón Apariencia del menú lateral del Administrador general. En escritorio `#hysToolsOptions` conserva desplazamiento vertical interno si la pantalla es baja, pero previene desbordamiento horizontal y oculta las barras; los botones se ajustan a la anchura de la banda. En móvil se mantiene desplazamiento horizontal táctil para acceder a todas las herramientas sin presentar una barra visible. Se conservan el botón Apariencia al pie y la pantalla original de configuración. Se actualizó únicamente la referencia de caché de `gestion-usuarios-v265.css` en `index.html`. **12/12 comprobaciones estáticas aprobadas**, incluyendo compatibilidad de los dos módulos y compilación de los 47 scripts integrados. No se realizó validación visual final de navegador. No se cambió ningún sistema de datos ni se crearon versiones nuevas.
+
+
+### Ajuste visual de tarjetas de la banda lateral (misma v265)
+
+Se ajustaron únicamente textos y CSS del menú Administrador general: Gestión de usuarios, Áreas y opciones, Seguimiento y Apariencia aparecen en una sola línea al expandir la banda. Se aumenta el ancho expandido de 232 a 276 px y se amplían espacios internos, separación de iconos y altura de botones. La vista contraída conserva rótulos breves y la vista móvil conserva acceso horizontal. No se cambiaron funciones, tarjetas APR/OTROS, pantallas de formularios ni lógica de producción. **16/16 verificaciones estáticas correctas** y 47 scripts integrados con sintaxis válida. Pendiente validación visual por el usuario. 
