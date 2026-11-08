@@ -1,4 +1,4 @@
-/* v262 · Desarrollo aislado: edición de pruebas local, sin escritura central.
+/* v263 · Desarrollo aislado: edición de pruebas local, sin escritura central.
  * Las facultades se consultan en Supabase (solo lectura) durante el inicio de sesión.
  * No desplegar operaciones reales ni interpretar un borrador local como informe enviado.
  */
@@ -14,3 +14,6 @@ window.HYS261_ATOMIC_FACULTIES_READY=false;
 
 // La transición de rol junto a facultades requiere transacción de servidor; no se activa aquí.
 window.HYS262_ATOMIC_ROLE_READY=false;
+
+// Las escrituras de producción siguen bloqueadas. La demo usa exclusivamente mocks locales.
+window.HYS263_SANDBOX=false;
