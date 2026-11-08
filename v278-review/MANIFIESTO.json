@@ -278,9 +278,12 @@
     "reasignacion_automatica_de_compromisos": false,
     "funciones_de_laboratorio_cargadas": false,
     "ninguna_cuenta_modificada_por_esta_implementacion": true,
-    "pruebas_con_cliente_simulado": 12,
+    "pruebas_con_cliente_simulado": 14,
     "pruebas_sintaxis_js": true,
     "pruebas_e2e_con_cuentas_reales": false,
-    "pruebas_visual_navegador": false
+    "pruebas_visual_navegador": false,
+    "solicitud_eliminacion_auditada_sin_borrado": true,
+    "validacion_acceso_authenticado_confirmada": true,
+    "ambitos_v242_sin_valores_invalidos_confirmados": true
   }
 }
