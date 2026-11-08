@@ -69,6 +69,12 @@ function validConfiguration(role,ambitos,grants,areas){
   if(a.editar!==true&&a.editar!==false)errors.push('Indica acceso de edición en '+m);
  }
  if(role!=='administrador_area'&&modules.some(m=>Object.values(grants?.[m]?.facultades||{}).some(Boolean)))errors.push('Los roles no administradores no tienen facultades especiales');
+ const requireView=['pdf','review','approve','close','editOthers'];
+ for(const m of modules){
+  const scope=grants?.[m]?.facultades||{};
+  if(ambitos?.[m]?.ver!==true&&Object.values(scope).some(Boolean))errors.push('No puedes conceder facultades de una tarjeta deshabilitada');
+  if(requireView.some(k=>scope[k]===true)&&scope.view!==true)errors.push('Las facultades de revisar, cerrar y editar informes requieren Consultar informes');
+ }
  for(const m of modules)for(const id of grants?.[m]?.areas_ids||[]){
   if(!ambitos?.[m]?.areas?.includes(id))errors.push('Facultad fuera del ámbito '+m);
  }
