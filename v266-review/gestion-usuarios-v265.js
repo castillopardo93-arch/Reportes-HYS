@@ -206,6 +206,12 @@ function renderWizard(target){
  if(state.step===3)stepRoles(pane);
  if(state.step===4)stepSpecial(pane);
  if(state.step===5)stepReview(pane);
+ const errorBox=element('div',undefined,'hys266-step-error');
+ errorBox.id='hys266StepError';
+ errorBox.hidden=true;
+ errorBox.setAttribute('role','alert');
+ errorBox.setAttribute('aria-live','assertive');
+ main.append(errorBox);
  const foot=element('div',undefined,'hys265-footer');
  foot.append(action('Descartar',()=>{if(!abandon())return;state.tab='directory';state.dirty=false;render()}));
  if(state.step>1)foot.append(action('Anterior',()=>{state.step--;render()}));
@@ -243,6 +249,47 @@ function stepWorker(p){
  grid.append(selectField('preferencia_contacto','Preferencia de contacto',[['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular']]));
  p.append(grid);
  p.append(element('p','Se requerirá al menos un correo válido. El correo de inicio de sesión será preferentemente el corporativo.','hys265-muted'));
+ if(lab){
+  const preview=element('div',undefined,'hys266-test-shortcut');
+  preview.append(element('p','¿Quieres revisar las pantallas sin escribir toda la ficha? Utiliza datos completamente ficticios. No se creará ninguna cuenta hasta el último paso.','hys265-muted'));
+  preview.append(action('Completar con datos ficticios',()=>fillSampleWorker(),'btn'));
+  p.prepend(preview);
+ }
+}
+function sampleRut266(){
+ const used=new Set(state.users.map(u=>W.rutParts(u.trabajador?.rut||'')?.normalized).filter(Boolean));
+ let body=98000000+(labApi?.get()?.rev||0)+1;
+ for(let n=0;n<10000;n++,body++){
+  const digits=String(body);
+  let sum=0,mult=2;
+  for(let i=digits.length-1;i>=0;i--){sum+=Number(digits[i])*mult;mult=mult===7?2:mult+1}
+  const mod=11-(sum%11),dv=mod===11?'0':mod===10?'K':String(mod),rut=digits+'-'+dv;
+  if(W.validRut(rut)&&!used.has(rut))return rut;
+ }
+ throw Error('No se pudo generar un RUT de prueba disponible');
+}
+function fillSampleWorker(){
+ if(!lab)return;
+ const candidates=state.users.filter(u=>u.activo!==false&&u.usuario_id!==state.selected);
+ if(!candidates.length){showStepError266('No hay supervisores ficticios activos. Crea primero una cuenta de prueba con supervisión disponible.');return}
+ const serial=(labApi.get().rev||0)+1,worker=state.draft.worker;
+ Object.assign(worker,{
+  nombre:'Trabajador Ficticio '+serial+' de Prueba',
+  rut:sampleRut266(),
+  cargo:'Capataz de prueba',
+  gerencia:'Gerencia ficticia',
+  empresa:'Empresa de laboratorio',
+  proyecto:'Proyecto simulado',
+  supervisor_id:candidates.find(x=>x.usuario_id==='prueba-supervisor')?.usuario_id||candidates[0].usuario_id,
+  celular:'',
+  correo_personal:'trabajador-'+serial+'@example.test',
+  correo_corporativo:'trabajador.corporativo-'+serial+'@example.test',
+  estado_laboral:'activo',
+  fecha_ingreso:'2026-11-08'
+ });
+ state.draft.cuenta={correo_ingreso:'corporativo',metodo:'invitacion',estado:'pendiente_invitacion'};
+ state.dirty=true;render();
+ notice('Ficha completada con datos FICTICIOS. Ahora puedes pulsar Continuar.');
 }
 function stepAccount(p){
  p.append(element('h3','2. Creación de cuenta'));
@@ -376,8 +423,34 @@ function validateStep(step){
  if(step===4){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
  return '';
 }
+function showStepError266(message){
+ const box=$('hys266StepError');
+ if(box){
+  box.hidden=false;
+  box.replaceChildren();
+  box.append(element('strong','No se puede continuar todavía.'));
+  box.append(element('p',message));
+  box.append(element('p','Completa los datos indicados y vuelve a pulsar Continuar.','hys265-muted'));
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+ notice('Revisa el aviso junto al botón Continuar: '+message,true);
+ if(state.step===1){
+  const checks=[
+   ['nombre',!state.draft.worker.nombre?.trim()],['rut',!W.validRut(state.draft.worker.rut||'')],
+   ['cargo',!state.draft.worker.cargo?.trim()],['gerencia',!state.draft.worker.gerencia?.trim()],
+   ['empresa',!state.draft.worker.empresa?.trim()],['proyecto',!state.draft.worker.proyecto?.trim()],
+   ['supervisor_id',!state.draft.worker.supervisor_id],
+   ['correo_corporativo',!state.draft.worker.correo_corporativo&&!state.draft.worker.correo_personal]
+  ];
+  for(const [key,invalid] of checks){
+   const node=$('hys265StepContent')?.querySelector('[name="'+key+'"]');
+   if(node){node.setAttribute('aria-invalid',invalid?'true':'false');node.classList.toggle('hys266-invalid',Boolean(invalid))}
+  }
+ }
+}
 function goNext(){
- const error=validateStep(state.step);if(error){notice(error,true);return}
+ const error=validateStep(state.step);
+ if(error){showStepError266(error);return}
  state.step=Math.min(5,state.step+1);render();notice('Paso '+state.step+' de 5. Revisa los datos antes de continuar.');
 }
 async function save(){
