@@ -4,7 +4,9 @@
 const text=(v,n=160)=>String(v??'').trim().replace(/[\u0000-\u001f\u007f]/g,' ').slice(0,n);
 const roles=['usuario','supervisor','administrador_area'];
 const modules=['APR','OTROS'];
-const fields=['nombre','rut','cargo','gerencia','supervisor_id','celular','correo_personal','correo_corporativo','empresa','proyecto','fecha_ingreso','estado_laboral','codigo_trabajador','unidad','turno','preferencia_contacto'];
+const fields=['nombre','rut','pais_documento','tipo_documento','cargo','gerencia','supervisor_id','celular','correo_personal','correo_corporativo','empresa','proyecto','fecha_ingreso','estado_laboral','codigo_trabajador','turno','preferencia_contacto'];
+const documentTypes=['rut','ci','dni','pasaporte','otro'];
+const contactPreferences=['corporativo','personal','celular','todas'];
 const rutParts=v=>{
  const raw=text(v,24).toUpperCase().replace(/[.\s-]/g,'');
  if(!/^\d{7,8}[0-9K]$/.test(raw))return null;
@@ -15,25 +17,47 @@ const rutParts=v=>{
  return {body,dv,valid:dv===expected,normalized:body+'-'+dv,display:body.replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'-'+dv};
 };
 const validRut=v=>rutParts(v)?.valid===true;
+function normalizeDocument(value,pais,tipo){
+ const raw=text(value,50).toUpperCase();
+ if(tipo==='rut'&&pais==='Chile')return rutParts(raw)?.normalized||raw;
+ return raw.replace(/\s+/g,' ').trim();
+}
+function validDocument(value,pais,tipo){
+ if(!text(pais,80)||!documentTypes.includes(tipo))return false;
+ if(tipo==='rut')return pais==='Chile'&&validRut(value);
+ const id=normalizeDocument(value,pais,tipo);
+ return id.length>=3&&id.length<=40&&/^[A-Z0-9][A-Z0-9 .\/-]*$/.test(id)&&/[A-Z0-9]/.test(id);
+}
 const validEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text(v,254));
 const safeEmail=v=>text(v,254).toLowerCase();
 function sanitize(input){
  const x={};
  for(const k of fields)x[k]=text(input?.[k],k.startsWith('correo')?254:k==='nombre'?150:k==='celular'?25:160);
- x.rut=rutParts(x.rut)?.normalized||x.rut;
+ x.pais_documento=x.pais_documento||'Chile';
+ x.tipo_documento=x.tipo_documento||'rut';
+ x.rut=normalizeDocument(x.rut,x.pais_documento,x.tipo_documento);
  x.correo_personal=safeEmail(x.correo_personal);x.correo_corporativo=safeEmail(x.correo_corporativo);
- x.estado_laboral=x.estado_laboral||'activo';x.preferencia_contacto=x.preferencia_contacto||'corporativo';
+ x.codigo_trabajador=x.codigo_trabajador||x.rut;
+ x.estado_laboral=x.estado_laboral||'activo';
+ x.preferencia_contacto=x.preferencia_contacto||'todas';
  return x;
 }
-function validate(input,users=[],currentId=''){
+function validate(input,users=[],currentId='',options={}){
  const w=sanitize(input),errors=[];
- for(const [name,label] of [['nombre','Nombre completo'],['rut','RUT'],['cargo','Cargo'],['gerencia','Gerencia'],['empresa','Empresa empleadora'],['proyecto','Proyecto'],['supervisor_id','Supervisor responsable']])if(!w[name])errors.push(label+' es obligatorio');
- if(w.nombre&&w.nombre.length<5)errors.push('Ingresa el nombre completo y apellidos');
- if(w.rut&&!validRut(w.rut))errors.push('RUT inválido: revisa el dígito verificador');
- if(w.celular&&!/^\+?[0-9][0-9\s-]{7,22}$/.test(w.celular))errors.push('Celular inválido');
+ const required=[['nombre','Nombre completo'],['rut','Número de documento'],['pais_documento','País del documento'],['tipo_documento','Tipo de documento'],['cargo','Cargo'],['gerencia','Gerencia'],['empresa','Empresa empleadora'],['proyecto','Proyecto']];
+ if(!options.allowNoSupervisor)required.push(['supervisor_id','Supervisor responsable']);
+ for(const [key,label]of required)if(!w[key])errors.push(label+' es obligatorio');
+ if(w.nombre&&w.nombre.length<5)errors.push('Ingresa nombre completo y apellidos');
+ if(w.rut&&!validDocument(w.rut,w.pais_documento,w.tipo_documento))
+  errors.push(w.tipo_documento==='rut'?'RUT chileno inválido: revisa el dígito verificador':'Documento inválido para el tipo y país indicados');
+ if(w.celular&&!/^\+?[0-9][0-9\s()-]{5,24}$/.test(w.celular))errors.push('Celular inválido');
  if(w.correo_personal&&!validEmail(w.correo_personal))errors.push('Correo personal inválido');
  if(w.correo_corporativo&&!validEmail(w.correo_corporativo))errors.push('Correo corporativo inválido');
- if(!w.correo_corporativo&&!w.correo_personal)errors.push('Indica al menos un correo para el inicio de sesión');
+ if(!w.correo_corporativo&&!w.correo_personal)errors.push('Registra al menos un correo corporativo o personal');
+ if(!contactPreferences.includes(w.preferencia_contacto))errors.push('Preferencia de contacto inválida');
+ if(w.preferencia_contacto==='corporativo'&&!w.correo_corporativo)errors.push('La preferencia corporativa requiere correo corporativo');
+ if(w.preferencia_contacto==='personal'&&!w.correo_personal)errors.push('La preferencia personal requiere correo personal');
+ if(w.preferencia_contacto==='celular'&&!w.celular)errors.push('La preferencia de celular requiere un número registrado');
  if(!['activo','suspendido','desvinculado'].includes(w.estado_laboral))errors.push('Estado laboral inválido');
  if(w.fecha_ingreso){
   const validDate=/^\d{4}-\d{2}-\d{2}$/.test(w.fecha_ingreso)
@@ -41,25 +65,27 @@ function validate(input,users=[],currentId=''){
    &&new Date(w.fecha_ingreso+'T12:00:00Z').toISOString().slice(0,10)===w.fecha_ingreso;
   if(!validDate)errors.push('Fecha de ingreso inválida');
  }
+ if(Array.isArray(options.turnos)&&options.turnos.length&&w.turno&&!options.turnos.includes(w.turno))
+  errors.push('Selecciona un turno habilitado en Áreas y opciones');
  if(w.supervisor_id===currentId&&currentId)errors.push('Una persona no puede supervisarse a sí misma');
- if(!users.some(u=>u.usuario_id===w.supervisor_id&&u.usuario_id!==currentId&&u.activo!==false))errors.push('Selecciona un supervisor responsable registrado y activo');
- // Evitar ciclos en la futura jerarquía: A supervisa B y B no puede supervisar A.
- if(w.supervisor_id){
-  const byId=new Map(users.map(u=>[u.usuario_id,u]));
-  const visited=new Set();let next=w.supervisor_id;
-  while(next){
-   if(next===currentId&&currentId){errors.push('El supervisor elegido generaría un ciclo en el organigrama');break}
-   if(visited.has(next)){errors.push('La cadena de supervisión elegida ya contiene un ciclo');break}
-   if(!byId.has(next))break;
-   visited.add(next);
-   next=byId.get(next)?.trabajador?.supervisor_id||'';
-  }
+ if(w.supervisor_id&&!users.some(u=>u.usuario_id===w.supervisor_id&&u.usuario_id!==currentId&&u.activo!==false))
+  errors.push('Selecciona un supervisor responsable registrado y activo');
+ const byId=new Map(users.map(u=>[u.usuario_id,u]));let next=w.supervisor_id;
+ const visited=new Set();
+ while(next){
+  if(next===currentId&&currentId){errors.push('El supervisor elegido generaría un ciclo en el organigrama');break}
+  if(visited.has(next)){errors.push('La cadena de supervisión ya contiene un ciclo');break}
+  if(!byId.has(next))break;
+  visited.add(next);next=byId.get(next)?.trabajador?.supervisor_id||'';
  }
  for(const u of users){
   if(u.usuario_id===currentId)continue;
-  if(validRut(u.trabajador?.rut||'')&&rutParts(u.trabajador.rut)?.normalized===w.rut)errors.push('Ya existe otro trabajador con ese RUT');
-  const emails=[u.trabajador?.correo_corporativo,u.trabajador?.correo_personal,u.email].filter(Boolean).map(safeEmail);
-  if(w.correo_corporativo&&emails.includes(w.correo_corporativo)||w.correo_personal&&emails.includes(w.correo_personal))errors.push('El correo ya está vinculado a otra cuenta');
+  const other=sanitize(u.trabajador||{});
+  if(other.rut&&other.pais_documento===w.pais_documento&&other.rut===w.rut)
+   errors.push('Ya existe una persona con ese documento y país');
+  const emails=[other.correo_corporativo,other.correo_personal,u.email].filter(Boolean).map(safeEmail);
+  if(w.correo_corporativo&&emails.includes(w.correo_corporativo)||w.correo_personal&&emails.includes(w.correo_personal))
+   errors.push('El correo ya está vinculado a otra cuenta');
  }
  return {ok:errors.length===0,errors,worker:w};
 }
@@ -114,7 +140,7 @@ function validConfiguration(role,ambitos,grants,areas){
 const auditSafe=w=>{const x=sanitize(w);return {
  nombre:x.nombre,cargo:x.cargo,gerencia:x.gerencia,empresa:x.empresa,proyecto:x.proyecto,
  supervisor_id:x.supervisor_id,estado_laboral:x.estado_laboral,fecha_ingreso:x.fecha_ingreso,
- unidad:x.unidad,turno:x.turno,codigo_trabajador:x.codigo_trabajador,
+ turno:x.turno,documento_registrado:Boolean(x.rut),pais_documento:x.pais_documento,tipo_documento:x.tipo_documento,codigo_interno_registrado:Boolean(x.codigo_trabajador),preferencia_contacto:x.preferencia_contacto,
  rut_registrado:Boolean(x.rut),celular_registrado:Boolean(x.celular),
  correo_personal_registrado:Boolean(x.correo_personal),correo_corporativo_registrado:Boolean(x.correo_corporativo)
 };};
@@ -142,7 +168,7 @@ const blankGrants=(ambitos)=>Object.fromEntries(modules.map(m=>[m,{areas_ids:amb
 function transition(oldRole,nextRole,grantDraft,ambitos){
  return oldRole===nextRole?grantDraft:blankGrants(ambitos);
 }
-const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,validate,validateAccount,validConfiguration,auditSafe,redactAudit,identityEmail,blankGrants,transition};
+const api={text,roles,modules,fields,documentTypes,contactPreferences,rutParts,validRut,validDocument,normalizeDocument,validEmail,sanitize,validate,validateAccount,validConfiguration,auditSafe,redactAudit,identityEmail,blankGrants,transition};
 if(typeof module==='object'&&module.exports)module.exports=api;
 else root.Hys265WorkerModel=api;
 })(typeof window==='object'?window:globalThis);
