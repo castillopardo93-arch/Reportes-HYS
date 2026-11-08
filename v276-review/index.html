@@ -295,7 +295,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 /* V273: QA EXCLUSIVAMENTE en copias de desarrollo explícitamente permitidas.
  * Nunca se activa en producción ni sin ?qa=1. */
 window.HYS266_PREVIEW_ONLY=location.hostname==='raw.githack.com'
-  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review)\/index\.html$/.test(location.pathname)
+  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review|v276-review)\/index\.html$/.test(location.pathname)
   &&new URLSearchParams(location.search).get('qa')==='1';
 window.HYS265_PREVIEW_ONLY=window.HYS266_PREVIEW_ONLY;
 if(window.HYS266_PREVIEW_ONLY){
@@ -385,6 +385,9 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 #authGate #authRecover,#authGate #authChangeStart{margin:0;background:#eef5fc;color:#17578c;text-decoration:none;min-height:44px}
 #authGate .auth-assist button:hover{background:#e0effc}
 #authGate .auth-assist button[hidden]{display:none!important}
+#authGate #authQaLogin276[hidden],#authGate #authQaHelp276[hidden]{display:none!important}
+#authGate #authQaLogin276{margin:9px 0 5px;background:#186496;border-color:#186496;color:#fff;font-weight:800}
+#authGate #authQaHelp276{border-left:3px solid #246a9f;background:#f0f7ff;padding:10px 12px;border-radius:8px}
 #authGate #authChangeForm[hidden]{display:none!important}
 #authGate .auth-change-hint{font-size:13px;line-height:1.5;color:#536d83;margin:10px 0}
 #authGate #authChangeForm .auth-field{margin:12px 0}
@@ -439,7 +442,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v275 · Desarrollo</div>
+    <div class="chooser-kicker">Reportes H y S · v276 · Desarrollo</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
@@ -1509,7 +1512,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});
  else mount();
 })();
-</script><script src="vista-completa-preview-v265.js?build=v266-punto3-01"></script><script src="areas-opciones-qa-v265.js?build=v266-punto3-01"></script><link rel="stylesheet" href="verificacion-punto3-v266.css?build=v266-punto3-01"><script src="verificacion-punto3-v266.js?build=v266-punto3-01"></script><script>window.Hys275Password?.openDemo?.();</script></body></html>
+</script><script src="vista-completa-preview-v265.js?build=v266-punto3-01"></script><script src="areas-opciones-qa-v265.js?build=v266-punto3-01"></script><link rel="stylesheet" href="verificacion-punto3-v266.css?build=v266-punto3-01"><script src="verificacion-punto3-v266.js?build=v266-punto3-01"></script><script src="qa-sesion-v276.js?build=v276-qa-01"></script></body></html>
 
 
 
