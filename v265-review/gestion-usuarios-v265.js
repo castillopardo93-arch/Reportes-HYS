@@ -51,7 +51,7 @@ document.body.append(panel);
 const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0};
 const notice=(msg,warning=false)=>{const e=$('hys265Notice');e.textContent=msg;e.dataset.warning=warning?'true':'false'};
 const userName=id=>state.users.find(x=>x.usuario_id===id)?.nombre||id||'Sin registro';
-function isGlobal(){const a=root.__REPORTES_HYS_ACCESS__;return lab||a?.profile?.activo===true&&a.profile.rol==='administrador_global'}
+function isGlobal(){const a=root.__REPORTES_HYS_ACCESS__;return a?.profile?.activo===true&&a.profile.rol==='administrador_global'}
 function showInRail(){const a=root.__REPORTES_HYS_ACCESS__;return isGlobal()&&!a?.selectedModule&&document.body.classList.contains('module-choice')}
 function newButton(id,icon,label,full){
  const b=document.createElement('button');b.id=id;b.type='button';b.className='hys-admin-open';b.hidden=!showInRail();
