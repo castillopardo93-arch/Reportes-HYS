@@ -6,7 +6,7 @@
 'use strict';
 if(window.__REPORTES_HYS_OTROS_EMBEDDED__||!document.getElementById('hysToolsOptions'))return;
 const $=id=>document.getElementById(id);
-const C=window.Hys259Access, A=window.Hys256Access, F=window.Hys261FacultyModel, M=C.modules;
+const C=window.Hys259Access, A=window.Hys256Access, F=window.Hys261FacultyModel, R=window.Hys262Roles, M=C.modules;
 const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',editOthers:'Modificar informes ajenos con motivo',areas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
 const dependent=['pdf','review','approve','close','editOthers'];
 const access=()=>window.__REPORTES_HYS_ACCESS__;
@@ -18,16 +18,16 @@ const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=
 const roleLabel=r=>({administrador_global:'Administrador general',administrador_area:'Administrador',supervisor:'Supervisor',usuario:'Usuario'}[r]||r||'Sin rol');
 const panel=el('section');panel.id='facultadesPanel242';panel.hidden=true;
 panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','facultadesTitle242');
-panel.innerHTML='<div class="management-shell faculty-shell259"><header class="management-head"><div><h1 id="facultadesTitle242">Facultades de acceso</h1><p>Una persona, dos tarjetas y una sola ficha para todas las autorizaciones.</p></div><button class="btn" type="button" id="facultadesClose242">Cerrar</button></header><p id="facultadesStatus242" role="status" aria-live="polite"></p><section id="facultyDirectory261"><div class="faculty-directory-head261"><div><h2>Usuarios autorizados</h2><p>Selecciona una cuenta para configurar sus tarjetas, areas y atribuciones.</p></div><button type="button" class="btn" id="facultyRefresh261">Actualizar</button></div><div class="faculty-directory-filters261"><label>Buscar persona<input type="search" id="facultySearch261" placeholder="Nombre o rol…"></label><label>Acceso actual<select id="facultyFilter261"><option value="">Todas las cuentas</option><option value="APR">Prevencionista de riesgos</option><option value="OTROS">Supervisores, capataces y otros</option><option value="BOTH">Ambas tarjetas</option><option value="NONE">Sin tarjetas</option></select></label></div><p id="facultyDirectoryCount261" class="faculty-directory-count261"></p><div id="facultyDirectoryRows261"></div></section><section id="facultyDetail261" hidden><div class="faculty-detail-head261"><button id="facultyBack261" class="btn" type="button">Volver a usuarios</button><div><h2 id="facultyAccountName261"></h2><p id="facultyAccountRole261"></p></div></div><form id="facultadesForm242"><section class="faculty-card259"><h2>1. Tarjetas y áreas permitidas</h2><p>Cada tarjeta se configura de forma independiente. Todas las áreas incluye solo las áreas activas autorizadas actualmente.</p><div id="facultyCards261"></div></section><section class="faculty-card259" id="facultySpecial261" hidden><h2>2. Facultades especiales del Administrador</h2><p>Estas atribuciones se asignan por tarjeta y solo dentro de las áreas permitidas. No se duplican en Usuarios.</p><div id="facultySpecialCards261"></div></section><section class="faculty-card259"><h2 id="facultySummaryTitle261">Resumen antes de guardar</h2><div id="facultySummary261" aria-live="polite"></div><label>Motivo del cambio<input id="facultadesReason242" maxlength="500" required placeholder="Describe la razón de esta autorización…"></label><div class="faculty-actions259"><button class="btn primary" id="facultadesSave242" type="submit">Guardar facultades</button><button class="btn" type="button" id="facultyReset261">Descartar cambios</button></div><p id="facultySafety261">Los cambios deben confirmarse por el servidor y registrarse en auditoria. Esta copia de desarrollo no modifica produccion.</p></section></form></section></div>';
+panel.innerHTML='<div class="management-shell faculty-shell259"><header class="management-head"><div><h1 id="facultadesTitle242">Facultades de acceso</h1><p>Una persona, dos tarjetas y una sola ficha para todas las autorizaciones.</p></div><button class="btn" type="button" id="facultadesClose242">Cerrar</button></header><p id="facultadesStatus242" role="status" aria-live="polite"></p><section id="facultyDirectory261"><div class="faculty-directory-head261"><div><h2>Usuarios autorizados</h2><p>Selecciona una cuenta para configurar sus tarjetas, areas y atribuciones.</p></div><button type="button" class="btn" id="facultyRefresh261">Actualizar</button></div><div class="faculty-directory-filters261"><label>Buscar persona<input type="search" id="facultySearch261" placeholder="Nombre o rol…"></label><label>Acceso actual<select id="facultyFilter261"><option value="">Todas las cuentas</option><option value="APR">Prevencionista de riesgos</option><option value="OTROS">Supervisores, capataces y otros</option><option value="BOTH">Ambas tarjetas</option><option value="NONE">Sin tarjetas</option></select></label></div><p id="facultyDirectoryCount261" class="faculty-directory-count261"></p><div id="facultyDirectoryRows261"></div></section><section id="facultyDetail261" hidden><div class="faculty-detail-head261"><button id="facultyBack261" class="btn" type="button">Volver a usuarios</button><div><h2 id="facultyAccountName261"></h2><p id="facultyAccountRole261"></p></div></div><form id="facultadesForm242"><section class="faculty-card259" id="facultyRoleCard262"><h2>1. Rol de la persona</h2><p>El Administrador general puede elegir Usuario, Supervisor o Administrador. Las atribuciones especiales solo se mostrarán para Administrador.</p><label>Rol asignado<select id="facultyRole262" aria-label="Rol de la persona"></select></label><p id="facultyRoleMessage262" class="faculty-role-message262"></p></section><section class="faculty-card259"><h2>2. Tarjetas y áreas permitidas</h2><p>Cada tarjeta se configura de forma independiente. Todas las áreas incluye solo las áreas activas autorizadas actualmente.</p><div id="facultyCards261"></div></section><section class="faculty-card259" id="facultySpecial261" hidden><h2>3. Facultades especiales del Administrador</h2><p>Estas atribuciones se asignan por tarjeta y solo dentro de las áreas permitidas. No se duplican en Usuarios.</p><div id="facultySpecialCards261"></div></section><section class="faculty-card259"><h2 id="facultySummaryTitle261">Resumen antes de guardar</h2><div id="facultySummary261" aria-live="polite"></div><label>Motivo del cambio<input id="facultadesReason242" maxlength="500" required placeholder="Describe la razón de esta autorización…"></label><div class="faculty-actions259"><button class="btn primary" id="facultadesSave242" type="submit">Guardar facultades</button><button class="btn" type="button" id="facultyReset261">Descartar cambios</button></div><p id="facultySafety261">Los cambios deben confirmarse por el servidor y registrarse en auditoria. Esta copia de desarrollo no modifica produccion.</p></section></form></section></div>';
 document.body.append(panel);
 const button=el('button','hys-admin-open');button.type='button';button.hidden=true;button.title='Facultades de acceso';
 button.innerHTML='<span class="tools-option-icon" aria-hidden="true">⚿</span><span class="tools-option-label">Facultades</span><span class="tools-option-full">Facultades de acceso</span>';
 $('hysToolsOptions').append(button);
-let seq=0,busy=false,users=[],account=null,areaRows=[],originalFac={},draftFac={},draftAccess={},baseline='',areaMode={},searchAreas={};
+let seq=0,busy=false,users=[],account=null,areaRows=[],originalFac={},draftFac={},draftAccess={},draftRole='',baseline='',areaMode={},searchAreas={};
 const status=msg=>{$('facultadesStatus242').textContent=msg};
-const signature=()=>C.stable({a:draftAccess,f:draftFac});
+const signature=()=>C.stable({a:draftAccess,f:draftFac,role:draftRole});
 const discard=()=>!account||baseline===signature()||confirm('Hay facultades sin guardar. ¿Deseas descartarlas?');
-const isAdminTarget=()=>isGlobal()&&account?.rol==='administrador_area';
+const isAdminTarget=()=>isGlobal()&&draftRole==='administrador_area';
 function enabled(m){return draftAccess[m]?.ver===true}
 function currentAreas(m){return F.unique(draftAccess[m]?.areas)}
 function allowedAreas(m){return F.availableAreas(areaRows,m,canArea)}
@@ -86,7 +86,21 @@ function renderAreaSelector(m,host){
  input.oninput=()=>{searchAreas[m]=input.value;paintList()};
  chooser.append(tools,list);host.append(chooser);paintList();
 }
-function renderCards(){
+function renderRole(){
+  if(!account)return;
+  const field=$('facultyRole262');field.replaceChildren();
+  const canChange=R.mayChangeRole(access(),account);
+  for(const choice of R.roles){
+   const option=new Option(choice.label,choice.value);
+   field.add(option);
+  }
+  field.value=draftRole;
+  field.disabled=busy||!canChange;
+  $('facultyRoleMessage262').textContent=R.roleChanged(account,draftRole)
+   ?'Cambio de rol pendiente: '+roleLabel(account.rol)+' → '+roleLabel(draftRole)+'. No se modificará la cuenta hasta que un servicio transaccional confirme todos los permisos.'
+   :'El rol actual se conserva. Las tarjetas y áreas pueden seleccionarse por separado.';
+ }
+ function renderCards(){
  const host=$('facultyCards261');host.replaceChildren();if(!account)return;
  for(const m of M){
   const card=el('article','faculty-module261'+(enabled(m)?' faculty-module-enabled261':''));
@@ -131,7 +145,7 @@ function renderSpecial(){
 }
 function renderSummary(){
  const host=$('facultySummary261');host.replaceChildren();if(!account)return;
- const summaries=F.summarize(draftAccess,draftFac,areaRows,C.label,canArea,areaMode);
+ const summaries=F.summarize(draftAccess,isAdminTarget()?draftFac:{},areaRows,C.label,canArea,areaMode);
  for(const item of summaries){
   const line=el('div','faculty-summary-line261');
   const label=el('div');label.append(el('strong',null,item.title));
@@ -140,10 +154,11 @@ function renderSummary(){
   line.append(label,el('span','faculty-summary-state261',item.enabled?'Habilitada':'Sin acceso'));host.append(line);
  }
  const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
- const changed=steps.length>0;
- const msg=el('p','faculty-summary-result261',changed?steps.length+' operación(es) pendientes de confirmar con el servidor.':'Sin cambios respecto de la configuracion cargada.');
+ const roleWasChanged=R.roleChanged(account,draftRole);
+ const changed=steps.length>0||roleWasChanged;
+ const msg=el('p','faculty-summary-result261',changed?(roleWasChanged?'Cambio de rol'+(steps.length?' y '+steps.length+' operación(es) de permisos':'')+' pendientes de confirmación.':steps.length+' operación(es) pendientes de confirmar con el servidor.'):'Sin cambios respecto de la configuración cargada.');
  host.append(msg);
- const special=$('facultySpecial261');$('facultySummaryTitle261').textContent=isAdminTarget()?'3. Revisar y guardar':'2. Revisar y guardar';
+ const special=$('facultySpecial261');$('facultySummaryTitle261').textContent=isAdminTarget()?'4. Revisar y guardar':'3. Revisar y guardar';
  $('facultySafety261').textContent=window.HYS261_ATOMIC_FACULTIES_READY===true?'Los cambios se enviaran al servicio transaccional cuando se habilite la gestion real.':'Modo de revision: las operaciones multiples esperan un servicio transaccional para impedir permisos parciales; no se escriben datos desde esta copia.';
  paintControls();
 }
@@ -187,7 +202,7 @@ async function loadDirectory(openUid){
  }catch(e){if(n===seq){showDirectory();status('No se pudo consultar: '+e.message)}}finally{if(n===seq)setBusy(false)}
 }
 function showDirectory(){
- account=null;baseline='';$('facultyDirectory261').hidden=false;$('facultyDetail261').hidden=true;
+ account=null;draftRole='';baseline='';$('facultyDirectory261').hidden=false;$('facultyDetail261').hidden=true;
 }
 async function loadAccount(uid){
  const n=++seq,actor=access()?.userId;
@@ -199,10 +214,10 @@ async function loadAccount(uid){
   users=(r.data||[]).filter(u=>u.usuario_id!==actor&&u.rol!=='administrador_global');
   const u=users.find(x=>x.usuario_id===uid);if(!u)throw Error('La cuenta esta protegida o ya no pertenece a tu ámbito');
   const queries=[window.reportesHysSupabase.from('areas_trabajo_v242').select('id,nombre,activa,modulo').in('modulo',M).order('nombre')];
-  if(isGlobal()&&u.rol==='administrador_area')queries.push(window.reportesHysSupabase.from('facultades_v242').select('*').eq('usuario_id',uid));
+  if(isGlobal())queries.push(window.reportesHysSupabase.from('facultades_v242').select('*').eq('usuario_id',uid));
   const result=await Promise.all(queries);if(result.some(x=>x.error))throw result.find(x=>x.error).error;
   if(n!==seq||actor!==access()?.userId||!canManage())return;
-  account=u;areaRows=result[0].data||[];originalFac=Object.fromEntries((result[1]?.data||[]).map(f=>[f.modulo,f]));
+  account=u;draftRole=u.rol;areaRows=result[0].data||[];originalFac=Object.fromEntries((result[1]?.data||[]).map(f=>[f.modulo,f]));
   draftAccess=C.clone(u.ambitos||{});draftFac={};
   for(const m of M){
    const fac=originalFac[m];
@@ -215,7 +230,7 @@ async function loadAccount(uid){
   $('facultyAccountRole261').textContent=roleLabel(u.rol)+' · '+(u.activo?'Cuenta activa':'Cuenta inactiva');
   $('facultadesReason242').value='';
   $('facultyDirectory261').hidden=true;$('facultyDetail261').hidden=false;
-  renderCards();renderSpecial();renderSummary();
+  renderRole();renderCards();renderSpecial();renderSummary();
   status('Facultades cargadas. Ambas tarjetas pueden configurarse desde esta ficha.');
  }catch(e){if(n===seq){showDirectory();status('No se pudo abrir la ficha: '+e.message)}}finally{if(n===seq){setBusy(false);if(account){renderCards();renderSpecial();renderSummary()}}}
 }
@@ -227,10 +242,20 @@ button.onclick=()=>openFor();window.Hys242Facultades={openFor};
 $('facultySearch261').oninput=renderDirectory;$('facultyFilter261').onchange=renderDirectory;
 $('facultyRefresh261').onclick=()=>loadDirectory();
 $('facultyBack261').onclick=()=>{if(!discard())return;showDirectory();renderDirectory();status('Selecciona otro usuario para administrar sus facultades.')};
+$('facultyRole262').onchange=()=>{
+ if(!account)return;
+ const next=$('facultyRole262').value;
+ if(!R.validRole(next)||!R.mayChangeRole(access(),account)){
+  $('facultyRole262').value=draftRole;status('Solo el Administrador general puede modificar el rol de esta cuenta.');return;
+ }
+ draftRole=next;
+ renderRole();renderSpecial();renderSummary();
+ status(R.roleChanged(account,draftRole)?'Cambio de rol sin guardar; confirma también tarjetas, áreas y facultades.':'Rol original restablecido.');
+};
 $('facultyReset261').onclick=()=>{if(!account||!discard())return;loadAccount(account.usuario_id)};
 $('facultadesClose242').onclick=()=>{
  if(busy||!discard())return;
- seq++;panel.hidden=true;showDirectory();users=[];areaRows=[];draftAccess={};draftFac={};originalFac={};button.focus();
+ seq++;panel.hidden=true;showDirectory();users=[];areaRows=[];draftAccess={};draftFac={};draftRole='';originalFac={};button.focus();
 };
 $('facultadesForm242').onsubmit=async event=>{
  event.preventDefault();
@@ -249,8 +274,13 @@ $('facultadesForm242').onsubmit=async event=>{
    status('No tienes atribuciones para modificar facultades especiales de '+C.label(m));return;
   }
  }
+ if(!R.validRole(draftRole)||R.roleChanged(account,draftRole)&&!R.mayChangeRole(access(),account)){status('No autorizado para este cambio de rol.');return}
  const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
- if(!steps.length){status('No hay cambios que guardar.');return}
+ const roleWasChanged=R.roleChanged(account,draftRole);
+ if(!steps.length&&!roleWasChanged){status('No hay cambios que guardar.');return}
+ if(roleWasChanged){
+  status('Cambio de rol protegido: la edición está disponible para revisión, pero el guardado real requiere un RPC atómico que aún no está habilitado. No se modificó el usuario.');return;
+ }
  if(!A.userManagementEnabled()){status('Vista de revision: la gestión remota de usuarios sigue deshabilitada. Ningun permiso fue modificado.');return}
  if(steps.length>1&&window.HYS261_ATOMIC_FACULTIES_READY!==true){
   status('Guardado protegido: estas facultades requieren varias operaciones. No se ejecuta ningun cambio hasta habilitar una operacion transaccional unica en Supabase.');return;
