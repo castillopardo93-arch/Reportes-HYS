@@ -81,12 +81,27 @@ const auditSafe=w=>{const x=sanitize(w);return {
  rut_registrado:Boolean(x.rut),celular_registrado:Boolean(x.celular),
  correo_personal_registrado:Boolean(x.correo_personal),correo_corporativo_registrado:Boolean(x.correo_corporativo)
 };};
+function redactAudit(data){
+ const forbidden=/rut|correo|email|celular|telefono|teléfono|phone|movil|móvil|password|token|secret|clave/i;
+ const seen=new WeakSet();
+ function walk(value){
+  if(Array.isArray(value))return value.map(walk);
+  if(value&&typeof value==='object'){
+   if(seen.has(value))return '[referencia circular]';
+   seen.add(value);
+   return Object.fromEntries(Object.entries(value).map(([key,v])=>
+    [key,forbidden.test(key)?'[dato protegido]':walk(v)]));
+  }
+  return value;
+ }
+ return walk(data);
+}
 const identityEmail=w=>safeEmail(w.correo_corporativo||w.correo_personal);
 const blankGrants=(ambitos)=>Object.fromEntries(modules.map(m=>[m,{areas_ids:ambitos?.[m]?.ver===true?[...(ambitos[m].areas||[])]:[],facultades:{}}]));
 function transition(oldRole,nextRole,grantDraft,ambitos){
  return oldRole===nextRole?grantDraft:blankGrants(ambitos);
 }
-const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,validate,validateAccount,validConfiguration,auditSafe,identityEmail,blankGrants,transition};
+const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,validate,validateAccount,validConfiguration,auditSafe,redactAudit,identityEmail,blankGrants,transition};
 if(typeof module==='object'&&module.exports)module.exports=api;
 else root.Hys265WorkerModel=api;
 })(typeof window==='object'?window:globalThis);
