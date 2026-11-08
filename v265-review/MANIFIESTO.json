@@ -52,11 +52,11 @@
     "faculty-settings-v259.css": "89e3afe149e8906e0e5259a3a6d582efd9538688",
     "finding-detail-v243.css": "3e5c7e6a2a9e80a047c1124e3c5e82232bbe165f",
     "finding-detail-v243.js": "bce57e4ecf6d12f7cfaf02c992b34a2a123fa9ae",
-    "gestion-usuarios-v265.css": "1b29688ac4107246a24720cee4f015da396e2d31",
-    "gestion-usuarios-v265.js": "33cb6addc0de5eb69e539e66238ac664e1c88804",
+    "gestion-usuarios-v265.css": "3a58724b5056ac498335e2c2f85a04afd0fa96c6",
+    "gestion-usuarios-v265.js": "46949f3e2b4bcb754d05abad48fdde4058a04672",
     "inbox-v245.css": "6d53c6122f80d1a13a8e40ad5516fbc94ac56a02",
     "inbox-v245.js": "6c537cc4d5abec75d5bf2293dce7d0e2ae9173dd",
-    "index.html": "28553a184acfa0c43a84e72c95ea4e0607b754cb",
+    "index.html": "ec32a43d325a912092d5a621ea94c9ae231a183f",
     "integrity-v255.js": "d68a34dff716685df9a3130205d9cdc2c39b76b3",
     "laboratorio-backend-v263.js": "ec3ba84e811dc341a74cf2432c905d8a85d04348",
     "laboratorio-integral-v263.html": "a7efb2b98f08c4e69e5646d7ed08cc19b0854873",
@@ -113,6 +113,8 @@
     "verificacion_visual_final": "pendiente",
     "barra_desplazamiento_bajo_apariencia_eliminada": true,
     "comprobaciones_css_y_modulos_aprobadas": 12,
-    "validacion_visual_final": "pendiente"
+    "validacion_visual_final": "pendiente",
+    "rotulos_una_linea_y_mas_espaciados": true,
+    "verificaciones_rotulos_y_ancho": 16
   }
 }
