@@ -52,7 +52,7 @@ const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users
 const notice=(msg,warning=false)=>{const e=$('hys265Notice');e.textContent=msg;e.dataset.warning=warning?'true':'false'};
 const userName=id=>state.users.find(x=>x.usuario_id===id)?.nombre||id||'Sin registro';
 function isGlobal(){const a=root.__REPORTES_HYS_ACCESS__;return lab||a?.profile?.activo===true&&a.profile.rol==='administrador_global'}
-function showInRail(){const a=root.__REPORTES_HYS_ACCESS__;return lab||isGlobal()&&!a?.selectedModule&&document.body.classList.contains('module-choice')}
+function showInRail(){const a=root.__REPORTES_HYS_ACCESS__;return isGlobal()&&!a?.selectedModule&&document.body.classList.contains('module-choice')}
 function newButton(id,icon,label,full){
  const b=document.createElement('button');b.id=id;b.type='button';b.className='hys-admin-open';b.hidden=!showInRail();
  b.innerHTML='<span class="tools-option-icon" aria-hidden="true">'+icon+'</span><span class="tools-option-label">'+label+'</span><span class="tools-option-full">'+full+'</span>';return b;
