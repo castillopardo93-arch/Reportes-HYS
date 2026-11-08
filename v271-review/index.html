@@ -295,7 +295,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 /* V266: QA EXCLUSIVAMENTE en la copia de desarrollo específica.
  * Nunca se activa en producción ni sin ?qa=1. */
 window.HYS266_PREVIEW_ONLY=location.hostname==='raw.githack.com'
-  &&/\/(?:v267-review|v269-review|v270-review)\/index\.html$/.test(location.pathname)
+  &&/\/(?:v267-review|v269-review|v270-review|v271-review)\/index\.html$/.test(location.pathname)
   &&new URLSearchParams(location.search).get('qa')==='1';
 window.HYS265_PREVIEW_ONLY=window.HYS266_PREVIEW_ONLY;
 if(window.HYS266_PREVIEW_ONLY){
@@ -408,7 +408,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v270 · Desarrollo</div>
+    <div class="chooser-kicker">Reportes H y S · v271 · Desarrollo</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
@@ -1408,7 +1408,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 })();
 
 </script>
-<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v266-punto3-01"><script src="worker-model-v265.js?build=v266-punto3-01"></script><script src="backend-simulador-v263.js?build=v266-punto3-01"></script><script src="roles-dinamicos-v267.js?build=v267-roles-05"></script><script src="gestion-usuarios-v265.js?build=v267-roles-05"></script><script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v266-punto3-01"><script src="worker-model-v265.js?build=v266-punto3-01"></script><script src="backend-simulador-v263.js?build=v266-punto3-01"></script><script src="gestion-usuarios-v265.js?build=v267-roles-05"></script><script>
 /* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
 /* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
    Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
