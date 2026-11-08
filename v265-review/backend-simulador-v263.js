@@ -52,7 +52,14 @@
  let state;
  try{state=normalize(JSON.parse(store.getItem(KEY)||'null'))}catch{state=initial()}
  const get=()=>clone(state);
- function persist(next){state=clone(next);store.setItem(KEY,JSON.stringify(state));root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}));}
+ function persist(next){
+  // El commit local se confirma solo después de escribir: sin cuotas o permisos de
+  // almacenamiento no deben mostrarse cambios fantasma como guardados.
+  const snapshot=clone(next),serialized=JSON.stringify(snapshot);
+  try{store.setItem(KEY,serialized)}catch(e){throw Error('No se pudo guardar el laboratorio en este navegador. Exporta un respaldo antes de continuar: '+(e?.message||'almacenamiento no disponible'))}
+  state=snapshot;
+  try{root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}))}catch(e){console.warn('Aviso local no entregado:',e?.message||e)}
+ }
  function write(action,target,apply,motivo){
   const next=get(),value=apply(next);next.rev=(next.rev||0)+1;
   next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500),anterior:value?.audit?.anterior||null,nuevo:value?.audit?.nuevo||null});
