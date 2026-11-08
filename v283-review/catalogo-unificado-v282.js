@@ -14,9 +14,12 @@ const SELECTORS=Object.freeze([
  {id:'owner',title:'Responsables del informe',source:'lista'},
  {id:'otherCategory',title:'Tipo de actividad',source:'lista'},
  {id:'otherStatus',title:'Estado alternativo',source:'lista'},
- {id:'regimen_laboral',title:'Turno habitual (5x2, 4x3, 10x5, 7x7…)',source:'regimen'}
+ {id:'regimen_laboral',title:'Régimen de turno',source:'regimen'}
 ]);
 const byId=Object.freeze(Object.fromEntries(SELECTORS.map(x=>[x.id,x])));
+const REGIMENES_INICIALES_283=Object.freeze(['5X2','4X3','10X5','7X7']);
+const PROYECTO_VIGENTE_283='Proyecto Hidroeléctrico Alto Maipo';
+const PROYECTOS_ANTIGUOS_283=new Set(['PHAM 1','PHAM 2']);
 const $=id=>root.document.getElementById(id);
 const client=()=>root.reportesHysSupabase;
 const general=a=>a?.profile?.activo===true&&a.profile.rol==='administrador_global'&&!!a.userId;
@@ -210,7 +213,7 @@ function create({getAccess,moduleLabel,refreshCatalog}){
   nodes.manageForm242.hidden=tab==='audit';
   nodes.manageNameLabel242.hidden=tab==='audit';
   nodes.hys282Context.textContent=mode==='regimen'
-    ?'Turno habitual de trabajadores (5x2, 4x3, etc.). Catálogo independiente del turno Día/Noche del informe.'
+    ?'Régimen de turno del trabajador. Los valores 5x2, 4x3, 10x5 y 7x7 son opciones independientes y editables una a una cuando el catálogo esté habilitado.'
     :tab==='areas'?'Áreas de trabajo autorizadas para '+moduleLabel(module())+'.'
     :tab==='lists'?'Opciones para '+moduleLabel(module())+' · '+config().title+'.'
     :'Historial de cambios realizados por usuarios autorizados.';
@@ -234,31 +237,78 @@ function create({getAccess,moduleLabel,refreshCatalog}){
   }
   status('Consultando opciones reales de Supabase…');
   try{
-   const [cap,rows]=await Promise.all([
-    backend.capability(),backend.list(tab,module(),sel()).catch(e=>{throw e})
+   const [cap,result]=await Promise.all([
+    backend.capability(),
+    backend.list(tab,module(),sel()).then(rows=>({rows,error:null})).catch(error=>({rows:[],error}))
    ]);
    if(ticket!==seq||panel.hidden)return;
-   permission=cap;
-   loaded=rows;
-   nodes.hys282Create.disabled=!cap.ready||!editable;
-   if(!rows.length)nodes.manageRows242.append(paragraph('No hay registros disponibles para este selector.'));
-   for(const item of rows){
+   if(result.error&&!special)throw result.error;
+   permission={ready:cap.ready&&!result.error};
+   loaded=result.rows;
+   nodes.hys282Create.disabled=!permission.ready||!editable;
+   const isProject=tab==='lists'&&sel()==='project';
+   const existing=result.rows;
+   const historical=isProject?existing.filter(x=>PROYECTOS_ANTIGUOS_283.has(x.valor)):[];
+   const activeRows=isProject?existing.filter(x=>!PROYECTOS_ANTIGUOS_283.has(x.valor)):existing;
+   const pending=[];
+   if(special){
+    for(const code of REGIMENES_INICIALES_283){
+     if(!existing.some(x=>x.codigo===code))pending.push({
+      id:null,codigo:code,activo:false,_pending283:true
+     });
+    }
+   }
+   if(isProject&&!activeRows.some(x=>x.valor===PROYECTO_VIGENTE_283)){
+    pending.push({id:null,valor:PROYECTO_VIGENTE_283,activa:false,_pending283:true});
+   }
+   const shown=[...pending,...activeRows];
+   if(!shown.length)nodes.manageRows242.append(paragraph('No hay registros para este selector.'));
+   function createRow(item,where,isOld=false){
     const entry=root.document.createElement('article');entry.className='manage-row';
+    if(item._pending283)entry.classList.add('hys283-pending');
+    if(isOld)entry.classList.add('hys283-old');
     const name=mode==='area'?item.nombre:mode==='regimen'?item.codigo:item.valor;
     const enabled=mode==='regimen'?item.activo:item.activa;
-    const h=root.document.createElement('strong');h.textContent=name+' · '+(enabled?'Activo':'Desactivado');
+    const h=root.document.createElement('strong');
+    h.textContent=String(mode==='regimen'?name.toLowerCase():name)+(
+     item._pending283?' · pendiente de registrar en Supabase':
+     isOld?' · registro anterior en Supabase':
+     enabled?' · Activo':' · Desactivado'
+    );
     entry.append(h);
-    const edit=root.document.createElement('button');edit.type='button';edit.className='btn';edit.textContent='Editar nombre';
-    edit.disabled=!cap.ready||!editable;
-    edit.onclick=()=>{const value=root.prompt('Nuevo nombre',name);if(value!==null)submit({item,value,active:enabled})};
+    const edit=root.document.createElement('button');edit.type='button';edit.className='btn';
+    edit.textContent=mode==='regimen'?'Editar régimen':'Editar nombre';
+    edit.disabled=!!item._pending283||!permission.ready||!editable||isOld&&!enabled;
+    edit.onclick=()=>{
+     const value=root.prompt(mode==='regimen'?'Modificar régimen de turno (ej. 5x2)':'Nuevo nombre',name);
+     if(value!==null)submit({item,value,active:enabled})
+    };
     const toggle=root.document.createElement('button');toggle.type='button';toggle.className='btn';
-    toggle.textContent=enabled?'Desactivar':'Reactivar';toggle.disabled=!cap.ready||!editable;
+    toggle.textContent=enabled?'Desactivar':'Reactivar';
+    toggle.disabled=!!item._pending283||!permission.ready||!editable||isOld&&!enabled;
     toggle.onclick=()=>submit({item,value:name,active:!enabled});
-    entry.append(edit,toggle);nodes.manageRows242.append(entry);
+    entry.append(edit,toggle);where.append(entry);
    }
-   status(cap.ready
-    ?editable?'Lista actualizada. Puedes crear, editar o desactivar opciones.':'Consulta autorizada. Tu rol no permite modificar este selector.'
-    :cap.reason,!cap.ready);
+   for(const item of shown)createRow(item,nodes.manageRows242);
+   if(historical.length){
+    const old=root.document.createElement('details');old.className='hys283-old-group';
+    const heading=root.document.createElement('summary');
+    heading.textContent='Valores anteriores en Supabase ('+historical.length+'). Revisar para desactivar.';
+    old.append(heading);
+    for(const item of historical)createRow(item,old,true);
+    nodes.manageRows242.append(old);
+   }
+   if(special&&(result.error||pending.length)){
+    status(result.error
+     ?'Régimen de turno: opciones iniciales definidas, pero el catálogo independiente aún no existe en Supabase. Los registros se muestran por separado, pendientes de instalación.'
+     :'Los regímenes pendientes de alta aparecen por separado. Los valores guardados en Supabase sí pueden modificarse cuando el servidor esté autorizado.',true);
+   }else if(isProject&&historical.length){
+    status('El proyecto vigente es «'+PROYECTO_VIGENTE_283+'». Supabase aún contiene '+historical.length+' valores antiguos ('+historical.map(x=>x.valor).join(', ')+'). Deben desactivarse y registrar el vigente al autorizar la sincronización.',true);
+   }else{
+    status(permission.ready
+      ?editable?'Lista actualizada. Puedes crear, editar o desactivar opciones.':'Consulta autorizada. Tu rol no permite modificar este selector.'
+      :cap.reason,!permission.ready);
+   }
   }catch(e){
    if(ticket!==seq||panel.hidden)return;
    nodes.hys282Create.disabled=true;permission={ready:false};
