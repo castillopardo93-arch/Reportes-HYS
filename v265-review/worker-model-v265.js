@@ -46,6 +46,18 @@ function validate(input,users=[],currentId=''){
  }
  return {ok:errors.length===0,errors,worker:w};
 }
+function validateAccount(account,worker,existing=false){
+ const errors=[];
+ const method=account?.metodo||'invitacion';
+ const source=account?.correo_ingreso||'corporativo';
+ const chosen=source==='personal'?worker?.correo_personal:worker?.correo_corporativo;
+ const email=safeEmail(chosen);
+ if(!['invitacion'].includes(method))errors.push('El alta debe realizarse por invitación; no se generan contraseñas temporales');
+ if(!['corporativo','personal'].includes(source))errors.push('Selecciona un correo de ingreso permitido');
+ if(!validEmail(email))errors.push('Selecciona un correo válido en la ficha del trabajador para crear su cuenta');
+ // La simulación no envía invitaciones ni crea credenciales de autenticación.
+ return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado:existing?'sin_cambios':'pendiente_invitacion'}};
+}
 function validConfiguration(role,ambitos,grants,areas){
  const errors=[];
  if(!roles.includes(role))errors.push('Rol no permitido');
@@ -74,7 +86,7 @@ const blankGrants=(ambitos)=>Object.fromEntries(modules.map(m=>[m,{areas_ids:amb
 function transition(oldRole,nextRole,grantDraft,ambitos){
  return oldRole===nextRole?grantDraft:blankGrants(ambitos);
 }
-const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,validate,validConfiguration,auditSafe,identityEmail,blankGrants,transition};
+const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,validate,validateAccount,validConfiguration,auditSafe,identityEmail,blankGrants,transition};
 if(typeof module==='object'&&module.exports)module.exports=api;
 else root.Hys265WorkerModel=api;
 })(typeof window==='object'?window:globalThis);
