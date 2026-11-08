@@ -1,9 +1,9 @@
 {
-  "version": 275,
-  "branch": "desarrollo/v275-cambio-contrasena-ingreso",
-  "base_version": 274,
+  "version": 276,
+  "branch": "desarrollo/v276-cerrar-sesion-qa",
+  "base_version": 275,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-cambio-contrasena-ingreso-sin-publicar",
+  "estado": "desarrollo-cierre-sesion-qa-con-cambio-contrasena",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v274-metodos-contrasena",
+  "base_branch": "desarrollo/v275-cambio-contrasena-ingreso",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -219,5 +219,21 @@
     "pruebas_end_to_end_reales": false,
     "pruebas_supabase_reales": false,
     "pruebas_visual_navegador": false
+  },
+  "cambios_v276": {
+    "cerrar_sesion_qa_en_prevencionistas": true,
+    "cerrar_sesion_qa_en_supervisores_embebidos": true,
+    "cambio_modulo_independiente_de_cierre": true,
+    "acceso_a_tarjeta_de_ingreso_qa": true,
+    "cambiar_contrasena_qa_accesible": true,
+    "retorno_al_laboratorio_qa": true,
+    "recuperacion_qa_sin_envio_correo": true,
+    "conexion_real_supabase_no_utilizada_en_qa": true,
+    "sesion_local_y_ambito_limpios_al_salir": true,
+    "script_nuevo": "qa-sesion-v276.js",
+    "pruebas_qa_simuladas": 7,
+    "pruebas_sintaxis": 6,
+    "pruebas_navegador_real": false,
+    "pruebas_supabase_real": false
   }
 }
