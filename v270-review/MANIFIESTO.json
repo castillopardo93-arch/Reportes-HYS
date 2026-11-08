@@ -1,9 +1,9 @@
 {
-  "version": 269,
-  "branch": "desarrollo/v269-correcciones-auditoria",
-  "base_version": 268,
+  "version": 270,
+  "branch": "desarrollo/v270-separacion-tarjetas-usuarios",
+  "base_version": 269,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-correcciones-estaticas-parciales",
+  "estado": "desarrollo-separacion-funcional-tarjetas",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v268-auditoria-integral",
+  "base_branch": "desarrollo/v269-correcciones-auditoria",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -146,5 +146,12 @@
     "pruebas_navegador_pendientes": true,
     "pruebas_e2e_pendientes": true,
     "estado": "parcial; no declarar todos los defectos resueltos"
+  },
+  "cambios_v270": {
+    "usuarios_registrados_sin_boton_nuevo": true,
+    "usuarios_registrados_sin_tarjeta_roles": true,
+    "crear_usuario_en_pestana_propia": true,
+    "roles_en_pestana_propia": true,
+    "pruebas_visuales_pendientes": true
   }
 }
