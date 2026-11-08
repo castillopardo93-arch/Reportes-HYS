@@ -1,4 +1,4 @@
--- Reportes HYS · v279 · PROPUESTA ACTUALIZADA v281, NO EJECUTADA.
+-- Reportes HYS · v281 · PROPUESTA ACTUALIZADA DE INSTALACIÓN, NO EJECUTADA.
 -- Requiere revisión, aprobación explícita y respaldo antes de tocar Supabase.
 -- Solo datos laborales y catálogos; NO modifica Auth, roles, permisos ni informes.
 begin;
@@ -29,15 +29,10 @@ create unique index if not exists hys279_documentos_unicos
 on public.fichas_laborales_v279 ((trabajador->>'pais_documento'),(trabajador->>'rut'))
 where coalesce(trabajador->>'rut','')<>'';
 
--- Reportes HYS v281 · SCRIPT COMPLETO DE INTEGRACIÓN PROPUESTO
--- Sustituye la propuesta v279: NO EJECUTADO, NO DESPLEGAR SIN AUTORIZACIÓN.
--- Los regímenes laborales del personal son independientes de listas_v242.shift.
--- La administración reutiliza solo el FORMATO visual de Áreas y opciones.
-
-create table if not exists public.regimenes_laborales_v281(
+-- v281: catálogo exclusivo del régimen laboral. NO utiliza listas_v242.shift.
+create table if not exists public.regimenes_laborales_v281 (
  id uuid primary key default gen_random_uuid(),
- codigo text not null unique
-   check(codigo ~ '^[1-9][0-9]{0,2}X[1-9][0-9]{0,2}
+ codigo text not null unique check (codigo ~ '^[1-9][0-9]{0,2}X[1-9][0-9]{0,2}
 returns jsonb language sql stable security invoker set search_path=''
 as $$
  select jsonb_build_object(
@@ -291,37 +286,32 @@ grant execute on function public.hys279_guardar_opcion(text,text,uuid,text,boole
 commit;
 ),
  activo boolean not null default true,
- revision integer not null default 1 check(revision>0),
+ revision integer not null default 1 check (revision>0),
  actualizado_en timestamptz not null default clock_timestamp()
 );
 alter table public.regimenes_laborales_v281 enable row level security;
-revoke all on public.regimenes_laborales_v281 from public,anon,authenticated;
+revoke all on public.regimenes_laborales_v281 from public, anon, authenticated;
 grant select on public.regimenes_laborales_v281 to authenticated;
 drop policy if exists regimenes_laborales_v281_read on public.regimenes_laborales_v281;
 create policy regimenes_laborales_v281_read on public.regimenes_laborales_v281
- for select to authenticated using(
-  hys242_private.activo() and
-   (activo or hys242_private.general_unico())
- );
--- Regímenes iniciales. Esta inserción se ejecutaría solo al aprobar la instalación.
+ for select to authenticated
+ using(hys242_private.activo() and (activo or hys242_private.general_unico()));
+-- Al instalar el backend, se crean únicamente estas cuatro alternativas iniciales.
 insert into public.regimenes_laborales_v281(codigo)
-values ('5X2'),('4X3'),('10X5'),('7X7')
-on conflict(codigo) do nothing;
+ values ('5X2'),('4X3'),('10X5'),('7X7') on conflict(codigo) do nothing;
 
 create or replace function public.hys281_capacidades()
 returns jsonb language sql stable security invoker set search_path=''
-as $
- select jsonb_build_object(
-  'regimenes',true,'version',281,'authenticated',auth.uid() is not null
- )
-$;
+as $hys281$
+ select jsonb_build_object('regimenes',true,'version',281,'authenticated',auth.uid() is not null)
+$hys281$;
 revoke all on function public.hys281_capacidades() from public,anon;
 grant execute on function public.hys281_capacidades() to authenticated;
 
 create or replace function public.hys281_guardar_regimen(
  p_id uuid,p_codigo text,p_activo boolean,p_revision integer,p_motivo text
 ) returns jsonb language plpgsql security definer set search_path=''
-as $
+as $hys281$
 declare
  actor public.perfiles;
  before_rec public.regimenes_laborales_v281;
@@ -331,8 +321,7 @@ begin
  select * into actor from public.perfiles where usuario_id=auth.uid();
  if actor.usuario_id is null or actor.rol<>'administrador_global'
   or not actor.activo or not hys242_private.general_unico() then
-  raise exception 'Solo el Administrador general administra regímenes laborales'
-   using errcode='42501';
+  raise exception 'Solo Administrador general puede administrar regímenes laborales' using errcode='42501';
  end if;
  value:=upper(regexp_replace(coalesce(p_codigo,''),'\s+','','g'));
  if value !~ '^[1-9][0-9]{0,2}X[1-9][0-9]{0,2}
@@ -588,49 +577,40 @@ grant execute on function public.hys279_guardar_opcion(text,text,uuid,text,boole
 
 commit;
 
-  or p_activo is null
-  or length(btrim(coalesce(p_motivo,'')))<10
+  or p_activo is null or length(btrim(coalesce(p_motivo,'')))<10
   or length(p_motivo)>400 then
   raise exception 'Código o motivo de régimen laboral inválido';
  end if;
  perform pg_advisory_xact_lock(hashtextextended('hys281_regimenes',0));
- if exists(
-  select 1 from public.regimenes_laborales_v281
-  where codigo=value and (p_id is null or id<>p_id)
- ) then raise exception 'El régimen laboral ya existe; puedes reactivarlo';end if;
+ if exists(select 1 from public.regimenes_laborales_v281
+  where codigo=value and (p_id is null or id<>p_id)) then
+  raise exception 'Este régimen ya existe. Puedes reactivarlo.';
+ end if;
  if p_id is null then
-  if p_revision is not null then raise exception 'Revisión inválida para nueva opción';end if;
+  if p_revision is not null then raise exception 'Revisión inválida para nuevo régimen';end if;
   insert into public.regimenes_laborales_v281(codigo,activo,revision,actualizado_en)
    values(value,p_activo,1,clock_timestamp()) returning * into after_rec;
  else
   select * into before_rec from public.regimenes_laborales_v281 where id=p_id for update;
-  if before_rec.id is null then raise exception 'No se encontró el régimen laboral';end if;
+  if before_rec.id is null then raise exception 'El régimen no existe';end if;
   if p_revision is distinct from before_rec.revision then
-   raise exception 'El régimen fue modificado. Actualiza antes de guardar.'
-    using errcode='40001';
+   raise exception 'Conflicto de revisión. Actualiza antes de guardar.' using errcode='40001';
   end if;
   update public.regimenes_laborales_v281
-  set codigo=value,activo=p_activo,revision=revision+1,actualizado_en=clock_timestamp()
-  where id=p_id returning * into after_rec;
+   set codigo=value,activo=p_activo,revision=revision+1,actualizado_en=clock_timestamp()
+   where id=p_id returning * into after_rec;
  end if;
- insert into public.eventos_v242(
-  actor_id,actor_nombre,accion,entidad,motivo,anterior,nuevo
- ) values(
-  actor.usuario_id,actor.nombre,'REGIMEN_LABORAL_V281',after_rec.id::text,
-  btrim(p_motivo),
-  case when before_rec.id is null then null else
-   jsonb_build_object('codigo',before_rec.codigo,'activo',before_rec.activo,'revision',before_rec.revision) end,
-  jsonb_build_object('codigo',after_rec.codigo,'activo',after_rec.activo,'revision',after_rec.revision)
- );
+ insert into public.eventos_v242(actor_id,actor_nombre,accion,entidad,motivo,anterior,nuevo)
+  values(actor.usuario_id,actor.nombre,'REGIMEN_LABORAL_V281',after_rec.id::text,btrim(p_motivo),
+   case when before_rec.id is null then null else
+    jsonb_build_object('codigo',before_rec.codigo,'activo',before_rec.activo,'revision',before_rec.revision) end,
+   jsonb_build_object('codigo',after_rec.codigo,'activo',after_rec.activo,'revision',after_rec.revision));
  return jsonb_build_object('id',after_rec.id,'codigo',after_rec.codigo,
-  'activo',after_rec.activo,'revision',after_rec.revision,
-  'actualizado_en',after_rec.actualizado_en);
+  'activo',after_rec.activo,'revision',after_rec.revision,'actualizado_en',after_rec.actualizado_en);
 end;
-$;
-revoke all on function public.hys281_guardar_regimen(uuid,text,boolean,integer,text)
- from public,anon;
-grant execute on function public.hys281_guardar_regimen(uuid,text,boolean,integer,text)
- to authenticated;
+$hys281$;
+revoke all on function public.hys281_guardar_regimen(uuid,text,boolean,integer,text) from public,anon;
+grant execute on function public.hys281_guardar_regimen(uuid,text,boolean,integer,text) to authenticated;
 
 create or replace function public.hys279_capacidades()
 returns jsonb language sql stable security invoker set search_path=''
