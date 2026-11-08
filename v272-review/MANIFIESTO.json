@@ -1,9 +1,9 @@
 {
-  "version": 271,
-  "branch": "desarrollo/v271-sin-creacion-roles",
-  "base_version": 270,
+  "version": 272,
+  "branch": "desarrollo/v272-auditoria-integral",
+  "base_version": 271,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-sin-creacion-dinamica-roles",
+  "estado": "desarrollo-auditoria-integral-hallazgos-pendientes",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v270-separacion-tarjetas-usuarios",
+  "base_branch": "desarrollo/v271-sin-creacion-roles",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -161,5 +161,18 @@
     "datos_locales_anteriores_no_borrados": true,
     "implementacion_roles_dinamicos_pospuesta": true,
     "validacion_navegador_pendiente": true
+  },
+  "auditoria_integral_v272": {
+    "fecha": "2026-11-08",
+    "archivos_copiados": 67,
+    "inspeccion_estatica": true,
+    "pruebas_navegador": false,
+    "pruebas_integracion": false,
+    "roles_dinamicos_desactivados": true,
+    "problema_qa_ruta_confirmado": true,
+    "problema_simulador_ruta_confirmado": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "revision_permisos_backend_pendiente": true,
+    "aprobada": false
   }
 }
