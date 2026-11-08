@@ -1,9 +1,9 @@
 {
-  "version": 277,
-  "branch": "desarrollo/v277-prepublicacion-real",
-  "base_version": 276,
+  "version": 278,
+  "branch": "desarrollo/v278-control-accesos",
+  "base_version": 277,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-real-sin-simuladores",
+  "estado": "desarrollo-prepublicacion-control-accesos-real",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v276-cerrar-sesion-qa",
+  "base_branch": "desarrollo/v277-prepublicacion-real",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -258,5 +258,29 @@
     "pruebas_navegador_real": false,
     "pruebas_e2e": false,
     "pendiente_validacion_usuario": true
+  },
+  "cambios_v278": {
+    "gestor_estado_en_usuarios_registrados": true,
+    "suspender_acceso_con_rpc_real": "hys242_guardar_usuario",
+    "reactivar_acceso_con_rpc_real": "hys242_guardar_usuario",
+    "desvincular_con_baja_logica_y_auditoria": true,
+    "conserva_informes_y_compromisos": true,
+    "motivo_obligatorio": true,
+    "confirmacion_por_nombre_y_dialogo": true,
+    "comprobacion_revision_antes_de_guardar": true,
+    "confirmacion_estado_en_servidor": true,
+    "auditoria_eventos_v242": true,
+    "permisos_servidor_comprobados": true,
+    "impedir_modificacion_propias_cuentas_y_administrador_global": true,
+    "validacion_periodica_de_sesion_45_segundos": true,
+    "eliminacion_fisica_de_usuarios": false,
+    "revocacion_global_inmediata_de_tokens": false,
+    "reasignacion_automatica_de_compromisos": false,
+    "funciones_de_laboratorio_cargadas": false,
+    "ninguna_cuenta_modificada_por_esta_implementacion": true,
+    "pruebas_con_cliente_simulado": 12,
+    "pruebas_sintaxis_js": true,
+    "pruebas_e2e_con_cuentas_reales": false,
+    "pruebas_visual_navegador": false
   }
 }
