@@ -85,6 +85,8 @@
  }
  function atomic(id,role,ambitos,faculties,expected,revs,motivo,action){
   const s=get(),u=person(s,id);assertRole(role);assertRevision(u.revision,expected);assertScopes(s,ambitos);
+  const checked=root.Hys265WorkerModel?.validConfiguration(role,ambitos,faculties,s.areas);
+  if(checked&&!checked.ok)fail(checked.errors.join('. '));
   for(const m of MODULES)if(revs&&Object.prototype.hasOwnProperty.call(revs,m)){
    const rec=s.faculties.find(x=>x.usuario_id===id&&x.modulo===m);
    assertRevision(rec?.revision||0,revs[m]);
@@ -105,6 +107,13 @@
   const prior=s.faculties.find(x=>x.usuario_id===u.usuario_id&&x.modulo===m);
   assertRevision(prior?.revision||0,params.p_revision);
   for(const id of params.p_areas||[])if(!u.ambitos[m]?.areas?.includes(id))fail('Área fuera del ámbito actual');
+  const all=Object.fromEntries(MODULES.map(module=>{
+   const old=s.faculties.find(row=>row.usuario_id===u.usuario_id&&row.modulo===module);
+   return [module,module===m?{areas_ids:params.p_areas||[],facultades:params.p_facultades||{}}:
+    {areas_ids:old?.areas_ids||[],facultades:old?.facultades||{}}];
+  }));
+  const verdict=root.Hys265WorkerModel?.validConfiguration(u.rol,u.ambitos,all,s.areas);
+  if(verdict&&!verdict.ok)fail(verdict.errors.join('. '));
   return write('Facultades: '+labels[m],u.usuario_id,next=>{
    const existing=next.faculties.find(x=>x.usuario_id===u.usuario_id&&x.modulo===m);
    const entry={usuario_id:u.usuario_id,modulo:m,revision:(existing?.revision||0)+1,areas_ids:[...new Set(params.p_areas||[])],facultades:clone(params.p_facultades||{})};
