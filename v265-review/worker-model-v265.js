@@ -56,7 +56,9 @@ function validateAccount(account,worker,existing=false){
  if(!['corporativo','personal'].includes(source))errors.push('Selecciona un correo de ingreso permitido');
  if(!validEmail(email))errors.push('Selecciona un correo válido en la ficha del trabajador para crear su cuenta');
  // La simulación no envía invitaciones ni crea credenciales de autenticación.
- return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado:existing?'sin_cambios':'pendiente_invitacion'}};
+ const previous=safeEmail(account?.email||'');
+ const estado=!existing?'pendiente_invitacion':previous&&previous!==email?'cambio_correo_pendiente':account?.estado==='pendiente_invitacion'?'pendiente_invitacion':'sin_cambios';
+ return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado}};
 }
 function validConfiguration(role,ambitos,grants,areas){
  const errors=[];
