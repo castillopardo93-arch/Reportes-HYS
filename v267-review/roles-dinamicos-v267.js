@@ -76,7 +76,7 @@ const sync=()=>{b.hidden=!isGlobal()};
 new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
 document.addEventListener('click',sync);sync();
 }
-mount();
+// v267: el acceso a roles existe únicamente dentro de Gestión de usuarios.
 root.Hys267RoleCatalog={
  read:()=>read().map(r=>({...r})),
  capabilities:CAPS.map(x=>x[0]),
