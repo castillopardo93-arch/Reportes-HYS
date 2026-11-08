@@ -42,13 +42,44 @@ async function save(userId,worker,revision,reason){
  if(!data||data.usuario_id!==userId)throw Error('El servidor no confirmó la ficha guardada.');
  return data;
 }
-async function shifts(){
+/* El régimen 5x2/4x3/... NO usa listas_v242.shift de informes diarios. */
+async function regimesReady(){
  const c=client();
- if(!c?.from)return [];
- const {data,error}=await c.from('listas_v242').select('valor').eq('campo','shift')
-  .eq('activa',true).in('modulo',['APR','OTROS']).order('valor');
- if(error)throw Error('No se pudo consultar la lista real de turnos.');
- return [...new Set((data||[]).map(x=>String(x.valor||'').trim()).filter(Boolean))];
+ if(!c?.rpc)return {ready:false,reason:'Debes iniciar sesión.'};
+ const {data,error}=await c.rpc('hys281_capacidades');
+ if(error||data?.regimenes!==true)return {ready:false,reason:'El catálogo independiente de regímenes laborales aún no está habilitado en Supabase.'};
+ return {ready:true};
+}
+async function shifts(){
+ const ready=await regimesReady();
+ if(!ready.ready)throw Error(ready.reason);
+ const {data,error}=await client().from('regimenes_laborales_v281')
+  .select('codigo').eq('activo',true).order('codigo');
+ if(error)throw Error('No se pudieron consultar los regímenes laborales: '+error.message);
+ return [...new Set((data||[]).map(x=>String(x.codigo||'').trim()).filter(Boolean))];
+}
+async function regimes(){
+ const ready=await regimesReady();
+ if(!ready.ready)throw Error(ready.reason);
+ const {data,error}=await client().from('regimenes_laborales_v281').select('id,codigo,activo,revision,actualizado_en').order('codigo');
+ if(error)throw Error('No se pudo consultar el catálogo de regímenes laborales: '+error.message);
+ return data||[];
+}
+async function saveRegime({id,codigo,activo,revision,motivo}){
+ const ready=await regimesReady();
+ if(!ready.ready)throw Error(ready.reason);
+ const value=String(codigo||'').toUpperCase().replace(/\s+/g,'');
+ if(!/^[1-9][0-9]{0,2}X[1-9][0-9]{0,2}$/.test(value))
+  throw Error('Utiliza un régimen válido como 5x2, 4x3, 10x5 o 7x7.');
+ const reason=String(motivo||'').trim();
+ if(reason.length<10||reason.length>400)throw Error('El motivo debe contener entre 10 y 400 caracteres.');
+ const {data,error}=await client().rpc('hys281_guardar_regimen',{
+  p_id:id||null,p_codigo:value,p_activo:activo!==false,
+  p_revision:id?revision:null,p_motivo:reason
+ });
+ if(error)throw Error('No se pudo guardar el régimen laboral: '+error.message);
+ if(!data?.id)throw Error('El servidor no confirmó la operación.');
+ return data;
 }
 async function saveOption({modulo,campo,id,valor,activa,esperado,motivo}){
  const cap=await available();
@@ -62,5 +93,5 @@ async function saveOption({modulo,campo,id,valor,activa,esperado,motivo}){
  if(!data?.id)throw Error('El servidor no confirmó el cambio de opción.');
  return data;
 }
-root.Hys279Backend=Object.freeze({available,read,save,shifts,saveOption});
+root.Hys279Backend=Object.freeze({available,read,save,shifts,regimes,regimesReady,saveRegime,saveOption});
 })(window);
