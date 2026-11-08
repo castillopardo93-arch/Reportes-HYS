@@ -1,9 +1,9 @@
 {
-  "version": 272,
-  "branch": "desarrollo/v272-auditoria-integral",
-  "base_version": 271,
+  "version": 273,
+  "branch": "desarrollo/v273-correcciones-auditoria",
+  "base_version": 272,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-auditoria-integral-hallazgos-pendientes",
+  "estado": "desarrollo-correcciones-parciales-pendiente-pruebas",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v271-sin-creacion-roles",
+  "base_branch": "desarrollo/v272-auditoria-integral",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -174,5 +174,17 @@
     "guardado_real_usuarios_bloqueado": true,
     "revision_permisos_backend_pendiente": true,
     "aprobada": false
+  },
+  "correcciones_v273": {
+    "qa_v273_habilitado_solo_raw_githack_y_qa1": true,
+    "simulador_local_v273_habilitado_con_guardas": true,
+    "gestion_usuarios_lab_v273_habilitada": true,
+    "verificador_punto3_v273_habilitado": true,
+    "encabezado_actualizado": true,
+    "roles_dinamicos_desactivados": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "duplicidades_heredadas_pendientes": true,
+    "pruebas_navegador_pendientes": true,
+    "pruebas_integracion_pendientes": true
   }
 }
