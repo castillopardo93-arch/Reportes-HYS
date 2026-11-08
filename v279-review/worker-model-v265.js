@@ -149,7 +149,7 @@ function redactAudit(data){
   .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[correo protegido]')
   .replace(/\b(?:\d{1,2}\.)?\d{3}\.\d{3}-[0-9Kk]\b|\b\d{7,8}-[0-9Kk]\b/g,'[RUT protegido]')
   .replace(/\+?56[\s-]?9(?:[\s-]?\d){8}/g,'[teléfono protegido]');
- const forbidden=/rut|correo|email|celular|telefono|teléfono|phone|movil|móvil|password|token|secret|clave/i;
+ const forbidden=/rut|documento|identificacion|identificación|codigo_trabajador|código_interno|correo|email|celular|telefono|teléfono|phone|movil|móvil|password|token|secret|clave/i;
  const seen=new WeakSet();
  function walk(value){
   if(Array.isArray(value))return value.map(walk);
