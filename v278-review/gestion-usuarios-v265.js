@@ -249,11 +249,12 @@ function renderAccess(target){
  card.append(element('p','Una sesión ya abierta puede seguir funcionando hasta que se revaliden sus permisos; la revocación inmediata de todas las sesiones requiere una función de servidor adicional.','hys265-muted'));
  const choices=element('fieldset',undefined,'hys278-options');
  choices.append(element('legend','Acción a ejecutar'));
- const validOps=u.activo?['suspend','terminate']:['reactivate','terminate'];
+ const validOps=u.activo?['suspend','terminate','remove_request']:['reactivate','terminate','remove_request'];
  if(!validOps.includes(state.accessMode))state.accessMode=validOps[0];
  const meanings={
   suspend:'Suspender temporalmente el acceso conservando su cuenta y sus informes',
   terminate:'Registrar desvinculación y dar de baja el acceso conservando la trazabilidad',
+  remove_request:'Solicitar eliminación definitiva; bloquear el acceso y registrar la solicitud para revisión administrativa',
   reactivate:'Reactivar el ingreso con los permisos previamente asignados'
  };
  for(const op of validOps){
@@ -270,7 +271,7 @@ function renderAccess(target){
  const confirmLabel=document.createElement('label');confirmLabel.textContent='Para confirmar, escribe exactamente el nombre completo: '+u.nombre;
  const name=document.createElement('input');name.id='hys278ConfirmName';name.type='text';name.maxLength=180;name.autocomplete='off';name.disabled=state.accessBusy;
  confirmLabel.append(name);card.append(confirmLabel);
- card.append(element('p','La eliminación física de identidades y los datos asociados no está habilitada. Una baja conserva informes, compromisos, referencias y auditorías; los pendientes deben revisarse y reasignarse por separado.','hys265-muted'));
+ card.append(element('p','La solicitud de eliminación NO borra cuentas ni documentos: registra la solicitud, bloquea el acceso y conserva informes, compromisos y auditorías mientras se revisan responsabilidades y restricciones legales.','hys265-muted'));
  const buttons=element('div',undefined,'hys265-footer');
  buttons.append(action('Volver a usuarios',()=>{if(!state.accessBusy)show('directory')}));
  const submit=action('Confirmar cambio de acceso',async()=>{
