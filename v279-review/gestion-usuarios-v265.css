@@ -151,3 +151,13 @@
  #hys265UsersPanel .hys278-access .hys265-summary dd{margin:0 0 9px}
  #hys265UsersPanel .hys278-options{padding:12px}
 }
+
+/* v279 · Identificación internacional, contactos y ficha propia del Administrador general */
+#hys265UsersPanel .hys279-profile{max-width:1040px;margin:12px auto}
+#hys265UsersPanel .hys279-profile .hys265-grid{margin-top:14px}
+#hys265UsersPanel .hys279-profile .hys265-grid>label{min-width:0}
+#hys265UsersPanel .hys279-profile .hys265-grid input,#hys265UsersPanel .hys279-profile .hys265-grid select{width:100%;min-height:43px}
+#hys265UsersPanel .hys279-profile .hys265-footer{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:18px}
+#hys265UsersPanel .hys279-warning{border:1px solid #eed0ab;background:#fff8ed;color:#704519;padding:13px 15px;border-radius:10px;margin:12px 0;line-height:1.5}
+#hys265UsersPanel .hys279-profile .hys265-muted{line-height:1.5}
+@media(max-width:700px){#hys265UsersPanel .hys279-profile{padding:14px}#hys265UsersPanel .hys279-profile .hys265-footer .btn{flex:1 1 170px}}
