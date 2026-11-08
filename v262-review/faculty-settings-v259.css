@@ -71,3 +71,8 @@
  #facultadesPanel242 .faculty-person-modules261{flex-direction:column;align-items:flex-start}
 }
 @media print{#facultadesPanel242{display:none!important}}
+
+/* v262: rol unificado en la ficha de Facultades. */
+#facultadesPanel242 #facultyRoleCard262{border-left:4px solid #2b709e}
+#facultadesPanel242 #facultyRole262{max-width:410px}
+#facultadesPanel242 #facultyRoleMessage262{font-size:13px;background:#eff5fb;padding:11px 13px;border-radius:8px;margin:8px 0}
