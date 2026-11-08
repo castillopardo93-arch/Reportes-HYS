@@ -63,6 +63,14 @@ const rail=$('hysToolsOptions');if(!rail||$('hys267Open'))return;
 const b=document.createElement('button');b.id='hys267Open';b.type='button';b.className='hys-admin-open';b.hidden=true;
 b.innerHTML='<span class="tools-option-icon" aria-hidden="true">♙</span><span class="tools-option-label">Roles</span><span class="tools-option-full">Roles y facultades</span>';
 rail.append(b);
+// Acceso QA visible aunque la cinta del administrador esté oculta por falta de sesión.
+const qaEntry=document.createElement('button');
+qaEntry.id='hys267QaEntry';qaEntry.type='button';qaEntry.textContent='⚙ Crear y administrar roles (v267)';
+qaEntry.setAttribute('aria-label','Abrir creación de roles de prueba');
+qaEntry.style.cssText='position:fixed;right:16px;bottom:18px;z-index:99980;background:#123b63;color:white;border:2px solid #b9ddff;border-radius:12px;padding:13px 17px;font-weight:700;box-shadow:0 5px 24px #102c4b77;max-width:calc(100vw - 32px)';
+qaEntry.hidden=!root.HYS266_PREVIEW_ONLY;
+document.body.append(qaEntry);
+qaEntry.onclick=()=>b.click();
 b.onclick=()=>{if(!isGlobal())return;const userPanel=$('hys265UsersPanel');if(userPanel&&!userPanel.hidden){status('Cierra primero Gestión de usuarios');return}items=read();selected=null;form(null);panel.hidden=false;status('')};
 const sync=()=>{b.hidden=!isGlobal()};
 new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
