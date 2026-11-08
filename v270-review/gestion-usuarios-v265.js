@@ -190,11 +190,7 @@ function openEdit(u){
 }
 function renderDirectory(target){
  const card=element('section',undefined,'hys265-card');const header=element('div',undefined,'hys265-line');
- header.append(element('h2','Usuarios registrados'),action('Nuevo usuario',()=>{state.tab='create';resetDraft();render()},'btn primary'));
- const rolesCard=element('section',undefined,'hys265-card');
- rolesCard.style.cssText='margin-bottom:16px;border:2px solid #1876e8;background:#f0f7ff';
- rolesCard.append(element('h2','Gestión de roles'),element('p','Crear, editar, duplicar o desactivar roles y definir sus facultades. Catálogo de prueba sin permisos reales.','hys265-muted'),action('Crear y gestionar roles',()=>{state.tab='roles';render()},'btn primary'));
- target.append(rolesCard);
+ header.append(element('h2','Usuarios registrados'));
  const box=document.createElement('label');box.textContent='Buscar persona';
  const search=document.createElement('input');search.type='search';search.value=state.filter;search.placeholder='Nombre, cargo o rol…';search.oninput=()=>{state.filter=search.value;renderDirectoryRows()};
  box.append(search);card.append(header,box);
