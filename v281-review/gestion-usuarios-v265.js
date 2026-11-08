@@ -504,7 +504,7 @@ function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  const allowedTurnos=[...new Set(state.turnos||[])];
  const old=worker.turno;
  if(old&&!allowedTurnos.includes(old))allowedTurnos.push(old);
- grid.append(selectField('turno','Régimen de turno laboral (administrable en Áreas y opciones → Turnos laborales)',[['','Sin régimen asignado'],...allowedTurnos.map(v=>[v,v.toLowerCase()])]));
+ grid.append(selectField('turno','Turno habitual (régimen laboral; administrable en Áreas y opciones → Turnos laborales)',[['','Sin régimen asignado'],...allowedTurnos.map(v=>[v,v.toLowerCase()])]));
  if(!state.turnos?.length)p.append(element('p','La lista de regímenes laborales todavía no está habilitada en el servidor. No se toman opciones de Día/Noche del informe diario.','hys279-warning'));
  grid.append(selectField('preferencia_contacto','Preferencia de contacto',[
   ['todas','Todas las vías de contacto registradas'],['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular']
