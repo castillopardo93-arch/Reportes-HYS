@@ -55,3 +55,13 @@
  #management242 .manage-row strong{min-width:0}
  #management242 .manage-row button{min-height:42px}
 }
+
+/* v283: cada régimen de turno es una opción independiente, no una frase de ejemplo. */
+#management242 .hys283-pending{border-style:dashed;background:#f7fafc}
+#management242 .hys283-pending strong{color:#52718f}
+#management242 .hys283-old-group{border:1px solid #d2dde7;border-radius:10px;margin:14px 0;padding:10px 14px;background:#f9fbfd}
+#management242 .hys283-old-group summary{cursor:pointer;font-weight:700;color:#765a2f;padding:5px 0}
+#management242 .hys283-old-group .manage-row{margin:10px 0 5px}
+#management242 .hys283-old{border-left:3px solid #c5a071}
+#management242 .hys283-pending button:disabled{opacity:.4}
+@media(max-width:700px){#management242 .hys283-old-group{padding:8px 10px}}
