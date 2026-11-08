@@ -86,5 +86,6 @@
    las opciones, pero no se dibuja la cinta de desplazamiento. */
 @media(max-width:700px){
  #hysToolsRail{overflow-x:hidden}
- #hysToolsRail #hysToolsOptions{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none}
+ #hysToolsRail #hysToolsOptions{flex-direction:row;flex:1 1 auto;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none}
+ #hysToolsRail #hysToolsOptions>.hys-admin-open:not([hidden]){flex:0 0 auto;width:auto;max-width:100%;min-width:105px}
 }
