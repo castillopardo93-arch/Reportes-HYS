@@ -4,7 +4,7 @@
  */
 (function(root){
  'use strict';
- if(root.HYS263_SANDBOX!==true||!(/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v265)\.html(?:$|\?)/.test(root.location.pathname+root.location.search)||(root.HYS265_PREVIEW_ONLY===true&&/\/v265-review\/index\.html$/.test(root.location.pathname))))throw Error('Laboratorio v265: entorno de prueba no autorizado');
+ if(root.HYS263_SANDBOX!==true||!(/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v265)\.html(?:$|\?)/.test(root.location.pathname+root.location.search)||(root.HYS265_PREVIEW_ONLY===true&&/\/v265-review\/index\.html$/.test(root.location.pathname))))return; // No inicializar el backend ficticio fuera de las rutas de pruebas autorizadas.
  const KEY='reportes-hys-v265-simulador-local-1';
  const MODULES=['APR','OTROS'];
  const clone=x=>JSON.parse(JSON.stringify(x));
