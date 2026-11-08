@@ -33,7 +33,7 @@
     "appearance-core-v242.js": "b5c27a01edbf214655c8861fbf1454b49320e70f",
     "appearance-v242.css": "8022c150c601aa14ef79b552b3ca82ba103cf52f",
     "appearance-v242.js": "9650c1a21024c7d91b584424652b40aeb07a1875",
-    "areas-opciones-qa-v265.js": "60a279d7870257f83bb948761f50380f31edd0e7",
+    "areas-opciones-qa-v265.js": "90ab4c8aff04ac28ad09a1b2318e56657fb77cad",
     "assignee-selector-v243.css": "d6bcd8be74db78e674f8ae4d97c6c750fc17c520",
     "assignees-v243.js": "8cd14bf7d1eda011a82296fa77e54b8d673212ec",
     "audit-v243.css": "bc329384b5cd58c188f4444887eea02a4e1479ab",
@@ -52,11 +52,11 @@
     "faculty-settings-v259.css": "89e3afe149e8906e0e5259a3a6d582efd9538688",
     "finding-detail-v243.css": "3e5c7e6a2a9e80a047c1124e3c5e82232bbe165f",
     "finding-detail-v243.js": "bce57e4ecf6d12f7cfaf02c992b34a2a123fa9ae",
-    "gestion-usuarios-v265.css": "9da9a2be7bb34bceb498bcd22e6b6b8e50ec52e7",
-    "gestion-usuarios-v265.js": "64d231d951c261aa64d43a56e7200ec38a0725b0",
+    "gestion-usuarios-v265.css": "ef569f34f081bdbdf6261b38c0617dd4065591a2",
+    "gestion-usuarios-v265.js": "33cb6addc0de5eb69e539e66238ac664e1c88804",
     "inbox-v245.css": "6d53c6122f80d1a13a8e40ad5516fbc94ac56a02",
     "inbox-v245.js": "6c537cc4d5abec75d5bf2293dce7d0e2ae9173dd",
-    "index.html": "e83fd8907d12c36ffc0a7d9a2d3b0af77311b41e",
+    "index.html": "39e38b40603209ea804683d31ebbb85088a99b78",
     "integrity-v255.js": "d68a34dff716685df9a3130205d9cdc2c39b76b3",
     "laboratorio-backend-v263.js": "ec3ba84e811dc341a74cf2432c905d8a85d04348",
     "laboratorio-integral-v263.html": "a7efb2b98f08c4e69e5646d7ed08cc19b0854873",
@@ -104,5 +104,12 @@
       "Historial de áreas"
     ],
     "datos_laboratorio_aislados": true
+  },
+  "validacion_navegacion": {
+    "correccion_apariencia_visible": true,
+    "correccion_superposicion_areas_y_usuarios": true,
+    "pruebas_navegacion_aprobadas": 7,
+    "pruebas_visibilidad_logica_aprobadas": 2,
+    "verificacion_visual_final": "pendiente"
   }
 }
