@@ -18,7 +18,7 @@
 #hys265UsersPanel h4{font-size:14px;margin:12px 0 8px}
 #hys265UsersPanel .hys265-line{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
 #hys265UsersPanel .hys265-step{background:#e7f0f8;color:#275b82;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:700}
-#hys265UsersPanel .hys265-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 18px}
+#hys265UsersPanel .hys265-stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:12px 0 18px}
 #hys265UsersPanel .hys265-stages span{display:block;padding:7px;background:#e5eff8;border-radius:8px;text-align:center;color:#a1b6c6}
 #hys265UsersPanel .hys265-stages span.current{background:#236b9b;color:#fff}
 #hys265UsersPanel label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:#244662;font-size:13px;line-height:1.4}
