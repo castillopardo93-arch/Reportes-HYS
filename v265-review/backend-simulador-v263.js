@@ -62,7 +62,7 @@
  }
  function write(action,target,apply,motivo){
   const next=get(),value=apply(next);next.rev=(next.rev||0)+1;
-  next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500),anterior:value?.audit?.anterior||null,nuevo:value?.audit?.nuevo||null});
+  next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:root.Hys265WorkerModel?.redactAudit({motivo:String(motivo||'Prueba de laboratorio').slice(0,500)})?.motivo||'Motivo de prueba',anterior:value?.audit?.anterior||null,nuevo:value?.audit?.nuevo||null});
   next.history=next.history.slice(0,250);persist(next);return clone(value);
  }
  const fail=msg=>{throw Error(msg)};
