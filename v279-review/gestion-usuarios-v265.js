@@ -507,7 +507,7 @@ function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  if(old&&!allowedTurnos.includes(old))allowedTurnos.push(old);
  grid.append(selectField('turno','Turno habitual (administrable en Áreas y opciones)',[['','Sin asignar'],...allowedTurnos.map(v=>[v,v])]));
  grid.append(selectField('preferencia_contacto','Preferencia de contacto',[
-  ['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular'],['todas','Todas las vías de contacto registradas']
+  ['todas','Todas las vías de contacto registradas'],['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular']
  ]));
  p.append(grid);
  p.append(element('p','Es obligatorio registrar al menos uno de los dos correos. La opción «Todas» utilizará los canales registrados y disponibles, pero el envío de notificaciones depende de su integración posterior.','hys265-muted'));
