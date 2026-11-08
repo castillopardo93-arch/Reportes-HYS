@@ -74,5 +74,7 @@ test('cambio de las banderas de escritura dispara alerta',()=>{
 });
 test('sintaxis JS de toda v266 y bloques incrustados de index.html',()=>{
  for(const f of fs.readdirSync(folder).filter(x=>x.endsWith('.js')))assert.doesNotThrow(()=>new vm.Script(read(f),{filename:f}));
- for(const [,script]of read('index.html').matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/g))assert.doesNotThrow(()=>new vm.Script(script));
+ const matches=[...read('index.html').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)];
+ assert.ok(matches.length>=40,'No se extrajeron los scripts integrados');
+ for(const match of matches)assert.doesNotThrow(()=>new vm.Script(match[1]));
 });
