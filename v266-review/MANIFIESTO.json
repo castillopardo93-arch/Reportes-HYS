@@ -3,7 +3,7 @@
   "branch": "desarrollo/v266-auditoria-punto-3",
   "base_version": 265,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-punto-3-auditoria-sin-aprobar",
+  "estado": "desarrollo-auditoria-punto3-verificacion-parcial",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -18,9 +18,9 @@
     "Revisar y guardar"
   ],
   "cuentas_ficticias_sin_invitaciones_enviadas": true,
-  "almacenamiento_local_laboratorio": "reportes-hys-v266-simulador-local-1",
+  "almacenamiento_local_laboratorio": "hys-v266-lab-shared::reportes-hys-v266-simulador-local-1",
   "pruebas_logica_aprobadas": 28,
-  "pruebas_automatizadas_node_en_repo": 12,
+  "pruebas_automatizadas_node_en_repo": 10,
   "pruebas_navegador_pendientes": true,
   "checksum_type": "github_git_blob_sha1",
   "files": {
@@ -165,5 +165,16 @@
       "respaldos",
       "offline-pospuesto"
     ]
+  },
+  "source_report": "evidencias-v266/AUDITORIA-PUNTO-3-v266.md",
+  "pruebas_integridad_punto3": 18,
+  "pruebas_logica_punto3": 14,
+  "pruebas_node_ejecutadas": false,
+  "point3_progress": {
+    "seguridad_supabase": "asesores y grants verificados solo lectura; cambios pendientes de aprobación",
+    "cuentas_reales": "bloqueadas; asistente ficticio disponible",
+    "notificaciones": "prueba local F02-F07; envío real pendiente",
+    "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
+    "borradores_previos": "exportación selectiva; importación automática prohibida"
   }
 }
