@@ -45,7 +45,7 @@
 #hys265UsersPanel .hys265-summary dt{color:#576f84;font-size:13px}
 #hys265UsersPanel .hys265-summary dd{margin:0;font-weight:700;font-size:13px;overflow-wrap:anywhere}
 #hysToolsRail #usersOpen258{display:none!important}
-#hysToolsRail #hysToolsOptions{flex:1 1 auto;overflow:auto;display:flex;flex-direction:column;gap:9px}
+#hysToolsRail #hysToolsOptions{flex:1 1 auto;min-width:0;min-height:0;max-width:100%;overflow-x:hidden;overflow-y:auto;display:flex;flex-direction:column;gap:9px;scrollbar-width:none;-ms-overflow-style:none}
 #hysToolsRail #hysToolsOptions #appearanceOpen242{margin-top:auto}
 #hysToolsRail #hysToolsOptions #appearanceOpen242::before{content:"";display:block;border-top:1px solid #476b8a;margin:-13px -6px 12px}
 #hysToolsRail #hys265OpenUsers{order:-3}
@@ -74,3 +74,17 @@
 #hysToolsRail #hysToolsOptions #manageOpen242{order:-2}
 #hysToolsRail #hysToolsOptions #hys265OpenUsers{order:-3}
 @media(max-width:700px){#hysToolsRail #hysToolsOptions #appearanceOpen242:not([hidden]){position:static;margin-top:0;order:99;background:transparent}}
+
+/* v265: quitar exclusivamente la barra de desplazamiento bajo Apariencia.
+   En escritorio se evita el desbordamiento horizontal; si no cabe en altura,
+   las opciones siguen pudiendo desplazarse sin mostrar una barra decorativa. */
+#hysToolsRail{min-width:0;overflow-x:clip}
+#hysToolsRail #hysToolsOptions::-webkit-scrollbar{display:none;width:0;height:0}
+#hysToolsRail #hysToolsOptions>.hys-admin-open{box-sizing:border-box;min-width:0;max-width:100%}
+#hysToolsRail #hysToolsOptions .tools-option-full{min-width:0;overflow-wrap:anywhere}
+/* En dispositivos estrechos se conserva el gesto horizontal para llegar a todas
+   las opciones, pero no se dibuja la cinta de desplazamiento. */
+@media(max-width:700px){
+ #hysToolsRail{overflow-x:hidden}
+ #hysToolsRail #hysToolsOptions{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none}
+}
