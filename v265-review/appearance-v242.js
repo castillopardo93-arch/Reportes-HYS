@@ -19,9 +19,10 @@
  // No consulta ni escribe apariencia_v238/v242 de Supabase al operar con datos ficticios.
  const QA=window.HYS265_PREVIEW_ONLY===true&&/\/v265-review\/index\.html$/.test(location.pathname);
  const QA_KEY='reportes-hys-v265-apariencia-local';
+ const qaStore=window.HysStorage242?.sharedLabStorage||localStorage;
  function readQA(){
   let saved=null;
-  try{saved=JSON.parse(localStorage.getItem(QA_KEY)||'null')}catch{}
+  try{saved=JSON.parse(qaStore.getItem(QA_KEY)||'null')}catch{}
   if(!saved||typeof saved!=='object'||!Number.isInteger(saved.revision)||saved.revision<0||!saved.config)
    return {revision:0,config:C.clone(C.DEFAULT),history:[]};
   return {revision:saved.revision,config:C.normalize(saved.config),history:Array.isArray(saved.history)?saved.history:[]};
@@ -30,7 +31,7 @@
   const old=readQA();
   if(old.revision!==expected)throw Object.assign(new Error('Otra pestaña modificó la apariencia del laboratorio. Actualiza y vuelve a probar.'),{code:'PGRST116'});
   const result={revision:old.revision+1,config:C.normalize(config),history:[...old.history,{revision:old.revision,config:C.clone(old.config),fecha:new Date().toISOString()}].slice(-25)};
-  localStorage.setItem(QA_KEY,JSON.stringify(result));
+  qaStore.setItem(QA_KEY,JSON.stringify(result));
   return {data:{config:C.clone(result.config),revision:result.revision},error:null};
  }
  function status(t,error=false){$('appearanceStatus242').textContent=t;$('appearanceStatus242').classList.toggle('error',error)}
