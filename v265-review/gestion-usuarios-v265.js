@@ -206,6 +206,9 @@ function renderWizard(target){
  if(state.step===3)stepRoles(pane);
  if(state.step===4)stepSpecial(pane);
  if(state.step===5)stepReview(pane);
+ const error=element('div',undefined,'hys265-inline-error');
+ error.id='hys265InlineError';error.hidden=true;error.setAttribute('role','alert');
+ main.append(error);
  const foot=element('div',undefined,'hys265-footer');
  foot.append(action('Descartar',()=>{if(!abandon())return;state.tab='directory';state.dirty=false;render()}));
  if(state.step>1)foot.append(action('Anterior',()=>{state.step--;render()}));
@@ -243,6 +246,38 @@ function stepWorker(p){
  grid.append(selectField('preferencia_contacto','Preferencia de contacto',[['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular']]));
  p.append(grid);
  p.append(element('p','Se requerirá al menos un correo válido. El correo de inicio de sesión será preferentemente el corporativo.','hys265-muted'));
+ if(lab){
+  const quick=element('div',undefined,'hys265-test-fixture');
+  quick.append(element('p','Para comprobar las cinco etapas sin completar todos los datos, puedes usar una ficha completamente ficticia.','hys265-muted'));
+  quick.append(action('Completar con datos ficticios',()=>fillWorkerSample(),'btn'));
+  p.prepend(quick);
+ }
+}
+function fillWorkerSample(){
+ if(!lab)return;
+ const supervisor=state.users.find(u=>u.activo!==false&&u.usuario_id==='prueba-supervisor')||state.users.find(u=>u.activo!==false&&u.usuario_id!==state.selected);
+ if(!supervisor){showInlineError('No hay un supervisor ficticio disponible para seleccionar.');return}
+ const used=new Set(state.users.map(u=>W.rutParts(u.trabajador?.rut||'')?.normalized).filter(Boolean));
+ let rut='';
+ for(let n=90000000;n<90010000&&!rut;n++){
+  for(const dv of '0123456789K'){
+   const candidate=n+'-'+dv;
+   if(W.validRut(candidate)&&!used.has(candidate)){rut=candidate;break}
+  }
+ }
+ if(!rut){showInlineError('No hay RUT ficticio disponible para el ensayo.');return}
+ const serial=(labApi?.get()?.rev||0)+1;
+ Object.assign(state.draft.worker,{
+  nombre:'Trabajador Ficticio de Prueba '+serial,
+  rut,cargo:'Capataz de prueba',gerencia:'Gerencia ficticia',
+  supervisor_id:supervisor.usuario_id,empresa:'Empresa de pruebas',proyecto:'Proyecto simulado',
+  celular:'',correo_personal:'ficticio.personal'+serial+'@example.test',
+  correo_corporativo:'ficticio.corporativo'+serial+'@example.test',
+  estado_laboral:'activo'
+ });
+ state.draft.cuenta={correo_ingreso:'corporativo',metodo:'invitacion',estado:'pendiente_invitacion'};
+ state.dirty=true;render();
+ notice('Ficha de prueba completada. Ahora puedes pulsar Continuar.');
 }
 function stepAccount(p){
  p.append(element('h3','2. Creación de cuenta'));
@@ -376,8 +411,29 @@ function validateStep(step){
  if(step===4){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
  return '';
 }
+function showInlineError(message){
+ const el=$('hys265InlineError');
+ if(el){
+  el.hidden=false;el.replaceChildren();
+  el.append(element('strong','Faltan datos para avanzar.'));
+  el.append(element('p',message));
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+ notice('Revisa el aviso junto al botón Continuar: '+message,true);
+ if(state.step===1){
+  const w=state.draft.worker;
+  const invalid={nombre:!w.nombre?.trim(),rut:!W.validRut(w.rut||''),cargo:!w.cargo?.trim(),gerencia:!w.gerencia?.trim(),
+   empresa:!w.empresa?.trim(),proyecto:!w.proyecto?.trim(),supervisor_id:!w.supervisor_id,
+   correo_corporativo:!w.correo_corporativo&&!w.correo_personal};
+  for(const [name,flag]of Object.entries(invalid)){
+   const input=$('hys265StepContent')?.querySelector('[name="'+name+'"]');
+   if(input){input.classList.toggle('hys265-invalid',!!flag);input.setAttribute('aria-invalid',String(!!flag))}
+  }
+ }
+}
 function goNext(){
- const error=validateStep(state.step);if(error){notice(error,true);return}
+ const error=validateStep(state.step);
+ if(error){showInlineError(error);return}
  state.step=Math.min(5,state.step+1);render();notice('Paso '+state.step+' de 5. Revisa los datos antes de continuar.');
 }
 async function save(){
