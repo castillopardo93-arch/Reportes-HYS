@@ -92,115 +92,16 @@
  async function newConflictCopy(){if(!canWrite()||!queue)return;const q=queue,ticket=generation,list=await q.store.all('pending');if(!list.length)return;download(list,'conflictos-v242-'+Date.now()+'.json');if(!confirm('Se conservarán como informes nuevos todas las operaciones pendientes. Los originales centrales no se sobrescribirán. ¿Continuar?'))return;await q.transaction(async()=>{const ops=[];for(const p of list){const id='v242-'+uuid(),payload={...p.payload,reportId:id,...(current.profile.rol!=='administrador_global'?{owner:current.profile.nombre}:{})};const archive=p.archive&&payload.owner===p.payload.owner?{...p.archive,metadata:{...p.archive.metadata,id,reportId:id,reportData:payload}}:null;ops.push({store:'pending',value:{...p,id,payload,archive,revision:0,token:uuid()}},{store:'pending',id:p.id,remove:true});if(p.id===draftId){ops.push({store:'draft',value:draft(payload,id)})}}await q.writeDraftOps(ops)});if(ticket!==generation)return;const saved=await q.store.get('draft','current');draftId=saved.draftId;preserveOwner=false;protectedOwner=current.profile.nombre;apply(saved.payload);conflict=false;lastError='';await flush()}
  async function preserveBeforeRefresh(){if(!canWrite()||!queue)return true;const q=queue,ticket=generation,p=clone(B.pack());try{const saved=await q.store.get('draft','current');if(q!==queue||ticket!==generation)return true;if(saved&&window.HysFingerprint242(saved.payload)===window.HysFingerprint242(p))return true;return await onSave(p,false)}catch{message('No se pudo confirmar la copia local. Exporta un respaldo antes de actualizar la sesión.');return false}}
  // Administración central separada de Configuración APR/OTROS.
- const panel=document.createElement('section');panel.id='management242';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','managementTitle242');
- panel.innerHTML=`<div class="management-shell"><div class="management-head"><h1 id="managementTitle242">Administración central · v242</h1><button class="btn" id="manageClose242">Cerrar</button></div><p id="manageMessage242" role="status"></p><label id="manageModuleLabel242">Módulo <select id="manageModule242"></select></label><div class="btnrow"><button class="btn" id="manageAreas242">Áreas de trabajo</button><button class="btn" id="manageLists242">Opciones de informes</button><button class="btn" id="manageRegimes281">Turnos laborales</button><button class="btn" id="manageAudit242">Historial de áreas</button></div><form id="manageForm242"><label id="catalogFieldLabel242" hidden>Selector <select id="catalogField242"></select></label><label id="manageNameLabel242">Nombre <input id="manageName242" maxlength="150" required></label><button class="btn primary">Crear</button></form><div id="manageRows242"></div><button class="btn" id="auditMore242" hidden>Más registros</button><p class="smallnote">Los cambios requieren conexión y se validan en Supabase. Desactivar una opción conserva los informes históricos.</p></div>`;
- document.body.append(panel);
- const button=document.createElement('button');button.id='manageOpen242';button.type='button';button.className='hys-admin-open';button.title='Administración de áreas y opciones';button.setAttribute('aria-label','Administración de áreas y opciones');button.innerHTML='<span class="tools-option-icon" aria-hidden="true">▦</span><span class="tools-option-label">Áreas y opciones</span><span class="tools-option-full">Administración de áreas y opciones</span>';button.hidden=true;
-
- const fieldLabels={shift:'Turno del informe diario',project:'Proyecto',Resultado:'Resultado',Prioridad:'Prioridad',Estado:'Estado',owner:'Responsables (administrador general)',otherCategory:'Tipo de actividad',otherStatus:'Estado alternativo'};
- for(const [id,label] of Object.entries(fieldLabels))$('catalogField242').add(new Option(label,id));
- let section='areas',auditPage=0,manageVersion=0;
- function syncManagementRail(){const a=access();const chooser=$('moduleChooser');const visible=!!(a&&a.profile.activo===true&&window.Hys256Access.areas(a)&&!window.__REPORTES_HYS_OTROS_EMBEDDED__&&!a.selectedModule&&chooser&&chooser.style.display==='block');button.hidden=!visible;return visible}
- function mountManagementRail(){const options=$('hysToolsOptions');if(options&&button.parentElement!==options)options.append(button);updateManagement()}
- function updateManagement(){const a=access();const allowed=a&&['administrador_global','administrador_area','supervisor'].includes(a.profile.rol);syncManagementRail();$('manageLists242').hidden=a?.profile.rol!=='administrador_global';$('manageRegimes281').hidden=a?.profile.rol!=='administrador_global';if(!allowed){panel.hidden=true;$('manageRows242').replaceChildren()}window.reportesHysAdminSync?.() }
-
- function canManageModule(module){return current?.profile.activo===true&&(current.profile.rol==='administrador_global'||current.profile.rol==='supervisor'&&current.permissions?.some(p=>p.modulo===module&&p.puede_ver&&p.puede_editar)||current.facultades?.some(f=>f.modulo===module&&f.facultades?.areas===true))}
- function modulesForUser(){return current?.profile.rol==='administrador_global'?['APR','OTROS']:current?.modules||[]}
- function openManagement(){if(!allowedManage())return;const m=$('manageModule242');m.replaceChildren(...modulesForUser().map(n=>new Option(moduleLabel(n),n)));m.value=current.selectedModule||access()?.selectedModule||m.options[0]?.value;panel.hidden=false;section='areas';loadManagement()}
- async function loadManagement(more=false){if(!allowedManage())return;
-  $('manageModuleLabel242').hidden=section==='regimes';$('manageNameLabel242').firstChild.textContent=section==='regimes'?'Régimen laboral (ej. 5x2) ':'Nombre ';if(section!=='regimes'){$('manageName242').maxLength=150;$('manageName242').placeholder='';}
-  if(section==='regimes')return await loadRegimes281();if(!central()&&section!=='lists'){$('manageMessage242').textContent='Gestión central de áreas pendiente de autorización. Las opciones y turnos se consultan en su sección.';$('manageForm242').hidden=true;$('manageRows242').replaceChildren();return}const capabilities=section==='lists'?await window.Hys279Backend?.available():{ready:central()};const mayWrite=capabilities?.ready===true;const version=++manageVersion,module=$('manageModule242').value;const status=$('manageMessage242');status.textContent='Consultando Supabase…';$('manageForm242').hidden=section==='audit'||!canManageModule(module)||!mayWrite;$('catalogFieldLabel242').hidden=section!=='lists';$('auditMore242').hidden=true;try{let query=window.reportesHysSupabase.from(section==='areas'?'areas_trabajo_v242':section==='lists'?'listas_v242':'auditoria_areas_v242').select('*').eq('modulo',module);if(section==='lists'){if(current.profile.rol!=='administrador_global')throw Error('Solo el administrador general puede modificar listas');query=query.eq('campo',$('catalogField242').value)}if(section==='audit'){auditPage=more?auditPage+1:0;query=query.order('fecha',{ascending:false}).range(auditPage*50,auditPage*50+49)}else query=query.order(section==='areas'?'nombre':'valor');const r=await query;if(r.error)throw r.error;if(version!==manageVersion||!allowedManage())return;const rows=$('manageRows242');if(!more)rows.replaceChildren();for(const item of r.data||[]){const div=document.createElement('article');div.className='manage-row';const name=document.createElement('strong');name.textContent=section==='audit'?`${new Date(item.fecha).toLocaleString('es-CL')} · ${item.usuario_nombre} · ${roleLabel(item.rol)} · ${moduleLabel(item.modulo)} · ${item.accion}`:`${item.nombre||item.valor} · ${item.activa?'Activa':'Inactiva'}`;div.append(name);if(section==='audit'){const detail=document.createElement('p');detail.textContent=`Usuario: ${item.usuario_id||'sistema'} | Anterior: ${JSON.stringify(item.anterior)} | Nuevo: ${JSON.stringify(item.nuevo)}`;div.append(detail)}else if(canManageModule(module)&&mayWrite){const edit=document.createElement('button');edit.className='btn';edit.textContent='Editar nombre';edit.onclick=async()=>{const value=prompt('Nuevo nombre',item.nombre||item.valor);if(value?.trim())await mutate(item,{[section==='areas'?'nombre':'valor']:value.trim()})};const toggle=document.createElement('button');toggle.className='btn';toggle.textContent=item.activa?'Desactivar':'Reactivar';toggle.onclick=()=>mutate(item,{activa:!item.activa});div.append(edit,toggle)}rows.append(div)}$('auditMore242').hidden=section!=='audit'||r.data.length<50;status.textContent=!mayWrite&&section==='lists'?(capabilities?.reason||'Consulta en solo lectura: falta la integración segura de listas en Supabase.'):r.data.length?'Consulta actualizada.':'Sin registros.'}catch(e){status.textContent='No se pudo consultar: '+e.message}}
- async function mutate(item,patch){
- const sec=section,module=$('manageModule242').value;
- if(sec==='regimes')return mutateRegime281(item,patch);
- if(!allowedManage()||!canManageModule(module)||(sec==='lists'&&current.profile.rol!=='administrador_global'))return;
- if(sec==='lists'){
-  const cap=await window.Hys279Backend?.available();
-  if(!cap?.ready){$('manageMessage242').textContent=cap?.reason||'Backend de opciones no habilitado.';return}
-  const value=String(patch.valor??patch.nombre??item?.valor??'').trim();
-  if(!value){$('manageMessage242').textContent='La opción debe tener un nombre válido.';return}
-  const reason=prompt('Indica motivo obligatorio (al menos 10 caracteres) para modificar la lista de opciones.');
-  if(reason===null)return;
-  if(reason.trim().length<10){$('manageMessage242').textContent='Motivo de 10 caracteres como mínimo.';return}
-  if(!confirm('¿Confirmar la modificación REAL de «'+$('catalogField242').value+'» en '+moduleLabel(module)+'?'))return;
-  try{
-   await window.Hys279Backend.saveOption({
-    modulo:module,campo:$('catalogField242').value,id:item?.id||null,valor:value,
-    activa:patch.activa??item?.activa??true,esperado:item?.actualizado_en||null,motivo:reason
-   });
-   $('manageName242').value='';await loadManagement();
-   if(module===current.selectedModule)await refreshCatalog();
-   $('manageMessage242').textContent='Lista actualizada y auditada en Supabase.';
-  }catch(e){$('manageMessage242').textContent=e.message}
-  return;
- }
- if(!central()){$('manageMessage242').textContent='Activación central de áreas pendiente de autorización.';return}
- try{
-  const table='areas_trabajo_v242';
-  let q;
-  if(item)q=window.reportesHysSupabase.from(table).update(patch).eq('id',item.id).eq('actualizado_en',item.actualizado_en);
-  else q=window.reportesHysSupabase.rpc('hys242_crear_area',{p_modulo:module,p_nombre:patch.nombre});
-  const r=!item?await q:await q.select('*').single();
-  if(r.error)throw r.error;
-  $('manageName242').value='';await loadManagement();
-  if(module===current.selectedModule)await refreshCatalog();
- }catch(e){$('manageMessage242').textContent='No se guardó el cambio: '+e.message}
-}
-
-async function loadRegimes281(){
- const version=++manageVersion;
- const status=$('manageMessage242'),rows=$('manageRows242');
- status.textContent='Consultando el catálogo independiente de turnos laborales…';
- $('catalogFieldLabel242').hidden=true;$('auditMore242').hidden=true;
- $('manageName242').maxLength=7;$('manageName242').placeholder='Ej. 5x2';
- $('manageForm242').hidden=true;rows.replaceChildren();
- if(current?.profile?.rol!=='administrador_global'){
-  status.textContent='Solo el Administrador general puede gestionar los turnos laborales.';return;
- }
- const cap=await window.Hys279Backend?.regimesReady();
- if(version!==manageVersion||section!=='regimes'||panel.hidden)return;
- if(!cap?.ready){status.textContent=cap?.reason||'La lista real de regímenes laborales todavía no está disponible en Supabase.';return}
- try{
-  const data=await window.Hys279Backend.regimes();
-  if(version!==manageVersion||section!=='regimes'||panel.hidden)return;
-  $('manageForm242').hidden=false;
-  for(const item of data){
-   const div=document.createElement('article');div.className='manage-row';
-   const label=document.createElement('strong');label.textContent=item.codigo.toLowerCase()+' · '+(item.activo?'Activo':'Desactivado');
-   div.append(label);
-   const edit=document.createElement('button');edit.type='button';edit.className='btn';edit.textContent='Editar';
-   edit.onclick=()=>{if(item.activo){const next=prompt('Modificar régimen laboral (por ejemplo 5x2)',item.codigo.toLowerCase());if(next!==null)mutateRegime281(item,{codigo:next})}else status.textContent='Reactiva primero este régimen antes de modificarlo.'};
-   const toggle=document.createElement('button');toggle.type='button';toggle.className='btn';
-   toggle.textContent=item.activo?'Eliminar de las opciones (conservar historial)':'Restaurar';
-   toggle.onclick=()=>mutateRegime281(item,{activo:!item.activo});
-   div.append(edit,toggle);rows.append(div);
-  }
-  status.textContent=data.length?'Regímenes laborales consultados. Esta lista es independiente del turno Día/Noche del informe diario.':'Aún no hay regímenes registrados. Agrega el primero.';
- }catch(e){status.textContent='No fue posible consultar regímenes laborales: '+e.message}
-}
-async function mutateRegime281(item,patch){
- const status=$('manageMessage242');
- if(!allowedManage()||current?.profile?.rol!=='administrador_global'||section!=='regimes')return;
- const codigo=String(patch.codigo??patch.nombre??item?.codigo??'').trim();
- if(!/^[1-9]\d{0,2}\s*[xX]\s*[1-9]\d{0,2}$/.test(codigo)){
-  status.textContent='Formato inválido: ingresa un régimen como 5x2, 4x3, 10x5 o 7x7.';return;
- }
- const motivo=prompt('Motivo obligatorio de la '+(item?'modificación':'creación')+' del régimen laboral (mínimo 10 caracteres):');
- if(motivo===null)return;
- if(motivo.trim().length<10){status.textContent='Indica al menos 10 caracteres en el motivo.';return}
- if(!confirm((item?'¿Confirmar cambio de':'¿Crear')+' régimen laboral '+codigo.toLowerCase()+'? Esta operación se guardará en Supabase.'))return;
- status.textContent='Guardando régimen laboral en Supabase…';
- try{
-  await window.Hys279Backend.saveRegime({
-   id:item?.id||null,codigo,activo:patch.activo??item?.activo??true,
-   revision:item?.revision??null,motivo
-  });
-  $('manageName242').value='';await loadRegimes281();
-  window.dispatchEvent(new CustomEvent('reportes-hys-regimenes-updated'));
- }catch(e){status.textContent=e.message}
-}
- button.onclick=openManagement;$('manageClose242').onclick=()=>{panel.hidden=true;manageVersion++};$('manageModule242').onchange=()=>loadManagement();$('catalogField242').onchange=()=>loadManagement();$('manageAreas242').onclick=()=>{section='areas';loadManagement()};$('manageLists242').onclick=()=>{section='lists';loadManagement()};$('manageRegimes281').onclick=()=>{section='regimes';loadManagement()};$('manageAudit242').onclick=()=>{section='audit';loadManagement()};$('auditMore242').onclick=()=>loadManagement(true);$('manageForm242').onsubmit=e=>{e.preventDefault();const name=$('manageName242').value.trim().replace(/\s+/g,' ');if(name)mutate(null,{nombre:name})};
-
+ /* v282 — Gestión única de Áreas y opciones, sin depender del guardado de informes.
+  * Conservar APIs públicas originales, para no romper login, facultades ni panel lateral. */
+ const management282=window.Hys282CatalogManager?.create({
+  getAccess:()=>access(),
+  moduleLabel,
+  refreshCatalog:()=>refreshCatalog()
+ });
+ function mountManagementRail(){management282?.mount()}
+ function syncManagementRail(){return management282?.sync()===true}
+ function updateManagement(){management282?.sync()}
  const H=window.Hys242={onAccess,onSave,onArchive,preserveBeforeRefresh,enforceOwner,flush,canWrite,hasPending:false,refreshCatalog,mountManagementRail,syncManagementRail,finalizeReport,startNew,fetchReport,loadReport,reportId:()=>draftId,sessionKey:()=>generation};
  $('cloudRetry242').onclick=async()=>{if(phase==='error'){await onAccess(access());return}if(canWrite())await onSave(B.pack(),true);await flush();try{await refreshCatalog();await refreshReports()}catch(e){message('No se pudo actualizar: '+e.message)}};$('cloudLoad242').onclick=recoverDraft;const recoveries=document.createElement('button');recoveries.className='btn';recoveries.id='localRecoveries242';recoveries.textContent='Descargar recuperaciones locales';$('cloudLoad242').insertAdjacentElement('afterend',recoveries);recoveries.onclick=async()=>{const q=queue,ticket=generation;if(!q)return;const rows=(await q.store.all('draft')).filter(r=>r.id!=='current');if(ticket!==generation)return;if(rows.length)download(rows,'recuperaciones-v242.json');else message('No hay recuperaciones locales adicionales. El borrador actual se conserva por separado.');};$('cloudCopy242').onclick=()=>newConflictCopy().catch(e=>message('No se pudo conservar la copia: '+e.message));$('newReport242').onclick=startNew;
  $('autosaveToggle').addEventListener('change',()=>{if($('autosaveToggle').checked)onSave(B.pack(),true)});
