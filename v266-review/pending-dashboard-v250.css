@@ -1,0 +1,75 @@
+/* Reportes HYS v250 · Bandeja ejecutiva, solo consulta por ámbito autorizado */
+.hys250-active{background:#f7fafd!important;padding:0!important;border:1px solid #c9dceb!important;box-shadow:0 12px 35px #143e6512!important;overflow:visible!important}
+.hys250-active>.hys246-pending-intro,.hys250-active>.hys246-pending-grid,.hys250-active>.hys246-view-footer{display:none!important}
+.hys250-dashboard{padding:20px;color:#183a53}
+.hys250-heading{display:flex;justify-content:space-between;gap:18px;align-items:start;margin-bottom:18px}
+.hys250-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:#4179a0}
+.hys250-title{font-size:25px!important;color:#133e62!important;line-height:1.2;margin:4px 0 4px!important}
+.hys250-subtitle{font-size:13px;color:#698199;margin:0}
+.hys250-role{color:#305d80;background:#e8f3fc;border:1px solid #d3e7f8;border-radius:999px;font-size:11px;font-weight:800;padding:8px 13px;text-align:center;max-width:230px;line-height:1.35}
+.hys250-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:0 0 18px}
+.hys250-metric{background:white;border:1px solid #e0e9f1;border-radius:12px;display:grid;gap:2px;padding:14px 14px 13px;box-shadow:0 2px 6px #092e4b0a;position:relative;overflow:hidden}
+.hys250-metric:before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:#6b90ac}
+.hys250-metric-danger:before{background:#d24f50}.hys250-metric-warning:before{background:#e1a636}.hys250-metric-blue:before{background:#347db5}
+.hys250-metric-number{font-size:29px;font-weight:850;line-height:1.25;color:#244761;font-variant-numeric:tabular-nums}
+.hys250-metric-label{font-size:11px;font-weight:750;color:#637b8f}
+.hys250-filters{display:grid;grid-template-columns:minmax(0,2fr) repeat(2,minmax(105px,1fr)) auto;gap:9px;margin:0 0 12px}
+.hys250-filters input,.hys250-filters select{min-width:0;width:100%;min-height:42px;border:1px solid #cadde9;border-radius:8px;padding:8px 11px;font-size:12px;background:white;color:#234967}
+.hys250-filters input:focus-visible,.hys250-filters select:focus-visible{outline:3px solid #b3d7f2;outline-offset:2px}
+.hys250-refresh{border:1px solid #b9d6e9;border-radius:8px;background:#eef7ff;color:#175a84;padding:8px 12px;font-weight:800}
+.hys250-info{font-size:12px;line-height:1.5;color:#657e90;margin:0 0 14px}
+.hys250-body{display:grid;grid-template-columns:minmax(250px,1.05fr) minmax(0,1.5fr);gap:13px;align-items:start}
+.hys250-listings,.hys250-detail{border:1px solid #d5e2ed;background:white;border-radius:12px;padding:16px;min-width:0}
+.hys250-section-title{font-size:15px!important;font-weight:800;color:#295873;margin:0 0 12px!important}
+.hys250-cards{display:grid;gap:10px;max-height:760px;overflow:auto;align-content:start;padding:1px}
+.hys250-card{display:grid;gap:8px;min-width:0;text-align:left;color:#1e3e54;border-radius:10px;background:#f9fbfe;border:1px solid #dce7f0;padding:13px;cursor:pointer;transition:background .15s,border-color .15s}
+.hys250-card:hover{background:#f0f8ff;border-color:#a9cfe7}
+.hys250-card.selected{background:#edf7ff;border-color:#6aaad4;box-shadow:inset 3px 0 #2e84bc}
+.hys250-card:focus-visible,.hys250-tabs button:focus-visible{outline:3px solid #5b9ed7;outline-offset:2px}
+.hys250-card-header,.hys250-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:9px}
+.hys250-card-kind{font-size:10px;color:#437e9f;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.hys250-tag{font-size:10px;font-weight:800;border-radius:999px;padding:4px 8px;white-space:nowrap;background:#e9f1f8;color:#385c7a}
+.hys250-tag.danger{background:#ffe9e9;color:#ab303b}.hys250-tag.warning{background:#fff3d8;color:#8e5a09}
+.hys250-card-title{font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.hys250-card-meta{display:grid;gap:3px;color:#658096;font-size:11px}
+.hys250-card-link{color:#246e9f;font-size:11px;font-weight:800;padding-top:4px;border-top:1px solid #e0edf5}
+.hys250-detail{min-height:250px}
+.hys250-detail h3{font-size:19px!important;line-height:1.35;margin:4px 0 16px;color:#173e5c;overflow-wrap:anywhere}
+.hys250-detail h4{font-size:13px;color:#275a7b;margin:14px 0 7px}
+.hys250-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid #dbe6ed;margin:0 0 14px;gap:3px}
+.hys250-tabs button{background:transparent;color:#607f97;font-weight:750;font-size:12px;border:0;border-bottom:3px solid transparent;border-radius:0;padding:9px 10px}
+.hys250-tabs button.selected{color:#156da5;border-bottom-color:#2584bd}
+.hys250-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hys250-field{background:#f4f8fc;border-radius:7px;padding:10px;min-width:0}
+.hys250-field dt{font-size:11px;font-weight:750;color:#6c8090}
+.hys250-field dd{font-size:12px;margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-weight:650;color:#223f57}
+.hys250-description{font-size:13px;white-space:pre-wrap;line-height:1.65;color:#354d62;overflow-wrap:anywhere}
+.hys250-evidence{padding-top:5px;border-top:1px solid #e3eaf0}
+.hys250-muted{font-size:12px;line-height:1.55;color:#677f91}
+.hys250-caution{border-left:3px solid #5392be;background:#edf7ff;padding:9px 11px;border-radius:4px;font-size:11px;color:#3c5f7a;line-height:1.6;margin:18px 0 2px}
+.hys250-original{margin:14px 0;border:1px solid #d3e2ed;border-radius:8px;overflow:hidden}
+.hys250-original>summary{font-size:12px;font-weight:800;color:#326c95;cursor:pointer;padding:10px;background:#f7fbff}
+.hys250-original>.hys246-embedded-followup{margin:0}
+.hys250-org{margin-top:18px;background:white;border:1px solid #d4e4ef;border-radius:12px;padding:16px}
+.hys250-org-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hys250-org-head h3{font-size:16px;color:#214d72;margin:0}
+.hys250-org-label{font-size:10px;color:#326a90;background:#edf7ff;padding:5px 10px;border-radius:999px;font-weight:800}
+.hys250-org-tree{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.hys250-org-node{background:#eff6fc;border:1px solid #d0e2ef;border-radius:10px;padding:10px 12px;color:#265779;font-weight:700;font-size:11px}
+.hys250-org-node+.hys250-org-node:before{content:"→";padding-right:12px;color:#7094ad}
+@media(max-width:900px){.hys250-body{grid-template-columns:1fr}.hys250-cards{max-height:350px}.hys250-filters{grid-template-columns:1fr 1fr}.hys250-filters input{grid-column:span 2}}
+@media(max-width:600px){.hys250-dashboard{padding:12px}.hys250-heading{display:grid;gap:10px}.hys250-role{max-width:none;justify-self:start}.hys250-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hys250-metric-number{font-size:24px}.hys250-filters{grid-template-columns:1fr}.hys250-filters input{grid-column:1}.hys250-fields{grid-template-columns:1fr}.hys250-listings,.hys250-detail{padding:12px}.hys250-org-tree{display:grid}.hys250-org-node+.hys250-org-node:before{content:"↓";display:block;padding:0 0 7px}.hys250-cards{max-height:300px}}
+@media print{.hys250-dashboard{display:none!important}}
+
+/* v250: separar estrictamente panel ejecutivo y vistas delegadas. */
+.hys250-metrics[hidden],.hys250-filters[hidden],.hys250-org[hidden]{display:none!important}
+.hys250-org-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;border-top:1px solid #dbe8f0;padding-top:14px}
+.hys250-org-field{display:grid;gap:5px;font-size:11px;font-weight:700;color:#2e5a76;min-width:0}
+.hys250-org-field select,.hys250-org-field input{width:100%;min-width:0;border:1px solid #c8dbe8;background:white;color:#1a4767;border-radius:7px;padding:10px;font-size:12px}
+.hys250-org-field select:disabled,.hys250-org-field input:disabled{color:#7b929f;background:#f3f6f9;cursor:not-allowed}
+.hys250-org-save{border:0;border-radius:8px;background:#2877ad;color:#fff;font-weight:750;padding:10px 15px}
+.hys250-org-save:disabled{background:#cfdae2;color:#637786;cursor:not-allowed}
+.hys250-org-form>p{grid-column:1/-1}
+.hys250-org-records{margin:12px 0;border-top:1px solid #dbe8f0;padding-top:12px}
+.hys250-org-record{font-size:12px;margin:5px 0;padding:8px 10px;background:#f5f9fc;border-radius:8px;color:#335b77}
+@media(max-width:600px){.hys250-org-form{grid-template-columns:1fr}}
