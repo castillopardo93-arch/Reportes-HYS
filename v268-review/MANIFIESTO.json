@@ -1,9 +1,9 @@
 {
-  "version": 267,
-  "branch": "desarrollo/v267-roles-dinamicos",
-  "base_version": 266,
+  "version": 268,
+  "branch": "desarrollo/v268-auditoria-integral",
+  "base_version": 267,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-roles-dinamicos-catalogo-local",
+  "estado": "desarrollo-auditoria-integral-diagnostico",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v266-auditoria-punto-3",
+  "base_branch": "desarrollo/v267-roles-dinamicos",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -124,5 +124,14 @@
     "rls_actualizada": false,
     "pruebas_navegador_pendientes": true,
     "almacenamiento": "reportes-hys-v267-roles-local"
+  },
+  "auditoria_integral_v268": {
+    "fecha": "2026-11-08",
+    "alcance": "estática sobre copia aislada; revisión visual pendiente",
+    "archivos_copiados": 67,
+    "hallazgos_confirmados": 5,
+    "aprobada": false,
+    "pruebas_navegador": false,
+    "produccion_modificada": false
   }
 }
