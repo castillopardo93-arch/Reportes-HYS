@@ -4,11 +4,11 @@
  const open=window.indexedDB.open.bind(window.indexedDB);
  let scope='sin-sesion',epoch=0;
  const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
- const prefix=()=>`hys-v263-laboratorio::${scope}::${module}::`;
+ const prefix=()=>`hys-v265-laboratorio::${scope}::${module}::`;
  function wrapper(store,base){return {
   get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},
   key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},
-  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k)},
+  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v265-laboratorio::auth::':base())+k)},
   setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k,String(v))},
   removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k)},
   clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}
@@ -22,6 +22,8 @@
   captureDatabase(name){const base=prefix(),ticket=epoch;return {scope:base,valid:()=>ticket===epoch&&base===prefix(),open:(...args)=>open(base+name,...args)};},
   matchesEvent(event,key){return (!event.storageArea||event.storageArea===native)&&(event.key===null||event.key===prefix()+key);},
   openNative:open,
-  legacySnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('reportes-hys-')&&!k.startsWith('sb-'))out[k]=native.getItem(k);return out;}
+  legacySnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('reportes-hys-')&&!k.startsWith('sb-'))out[k]=native.getItem(k);return out;},
+  legacyVersionedSnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('hys-v263-laboratorio::')&&!k.includes('::auth::'))out[k]=native.getItem(k);return out;},
+  namespace:'hys-v265-laboratorio'
  };
 })();
