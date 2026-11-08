@@ -1145,6 +1145,32 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
     return true;
   }
   window.reportesHysLogout=logout;
+  // v278: una sesión ya abierta revalida su acceso en el servidor.
+  // El cierre automático solo ocurre ante una denegación explícita; un corte de red no cierra la sesión.
+  if(!embeddedOtros&&!recoveryMode){
+    let accessGuardBusy=false,lastGuardCheck=0;
+    async function verifyActiveAccess(){
+      if(accessGuardBusy||closing||submitting||logoutFailed||!window.__REPORTES_HYS_ACCESS__||document.hidden)return;
+      const accessAtStart=window.__REPORTES_HYS_ACCESS__;
+      if(!accessAtStart?.userId)return;
+      const now=Date.now();if(now-lastGuardCheck<12000)return;lastGuardCheck=now;
+      accessGuardBusy=true;
+      try{
+        const {data,error}=await client.rpc('hys242_contexto');
+        if(window.__REPORTES_HYS_ACCESS__!==accessAtStart)return;
+        const denied=error&&(error.code==='42501'||/perfil inactivo|gestión no autorizada|acceso no autorizado/i.test(error.message||''));
+        if(denied||(!error&&data?.profile?.activo!==true)){
+          await logout();
+          showGate('Tu acceso fue suspendido o ya no está autorizado. Comunícate con el administrador.');
+        }
+      }catch(error){console.warn('Verificación de acceso no disponible temporalmente.');}
+      finally{accessGuardBusy=false}
+    }
+    const checker=window.setInterval(verifyActiveAccess,45000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)verifyActiveAccess()});
+    window.addEventListener('focus',verifyActiveAccess);
+    window.addEventListener('pagehide',()=>window.clearInterval(checker),{once:true});
+  }
   window.reportesHysChooseModule=async module=>{
     const target=module==null?'':typeof module==='string'?module.trim().toUpperCase():null;
     const access=window.__REPORTES_HYS_ACCESS__;
