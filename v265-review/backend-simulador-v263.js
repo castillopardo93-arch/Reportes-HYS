@@ -6,6 +6,7 @@
  'use strict';
  if(root.HYS263_SANDBOX!==true||!(/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v265)\.html(?:$|\?)/.test(root.location.pathname+root.location.search)||(root.HYS265_PREVIEW_ONLY===true&&/\/v265-review\/index\.html$/.test(root.location.pathname))))return; // No inicializar el backend ficticio fuera de las rutas de pruebas autorizadas.
  const KEY='reportes-hys-v265-simulador-local-1';
+ const store=root.HysStorage242?.sharedLabStorage||root.localStorage;
  const MODULES=['APR','OTROS'];
  const clone=x=>JSON.parse(JSON.stringify(x));
  const now=()=>new Date().toISOString();
@@ -49,9 +50,9 @@
   return source;
  }
  let state;
- try{state=normalize(JSON.parse(root.localStorage.getItem(KEY)||'null'))}catch{state=initial()}
+ try{state=normalize(JSON.parse(store.getItem(KEY)||'null'))}catch{state=initial()}
  const get=()=>clone(state);
- function persist(next){state=clone(next);root.localStorage.setItem(KEY,JSON.stringify(state));root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}));}
+ function persist(next){state=clone(next);store.setItem(KEY,JSON.stringify(state));root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}));}
  function write(action,target,apply,motivo){
   const next=get(),value=apply(next);next.rev=(next.rev||0)+1;
   next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500),anterior:value?.audit?.anterior||null,nuevo:value?.audit?.nuevo||null});
