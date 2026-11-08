@@ -206,6 +206,7 @@ function create({getAccess,moduleLabel,refreshCatalog}){
   nodes.manageModuleLabel242.hidden=special;
   nodes.manageRows242.replaceChildren();
   nodes.manageName242.value='';
+  nodes.manageNameLabel242.firstChild.textContent=special?'Régimen de turno ':tab==='areas'?'Nombre del área ':'Nombre ';
   nodes.manageName242.placeholder=special?'Ej. 5x2':'';
   nodes.manageName242.maxLength=special?7:150;
   const mode=tab==='areas'?'area':special?'regimen':'lista';
