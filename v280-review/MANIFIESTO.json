@@ -1,9 +1,9 @@
 {
-  "version": 279,
-  "branch": "desarrollo/v279-ficha-laboral-contacto",
-  "base_version": 278,
+  "version": 280,
+  "branch": "desarrollo/v280-pais-libre",
+  "base_version": 279,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-ficha-laboral-documentos-y-contacto",
+  "estado": "desarrollo-prepublicacion-pais-documento-libre",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v278-control-accesos",
+  "base_branch": "desarrollo/v279-ficha-laboral-contacto",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -311,5 +311,18 @@
     "sin_cambios_produccion": true,
     "pruebas_reales_e2e_no_ejecutadas": true,
     "modo_offline_fuera_de_alcance": true
+  },
+  "cambios_v280": {
+    "pais_documento_texto_libre": true,
+    "sugerencias_paises_eliminadas": true,
+    "pais_predeterminado_eliminado": true,
+    "pais_obligatorio": true,
+    "validacion_rut_chileno_conservada": true,
+    "documentos_extranjeros_alfanumericos_conservados": true,
+    "otras_funciones_conservadas": true,
+    "pruebas_logica": 6,
+    "pruebas_sintaxis": true,
+    "prueba_visual_navegador": false,
+    "backend_ficha_pendiente_de_instalacion": true
   }
 }
