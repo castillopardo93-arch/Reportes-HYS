@@ -1345,13 +1345,10 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 })();
 
 </script>
-<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><link rel="stylesheet" href="gestion-usuarios-v265.css"><script src="worker-model-v265.js"></script><script src="gestion-usuarios-v265.js"></script><script>
 /* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
-document.addEventListener('DOMContentLoaded',()=>{
- const host=document.getElementById('config');
- const modulo=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
- try{window.Hys244People?.mount({host,module:modulo});}catch(error){console.warn('No se pudo montar la maqueta de áreas y perfiles:',error.message);}
-});
+/* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
+   Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
 </script><script>
 /* F01 v245: inicializar bandeja de lectura local; no ejecuta tareas ni registra avisos. */
 (function(){
