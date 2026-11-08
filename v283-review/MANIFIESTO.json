@@ -1,9 +1,9 @@
 {
-  "version": 282,
-  "branch": "desarrollo/v282-areas-opciones-unificadas",
-  "base_version": 281,
+  "version": 283,
+  "branch": "desarrollo/v283-regimen-de-turno",
+  "base_version": 282,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-gestion-areas-y-listas-unificada",
+  "estado": "desarrollo-prepublicacion-regimen-de-turno-y-proyectos-vigentes",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v281-regimen-laboral",
+  "base_branch": "desarrollo/v282-areas-opciones-unificadas",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -383,5 +383,36 @@
     "pruebas_cliente_aislado": 14,
     "pruebas_navegador_real": false,
     "pruebas_supabase_mutaciones_reales": false
+  },
+  "cambios_v283": {
+    "selector_nombre": "Régimen de turno",
+    "campo_entrada_nombre": "Régimen de turno",
+    "ficha_laboral_etiqueta": "Régimen de turno",
+    "regimenes_individuales_iniciales": [
+      "5X2",
+      "4X3",
+      "10X5",
+      "7X7"
+    ],
+    "regimenes_reales_si_existe_tabla": true,
+    "regimenes_pendientes_se_muestran_sin_fingir_guardado": true,
+    "edicion_individual_una_vez_instalada_rpc": true,
+    "administracion_mantiene_interfaz_v266": true,
+    "proyecto_vigente": "Proyecto Hidroeléctrico Alto Maipo",
+    "proyectos_desactualizados_en_supabase": [
+      "PHAM 1",
+      "PHAM 2"
+    ],
+    "registros_antiguos_agrupados_en_panel": true,
+    "formulario_nuevo_excluye_proyectos_antiguos": true,
+    "informe_historico_preserva_proyecto_original": true,
+    "sincronizacion_proyectos_en_supabase_pendiente_de_autorizacion": true,
+    "usuario_admin_debe_confirmar_toda_escritura": true,
+    "pruebas_sintaxis_js_embebido": 49,
+    "pruebas_logica_proyecto": 5,
+    "pruebas_logica_panel_regimen_proyecto": 11,
+    "pruebas_e2e_reales": false,
+    "pruebas_visuales_navegador": false,
+    "sin_produccion_modificada": true
   }
 }
