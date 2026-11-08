@@ -1,0 +1,23 @@
+name: QA aislada Reportes HYS v284
+on:
+  push:
+    branches:
+      - desarrollo/v284-correcciones-seguras
+    paths:
+      - 'v284-review/**'
+      - 'evidencias-v284/**'
+      - '.github/workflows/qa-v284.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regresion-local:
+    name: Regresión no destructiva (Node.js)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versión Node
+        run: node --version
+      - name: Ejecutar verificaciones
+        run: node evidencias-v284/test-regresion-v284.cjs
