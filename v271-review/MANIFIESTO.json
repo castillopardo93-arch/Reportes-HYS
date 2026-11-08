@@ -1,9 +1,9 @@
 {
-  "version": 270,
-  "branch": "desarrollo/v270-separacion-tarjetas-usuarios",
-  "base_version": 269,
+  "version": 271,
+  "branch": "desarrollo/v271-sin-creacion-roles",
+  "base_version": 270,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-separacion-funcional-tarjetas",
+  "estado": "desarrollo-sin-creacion-dinamica-roles",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v269-correcciones-auditoria",
+  "base_branch": "desarrollo/v270-separacion-tarjetas-usuarios",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -153,5 +153,13 @@
     "crear_usuario_en_pestana_propia": true,
     "roles_en_pestana_propia": true,
     "pruebas_visuales_pendientes": true
+  },
+  "cambios_v271": {
+    "pestana_creacion_roles_eliminada": true,
+    "catalogo_roles_no_cargado": true,
+    "roles_existentes_y_permisos_conservados": true,
+    "datos_locales_anteriores_no_borrados": true,
+    "implementacion_roles_dinamicos_pospuesta": true,
+    "validacion_navegador_pendiente": true
   }
 }
