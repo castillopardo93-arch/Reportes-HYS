@@ -4,8 +4,8 @@
  */
 (function(root){
  'use strict';
- if(root.HYS263_SANDBOX!==true||!/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v264)\.html(?:$|\?)/.test(root.location.pathname+root.location.search))throw Error('Laboratorio v264: entorno de prueba no autorizado');
- const KEY='reportes-hys-v264-simulador-local-1';
+ if(root.HYS263_SANDBOX!==true||!/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v265)\.html(?:$|\?)/.test(root.location.pathname+root.location.search))throw Error('Laboratorio v265: entorno de prueba no autorizado');
+ const KEY='reportes-hys-v265-simulador-local-1';
  const MODULES=['APR','OTROS'];
  const clone=x=>JSON.parse(JSON.stringify(x));
  const now=()=>new Date().toISOString();
@@ -41,7 +41,7 @@
  function persist(next){state=clone(next);root.localStorage.setItem(KEY,JSON.stringify(state));root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}));}
  function write(action,target,apply,motivo){
   const next=get(),value=apply(next);next.rev=(next.rev||0)+1;
-  next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500)});
+  next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500),anterior:value?.audit?.anterior||null,nuevo:value?.audit?.nuevo||null});
   next.history=next.history.slice(0,250);persist(next);return clone(value);
  }
  const fail=msg=>{throw Error(msg)};
@@ -160,8 +160,73 @@
   if(get().areas.some(a=>a.id!==id&&a.modulo===original.modulo&&a.nombre.toLocaleLowerCase('es')===clean.toLocaleLowerCase('es')))fail('Nombre duplicado');
   return write('Editar área',id,s=>{const a=s.areas.find(x=>x.id===id);a.nombre=clean;a.activa=active===true;return a});
  }
+
+ // v265: alta y edición conjunta de ficha laboral, tarjeta, rol y facultades.
+ // Todos los datos pertenecen exclusivamente al laboratorio ficticio.
+ function validateWorkerTransaction(payload,currentId=''){
+  const W=root.Hys265WorkerModel;
+  if(!W)fail('No se cargó el modelo v265');
+  const s=get();
+  const valid=W.validate(payload.trabajador,s.users,currentId);
+  if(!valid.ok)fail(valid.errors.join('. '));
+  if(!W.roles.includes(payload.rol))fail('Rol no válido');
+  const config=W.validConfiguration(payload.rol,payload.ambitos,payload.facultades,s.areas);
+  if(!config.ok)fail(config.errors.join('. '));
+  if(String(payload.motivo||'').trim().length<10)fail('El motivo debe contener al menos 10 caracteres');
+  if(payload.rol==='administrador_area'&&currentId){
+   const previous=s.users.find(u=>u.usuario_id===currentId);
+   if(previous?.rol!=='administrador_area'){
+    const all=MODULES.some(m=>Object.values(payload.facultades?.[m]?.facultades||{}).some(Boolean));
+    // Facultades nuevas se aceptan solo cuando están seleccionadas explícitamente en el formulario nuevo.
+    if(all&&payload.confirmar_facultades_nuevas!==true)fail('Confirma expresamente las facultades nuevas');
+   }
+  }
+  return {worker:valid.worker};
+ }
+ function createWorker(payload){
+  const W=root.Hys265WorkerModel,{worker}=validateWorkerTransaction(payload);
+  const email=W.identityEmail(worker),roles=['usuario','supervisor','administrador_area'];
+  if(!roles.includes(payload.rol))fail('Rol no válido');
+  return write('Creación de usuario',worker.nombre,next=>{
+   const id='prueba-v265-'+(next.rev+1)+'-'+Math.random().toString(36).slice(2,8);
+   const u={usuario_id:id,nombre:worker.nombre,email,rol:payload.rol,activo:worker.estado_laboral==='activo',revision:1,ambitos:clone(payload.ambitos),trabajador:clone(worker)};
+   next.users.push(u);
+   updateFaculties(next,id,payload.rol,payload.facultades,null);
+   return {usuario_id:id,revision:1,audit:{anterior:null,nuevo:{trabajador:W.auditSafe(worker),rol:u.rol,ambitos:clone(u.ambitos),facultades:payload.rol==='administrador_area'?clone(payload.facultades):{}}}};
+  },payload.motivo);
+ }
+ function updateWorker(id,payload,revision){
+  const W=root.Hys265WorkerModel,s=get(),u=person(s,id);
+  assertRevision(u.revision,revision);
+  if(u.rol==='administrador_global')fail('Cuenta protegida');
+  const {worker}=validateWorkerTransaction(payload,id);
+  const original=clone(u);
+  if(u.rol!=='administrador_area'&&payload.rol==='administrador_area'){
+   // Si se había guardado una desdesignación, el backend garantiza que no se heredan permisos históricos.
+   for(const m of MODULES)if(!Object.prototype.hasOwnProperty.call(payload.facultades?.[m]?.facultades||{},'view')&&Object.keys(payload.facultades?.[m]?.facultades||{}).length===0){
+    // El conjunto vacío es seguro y se conserva.
+   }
+  }
+  return write('Modificación de usuario',id,next=>{
+   const dest=person(next,id);
+   const originalRole=dest.rol;
+   dest.nombre=worker.nombre;dest.email=W.identityEmail(worker);
+   dest.trabajador=clone(worker);dest.rol=payload.rol;dest.activo=worker.estado_laboral==='activo';
+   dest.ambitos=clone(payload.ambitos);dest.revision++;
+   updateFaculties(next,id,payload.rol,payload.facultades,null);
+   return {usuario_id:id,revision:dest.revision,audit:{
+    anterior:{trabajador:W.auditSafe(original.trabajador||{}),rol:original.rol,ambitos:original.ambitos,facultades:originalRole==='administrador_area'?Object.fromEntries(MODULES.map(m=>[m,originalFacSnapshot(s,id,m)])):{}},
+    nuevo:{trabajador:W.auditSafe(worker),rol:dest.rol,ambitos:dest.ambitos,facultades:dest.rol==='administrador_area'?clone(payload.facultades):{}}
+   }};
+  },payload.motivo);
+ }
+ function originalFacSnapshot(s,id,module){
+  const f=s.faculties.find(x=>x.usuario_id===id&&x.modulo===module);
+  return {areas_ids:clone(f?.areas_ids||[]),facultades:clone(f?.facultades||{})};
+ }
+
  function reset(){persist(initial());return get()}
  function report(){return {users:get().users,areas:get().areas,faculties:get().faculties,history:get().history}}
- root.Hys263Lab={get,reset,report,createUser,updateUser,newArea,updateArea,rpc,from,labels,key:KEY};
+ root.Hys263Lab={get,reset,report,createUser,updateUser,createWorker,updateWorker,newArea,updateArea,rpc,from,labels,key:KEY};
  root.reportesHysSupabase={rpc,from};
 })(window);
