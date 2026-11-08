@@ -292,10 +292,10 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
 <script>
-/* V266: QA EXCLUSIVAMENTE en la copia de desarrollo específica.
+/* V273: QA EXCLUSIVAMENTE en copias de desarrollo explícitamente permitidas.
  * Nunca se activa en producción ni sin ?qa=1. */
 window.HYS266_PREVIEW_ONLY=location.hostname==='raw.githack.com'
-  &&/\/(?:v267-review|v269-review|v270-review|v271-review)\/index\.html$/.test(location.pathname)
+  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review)\/index\.html$/.test(location.pathname)
   &&new URLSearchParams(location.search).get('qa')==='1';
 window.HYS265_PREVIEW_ONLY=window.HYS266_PREVIEW_ONLY;
 if(window.HYS266_PREVIEW_ONLY){
@@ -408,7 +408,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v271 · Desarrollo</div>
+    <div class="chooser-kicker">Reportes H y S · v273 · Desarrollo</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
