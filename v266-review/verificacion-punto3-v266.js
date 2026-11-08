@@ -35,7 +35,7 @@ function checkPDF(){
   pdf.addPage();pdf.text('Segunda pagina de prueba',20,24);
   const bytes=pdf.output('arraybuffer');
   const pages=pdf.getNumberOfPages();
-  const signature=new Uint8Array(bytes).slice(0,5).map(x=>String.fromCharCode(x)).join('');
+  const signature=Array.from(new Uint8Array(bytes).slice(0,5),x=>String.fromCharCode(x)).join('');
   const ok=pages===2&&signature==='%PDF-'&&bytes.byteLength>300;
   return {ok,detail:ok?'PDF de prueba de 2 páginas generado en memoria ('+bytes.byteLength+' bytes). No se guardó un informe.':'El documento temporal no superó la comprobación de firma/páginas.'};
  }catch(e){return {ok:false,detail:'Error de PDF local: '+String(e.message||e)}}
