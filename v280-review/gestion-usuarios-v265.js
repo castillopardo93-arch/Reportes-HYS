@@ -471,10 +471,9 @@ function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  const worker=state.draft.worker;
  grid.append(field('nombre','Nombre completo','text',true));
  const country=field('pais_documento','País del documento','text',true);
- const countries=document.createElement('datalist');countries.id='hys279Paises';
- for(const n of ['Chile','Argentina','Bolivia','Brasil','Colombia','Ecuador','España','Haití','México','Paraguay','Perú','Uruguay','Venezuela','Estados Unidos' ,'República Dominicana'])countries.append(new Option(n,n));
- country.querySelector('input').setAttribute('list',countries.id);
- country.append(countries);
+ const countryInput=country.querySelector('input');
+ countryInput.placeholder='Escribe el país del documento';
+ countryInput.autocomplete='off';
  grid.append(country);
  const type=document.createElement('label');type.textContent='Tipo de documento *';
  const docType=document.createElement('select');docType.name='tipo_documento';
