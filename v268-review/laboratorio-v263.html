@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reportes HYS v263 — Laboratorio completo de configuraciones</title>
+<link rel="stylesheet" href="faculty-settings-v259.css">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#173d68;background:#f0f5fa}*{box-sizing:border-box}
+body{margin:0;padding:24px;min-height:100vh}h1,h2,h3{line-height:1.3}p{line-height:1.6}
+button,.btn{font:inherit;cursor:pointer;border:1px solid #bacfdf;background:#f6f9fc;color:#173d68;border-radius:9px;padding:10px 15px}
+button.primary,.btn.primary{background:#155793;border-color:#155793;color:#fff}button:disabled{cursor:not-allowed;opacity:.55}
+input,select{font:inherit;padding:10px;border:1px solid #c5d4e1;border-radius:8px;max-width:100%}
+label{font-size:14px;display:grid;gap:5px}fieldset{border:0;padding:0;margin:0}
+main{max-width:1150px;margin:0 auto}
+.lab-header263{background:white;border:1px solid #d5e1eb;border-radius:16px;padding:22px 25px;box-shadow:0 3px 15px #16375112}
+.lab-header263 h1{margin:0 0 7px;font-size:27px}.lab-header263 p{margin:0}
+.lab-tag263{display:inline-block;padding:5px 11px;border-radius:30px;background:#ffe9bd;color:#805400;font-weight:700;font-size:12px;margin-bottom:14px}
+.lab-alert263{border-left:4px solid #d09232;margin:15px 0;padding:12px 16px;background:#fffaf0;border-radius:7px;font-size:14px}
+#labMessage263{background:#e6eff8;color:#173d68;border-radius:9px;padding:12px 14px;margin:12px 0;min-height:45px}
+.lab-nav263{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.lab-nav263 button{background:#fff;font-size:14px}.lab-nav263 button.active263{background:#155793;color:#fff;border-color:#155793}
+.lab-panel263{background:#fff;border:1px solid #dbe5ef;border-radius:14px;padding:22px;margin-bottom:17px;box-shadow:0 3px 12px #132f5010}
+.lab-panel263[hidden]{display:none}.lab-panel263 h2{margin:0 0 8px}
+.lab-row263{border-top:1px solid #e3edf5;padding:13px 0;display:grid;grid-template-columns:minmax(160px,1.4fr) minmax(145px,1.3fr) minmax(120px,.7fr) auto;gap:10px;align-items:center}
+.lab-row263 input,.lab-row263 select,.lab-area-row263 input,.lab-area-row263 select{width:100%}
+.lab-row263 small,.lab-user-name263 small{display:block;font-size:12px;color:#687d92;line-height:1.5}
+.lab-user-name263{min-width:0}.lab-row-actions263{display:flex;gap:6px;flex-wrap:wrap}
+.lab-row-actions263 button{font-size:12px;padding:9px 10px}
+.lab-inline-form263{display:flex;gap:10px;flex-wrap:wrap;align-items:end;padding:15px 0}
+.lab-inline-form263>*{flex:1 1 180px}.lab-inline-form263 button{flex:0 0 auto}
+.lab-grid263{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lab-group263{border:1px solid #dee8f1;border-radius:10px;padding:14px}
+.lab-area-row263{display:grid;grid-template-columns:1.3fr .8fr auto;gap:8px;margin:10px 0;align-items:center}
+.lab-area-row263 button{font-size:12px;padding:10px 8px}
+.lab-history-row263{border:1px solid #e2eaf1;border-radius:8px;padding:12px;margin:8px 0}
+.lab-history-row263 p{margin:3px 0}.lab-history-row263 small{color:#607991}
+.lab-two-cards263{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.lab-access-card263{padding:15px;border:1px solid #cadbea;border-radius:11px;background:#f6f9fc}
+.lab-preference-form263{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#labPhotoSample263{display:grid;gap:8px;margin:15px 0;max-width:550px}
+#labPhotoSample263 span{display:block;aspect-ratio:4/3;background:#dceaf5;border-radius:8px;border:1px solid #b6cce1}
+#labPhotoSample263[data-photo-size=small]{max-width:330px}#labPhotoSample263[data-photo-size=large]{max-width:850px}
+.lab-high-contrast263{background:#e6eaf0;color:#0b1f35}.lab-high-contrast263 .lab-panel263{border-color:#183a5f}
+#hysToolsRail{display:none}#hysToolsOptions{display:none}
+@media(max-width:960px){.lab-row263{grid-template-columns:1fr 1fr}.lab-grid263{grid-template-columns:1fr}.lab-preference-form263{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){body{padding:9px}.lab-header263,.lab-panel263{padding:15px}.lab-row263{grid-template-columns:1fr}.lab-inline-form263{flex-direction:column;align-items:stretch}.lab-inline-form263 button{width:100%}.lab-two-cards263,.lab-preference-form263{grid-template-columns:1fr}.lab-area-row263{grid-template-columns:1fr}.lab-row-actions263 button{flex:1 1 auto}}
+</style></head>
+<body class="module-choice">
+<main>
+<header class="lab-header263">
+ <span class="lab-tag263">LABORATORIO v263 · 100% FICTICIO</span>
+ <h1>Reportes HYS — Centro de pruebas</h1>
+ <p>Esta versión permite usar y guardar configuraciones <strong>simuladas</strong> de usuarios, roles, tarjetas, áreas, facultades, historial y opciones visuales. Los cambios persisten solo en este navegador y pueden reiniciarse.</p>
+ <p class="lab-alert263"><strong>No modifica cuentas reales.</strong> La autenticación y Supabase oficiales no se utilizan. No permite enviar reportes, correos, PDFs reales ni cambios a producción.</p>
+</header>
+<nav class="lab-nav263" aria-label="Configuraciones en prueba">
+ <button type="button" data-lab-tab="users">Usuarios</button>
+ <button type="button" id="labOpenFaculties263" class="primary">Facultades · Roles y tarjetas</button>
+ <button type="button" data-lab-tab="areas">Áreas</button>
+ <button type="button" data-lab-tab="access">Accesos simulados</button>
+ <button type="button" data-lab-tab="history">Auditoría</button>
+ <button type="button" data-lab-tab="notifications">Notificaciones</button>
+ <button type="button" data-lab-tab="settings">Configuración visual</button>
+</nav>
+<p id="labMessage263" role="status">Selecciona una pestaña. Las pruebas no afectan a usuarios reales.</p>
+<section class="lab-panel263" data-lab-panel="users">
+ <h2>Usuarios de prueba</h2><p>Administra datos y estados. El rol, las tarjetas, las áreas y las facultades especiales se asignan exclusivamente en Facultades.</p>
+ <form id="labNewUser263" class="lab-inline-form263"><label>Nombre del nuevo usuario ficticio<input id="labNewUserName263" required minlength="3" maxlength="150" placeholder="Ej. Encargado de turno"></label><button class="btn primary" type="submit">Crear usuario de prueba</button></form>
+ <p id="labUserCount263"></p><div id="labUserList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="areas" hidden>
+ <h2>Áreas de trabajo</h2><p>Alta, modificación, activación y desactivación de áreas simuladas para cada tarjeta.</p>
+ <form id="labNewArea263" class="lab-inline-form263"><label>Tarjeta<select id="labNewAreaModule263"><option value="APR">Prevencionista de riesgos</option><option value="OTROS">Supervisores, capataces y otros</option></select></label><label>Nombre de área<input id="labNewAreaName263" required maxlength="100" placeholder="Ej. COLORADO"></label><button class="btn primary" type="submit">Crear área de prueba</button></form>
+ <div id="labAreaList263" class="lab-grid263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="access" hidden>
+ <h2>Accesos según la configuración guardada</h2><p>Vista previa ficticia de las tarjetas, áreas y atribuciones que tendría la cuenta seleccionada.</p>
+ <label>Usuario de prueba<select id="labAccessUser263"></select></label>
+ <div id="labAccessResult263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="history" hidden>
+ <h2>Auditoría de pruebas</h2><p id="labHistoryCount263"></p><div id="labHistoryList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="notifications" hidden>
+ <h2>Notificaciones (simulación)</h2><p>Vista de eventos generados en el laboratorio. No envía correos ni notificaciones reales.</p>
+ <div id="labNotificationList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="settings" hidden>
+ <h2>Configuración visual de prueba</h2><p>Estas opciones solo afectan a la muestra visual de este laboratorio, no al PDF ni a la configuración de la aplicación real.</p>
+ <form id="labPrefs263">
+  <div class="lab-preference-form263">
+   <label>Tamaño de fotos<select id="labPhotoSize263"><option value="small">Pequeñas</option><option value="medium">Medianas</option><option value="large">Grandes</option></select></label>
+   <label>Fotos por fila<select id="labPhotosRow263"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+   <label>Contraste<select id="labContrast263"><option value="normal">Normal</option><option value="high">Alto contraste</option></select></label>
+  </div>
+  <div id="labPhotoSample263"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <button type="submit" class="btn primary">Guardar preferencias de prueba</button>
+ </form>
+</section>
+<section class="lab-panel263">
+ <h2>Control del laboratorio</h2><p>Cuando termines de probar, puedes regresar todos los usuarios, áreas y permisos ficticios a su estado inicial.</p>
+ <button id="labReset263" class="btn" type="button">Restablecer todas las pruebas</button>
+</section>
+</main>
+<aside id="hysToolsRail" aria-label="Opciones de demostración"><nav id="hysToolsOptions"></nav></aside>
+<script>
+window.HYS263_SANDBOX=true;
+window.HYS242_DEPLOYMENT_READY=false;
+window.HYS257_ENABLE_USER_MANAGEMENT=true;
+window.HYS261_ATOMIC_FACULTIES_READY=true;
+window.HYS262_ATOMIC_ROLE_READY=true;
+window.HysAppearance242={moduleLabel:m=>m==='APR'?'Prevencionista de riesgos':m==='OTROS'?'Supervisores, capataces y otros':m};
+window.__REPORTES_HYS_ACCESS__={
+ userId:'administrador-general-ficticio',profile:{activo:true,rol:'administrador_global'},
+ modules:['APR','OTROS'],permissions:[],facultades:[],selectedModule:null
+};
+</script>
+<script src="backend-simulador-v263.js"></script>
+<script src="access-policy-v256.js"></script>
+<script src="access-settings-v259.js"></script>
+<script src="faculty-model-v261.js"></script>
+<script src="role-control-v262.js"></script>
+<script src="facultades-laboratorio-v263.js"></script>
+<script src="laboratorio-ui-v263.js"></script>
+</body></html>
