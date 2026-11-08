@@ -43,7 +43,7 @@ function makeCheckbox(labelText,checked,disabled,fn,className){
  label.append(input,document.createTextNode(labelText));return label;
 }
 function setBusy(on){busy=on;panel.querySelectorAll('button,input,select').forEach(node=>{node.disabled=on});if(!on)paintControls()}
-function paintControls(){if(!account)return;const save=$('facultadesSave242');save.disabled=busy||!M.some(canEditModule);$('facultyReset261').disabled=busy}
+function paintControls(){if(!account)return;const save=$('facultadesSave242');save.disabled=busy||!M.some(canEditModule);save.textContent=A.userManagementEnabled()?'Guardar facultades':'Revisar cambios (sin guardar)';$('facultyReset261').disabled=busy}
 function selectedMode(m){return areaMode[m]==='all'?'all':'selected'}
 function renderAreaSelector(m,host){
  const ids=currentAreas(m),eligible=allowedAreas(m),mode=selectedMode(m);
@@ -156,7 +156,7 @@ function renderSummary(){
  const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
  const roleWasChanged=R.roleChanged(account,draftRole);
  const changed=steps.length>0||roleWasChanged;
- const msg=el('p','faculty-summary-result261',changed?(roleWasChanged?'Cambio de rol'+(steps.length?' y '+steps.length+' operación(es) de permisos':'')+' pendientes de confirmación.':steps.length+' operación(es) pendientes de confirmar con el servidor.'):'Sin cambios respecto de la configuración cargada.');
+ const msg=el('p','faculty-summary-result261',changed?(roleWasChanged?'Cambio de rol pendiente de confirmación'+(steps.length?' y '+steps.length+' operación(es) de permisos.':'.'):steps.length+' operación(es) pendientes de confirmar con el servidor.'):'Sin cambios respecto de la configuración cargada.');
  host.append(msg);
  const special=$('facultySpecial261');$('facultySummaryTitle261').textContent=isAdminTarget()?'4. Revisar y guardar':'3. Revisar y guardar';
  $('facultySafety261').textContent=window.HYS261_ATOMIC_FACULTIES_READY===true?'Los cambios se enviaran al servicio transaccional cuando se habilite la gestion real.':'Modo de revision: las operaciones multiples esperan un servicio transaccional para impedir permisos parciales; no se escriben datos desde esta copia.';
