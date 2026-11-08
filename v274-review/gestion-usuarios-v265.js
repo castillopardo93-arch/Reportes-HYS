@@ -332,27 +332,100 @@ function fillWorkerSample(){
  state.dirty=true;render();
  notice('Ficha de prueba completada. Ahora puedes pulsar Continuar.');
 }
+
+async function copyAccess(email,password){
+ const message=Credentials.deliveryText(email,password,lab);
+ try{
+  if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(message);
+  else{
+   const temp=document.createElement('textarea');temp.value=message;
+   temp.style.cssText='position:fixed;left:-10000px;top:0';document.body.append(temp);temp.select();
+   let copied=false;try{copied=document.execCommand('copy')}finally{temp.remove()}
+   if(!copied)throw Error('Portapapeles no disponible');
+  }
+  notice('Datos copiados. Entrégalos únicamente al trabajador por un canal privado.');
+ }catch{notice('No fue posible copiar el acceso automáticamente; puedes seleccionar la contraseña visible.',true)}
+}
+async function shareAccess(email,password){
+ if(!navigator.share){await copyAccess(email,password);return}
+ try{await navigator.share({title:'Acceso temporal Reportes HYS',text:Credentials.deliveryText(email,password,lab)})}
+ catch(e){if(e?.name!=='AbortError')notice('No se pudo compartir el acceso. Utiliza el botón Copiar.',true)}
+}
+function accessButtons(target,email,password,method,confirmation){
+ const actions=element('div',undefined,'hys265-inline');
+ const check=()=>{const v=Credentials.validate(method,password(),confirmation());if(!v.ok){notice(v.error,true);return false}return true};
+ actions.append(action('Copiar acceso',()=>{if(check())copyAccess(email,password())}));
+ actions.append(action('Compartir acceso',()=>{if(check())shareAccess(email,password())},'btn primary'));
+ target.append(actions);
+}
+function renderCredentialDelivery(target){
+ if(!delivery){state.mode='create';render();return}
+ const data=delivery,card=element('section',undefined,'hys265-card hys274-delivery');
+ card.append(element('h2','Entrega de acceso · una sola vez'));
+ card.append(element('p',lab?'Cuenta FICTICIA guardada; esta contraseña no permite iniciar sesión real.':'Entrega privada al trabajador.','hys265-muted'));
+ card.append(element('p','Correo de ingreso: '+data.email));
+ if(data.secret){
+  const label=document.createElement('label');label.textContent='Contraseña temporal';
+  const field=document.createElement('input');field.type='text';field.readOnly=true;field.autocomplete='off';field.value=data.secret;
+  label.append(field);card.append(label);
+  accessButtons(card,data.email,()=>data.secret,data.method,()=>data.secret);
+ }else card.append(element('p','Se eligió invitación por correo. En el laboratorio no se envían mensajes.','hys265-muted'));
+ card.append(element('p','El acceso se ocultará al cerrar o finalizar esta pantalla. No se conserva la contraseña en los registros.','hys265-muted'));
+ card.append(action('Finalizar y ver usuarios registrados',()=>{clearCredentials();state.tab='directory';resetDraft();render()},'btn primary'));
+ target.append(card);
+}
 function stepAccount(p){
  p.append(element('h3','2. Creación de cuenta'));
- p.append(element('p','Primero se registra al trabajador; después se prepara su cuenta. La invitación y la activación real se confirmarán al finalizar todos los pasos. No se solicitan contraseñas personales.','hys265-muted'));
+ p.append(element('p','Elige el correo de ingreso y el método de creación. La contraseña puede generarse automáticamente o escribirse de manera manual.','hys265-muted'));
  const d=state.draft,account=d.cuenta;
  const emailOptions=[];
  if(d.worker.correo_corporativo?.trim())emailOptions.push(['corporativo','Corporativo · '+d.worker.correo_corporativo.trim()]);
  if(d.worker.correo_personal?.trim())emailOptions.push(['personal','Personal · '+d.worker.correo_personal.trim()]);
- if(!emailOptions.length){p.append(element('p','No hay correo válido para preparar la cuenta. Regresa a Ficha laboral.','hys265-muted'));return}
- if(!emailOptions.some(([value])=>value===account.correo_ingreso))account.correo_ingreso=emailOptions[0][0];
- const label=document.createElement('label');label.textContent='Correo que se utilizará para iniciar sesión *';
- const select=document.createElement('select');for(const [value,title] of emailOptions)select.append(new Option(title,value));
- select.value=account.correo_ingreso;
- select.onchange=()=>{account.correo_ingreso=select.value;state.dirty=true;render()};
- label.append(select);p.append(label);
- const method=document.createElement('label');method.textContent='Método de creación';
- const methodSelect=document.createElement('select');methodSelect.add(new Option('Invitación por correo (recomendado)','invitacion'));methodSelect.value='invitacion';methodSelect.disabled=true;method.append(methodSelect);p.append(method);
+ if(!emailOptions.length){p.append(element('p','No hay correo válido. Regresa a Ficha laboral.','hys265-muted'));return}
+ if(!emailOptions.some(([v])=>v===account.correo_ingreso))account.correo_ingreso=emailOptions[0][0];
+ const emailLabel=document.createElement('label');emailLabel.textContent='Correo para iniciar sesión *';
+ const emailSelect=document.createElement('select');
+ for(const [value,title] of emailOptions)emailSelect.add(new Option(title,value));
+ emailSelect.value=account.correo_ingreso;emailSelect.disabled=state.mode==='edit';
+ emailSelect.onchange=()=>{account.correo_ingreso=emailSelect.value;state.dirty=true;render()};
+ emailLabel.append(emailSelect);p.append(emailLabel);
+ const methodLabel=document.createElement('label');methodLabel.textContent='Método de creación *';
+ const methodSelect=document.createElement('select');
+ for(const [value,title] of [['automatica','Generar contraseña automática'],['manual','Crear contraseña manualmente'],['invitacion','Invitación por correo']])methodSelect.add(new Option(title,value));
+ if(!['automatica','manual','invitacion'].includes(account.metodo))account.metodo='invitacion';
+ methodSelect.value=account.metodo;methodSelect.disabled=state.mode==='edit';
+ methodSelect.onchange=()=>{
+  account.metodo=methodSelect.value;credentialSecret='';credentialRepeat='';state.dirty=true;render();
+ };
+ methodLabel.append(methodSelect);p.append(methodLabel);
  const candidate=W.validateAccount(account,d.worker,state.mode==='edit');
+ if(state.mode==='edit'){
+  p.append(element('p','Cuenta existente: no se modifica su contraseña desde esta ficha.','hys265-muted'));
+ }else if(account.metodo!=='invitacion'){
+  const automatic=account.metodo==='automatica';
+  const card=element('div',undefined,'hys265-module hys274-credential');
+  if(automatic&&!credentialSecret){try{credentialSecret=Credentials.generate(20)}catch(e){notice(e.message,true)}}
+  const passLabel=document.createElement('label');passLabel.textContent=automatic?'Contraseña generada automáticamente *':'Escribe la contraseña temporal *';
+  const pass=document.createElement('input');pass.id='hys274Password';pass.type=automatic?'text':'password';pass.readOnly=automatic;
+  pass.autocomplete='new-password';pass.maxLength=128;pass.spellcheck=false;pass.value=credentialSecret;
+  if(!automatic)pass.oninput=()=>{credentialSecret=pass.value;state.dirty=true};
+  passLabel.append(pass);card.append(passLabel);
+  if(automatic){
+   card.append(action('Generar otra contraseña',()=>{try{credentialSecret=Credentials.generate(20);state.dirty=true;render()}catch(e){notice(e.message,true)}}));
+  }else{
+   const repeatLabel=document.createElement('label');repeatLabel.textContent='Confirma la contraseña manual *';
+   const repeat=document.createElement('input');repeat.type='password';repeat.value=credentialRepeat;repeat.maxLength=128;repeat.autocomplete='new-password';
+   repeat.oninput=()=>{credentialRepeat=repeat.value;state.dirty=true};repeatLabel.append(repeat);card.append(repeatLabel);
+   card.append(action('Mostrar / ocultar contraseña',()=>{const visible=pass.type==='text';pass.type=visible?'password':'text';repeat.type=visible?'password':'text'}));
+  }
+  card.append(element('p','Mínimo 12 caracteres, con mayúsculas, minúsculas, números y símbolos. No se guarda la contraseña en la ficha ni en el historial.','hys265-muted'));
+  accessButtons(card,candidate.cuenta.email,()=>credentialSecret,account.metodo,()=>credentialRepeat);
+  p.append(card);
+ }else p.append(element('p','Invitación por correo: el laboratorio no enviará mensajes.','hys265-muted'));
  const meta=element('div',undefined,'hys265-module');
- meta.append(element('strong',state.mode==='edit'?'Cuenta existente: solo vista previa de datos de acceso':'Cuenta nueva: pendiente de completar y confirmar'));
- meta.append(element('p','Correo de acceso: '+(candidate.cuenta.email||'Sin correo válido'),'hys265-muted'));
- meta.append(element('p',state.mode==='edit'?'En esta revisión, los cambios de dirección de acceso se simulan; ninguna credencial real se modifica.':'Al guardar el laboratorio solo registrará una invitación ficticia. No se enviarán mensajes ni se crearán contraseñas.','hys265-muted'));
+ meta.append(element('strong',state.mode==='edit'?'Cuenta existente':'Cuenta nueva: pendiente de confirmar'));
+ meta.append(element('p','Correo: '+(candidate.cuenta.email||'No válido'),'hys265-muted'));
+ meta.append(element('p',lab?'SOLO PRUEBAS: esta contraseña se puede copiar o compartir como demostración, pero no es una cuenta real de Supabase.':'La creación real sigue desactivada hasta integrar un servicio de servidor seguro.','hys265-muted'));
  p.append(meta);
 }
 function stepRoles(p){
