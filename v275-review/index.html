@@ -295,7 +295,7 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 /* V273: QA EXCLUSIVAMENTE en copias de desarrollo explícitamente permitidas.
  * Nunca se activa en producción ni sin ?qa=1. */
 window.HYS266_PREVIEW_ONLY=location.hostname==='raw.githack.com'
-  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review)\/index\.html$/.test(location.pathname)
+  &&/\/(?:v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review)\/index\.html$/.test(location.pathname)
   &&new URLSearchParams(location.search).get('qa')==='1';
 window.HYS265_PREVIEW_ONLY=window.HYS266_PREVIEW_ONLY;
 if(window.HYS266_PREVIEW_ONLY){
@@ -378,6 +378,22 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
  #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
 }
 </style>
+<style id="hys275-password-css">
+/* v275 — Cambio de contraseña desde la tarjeta de ingreso */
+#authGate .auth-assist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+#authGate .auth-assist button{display:block;min-height:44px;background:#eef5fc;border:1px solid #c4dcef;border-radius:9px;color:#17578c;font-size:13px;font-weight:700;text-decoration:none;margin:0;padding:8px 10px}
+#authGate .auth-assist button:hover{background:#e0effc}
+#authGate .auth-assist button[hidden]{display:none!important}
+#authGate #authChangeForm[hidden]{display:none!important}
+#authGate .auth-change-hint{font-size:13px;line-height:1.5;color:#536d83;margin:10px 0}
+#authGate #authChangeForm .auth-field{margin:12px 0}
+#authGate #authChangeForm .auth-change-show{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin:8px 0 14px}
+#authGate #authChangeForm .auth-change-show input{width:18px;height:18px;min-height:18px;flex:0 0 auto;accent-color:#176df0}
+#authGate #authChangeCancel{background:#e8f1f8;color:#154e78;border:1px solid #bfd3e3;margin-top:9px}
+#authGate .auth-status[data-kind="success"]{color:#12623f;font-weight:700}
+#authGate .auth-card{max-height:calc(100dvh - 30px);overflow-y:auto;overscroll-behavior:contain}
+@media(max-width:430px){#authGate{padding:8px}#authGate .auth-card{padding:16px}#authGate .auth-assist{grid-template-columns:1fr}}
+</style>
 <link rel="stylesheet" href="v242.css">
 <link rel="stylesheet" href="user-management-v258.css">
 <link rel="stylesheet" href="faculty-settings-v259.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css"><link rel="stylesheet" href="inbox-v245.css"><link rel="stylesheet" href="pending-detail-v246.css"><link rel="stylesheet" href="pending-dashboard-v250.css"><link rel="stylesheet" href="notifications-f251.css">
@@ -394,7 +410,21 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
       <div class="auth-field"><label for="authPassword">Contraseña</label><input id="authPassword" type="password" autocomplete="current-password" required></div>
       <button id="authLoginButton" type="submit">Ingresar</button>
     </form>
-    <button id="authRecover" type="button">¿Olvidaste tu contraseña?</button>
+    <div class="auth-assist">
+      <button id="authChangeStart" type="button">Cambiar contraseña</button>
+      <button id="authRecover" type="button">¿Olvidaste tu contraseña?</button>
+    </div>
+    <form id="authChangeForm" hidden autocomplete="off">
+      <p class="auth-change-hint">Cambia tu contraseña sin solicitar un correo. Necesitarás conocer la contraseña actual.</p>
+      <div class="auth-field"><label for="authChangeEmail">Correo de acceso</label><input id="authChangeEmail" type="email" autocomplete="username" maxlength="254" required></div>
+      <div class="auth-field"><label for="authChangeCurrent">Contraseña actual</label><input id="authChangeCurrent" type="password" autocomplete="current-password" required></div>
+      <div class="auth-field"><label for="authChangeNew">Nueva contraseña</label><input id="authChangeNew" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></div>
+      <div class="auth-field"><label for="authChangeRepeat">Confirmar contraseña nueva</label><input id="authChangeRepeat" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></div>
+      <label class="auth-change-show"><input id="authChangeShow" type="checkbox"> Mostrar contraseñas</label>
+      <p class="auth-change-hint">Mínimo 12 caracteres, con mayúsculas, minúsculas, números y símbolos.</p>
+      <button id="authChangeSubmit" type="submit">Guardar nueva contraseña</button>
+      <button id="authChangeCancel" type="button">Volver al ingreso</button>
+    </form>
     <form id="authResetForm" hidden>
       <div class="auth-field"><label for="authNewPassword">Nueva contraseña</label><input id="authNewPassword" type="password" autocomplete="new-password" minlength="12" required></div>
       <div class="auth-field"><label for="authRepeatPassword">Repite la nueva contraseña</label><input id="authRepeatPassword" type="password" autocomplete="new-password" minlength="12" required></div>
@@ -408,7 +438,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v274 · Desarrollo</div>
+    <div class="chooser-kicker">Reportes H y S · v275 · Desarrollo</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
@@ -1204,6 +1234,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
   }
 })();
 </script>
+<script src="auth-password-v275.js?build=v275-ingreso-01"></script>
 <script>
 /* Administración v235: todas las escrituras requieren una acción explícita. */
 (function(){
@@ -1477,7 +1508,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});
  else mount();
 })();
-</script><script src="vista-completa-preview-v265.js?build=v266-punto3-01"></script><script src="areas-opciones-qa-v265.js?build=v266-punto3-01"></script><link rel="stylesheet" href="verificacion-punto3-v266.css?build=v266-punto3-01"><script src="verificacion-punto3-v266.js?build=v266-punto3-01"></script></body></html>
+</script><script src="vista-completa-preview-v265.js?build=v266-punto3-01"></script><script src="areas-opciones-qa-v265.js?build=v266-punto3-01"></script><link rel="stylesheet" href="verificacion-punto3-v266.css?build=v266-punto3-01"><script src="verificacion-punto3-v266.js?build=v266-punto3-01"></script><script>window.Hys275Password?.openDemo?.();</script></body></html>
 
 
 
