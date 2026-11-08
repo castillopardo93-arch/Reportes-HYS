@@ -1,9 +1,9 @@
 {
-  "version": 281,
-  "branch": "desarrollo/v281-regimen-laboral",
-  "base_version": 280,
+  "version": 282,
+  "branch": "desarrollo/v282-areas-opciones-unificadas",
+  "base_version": 281,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-regimenes-laborales-separados",
+  "estado": "desarrollo-prepublicacion-gestion-areas-y-listas-unificada",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v280-pais-libre",
+  "base_branch": "desarrollo/v281-regimen-laboral",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -236,7 +236,7 @@
     "pruebas_navegador_real": false,
     "pruebas_supabase_real": false
   },
-  "modo": "aplicacion-real-de-desarrollo",
+  "modo": "aplicacion-real-de-desarrollo-sin-simulador",
   "regla_presentacion": {
     "laboratorio_solo_con_autorizacion_explicita": true,
     "formato_definitivo_por_defecto": true,
@@ -347,5 +347,41 @@
     "pruebas_reales_autenticadas": false,
     "pruebas_visuales_navegador": false,
     "integracion_backend_preparada_no_instalada": true
+  },
+  "cambios_v282": {
+    "interfaz_v266_recuperada": true,
+    "titulo": "Áreas y opciones",
+    "pestanas": [
+      "Áreas de trabajo",
+      "Opciones de formularios",
+      "Historial"
+    ],
+    "un_solo_recuadro_administracion": true,
+    "todos_los_catalogos_operativos_existentes": [
+      "shift",
+      "project",
+      "Resultado",
+      "Prioridad",
+      "Estado",
+      "owner",
+      "otherCategory",
+      "otherStatus"
+    ],
+    "catalogo_turnos_laborales_independiente": "regimenes_laborales_v281",
+    "administracion_areas": "areas_trabajo_v242",
+    "editar_crear_desactivar_reactivar_en_cada_catalogo": true,
+    "consultas_reales_supabase": true,
+    "no_usa_datos_simulados": true,
+    "sin_dependencia_de_habilitar_guardado_central_de_informes": true,
+    "proyecto_consulta_catalogo_y_no_se_fuerza_valor_fijo": true,
+    "administrador_general_autorizado_a_todos_los_catalogos": true,
+    "gestion_de_areas_delegada_a_roles_con_facultades": true,
+    "controles_reales_habilitados_solo_con_rpc_v282_instalada": true,
+    "desplegada_rpc_v282": false,
+    "sin_cambios_automaticos_en_usuarios_areas_listas_o_roles": true,
+    "no_se_edita_rol_de_seguridad_ni_opciones_semanticas_fijas_desde_catalogo_generico": true,
+    "pruebas_cliente_aislado": 14,
+    "pruebas_navegador_real": false,
+    "pruebas_supabase_mutaciones_reales": false
   }
 }
