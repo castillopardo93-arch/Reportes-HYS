@@ -212,6 +212,10 @@ begin
    revision=revision+1,actualizado_en=clock_timestamp(),actor_id=v_actor.usuario_id
   where usuario_id=p_usuario returning * into v_new;
  end if;
+ -- El Administrador general puede corregir su nombre oficial sin alterar rol ni facultades.
+ if p_usuario=v_actor.usuario_id and v_target.rol='administrador_global' then
+  update public.perfiles set nombre=btrim(p_datos->>'nombre') where usuario_id=p_usuario;
+ end if;
  insert into public.eventos_v242(actor_id,actor_nombre,accion,entidad,motivo,anterior,nuevo)
  values(v_actor.usuario_id,v_actor.nombre,'FICHA_LABORAL_V279',p_usuario::text,btrim(p_motivo),
    jsonb_build_object('revision',coalesce(v_old.revision,0),'documento_registrado',coalesce(v_old.trabajador->>'rut','')<>'','contactos_registrados',(coalesce(v_old.trabajador->>'correo_corporativo','')<>'') or (coalesce(v_old.trabajador->>'correo_personal','')<>'')),
