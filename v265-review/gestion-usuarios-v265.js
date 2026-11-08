@@ -398,12 +398,12 @@ async function open(tab='directory',userId=null){
  if(userId){const u=state.users.find(x=>x.usuario_id===userId);if(u)openEdit(u)}
  else render();
 }
-const close=()=>{if(!abandon())return;panel.hidden=true;state.dirty=false;inFlight++;if(!usersButton.hidden)usersButton.focus()};
+const close=()=>{if(!abandon())return false;panel.hidden=true;state.dirty=false;inFlight++;if(!usersButton.hidden)usersButton.focus();return true};
 $('hys265Close').onclick=close;
 panel.querySelectorAll('[data-hys265-tab]').forEach(b=>b.onclick=()=>show(b.dataset.hys265Tab));
 usersButton.onclick=()=>open('directory');
 areasButton.onclick=()=>{
- if(lab&&root.Hys265OpenAreas){close();root.Hys265OpenAreas();return}
+ if(lab&&root.Hys265OpenAreas){if(close())root.Hys265OpenAreas();return}
  open('directory');notice('Áreas y opciones: la administración de catálogos permanece pendiente de su consolidación. La asignación de áreas a cada trabajador está dentro de Gestión de usuarios.',true);
 };
 function sync(){
