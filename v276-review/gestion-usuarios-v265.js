@@ -12,7 +12,7 @@ if(!W||!Credentials||!nav)return;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=v=>JSON.parse(JSON.stringify(v));
-const lab=root.HYS265_LAB_MODE===true&&!!root.Hys263Lab&&(/\/laboratorio-integral-v265\.html$/.test(location.pathname)||(root.HYS266_PREVIEW_ONLY===true&&/\/(?:v266-review|v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review)\/index\.html$/.test(location.pathname)));
+const lab=root.HYS265_LAB_MODE===true&&!!root.Hys263Lab&&(/\/laboratorio-integral-v265\.html$/.test(location.pathname)||(root.HYS266_PREVIEW_ONLY===true&&/\/(?:v266-review|v267-review|v269-review|v270-review|v271-review|v272-review|v273-review|v274-review|v275-review|v276-review)\/index\.html$/.test(location.pathname)));
 const labApi=lab?root.Hys263Lab:null;
 const scopeNames={APR:'Prevencionistas',OTROS:'Supervisores, capataces y otros'};
 const rights=[
