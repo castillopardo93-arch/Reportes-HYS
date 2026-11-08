@@ -69,7 +69,7 @@ body.demo-dark .demo-tag{background:#4f402c;color:#fce0a7}
 #hys265UsersPanel h4{font-size:14px;margin:12px 0 8px}
 #hys265UsersPanel .hys265-line{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
 #hys265UsersPanel .hys265-step{background:#e7f0f8;color:#275b82;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:700}
-#hys265UsersPanel .hys265-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 18px}
+#hys265UsersPanel .hys265-stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:12px 0 18px}
 #hys265UsersPanel .hys265-stages span{display:block;padding:7px;background:#e5eff8;border-radius:8px;text-align:center;color:#a1b6c6}
 #hys265UsersPanel .hys265-stages span.current{background:#236b9b;color:#fff}
 #hys265UsersPanel label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:#244662;font-size:13px;line-height:1.4}
@@ -196,7 +196,9 @@ function validateAccount(account,worker,existing=false){
  if(!['corporativo','personal'].includes(source))errors.push('Selecciona un correo de ingreso permitido');
  if(!validEmail(email))errors.push('Selecciona un correo válido en la ficha del trabajador para crear su cuenta');
  // La simulación no envía invitaciones ni crea credenciales de autenticación.
- return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado:existing?'sin_cambios':'pendiente_invitacion'}};
+ const previous=safeEmail(account?.email||'');
+ const estado=!existing?'pendiente_invitacion':previous&&previous!==email?'cambio_correo_pendiente':account?.estado==='pendiente_invitacion'?'pendiente_invitacion':'sin_cambios';
+ return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado}};
 }
 function validConfiguration(role,ambitos,grants,areas){
  const errors=[];
@@ -251,6 +253,7 @@ const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,valid
 if(typeof module==='object'&&module.exports)module.exports=api;
 else root.Hys265WorkerModel=api;
 })(typeof window==='object'?window:globalThis);
+
 
 
 </script>
@@ -490,6 +493,7 @@ else root.Hys265WorkerModel=api;
  root.Hys263Lab={get,reset,report,createUser,updateUser,createWorker,updateWorker,newArea,updateArea,rpc,from,labels,key:KEY};
  root.reportesHysSupabase={rpc,from};
 })(window);
+
 
 
 </script>
@@ -923,6 +927,7 @@ root.reportesHysAdminSync=()=>{previousSync?.();sync()};
 sync();
 root.Hys265UserManagement={open,close,refresh,isLab:lab};
 })(window);
+
 
 
 </script>
