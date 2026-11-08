@@ -10,7 +10,7 @@ const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'
 const normalize=s=>String(s||'').trim().replace(/\s+/g,' ');
 const read=()=>{try{const x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x.filter(r=>r&&typeof r.id==='string'):[]}catch{return []}};
 let items=read(),selected=null;
-const isGlobal=()=>root.__REPORTES_HYS_ACCESS__?.profile?.activo===true&&root.__REPORTES_HYS_ACCESS__?.profile?.rol==='administrador_global'&&root.HYS266_PREVIEW_ONLY===true;
+const isGlobal=()=>root.HYS266_PREVIEW_ONLY===true&&(root.__REPORTES_HYS_ACCESS__?.profile?.rol==='administrador_global'&&root.__REPORTES_HYS_ACCESS__?.profile?.activo===true||!root.__REPORTES_HYS_ACCESS__);
 const css=document.createElement('style');css.textContent=`
 #hys267RolesPanel{position:fixed;inset:0;z-index:99990;background:#0b203b99;overflow:auto;padding:32px 12px}
 #hys267RolesPanel[hidden]{display:none!important}
@@ -64,7 +64,7 @@ const b=document.createElement('button');b.id='hys267Open';b.type='button';b.cla
 b.innerHTML='<span class="tools-option-icon" aria-hidden="true">♙</span><span class="tools-option-label">Roles</span><span class="tools-option-full">Roles y facultades</span>';
 rail.append(b);
 b.onclick=()=>{if(!isGlobal())return;const userPanel=$('hys265UsersPanel');if(userPanel&&!userPanel.hidden){status('Cierra primero Gestión de usuarios');return}items=read();selected=null;form(null);panel.hidden=false;status('')};
-const sync=()=>{b.hidden=!isGlobal()||!document.body.classList.contains('module-choice')};
+const sync=()=>{b.hidden=!isGlobal()};
 new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
 document.addEventListener('click',sync);sync();
 }
