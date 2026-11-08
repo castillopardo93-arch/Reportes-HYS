@@ -1256,6 +1256,58 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
     #hys265UsersPanel .hys265-tabs{display:flex;overflow-x:auto;gap:6px}
     #hys265UsersPanel .hys265-tabs button{flex:0 0 auto}
   }
+  /* v267: iPhone/Android horizontal, incluso cuando viewport supera 900px.
+     Evita que la cinta se convierta en barra lateral de escritorio. */
+  @media (orientation:landscape) and (pointer:coarse) and (max-height:650px),
+         (orientation:landscape) and (max-height:480px) and (max-width:1200px){
+    html,body{max-width:100%;overflow-x:hidden}
+    body.hys-tools-visible,body.hys-tools-expanded{padding-left:0!important;padding-right:0!important;padding-bottom:calc(58px + env(safe-area-inset-bottom))!important}
+    #hysToolsRail,#hysToolsRail.expanded{
+      position:fixed!important;inset:auto 0 0 0!important;
+      left:0!important;right:0!important;top:auto!important;bottom:0!important;
+      width:100%!important;max-width:100%!important;height:calc(56px + env(safe-area-inset-bottom))!important;
+      max-height:calc(56px + env(safe-area-inset-bottom))!important;min-height:0!important;
+      padding:4px max(10px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))!important;
+      display:flex!important;flex-direction:row!important;align-items:center!important;gap:8px!important;
+      overflow:hidden!important;border-right:0!important;border-top:1px solid #294d6c!important;
+      z-index:700!important;box-sizing:border-box!important
+    }
+    #hysToolsToggle,#hysToolsRail.expanded #hysToolsToggle{
+      display:flex!important;flex:0 0 56px!important;width:56px!important;max-width:56px!important;
+      min-width:0!important;min-height:42px!important;padding:2px!important;
+      flex-direction:column!important;align-items:center!important;justify-content:center!important;
+      gap:0!important;font-size:10px!important
+    }
+    #hysToolsToggle .tools-icon{font-size:18px!important;line-height:1!important}
+    #hysToolsOptions,#hysToolsRail.expanded #hysToolsOptions{
+      display:flex!important;flex:1 1 auto!important;min-width:0!important;max-width:100%!important;
+      flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;
+      gap:7px!important;overflow-x:auto!important;overflow-y:hidden!important;
+      overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none
+    }
+    #hysToolsOptions::-webkit-scrollbar{display:none}
+    #hysToolsRail .hys-admin-open,#hysToolsRail.expanded .hys-admin-open{
+      display:flex!important;flex:0 0 122px!important;width:122px!important;min-width:122px!important;
+      max-width:122px!important;min-height:40px!important;height:42px!important;
+      flex-direction:row!important;align-items:center!important;gap:5px!important;
+      padding:4px 6px!important;border-radius:8px!important;box-sizing:border-box!important
+    }
+    #hysToolsRail .hys-admin-open[hidden]{display:none!important}
+    #hysToolsRail .tools-option-icon{flex:0 0 23px!important;width:23px!important;height:23px!important;font-size:15px!important}
+    #hysToolsRail .tools-option-label{display:block!important;font-size:10px!important;line-height:1.1!important;white-space:normal!important;overflow-wrap:anywhere}
+    #hysToolsRail .tools-option-full,#hysToolsRail .tools-description{display:none!important}
+    #moduleChooser{padding:12px max(14px,env(safe-area-inset-right)) calc(66px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))!important;min-height:100dvh!important}
+    #moduleChooser .chooser-inner{max-width:100%!important}
+    #moduleChooser h1{font-size:clamp(21px,4vw,30px)!important}
+    #moduleChooser .module-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+    #hys265UsersPanel{padding:8px!important;overflow:auto!important}
+    #hys265UsersPanel .hys265-shell{width:100%!important;max-width:960px!important;margin:auto!important;padding:12px!important}
+    #hys265UsersPanel .hys265-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important}
+    #hys265UsersPanel .hys265-tabs button{flex:0 0 auto!important}
+    #hys267RolesPanel{padding:8px!important}
+    #hys267RolesPanel .hys267-shell{max-width:960px!important}
+    body.hys-tools-visible #otherAprApp{height:calc(100dvh - 58px - env(safe-area-inset-bottom))!important}
+  }
   @media print{#hysToolsRail{display:none!important}body.hys-tools-visible,body.hys-tools-expanded{padding:0!important}}
 
   #hysAdmin[hidden],.hys-admin-open[hidden]{display:none!important}
