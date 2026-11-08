@@ -116,6 +116,10 @@ const auditSafe=w=>{const x=sanitize(w);return {
  correo_personal_registrado:Boolean(x.correo_personal),correo_corporativo_registrado:Boolean(x.correo_corporativo)
 };};
 function redactAudit(data){
+ const scrub=v=>String(v)
+  .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,'[correo protegido]')
+  .replace(/\b(?:\d{1,2}\.)?\d{3}\.\d{3}-[0-9Kk]\b|\b\d{7,8}-[0-9Kk]\b/g,'[RUT protegido]')
+  .replace(/\+?56[\s-]?9(?:[\s-]?\d){8}/g,'[teléfono protegido]');
  const forbidden=/rut|correo|email|celular|telefono|teléfono|phone|movil|móvil|password|token|secret|clave/i;
  const seen=new WeakSet();
  function walk(value){
@@ -126,7 +130,7 @@ function redactAudit(data){
    return Object.fromEntries(Object.entries(value).map(([key,v])=>
     [key,forbidden.test(key)?'[dato protegido]':walk(v)]));
   }
-  return value;
+  return typeof value==='string'?scrub(value):value;
  }
  return walk(data);
 }
