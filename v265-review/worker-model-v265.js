@@ -35,9 +35,25 @@ function validate(input,users=[],currentId=''){
  if(w.correo_corporativo&&!validEmail(w.correo_corporativo))errors.push('Correo corporativo inválido');
  if(!w.correo_corporativo&&!w.correo_personal)errors.push('Indica al menos un correo para la invitación');
  if(!['activo','suspendido','desvinculado'].includes(w.estado_laboral))errors.push('Estado laboral inválido');
- if(w.fecha_ingreso&&!/^\d{4}-\d{2}-\d{2}$/.test(w.fecha_ingreso))errors.push('Fecha de ingreso inválida');
+ if(w.fecha_ingreso){
+  const validDate=/^\d{4}-\d{2}-\d{2}$/.test(w.fecha_ingreso)
+   &&!Number.isNaN(Date.parse(w.fecha_ingreso+'T12:00:00Z'))
+   &&new Date(w.fecha_ingreso+'T12:00:00Z').toISOString().slice(0,10)===w.fecha_ingreso;
+  if(!validDate)errors.push('Fecha de ingreso inválida');
+ }
  if(w.supervisor_id===currentId&&currentId)errors.push('Una persona no puede supervisarse a sí misma');
  if(!users.some(u=>u.usuario_id===w.supervisor_id&&u.usuario_id!==currentId&&u.activo!==false))errors.push('Selecciona un supervisor responsable registrado y activo');
+ // Evitar ciclos en la futura jerarquía: A supervisa B y B no puede supervisar A.
+ if(w.supervisor_id){
+  const byId=new Map(users.map(u=>[u.usuario_id,u]));
+  const visited=new Set();let next=w.supervisor_id;
+  while(next&&byId.has(next)){
+   if(next===currentId&&currentId){errors.push('El supervisor elegido generaría un ciclo en el organigrama');break}
+   if(visited.has(next)){errors.push('La cadena de supervisión elegida ya contiene un ciclo');break}
+   visited.add(next);
+   next=byId.get(next)?.trabajador?.supervisor_id||'';
+  }
+ }
  for(const u of users){
   if(u.usuario_id===currentId)continue;
   if(validRut(u.trabajador?.rut||'')&&rutParts(u.trabajador.rut)?.normalized===w.rut)errors.push('Ya existe otro trabajador con ese RUT');
