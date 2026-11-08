@@ -38,10 +38,11 @@
  }
  function close(success=false){
   if(busy)return;
-  active=false;form.reset();current.type='password';next.type='password';repeat.type='password';
+  const changedEmail=email.value.trim();
+  active=false;form.reset();current.type='password';next.type='password';repeat.type='password';visibility.checked=false;
   form.hidden=true;login.hidden=false;recover.hidden=false;start.hidden=false;
   title.textContent='Ingresar a Reportes HYS';
-  if(success){$('authEmail').value=email.value;showStatus('Contraseña actualizada. Ingresa con tu contraseña nueva.',true)}
+  if(success){$('authEmail').value=changedEmail;showStatus('Contraseña actualizada. Ingresa con tu contraseña nueva.',true)}
   else showStatus('');
   $('authPassword').value='';
   if(success)$('authPassword').focus();else start.focus();
