@@ -169,6 +169,9 @@
   const s=get();
   const valid=W.validate(payload.trabajador,s.users,currentId);
   if(!valid.ok)fail(valid.errors.join('. '));
+  const account=W.validateAccount(payload.cuenta,valid.worker,Boolean(currentId));
+  if(!account.ok)fail(account.errors.join('. '));
+  if(payload.cuenta?.email&&payload.cuenta.email!==account.cuenta.email)fail('Correo de acceso no coincide con la ficha laboral');
   if(!W.roles.includes(payload.rol))fail('Rol no válido');
   const config=W.validConfiguration(payload.rol,payload.ambitos,payload.facultades,s.areas);
   if(!config.ok)fail(config.errors.join('. '));
@@ -181,25 +184,25 @@
     if(all&&payload.confirmar_facultades_nuevas!==true)fail('Confirma expresamente las facultades nuevas');
    }
   }
-  return {worker:valid.worker};
+  return {worker:valid.worker,cuenta:account.cuenta};
  }
  function createWorker(payload){
-  const W=root.Hys265WorkerModel,{worker}=validateWorkerTransaction(payload);
-  const email=W.identityEmail(worker),roles=['usuario','supervisor','administrador_area'];
+  const W=root.Hys265WorkerModel,{worker,cuenta}=validateWorkerTransaction(payload);
+  const email=cuenta.email,roles=['usuario','supervisor','administrador_area'];
   if(!roles.includes(payload.rol))fail('Rol no válido');
   return write('Creación de usuario',worker.nombre,next=>{
    const id='prueba-v265-'+(next.rev+1)+'-'+Math.random().toString(36).slice(2,8);
-   const u={usuario_id:id,nombre:worker.nombre,email,rol:payload.rol,activo:worker.estado_laboral==='activo',revision:1,ambitos:clone(payload.ambitos),trabajador:clone(worker)};
+   const u={usuario_id:id,nombre:worker.nombre,email,rol:payload.rol,activo:worker.estado_laboral==='activo',revision:1,ambitos:clone(payload.ambitos),trabajador:clone(worker),cuenta:clone(cuenta)};
    next.users.push(u);
    updateFaculties(next,id,payload.rol,payload.facultades,null);
-   return {usuario_id:id,revision:1,audit:{anterior:null,nuevo:{trabajador:W.auditSafe(worker),rol:u.rol,ambitos:clone(u.ambitos),facultades:payload.rol==='administrador_area'?clone(payload.facultades):{}}}};
+   return {usuario_id:id,revision:1,audit:{anterior:null,nuevo:{trabajador:W.auditSafe(worker),cuenta:{estado:cuenta.estado,correo_ingreso:cuenta.correo_ingreso,metodo:cuenta.metodo},rol:u.rol,ambitos:clone(u.ambitos),facultades:payload.rol==='administrador_area'?clone(payload.facultades):{}}}};
   },payload.motivo);
  }
  function updateWorker(id,payload,revision){
   const W=root.Hys265WorkerModel,s=get(),u=person(s,id);
   assertRevision(u.revision,revision);
   if(u.rol==='administrador_global')fail('Cuenta protegida');
-  const {worker}=validateWorkerTransaction(payload,id);
+  const {worker,cuenta}=validateWorkerTransaction(payload,id);
   const original=clone(u);
   if(u.rol!=='administrador_area'&&payload.rol==='administrador_area'){
    // Si se había guardado una desdesignación, el backend garantiza que no se heredan permisos históricos.
@@ -210,13 +213,13 @@
   return write('Modificación de usuario',id,next=>{
    const dest=person(next,id);
    const originalRole=dest.rol;
-   dest.nombre=worker.nombre;dest.email=W.identityEmail(worker);
-   dest.trabajador=clone(worker);dest.rol=payload.rol;dest.activo=worker.estado_laboral==='activo';
+   dest.nombre=worker.nombre;dest.email=cuenta.email;
+   dest.trabajador=clone(worker);dest.cuenta=clone(cuenta);dest.rol=payload.rol;dest.activo=worker.estado_laboral==='activo';
    dest.ambitos=clone(payload.ambitos);dest.revision++;
    updateFaculties(next,id,payload.rol,payload.facultades,null);
    return {usuario_id:id,revision:dest.revision,audit:{
-    anterior:{trabajador:W.auditSafe(original.trabajador||{}),rol:original.rol,ambitos:original.ambitos,facultades:originalRole==='administrador_area'?Object.fromEntries(MODULES.map(m=>[m,originalFacSnapshot(s,id,m)])):{}},
-    nuevo:{trabajador:W.auditSafe(worker),rol:dest.rol,ambitos:dest.ambitos,facultades:dest.rol==='administrador_area'?clone(payload.facultades):{}}
+    anterior:{trabajador:W.auditSafe(original.trabajador||{}),cuenta:{estado:original.cuenta?.estado||'existente',correo_ingreso:original.cuenta?.correo_ingreso||'',metodo:original.cuenta?.metodo||''},rol:original.rol,ambitos:original.ambitos,facultades:originalRole==='administrador_area'?Object.fromEntries(MODULES.map(m=>[m,originalFacSnapshot(s,id,m)])):{}},
+    nuevo:{trabajador:W.auditSafe(worker),cuenta:{estado:cuenta.estado,correo_ingreso:cuenta.correo_ingreso,metodo:cuenta.metodo},rol:dest.rol,ambitos:dest.ambitos,facultades:dest.rol==='administrador_area'?clone(payload.facultades):{}}
    }};
   },payload.motivo);
  }
