@@ -7,9 +7,10 @@
 if(new URLSearchParams(location.search).get('embedded')==='otros')return;
 const W=root.Hys265WorkerModel;
 const Credentials=root.Hys274Credentials;
+const B279=root.Hys279Backend;
 const A278=root.Hys278AccessControl;
 const nav=document.getElementById('hysToolsOptions');
-if(!W||!Credentials||!A278||!nav)return;
+if(!W||!Credentials||!A278||!B279||!nav)return;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=v=>JSON.parse(JSON.stringify(v));
@@ -142,6 +143,7 @@ async function refresh(){
  const token=++inFlight;state.loading=true;notice('Consultando información…');
  try{
   const data=await readStore();if(token!==inFlight||panel.hidden)return;
+  state.turnos=await B279.shifts().catch(()=>[]);if(token!==inFlight||panel.hidden)return;
   state.users=data.users||[];state.areas=data.areas||[];state.faculties=data.faculties||[];state.history=data.history||[];
   if(state.tab==='history')state.history=await readHistory();
   if(token!==inFlight||panel.hidden)return;
@@ -154,6 +156,7 @@ function abandon(){return !state.dirty||confirm('Hay información sin guardar. �
 function show(tab){
  if(!abandon())return;
  clearCredentials();state.tab=tab;state.dirty=false;
+ if(tab==='self'){openProfile(root.__REPORTES_HYS_ACCESS__?.userId,'self');return}
  if(tab==='create')resetDraft();
  render();if(tab==='history')refresh();
 }
@@ -191,6 +194,84 @@ function openEdit(u){
  state.tab='create';resetDraft(u);render();
  notice('Editando la ficha de '+u.nombre+'. Se conserva el mismo flujo secuencial de creación.');
 }
+async function openProfile(userId,mode='worker'){
+ if(!isGlobal()||lab||!userId)return;
+ if(!abandon())return;
+ clearCredentials();
+ const target=state.users.find(u=>u.usuario_id===userId);
+ if(!target||mode==='self'&&userId!==root.__REPORTES_HYS_ACCESS__?.userId){
+  notice('No se pudo identificar una cuenta autorizada.',true);return;
+ }
+ if(mode!=='self'&&target.rol==='administrador_global'){notice('El Administrador general edita sus datos desde «Mis datos laborales».',true);return}
+ state.tab='profile';state.profileMode=mode;state.profileTarget=userId;
+ state.profileRevision=0;state.profileReady=false;state.profileError='';
+ state.dirty=false;state.profileBusy=false;
+ state.draft={worker:W.sanitize({nombre:target.nombre||'',estado_laboral:'activo'}),motivo:''};
+ render();
+ const at=userId;
+ try{
+  const cap=await B279.available();
+  if(!cap.ready)throw Error(cap.reason);
+  const data=await B279.read(at);
+  if(state.tab!=='profile'||state.profileTarget!==at||panel.hidden)return;
+  state.profileRevision=Number(data.revision)||0;
+  state.draft.worker=W.sanitize({...state.draft.worker,...(data.trabajador||{})});
+  state.profileReady=true;state.profileError='';
+ }catch(e){
+  if(state.tab==='profile'&&state.profileTarget===at){
+   state.profileReady=false;state.profileError=e.message;
+  }
+ }
+ if(state.tab==='profile'&&state.profileTarget===at&&!panel.hidden)render();
+}
+function renderProfileEditor(target){
+ const u=state.users.find(x=>x.usuario_id===state.profileTarget);
+ const own=state.profileMode==='self';
+ const wrap=element('section',undefined,'hys265-card hys279-profile');
+ wrap.append(element('h2',own?'Mis datos laborales y de contacto':'Ficha laboral · '+(u?.nombre||'Trabajador')));
+ if(!state.draft||!u){
+  wrap.append(element('p','Esta persona no está disponible. Regresa al directorio.'));target.append(wrap);return;
+ }
+ const desc=own?
+  'Puedes completar o corregir tus propios datos. Se conservarán tu cuenta oficial y tus facultades administrativas.' :
+  'Puedes actualizar los datos laborales sin cambiar las facultades, el rol ni el correo de ingreso de esta cuenta.';
+ wrap.append(element('p',desc,'hys265-muted'));
+ if(!state.profileReady){
+  wrap.append(element('p',state.profileError||'Consultando disponibilidad del servicio de datos laborales…','hys279-warning'));
+ }
+ const pane=element('div',undefined,'hys279-worker-fields');stepWorker(pane,own);wrap.append(pane);
+ const account=element('p','El correo de inicio de sesión de Supabase no cambia al editar estos contactos. La modificación de credenciales se gestiona por separado.','hys265-muted');
+ wrap.append(account);
+ const motiveLabel=document.createElement('label');motiveLabel.textContent='Motivo de modificación (mínimo 10 caracteres)';
+ const reason=document.createElement('textarea');reason.id='hys279Reason';reason.rows=2;reason.maxLength=400;
+ reason.value=state.draft.motivo||'';reason.placeholder='Describe el motivo de la actualización';
+ reason.oninput=()=>{state.draft.motivo=reason.value;state.dirty=true};
+ motiveLabel.append(reason);wrap.append(motiveLabel);
+ const actions=element('div',undefined,'hys265-footer');
+ actions.append(action('Volver a usuarios',()=>{if(state.profileBusy)return;show('directory')}));
+ const saveButton=action('Guardar ficha laboral',async()=>{
+  if(state.profileBusy||!state.profileReady||!isGlobal())return;
+  const data=W.validate(state.draft.worker,state.users,state.profileTarget,
+   {allowNoSupervisor:own,turnos:state.turnos});
+  if(!data.ok){notice('Revisa la ficha: '+data.errors.join(' · '),true);return}
+  const motivo=String(state.draft.motivo||'').trim();
+  if(motivo.length<10){notice('Describe el motivo de la modificación con al menos 10 caracteres.',true);return}
+  if(!confirm('¿Guardar los datos laborales reales de '+u.nombre+' en Supabase? No se modificarán roles ni permisos.'))return;
+  state.profileBusy=true;saveButton.disabled=true;notice('Guardando y verificando la ficha en Supabase…');
+  try{
+   const saved=await B279.save(state.profileTarget,data.worker,state.profileRevision,motivo);
+   const verified=await B279.read(state.profileTarget);
+   if(verified.revision!==saved.revision)throw Error('La revisión del servidor cambió tras guardar. Consulta la ficha actualizada.');
+   state.profileRevision=verified.revision;state.draft.worker=W.sanitize(verified.trabajador||{});
+   state.draft.motivo='';state.dirty=false;
+   notice('Ficha laboral guardada y confirmada por Supabase. Las facultades de la cuenta permanecen intactas.');
+   await refresh();
+  }catch(e){notice('No se guardó la ficha: '+e.message,true)}
+  finally{state.profileBusy=false;saveButton.disabled=!state.profileReady}
+ },'btn primary');
+ saveButton.disabled=!state.profileReady||state.profileBusy;
+ actions.append(saveButton);wrap.append(actions);target.append(wrap);
+}
 function renderDirectory(target){
  const card=element('section',undefined,'hys265-card');const header=element('div',undefined,'hys265-line');
  header.append(element('h2','Usuarios registrados'));
@@ -216,7 +297,9 @@ function renderDirectoryRows(){
   const edit=action('Administrar',()=>openEdit(u));edit.disabled=u.rol==='administrador_global';
   const access=action('Estado de acceso',()=>openAccess(u));access.disabled=!A278.validTarget(u,root.__REPORTES_HYS_ACCESS__?.userId)||lab;
   access.setAttribute('aria-label','Administrar acceso de '+u.nombre);
-  actions.append(access,edit,action('Historial',()=>{clearCredentials();state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
+  const ficha=action('Ficha laboral',()=>openProfile(u.usuario_id,'worker'));
+  ficha.disabled=lab||!isGlobal();
+  actions.append(ficha,access,edit,action('Historial',()=>{clearCredentials();state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
   r.append(actions);rows.append(r);
  }
 }
