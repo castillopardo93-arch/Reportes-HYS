@@ -33,7 +33,7 @@ const safeEmail=v=>text(v,254).toLowerCase();
 function sanitize(input){
  const x={};
  for(const k of fields)x[k]=text(input?.[k],k.startsWith('correo')?254:k==='nombre'?150:k==='celular'?25:160);
- x.pais_documento=x.pais_documento||'Chile';
+ // El país se escribe libremente; no se presupone nacionalidad alguna.
  x.tipo_documento=x.tipo_documento||'rut';
  x.rut=normalizeDocument(x.rut,x.pais_documento,x.tipo_documento);
  x.correo_personal=safeEmail(x.correo_personal);x.correo_corporativo=safeEmail(x.correo_corporativo);
