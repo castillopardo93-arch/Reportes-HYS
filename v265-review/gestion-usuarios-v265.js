@@ -330,7 +330,14 @@ function stepSpecial(p){
    for(const [key,title] of rights){
     const lbl=document.createElement('label');lbl.className='hys265-checkline';
     const ch=document.createElement('input');ch.type='checkbox';ch.checked=state.draft.facultades[m]?.facultades?.[key]===true;
-    ch.onchange=()=>{state.draft.facultades[m].facultades[key]=ch.checked;state.draft.facultades[m].areas_ids=[...a.areas];state.dirty=true};
+    ch.onchange=()=>{
+     const granted=state.draft.facultades[m].facultades;
+     granted[key]=ch.checked;
+     const dependent=['pdf','review','approve','close','editOthers'];
+     if(ch.checked&&dependent.includes(key))granted.view=true;
+     if(key==='view'&&!ch.checked)for(const dep of dependent)granted[dep]=false;
+     state.draft.facultades[m].areas_ids=[...a.areas];state.dirty=true;render();
+    };
     lbl.append(ch,document.createTextNode(title));grid.append(lbl);
    }
    card.append(grid);
