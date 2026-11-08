@@ -61,6 +61,16 @@ function render(){
 }
 function openOriginal(){
  if(!root.__REPORTES_HYS_ACCESS__||root.__REPORTES_HYS_ACCESS__.profile?.rol!=='administrador_global')return;
+ // Nunca presentar Crear usuario dentro de Áreas: cerrar cualquier formulario superpuesto.
+ const users=$('hys265UsersPanel');
+ if(users&&!users.hidden&&root.Hys265UserManagement?.close?.()===false)return;
+ const appearance=$('appearancePanel242');
+ if(appearance&&!appearance.hidden){
+  $('appearanceClose242')?.click();
+  if(!appearance.hidden)return;
+ }
+ const operations=$('operationsPanel242');
+ if(operations&&!operations.hidden)operations.hidden=true;
  section='areas';panel.hidden=false;
  module.replaceChildren(...M.map(m=>new Option(names[m],m)));
  form.reset();fields.value='shift';render();
