@@ -20,7 +20,7 @@
   setItem:(k,v)=>native.setItem(validateLabKey(k),String(v)),
   removeItem:k=>native.removeItem(validateLabKey(k))
  };
- // Migración de SOLO las claves v265 inequívocas desde el antiguo wrapper v263.
+ // Migración de SOLO claves inequívocas de esta v266, si ya existieran.
  // No importa borradores de informes de v263/v264 ni elimina copias históricas.
  function migrateLabSettings(){
   for(const key of LAB_KEYS){
@@ -46,8 +46,8 @@
   get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},
   key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},
   getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v266-laboratorio::auth::':base())+k)},
-  setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k,String(v))},
-  removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k)},
+  setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v266-laboratorio::auth::':base())+k,String(v))},
+  removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v266-laboratorio::auth::':base())+k)},
   clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}
  }}
  Object.defineProperty(window,'localStorage',{configurable:true,value:wrapper(native,prefix)});
@@ -60,7 +60,7 @@
   matchesEvent(event,key){return (!event.storageArea||event.storageArea===native)&&(event.key===null||event.key===prefix()+key);},
   openNative:open,
   legacySnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('reportes-hys-')&&!k.startsWith('sb-'))out[k]=native.getItem(k);return out;},
-  legacyVersionedSnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('hys-v263-laboratorio::')&&!k.includes('::auth::'))out[k]=native.getItem(k);return out;},
+  legacyVersionedSnapshot(){const out={};for(const k of Object.keys(native))if((k.startsWith('hys-v263-laboratorio::')||k.startsWith('hys-v265-laboratorio::'))&&!k.includes('::auth::'))out[k]=native.getItem(k);return out;},
   namespace:'hys-v266-laboratorio',
   sharedLabStorage
  };
