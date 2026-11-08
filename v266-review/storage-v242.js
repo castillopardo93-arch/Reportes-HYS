@@ -4,12 +4,12 @@
  const open=window.indexedDB.open.bind(window.indexedDB);
  let scope='sin-sesion',epoch=0;
  const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
- const prefix=()=>`hys-v265-laboratorio::${scope}::${module}::`;
+ const prefix=()=>`hys-v266-laboratorio::${scope}::${module}::`;
 
  // Administración y Apariencia de laboratorio son GLOBALES entre las dos tarjetas,
  // mientras los borradores de informes siguen aislados por usuario y módulo.
- const LAB_KEYS=new Set(['reportes-hys-v265-simulador-local-1','reportes-hys-v265-apariencia-local']);
- const LAB_SHARED='hys-v265-lab-shared::';
+ const LAB_KEYS=new Set(['reportes-hys-v266-simulador-local-1','reportes-hys-v266-apariencia-local']);
+ const LAB_SHARED='hys-v266-lab-shared::';
  const validateLabKey=k=>{
   const name=String(k);
   if(!LAB_KEYS.has(name))throw Error('Clave de laboratorio no autorizada');
@@ -27,7 +27,7 @@
    if(sharedLabStorage.getItem(key)!==null)continue;
    const candidates=[];
    for(const storageKey of Object.keys(native)){
-    if(!/^hys-v(?:263|265)-laboratorio::/.test(storageKey)||!storageKey.endsWith('::'+key))continue;
+    if(!/^hys-v266-laboratorio::/.test(storageKey)||!storageKey.endsWith('::'+key))continue;
     try{
      const raw=native.getItem(storageKey),doc=JSON.parse(raw);
      const valid=key.includes('simulador')?Array.isArray(doc.users)&&Array.isArray(doc.areas)&&Array.isArray(doc.history):
@@ -45,7 +45,7 @@
  function wrapper(store,base){return {
   get length(){return Object.keys(store).filter(k=>k.startsWith(base())).length},
   key(i){return Object.keys(store).filter(k=>k.startsWith(base())).map(k=>k.slice(base().length))[i]??null},
-  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v265-laboratorio::auth::':base())+k)},
+  getItem(k){return store.getItem((String(k).startsWith('sb-')?'hys-v266-laboratorio::auth::':base())+k)},
   setItem(k,v){store.setItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k,String(v))},
   removeItem(k){store.removeItem((String(k).startsWith('sb-')?'hys-v263-laboratorio::auth::':base())+k)},
   clear(){Object.keys(store).filter(k=>k.startsWith(base())).forEach(k=>store.removeItem(k))}
@@ -61,7 +61,7 @@
   openNative:open,
   legacySnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('reportes-hys-')&&!k.startsWith('sb-'))out[k]=native.getItem(k);return out;},
   legacyVersionedSnapshot(){const out={};for(const k of Object.keys(native))if(k.startsWith('hys-v263-laboratorio::')&&!k.includes('::auth::'))out[k]=native.getItem(k);return out;},
-  namespace:'hys-v265-laboratorio',
+  namespace:'hys-v266-laboratorio',
   sharedLabStorage
  };
 })();
