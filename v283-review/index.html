@@ -436,7 +436,7 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 
 <section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
   <div class="chooser-inner">
-    <div class="chooser-kicker">Reportes H y S · v282 · Prepublicación</div>
+    <div class="chooser-kicker">Reportes H y S · v283 · Prepublicación</div>
     <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
     <div id="authIdentityChooser" aria-live="polite"></div>
     <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
@@ -678,20 +678,31 @@ body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,b
 const embeddedOtros=new URLSearchParams(location.search).get("embedded")==="otros";
 window.__REPORTES_HYS_OTROS_EMBEDDED__=embeddedOtros;
 function canEditReport242(){return window.Hys242?.canWrite()===true}
+/* v283 — Se respeta la configuración vigente del proyecto.
+   PHAM 1/PHAM 2 permanecen en Supabase como registros antiguos hasta la
+   migración autorizada. NO se presentan como proyectos activos en nuevas fichas.
+   Los informes históricos sí conservan su valor original. */
 const PROJECT_NAME_245="Proyecto Hidroeléctrico Alto Maipo";
+const LEGACY_PROJECTS_283=new Set(["PHAM 1","PHAM 2"]);
 let projectCatalog282=[PROJECT_NAME_245],projectCatalogLoaded282=false;
 function enforceProject245(selected=undefined,values=undefined){
  const project=document.getElementById("project");if(!project)return;
  if(Array.isArray(values)){
   projectCatalogLoaded282=true;
-  projectCatalog282=[...new Set(values.map(v=>String(v||"").trim()).filter(Boolean))];
+  const live=values.map(v=>String(v||"").trim()).filter(v=>v&&!LEGACY_PROJECTS_283.has(v));
+  projectCatalog282=[...new Set(live.length?live:[PROJECT_NAME_245])];
  }
- const prior=selected!==undefined?String(selected||""):project.value;
+ const original=selected!==undefined?String(selected||""):project.value;
  const listed=projectCatalogLoaded282?projectCatalog282:[PROJECT_NAME_245];
  project.replaceChildren(new Option("Seleccione proyecto...",""),...listed.map(v=>new Option(v,v)));
- if(prior&&!listed.includes(prior))project.add(new Option(prior+" (valor del informe anterior)",prior));
- if(prior)project.value=prior;
- else if(listed.length===1)project.value=listed[0];
+ if(original&&LEGACY_PROJECTS_283.has(original)){
+  // Permitir ver informes existentes sin reescribir datos históricos.
+  project.add(new Option(original+" (solo informe histórico)",original));
+  project.value=original;
+ }else if(original&&listed.includes(original))project.value=original;
+ else if(original&&!listed.includes(original)){
+  project.add(new Option(original+" (valor del informe anterior)",original));project.value=original;
+ }else if(listed.length===1)project.value=listed[0];
  else project.value="";
 }
 const keys={activities:["APR u otro responsable","Área","Descripción","Resultado"],inspections:["Área","Actividad","Responsable","Estado"],findings:["Condición detectada","Prioridad","Medida propuesta","Responsable","Estado"]};
@@ -943,7 +954,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 };
 </script>
 <script src="sync-core-v242.js"></script>
-<script src="ficha-backend-v279.js?build=v282-catalogo-01"></script><script src="catalogo-unificado-v282.js?build=v282-catalogo-01"></script><script src="cloud-v242.js?build=v282-catalogo-01"></script>
+<script src="ficha-backend-v279.js?build=v282-catalogo-01"></script><script src="catalogo-unificado-v282.js?build=v283-catalogo-01"></script><script src="cloud-v242.js?build=v283-catalogo-01"></script>
 <script src="appearance-core-v242.js"></script>
 <script src="appearance-v242.js?build=v266-punto3-01"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8"></script>
@@ -1477,7 +1488,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 })();
 
 </script>
-<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v279-01"><script src="worker-model-v265.js?build=v280-01"></script><script src="credentials-v274.js?build=v274-password-01"></script><script src="control-accesos-v278.js?build=v278-access-01"></script><script src="gestion-usuarios-v265.js?build=v281-regimenes-01"></script><script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js?build=v266-punto3-01"></script><link rel="stylesheet" href="gestion-usuarios-v265.css?build=v279-01"><script src="worker-model-v265.js?build=v280-01"></script><script src="credentials-v274.js?build=v274-password-01"></script><script src="control-accesos-v278.js?build=v278-access-01"></script><script src="gestion-usuarios-v265.js?build=v283-regimenes-01"></script><script>
 /* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
 /* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
    Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
