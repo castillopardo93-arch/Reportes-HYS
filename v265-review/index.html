@@ -291,6 +291,20 @@ body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriore
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config-v242.js"></script>
+<script>
+/* V265: QA EXCLUSIVAMENTE en la copia de desarrollo específica.
+ * Nunca se activa en producción ni sin ?qa=1. */
+window.HYS265_PREVIEW_ONLY=location.hostname==='raw.githack.com'
+  &&/\/v265-review\/index\.html$/.test(location.pathname)
+  &&new URLSearchParams(location.search).get('qa')==='1';
+if(window.HYS265_PREVIEW_ONLY){
+ window.HYS263_SANDBOX=true;
+ window.HYS265_LAB_MODE=true;
+ window.HYS242_ENABLE_CENTRAL=false;
+ window.HYS242_DEPLOYMENT_READY=false;
+ window.HYS243_PREVIEW_ONLY=true;
+}
+</script>
 <script src="access-policy-v256.js"></script>
 <script src="access-settings-v259.js"></script>
 <script src="storage-v242.js"></script><script src="integrity-v255.js"></script><script src="risk-seed-v252.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script><script src="inbox-v245.js"></script><script src="pending-detail-v246.js"></script><script src="notifications-f251.js"></script><script src="pending-dashboard-v250.js"></script>
@@ -892,6 +906,8 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 <script>
 /* v235: ingreso único, destino según permisos y cierre de sesión */
 (function(){
+  // Solo para QA v265: se reemplaza la autenticación por una cuenta FICTICIA aislada.
+  if(window.HYS265_PREVIEW_ONLY===true)return;
   const $=id=>document.getElementById(id);
   const gate=$("authGate"), status=$("authStatus"), form=$("authLoginForm"), loginButton=$("authLoginButton");
   const embeddedOtros=new URLSearchParams(location.search).get("embedded")==="otros";
@@ -1345,7 +1361,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
 })();
 
 </script>
-<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><link rel="stylesheet" href="gestion-usuarios-v265.css"><script src="worker-model-v265.js"></script><script src="gestion-usuarios-v265.js"></script><script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><link rel="stylesheet" href="gestion-usuarios-v265.css"><script src="worker-model-v265.js"></script><script src="backend-simulador-v263.js"></script><script src="gestion-usuarios-v265.js"></script><script>
 /* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
 /* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
    Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
@@ -1414,7 +1430,7 @@ window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});
  else mount();
 })();
-</script></body></html>
+</script><script src="vista-completa-preview-v265.js"></script></body></html>
 
 
 
