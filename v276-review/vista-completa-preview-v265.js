@@ -69,7 +69,7 @@ document.body.classList.remove('auth-locked');
 const banner=document.createElement('div');
 banner.id='hys265PreviewBanner';
 banner.setAttribute('role','note');
-banner.textContent='V266 · DESARROLLO DE PRUEBAS · Usuarios y datos ficticios · Sin conexión a producción';
+banner.textContent='V276 · DESARROLLO DE PRUEBAS · Usuarios y datos ficticios · Sin conexión a producción';
 banner.style.cssText='position:fixed;right:12px;bottom:10px;z-index:3500;max-width:min(400px,85vw);padding:8px 12px;border-radius:10px;background:#ffe8b8;color:#5e3c0c;font:700 12px/1.3 Segoe UI,Arial,sans-serif;box-shadow:0 3px 10px #0014;pointer-events:none';
 document.body.append(banner);
 const cardA=$('aprModuleCard'),cardB=$('otherModuleCard');
@@ -96,7 +96,9 @@ async function enterModule(target){
  return true;
 }
 root.reportesHysChooseModule=enterModule;
-if($('authLogout'))$('authLogout').onclick=()=>enterModule(null);
+if($('authLogout'))$('authLogout').onclick=embedded
+ ?()=>{try{if(root.parent!==root&&root.parent.location.origin===root.location.origin)root.parent.postMessage({type:'reportes-hys-switch-user'},root.location.origin)}catch{/* La vista incrustada no debe gestionar una sesión del padre sin origen validado. */}}
+ :()=>enterModule(null);
 if($('chooserLogout'))$('chooserLogout').onclick=()=>enterModule(null);
 if($('authUserLabel'))$('authUserLabel').textContent='Administrador general (pruebas)';
 if(embedded){
