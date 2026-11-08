@@ -75,3 +75,15 @@ Se corrigió el acceso de desarrollo para que el laboratorio inicial redirija a 
 - **Revisión visual previa de la aplicación completa**: ambas tarjetas visibles; apertura de Prevencionistas y regreso a las tarjetas; Gestor de usuarios y sus validaciones visibles. En esa revisión se detectó la ausencia de Apariencia. La **segunda revisión visual** de las correcciones de Áreas y Apariencia **no pudo ejecutarse** por bloqueo del servicio externo de navegación, por lo que queda **pendiente validar con el usuario en navegador real**. No se debe declarar aprobación visual ni una auditoría end-to-end inexistente.
 
 **Restricciones:** se modificaron únicamente archivos en la rama existente `desarrollo/v265-gestion-usuarios-trabajadores`. No se creó otra versión para estos arreglos. `main`, v264 y las demás versiones protegidas no se modificaron. Las configuraciones históricas de Apariencia que existieran en Supabase no se borraron; el laboratorio QA no las importa por seguridad, por lo que presenta el valor por defecto o lo que se haya guardado localmente en v265.
+
+
+### Corrección puntual de navegación tras capturas del usuario (misma v265)
+
+Las capturas mostraron la banda lateral sin Apariencia y la pantalla de Áreas mostrando el formulario de usuarios por superposición. Cambios aplicados exclusivamente en v265:
+
+- `gestion-usuarios-v265.js`: asegurar el montaje del **botón Apariencia original** en la banda del Administrador general; mostrarlo al escoger entre las dos tarjetas y ocultarlo fuera de esa pantalla. Se reutiliza el botón nativo de Áreas. Un controlador en fase de captura cierra el panel anterior al cambiar entre Gestión de usuarios, Áreas, Seguimiento o Apariencia, respetando la confirmación al descartar cambios sin guardar.
+- `areas-opciones-qa-v265.js`: antes de abrir el panel original de Áreas, cerrar el formulario de usuarios o Apariencia que hubiera quedado abierto; después mostrar exclusivamente **Áreas de trabajo, Opciones de formularios e Historial de áreas**.
+- `gestion-usuarios-v265.css`: asegurar visibilidad y anclaje inferior de Apariencia al expandir la banda. No modifica la apariencia de los informes ni las dos tarjetas.
+- `index.html`: actualizar únicamente las referencias de los 7 recursos JavaScript/CSS afectados con parámetro de caché, manteniendo la misma rama y versión v265. Esto evita scripts anteriores en las vistas de ensayo.
+
+**Pruebas ejecutadas en el código de esta corrección:** 7/7 escenarios de navegación de paneles (alternar Áreas, Usuarios, Seguimiento y Apariencia, y cancelación por datos pendientes), y 2/2 verificaciones de visualización lógica de botones (Apariencia original montada y visible en selector del administrador; botones de más ocultos fuera de selector). Estas pruebas de lógica no sustituyen una verificación visual manual del navegador. `main` y `v264` no sufrieron cambios. No se activaron escrituras en Supabase.
