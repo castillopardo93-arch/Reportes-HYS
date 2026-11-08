@@ -117,7 +117,7 @@ function resetDraft(user=null){
   const fac=state.faculties.find(x=>x.usuario_id===user?.usuario_id&&x.modulo===m);
   faculties[m]=fac&&user?.rol==='administrador_area'?clone({areas_ids:fac.areas_ids||[],facultades:fac.facultades||{}}):{areas_ids:[],facultades:{}};
  }
- state.draft={worker,rol:user?.rol&&W.roles.includes(user.rol)?user.rol:'usuario',ambitos,facultades:faculties,motivo:''};
+ state.draft={worker,cuenta:user?.cuenta?clone(user.cuenta):{correo_ingreso:worker.correo_corporativo?'corporativo':'personal',metodo:'invitacion',estado:user?'sin_cambios':'pendiente_invitacion'},rol:user?.rol&&W.roles.includes(user.rol)?user.rol:'usuario',ambitos,facultades:faculties,motivo:''};
 }
 function setTabStyle(){
  panel.querySelectorAll('[data-hys265-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.hys265Tab===state.tab);b.setAttribute('aria-current',b.dataset.hys265Tab===state.tab?'page':'false')});
@@ -195,20 +195,21 @@ function renderWizard(target){
  const d=state.draft;
  const main=element('section',undefined,'hys265-card');
  const h=element('div',undefined,'hys265-line');
- h.append(element('h2',(state.mode==='edit'?'Modificar trabajador':'Crear trabajador')+' · Paso '+state.step+' de 4'));
- h.append(element('span',['','Ficha laboral','Rol y tarjetas','Áreas y facultades','Revisar y guardar'][state.step],'hys265-step'));
+ h.append(element('h2',(state.mode==='edit'?'Modificar trabajador':'Crear trabajador')+' · Paso '+state.step+' de 5'));
+ h.append(element('span',['','Ficha laboral','Crear cuenta','Rol y tarjetas','Áreas y facultades','Revisar y guardar'][state.step],'hys265-step'));
  main.append(h);
  const stages=element('div',undefined,'hys265-stages');
- for(let i=1;i<=4;i++){const e=element('span',i<=state.step?'●':'○');e.classList.toggle('current',i===state.step);stages.append(e)}main.append(stages);
+ for(let i=1;i<=5;i++){const e=element('span',i<=state.step?'●':'○');e.classList.toggle('current',i===state.step);stages.append(e)}main.append(stages);
  const pane=element('div');pane.id='hys265StepContent';main.append(pane);
  if(state.step===1)stepWorker(pane);
- if(state.step===2)stepRoles(pane);
- if(state.step===3)stepSpecial(pane);
- if(state.step===4)stepReview(pane);
+ if(state.step===2)stepAccount(pane);
+ if(state.step===3)stepRoles(pane);
+ if(state.step===4)stepSpecial(pane);
+ if(state.step===5)stepReview(pane);
  const foot=element('div',undefined,'hys265-footer');
  foot.append(action('Descartar',()=>{if(!abandon())return;state.tab='directory';state.dirty=false;render()}));
  if(state.step>1)foot.append(action('Anterior',()=>{state.step--;render()}));
- if(state.step<4)foot.append(action('Continuar',()=>goNext(),'btn primary'));
+ if(state.step<5)foot.append(action('Continuar',()=>goNext(),'btn primary'));
  else foot.append(action(lab?'Guardar usuario y permisos de prueba':'Integración pendiente (sin guardar)',()=>save(),'btn primary'));
  main.append(foot);target.append(main);
 }
@@ -243,8 +244,31 @@ function stepWorker(p){
  p.append(grid);
  p.append(element('p','Se requerirá al menos un correo válido. El correo de inicio de sesión será preferentemente el corporativo.','hys265-muted'));
 }
+function stepAccount(p){
+ p.append(element('h3','2. Creación de cuenta'));
+ p.append(element('p','Primero se registra al trabajador; después se prepara su cuenta. La invitación y la activación real se confirmarán al finalizar todos los pasos. No se solicitan contraseñas personales.','hys265-muted'));
+ const d=state.draft,account=d.cuenta;
+ const emailOptions=[];
+ if(d.worker.correo_corporativo?.trim())emailOptions.push(['corporativo','Corporativo · '+d.worker.correo_corporativo.trim()]);
+ if(d.worker.correo_personal?.trim())emailOptions.push(['personal','Personal · '+d.worker.correo_personal.trim()]);
+ if(!emailOptions.length){p.append(element('p','No hay correo válido para preparar la cuenta. Regresa a Ficha laboral.','hys265-muted'));return}
+ if(!emailOptions.some(([value])=>value===account.correo_ingreso))account.correo_ingreso=emailOptions[0][0];
+ const label=document.createElement('label');label.textContent='Correo que se utilizará para iniciar sesión *';
+ const select=document.createElement('select');for(const [value,title] of emailOptions)select.append(new Option(title,value));
+ select.value=account.correo_ingreso;
+ select.onchange=()=>{account.correo_ingreso=select.value;state.dirty=true;render()};
+ label.append(select);p.append(label);
+ const method=document.createElement('label');method.textContent='Método de creación';
+ const methodSelect=document.createElement('select');methodSelect.add(new Option('Invitación por correo (recomendado)','invitacion'));methodSelect.value='invitacion';methodSelect.disabled=true;method.append(methodSelect);p.append(method);
+ const candidate=W.validateAccount(account,d.worker,state.mode==='edit');
+ const meta=element('div',undefined,'hys265-module');
+ meta.append(element('strong',state.mode==='edit'?'Cuenta existente: solo vista previa de datos de acceso':'Cuenta nueva: pendiente de completar y confirmar'));
+ meta.append(element('p','Correo de acceso: '+(candidate.cuenta.email||'Sin correo válido'),'hys265-muted'));
+ meta.append(element('p',state.mode==='edit'?'En esta revisión, los cambios de dirección de acceso se simulan; ninguna credencial real se modifica.':'Al guardar el laboratorio solo registrará una invitación ficticia. No se enviarán mensajes ni se crearán contraseñas.','hys265-muted'));
+ p.append(meta);
+}
 function stepRoles(p){
- p.append(element('h3','2. Rol y tarjetas permitidas'));
+ p.append(element('h3','3. Rol y tarjetas permitidas'));
  const label=document.createElement('label');label.textContent='Rol de la aplicación';
  const role=document.createElement('select');
  for(const [value,title]of [['usuario','Usuario'],['supervisor','Supervisor'],['administrador_area','Administrador']])role.append(new Option(title,value));
@@ -272,7 +296,7 @@ function stepRoles(p){
 }
 function available(m){return state.areas.filter(a=>a.modulo===m&&a.activa!==false)}
 function stepSpecial(p){
- p.append(element('h3','3. Áreas y facultades especiales'));
+ p.append(element('h3','4. Áreas y facultades especiales'));
  for(const m of W.modules){
   const a=state.draft.ambitos[m],card=element('section',undefined,'hys265-module');
   card.append(element('h4',scopeNames[m]));
@@ -316,12 +340,14 @@ function stepSpecial(p){
 }
 function stepReview(p){
  const d=state.draft,w=d.worker;
- p.append(element('h3','4. Revisar y confirmar'));
+ p.append(element('h3','5. Revisar y confirmar'));
  const summary=element('dl',undefined,'hys265-summary');
  const add=(k,v)=>{summary.append(element('dt',k),element('dd',v||'No indicado'))};
  add('Trabajador',w.nombre);add('RUT',W.validRut(w.rut)?'Registrado y validado':'Pendiente de validar');
  add('Cargo',w.cargo);add('Gerencia',w.gerencia);add('Empresa',w.empresa);add('Proyecto',w.proyecto);add('Supervisor responsable',userName(w.supervisor_id));
  add('Correo corporativo',w.correo_corporativo?'Registrado':'Sin correo corporativo');add('Correo personal',w.correo_personal?'Registrado':'Sin correo personal');
+ const account=W.validateAccount(d.cuenta,w,state.mode==='edit');
+ add('Cuenta de acceso',account.cuenta.email?'Configurada con correo '+account.cuenta.correo_ingreso:'Pendiente');add('Método de alta',state.mode==='edit'?'Cuenta existente':'Invitación por correo (no se envía en pruebas)');
  add('Rol',({administrador_area:'Administrador',supervisor:'Supervisor',usuario:'Usuario'}[d.rol]));
  for(const m of W.modules){
   const a=d.ambitos[m];add(scopeNames[m],a.ver?(a.areas||[]).length+' áreas; '+(a.editar?'edición propia':'solo consulta'):'Sin acceso');
@@ -338,17 +364,18 @@ function stepReview(p){
 function validateStep(step){
  const d=state.draft;
  if(step===1){const v=W.validate(d.worker,state.users,state.selected||'');if(!v.ok)return v.errors.join('. ');d.worker=v.worker}
- if(step===2){if(!W.roles.includes(d.rol))return 'Selecciona un rol válido';if(!W.modules.some(m=>d.ambitos[m]?.ver))return 'Habilita al menos una tarjeta'}
- if(step===3){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
+ if(step===2){const a=W.validateAccount(d.cuenta,d.worker,state.mode==='edit');if(!a.ok)return a.errors.join('. ');d.cuenta=a.cuenta}
+ if(step===3){if(!W.roles.includes(d.rol))return 'Selecciona un rol válido';if(!W.modules.some(m=>d.ambitos[m]?.ver))return 'Habilita al menos una tarjeta'}
+ if(step===4){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
  return '';
 }
 function goNext(){
  const error=validateStep(state.step);if(error){notice(error,true);return}
- state.step=Math.min(4,state.step+1);render();notice('Paso '+state.step+' de 4. Revisa los datos antes de continuar.');
+ state.step=Math.min(5,state.step+1);render();notice('Paso '+state.step+' de 5. Revisa los datos antes de continuar.');
 }
 async function save(){
  if(!lab){notice('Guardado bloqueado para usuarios reales. Falta migración Supabase, autorización transaccional y pruebas de auditoría; los cambios no se enviaron.',true);return}
- const errs=[1,2,3].map(validateStep).filter(Boolean);if(errs.length){notice(errs.join('. '),true);return}
+ const errs=[1,2,3,4].map(validateStep).filter(Boolean);if(errs.length){notice(errs.join('. '),true);return}
  const d=state.draft;
  if(String(d.motivo).trim().length<10){notice('Describe el motivo del cambio con al menos 10 caracteres.',true);return}
  const payload=clone({...d,trabajador:d.worker,confirmar_facultades_nuevas:true});
