@@ -184,7 +184,7 @@ function renderHistory(target){
   const before=event.anterior,after=event.nuevo;
   if(before||after){
    const d=document.createElement('details');const summary=document.createElement('summary');summary.textContent='Valores anteriores y nuevos';d.append(summary);
-   const p=document.createElement('pre');p.textContent='Anterior:\n'+JSON.stringify(before||{},null,2)+'\n\nNuevo:\n'+JSON.stringify(after||{},null,2);d.append(p);item.append(d);
+   const p=document.createElement('pre');p.textContent='Anterior:\n'+JSON.stringify(W.redactAudit(before||{}),null,2)+'\n\nNuevo:\n'+JSON.stringify(W.redactAudit(after||{}),null,2);d.append(p);item.append(d);
   }
   results.append(item);
  }
@@ -398,7 +398,7 @@ async function open(tab='directory',userId=null){
  if(userId){const u=state.users.find(x=>x.usuario_id===userId);if(u)openEdit(u)}
  else render();
 }
-const close=()=>{if(!abandon())return;panel.hidden=true;state.dirty=false;inFlight++;if(usersButton.visible)usersButton.focus()};
+const close=()=>{if(!abandon())return;panel.hidden=true;state.dirty=false;inFlight++;if(!usersButton.hidden)usersButton.focus()};
 $('hys265Close').onclick=close;
 panel.querySelectorAll('[data-hys265-tab]').forEach(b=>b.onclick=()=>show(b.dataset.hys265Tab));
 usersButton.onclick=()=>open('directory');
