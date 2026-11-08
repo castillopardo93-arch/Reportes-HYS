@@ -54,3 +54,14 @@
 #hysToolsRail #hysToolsOptions>button[hidden]{display:none!important}
 @media(max-width:760px){#hys265UsersPanel{padding:6px}#hys265UsersPanel .hys265-shell{border-radius:12px;padding:13px}#hys265UsersPanel .hys265-grid,#hys265UsersPanel .hys265-checkgrid{grid-template-columns:1fr}#hys265UsersPanel .hys265-person{align-items:stretch;flex-direction:column}#hys265UsersPanel .hys265-line{align-items:flex-start}#hys265UsersPanel .hys265-footer .btn{flex:1 1 auto}}
 @media print{#hys265UsersPanel{display:none!important}}
+
+/* v266: feedback visible junto a Continuar sin desactivar las validaciones reales. */
+#hys265UsersPanel .hys266-step-error[hidden]{display:none!important}
+#hys265UsersPanel .hys266-step-error{background:#fff1ed;color:#7b281f;border:1px solid #edb6a9;border-left:5px solid #c74438;border-radius:11px;margin-top:16px;padding:14px 17px;line-height:1.55;overflow-wrap:anywhere}
+#hys265UsersPanel .hys266-step-error strong{display:block;font-size:14px}
+#hys265UsersPanel .hys266-step-error p{margin:7px 0 0;font-size:13px}
+#hys265UsersPanel .hys266-step-error .hys265-muted{color:#8c483d}
+#hys265UsersPanel .hys266-invalid{border-color:#c74438!important;box-shadow:0 0 0 1px #c7443870}
+#hys265UsersPanel .hys266-test-shortcut{background:#edf7ff;border:1px solid #b4d4ea;border-radius:11px;padding:14px;margin:14px 0 19px}
+#hys265UsersPanel .hys266-test-shortcut p{margin:0 0 9px}
+#hys265UsersPanel .hys266-test-shortcut .btn{background:white;border:1px solid #528eb8;color:#174c77;font-weight:700}
