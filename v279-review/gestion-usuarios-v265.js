@@ -174,7 +174,8 @@ function resetDraft(user=null){
  state.draft={worker,cuenta:user?.cuenta?clone(user.cuenta):{correo_ingreso:worker.correo_corporativo?'corporativo':'personal',metodo:'automatica',estado:user?'sin_cambios':'alta_temporal_simulada'},rol:user?.rol&&W.roles.includes(user.rol)?user.rol:'usuario',ambitos,facultades:faculties,motivo:''};
 }
 function setTabStyle(){
- panel.querySelectorAll('[data-hys265-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.hys265Tab===state.tab);b.setAttribute('aria-current',b.dataset.hys265Tab===state.tab?'page':'false')});
+ const selected=state.tab==='profile'?(state.profileMode==='self'?'self':'directory'):state.tab;
+ panel.querySelectorAll('[data-hys265-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.hys265Tab===selected);b.setAttribute('aria-current',b.dataset.hys265Tab===selected?'page':'false')});
 }
 function render(){
  setTabStyle();
@@ -471,7 +472,7 @@ function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  grid.append(field('nombre','Nombre completo','text',true));
  const country=field('pais_documento','País del documento','text',true);
  const countries=document.createElement('datalist');countries.id='hys279Paises';
- for(const n of ['Chile','Argentina','Bolivia','Brasil','Colombia','Ecuador','España','Haití','México','Paraguay','Perú','Uruguay','Venezuela','Estados Unidos','República Dominicana','Otro país'])countries.append(new Option(n,n));
+ for(const n of ['Chile','Argentina','Bolivia','Brasil','Colombia','Ecuador','España','Haití','México','Paraguay','Perú','Uruguay','Venezuela','Estados Unidos' ,'República Dominicana'])countries.append(new Option(n,n));
  country.querySelector('input').setAttribute('list',countries.id);
  country.append(countries);
  grid.append(country);
@@ -482,7 +483,7 @@ function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  docType.onchange=()=>{worker.tipo_documento=docType.value;state.dirty=true;render()};
  type.append(docType);grid.append(type);
  const number=field('rut','Número de identificación','text',true);const idInput=number.querySelector('input');
- idInput.maxLength=40;idInput.placeholder=worker.tipo_documento==='rut'?'12.345.678-5':'Ej. 00AB1234-8';
+ idInput.maxLength=40;idInput.dataset.previousValue=worker.rut||'';idInput.placeholder=worker.tipo_documento==='rut'?'12.345.678-5':'Ej. 00AB1234-8';
  const codeInputLater=()=>grid.querySelector('[name="codigo_trabajador"]');
  idInput.addEventListener('input',()=>{
   const code=codeInputLater();
