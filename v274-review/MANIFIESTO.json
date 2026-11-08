@@ -1,9 +1,9 @@
 {
-  "version": 273,
-  "branch": "desarrollo/v273-correcciones-auditoria",
-  "base_version": 272,
+  "version": 274,
+  "branch": "desarrollo/v274-metodos-contrasena",
+  "base_version": 273,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-correcciones-parciales-pendiente-pruebas",
+  "estado": "desarrollo-metodos-alta-contrasena-laboratorio",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v272-auditoria-integral",
+  "base_branch": "desarrollo/v273-correcciones-auditoria",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -186,5 +186,20 @@
     "duplicidades_heredadas_pendientes": true,
     "pruebas_navegador_pendientes": true,
     "pruebas_integracion_pendientes": true
+  },
+  "cambios_v274": {
+    "metodo_automatico_predeterminado": true,
+    "metodo_manual_y_confirmacion": true,
+    "metodo_invitacion_conservado": true,
+    "contrasena_generada_criptograficamente": true,
+    "copiar_y_compartir": true,
+    "entrega_unica_despues_de_alta_ficticia": true,
+    "contrasena_no_persistida_en_cuenta_o_auditoria": true,
+    "guardado_real_bloqueado": true,
+    "cuentas_reales_no_creadas": true,
+    "pruebas_estaticas": 13,
+    "pruebas_navegador": false,
+    "pruebas_supabase": false,
+    "publicacion_pendiente": true
   }
 }
