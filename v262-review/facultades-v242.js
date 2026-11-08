@@ -278,18 +278,25 @@ $('facultadesForm242').onsubmit=async event=>{
  const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
  const roleWasChanged=R.roleChanged(account,draftRole);
  if(!steps.length&&!roleWasChanged){status('No hay cambios que guardar.');return}
- if(roleWasChanged){
+ if(roleWasChanged&&window.HYS262_ATOMIC_ROLE_READY!==true){
   status('Cambio de rol protegido: la edición está disponible para revisión, pero el guardado real requiere un RPC atómico que aún no está habilitado. No se modificó el usuario.');return;
  }
  if(!A.userManagementEnabled()){status('Vista de revision: la gestión remota de usuarios sigue deshabilitada. Ningun permiso fue modificado.');return}
  if(steps.length>1&&window.HYS261_ATOMIC_FACULTIES_READY!==true){
   status('Guardado protegido: estas facultades requieren varias operaciones. No se ejecuta ningun cambio hasta habilitar una operacion transaccional unica en Supabase.');return;
  }
- if(!confirm('¿Confirmar '+steps.length+' cambio(s) de facultades para '+account.nombre+'? Esta accion quedara auditada.'))return;
+ if(!confirm('¿Confirmar '+(steps.length+(roleWasChanged?1:0))+' cambio(s) de rol y facultades para '+account.nombre+'? Esta acción quedará auditada.'))return;
  const n=++seq;setBusy(true);
  try{
   let result;
-  if(steps.length>1){
+  if(roleWasChanged){
+   const revs=Object.fromEntries(M.map(m=>[m,originalFac[m]?.revision||0]));
+   result=await window.reportesHysSupabase.rpc('hys262_guardar_rol_y_facultades_atomico',{
+    p_usuario:uid,p_rol:draftRole,p_ambitos:draftAccess,
+    p_facultades:R.safeSpecials(draftRole,draftFac,M),
+    p_revision_usuario:account.revision||0,p_revisiones_facultades:revs,p_motivo:reason
+   });
+  }else if(steps.length>1){
    const revs=Object.fromEntries(M.map(m=>[m,originalFac[m]?.revision||0]));
    result=await window.reportesHysSupabase.rpc('hys261_guardar_facultades_atomico',{
     p_usuario:uid,p_ambitos:draftAccess,p_facultades:Object.fromEntries(M.map(m=>[m,C.normalizedScope(draftFac[m])])),p_revision_usuario:account.revision||0,p_revisiones_facultades:revs,p_motivo:reason
