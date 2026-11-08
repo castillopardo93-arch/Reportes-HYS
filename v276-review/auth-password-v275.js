@@ -10,7 +10,7 @@
  if(!form||!start||!back||!login||!recover||!status||!title)return;
  const params=new URLSearchParams(root.location.search);
  const isQa=root.HYS265_PREVIEW_ONLY===true&&root.location.hostname==='raw.githack.com'&&params.get('qa')==='1'
-  &&/\/v275-review\/index\.html$/.test(root.location.pathname);
+  &&/\/(?:v275-review|v276-review)\/index\.html$/.test(root.location.pathname);
  const disabled=params.get('embedded')==='otros'||params.get('recuperar')==='1';
  if(disabled){start.hidden=true;form.hidden=true;return}
  const current=$('authChangeCurrent'),next=$('authChangeNew'),repeat=$('authChangeRepeat');
@@ -31,6 +31,7 @@
  function open(){
   if(busy)return;
   active=true;login.hidden=true;recover.hidden=true;start.hidden=true;form.hidden=false;
+  if(isQa){const demo=$('authQaLogin276'),hint=$('authQaHelp276');if(demo)demo.hidden=true;if(hint)hint.hidden=true;}
   title.textContent='Cambiar contraseña';
   email.value=$('authEmail')?.value?.trim()||'';
   showStatus(isQa?'DEMOSTRACIÓN: no se modificará ninguna contraseña real.':'Confirma tu contraseña actual y escribe una nueva. No necesitas un correo de recuperación.');
@@ -40,8 +41,9 @@
   if(busy)return;
   const changedEmail=email.value.trim();
   active=false;form.reset();current.type='password';next.type='password';repeat.type='password';visibility.checked=false;
-  form.hidden=true;login.hidden=false;recover.hidden=false;start.hidden=false;
-  title.textContent='Ingresar a Reportes HYS';
+  form.hidden=true;login.hidden=!isQa;recover.hidden=false;start.hidden=false;
+  if(isQa){const demo=$('authQaLogin276'),hint=$('authQaHelp276');if(demo)demo.hidden=false;if(hint)hint.hidden=false;}
+  title.textContent=isQa?'Ingreso de prueba':'Ingresar a Reportes HYS';
   if(success){$('authEmail').value=changedEmail;showStatus('Contraseña actualizada. Ingresa con tu contraseña nueva.',true)}
   else showStatus('');
   $('authPassword').value='';
