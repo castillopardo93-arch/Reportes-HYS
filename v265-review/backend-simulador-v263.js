@@ -29,10 +29,23 @@
    {usuario_id:'prueba-admin',modulo:'APR',revision:1,areas_ids:['apr-va4','apr-v5'],facultades:{view:true,audit:true}},
    {usuario_id:'prueba-admin',modulo:'OTROS',revision:0,areas_ids:[],facultades:{}}
   ],
+  lists:[
+   ...['APR','OTROS'].flatMap(modulo=>[
+    {modulo,campo:'shift',valor:'Día',activa:true},
+    {modulo,campo:'shift',valor:'Noche',activa:true},
+    {modulo,campo:'Resultado',valor:'Sin novedades',activa:true},
+    {modulo,campo:'Resultado',valor:'Con observaciones',activa:true},
+    {modulo,campo:'Prioridad',valor:'Alta',activa:true},
+    {modulo,campo:'Prioridad',valor:'Media',activa:true},
+    {modulo,campo:'Estado',valor:'Pendiente',activa:true},
+    {modulo,campo:'Estado',valor:'Cerrado',activa:true}
+   ].map((x,i)=>({...x,id:'test-list-'+modulo+'-'+i})))
+  ],
   history:[]
  });
  function normalize(source){
   if(!source||!Array.isArray(source.users)||!Array.isArray(source.areas)||!Array.isArray(source.faculties)||!Array.isArray(source.history))return initial();
+  if(!Array.isArray(source.lists))source.lists=initial().lists;
   return source;
  }
  let state;
@@ -161,6 +174,28 @@
   return write('Editar área',id,s=>{const a=s.areas.find(x=>x.id===id);a.nombre=clean;a.activa=active===true;return a});
  }
 
+ function createOption(module,field,value){
+  if(!MODULES.includes(module))fail('Tarjeta no válida');
+  const fields=['shift','project','Resultado','Prioridad','Estado','owner','otherCategory','otherStatus'];
+  if(!fields.includes(field))fail('Selector de formulario no autorizado');
+  const clean=String(value||'').trim().replace(/\s+/g,' ');
+  if(clean.length<2||clean.length>150)fail('Nombre de opción inválido');
+  if(get().lists.some(x=>x.modulo===module&&x.campo===field&&x.valor.toLocaleLowerCase('es')===clean.toLocaleLowerCase('es')))fail('La opción ya existe en esta lista');
+  return write('Crear opción',module,s=>{
+   const item={id:'test-list-'+module+'-'+(s.rev+1),modulo:module,campo:field,valor:clean,activa:true};
+   s.lists.push(item);return item;
+  });
+ }
+ function updateOption(id,value,active){
+  const prev=get().lists.find(x=>x.id===id)||fail('Opción de laboratorio inexistente');
+  const clean=String(value||'').trim().replace(/\s+/g,' ');
+  if(clean.length<2||clean.length>150)fail('Nombre de opción inválido');
+  if(get().lists.some(x=>x.id!==id&&x.modulo===prev.modulo&&x.campo===prev.campo&&x.valor.toLocaleLowerCase('es')===clean.toLocaleLowerCase('es')))fail('Esta opción ya existe');
+  return write('Editar opción',id,s=>{
+   const item=s.lists.find(x=>x.id===id);item.valor=clean;item.activa=active===true;return item;
+  });
+ }
+
  // v265: alta y edición conjunta de ficha laboral, tarjeta, rol y facultades.
  // Todos los datos pertenecen exclusivamente al laboratorio ficticio.
  function validateWorkerTransaction(payload,currentId=''){
@@ -230,6 +265,6 @@
 
  function reset(){persist(initial());return get()}
  function report(){return {users:get().users,areas:get().areas,faculties:get().faculties,history:get().history}}
- root.Hys263Lab={get,reset,report,createUser,updateUser,createWorker,updateWorker,newArea,updateArea,rpc,from,labels,key:KEY};
+ root.Hys263Lab={get,reset,report,createUser,updateUser,createWorker,updateWorker,newArea,updateArea,createOption,updateOption,rpc,from,labels,key:KEY};
  root.reportesHysSupabase={rpc,from};
 })(window);
