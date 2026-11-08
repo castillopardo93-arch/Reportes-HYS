@@ -77,5 +77,21 @@ new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilte
 document.addEventListener('click',sync);sync();
 }
 mount();
-root.Hys267RoleCatalog={read:()=>read().map(r=>({...r})),capabilities:CAPS.map(x=>x[0]),storageKey:KEY};
+root.Hys267RoleCatalog={
+ read:()=>read().map(r=>({...r})),
+ capabilities:CAPS.map(x=>x[0]),
+ storageKey:KEY,
+ mountInto:(host)=>{
+   if(!host||!isGlobal())return false;
+   items=read();selected=null;form(null);status('');
+   const shell=panel.querySelector('.hys267-shell');
+   const title=shell.querySelector('.hys267-head');
+   if(title)title.hidden=true;
+   const notice=shell.querySelector('.hys267-note');
+   host.append(shell);
+   shell.style.maxWidth='none';shell.style.boxShadow='none';shell.style.padding='10px 0';
+   if(notice)notice.hidden=false;
+   return true;
+ }
+};
 })(window);
