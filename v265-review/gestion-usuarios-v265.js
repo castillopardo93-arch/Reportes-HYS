@@ -70,6 +70,37 @@ if(follow)nav.append(follow);
 if(appearance)nav.append(appearance);
 if(oldUsers)oldUsers.hidden=true;
 for(const b of oldButtons)if(b!==areasButton&&b!==follow&&b!==appearance)b.hidden=true;
+// Cada herramienta abre solo su propio panel; no apilar Gestión de usuarios sobre Áreas.
+// Se usa captura para mantener también los manejadores originales y los del laboratorio.
+nav.addEventListener('click',event=>{
+ const button=event.target.closest('button');
+ if(!button||!nav.contains(button))return;
+ const id=button.id;
+ if(!['hys265OpenUsers','manageOpen242','operationsOpen242','appearanceOpen242'].includes(id)
+    && button!==follow)return;
+ if(id!=='hys265OpenUsers'&&!panel.hidden){
+  if(!close()){event.preventDefault();event.stopImmediatePropagation();return}
+ }
+ if(id!=='manageOpen242'){
+  const areasPanel=$('management242');
+  if(areasPanel&&!areasPanel.hidden){
+   const areaDraft=$('manageName242')?.value?.trim();
+   if(areaDraft&&!confirm('Hay un nombre de área/opción sin guardar. ¿Descartarlo?')){
+    event.preventDefault();event.stopImmediatePropagation();return;
+   }
+   areasPanel.hidden=true;
+   const field=$('manageName242');if(field)field.value='';
+  }
+ }
+ if(id!=='appearanceOpen242'){
+  const appearancePanel=$('appearancePanel242');
+  if(appearancePanel&&!appearancePanel.hidden){
+   // Usar la función original de cierre, que protege cambios visuales no guardados.
+   $('appearanceClose242')?.click();
+   if(!appearancePanel.hidden){event.preventDefault();event.stopImmediatePropagation();return}
+  }
+ }
+},true);
 let inFlight=0;
 async function readStore(){
  if(lab)return clone(labApi.get());
@@ -470,12 +501,22 @@ usersButton.onclick=()=>open('directory');
 // Áreas y opciones mantiene su controlador original de v264 (cloud-v242.js).
 // No convertir nunca el menú Áreas y opciones en una entrada a Gestión de usuarios.
 function sync(){
- usersButton.hidden=!showInRail();
- // El controlador original establece visibilidad de Áreas y opciones según permisos.
- if(areasButton&&showInRail())areasButton.hidden=false;
+ const visible=showInRail();
+ usersButton.hidden=!visible;
+ // Montar el control REAL de Apariencia si la inicialización inicial ocurrió antes de crear la cinta.
+ // Se conserva su mismo panel y sus opciones; nunca se crea un duplicado.
+ if(visible)root.HysAppearance242?.mount?.();
+ const appearanceNow=$('appearanceOpen242')||appearance;
+ if(appearanceNow&&appearanceNow.parentElement!==nav)nav.append(appearanceNow);
+ if(appearanceNow){
+  appearanceNow.hidden=!visible;
+  appearanceNow.style.removeProperty('display');
+ }
+ // Áreas y opciones utiliza su botón original (y su panel histórico).
+ if(areasButton)areasButton.hidden=!visible;
  if(oldUsers){oldUsers.hidden=true;oldUsers.style.display='none'}
  for(const b of [...nav.querySelectorAll('.hys-admin-open')]){
-  if(b===usersButton||b===areasButton||b===follow||b===appearance)continue;
+  if(b===usersButton||b===areasButton||b===follow||b===appearanceNow)continue;
   b.hidden=true;b.style.display='none';
  }
  if(!isGlobal()&&!panel.hidden){state.dirty=false;panel.hidden=true;state.users=[];state.history=[]}
