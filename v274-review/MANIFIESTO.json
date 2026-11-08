@@ -1,0 +1,190 @@
+{
+  "version": 273,
+  "branch": "desarrollo/v273-correcciones-auditoria",
+  "base_version": 272,
+  "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
+  "estado": "desarrollo-correcciones-parciales-pendiente-pruebas",
+  "aprobada": false,
+  "publicada": false,
+  "produccion": false,
+  "supabase_modificado": false,
+  "integracion_real_creacion_cuenta": false,
+  "escrituras_reales_bloqueadas": true,
+  "pasos": [
+    "Ficha del trabajador",
+    "Creación de cuenta",
+    "Rol y tarjetas",
+    "Áreas y facultades",
+    "Revisar y guardar"
+  ],
+  "cuentas_ficticias_sin_invitaciones_enviadas": true,
+  "almacenamiento_local_laboratorio": "hys-v266-lab-shared::reportes-hys-v266-simulador-local-1",
+  "pruebas_logica_aprobadas": 28,
+  "pruebas_automatizadas_node_en_repo": 10,
+  "pruebas_navegador_pendientes": true,
+  "presentacion_de_desarrollo": "aplicacion completa index.html?qa=1: selector dos tarjetas; cuatro funciones laterales sin duplicados",
+  "validacion_apariencia": {
+    "panel_original_conservado": true,
+    "opciones_del_panel_original": "colores, iconos, textos, logotipo, tipografia, espaciado, bordes, vista previa, restauracion",
+    "persistencia_local_qa": "reportes-hys-v265-apariencia-local",
+    "pruebas_qa_almacenamiento": 12,
+    "escritura_supabase": false,
+    "inspeccion_visual_final_pendiente": true
+  },
+  "validacion_areas": {
+    "panel_original": true,
+    "secciones": [
+      "Áreas de trabajo",
+      "Opciones de formularios",
+      "Historial de áreas"
+    ],
+    "datos_laboratorio_aislados": true
+  },
+  "validacion_navegacion": {
+    "correccion_apariencia_visible": true,
+    "correccion_superposicion_areas_y_usuarios": true,
+    "pruebas_navegacion_aprobadas": 7,
+    "pruebas_visibilidad_logica_aprobadas": 2,
+    "verificacion_visual_final": "pendiente",
+    "barra_desplazamiento_bajo_apariencia_eliminada": true,
+    "comprobaciones_css_y_modulos_aprobadas": 12,
+    "validacion_visual_final": "pendiente",
+    "rotulos_una_linea_y_mas_espaciados": true,
+    "verificaciones_rotulos_y_ancho": 16
+  },
+  "auditoria_integral_20261108": {
+    "audit_base_sha": "250f8bad097de0880bcb8454bcec8acd927c092e",
+    "audit_document": "evidencias-v265/AUDITORIA-INTEGRAL-CORRECTIVA-2026-11-08.md",
+    "node_suite": "evidencias-v265/test-regresion-integral-v265.cjs",
+    "node_suite_executed": false,
+    "logic_suite_counts": [
+      11,
+      12,
+      15,
+      8,
+      4,
+      19
+    ],
+    "browser_qa_verified": false,
+    "security_findings_supabase_read_only": true,
+    "fixes": [
+      "storage namespace",
+      "shared lab identity and appearance",
+      "simulated form catalogs",
+      "global admin role check",
+      "calendar and hierarchy validation",
+      "faculty allowlist and scope",
+      "atomic local persistence",
+      "audit privacy redaction",
+      "JS cache references"
+    ]
+  },
+  "auditoria_punto3": {
+    "fecha": "2026-11-08",
+    "informe": "evidencias-v266/PUNTO-3-IMPLEMENTACION-Y-PRUEBAS-v266.md",
+    "suite": "evidencias-v266/test-punto3-v266.cjs",
+    "suite_node_ejecutada": false,
+    "verificaciones_estaticas": 18,
+    "verificaciones_funcionales_simuladas": 12,
+    "verificacion_visual_pendiente": true,
+    "backend_produccion_modificado": false,
+    "seguridad_supabase_solo_lectura": true,
+    "aprobacion_pendiente": true,
+    "campos": [
+      "seguridad",
+      "creacion_cuentas",
+      "notificaciones",
+      "pdf-fotos",
+      "respaldos",
+      "offline-pospuesto"
+    ]
+  },
+  "source_report": "evidencias-v266/AUDITORIA-PUNTO-3-v266.md",
+  "pruebas_integridad_punto3": 18,
+  "pruebas_logica_punto3": 14,
+  "pruebas_node_ejecutadas": false,
+  "point3_progress": {
+    "seguridad_supabase": "asesores y grants verificados solo lectura; cambios pendientes de aprobación",
+    "cuentas_reales": "bloqueadas; asistente ficticio disponible",
+    "notificaciones": "prueba local F02-F07; envío real pendiente",
+    "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
+    "borradores_previos": "exportación selectiva; importación automática prohibida"
+  },
+  "base_branch": "desarrollo/v272-auditoria-integral",
+  "implementacion_roles_v267": {
+    "catalogo_local": true,
+    "crear": true,
+    "editar": true,
+    "duplicar": true,
+    "desactivar": true,
+    "tarjetas": true,
+    "facultades": true,
+    "roles_reales": false,
+    "asignacion_real": false,
+    "rls_actualizada": false,
+    "pruebas_navegador_pendientes": true,
+    "almacenamiento": "reportes-hys-v267-roles-local"
+  },
+  "auditoria_integral_v268": {
+    "fecha": "2026-11-08",
+    "alcance": "estática sobre copia aislada; revisión visual pendiente",
+    "archivos_copiados": 67,
+    "hallazgos_confirmados": 5,
+    "aprobada": false,
+    "pruebas_navegador": false,
+    "produccion_modificada": false
+  },
+  "auditoria_integral_v269": {
+    "fecha": "2026-11-08",
+    "copia_aislada": true,
+    "archivos_copiados": 67,
+    "css_responsive_consolidado": true,
+    "script_landscape_legacy_desactivado": true,
+    "identificador_visual_corregido": true,
+    "acceso_laboratorio_corregido": true,
+    "roles_reales": false,
+    "pruebas_navegador_pendientes": true,
+    "pruebas_e2e_pendientes": true,
+    "estado": "parcial; no declarar todos los defectos resueltos"
+  },
+  "cambios_v270": {
+    "usuarios_registrados_sin_boton_nuevo": true,
+    "usuarios_registrados_sin_tarjeta_roles": true,
+    "crear_usuario_en_pestana_propia": true,
+    "roles_en_pestana_propia": true,
+    "pruebas_visuales_pendientes": true
+  },
+  "cambios_v271": {
+    "pestana_creacion_roles_eliminada": true,
+    "catalogo_roles_no_cargado": true,
+    "roles_existentes_y_permisos_conservados": true,
+    "datos_locales_anteriores_no_borrados": true,
+    "implementacion_roles_dinamicos_pospuesta": true,
+    "validacion_navegador_pendiente": true
+  },
+  "auditoria_integral_v272": {
+    "fecha": "2026-11-08",
+    "archivos_copiados": 67,
+    "inspeccion_estatica": true,
+    "pruebas_navegador": false,
+    "pruebas_integracion": false,
+    "roles_dinamicos_desactivados": true,
+    "problema_qa_ruta_confirmado": true,
+    "problema_simulador_ruta_confirmado": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "revision_permisos_backend_pendiente": true,
+    "aprobada": false
+  },
+  "correcciones_v273": {
+    "qa_v273_habilitado_solo_raw_githack_y_qa1": true,
+    "simulador_local_v273_habilitado_con_guardas": true,
+    "gestion_usuarios_lab_v273_habilitada": true,
+    "verificador_punto3_v273_habilitado": true,
+    "encabezado_actualizado": true,
+    "roles_dinamicos_desactivados": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "duplicidades_heredadas_pendientes": true,
+    "pruebas_navegador_pendientes": true,
+    "pruebas_integracion_pendientes": true
+  }
+}
