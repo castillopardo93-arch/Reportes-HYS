@@ -209,6 +209,12 @@ function validConfiguration(role,ambitos,grants,areas){
   if(a.editar!==true&&a.editar!==false)errors.push('Indica acceso de edición en '+m);
  }
  if(role!=='administrador_area'&&modules.some(m=>Object.values(grants?.[m]?.facultades||{}).some(Boolean)))errors.push('Los roles no administradores no tienen facultades especiales');
+ const requireView=['pdf','review','approve','close','editOthers'];
+ for(const m of modules){
+  const scope=grants?.[m]?.facultades||{};
+  if(ambitos?.[m]?.ver!==true&&Object.values(scope).some(Boolean))errors.push('No puedes conceder facultades de una tarjeta deshabilitada');
+  if(requireView.some(k=>scope[k]===true)&&scope.view!==true)errors.push('Las facultades de revisar, cerrar y editar informes requieren Consultar informes');
+ }
  for(const m of modules)for(const id of grants?.[m]?.areas_ids||[]){
   if(!ambitos?.[m]?.areas?.includes(id))errors.push('Facultad fuera del ámbito '+m);
  }
@@ -245,6 +251,7 @@ const api={text,roles,modules,fields,rutParts,validRut,validEmail,sanitize,valid
 if(typeof module==='object'&&module.exports)module.exports=api;
 else root.Hys265WorkerModel=api;
 })(typeof window==='object'?window:globalThis);
+
 
 </script>
 <script>
@@ -484,6 +491,7 @@ else root.Hys265WorkerModel=api;
  root.reportesHysSupabase={rpc,from};
 })(window);
 
+
 </script>
 <script>
 /* Reportes HYS v265 — Gestión de usuarios centralizada.
@@ -642,7 +650,7 @@ function renderDirectoryRows(){
  if(!filtered.length){rows.append(element('p','No hay cuentas coincidentes.'));return}
  for(const u of filtered){
   const r=element('article',undefined,'hys265-person');
-  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Activo')));
+  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Trabajador activo')+(u.cuenta?.estado==='pendiente_invitacion'?' · Invitación simulada pendiente':'')));
   const mod=element('small',W.modules.map(m=>u.ambitos?.[m]?.ver===true?scopeNames[m]:'').filter(Boolean).join(' / ')||'Sin tarjetas asignadas');name.append(mod);
   r.append(name);
   const actions=element('div',undefined,'hys265-inline');
@@ -818,7 +826,14 @@ function stepSpecial(p){
    for(const [key,title] of rights){
     const lbl=document.createElement('label');lbl.className='hys265-checkline';
     const ch=document.createElement('input');ch.type='checkbox';ch.checked=state.draft.facultades[m]?.facultades?.[key]===true;
-    ch.onchange=()=>{state.draft.facultades[m].facultades[key]=ch.checked;state.draft.facultades[m].areas_ids=[...a.areas];state.dirty=true};
+    ch.onchange=()=>{
+     const granted=state.draft.facultades[m].facultades;
+     granted[key]=ch.checked;
+     const dependent=['pdf','review','approve','close','editOthers'];
+     if(ch.checked&&dependent.includes(key))granted.view=true;
+     if(key==='view'&&!ch.checked)for(const dep of dependent)granted[dep]=false;
+     state.draft.facultades[m].areas_ids=[...a.areas];state.dirty=true;render();
+    };
     lbl.append(ch,document.createTextNode(title));grid.append(lbl);
    }
    card.append(grid);
@@ -908,6 +923,7 @@ root.reportesHysAdminSync=()=>{previousSync?.();sync()};
 sync();
 root.Hys265UserManagement={open,close,refresh,isLab:lab};
 })(window);
+
 
 </script>
 <script>
