@@ -43,7 +43,7 @@ function makeCheckbox(labelText,checked,disabled,fn,className){
  label.append(input,document.createTextNode(labelText));return label;
 }
 function setBusy(on){busy=on;panel.querySelectorAll('button,input,select').forEach(node=>{node.disabled=on});if(!on)paintControls()}
-function paintControls(){if(!account)return;const save=$('facultadesSave242');save.disabled=busy||!M.some(canEditModule);save.textContent=A.userManagementEnabled()?'Guardar facultades':'Revisar cambios (sin guardar)';$('facultyReset261').disabled=busy}
+function paintControls(){if(!account)return;const save=$('facultadesSave242');save.disabled=busy||!M.some(canEditModule);save.textContent=window.HYS263_SANDBOX===true?'Guardar prueba (solo navegador)':(A.userManagementEnabled()?'Guardar facultades':'Revisar cambios (sin guardar)');$('facultyReset261').disabled=busy}
 function selectedMode(m){return areaMode[m]==='all'?'all':'selected'}
 function renderAreaSelector(m,host){
  const ids=currentAreas(m),eligible=allowedAreas(m),mode=selectedMode(m);
@@ -97,7 +97,7 @@ function renderRole(){
   field.value=draftRole;
   field.disabled=busy||!canChange;
   $('facultyRoleMessage262').textContent=R.roleChanged(account,draftRole)
-   ?'Cambio de rol pendiente: '+roleLabel(account.rol)+' → '+roleLabel(draftRole)+'. No se modificará la cuenta hasta que un servicio transaccional confirme todos los permisos.'
+   ?'Cambio de rol pendiente: '+roleLabel(account.rol)+' → '+roleLabel(draftRole)+(window.HYS263_SANDBOX===true?'. Al guardar se actualizará únicamente la cuenta ficticia de este laboratorio.':'. No se modificará la cuenta hasta que un servicio transaccional confirme todos los permisos.')
    :'El rol actual se conserva. Las tarjetas y áreas pueden seleccionarse por separado.';
  }
  function renderCards(){
@@ -159,7 +159,7 @@ function renderSummary(){
  const msg=el('p','faculty-summary-result261',changed?(roleWasChanged?'Cambio de rol pendiente de confirmación'+(steps.length?' y '+steps.length+' operación(es) de permisos.':'.'):steps.length+' operación(es) pendientes de confirmar con el servidor.'):'Sin cambios respecto de la configuración cargada.');
  host.append(msg);
  const special=$('facultySpecial261');$('facultySummaryTitle261').textContent=isAdminTarget()?'4. Revisar y guardar':'3. Revisar y guardar';
- $('facultySafety261').textContent=window.HYS261_ATOMIC_FACULTIES_READY===true?'Los cambios se enviaran al servicio transaccional cuando se habilite la gestion real.':'Modo de revision: las operaciones multiples esperan un servicio transaccional para impedir permisos parciales; no se escriben datos desde esta copia.';
+ $('facultySafety261').textContent=window.HYS263_SANDBOX===true?'Laboratorio: roles, áreas y facultades se guardan atómicamente en datos FICTICIOS de este navegador, nunca en Supabase real.':(window.HYS261_ATOMIC_FACULTIES_READY===true?'El guardado requiere un servicio transaccional autorizado.':'Modo de revisión: las operaciones múltiples requieren un servicio transaccional; no se escriben datos reales desde esta copia.');
  paintControls();
 }
 function renderDirectory(){
@@ -285,7 +285,7 @@ $('facultadesForm242').onsubmit=async event=>{
  if(steps.length>1&&window.HYS261_ATOMIC_FACULTIES_READY!==true){
   status('Guardado protegido: estas facultades requieren varias operaciones. No se ejecuta ningun cambio hasta habilitar una operacion transaccional unica en Supabase.');return;
  }
- if(!confirm('¿Confirmar '+(steps.length+(roleWasChanged?1:0))+' cambio(s) de rol y facultades para '+account.nombre+'? Esta acción quedará auditada.'))return;
+ if(window.HYS263_SANDBOX!==true&&!confirm('¿Confirmar '+(steps.length+(roleWasChanged?1:0))+' cambio(s) de rol y facultades para '+account.nombre+'? Esta acción quedará auditada.'))return;
  const n=++seq;setBusy(true);
  try{
   let result;
@@ -309,9 +309,9 @@ $('facultadesForm242').onsubmit=async event=>{
   }
   if(result.error)throw result.error;
   if(n!==seq||actor!==access()?.userId||!canManage())return;
-  status('Cambios confirmados por el servidor. Actualizando facultades…');
+  status(window.HYS263_SANDBOX===true?'Prueba guardada localmente. Actualizando usuario ficticio…':'Cambios confirmados por el servidor. Actualizando facultades…');
   await loadAccount(uid);
-  if(actor===access()?.userId&&canManage())status('Facultades guardadas. El servidor confirmo las operaciones; el historial mantiene su registro.');
+  if(actor===access()?.userId&&canManage())status(window.HYS263_SANDBOX===true?'Guardado local confirmado. Comprueba el resultado en Accesos simulados y Auditoría.':'Facultades guardadas. El servidor confirmó las operaciones y su auditoría.');
  }catch(e){if(n===seq&&actor===access()?.userId&&canManage()){status('No se confirmó el guardado: '+e.message+'. Consulta nuevamente el estado antes de reintentar.');await loadAccount(uid)}}finally{if(n===seq){setBusy(false);if(account)renderSummary()}}
 };
 const previousSync=window.reportesHysAdminSync;
