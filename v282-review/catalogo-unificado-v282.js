@@ -133,6 +133,8 @@ function create({getAccess,moduleLabel,refreshCatalog}){
  button.innerHTML='<span class="tools-option-icon" aria-hidden="true">▦</span>'
   +'<span class="tools-option-label">Áreas y opciones</span><span class="tools-option-full">Áreas y opciones</span>';
  button.hidden=true;
+ // Disponibilidad temprana para la barra lateral de Administración de usuarios.
+ const initialRail=$('hysToolsOptions');if(initialRail)initialRail.append(button);
  const nodes={};for(const id of ['manageMessage242','manageModule242','manageModuleLabel242',
  'manageAreas242','manageLists242','manageAudit242','catalogField242','catalogFieldLabel242',
  'manageName242','manageNameLabel242','manageForm242','manageRows242','hys282Create','hys282Context']){
@@ -153,6 +155,8 @@ function create({getAccess,moduleLabel,refreshCatalog}){
     &&root.document.body.classList.contains('module-choice')
     &&(general(a)||['supervisor','administrador_area'].includes(a.profile.rol)));
   button.hidden=!visible;
+  nodes.manageLists242.hidden=!general(a);
+  if(tab==='lists'&&!general(a)&&!panel.hidden){tab='areas';switchTab('areas');}
   if(visible){
    $('hysToolsRail')?.removeAttribute('hidden');
   }
@@ -287,7 +291,7 @@ function create({getAccess,moduleLabel,refreshCatalog}){
  }
  function open(){
   if(!canRead())return;
-  panel.hidden=false;setModules();setSelectors();tab='lists';switchTab('lists');
+  panel.hidden=false;setModules();setSelectors();tab=global()?'lists':'areas';switchTab(tab);
  }
  button.addEventListener('click',open);
  panel.querySelector('#manageClose242').addEventListener('click',()=>{panel.hidden=true;seq++});
