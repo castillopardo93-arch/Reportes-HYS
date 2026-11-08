@@ -17,8 +17,8 @@
  let draft=C.clone(C.DEFAULT);
  // La vista QA de la aplicación completa conserva todas las opciones de Apariencia.
  // No consulta ni escribe apariencia_v238/v242 de Supabase al operar con datos ficticios.
- const QA=window.HYS265_PREVIEW_ONLY===true&&/\/v265-review\/index\.html$/.test(location.pathname);
- const QA_KEY='reportes-hys-v265-apariencia-local';
+ const QA=window.HYS266_PREVIEW_ONLY===true&&/\/v266-review\/index\.html$/.test(location.pathname);
+ const QA_KEY='reportes-hys-v266-apariencia-local';
  const qaStore=window.HysStorage242?.sharedLabStorage||localStorage;
  function readQA(){
   let saved=null;
