@@ -154,7 +154,7 @@ function renderDirectoryRows(){
  if(!filtered.length){rows.append(element('p','No hay cuentas coincidentes.'));return}
  for(const u of filtered){
   const r=element('article',undefined,'hys265-person');
-  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Activo')));
+  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Trabajador activo')+(u.cuenta?.estado==='pendiente_invitacion'?' · Invitación simulada pendiente':'')));
   const mod=element('small',W.modules.map(m=>u.ambitos?.[m]?.ver===true?scopeNames[m]:'').filter(Boolean).join(' / ')||'Sin tarjetas asignadas');name.append(mod);
   r.append(name);
   const actions=element('div',undefined,'hys265-inline');
