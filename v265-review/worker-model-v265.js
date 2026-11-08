@@ -88,13 +88,22 @@ function validConfiguration(role,ambitos,grants,areas){
  }
  if(role!=='administrador_area'&&modules.some(m=>Object.values(grants?.[m]?.facultades||{}).some(Boolean)))errors.push('Los roles no administradores no tienen facultades especiales');
  const requireView=['pdf','review','approve','close','editOthers'];
+ const allowedRights=new Set(['view',...requireView,'areas','users','activation','audit']);
  for(const m of modules){
-  const scope=grants?.[m]?.facultades||{};
-  if(ambitos?.[m]?.ver!==true&&Object.values(scope).some(Boolean))errors.push('No puedes conceder facultades de una tarjeta deshabilitada');
-  if(requireView.some(k=>scope[k]===true)&&scope.view!==true)errors.push('Las facultades de revisar, cerrar y editar informes requieren Consultar informes');
- }
- for(const m of modules)for(const id of grants?.[m]?.areas_ids||[]){
-  if(!ambitos?.[m]?.areas?.includes(id))errors.push('Facultad fuera del ámbito '+m);
+  const entry=grants?.[m],scope=entry?.facultades||{},selected=entry?.areas_ids||[];
+  if(!Array.isArray(selected))errors.push('Las áreas asignadas a facultades deben ser una lista en '+m);
+  if(!scope||typeof scope!=='object'||Array.isArray(scope))errors.push('Formato de facultades inválido en '+m);
+  else for(const [name,value] of Object.entries(scope)){
+   if(!allowedRights.has(name)||typeof value!=='boolean')errors.push('Facultad no reconocida o no booleana: '+name);
+  }
+  if(ambitos?.[m]?.ver!==true&&Object.values(scope||{}).some(Boolean))errors.push('No puedes conceder facultades de una tarjeta deshabilitada');
+  if(requireView.some(k=>scope?.[k]===true)&&scope?.view!==true)errors.push('Las facultades de revisar, cerrar y editar informes requieren Consultar informes');
+  if(Array.isArray(selected)){
+   if(selected.length!==new Set(selected).size)errors.push('Hay áreas duplicadas en las facultades de '+m);
+   for(const id of selected)if(!ambitos?.[m]?.areas?.includes(id))errors.push('Facultad fuera del ámbito '+m);
+  }
+  if(Object.values(scope||{}).some(v=>v===true)&&(!Array.isArray(selected)||!selected.length))
+   errors.push('Las facultades requieren al menos un área explícita en '+m);
  }
  return {ok:!errors.length,errors};
 }
