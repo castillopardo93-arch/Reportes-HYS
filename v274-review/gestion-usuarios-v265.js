@@ -168,7 +168,7 @@ function resetDraft(user=null){
   const fac=state.faculties.find(x=>x.usuario_id===user?.usuario_id&&x.modulo===m);
   faculties[m]=fac&&user?.rol==='administrador_area'?clone({areas_ids:fac.areas_ids||[],facultades:fac.facultades||{}}):{areas_ids:[],facultades:{}};
  }
- state.draft={worker,cuenta:user?.cuenta?clone(user.cuenta):{correo_ingreso:worker.correo_corporativo?'corporativo':'personal',metodo:'invitacion',estado:user?'sin_cambios':'pendiente_invitacion'},rol:user?.rol&&W.roles.includes(user.rol)?user.rol:'usuario',ambitos,facultades:faculties,motivo:''};
+ state.draft={worker,cuenta:user?.cuenta?clone(user.cuenta):{correo_ingreso:worker.correo_corporativo?'corporativo':'personal',metodo:'automatica',estado:user?'sin_cambios':'alta_temporal_simulada'},rol:user?.rol&&W.roles.includes(user.rol)?user.rol:'usuario',ambitos,facultades:faculties,motivo:''};
 }
 function setTabStyle(){
  panel.querySelectorAll('[data-hys265-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.hys265Tab===state.tab);b.setAttribute('aria-current',b.dataset.hys265Tab===state.tab?'page':'false')});
@@ -207,7 +207,7 @@ function renderDirectoryRows(){
  if(!filtered.length){rows.append(element('p','No hay cuentas coincidentes.'));return}
  for(const u of filtered){
   const r=element('article',undefined,'hys265-person');
-  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Trabajador activo')+(u.cuenta?.estado==='pendiente_invitacion'?' · Invitación simulada pendiente':'')));
+  const name=element('div');name.append(element('strong',u.nombre),element('small',(u.trabajador?.cargo||'Cargo no registrado')+' · '+({usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador',administrador_global:'Administrador general'}[u.rol]||u.rol)+' · '+(u.activo===false?'Inactivo':'Trabajador activo')+(u.cuenta?.estado==='pendiente_invitacion'?' · Invitación simulada pendiente':u.cuenta?.estado==='alta_temporal_simulada'?' · Alta temporal simulada':'')));
   const mod=element('small',W.modules.map(m=>u.ambitos?.[m]?.ver===true?scopeNames[m]:'').filter(Boolean).join(' / ')||'Sin tarjetas asignadas');name.append(mod);
   r.append(name);
   const actions=element('div',undefined,'hys265-inline');
@@ -328,7 +328,7 @@ function fillWorkerSample(){
   correo_corporativo:'ficticio.corporativo'+serial+'@example.test',
   estado_laboral:'activo'
  });
- state.draft.cuenta={correo_ingreso:'corporativo',metodo:'invitacion',estado:'pendiente_invitacion'};
+ state.draft.cuenta={correo_ingreso:'corporativo',metodo:'automatica',estado:'alta_temporal_simulada'};
  state.dirty=true;render();
  notice('Ficha de prueba completada. Ahora puedes pulsar Continuar.');
 }
