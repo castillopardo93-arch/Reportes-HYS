@@ -57,17 +57,19 @@ function newButton(id,icon,label,full){
  const b=document.createElement('button');b.id=id;b.type='button';b.className='hys-admin-open';b.hidden=!showInRail();
  b.innerHTML='<span class="tools-option-icon" aria-hidden="true">'+icon+'</span><span class="tools-option-label">'+label+'</span><span class="tools-option-full">'+full+'</span>';return b;
 }
-const usersButton=newButton('hys265OpenUsers','♙','Usuarios','Gestión de usuarios');
-const areasButton=newButton('hys265OpenAreas','▦','Áreas','Áreas y opciones');
+const usersButton=newButton('hys265OpenUsers','♙','Gestión de usuarios','Gestión de usuarios');
+// Reutilizar exactamente la pestaña histórica de Áreas y opciones; no crear una copia.
+const areasButton=$('manageOpen242');
 const oldUsers=$('usersOpen258');
 const oldButtons=[...nav.querySelectorAll('button.hys-admin-open')];
 const follow=oldButtons.find(n=>n.textContent.includes('Seguimiento'));
 const appearance=$('appearanceOpen242');
-nav.append(usersButton,areasButton);
+nav.append(usersButton);
+if(areasButton)nav.append(areasButton);
 if(follow)nav.append(follow);
 if(appearance)nav.append(appearance);
 if(oldUsers)oldUsers.hidden=true;
-for(const b of oldButtons)if(b!==follow&&b!==appearance)b.hidden=true;
+for(const b of oldButtons)if(b!==areasButton&&b!==follow&&b!==appearance)b.hidden=true;
 let inFlight=0;
 async function readStore(){
  if(lab)return clone(labApi.get());
@@ -465,13 +467,13 @@ const close=()=>{if(!abandon())return false;panel.hidden=true;state.dirty=false;
 $('hys265Close').onclick=close;
 panel.querySelectorAll('[data-hys265-tab]').forEach(b=>b.onclick=()=>show(b.dataset.hys265Tab));
 usersButton.onclick=()=>open('directory');
-areasButton.onclick=()=>{
- if(lab&&root.Hys265OpenAreas){if(close())root.Hys265OpenAreas();return}
- open('directory');notice('Áreas y opciones: la administración de catálogos permanece pendiente de su consolidación. La asignación de áreas a cada trabajador está dentro de Gestión de usuarios.',true);
-};
+// Áreas y opciones mantiene su controlador original de v264 (cloud-v242.js).
+// No convertir nunca el menú Áreas y opciones en una entrada a Gestión de usuarios.
 function sync(){
- usersButton.hidden=!showInRail();areasButton.hidden=!showInRail();
- if(oldUsers)oldUsers.hidden=true;
+ usersButton.hidden=!showInRail();
+ // El controlador original establece visibilidad de Áreas y opciones según permisos.
+ if(areasButton&&showInRail())areasButton.hidden=false;
+ if(oldUsers){oldUsers.hidden=true;oldUsers.style.display='none'}
  for(const b of [...nav.querySelectorAll('.hys-admin-open')]){
   if(b===usersButton||b===areasButton||b===follow||b===appearance)continue;
   b.hidden=true;b.style.display='none';
