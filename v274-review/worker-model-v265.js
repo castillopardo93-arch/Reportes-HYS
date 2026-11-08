@@ -33,7 +33,7 @@ function validate(input,users=[],currentId=''){
  if(w.celular&&!/^\+?[0-9][0-9\s-]{7,22}$/.test(w.celular))errors.push('Celular inválido');
  if(w.correo_personal&&!validEmail(w.correo_personal))errors.push('Correo personal inválido');
  if(w.correo_corporativo&&!validEmail(w.correo_corporativo))errors.push('Correo corporativo inválido');
- if(!w.correo_corporativo&&!w.correo_personal)errors.push('Indica al menos un correo para la invitación');
+ if(!w.correo_corporativo&&!w.correo_personal)errors.push('Indica al menos un correo para el inicio de sesión');
  if(!['activo','suspendido','desvinculado'].includes(w.estado_laboral))errors.push('Estado laboral inválido');
  if(w.fecha_ingreso){
   const validDate=/^\d{4}-\d{2}-\d{2}$/.test(w.fecha_ingreso)
@@ -64,18 +64,21 @@ function validate(input,users=[],currentId=''){
  return {ok:errors.length===0,errors,worker:w};
 }
 function validateAccount(account,worker,existing=false){
- const errors=[];
- const method=account?.metodo||'invitacion';
- const source=account?.correo_ingreso||'corporativo';
- const chosen=source==='personal'?worker?.correo_personal:worker?.correo_corporativo;
- const email=safeEmail(chosen);
- if(!['invitacion'].includes(method))errors.push('El alta debe realizarse por invitación; no se generan contraseñas temporales');
- if(!['corporativo','personal'].includes(source))errors.push('Selecciona un correo de ingreso permitido');
- if(!validEmail(email))errors.push('Selecciona un correo válido en la ficha del trabajador para crear su cuenta');
- // La simulación no envía invitaciones ni crea credenciales de autenticación.
- const previous=safeEmail(account?.email||'');
- const estado=!existing?'pendiente_invitacion':previous&&previous!==email?'cambio_correo_pendiente':account?.estado==='pendiente_invitacion'?'pendiente_invitacion':'sin_cambios';
- return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado}};
+  const errors=[];
+  const method=account?.metodo||'invitacion';
+  const source=account?.correo_ingreso||'corporativo';
+  const chosen=source==='personal'?worker?.correo_personal:worker?.correo_corporativo;
+  const email=safeEmail(chosen);
+  if(!['invitacion','automatica','manual'].includes(method))errors.push('Selecciona un método válido para la cuenta');
+  if(!['corporativo','personal'].includes(source))errors.push('Selecciona un correo de ingreso permitido');
+  if(!validEmail(email))errors.push('Selecciona un correo válido en la ficha del trabajador para crear su cuenta');
+  // Nunca aceptar campos de contraseña en el modelo persistente.
+  // Los secretos transitorios se validan separadamente y jamás se serializan.
+  const previous=safeEmail(account?.email||'');
+  const estado=existing
+    ?(previous&&previous!==email?'cambio_correo_pendiente':account?.estado||'sin_cambios')
+    :(method==='invitacion'?'pendiente_invitacion':'alta_temporal_simulada');
+  return {ok:!errors.length,errors,cuenta:{correo_ingreso:source,metodo:method,email,estado}};
 }
 function validConfiguration(role,ambitos,grants,areas){
  const errors=[];
