@@ -133,3 +133,21 @@
  #hys265UsersPanel .hys274-delivery .hys265-inline{flex-direction:column;align-items:stretch}
  #hys265UsersPanel .hys274-delivery .hys265-inline .btn{width:100%}
 }
+
+/* Reportes HYS v278: gestión de accesos real, integrada en Usuarios registrados. */
+#hys265UsersPanel .hys278-access{max-width:900px;margin:14px auto}
+#hys265UsersPanel .hys278-access .hys265-summary{margin:14px 0 18px}
+#hys265UsersPanel .hys278-options{border:1px solid #bbd5e8;border-radius:12px;padding:14px 16px;margin:15px 0;background:#f6faff;min-width:0}
+#hys265UsersPanel .hys278-options legend{font-size:14px;font-weight:750;color:#183e62;padding:0 6px}
+#hys265UsersPanel label.hys278-choice{display:flex;flex-direction:row;align-items:flex-start;gap:11px;padding:9px 2px;font-size:14px;font-weight:600;cursor:pointer}
+#hys265UsersPanel .hys278-choice input[type=radio]{width:19px;height:19px;flex:0 0 auto;margin:1px 0 0;accent-color:#186496}
+#hys265UsersPanel .hys278-access>label{margin-top:16px}
+#hys265UsersPanel .hys278-audit{border-top:1px solid #dae7f1;margin-top:18px;padding-top:12px}
+#hys265UsersPanel .hys278-audit p{overflow-wrap:anywhere;border-bottom:1px solid #eaf0f6;padding:7px 0}
+#hys265UsersPanel .hys278-access button:disabled{opacity:.58;cursor:not-allowed}
+@media(max-width:760px){
+ #hys265UsersPanel .hys278-access{padding:13px}
+ #hys265UsersPanel .hys278-access .hys265-summary{grid-template-columns:1fr;gap:4px}
+ #hys265UsersPanel .hys278-access .hys265-summary dd{margin:0 0 9px}
+ #hys265UsersPanel .hys278-options{padding:12px}
+}
