@@ -1,9 +1,9 @@
 {
-  "version": 280,
-  "branch": "desarrollo/v280-pais-libre",
-  "base_version": 279,
+  "version": 281,
+  "branch": "desarrollo/v281-regimen-laboral",
+  "base_version": 280,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-pais-documento-libre",
+  "estado": "desarrollo-prepublicacion-regimenes-laborales-separados",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v279-ficha-laboral-contacto",
+  "base_branch": "desarrollo/v280-pais-libre",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -324,5 +324,28 @@
     "pruebas_sintaxis": true,
     "prueba_visual_navegador": false,
     "backend_ficha_pendiente_de_instalacion": true
+  },
+  "cambios_v281": {
+    "interfaz_areas_y_opciones_reutilizada": true,
+    "datos_de_turnos_de_informes_no_reutilizados": true,
+    "nuevo_catalogo_independiente": "regimenes_laborales_v281",
+    "valores_iniciales_en_propuesta_backend": [
+      "5X2",
+      "4X3",
+      "10X5",
+      "7X7"
+    ],
+    "alta_real_al_instalar_backend": true,
+    "edicion_real_al_instalar_backend": true,
+    "eliminacion_logica_y_restauracion_al_instalar_backend": true,
+    "auditado_por_eventos_v242": true,
+    "requiere_administrador_general": true,
+    "conserva_turnos_del_informe_diario": true,
+    "conserva_formulario_pais_documento_libre": true,
+    "sin_datos_ficticios": true,
+    "pruebas_logica_cliente_aislado": 9,
+    "pruebas_reales_autenticadas": false,
+    "pruebas_visuales_navegador": false,
+    "integracion_backend_preparada_no_instalada": true
   }
 }
