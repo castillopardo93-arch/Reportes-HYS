@@ -287,10 +287,10 @@ function renderAccess(target){
    const applied=await A278.apply({client:root.reportesHysSupabase,access:actor,target:u,operation,reason:why,confirmName:confirmed});
    const events=await A278.history(root.reportesHysSupabase,u.usuario_id).catch(()=>[]);
    state.accessEvents=events;
+   state.accessBusy=false;
+   state.accessMode=applied.user.activo?'suspend':'reactivate';
    await refresh();
    if(state.tab!=='access'||state.accessTarget!==applied.user.usuario_id)return;
-   state.accessMode=applied.user.activo?'suspend':'reactivate';
-   render();
    notice('Estado de acceso confirmado por Supabase. Operación: '+details.label+'. Se registró el motivo en auditoría.');
   }catch(e){
    notice('No se confirmó la operación: '+e.message,true);
