@@ -87,3 +87,8 @@ Las capturas mostraron la banda lateral sin Apariencia y la pantalla de Áreas m
 - `index.html`: actualizar únicamente las referencias de los 7 recursos JavaScript/CSS afectados con parámetro de caché, manteniendo la misma rama y versión v265. Esto evita scripts anteriores en las vistas de ensayo.
 
 **Pruebas ejecutadas en el código de esta corrección:** 7/7 escenarios de navegación de paneles (alternar Áreas, Usuarios, Seguimiento y Apariencia, y cancelación por datos pendientes), y 2/2 verificaciones de visualización lógica de botones (Apariencia original montada y visible en selector del administrador; botones de más ocultos fuera de selector). Estas pruebas de lógica no sustituyen una verificación visual manual del navegador. `main` y `v264` no sufrieron cambios. No se activaron escrituras en Supabase.
+
+
+### Ajuste visual solicitado: eliminar barra bajo Apariencia (misma v265)
+
+Se eliminó la cinta de desplazamiento visible bajo el botón Apariencia del menú lateral del Administrador general. En escritorio `#hysToolsOptions` conserva desplazamiento vertical interno si la pantalla es baja, pero previene desbordamiento horizontal y oculta las barras; los botones se ajustan a la anchura de la banda. En móvil se mantiene desplazamiento horizontal táctil para acceder a todas las herramientas sin presentar una barra visible. Se conservan el botón Apariencia al pie y la pantalla original de configuración. Se actualizó únicamente la referencia de caché de `gestion-usuarios-v265.css` en `index.html`. **12/12 comprobaciones estáticas aprobadas**, incluyendo compatibilidad de los dos módulos y compilación de los 47 scripts integrados. No se realizó validación visual final de navegador. No se cambió ningún sistema de datos ni se crearon versiones nuevas.
