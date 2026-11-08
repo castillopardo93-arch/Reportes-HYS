@@ -47,9 +47,10 @@ function validate(input,users=[],currentId=''){
  if(w.supervisor_id){
   const byId=new Map(users.map(u=>[u.usuario_id,u]));
   const visited=new Set();let next=w.supervisor_id;
-  while(next&&byId.has(next)){
+  while(next){
    if(next===currentId&&currentId){errors.push('El supervisor elegido generaría un ciclo en el organigrama');break}
    if(visited.has(next)){errors.push('La cadena de supervisión elegida ya contiene un ciclo');break}
+   if(!byId.has(next))break;
    visited.add(next);
    next=byId.get(next)?.trabajador?.supervisor_id||'';
   }
