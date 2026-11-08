@@ -4,7 +4,7 @@
  */
 (function(root){
 'use strict';
-if(root.HYS265_PREVIEW_ONLY!==true)return;
+if(root.HYS266_PREVIEW_ONLY!==true)return;
 const $=id=>document.getElementById(id);
 const embedded=new URLSearchParams(location.search).get('embedded')==='otros';
 const lab=root.Hys263Lab;
@@ -69,7 +69,7 @@ document.body.classList.remove('auth-locked');
 const banner=document.createElement('div');
 banner.id='hys265PreviewBanner';
 banner.setAttribute('role','note');
-banner.textContent='V265 · DESARROLLO DE PRUEBAS · Usuarios y datos ficticios · Sin conexión a producción';
+banner.textContent='V266 · DESARROLLO DE PRUEBAS · Usuarios y datos ficticios · Sin conexión a producción';
 banner.style.cssText='position:fixed;right:12px;bottom:10px;z-index:3500;max-width:min(400px,85vw);padding:8px 12px;border-radius:10px;background:#ffe8b8;color:#5e3c0c;font:700 12px/1.3 Segoe UI,Arial,sans-serif;box-shadow:0 3px 10px #0014;pointer-events:none';
 document.body.append(banner);
 const cardA=$('aprModuleCard'),cardB=$('otherModuleCard');
