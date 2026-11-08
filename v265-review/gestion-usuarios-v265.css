@@ -54,3 +54,12 @@
 #hysToolsRail #hysToolsOptions>button[hidden]{display:none!important}
 @media(max-width:760px){#hys265UsersPanel{padding:6px}#hys265UsersPanel .hys265-shell{border-radius:12px;padding:13px}#hys265UsersPanel .hys265-grid,#hys265UsersPanel .hys265-checkgrid{grid-template-columns:1fr}#hys265UsersPanel .hys265-person{align-items:stretch;flex-direction:column}#hys265UsersPanel .hys265-line{align-items:flex-start}#hys265UsersPanel .hys265-footer .btn{flex:1 1 auto}}
 @media print{#hys265UsersPanel{display:none!important}}
+
+/* v265: feedback junto a Continuar y prueba de ficha con valores ficticios. */
+#hys265UsersPanel .hys265-inline-error[hidden]{display:none!important}
+#hys265UsersPanel .hys265-inline-error{background:#fff2ef;border:1px solid #e9b5a9;border-left:4px solid #be4539;color:#74291e;border-radius:10px;margin:14px 0;padding:12px 16px;line-height:1.55}
+#hys265UsersPanel .hys265-inline-error p{font-size:13px;margin:6px 0 0}
+#hys265UsersPanel .hys265-test-fixture{background:#edf7ff;border:1px solid #b3d3ea;border-radius:10px;margin:12px 0;padding:13px}
+#hys265UsersPanel .hys265-test-fixture p{margin:0 0 8px}
+#hys265UsersPanel .hys265-test-fixture button{background:#fff;border:1px solid #4f87b6;font-weight:700}
+#hys265UsersPanel .hys265-invalid{border-color:#c74a3e!important;box-shadow:0 0 0 1px #c74a3e4a}
