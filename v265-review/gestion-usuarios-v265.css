@@ -67,3 +67,10 @@
 /* v265: funciones separadas; prohibir accesos obsoletos duplicados en todas las pestañas. */
 #hysToolsRail #usersOpen258,#hysToolsRail #facultadesOpen242,#hysToolsRail #facultyOpen242{display:none!important}
 #hysToolsRail #hysToolsOptions>button[hidden]{display:none!important}
+
+/* v265: Apariencia es el ÚNICO botón inferior. El área desplazable no debe ocultarlo. */
+#hysToolsRail #hysToolsOptions #appearanceOpen242:not([hidden]){display:flex!important;visibility:visible;opacity:1;position:sticky;bottom:0;margin-top:auto;order:99;flex:0 0 auto;background:#102f4d;border-color:#52738f;z-index:2}
+#hysToolsRail #hysToolsOptions #appearanceOpen242[hidden]{display:none!important}
+#hysToolsRail #hysToolsOptions #manageOpen242{order:-2}
+#hysToolsRail #hysToolsOptions #hys265OpenUsers{order:-3}
+@media(max-width:700px){#hysToolsRail #hysToolsOptions #appearanceOpen242:not([hidden]){position:static;margin-top:0;order:99;background:transparent}}
