@@ -57,13 +57,26 @@ function newButton(id,icon,label,full){
  const b=document.createElement('button');b.id=id;b.type='button';b.className='hys-admin-open';b.hidden=!showInRail();
  b.innerHTML='<span class="tools-option-icon" aria-hidden="true">'+icon+'</span><span class="tools-option-label">'+label+'</span><span class="tools-option-full">'+full+'</span>';return b;
 }
-const usersButton=newButton('hys265OpenUsers','♙','Gestión de usuarios','Gestión de usuarios');
+const usersButton=newButton('hys265OpenUsers','♙','Usuarios','Gestión de usuarios');
 // Reutilizar exactamente la pestaña histórica de Áreas y opciones; no crear una copia.
 const areasButton=$('manageOpen242');
 const oldUsers=$('usersOpen258');
 const oldButtons=[...nav.querySelectorAll('button.hys-admin-open')];
 const follow=oldButtons.find(n=>n.textContent.includes('Seguimiento'));
 const appearance=$('appearanceOpen242');
+// Solo rótulos del menú: las ventanas originales, botones y funciones no cambian.
+// Texto breve al contraer, nombre completo en una línea al expandir.
+for(const [button,shortText,fullText] of [
+ [areasButton,'Áreas','Áreas y opciones'],
+ [follow,'Seguimiento','Seguimiento'],
+ [appearance,'Apariencia','Apariencia']
+]){
+ if(!button)continue;
+ const short=button.querySelector('.tools-option-label');
+ const full=button.querySelector('.tools-option-full');
+ if(short)short.textContent=shortText;
+ if(full)full.textContent=fullText;
+}
 nav.append(usersButton);
 if(areasButton)nav.append(areasButton);
 if(follow)nav.append(follow);
