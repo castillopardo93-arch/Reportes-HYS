@@ -30,7 +30,7 @@ const rights=[
 ];
 const employment=[
  ['nombre','Nombre completo','text',true],
- ['rut','RUT','text',true],
+
  ['cargo','Cargo','text',true],
  ['gerencia','Gerencia','text',true],
  ['empresa','Empresa empleadora / contratista','text',true],
@@ -39,8 +39,7 @@ const employment=[
  ['correo_corporativo','Correo corporativo','email',false],
  ['correo_personal','Correo personal','email',false],
  ['fecha_ingreso','Fecha de ingreso','date',false],
- ['codigo_trabajador','Código interno del trabajador','text',false],
- ['unidad','Unidad organizacional','text',false]
+ ['codigo_trabajador','Código interno del trabajador','text',false]
 ];
 const panel=document.createElement('section');
 panel.id='hys265UsersPanel';
@@ -48,9 +47,9 @@ panel.hidden=true;
 panel.setAttribute('role','dialog');
 panel.setAttribute('aria-modal','true');
 panel.setAttribute('aria-labelledby','hys265Title');
-panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button></nav><div id="hys265Content"></div></div>';
+panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button><button data-hys265-tab="self" type="button">Mis datos laborales</button></nav><div id="hys265Content"></div></div>';
 document.body.append(panel);
-const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0,accessTarget:null,accessMode:'suspend',accessEvents:null,accessBusy:false};
+const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0,accessTarget:null,accessMode:'suspend',accessEvents:null,accessBusy:false,turnos:[],profileTarget:null,profileRevision:0,profileReady:false,profileBusy:false,profileMode:'worker',profileError:''};
 // Credenciales temporales solo en memoria; jamás integradas a state.draft o al historial.
 let credentialSecret='',credentialRepeat='',delivery=null;
 function clearCredentials(){credentialSecret='';credentialRepeat='';delivery=null;}
@@ -180,6 +179,7 @@ function render(){
  if(state.tab==='directory')renderDirectory(content);
  else if(state.tab==='history')renderHistory(content);
  else if(state.tab==='access')renderAccess(content);
+ else if(state.tab==='profile')renderProfileEditor(content);
  else if(state.mode==='delivery')renderCredentialDelivery(content);
  else renderWizard(content);
 }
@@ -380,25 +380,54 @@ function selectField(name,label,values){
  control.onchange=()=>{state.draft.worker[name]=control.value;state.dirty=true};
  holder.append(control);return holder;
 }
-function stepWorker(p){
+function stepWorker(p,own=state.tab==='profile'&&state.profileMode==='self'){
  p.append(element('h3','1. Identificación, información laboral y contacto'));
- p.append(element('p','Los datos personales se utilizarán únicamente para la gestión autorizada. El historial no almacenará RUT, celular ni correos completos.','hys265-muted'));
+ p.append(element('p','La ficha usa documentos chilenos y extranjeros. El número de documento se guarda como texto para preservar letras y ceros iniciales.','hys265-muted'));
  const grid=element('div',undefined,'hys265-grid');
- for(const [key,label,type,required]of employment)grid.append(field(key,label,type,required));
- const employees=state.users.filter(x=>x.activo!==false&&x.usuario_id!==state.selected);
- const supervisors=[['','Seleccione un supervisor responsable'],...employees.map(x=>[x.usuario_id,x.nombre+' · '+(x.trabajador?.cargo||x.rol)])];
- grid.append(selectField('supervisor_id','Supervisor responsable *',supervisors));
- grid.append(selectField('estado_laboral','Estado laboral',[['activo','Activo'],['suspendido','Suspendido'],['desvinculado','Desvinculado']]));
- grid.append(selectField('turno','Turno habitual',[['','Sin asignar'],['dia','Día'],['noche','Noche'],['rotativo','Rotativo']]));
- grid.append(selectField('preferencia_contacto','Preferencia de contacto',[['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular']]));
- p.append(grid);
- p.append(element('p','Se requerirá al menos un correo válido. El correo de inicio de sesión será preferentemente el corporativo.','hys265-muted'));
- if(lab){
-  const quick=element('div',undefined,'hys265-test-fixture');
-  quick.append(element('p','Para comprobar las cinco etapas sin completar todos los datos, puedes usar una ficha completamente ficticia.','hys265-muted'));
-  quick.append(action('Completar con datos ficticios',()=>fillWorkerSample(),'btn'));
-  p.prepend(quick);
+ const worker=state.draft.worker;
+ grid.append(field('nombre','Nombre completo','text',true));
+ const country=field('pais_documento','País del documento','text',true);
+ const countries=document.createElement('datalist');countries.id='hys279Paises';
+ for(const n of ['Chile','Argentina','Bolivia','Brasil','Colombia','Ecuador','España','Haití','México','Paraguay','Perú','Uruguay','Venezuela','Estados Unidos','República Dominicana','Otro país'])countries.append(new Option(n,n));
+ country.querySelector('input').setAttribute('list',countries.id);
+ country.append(countries);
+ grid.append(country);
+ const type=document.createElement('label');type.textContent='Tipo de documento *';
+ const docType=document.createElement('select');docType.name='tipo_documento';
+ for(const [v,title]of [['rut','RUT chileno'],['ci','Cédula de identidad / CI'],['dni','DNI / Documento nacional'],['pasaporte','Pasaporte'],['otro','Otro documento']])docType.add(new Option(title,v));
+ docType.value=worker.tipo_documento||'rut';
+ docType.onchange=()=>{worker.tipo_documento=docType.value;state.dirty=true;render()};
+ type.append(docType);grid.append(type);
+ const number=field('rut','Número de identificación','text',true);const idInput=number.querySelector('input');
+ idInput.maxLength=40;idInput.placeholder=worker.tipo_documento==='rut'?'12.345.678-5':'Ej. 00AB1234-8';
+ const codeInputLater=()=>grid.querySelector('[name="codigo_trabajador"]');
+ idInput.addEventListener('input',()=>{
+  const code=codeInputLater();
+  if(code&&(!worker.codigo_trabajador||worker.codigo_trabajador===idInput.dataset.previousValue)){
+   code.value=idInput.value;worker.codigo_trabajador=idInput.value;
+  }
+  idInput.dataset.previousValue=idInput.value;
+ });
+ grid.append(number);
+ for(const [key,label,type,required]of employment){
+  if(key==='nombre')continue;
+  grid.append(field(key,label,type,required));
  }
+ const employees=state.users.filter(x=>x.activo!==false&&x.usuario_id!==state.profileTarget&&x.usuario_id!==state.selected);
+ const supervisors=[['',own?'Sin supervisor asignado (Administrador general)':'Seleccione un supervisor responsable'],
+  ...employees.map(x=>[x.usuario_id,x.nombre+' · '+(x.trabajador?.cargo||x.rol)])];
+ grid.append(selectField('supervisor_id',own?'Supervisor responsable (opcional)':'Supervisor responsable *',supervisors));
+ grid.append(selectField('estado_laboral','Estado laboral',[['activo','Activo'],['suspendido','Suspendido'],['desvinculado','Desvinculado']]));
+ const allowedTurnos=[...new Set(state.turnos||[])];
+ const old=worker.turno;
+ if(old&&!allowedTurnos.includes(old))allowedTurnos.push(old);
+ grid.append(selectField('turno','Turno habitual (administrable en Áreas y opciones)',[['','Sin asignar'],...allowedTurnos.map(v=>[v,v])]));
+ grid.append(selectField('preferencia_contacto','Preferencia de contacto',[
+  ['corporativo','Correo corporativo'],['personal','Correo personal'],['celular','Celular'],['todas','Todas las vías de contacto registradas']
+ ]));
+ p.append(grid);
+ p.append(element('p','Es obligatorio registrar al menos uno de los dos correos. La opción «Todas» utilizará los canales registrados y disponibles, pero el envío de notificaciones depende de su integración posterior.','hys265-muted'));
+ if(own)p.append(element('p','Editar estos datos no modifica tu rol, permisos, contraseña ni condición de Administrador general. El estado laboral es informativo y no sustituye el control de acceso.','hys265-muted'));
 }
 function fillWorkerSample(){
  if(!lab)return;
@@ -605,7 +634,7 @@ function stepReview(p){
  p.append(element('h3','5. Revisar y confirmar'));
  const summary=element('dl',undefined,'hys265-summary');
  const add=(k,v)=>{summary.append(element('dt',k),element('dd',v||'No indicado'))};
- add('Trabajador',w.nombre);add('RUT',W.validRut(w.rut)?'Registrado y validado':'Pendiente de validar');
+ add('Trabajador',w.nombre);add('Documento',W.validDocument(w.rut,w.pais_documento,w.tipo_documento)?w.pais_documento+' · '+w.tipo_documento.toUpperCase()+' · Registrado':'Pendiente de validar');
  add('Cargo',w.cargo);add('Gerencia',w.gerencia);add('Empresa',w.empresa);add('Proyecto',w.proyecto);add('Supervisor responsable',userName(w.supervisor_id));
  add('Correo corporativo',w.correo_corporativo?'Registrado':'Sin correo corporativo');add('Correo personal',w.correo_personal?'Registrado':'Sin correo personal');
  const account=W.validateAccount(d.cuenta,w,state.mode==='edit');
@@ -625,7 +654,7 @@ function stepReview(p){
 }
 function validateStep(step){
  const d=state.draft;
- if(step===1){const v=W.validate(d.worker,state.users,state.selected||'');if(!v.ok)return v.errors.join('. ');d.worker=v.worker}
+ if(step===1){const v=W.validate(d.worker,state.users,state.selected||'',{turnos:state.turnos});if(!v.ok)return v.errors.join('. ');d.worker=v.worker}
  if(step===2){const a=W.validateAccount(d.cuenta,d.worker,state.mode==='edit');if(!a.ok)return a.errors.join('. ');if(state.mode!=='edit'){const v=Credentials.validate(d.cuenta.metodo,credentialSecret,credentialRepeat);if(!v.ok)return v.error}d.cuenta=a.cuenta}
  if(step===3){if(!W.roles.includes(d.rol))return 'Selecciona un rol válido';if(!W.modules.some(m=>d.ambitos[m]?.ver))return 'Habilita al menos una tarjeta'}
  if(step===4){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
@@ -642,8 +671,8 @@ function showInlineError(message){
  notice('Revisa el aviso junto al botón Continuar: '+message,true);
  if(state.step===1){
   const w=state.draft.worker;
-  const invalid={nombre:!w.nombre?.trim(),rut:!W.validRut(w.rut||''),cargo:!w.cargo?.trim(),gerencia:!w.gerencia?.trim(),
-   empresa:!w.empresa?.trim(),proyecto:!w.proyecto?.trim(),supervisor_id:!w.supervisor_id,
+  const invalid={nombre:!w.nombre?.trim(),rut:!W.validDocument(w.rut,w.pais_documento,w.tipo_documento),cargo:!w.cargo?.trim(),gerencia:!w.gerencia?.trim(),
+   empresa:!w.empresa?.trim(),proyecto:!w.proyecto?.trim(),pais_documento:!w.pais_documento,tipo_documento:!w.tipo_documento,supervisor_id:!w.supervisor_id,
    correo_corporativo:!w.correo_corporativo&&!w.correo_personal};
   for(const [name,flag]of Object.entries(invalid)){
    const input=$('hys265StepContent')?.querySelector('[name="'+name+'"]');
