@@ -48,8 +48,8 @@
 #hysToolsRail #hysToolsOptions{flex:1 1 auto;overflow:auto;display:flex;flex-direction:column;gap:9px}
 #hysToolsRail #hysToolsOptions #appearanceOpen242{margin-top:auto}
 #hysToolsRail #hysToolsOptions #appearanceOpen242::before{content:"";display:block;border-top:1px solid #476b8a;margin:-13px -6px 12px}
-#hysToolsRail #hys265OpenUsers,#hysToolsRail #hys265OpenAreas{order:-3}
-#hysToolsRail #hys265OpenAreas{order:-2}
+#hysToolsRail #hys265OpenUsers{order:-3}
+#hysToolsRail #manageOpen242{order:-2}
 #hysToolsRail #appearanceOpen242{order:20}
 #hysToolsRail #hysToolsOptions>button[hidden]{display:none!important}
 @media(max-width:760px){#hys265UsersPanel{padding:6px}#hys265UsersPanel .hys265-shell{border-radius:12px;padding:13px}#hys265UsersPanel .hys265-grid,#hys265UsersPanel .hys265-checkgrid{grid-template-columns:1fr}#hys265UsersPanel .hys265-person{align-items:stretch;flex-direction:column}#hys265UsersPanel .hys265-line{align-items:flex-start}#hys265UsersPanel .hys265-footer .btn{flex:1 1 auto}}
@@ -63,3 +63,7 @@
 #hys265UsersPanel .hys265-test-fixture p{margin:0 0 8px}
 #hys265UsersPanel .hys265-test-fixture button{background:#fff;border:1px solid #4f87b6;font-weight:700}
 #hys265UsersPanel .hys265-invalid{border-color:#c74a3e!important;box-shadow:0 0 0 1px #c74a3e4a}
+
+/* v265: funciones separadas; prohibir accesos obsoletos duplicados en todas las pestañas. */
+#hysToolsRail #usersOpen258,#hysToolsRail #facultadesOpen242,#hysToolsRail #facultyOpen242{display:none!important}
+#hysToolsRail #hysToolsOptions>button[hidden]{display:none!important}
