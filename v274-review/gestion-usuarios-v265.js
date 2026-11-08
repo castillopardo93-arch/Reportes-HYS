@@ -153,11 +153,12 @@ async function refresh(){
 function abandon(){return !state.dirty||confirm('Hay información sin guardar. ¿Descartarla?')}
 function show(tab){
  if(!abandon())return;
- state.tab=tab;state.dirty=false;
+ clearCredentials();state.tab=tab;state.dirty=false;
  if(tab==='create')resetDraft();
  render();if(tab==='history')refresh();
 }
 function resetDraft(user=null){
+ clearCredentials();
  state.selected=user?.usuario_id||null;state.mode=user?'edit':'create';state.step=1;state.dirty=false;
  const worker={...Object.fromEntries(W.fields.map(k=>[k,''])),...(user?.trabajador||{}),nombre:user?.nombre||user?.trabajador?.nombre||'',estado_laboral:user?.trabajador?.estado_laboral||(user?.activo===false?'suspendido':'activo')};
  const ambitos=user?clone(user.ambitos||{}):{};
@@ -177,12 +178,14 @@ function render(){
  const content=$('hys265Content');content.replaceChildren();
  if(state.tab==='directory')renderDirectory(content);
  else if(state.tab==='history')renderHistory(content);
+ else if(state.mode==='delivery')renderCredentialDelivery(content);
  else renderWizard(content);
 }
 function element(tag,txt,cls){const e=document.createElement(tag);if(txt!==undefined)e.textContent=txt;if(cls)e.className=cls;return e}
 function action(label,callback,cls='btn'){const e=element('button',label,cls);e.type='button';e.onclick=callback;return e}
 function openEdit(u){
  if(!abandon())return;
+ clearCredentials();
  state.tab='create';resetDraft(u);render();
  notice('Editando la ficha de '+u.nombre+'. Se conserva el mismo flujo secuencial de creación.');
 }
@@ -493,13 +496,16 @@ async function save(){
  if(String(d.motivo).trim().length<10){notice('Describe el motivo del cambio con al menos 10 caracteres.',true);return}
  const payload=clone({...d,trabajador:d.worker,confirmar_facultades_nuevas:true});
  try{
+  const deliveryCopy=state.mode==='create'?{email:d.cuenta.email,method:d.cuenta.metodo,secret:d.cuenta.metodo==='invitacion'?'':credentialSecret}:null;
   if(state.mode==='edit'){
    const u=state.users.find(x=>x.usuario_id===state.selected);
    if(!u)throw Error('La cuenta ya no está disponible');
    labApi.updateWorker(u.usuario_id,payload,u.revision);
   }else labApi.createWorker(payload);
-  state.dirty=false;state.tab='directory';resetDraft();await refresh();
-  notice('Cuenta FICTICIA guardada correctamente. Revisa la ficha en Usuarios registrados y el evento en Historial.');
+  state.dirty=false;state.tab=deliveryCopy?'create':'directory';resetDraft();
+  if(deliveryCopy){delivery=deliveryCopy;state.mode='delivery'}
+  await refresh();
+  notice(deliveryCopy?'Cuenta FICTICIA registrada. Copia o comparte el acceso antes de finalizar; solo se mostrará en esta pantalla.':'Cuenta FICTICIA modificada correctamente. Revisa Historial.');
  }catch(e){notice('No se pudo guardar: '+e.message,true)}
 }
 async function open(tab='directory',userId=null){
