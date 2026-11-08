@@ -1,9 +1,9 @@
 {
-  "version": 283,
-  "branch": "desarrollo/v283-regimen-de-turno",
-  "base_version": 282,
-  "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-prepublicacion-regimen-de-turno-y-proyectos-vigentes",
+  "version": 284,
+  "branch": "desarrollo/v284-correcciones-seguras",
+  "base_version": 283,
+  "base_commit": "de59cc78acb0075da963171f648ab6a23969028a",
+  "estado": "desarrollo-aislado-v284-correcciones-locales-no-publicada",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v282-areas-opciones-unificadas",
+  "base_branch": "desarrollo/v283-regimen-de-turno",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -414,5 +414,36 @@
     "pruebas_e2e_reales": false,
     "pruebas_visuales_navegador": false,
     "sin_produccion_modificada": true
+  },
+  "correcciones_v284": {
+    "fecha": "2026-11-08",
+    "base": "v283-review",
+    "carpeta": "v284-review",
+    "seguridad": "sin cambios en Supabase, usuarios, datos centrales, versiones protegidas ni main",
+    "alcance": "correcciones de almacenamiento local, integridad del formulario y nomenclatura de PDF, sin activación de backend remoto",
+    "guardado_sin_central": "la edición local no genera nuevas operaciones remotas imposibles de procesar; las operaciones heredadas se conservan",
+    "estado_guardado": "el panel identifica explícitamente que los informes y PDF están solo en el navegador",
+    "nuevo_informe": "conserva el borrador anterior en archivo local antes de reemplazarlo; exige regenerar PDF si el formulario cambió",
+    "finalizar": "exige datos obligatorios y rango de fechas correcto; distingue finalización local de remota",
+    "pdf": "evita base64 para envío remoto cuando central está desactivado; usa fecha del informe en nombre",
+    "fotos": "2 a 8 fotografías por fila en pantalla y PDF",
+    "layout_inicio": "dos columnas independientes de la configuración de fotografías; CSS móvil existente conserva una columna",
+    "pruebas_estaticas": [
+      "sintaxis de 10 bloques JavaScript embebidos en index.html",
+      "sintaxis de cloud-v242.js",
+      "comprobación de rutas y condiciones de guardado en código"
+    ],
+    "pruebas_navegador": false,
+    "pruebas_end_to_end": false,
+    "pruebas_supabase_reales": false,
+    "aprobacion_pendiente": true,
+    "pendientes_bloqueantes": [
+      "creación real de usuarios y ficha laboral v279",
+      "catálogos v282 y regímenes v281",
+      "guardado central de informes",
+      "notificaciones remotas y cierres auditados",
+      "numeración global única",
+      "pruebas navegadores y dispositivos"
+    ]
   }
 }
