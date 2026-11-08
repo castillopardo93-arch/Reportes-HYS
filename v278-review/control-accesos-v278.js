@@ -16,7 +16,7 @@
    &&access.userId===access.profile.usuario_id;
  }
  function validTarget(target,actorId){
-  return target&&typeof target.usuario_id==='string'&&/^[a-f0-9-]{36}$/i.test(target.usuario_id)
+  return target&&typeof target.usuario_id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(target.usuario_id)
    &&target.usuario_id!==actorId&&target.rol!=='administrador_global'
    &&['usuario','supervisor','administrador_area'].includes(target.rol)
    &&typeof target.nombre==='string'&&target.nombre.trim().length>0
