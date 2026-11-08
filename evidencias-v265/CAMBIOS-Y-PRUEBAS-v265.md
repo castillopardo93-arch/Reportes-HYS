@@ -56,3 +56,22 @@ Para habilitar el registro real deben diseñarse y aprobarse tablas seguras de f
 ## Versiones protegidas
 
 Ninguna escritura en `main`, v264, v263 u otras versiones protegidas. No se toca modo sin conexión.
+
+
+## Correcciones posteriores sobre la MISMA v265 — banda lateral, áreas y apariencia
+
+Se corrigió el acceso de desarrollo para que el laboratorio inicial redirija a la **aplicación completa** `index.html?qa=1`, con **ambas tarjetas** y formularios intactos. La vista QA se activa exclusivamente desde la ruta `v265-review/index.html` en `raw.githack.com` con `qa=1` y usa un usuario administrador ficticio, sin consultar ni escribir cuentas o informes en Supabase.
+
+- **Gestión de usuarios**: única sección para altas, roles, tarjetas, áreas autorizadas, facultades e historial. El botón Continuar muestra validaciones junto al pie y permite autocompletar datos ficticios para probar los cinco pasos.
+- **Áreas y opciones**: se recuperó el botón original `manageOpen242` y su ventana `management242`, conservando las pestañas **Áreas de trabajo**, **Opciones de formularios** e **Historial de áreas**. En QA se reemplaza solo la fuente de datos y los guardados por un catálogo ficticio local (áreas y listas); la interfaz original se mantiene. Se eliminó la ruta errónea que abría Gestión de usuarios desde Áreas.
+- **Seguimiento**: las funciones de informes siguen separadas; cualquier antigua entrada al módulo de usuarios se redirige al único centro de Gestión de usuarios. Los botones duplicados de Usuarios y Facultades se ocultan en la banda.
+- **Apariencia**: se mantiene **exactamente el panel original** `appearancePanel242` con paletas, 13 controles de color, 10 selectores de iconos, 6 valores de identidad/textos, logotipo, tipografía, espaciado, bordes, previsualización, restauración y guardado. Se corrigió la lectura de QA que intentaba consultar tablas no disponibles y se agregó almacenamiento independiente `reportes-hys-v265-apariencia-local`, con control de revisión y hasta 25 estados históricos. En QA el botón dice «Guardar apariencia de prueba»; no escribe en tablas de Supabase ni modifica apariencia compartida. El botón Apariencia se conserva al pie de la cinta.
+- La cinta lateral del administrador general se limita a la **pantalla principal de tarjetas**, no a los módulos internos. El código inicializa Apariencia tanto al seleccionar como al abandonar una tarjeta.
+
+### Verificaciones complementarias
+
+- **26/26 pruebas de integridad estática**: sintaxis de scripts, presencia del panel original, aislamiento QA, formularios originales, ruta Áreas correcta, un solo punto de Gestión de usuarios, ajustes disponibles en Apariencia y botón al pie.
+- **12/12 comprobaciones funcionales de la persistencia local de Apariencia**: cargar ajustes predeterminados, guardar colores y textos, recuperar tras nueva lectura, controlar revisiones, conservar historial, restaurar versión anterior y evitar almacenamiento fuera de la clave local.
+- **Revisión visual previa de la aplicación completa**: ambas tarjetas visibles; apertura de Prevencionistas y regreso a las tarjetas; Gestor de usuarios y sus validaciones visibles. En esa revisión se detectó la ausencia de Apariencia. La **segunda revisión visual** de las correcciones de Áreas y Apariencia **no pudo ejecutarse** por bloqueo del servicio externo de navegación, por lo que queda **pendiente validar con el usuario en navegador real**. No se debe declarar aprobación visual ni una auditoría end-to-end inexistente.
+
+**Restricciones:** se modificaron únicamente archivos en la rama existente `desarrollo/v265-gestion-usuarios-trabajadores`. No se creó otra versión para estos arreglos. `main`, v264 y las demás versiones protegidas no se modificaron. Las configuraciones históricas de Apariencia que existieran en Supabase no se borraron; el laboratorio QA no las importa por seguridad, por lo que presenta el valor por defecto o lo que se haya guardado localmente en v265.
