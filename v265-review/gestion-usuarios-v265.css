@@ -89,3 +89,33 @@
  #hysToolsRail #hysToolsOptions{flex-direction:row;flex:1 1 auto;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none}
  #hysToolsRail #hysToolsOptions>.hys-admin-open:not([hidden]){flex:0 0 auto;width:auto;max-width:100%;min-width:105px}
 }
+
+/* v265: tarjetas administrativas con títulos de UNA LÍNEA y más aire.
+   Cambios visuales acotados a la banda lateral, sin afectar menús internos. */
+@media(min-width:701px){
+  #hysToolsRail{width:96px}
+  body.hys-tools-visible{padding-left:96px}
+  #hysToolsRail.expanded{width:276px;padding-left:14px;padding-right:14px}
+  body.hys-tools-expanded{padding-left:276px}
+  #hysToolsRail #hysToolsOptions{gap:14px}
+  #hysToolsRail .hys-admin-open{min-height:66px}
+  #hysToolsRail:not(.expanded) .tools-option-label{
+    white-space:nowrap;font-size:10px;letter-spacing:-.18px;line-height:1.1;
+  }
+  #hysToolsRail.expanded .hys-admin-open{
+    gap:14px;padding:14px 13px;min-height:64px;justify-content:flex-start;
+  }
+  #hysToolsRail.expanded .tools-option-icon{
+    flex:0 0 32px;width:32px;height:32px;
+  }
+  #hysToolsRail.expanded .tools-option-full{
+    display:block;min-width:0;white-space:nowrap;overflow:hidden;
+    text-overflow:ellipsis;overflow-wrap:normal;
+    font-size:13px;font-weight:750;letter-spacing:0;line-height:1.35;
+  }
+}
+@media(max-width:700px){
+  #hysToolsRail #hysToolsOptions .tools-option-full{
+    white-space:nowrap;overflow-wrap:normal;font-size:12px;
+  }
+}
