@@ -4,8 +4,8 @@
  */
 (function(root){
  'use strict';
- if(root.HYS263_SANDBOX!==true||!/\/(?:demo-facultades|laboratorio-v263)\.html(?:$|\?)/.test(root.location.pathname+root.location.search))throw Error('Laboratorio v263: entorno de prueba no autorizado');
- const KEY='reportes-hys-v263-simulador-local-1';
+ if(root.HYS263_SANDBOX!==true||!/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v264)\.html(?:$|\?)/.test(root.location.pathname+root.location.search))throw Error('Laboratorio v264: entorno de prueba no autorizado');
+ const KEY='reportes-hys-v264-simulador-local-1';
  const MODULES=['APR','OTROS'];
  const clone=x=>JSON.parse(JSON.stringify(x));
  const now=()=>new Date().toISOString();
