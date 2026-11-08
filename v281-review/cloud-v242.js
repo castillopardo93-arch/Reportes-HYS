@@ -171,7 +171,7 @@ async function loadRegimes281(){
    const edit=document.createElement('button');edit.type='button';edit.className='btn';edit.textContent='Editar';
    edit.onclick=()=>{if(item.activo){const next=prompt('Modificar régimen laboral (por ejemplo 5x2)',item.codigo.toLowerCase());if(next!==null)mutateRegime281(item,{codigo:next})}else status.textContent='Reactiva primero este régimen antes de modificarlo.'};
    const toggle=document.createElement('button');toggle.type='button';toggle.className='btn';
-   toggle.textContent=item.activo?'Desactivar (quitar de opciones)':'Reactivar';
+   toggle.textContent=item.activo?'Eliminar de las opciones (conservar historial)':'Restaurar';
    toggle.onclick=()=>mutateRegime281(item,{activo:!item.activo});
    div.append(edit,toggle);rows.append(div);
   }
