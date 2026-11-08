@@ -1,9 +1,9 @@
 {
-  "version": 276,
-  "branch": "desarrollo/v276-cerrar-sesion-qa",
-  "base_version": 275,
+  "version": 277,
+  "branch": "desarrollo/v277-prepublicacion-real",
+  "base_version": 276,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-cierre-sesion-qa-con-cambio-contrasena",
+  "estado": "desarrollo-prepublicacion-real-sin-simuladores",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v275-cambio-contrasena-ingreso",
+  "base_branch": "desarrollo/v276-cerrar-sesion-qa",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -235,5 +235,28 @@
     "pruebas_sintaxis": 6,
     "pruebas_navegador_real": false,
     "pruebas_supabase_real": false
+  },
+  "modo": "aplicacion-real-de-desarrollo",
+  "regla_presentacion": {
+    "laboratorio_solo_con_autorizacion_explicita": true,
+    "formato_definitivo_por_defecto": true,
+    "funciones_simuladas_no_presentadas_como_reales": true,
+    "no_publicar_ni_modificar_backend_sin_autorizacion": true
+  },
+  "cambios_v277": {
+    "ingreso_real_supabase_auth": true,
+    "modo_qa_en_index_deshabilitado": true,
+    "simulador_ficticio_no_cargado": true,
+    "vista_previa_con_datos_ficticios_no_cargada": true,
+    "boton_cierre_ficticio_no_cargado": true,
+    "permisos_consultados_en_rpc_real": true,
+    "escrituras_centrales_habilitadas": false,
+    "creacion_real_usuarios_en_formulario_unificado": false,
+    "aplicacion_oficial_modificada": false,
+    "pruebas_dependencias_locales": 52,
+    "pruebas_js_embebidos": 46,
+    "pruebas_navegador_real": false,
+    "pruebas_e2e": false,
+    "pendiente_validacion_usuario": true
   }
 }
