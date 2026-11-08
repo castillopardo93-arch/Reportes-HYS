@@ -74,6 +74,19 @@ check('La interfaz declara la falta de sincronización',()=>{
  assert.match(html,/El envío de informes a Supabase está desactivado/);
  assert.match(cloud,/NO se envían a Supabase/);
 });
+check('Pendientes antiguos conservados sin bloquear el historial local',()=>{
+ assert.match(cloud,/const pendientesHeredados=await q\.store\.all\('pending'\)/);
+ assert.match(cloud,/if\(central\(\)\)\{message\('Sincroniza o exporta/);
+ assert.match(cloud,/Se conservarán sin enviarse ni borrarse/);
+});
+check('No se archiva un borrador completamente vacío al crear informe',()=>{
+ assert.match(cloud,/const hasContents=p\.status==='Finalizado'/);
+ assert.match(cloud,/if\(!central\(\)&&hasContents\)/);
+});
+check('Comprobar guardado no promete sincronización en modo local',()=>{
+ assert.match(html,/id="cloudRetry242" type="button">Comprobar guardado local/);
+ assert.match(cloud,/textContent=central\(\)\?'Sincronizar ahora':'Comprobar guardado local'/);
+});
 check('Prueba básica de cola durable sin acceso de red',()=>{
  const sandbox={window:{},module:{exports:{}}};
  vm.runInNewContext(file('sync-core-v242.js'),sandbox,{filename:'sync-core-v242.js'});
