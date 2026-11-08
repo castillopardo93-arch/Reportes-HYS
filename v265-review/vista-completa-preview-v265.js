@@ -40,10 +40,11 @@ function mockSelect(table){
  };
  function take(){
   const data=lab.get();
-  const rows=table==='areas_trabajo_v242'||table==='areas_trabajo_v238'?data.areas:
+  const rows=['areas_trabajo_v242','areas_trabajo_v238'].includes(table)?data.areas:
+   ['listas_v242','listas_v238'].includes(table)?data.lists||[]:
    table==='facultades_v242'?data.faculties:
    table==='perfiles'?data.users:
-   table==='auditoria_facultades_v242'||table==='eventos_v242'?data.history:[];
+   ['auditoria_areas_v242','auditoria_areas_v238','auditoria_facultades_v242','eventos_v242'].includes(table)?data.history:[];
   let out=rows.filter(x=>filters.every(f=>f(x))&&(multiple===null||multiple.values.includes(x[multiple.key])));
   if(orderKey)out=[...out].sort((a,b)=>String(a[orderKey]||'').localeCompare(String(b[orderKey]||''))*(ascending?1:-1));
   return clone(max===null?out:out.slice(0,max));
