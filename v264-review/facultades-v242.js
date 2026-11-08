@@ -223,6 +223,8 @@ async function loadAccount(uid){
    const fac=originalFac[m];
    draftFac[m]=fac?C.clone(fac):{areas_ids:F.unique(draftAccess[m]?.areas),facultades:{}};
   }
+  // Si el usuario no es Administrador, no restaurar privilegios antiguos aunque existan datos históricos.
+  if(u.rol!=='administrador_area')draftFac=R.blankSpecials(M,draftAccess);
   areaMode={};searchAreas={};
   for(const m of M){const all=F.availableAreas(areaRows,m,canArea).map(a=>a.id);areaMode[m]=F.isAllSelected(draftAccess[m]?.areas,all)?'all':'selected'}
   baseline=signature();
@@ -248,9 +250,17 @@ $('facultyRole262').onchange=()=>{
  if(!R.validRole(next)||!R.mayChangeRole(access(),account)){
   $('facultyRole262').value=draftRole;status('Solo el Administrador general puede modificar el rol de esta cuenta.');return;
  }
+ const priorRole=draftRole;
+ // Descartar también el borrador de privilegios cuando se sale y se vuelve a Administrador.
+ // Cada nueva designación comienza con TODAS las facultades especiales desmarcadas en ambas tarjetas.
+ draftFac=R.roleTransitionSpecials(priorRole,next,draftFac,M,draftAccess);
  draftRole=next;
  renderRole();renderSpecial();renderSummary();
- status(R.roleChanged(account,draftRole)?'Cambio de rol sin guardar; confirma también tarjetas, áreas y facultades.':'Rol original restablecido.');
+ status(next==='administrador_area'&&priorRole!==next
+  ?'Facultades especiales reiniciadas: ninguna está concedida. Marca expresamente las autorizaciones para cada tarjeta.'
+  :next!=='administrador_area'&&priorRole!==next
+   ?'Facultades administrativas retiradas del borrador. El cambio será efectivo al guardar.'
+   :R.roleChanged(account,draftRole)?'Cambio de rol sin guardar; confirma también tarjetas, áreas y facultades.':'Rol original restablecido.');
 };
 $('facultyReset261').onclick=()=>{if(!account||!discard())return;loadAccount(account.usuario_id)};
 $('facultadesClose242').onclick=()=>{
