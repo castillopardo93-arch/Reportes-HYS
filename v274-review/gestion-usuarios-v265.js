@@ -6,8 +6,9 @@
 'use strict';
 if(new URLSearchParams(location.search).get('embedded')==='otros')return;
 const W=root.Hys265WorkerModel;
+const Credentials=root.Hys274Credentials;
 const nav=document.getElementById('hysToolsOptions');
-if(!W||!nav)return;
+if(!W||!Credentials||!nav)return;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=v=>JSON.parse(JSON.stringify(v));
@@ -49,6 +50,9 @@ panel.setAttribute('aria-labelledby','hys265Title');
 panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button></nav><div id="hys265Content"></div></div>';
 document.body.append(panel);
 const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0};
+// Credenciales temporales solo en memoria; jamás integradas a state.draft o al historial.
+let credentialSecret='',credentialRepeat='',delivery=null;
+function clearCredentials(){credentialSecret='';credentialRepeat='';delivery=null;}
 const notice=(msg,warning=false)=>{const e=$('hys265Notice');e.textContent=msg;e.dataset.warning=warning?'true':'false'};
 const userName=id=>state.users.find(x=>x.usuario_id===id)?.nombre||id||'Sin registro';
 function isGlobal(){const a=root.__REPORTES_HYS_ACCESS__;return a?.profile?.activo===true&&a.profile.rol==='administrador_global'}
@@ -205,7 +209,7 @@ function renderDirectoryRows(){
   r.append(name);
   const actions=element('div',undefined,'hys265-inline');
   const edit=action('Administrar',()=>openEdit(u));edit.disabled=u.rol==='administrador_global';
-  actions.append(edit,action('Historial',()=>{state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
+  actions.append(edit,action('Historial',()=>{clearCredentials();state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
   r.append(actions);rows.append(r);
  }
 }
@@ -435,7 +439,7 @@ function stepReview(p){
  add('Cargo',w.cargo);add('Gerencia',w.gerencia);add('Empresa',w.empresa);add('Proyecto',w.proyecto);add('Supervisor responsable',userName(w.supervisor_id));
  add('Correo corporativo',w.correo_corporativo?'Registrado':'Sin correo corporativo');add('Correo personal',w.correo_personal?'Registrado':'Sin correo personal');
  const account=W.validateAccount(d.cuenta,w,state.mode==='edit');
- add('Cuenta de acceso',account.cuenta.email?'Configurada con correo '+account.cuenta.correo_ingreso:'Pendiente');add('Método de alta',state.mode==='edit'?'Cuenta existente':'Invitación por correo (no se envía en pruebas)');
+ add('Cuenta de acceso',account.cuenta.email?'Configurada con correo '+account.cuenta.correo_ingreso:'Pendiente');add('Método de alta',state.mode==='edit'?'Cuenta existente':({automatica:'Contraseña automática',manual:'Contraseña manual',invitacion:'Invitación por correo'}[d.cuenta.metodo]||'Pendiente'));
  add('Rol',({administrador_area:'Administrador',supervisor:'Supervisor',usuario:'Usuario'}[d.rol]));
  for(const m of W.modules){
   const a=d.ambitos[m];add(scopeNames[m],a.ver?(a.areas||[]).length+' áreas; '+(a.editar?'edición propia':'solo consulta'):'Sin acceso');
@@ -452,7 +456,7 @@ function stepReview(p){
 function validateStep(step){
  const d=state.draft;
  if(step===1){const v=W.validate(d.worker,state.users,state.selected||'');if(!v.ok)return v.errors.join('. ');d.worker=v.worker}
- if(step===2){const a=W.validateAccount(d.cuenta,d.worker,state.mode==='edit');if(!a.ok)return a.errors.join('. ');d.cuenta=a.cuenta}
+ if(step===2){const a=W.validateAccount(d.cuenta,d.worker,state.mode==='edit');if(!a.ok)return a.errors.join('. ');if(state.mode!=='edit'){const v=Credentials.validate(d.cuenta.metodo,credentialSecret,credentialRepeat);if(!v.ok)return v.error}d.cuenta=a.cuenta}
  if(step===3){if(!W.roles.includes(d.rol))return 'Selecciona un rol válido';if(!W.modules.some(m=>d.ambitos[m]?.ver))return 'Habilita al menos una tarjeta'}
  if(step===4){const r=W.validConfiguration(d.rol,d.ambitos,d.facultades,state.areas);if(!r.ok)return r.errors.join('. ')}
  return '';
@@ -507,7 +511,7 @@ async function open(tab='directory',userId=null){
  if(userId){const u=state.users.find(x=>x.usuario_id===userId);if(u)openEdit(u)}
  else render();
 }
-const close=()=>{if(!abandon())return false;panel.hidden=true;state.dirty=false;inFlight++;if(!usersButton.hidden)usersButton.focus();return true};
+const close=()=>{if(!abandon())return false;clearCredentials();panel.hidden=true;state.dirty=false;inFlight++;if(!usersButton.hidden)usersButton.focus();return true};
 $('hys265Close').onclick=close;
 panel.querySelectorAll('[data-hys265-tab]').forEach(b=>b.onclick=()=>show(b.dataset.hys265Tab));
 usersButton.onclick=()=>open('directory');
@@ -532,7 +536,7 @@ function sync(){
   if(b===usersButton||b===areasButton||b===follow||b===appearanceNow)continue;
   b.hidden=true;b.style.display='none';
  }
- if(!isGlobal()&&!panel.hidden){state.dirty=false;panel.hidden=true;state.users=[];state.history=[]}
+ if(!isGlobal()&&!panel.hidden){clearCredentials();state.dirty=false;panel.hidden=true;state.users=[];state.history=[]}
 }
 const previousSync=root.reportesHysAdminSync;
 root.reportesHysAdminSync=()=>{previousSync?.();sync()};
