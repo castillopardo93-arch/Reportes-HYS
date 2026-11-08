@@ -7,8 +7,9 @@
 if(new URLSearchParams(location.search).get('embedded')==='otros')return;
 const W=root.Hys265WorkerModel;
 const Credentials=root.Hys274Credentials;
+const A278=root.Hys278AccessControl;
 const nav=document.getElementById('hysToolsOptions');
-if(!W||!Credentials||!nav)return;
+if(!W||!Credentials||!A278||!nav)return;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=v=>JSON.parse(JSON.stringify(v));
@@ -49,7 +50,7 @@ panel.setAttribute('aria-modal','true');
 panel.setAttribute('aria-labelledby','hys265Title');
 panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button></nav><div id="hys265Content"></div></div>';
 document.body.append(panel);
-const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0};
+const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0,accessTarget:null,accessMode:'suspend',accessEvents:null,accessBusy:false};
 // Credenciales temporales solo en memoria; jamás integradas a state.draft o al historial.
 let credentialSecret='',credentialRepeat='',delivery=null;
 function clearCredentials(){credentialSecret='';credentialRepeat='';delivery=null;}
@@ -178,6 +179,7 @@ function render(){
  const content=$('hys265Content');content.replaceChildren();
  if(state.tab==='directory')renderDirectory(content);
  else if(state.tab==='history')renderHistory(content);
+ else if(state.tab==='access')renderAccess(content);
  else if(state.mode==='delivery')renderCredentialDelivery(content);
  else renderWizard(content);
 }
@@ -212,9 +214,100 @@ function renderDirectoryRows(){
   r.append(name);
   const actions=element('div',undefined,'hys265-inline');
   const edit=action('Administrar',()=>openEdit(u));edit.disabled=u.rol==='administrador_global';
-  actions.append(edit,action('Historial',()=>{clearCredentials();state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
+  const access=action('Estado de acceso',()=>openAccess(u));access.disabled=!A278.validTarget(u,root.__REPORTES_HYS_ACCESS__?.userId)||lab;
+  access.setAttribute('aria-label','Administrar acceso de '+u.nombre);
+  actions.append(access,edit,action('Historial',()=>{clearCredentials();state.histFilter=u.usuario_id;state.tab='history';state.dirty=false;render();refresh()}));
   r.append(actions);rows.append(r);
  }
+}
+async function openAccess(u){
+ if(!isGlobal()||lab||!A278.validTarget(u,root.__REPORTES_HYS_ACCESS__?.userId))return;
+ clearCredentials();state.accessTarget=u.usuario_id;state.accessEvents=null;
+ state.accessMode=u.activo?'suspend':'reactivate';state.tab='access';state.dirty=false;
+ render();notice('Consulta y modificación de acceso conectadas al servidor real. Ningún cambio se aplica hasta confirmar.');
+ const userId=u.usuario_id;
+ try{
+  const data=await A278.history(root.reportesHysSupabase,userId);
+  if(state.tab==='access'&&state.accessTarget===userId&&!panel.hidden){state.accessEvents=data;render()}
+ }catch(e){
+  if(state.tab==='access'&&state.accessTarget===userId){state.accessEvents=[];notice(e.message,true);render()}
+ }
+}
+function renderAccess(target){
+ const u=state.users.find(x=>x.usuario_id===state.accessTarget);
+ const card=element('section',undefined,'hys265-card hys278-access');
+ card.append(element('h2','Estado de acceso del usuario'));
+ if(!u){card.append(element('p','La cuenta ya no está disponible. Actualiza el directorio.'));card.append(action('Volver a usuarios',()=>show('directory')));target.append(card);return}
+ const safeActor=root.__REPORTES_HYS_ACCESS__;
+ const label=A278.labelFromHistory(state.accessEvents,u.activo);
+ const info=element('dl',undefined,'hys265-summary');
+ for(const [k,v] of [['Trabajador',u.nombre],['Rol',({administrador_area:'Administrador',administrador_global:'Administrador general',supervisor:'Supervisor',usuario:'Usuario'}[u.rol]||u.rol)],['Estado verificado',label],['ID de usuario',u.usuario_id]]){
+  info.append(element('dt',k),element('dd',v));
+ }
+ card.append(info);
+ card.append(element('p','Esta gestión utiliza Supabase real. Suspender o dar de baja impedirá la entrada a la aplicación en una nueva comprobación de acceso. Los informes y la auditoría permanecerán conservados.','hys265-muted'));
+ card.append(element('p','Una sesión ya abierta puede seguir funcionando hasta que se revaliden sus permisos; la revocación inmediata de todas las sesiones requiere una función de servidor adicional.','hys265-muted'));
+ const choices=element('fieldset',undefined,'hys278-options');
+ choices.append(element('legend','Acción a ejecutar'));
+ const validOps=u.activo?['suspend','terminate']:['reactivate','terminate'];
+ if(!validOps.includes(state.accessMode))state.accessMode=validOps[0];
+ const meanings={
+  suspend:'Suspender temporalmente el acceso conservando su cuenta y sus informes',
+  terminate:'Registrar desvinculación y dar de baja el acceso conservando la trazabilidad',
+  reactivate:'Reactivar el ingreso con los permisos previamente asignados'
+ };
+ for(const op of validOps){
+  const labelEl=document.createElement('label');labelEl.className='hys278-choice';
+  const radio=document.createElement('input');radio.type='radio';radio.name='hys278Action';radio.value=op;
+  radio.checked=state.accessMode===op;radio.disabled=state.accessBusy;
+  radio.onchange=()=>{state.accessMode=op};
+  labelEl.append(radio,document.createTextNode(meanings[op]));choices.append(labelEl);
+ }
+ card.append(choices);
+ const reasonLabel=document.createElement('label');reasonLabel.textContent='Motivo obligatorio (mínimo 15 caracteres)';
+ const reason=document.createElement('textarea');reason.id='hys278Reason';reason.rows=3;reason.maxLength=450;reason.placeholder='Ej. Suspensión temporal autorizada por RR.HH. debido a...';reason.disabled=state.accessBusy;
+ reasonLabel.append(reason);card.append(reasonLabel);
+ const confirmLabel=document.createElement('label');confirmLabel.textContent='Para confirmar, escribe exactamente el nombre completo: '+u.nombre;
+ const name=document.createElement('input');name.id='hys278ConfirmName';name.type='text';name.maxLength=180;name.autocomplete='off';name.disabled=state.accessBusy;
+ confirmLabel.append(name);card.append(confirmLabel);
+ card.append(element('p','La eliminación física de identidades y los datos asociados no está habilitada. Una baja conserva informes, compromisos, referencias y auditorías; los pendientes deben revisarse y reasignarse por separado.','hys265-muted'));
+ const buttons=element('div',undefined,'hys265-footer');
+ buttons.append(action('Volver a usuarios',()=>{if(!state.accessBusy)show('directory')}));
+ const submit=action('Confirmar cambio de acceso',async()=>{
+  if(state.accessBusy||lab)return;
+  const operation=state.accessMode,why=reason.value,confirmed=name.value;
+  const actor=root.__REPORTES_HYS_ACCESS__;
+  const error=A278.validate({access:actor,target:u,operation,reason:why,confirmName:confirmed});
+  if(error){notice(error,true);return}
+  const details=A278.tags[operation];
+  if(!confirm(details.label+' de «'+u.nombre+'»?\\nEsta acción cambiará el estado REAL del usuario en Supabase y quedará auditada.'))return;
+  state.accessBusy=true;submit.disabled=true;
+  notice('Verificando permisos y actualizando el estado en Supabase...');
+  try{
+   const applied=await A278.apply({client:root.reportesHysSupabase,access:actor,target:u,operation,reason:why,confirmName:confirmed});
+   const events=await A278.history(root.reportesHysSupabase,u.usuario_id).catch(()=>[]);
+   state.accessEvents=events;
+   await refresh();
+   if(state.tab!=='access'||state.accessTarget!==applied.user.usuario_id)return;
+   state.accessMode=applied.user.activo?'suspend':'reactivate';
+   render();
+   notice('Estado de acceso confirmado por Supabase. Operación: '+details.label+'. Se registró el motivo en auditoría.');
+  }catch(e){
+   notice('No se confirmó la operación: '+e.message,true);
+  }finally{state.accessBusy=false;submit.disabled=false}
+ },'btn primary');
+ submit.disabled=state.accessBusy||!A278.allowedActor(safeActor);
+ buttons.append(submit);card.append(buttons);
+ const audit=element('section',undefined,'hys278-audit');
+ audit.append(element('h3','Últimos movimientos de acceso'));
+ if(state.accessEvents===null)audit.append(element('p','Consultando auditoría...','hys265-muted'));
+ else if(!state.accessEvents.length)audit.append(element('p','No hay cambios de acceso anteriores registrados con la nueva clasificación.','hys265-muted'));
+ else for(const e of state.accessEvents.slice(0,6)){
+  const row=element('p',new Date(e.fecha).toLocaleString('es-CL')+' · '+String(e.motivo||'')+' · '+(e.actor_nombre||'Administrador'),'hys265-muted');
+  audit.append(row);
+ }
+ card.append(audit);
+ target.append(card);
 }
 function renderHistory(target){
  const card=element('section',undefined,'hys265-card');card.append(element('h2','Historial de gestión de usuarios'));
