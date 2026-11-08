@@ -7,6 +7,7 @@
  const tags=Object.freeze({
   suspend:{code:'SUSPENSION_ACCESO',label:'Suspender acceso',active:false},
   terminate:{code:'DESVINCULACION_BAJA',label:'Desvincular y dar de baja',active:false},
+  remove_request:{code:'SOLICITUD_ELIMINACION',label:'Solicitar eliminación definitiva',active:false},
   reactivate:{code:'REACTIVACION_ACCESO',label:'Reactivar acceso',active:true}
  });
  const safeText=(s,max=500)=>String(s??'').trim().replace(/[\u0000-\u001f\u007f]/g,' ').slice(0,max);
@@ -42,6 +43,7 @@
   if(active)return 'Activo';
   for(const e of events||[]){
    const m=String(e?.motivo||'');
+   if(m.startsWith('SOLICITUD_ELIMINACION |'))return 'Inactivo · solicitud de eliminación registrada';
    if(m.startsWith('DESVINCULACION_BAJA |'))return 'Desvinculado · acceso bloqueado';
    if(m.startsWith('SUSPENSION_ACCESO |'))return 'Suspendido · acceso bloqueado';
    if(m.startsWith('REACTIVACION_ACCESO |'))return 'Inactivo · requiere revisión';
@@ -60,7 +62,7 @@
   const r=await client.from('eventos_v242').select('fecha,accion,motivo,actor_nombre,entidad')
    .eq('entidad',uid).order('fecha',{ascending:false}).limit(30);
   if(r.error)throw Error('No fue posible consultar la auditoría de este usuario.');
-  return (r.data||[]).filter(e=>/^(SUSPENSION_ACCESO|REACTIVACION_ACCESO|DESVINCULACION_BAJA) \| /.test(e.motivo||''));
+  return (r.data||[]).filter(e=>/^(SUSPENSION_ACCESO|REACTIVACION_ACCESO|DESVINCULACION_BAJA|SOLICITUD_ELIMINACION) \| /.test(e.motivo||''));
  }
  async function apply({client,access,target,operation,reason,confirmName}){
   const error=validate({access,target,operation,reason,confirmName});
