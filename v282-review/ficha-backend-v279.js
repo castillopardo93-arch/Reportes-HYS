@@ -46,8 +46,10 @@ async function save(userId,worker,revision,reason){
 async function regimesReady(){
  const c=client();
  if(!c?.rpc)return {ready:false,reason:'Debes iniciar sesión.'};
- const {data,error}=await c.rpc('hys281_capacidades');
- if(error||data?.regimenes!==true)return {ready:false,reason:'El catálogo independiente de regímenes laborales aún no está habilitado en Supabase.'};
+ // v282 gestiona regímenes dentro del panel unificado; no requiere RPC v281 antigua.
+ const {data,error}=await c.rpc('hys282_catalogo_capacidades');
+ if(error||data?.gestion!==true||data?.version!==282)
+  return {ready:false,reason:'El catálogo independiente de regímenes laborales aún no está habilitado en Supabase.'};
  return {ready:true};
 }
 async function shifts(){
@@ -73,9 +75,9 @@ async function saveRegime({id,codigo,activo,revision,motivo}){
   throw Error('Utiliza un régimen válido como 5x2, 4x3, 10x5 o 7x7.');
  const reason=String(motivo||'').trim();
  if(reason.length<10||reason.length>400)throw Error('El motivo debe contener entre 10 y 400 caracteres.');
- const {data,error}=await client().rpc('hys281_guardar_regimen',{
-  p_id:id||null,p_codigo:value,p_activo:activo!==false,
-  p_revision:id?revision:null,p_motivo:reason
+ const {data,error}=await client().rpc('hys282_catalogo_mutar',{
+  p_tipo:'regimen',p_modulo:null,p_selector:null,p_id:id||null,
+  p_valor:value,p_activo:activo!==false,p_revision:id?String(revision):null,p_motivo:reason
  });
  if(error)throw Error('No se pudo guardar el régimen laboral: '+error.message);
  if(!data?.id)throw Error('El servidor no confirmó la operación.');
