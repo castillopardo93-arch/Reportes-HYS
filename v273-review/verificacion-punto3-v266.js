@@ -4,7 +4,7 @@
  */
 (function(root){
 'use strict';
-const QA=()=>root.HYS266_PREVIEW_ONLY===true&&/\/v266-review\/index\.html$/.test(root.location.pathname);
+const QA=()=>root.HYS266_PREVIEW_ONLY===true&&/\/(?:v266-review|v267-review|v269-review|v270-review|v271-review|v272-review|v273-review)\/index\.html$/.test(root.location.pathname);
 const byId=id=>root.document.getElementById(id);
 const el=(tag,txt,cls)=>{const node=root.document.createElement(tag);if(txt!==undefined&&txt!==null)node.textContent=String(txt);if(cls)node.className=cls;return node};
 const uuid1='11111111-1111-4111-8111-111111111111',uuid2='22222222-2222-4222-8222-222222222222';
