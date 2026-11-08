@@ -87,6 +87,7 @@ async function enterModule(target){
  root.__REPORTES_HYS_ACCESS__=access;
  root.dispatchEvent(new CustomEvent('reportes-hys-access-changing'));
  try{await root.Hys242?.onAccess?.(access)}catch(e){console.warn('Vista de prueba: no se pudo iniciar el almacenamiento local:',e?.message||e)}
+ try{root.HysAppearance242?.syncAccess?.(access)}catch(e){console.warn('Vista de prueba: apariencia no disponible:',e?.message||e)}
  root.reportesHysSetMode?.(embedded?'apr':m?m.toLowerCase():'');
  if(!m&&$('otherAprApp'))$('otherAprApp').src='about:blank';
  root.reportesHysAdminSync?.();
