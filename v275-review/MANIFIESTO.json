@@ -1,9 +1,9 @@
 {
-  "version": 274,
-  "branch": "desarrollo/v274-metodos-contrasena",
-  "base_version": 273,
+  "version": 275,
+  "branch": "desarrollo/v275-cambio-contrasena-ingreso",
+  "base_version": 274,
   "base_commit": "d5a246dbdf199ce6bcbb00a2b7cf9245fc168196",
-  "estado": "desarrollo-metodos-alta-contrasena-laboratorio",
+  "estado": "desarrollo-cambio-contrasena-ingreso-sin-publicar",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v273-correcciones-auditoria",
+  "base_branch": "desarrollo/v274-metodos-contrasena",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -201,5 +201,23 @@
     "pruebas_navegador": false,
     "pruebas_supabase": false,
     "publicacion_pendiente": true
+  },
+  "cambios_v275": {
+    "acceso_desde_tarjeta_ingreso": true,
+    "cambio_con_contrasena_actual": true,
+    "nueva_contrasena_y_confirmacion": true,
+    "ver_mostrar_contrasenas": true,
+    "retorno_a_ingreso": true,
+    "recuperacion_olvido_conservada": true,
+    "sin_envio_correo_en_flujo_habitual": true,
+    "cliente_supabase_efimero_sin_persistencia": true,
+    "escritura_auth_solo_tras_accion_usuario_real": true,
+    "demostracion_qa_sin_escrituras": true,
+    "contrasena_no_guardada_en_localstorage": true,
+    "pruebas_unitarias_simuladas": 7,
+    "comprobaciones_estructura": true,
+    "pruebas_end_to_end_reales": false,
+    "pruebas_supabase_reales": false,
+    "pruebas_visual_navegador": false
   }
 }
