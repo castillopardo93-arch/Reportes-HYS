@@ -251,7 +251,8 @@ function fixture(opts={}){
   await check('El historial original continúa disponible',async()=>{
    f.click('[data-hys265-tab="directory"]');
    f.click('[data-hys265-tab="history"]');
-   await Promise.resolve();await Promise.resolve();
+   await f.w.Hys265UserManagement.refresh();
+   await new Promise(resolve=>setImmediate(resolve));
    assert.match(f.getText(),/Historial de gestión de usuarios/);
   });
  }finally{f.close()}
