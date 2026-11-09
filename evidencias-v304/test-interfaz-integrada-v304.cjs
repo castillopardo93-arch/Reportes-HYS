@@ -12,6 +12,11 @@ const mk=(review=false,role='administrador_global')=>{
  const w=dom.window;let remoteCalls=0;
  w.HYS242_ENABLE_CENTRAL=false;w.HYS242_DEPLOYMENT_READY=false;w.HYS292_REMOTE_WRITE_AUTHORIZED=false;
  w.document.body.classList.add('module-choice');
+ // La aplicación real monta este contenedor mediante operaciones-v242.js.
+ // En revisión visual probamos explícitamente que el panel funciona sin él.
+ if(!review&&!w.document.getElementById('hysToolsOptions')){
+  const nav=w.document.createElement('nav');nav.id='hysToolsOptions';w.document.body.append(nav);
+ }
  w.__REPORTES_HYS_ACCESS__={userId:'admin',profile:{rol:role,activo:true},selectedModule:null,modules:['APR','OTROS']};
  w.reportesHysSupabase={rpc:async()=>{remoteCalls++;throw Error('No se permite RPC en pruebas')},from:()=>{remoteCalls++;throw Error('Acceso no permitido en pruebas')}};
  w.eval(js);
