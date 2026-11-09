@@ -1,0 +1,76 @@
+/* Reportes HYS v285 · Panel estratégico aislado; no modifica los formularios APR/OTROS. */
+#hys285PillarsPanel[hidden],#hys285PillarsPanel [hidden]{display:none!important}
+#hys285PillarsPanel{position:fixed;inset:0;z-index:62000;background:#091d32dc;overflow:auto;overscroll-behavior:contain;padding:22px 22px 50px;color:#17354f;font-family:inherit}
+#hys285PillarsPanel *,#hys285PillarsPanel *::before,#hys285PillarsPanel *::after{box-sizing:border-box}
+#hys285PillarsPanel .hys285-shell{max-width:1250px;margin:0 auto;background:#f4f8fc;border-radius:20px;box-shadow:0 22px 75px #00152460;overflow:hidden;min-height:70vh}
+#hys285PillarsPanel .hys285-head{background:linear-gradient(112deg,#123755,#205e85);color:#fff;padding:28px 32px 24px}
+#hys285PillarsPanel .hys285-headline{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+#hys285PillarsPanel .hys285-overline{margin:0 0 8px;color:#b7dcf2;font-size:11px;letter-spacing:.15em;font-weight:850;text-transform:uppercase}
+#hys285PillarsPanel h1{font-size:clamp(24px,2.5vw,34px);color:#fff;line-height:1.2;margin:0 0 9px;font-weight:850;letter-spacing:-.025em}
+#hys285PillarsPanel .hys285-lead{margin:0;max-width:780px;color:#deedf7;font-size:14px;line-height:1.65}
+#hys285PillarsPanel .hys285-close{background:#fff1;border:1px solid #ffffff75;border-radius:10px;padding:10px 16px;color:#fff;font:inherit;font-weight:750;cursor:pointer;white-space:nowrap}
+#hys285PillarsPanel .hys285-close:hover,#hys285PillarsPanel .hys285-close:focus-visible{background:#fff3}
+#hys285PillarsPanel .hys285-vision{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:20px;font-size:12px;font-weight:750;color:#dceefb}
+#hys285PillarsPanel .hys285-vision span{padding:6px 10px;border:1px solid #ffffff45;border-radius:99px;background:#ffffff16}
+#hys285PillarsPanel .hys285-content{padding:26px 30px 34px}
+#hys285PillarsPanel .hys285-toolbar{background:#fff;border:1px solid #d5e4f1;border-radius:14px;padding:16px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+#hys285PillarsPanel .hys285-filter{display:flex;flex-direction:column;gap:6px;margin:0;min-width:0;color:#365c76;font-size:12px;font-weight:750}
+#hys285PillarsPanel .hys285-filter select{min-height:40px;width:100%;max-width:100%;background:#f8fbfe;border:1px solid #c5d8e8;border-radius:9px;color:#163b56;padding:7px 10px;font:inherit;font-size:13px}
+#hys285PillarsPanel .hys285-filter select:disabled{cursor:not-allowed;color:#758597;opacity:.85}
+#hys285PillarsPanel .hys285-scope{margin:2px 0 18px;color:#526d80;font-size:12px;line-height:1.5}
+#hys285PillarsPanel .hys285-warning{padding:13px 16px;background:#fffaf0;border:1px solid #edd9a9;border-radius:12px;color:#79571b;display:flex;gap:11px;align-items:flex-start;font-size:13px;line-height:1.55;margin-bottom:22px}
+#hys285PillarsPanel .hys285-warning strong{display:block;margin-bottom:2px}
+#hys285PillarsPanel .hys285-section-heading{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin:20px 0 12px}
+#hys285PillarsPanel h2{margin:0;font-size:20px;font-weight:850;color:#173b59;letter-spacing:-.015em}
+#hys285PillarsPanel .hys285-muted{color:#637e91;font-size:12px;line-height:1.6}
+#hys285PillarsPanel .hys285-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#hys285PillarsPanel .hys285-stat{background:#fff;border:1px solid #d5e4f1;border-radius:13px;padding:16px;min-height:126px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+#hys285PillarsPanel .hys285-stat-name{font-size:12px;font-weight:750;color:#4d6b81}
+#hys285PillarsPanel .hys285-stat-value{font-size:29px;font-weight:850;line-height:1;color:#193e5c;font-variant-numeric:tabular-nums}
+#hys285PillarsPanel .hys285-stat-status{font-size:11px;color:#698196}
+#hys285PillarsPanel .hys285-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#hys285PillarsPanel .hys285-pillar{display:flex;flex-direction:column;text-align:left;gap:11px;border:1px solid #cfe0ec;background:#fff;border-radius:15px;padding:21px 20px;min-height:225px;color:#173b59;cursor:pointer;font:inherit;box-shadow:0 2px 3px #082c4510;transition:border-color .15s,transform .15s,box-shadow .15s}
+#hys285PillarsPanel .hys285-pillar:hover,#hys285PillarsPanel .hys285-pillar:focus-visible{border-color:#4f96bd;box-shadow:0 6px 23px #10486e22;transform:translateY(-2px)}
+#hys285PillarsPanel .hys285-pillar-icon{display:grid;place-items:center;width:46px;height:46px;font-size:22px;background:#eaf4fa;border-radius:12px;color:#12608d}
+#hys285PillarsPanel .hys285-pillar-code{font-size:10px;font-weight:800;letter-spacing:.10em;color:#557891}
+#hys285PillarsPanel .hys285-pillar-name{font-size:17px;font-weight:850;line-height:1.32}
+#hys285PillarsPanel .hys285-pillar-desc{color:#5d778a;font-size:12px;line-height:1.55;flex:1}
+#hys285PillarsPanel .hys285-open{font-size:12px;color:#146792;font-weight:800}
+#hys285PillarsPanel .hys285-detail{background:#fff;border:1px solid #d2e2ee;border-radius:16px;padding:24px}
+#hys285PillarsPanel .hys285-back{border:1px solid #bfd5e5;background:#f4f9fd;color:#195c85;border-radius:9px;padding:8px 12px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:17px}
+#hys285PillarsPanel .hys285-back:hover{background:#e4f1fa}
+#hys285PillarsPanel .hys285-detail-title{display:flex;gap:13px;align-items:flex-start;margin-bottom:9px}
+#hys285PillarsPanel .hys285-detail-head p{margin:5px 0 0;line-height:1.6;color:#527085;font-size:13px}
+#hys285PillarsPanel .hys285-detail-subtitle{color:#294e69;font-size:14px;margin:22px 0 10px;font-weight:850}
+#hys285PillarsPanel .hys285-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+#hys285PillarsPanel .hys285-metric{border:1px solid #e0e9f1;background:#f9fcff;border-radius:12px;padding:16px 17px}
+#hys285PillarsPanel .hys285-metric-name{font-size:14px;font-weight:850;color:#204b69;margin:0 0 8px}
+#hys285PillarsPanel .hys285-metric-copy{font-size:12px;line-height:1.65;color:#547185;margin:0 0 7px}
+#hys285PillarsPanel .hys285-metric-source{font-size:11px;color:#688497}
+#hys285PillarsPanel .hys285-metric-note{margin-top:11px;font-size:11px;font-weight:800;color:#946b19}
+#hys285PillarsPanel .hys285-footer{margin-top:20px;border-top:1px solid #d5e4f0;padding-top:17px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:12px}
+#hys285PillarsPanel .hys285-footer p{margin:0;font-size:12px;line-height:1.5;color:#638092;max-width:690px}
+#hys285PillarsPanel .hys285-export{padding:10px 15px;border-radius:10px;border:1px solid #bbd2e4;color:#75899c;font:inherit;font-weight:800;font-size:12px;background:#e9f0f6;cursor:not-allowed}
+#hys285PillarsPanel .hys285-method{margin-top:19px;background:#edf5fb;padding:16px;border:1px solid #d4e7f3;border-radius:13px}
+#hys285PillarsPanel .hys285-method summary{cursor:pointer;font-size:13px;font-weight:850;color:#225573}
+#hys285PillarsPanel .hys285-method p{font-size:12px;color:#527389;line-height:1.65;margin:11px 0 0}
+#hys285PillarsPanel :focus-visible{outline:3px solid #62a7d2;outline-offset:2px}
+@media(max-width:990px){#hys285PillarsPanel{padding:12px 10px 78px}#hys285PillarsPanel .hys285-shell{border-radius:14px}#hys285PillarsPanel .hys285-head{padding:22px}#hys285PillarsPanel .hys285-content{padding:18px}#hys285PillarsPanel .hys285-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#hys285PillarsPanel .hys285-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#hys285PillarsPanel{padding:0 0 68px}#hys285PillarsPanel .hys285-shell{border-radius:0}#hys285PillarsPanel .hys285-head{padding:22px 15px}#hys285PillarsPanel .hys285-headline{gap:10px}#hys285PillarsPanel h1{font-size:23px}#hys285PillarsPanel .hys285-close{padding:9px}#hys285PillarsPanel .hys285-content{padding:14px}#hys285PillarsPanel .hys285-toolbar{grid-template-columns:1fr;gap:10px}#hys285PillarsPanel .hys285-grid,#hys285PillarsPanel .hys285-metrics{grid-template-columns:1fr}#hys285PillarsPanel .hys285-pillar{min-height:160px}#hys285PillarsPanel .hys285-detail{padding:15px}#hys285PillarsPanel .hys285-vision{margin-top:12px}}
+@media print{#hys285PillarsPanel{display:none!important}}
+
+/* v286: rótulo completo también en el menú contraído, sin truncar «Indicadores». */
+#hysToolsRail #hys285OpenPillars .tools-option-label{font-size:10px;line-height:1.2;text-align:center;overflow-wrap:normal;word-break:normal;white-space:normal;hyphens:none}
+#hysToolsRail.expanded #hys285OpenPillars .tools-option-full{white-space:normal;line-height:1.35}
+@media(max-width:1024px){#hysToolsRail #hys285OpenPillars .tools-option-label{font-size:11px;line-height:1.16;text-align:left}}
+
+/* v287 · Integración real: menú de escritorio con cinco opciones y rótulo sin cortar. */
+@media(min-width:1025px){
+ #hysToolsRail{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+ #hysToolsRail #hysToolsOptions{flex:0 0 auto;min-height:0}
+ #hysToolsRail #hys285OpenPillars .tools-option-label{max-width:100%;font-size:10px;line-height:1.3;text-align:center;overflow-wrap:break-word}
+}
+@media(max-width:1024px){
+ #hysToolsRail #hys285OpenPillars .tools-option-label{max-width:100%;font-size:10px!important;line-height:1.08!important;overflow-wrap:break-word}
+ #hysToolsRail #hys285OpenPillars{white-space:normal!important}
+}
