@@ -34,7 +34,7 @@ Observaciones a 09-11-2026:
 - Tablas de informe, áreas, listas, facultades y auditoría v242 existen; no están desplegados los contratos recientes v279/v281/v282.
 - Las funciones RPC presentes incluyen `hys242_contexto`, `hys242_consultar_informes`, `hys242_guardar_con_motivo`, `hys242_revisar`. **No existen** `hys279_capacidades`, `hys282_catalogo_capacidades` o `hys282_catalogo_mutar`.
 - `listas_v242` conserva opciones de proyecto antiguas PHAM 1 y PHAM 2; la interfaz v289 ya protege la denominación vigente, pero la migración de catálogo central **no se realizó**.
-- Asesores Supabase: **46 avisos de seguridad** (43 WARN y 2 INFO? Recuento correcto: 1 anon_definer WARN + 42 authenticated_definer WARN + 1 leaked_password WARN = **44 WARN**, 2 INFO = 46). No equivalen automáticamente a 46 brechas confirmadas.
+- Asesores Supabase: **46 avisos de seguridad**, desglosados en **44 WARN y 2 INFO**. Los avisos son señales para revisar; no equivalen automáticamente a 46 brechas confirmadas.
 - Desglose seguridad: RLS sin política (2 INFO); función SECURITY DEFINER ejecutable por anon (1 WARN); SECURITY DEFINER ejecutable por authenticated (42 WARN); protección de contraseñas filtradas (1 WARN).
 - **33 avisos de rendimiento:** 9 claves foráneas sin índice, 8 planes de auth/RLS, 14 índices sin uso aparente y 2 políticas permisivas superpuestas. Revisar sin borrar índices automáticamente.
 - Edge Functions `admin-users` y variantes existen; que `verify_jwt=false` figure en algunas versiones requiere revisar autenticación efectiva del código y no demuestra por sí solo un acceso indebido.
