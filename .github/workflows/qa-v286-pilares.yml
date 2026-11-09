@@ -1,0 +1,21 @@
+name: QA tarjeta Pilares e Indicadores v286
+on:
+  push:
+    branches:
+      - desarrollo/v286-titulo-pilares-indicadores
+    paths:
+      - 'v286-review/**'
+      - 'evidencias-v286/**'
+      - '.github/workflows/qa-v286-pilares.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - run: node evidencias-v286/test-pilares-v286.cjs
+      - run: node evidencias-v284/test-regresion-v284.cjs
