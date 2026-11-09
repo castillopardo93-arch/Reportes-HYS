@@ -65,7 +65,7 @@ panel.innerHTML=[
  '<label class="hys285-filter">Área de trabajo<select id="hys285Area" disabled><option value="">Todas las áreas (pendiente de carga)</option></select></label>',
  '</div><p id="hys285Scope" class="hys285-scope" role="status"></p>',
  '<div class="hys285-warning" role="note"><span aria-hidden="true">ⓘ</span><div><strong>Panel integrado en v287 · Indicadores en preparación</strong>',
- 'El consolidado de indicadores aún no está conectado. Se muestran guiones hasta que los datos estén verificados en Supabase. El diseño y la navegación ya pueden revisarse.',
+ 'Los datos aún no se consolidan entre usuarios: se muestran guiones, no ceros. Las acciones sin verificación tampoco se contabilizarán como cumplidas. Cada resultado deberá tener respaldo consultable.',
  '</div></div>',
  '<section id="hys285Home" aria-label="Resumen y pilares"><div class="hys285-section-heading"><h2>Resumen de gestión</h2><span class="hys285-muted">Valores pendientes de datos centrales</span></div>',
  '<div class="hys285-stats" id="hys285Stats"></div>',
@@ -74,9 +74,13 @@ panel.innerHTML=[
  '<section id="hys285Detail" class="hys285-detail" hidden tabindex="-1" aria-label="Detalle de pilar">',
  '<button id="hys285Back" class="hys285-back" type="button">← Volver a los pilares</button>',
  '<div class="hys285-detail-title" id="hys285DetailTitle"></div><div class="hys285-detail-head" id="hys285DetailLead"></div>',
- '<h3 class="hys285-detail-subtitle">Indicadores propuestos y fuentes de datos</h3><div class="hys285-metrics" id="hys285Metrics"></div></section>',
- '<details class="hys285-method"><summary>Metodología y trazabilidad futura</summary>',
- '<p>Las cifras se calcularán mediante consultas autorizadas sobre informes, hallazgos, tareas, responsables, documentos y eventos auditados. Cada resultado deberá permitir abrir sus registros de origen. Mientras el servidor no confirme el consolidado, no se mostrarán números ni exportaciones ficticias.</p></details>',
+ '<h3 class="hys285-detail-subtitle">Indicadores y respaldo requerido</h3><div class="hys285-metrics" id="hys285Metrics"></div></section>',
+ '<details class="hys285-method"><summary>Cómo se calcula y verifica</summary>',
+ '<p><strong>1. Qué está pasando:</strong> cada indicador tendrá una fórmula definida, un período y una fuente de datos verificable.</p>',
+ '<p><strong>2. Qué requiere intervención:</strong> las cifras habilitadas permitirán consultar los registros que las componen, con responsable y estado. El acceso estará sujeto a los permisos del servidor.</p>',
+ '<p><strong>3. Estamos mejorando:</strong> se compararán períodos equivalentes y medidas realmente verificadas, no solo marcadas como realizadas.</p>',
+ '<p><strong>Regla de calidad:</strong> «Sin datos verificados» no significa cero. Cuando no exista denominador, los porcentajes deben indicar «No aplica». Las acciones no verificadas no contarán como cierres eficaces.</p>',
+ '<p id="hys288Readiness" role="status">Comprobando si existen fuentes centrales habilitadas…</p></details>',
  '<footer class="hys285-footer"><p>Panel informativo de solo lectura. PDF y Excel ejecutivos quedarán disponibles después de conectar y validar los indicadores reales.</p>',
  '<button id="hys285Export" type="button" class="hys285-export" disabled>Exportación ejecutiva pendiente</button></footer>',
  '</div></div>'
@@ -87,6 +91,40 @@ const home=$('hys285Home'),detail=$('hys285Detail');
 const periodNames={month:'Mes actual',quarter:'Últimos 3 meses',year:'Últimos 12 meses'};
 const moduleNames={ALL:'Ambas tarjetas',APR:'Prevencionistas',OTROS:'Supervisores / Capataces'};
 let knownAreas=[],requestToken=0,previousFocus=null;
+// Condiciones mínimas para aceptar un indicador como verificable.
+// Son criterios de control, no resultados ni una conexión al servidor.
+const checks={
+ 'Tiempo de elaboración':'Usar fechas fiables del servidor: inicio y primera finalización; sin marcas completas, no hay promedio.',
+ 'Informes finalizados':'Contar únicamente informes con estado final confirmado y no sumar nuevas versiones del mismo informe.',
+ 'Ahorro administrativo':'Exigir una medición inicial comparable; sin línea base, no se debe publicar ahorro.',
+ 'Compromisos vencidos':'Cruzar vencimiento con el cierre verificado: ejecutar una tarea no elimina por sí solo el vencimiento.',
+ 'Cumplimiento a tiempo':'Denominador definido por compromisos exigibles; sin compromisos aplicables, mostrar «No aplica».',
+ 'Tiempo medio de cierre':'Contar la primera detección y el evento de cierre formal verificado; excluir fechas incompletas.',
+ 'Hallazgos registrados':'Utilizar identificadores únicos; evitar contar la misma condición dos veces tras editarla.',
+ 'Hallazgos abiertos':'Confirmar que no existe un cierre verificado; una declaración de ejecución no equivale a cierre.',
+ 'Distribución por área y riesgo':'Relacionar áreas y códigos estables de riesgo, conservando el proyecto de origen.',
+ 'Informes respaldados':'Solo considerar respaldos cuya escritura fue confirmada por almacenamiento central.',
+ 'Evidencia documental completa':'Evaluar únicamente acciones donde una evidencia sea exigible y asociar el archivo al registro correcto.',
+ 'Historial íntegro':'Conservar versiones, actor, fecha y cambios sin sobrescribir el historial anterior.',
+ 'Asignaciones identificadas':'Identificar al responsable por su usuario, no solo por un nombre escrito manualmente.',
+ 'Notificaciones entregadas':'Exigir comprobante de entrega real; presionar «Enviar» no demuestra recepción.',
+ 'Auditoría completa':'Exigir autor, fecha y eventos de cambio confirmados por el servidor.',
+ 'Reincidencia potencial':'Separar hallazgos realmente equivalentes de simples coincidencias de texto.',
+ 'Eficacia de medidas':'Contar solo medidas verificadas que superaron una revisión posterior; no basarse en la fecha de cierre.',
+ 'Riesgos más repetidos':'Agrupar por identificador de riesgo, manteniendo las diferencias entre actividades y proyectos.'
+};
+function showReadiness(){
+ const central=root.HYS242_ENABLE_CENTRAL===true;
+ const deployed=root.HYS242_DEPLOYMENT_READY===true;
+ const status=$('hys288Readiness');
+ if(!status)return;
+ if(!central||!deployed){
+  status.textContent='Estado actual: el guardado central de informes o su despliegue no está habilitado. No hay consolidado verificable; por eso los indicadores mantienen «—».';
+ }else{
+  status.textContent='Configuración central habilitada. Falta validar un servicio específico de indicadores, sus permisos y los registros de origen antes de presentar cifras.';
+ }
+}
+
 function render(){
  const stats=$('hys285Stats');stats.replaceChildren();
  for(const name of ['Hallazgos registrados','Compromisos pendientes','Compromisos vencidos','Cumplimiento de plazos']){
@@ -111,7 +149,10 @@ function showPillar(id){
  const box=$('hys285Metrics');box.replaceChildren();
  for(const [name,formula,source] of p.metrics){
   const card=el('article','hys285-metric');
-  card.append(el('h4','hys285-metric-name',name),el('p','hys285-metric-copy','Cálculo: '+formula),el('div','hys285-metric-source','Fuente: '+source),el('div','hys285-metric-note','Pendiente de datos consolidados'));
+  card.append(el('h4','hys285-metric-name',name),el('p','hys285-metric-copy','Cálculo: '+formula),el('div','hys285-metric-source','Fuente: '+source),el('div','hys285-metric-note','Sin datos verificados'));
+  const rule=el('details','hys288-rule');
+  rule.append(el('summary',null,'¿Qué debe verificarse?'),el('p',null,checks[name]||'Revisar la fuente, el actor y los eventos antes de publicar resultados.'));
+  card.append(rule);
   box.append(card);
  }
  detail.focus({preventScroll:true});panel.scrollTop=Math.max(0,detail.offsetTop-95);
@@ -162,7 +203,7 @@ function open(){
  if(!preview&&users&&!users.hidden&&root.Hys265UserManagement?.close?.()===false)return false;
  previousFocus=d.activeElement;panel.hidden=false;home.hidden=false;detail.hidden=true;
  period.value='month';mod.value='ALL';area.value='';
- render();scope();getAreas();$('hys285Close').focus({preventScroll:true});return true;
+ render();scope();getAreas();showReadiness();$('hys285Close').focus({preventScroll:true});return true;
 }
 function close(){
  if(panel.hidden)return true;
