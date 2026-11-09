@@ -3,10 +3,12 @@
 'use strict';
 const d=root.document;
 if(!d||new URLSearchParams(location.search).get('embedded')==='otros')return;
-const nav=d.getElementById('hysToolsOptions');
-if(!nav)return;
 const preview=/\/pilares-indicadores-preview-v285\.html$/i.test(location.pathname);
 const visualReview=/\/v304-review\/index\.html$/i.test(location.pathname)&&new URLSearchParams(location.search).get('revision')==='pilares';
+// La revisión visual utiliza el MISMO panel, aunque el menú se haya montado después.
+// Un menú temporal en memoria no concede acceso a herramientas ni información real.
+const nav=d.getElementById('hysToolsOptions')||(visualReview?d.createElement('nav'):null);
+if(!nav)return;
 const previewOnly=preview||visualReview;
 const a=()=>root.__REPORTES_HYS_ACCESS__;
 const allowed=()=>previewOnly||(
