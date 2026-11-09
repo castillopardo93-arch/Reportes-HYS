@@ -1,0 +1,175 @@
+/* Investigación de accidentes — diseño inicial aislado, sin formularios ni datos reales. */
+#hys305Investigation[hidden],#hys305Investigation [hidden]{display:none!important}
+#hys305Investigation{position:fixed;inset:0;z-index:62500;background:#061f37dc;overflow:auto;overscroll-behavior:contain;padding:22px 22px 55px;color:#143954;font-family:inherit}
+#hys305Investigation *,#hys305Investigation *::before,#hys305Investigation *::after{box-sizing:border-box}
+#hys305Investigation .hys305-shell{width:min(1220px,100%);margin:0 auto;background:#f4f8fc;border-radius:19px;box-shadow:0 20px 80px #00182d61;overflow:hidden;min-height:66vh}
+#hys305Investigation .hys305-heading{background:linear-gradient(110deg,#123755,#23648a);color:#fff;padding:29px 32px;display:flex;justify-content:space-between;align-items:flex-start;gap:22px}
+#hys305Investigation .hys305-eyebrow{color:#b7d9f0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin:0 0 12px}
+#hys305Investigation h1{font-size:clamp(24px,2.5vw,34px);color:#fff;line-height:1.2;margin:0 0 10px;font-weight:800}
+#hys305Investigation .hys305-heading p:last-child{max-width:800px;margin:0;color:#ddedf8;font-size:14px;line-height:1.6}
+#hys305Investigation #hys305Close{flex:0 0 auto;border:1px solid #ffffff88;background:#ffffff15;color:white;border-radius:10px;padding:10px 14px;font:inherit;font-weight:750;cursor:pointer}
+#hys305Investigation #hys305Close:hover{background:#ffffff32}
+#hys305Investigation .hys305-content{padding:27px 30px 37px}
+#hys305Investigation .hys305-notice{background:#fff8e9;border:1px solid #f2d29a;color:#865c16;padding:14px 17px;border-radius:12px;margin:0 0 27px}
+#hys305Investigation .hys305-notice strong{font-size:13px}
+#hys305Investigation .hys305-notice p{margin:6px 0 0;font-size:12px;line-height:1.6}
+#hys305Investigation h2{color:#173e5c;font-size:19px;margin:0 0 14px}
+#hys305Investigation .hys305-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#hys305Investigation .hys305-overview article{background:white;border:1px solid #d2e1ed;border-radius:13px;padding:17px;display:flex;flex-direction:column;gap:8px;min-height:134px}
+#hys305Investigation .hys305-overview span{font-size:12px;font-weight:750;color:#476d85}
+#hys305Investigation .hys305-overview strong{font-size:29px;line-height:1.2;color:#143954}
+#hys305Investigation .hys305-overview small{font-size:11px;color:#647c8d}
+#hys305Investigation .hys305-structure{margin-top:29px}
+#hys305Investigation .hys305-section-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
+#hys305Investigation .hys305-section-head h2{margin:0}
+#hys305Investigation .hys305-section-head p{font-size:12px;color:#597790;margin:7px 0 0}
+#hys305Investigation .hys305-stage-tag{background:#e2eff9;border:1px solid #bbd5e7;border-radius:40px;font-size:11px;padding:7px 11px;color:#286182;font-weight:800;white-space:nowrap}
+#hys305Investigation .hys305-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#hys305Investigation .hys305-grid article{background:white;border:1px solid #d2e1ed;border-radius:13px;padding:17px;min-height:147px}
+#hys305Investigation .hys305-grid article>span{display:inline-flex;align-items:center;justify-content:center;background:#e6f1fb;border-radius:9px;width:35px;height:31px;font-size:12px;font-weight:800;color:#21618a}
+#hys305Investigation .hys305-grid h3{font-size:14px;color:#173f5e;margin:12px 0 5px}
+#hys305Investigation .hys305-grid p{color:#577991;font-size:12px;line-height:1.6;margin:0}
+#hys305Investigation .hys305-actions{margin-top:24px;background:#eef5fa;border:1px solid #d2e1ed;border-radius:12px;padding:15px;display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+#hys305Investigation .hys305-actions button{border:1px solid #bbd0df;background:#d9e6ef;color:#5a778a;padding:11px 15px;border-radius:9px;font:inherit;font-size:12px;font-weight:800;cursor:not-allowed}
+#hys305Investigation .hys305-actions p{flex:1;margin:0;color:#55758a;font-size:12px;line-height:1.5}
+@media(max-width:950px){#hys305Investigation .hys305-overview{grid-template-columns:repeat(2,minmax(0,1fr))}#hys305Investigation .hys305-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#hys305Investigation{padding:0 0 24px}#hys305Investigation .hys305-shell{border-radius:0}#hys305Investigation .hys305-heading{padding:22px 16px;gap:10px}#hys305Investigation .hys305-content{padding:20px 15px}#hys305Investigation #hys305Close{padding:9px 10px}#hys305Investigation .hys305-overview,#hys305Investigation .hys305-grid{grid-template-columns:1fr}#hys305Investigation .hys305-section-head{align-items:flex-start;flex-direction:column}}
+@media print{#hys305Investigation{display:none!important}}
+
+
+/* v306 — dos tarjetas y formularios que reproducen las hojas HSS-RGT-007 Rev. 08. */
+#hysToolsRail #hys305OpenAccidents .tools-option-label{
+ font-size:9px;line-height:1.13;white-space:normal!important;
+ overflow-wrap:break-word;word-break:normal;text-align:center;max-width:100%;
+}
+#hysToolsRail.expanded #hys305OpenAccidents .tools-option-full{
+ white-space:normal;line-height:1.35;overflow-wrap:break-word
+}
+#hys305Investigation .hys306-notice{
+ background:#fff8e9;border:1px solid #eddaa6;border-radius:12px;
+ padding:13px 17px;margin-bottom:20px;color:#77541c
+}
+#hys305Investigation .hys306-notice strong{font-size:13px}
+#hys305Investigation .hys306-notice p{font-size:12px;line-height:1.55;margin:5px 0 0}
+#hys305Investigation .hys306-section-heading h2{font-size:21px;margin:0 0 7px}
+#hys305Investigation .hys306-section-heading p{font-size:13px;line-height:1.6;color:#5a7589;margin:0 0 16px}
+#hys305Investigation .hys306-choice-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px
+}
+#hys305Investigation .hys306-choice{
+ cursor:pointer;text-align:left;background:#fff;border:1px solid #cbdde9;
+ border-radius:16px;padding:24px;min-height:230px;color:#153b56;
+ display:flex;flex-direction:column;align-items:flex-start;gap:11px;
+ font:inherit;box-shadow:0 3px 10px #163e5c12;
+ transition:border-color .16s,transform .16s,box-shadow .16s
+}
+#hys305Investigation .hys306-choice:hover,
+#hys305Investigation .hys306-choice:focus-visible{
+ border-color:#347ba7;box-shadow:0 9px 24px #12416124;transform:translateY(-1px)
+}
+#hys305Investigation .hys306-choice-icon{
+ display:grid;place-items:center;background:#e6f1fb;
+ font-size:22px;font-weight:850;color:#155a87;border-radius:12px;width:56px;height:56px
+}
+#hys305Investigation .hys306-choice strong{font-size:22px;font-weight:850}
+#hys305Investigation .hys306-choice-desc{color:#5a7890;font-size:13px;line-height:1.62;flex:1}
+#hys305Investigation .hys306-choice-link{font-size:13px;color:#0f698f;font-weight:800}
+#hys305Investigation .hys306-catalogue-note{
+ margin:17px 0 0;font-size:12px;color:#5c7a8d;line-height:1.6
+}
+#hys305Investigation .hys306-workspace{min-width:0}
+#hys305Investigation .hys306-workspace-header{
+ display:flex;justify-content:space-between;align-items:center;gap:15px;
+ margin:0 0 16px;background:#e8f2f8;border:1px solid #d0e0ed;border-radius:12px;
+ padding:15px 18px;flex-wrap:wrap
+}
+#hys305Investigation .hys306-active-title{font-size:22px;font-weight:850;color:#173e60}
+#hys305Investigation .hys306-active-sub{font-size:12px;color:#5a7488;margin:5px 0 0}
+#hys305Investigation .hys306-back,
+#hys305Investigation .hys306-secondary{
+ color:#175c83;background:#fff;border:1px solid #bfd4e4;border-radius:9px;
+ padding:10px 13px;font-size:12px;font-weight:800;font-family:inherit;cursor:pointer
+}
+#hys305Investigation .hys306-back:hover,
+#hys305Investigation .hys306-secondary:hover{background:#eaf4fa}
+#hys305Investigation .hys306-report{
+ border:1px solid #ccd9e3;border-radius:14px;background:white;
+ padding:18px 20px;display:flex;flex-direction:column;gap:15px
+}
+#hys305Investigation .hys306-report-banner{
+ display:flex;justify-content:space-between;align-items:center;gap:15px;
+ flex-wrap:wrap;border:1px solid #b4c7d3;border-radius:7px;padding:12px 16px;
+ background:#f2f5f7
+}
+#hys305Investigation .hys306-report-banner span{font-size:12px;color:#556f82;font-weight:750}
+#hys305Investigation .hys306-report-banner h3{
+ font-size:19px;letter-spacing:.015em;color:#133953;margin:0;font-weight:850
+}
+#hys305Investigation .hys306-section{
+ border:1px solid #ccd7df;background:#fdfefe;border-radius:10px;
+ padding:17px 15px 18px;min-width:0;margin:0
+}
+#hys305Investigation .hys306-legend{
+ font-size:13px;font-weight:850;color:#153f5b;letter-spacing:.015em;
+ background:#e1e8ed;border:1px solid #c1ced7;border-radius:7px;
+ padding:9px 12px;max-width:100%;line-height:1.4
+}
+#hys305Investigation .hys306-section-description{
+ font-size:12px;color:#637e90;line-height:1.55;margin:0 0 14px
+}
+#hys305Investigation .hys306-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#hys305Investigation .hys306-field{
+ display:flex;flex-direction:column;gap:6px;min-width:0;
+ color:#3c5c73;font-size:12px;font-weight:750
+}
+#hys305Investigation .hys306-field-name{display:block;line-height:1.45}
+#hys305Investigation .hys306-span-2{grid-column:1/-1}
+#hys305Investigation .hys306-field :is(input,select,textarea){
+ width:100%;min-width:0;min-height:41px;padding:10px 11px;border:1px solid #bdceda;
+ border-radius:8px;color:#173e5a;background:#fff;
+ font-size:13px;font-weight:450;font-family:inherit
+}
+#hys305Investigation .hys306-field textarea{resize:vertical;line-height:1.55}
+#hys305Investigation .hys306-field input[type=file]{padding:9px;font-size:12px}
+#hys305Investigation .hys306-field-hint,
+#hys305Investigation .hys306-file-status{
+ color:#67869a;font-size:11px;line-height:1.5;font-weight:450
+}
+#hys305Investigation .hys306-repeat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+#hys305Investigation .hys306-repeat-card,
+#hys305Investigation .hys306-action-row{
+ border:1px solid #dae5ee;background:#f8fbfd;border-radius:9px;padding:15px;min-width:0
+}
+#hys305Investigation .hys306-repeat-card h4,
+#hys305Investigation .hys306-action-row h4{
+ font-size:13px;color:#224e6b;margin:0 0 12px;font-weight:850
+}
+#hys305Investigation .hys306-action-list{display:flex;flex-direction:column;gap:12px;margin:0 0 14px}
+#hys305Investigation .hys306-form-footer{
+ display:flex;justify-content:flex-end;gap:11px;flex-wrap:wrap;
+ padding-top:14px;border-top:1px solid #d8e4ed
+}
+#hys305Investigation .hys306-clear,
+#hys305Investigation .hys306-pending{
+ border:1px solid #b8d0e0;border-radius:9px;padding:11px 15px;
+ font:inherit;font-size:12px;font-weight:800
+}
+#hys305Investigation .hys306-clear{cursor:pointer;color:#12577f;background:#edf7fc}
+#hys305Investigation .hys306-pending:disabled{background:#e4ebf0;color:#788b97;cursor:not-allowed}
+#hys305Investigation :focus-visible{outline:3px solid #62a7d2;outline-offset:3px}
+@media(max-width:960px){
+ #hys305Investigation .hys306-choice-grid{gap:12px}
+ #hys305Investigation .hys306-report{padding:14px}
+}
+@media(max-width:680px){
+ #hys305Investigation .hys306-choice-grid,
+ #hys305Investigation .hys306-field-grid{grid-template-columns:1fr}
+ #hys305Investigation .hys306-choice{min-height:175px}
+ #hys305Investigation .hys306-section{padding:13px 11px}
+ #hys305Investigation .hys306-legend{font-size:12px}
+ #hys305Investigation .hys306-report{padding:11px}
+ #hys305Investigation .hys306-report-banner{padding:12px}
+ #hys305Investigation .hys306-report-banner h3{font-size:17px}
+ #hys305Investigation .hys306-workspace-header{align-items:flex-start}
+}
+@media print{#hys305Investigation .hys306-workspace-actions,#hys305Investigation .hys306-form-footer{display:none!important}}
