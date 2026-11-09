@@ -1,3 +1,5 @@
-# Reportes HYS v296 — Integridad documental local
+# Reportes HYS — v296 (desarrollo aislado)
 
-Copia aislada de v295 para ejecutar correcciones de la auditoría A-01 a A-09. No publicar ni activar escrituras centrales.
+Correcciones de integridad documental, validación de identidad de informes, fotografías, PDF, recuperación de conflictos y guardado seguro. **Escrituras remotas desactivadas.**
+
+Ver el expediente técnico en `evidencias-v296/README.md`, sus pruebas y el manifiesto. No publicar sin aprobación.
