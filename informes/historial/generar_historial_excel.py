@@ -238,7 +238,7 @@ summary=[
  [("Alcance de modificaciones",0),("Descripción del commit y enlace al diff completo de archivos",0)],
  [("Advertencia",0),("No equivale a certificación de despliegue o aprobación de versiones",0)]
 ]
-summary_links={(10,2):f"https://github.com/{REPO}/branches"}
+summary_links={(14,2):f"https://github.com/{REPO}/branches"}
 worksheet_xml("RESUMEN","Indicador|Valor".split("|"),summary,[44,112],summary_links)
 # Registro absoluto de cambios.
 headers=["Nº","Fecha (Chile)","Hora (Chile)","Fecha y hora Chile","Versión","Tipo de modificación","Descripción registrada en GitHub","Rama de origen/referencia","Commit SHA","Ver detalle del cambio","Fecha UTC","Autor del commit"]
@@ -298,6 +298,7 @@ worksheet_xml("METODOLOGIA",["Aspecto","Descripción y limitaciones"],[[(k,1),(v
 # Crear OOXML
 styles='''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<numFmts count="3"><numFmt numFmtId="164" formatCode="dd/mm/yyyy"/><numFmt numFmtId="165" formatCode="hh:mm:ss"/><numFmt numFmtId="166" formatCode="dd/mm/yyyy hh:mm:ss"/></numFmts>
 <fonts count="4"><font><sz val="10"/><name val="Aptos"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="10"/><name val="Aptos"/></font><font><b/><color rgb="FF123C58"/><sz val="17"/><name val="Aptos Display"/></font><font><u/><color rgb="FF0A64AB"/><sz val="10"/><name val="Aptos"/></font></fonts>
 <fills count="4"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF123C58"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEAF3FA"/><bgColor indexed="64"/></patternFill></fill></fills>
 <borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>
@@ -313,7 +314,6 @@ styles='''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  <xf numFmtId="0" fontId="0" fillId="3" borderId="0" xfId="0" applyFill="1"/>
  <xf numFmtId="1" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/>
 </cellXfs>
-<numFmts count="3"><numFmt numFmtId="164" formatCode="dd/mm/yyyy"/><numFmt numFmtId="165" formatCode="hh:mm:ss"/><numFmt numFmtId="166" formatCode="dd/mm/yyyy hh:mm:ss"/></numFmts>
 </styleSheet>'''
 rels_tpl='http://schemas.openxmlformats.org/package/2006/relationships'
 main_ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main'
