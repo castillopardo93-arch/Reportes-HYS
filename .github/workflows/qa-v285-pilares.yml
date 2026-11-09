@@ -1,0 +1,24 @@
+name: QA Pilares e Indicadores v285
+on:
+  push:
+    branches:
+      - desarrollo/v285-pilares-indicadores
+    paths:
+      - 'v285-review/**'
+      - 'evidencias-v285/**'
+      - '.github/workflows/qa-v285-pilares.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa-pilares:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Herramientas de prueba DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Validación sintáctica, navegación y permisos en DOM
+        run: node evidencias-v285/test-pilares-v285.cjs
+      - name: Regresiones previas de v284
+        run: node evidencias-v284/test-regresion-v284.cjs
