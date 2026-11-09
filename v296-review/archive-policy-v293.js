@@ -16,7 +16,7 @@
   const payload=data.slice(index+1);
   if(!payload||payload.length%4!==0||!/^(?:[a-z0-9+/]{4})*(?:[a-z0-9+/]{2}==|[a-z0-9+/]{3}=)?$/i.test(payload))
    throw Error('Los datos de la fotografía están incompletos o dañados.');
-  const mime=data.slice(11,index).toLowerCase();
+  const mime=data.slice(11,data.indexOf(';',11)).toLowerCase();
   let bytes;
   try{bytes=atob(payload.slice(0,Math.min(payload.length,128)&~3))}
   catch{throw Error('La fotografía no se pudo decodificar.')}
