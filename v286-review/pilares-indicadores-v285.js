@@ -41,7 +41,8 @@ const pillars=[
 const button=el('button','hys-admin-open');button.id='hys285OpenPillars';button.type='button';button.hidden=true;
 button.setAttribute('aria-label','Pilares e Indicadores');
 const glyph=el('span','tools-option-icon','▥');glyph.setAttribute('aria-hidden','true');
-button.append(glyph,el('span','tools-option-label','Pilares'),el('span','tools-option-full','Pilares e Indicadores'));
+button.title='Pilares e Indicadores';
+button.append(glyph,el('span','tools-option-label','Pilares e Indicadores'),el('span','tools-option-full','Pilares e Indicadores'));
 nav.append(button);
 const panel=el('section');panel.id='hys285PillarsPanel';panel.hidden=true;
 panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','hys285Title');
