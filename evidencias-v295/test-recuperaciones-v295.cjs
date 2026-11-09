@@ -7,13 +7,13 @@ const dir=path.resolve(__dirname,'../v295-review');
 const {planConflictCopies}=require(path.join(dir,'recovery-policy-v295.js'));
 const cloud=fs.readFileSync(path.join(dir,'cloud-v242.js'),'utf8');
 const html=fs.readFileSync(path.join(dir,'index.html'),'utf8');
-const user='usuario-qa',module='APR',oldId='v242-original-qa';
+const user='usuario-qa',scopeModule='APR',oldId='v242-original-qa';
 const payload={reportId:oldId,owner:'Nombre previo',status:'Finalizado',
  data:{activities:[],inspections:[],findings:[]}};
-const item=(opts={})=>({id:oldId,uid:user,module,revision:2,token:'token-original',
+const item=(opts={})=>({id:oldId,uid:user,module:scopeModule,revision:2,token:'token-original',
  payload,archive:{metadata:{reportId:oldId,reportData:payload},pdf:'JVBERi0='},at:1,...opts});
 function plan(rows,currentDraftId=oldId,isGlobal=false){
- let n=0;return planConflictCopies(rows,{uid:user,module,currentDraftId,isGlobal,
+ let n=0;return planConflictCopies(rows,{uid:user,module:scopeModule,currentDraftId,isGlobal,
  ownerName:'Responsable actualizado',newId:()=>String(++n).padStart(4,'0'),now:()=>1234});
 }
 let passed=0;
@@ -33,7 +33,7 @@ function loadedRecoverFixture(result,opts={}){
  const window={reportesHysSupabase:{rpc:async()=>({data:{id:oldId,revision:2,payload},error:null})}};
  const fixture=new Function('queue','generation','current','canWrite','central','message','window','confirm','loadReport','pendingStatus','state',
  source.replace('localSaved=true','state.saved=true')+' return recoverDraft;')(
- queue,generation,{selectedModule:module},()=>true,()=>true,x=>messages.push(x),window,
+ queue,generation,{selectedModule:scopeModule},()=>true,()=>true,x=>messages.push(x),window,
  ()=>{confirmCalls++;return opts.confirm!==false},
  async()=>{loadCalls++;return result},async()=>{pendingCalls++},{});
  return {fn:fixture,calls:()=>({messages,loadCalls,pendingCalls,confirmCalls})};
