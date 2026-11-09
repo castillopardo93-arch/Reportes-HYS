@@ -894,10 +894,11 @@ async function save(){
 async function open(tab='directory',userId=null){
  if(!isGlobal())return;
  if(!panel.hidden&&!abandon())return;
+ const actor=root.__REPORTES_HYS_ACCESS__?.userId;
  state.tab=tab;state.dirty=false;panel.hidden=false;
  await refresh();
- // Una sesión revocada durante la consulta jamás abre un editor con datos anteriores.
- if(!isGlobal()||panel.hidden)return;
+ // Una sesión revocada o sustituida durante la consulta jamás abre el editor.
+ if(!isGlobal()||panel.hidden||root.__REPORTES_HYS_ACCESS__?.userId!==actor)return;
  if(tab==='create')resetDraft();
  if(userId){const u=state.users.find(x=>x.usuario_id===userId);if(u)openEdit(u)}
  else render();
