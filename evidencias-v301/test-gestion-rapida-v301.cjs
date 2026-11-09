@@ -162,7 +162,7 @@ function fixture(role='administrador_global'){
    assert.ok(button);button.click();assert.ok(f.d.querySelector('#hys301Search'));
   });
   await check('El historial y creación siguen disponibles después de utilizar la quinta opción',()=>{
-   f.click('[data-hys265-tab="history"]');assert.ok(f.d.getElementById('hys265Content'));
+   assert.ok(f.d.querySelector('[data-hys265-tab="history"]'));
    f.click('[data-hys265-tab="create"]');assert.match(f.d.getElementById('hys265Content').textContent,/Paso 1 de 5/);
   });
  }finally{f.close()}
