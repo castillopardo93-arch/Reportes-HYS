@@ -21,7 +21,7 @@ function fixture({review='accidentes',role='administrador_global',active=true,mo
   rpc:()=>{serverCalls++;throw Error('No se puede acceder a Supabase')},
   from:()=>{serverCalls++;throw Error('No se puede acceder a Supabase')}
  };
- w.__REPORTES_HYS_ACCESS__={userId:'global',profile:{rol,activo},selectedModule:module,modules:['APR','OTROS']};
+ w.__REPORTES_HYS_ACCESS__={userId:'global',profile:{rol:role,activo},selectedModule:module,modules:['APR','OTROS']};
  w.confirm=()=>true;
  w.Hys285Pillars={close:()=>true};
  w.eval(src);
