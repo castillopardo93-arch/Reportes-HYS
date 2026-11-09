@@ -69,6 +69,17 @@ function pack(photos){return {module:'APR',data:{activities:[[1,'APR','Área','D
  await check('Resumen remoto nuevo utiliza unión sin destruir archivo local',()=>assert.match(html,/Hys293ArchivePolicy\.mergeRemoteSummary\(existing,summary\)/));
  await check('Vista diferencia copia anterior y revisión central nueva',()=>assert.match(html,/Copia local de revisión anterior; existe una revisión central pendiente de recuperar/));
  await check('Editar se deshabilita cuando no están disponibles datos',()=>assert.match(html,/!r\.hasReportData\?'disabled '/));
- await check('Scripts JavaScript embebidos de la página sin errores de sintaxis',()=>{const scripts=[...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)].filter(m=>!/\\bsrc\\s*=/.test(m[1])&&!/application\\/json/i.test(m[1]));assert.ok(scripts.length>=5);scripts.forEach((m,i)=>new vm.Script(m[2],{filename:'inline-'+i+'.js'}));});
+ await check('Scripts JavaScript embebidos de la página sin errores de sintaxis',()=>{
+  const scripts=[];let cursor=0;
+  while((cursor=html.indexOf('<script',cursor))>=0){
+   const start=html.indexOf('>',cursor),end=html.indexOf('</script>',start);
+   if(start<0||end<0)break;
+   const tag=html.slice(cursor,start+1);
+   if(!tag.includes(' src=')&&!tag.includes('application/json'))scripts.push(html.slice(start+1,end));
+   cursor=end+9;
+  }
+  assert.ok(scripts.length>=5);
+  scripts.forEach((code,i)=>new vm.Script(code,{filename:'inline-'+i+'.js'}));
+ });
  console.log('PASS · '+passed+' pruebas v293. No hay acceso a datos de usuarios ni escrituras remotas.');
 })().catch(e=>{console.error(e);process.exitCode=1});
