@@ -1,0 +1,40 @@
+name: Auditoría de sincronización y trazabilidad HYS v297
+on:
+  push:
+    branches:
+      - desarrollo/v297-auditoria-sincronizacion-trazabilidad
+    paths:
+      - 'v297-review/**'
+      - 'evidencias-v297/**'
+      - '.github/workflows/qa-v297-acuses-trazabilidad.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ack-history-and-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM de pruebas sin scripts remotos
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Acuses remotos, historial y cola v297
+        run: node evidencias-v297/test-acuses-trazabilidad-v297.cjs
+      - name: Auditoría documental v296
+        run: node evidencias-v296/test-integridad-auditoria-v296.cjs
+      - name: Recuperación de conflictos v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial y dos tarjetas v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: PDF y fotografía v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Guardado central controlado v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad y facultades v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Catálogo de riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresiones integrales v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresiones de guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
