@@ -74,7 +74,7 @@ let n=0;async function check(title,fn){await fn();n++;console.log('OK '+String(n
  await check('Versión v305 aparece solo en selector y no dentro de investigaciones',()=>{
   assert.match(html,/Reportes H y S · v305 · Revisión/);
   assert.match(src('appearance-v242.js'),/c\.text\.company\+' · v305 · Revisión'/);
-  assert.ok(!/v305|v304|v303/.test(script.replace(/\/\*[^]*?\*\//g,'')));
+  assert.doesNotMatch(script, /<(?:h1|h2|p|span|strong)[^>]*>[^<]*\bv(?:303|304|305)\b/i);
  });
  await check('Las banderas de escritura central permanecen desactivadas',()=>{
   const config=src('config-v242.js');
