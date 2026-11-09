@@ -1,9 +1,9 @@
 {
-  "version": 295,
-  "branch": "desarrollo/v295-recuperacion-conflictos-pdf-seguro",
-  "base_version": 294,
-  "base_commit": "95bdbe7f4d295122a6656e0f00cc96173caacbbb",
-  "estado": "desarrollo-recuperaciones-y-pdf-con-guardas-de-sesion-no-publicado",
+  "version": 296,
+  "branch": "desarrollo/v296-integridad-local-documental",
+  "base_version": 295,
+  "base_commit": "c7bff312b3765a6fee234a004a1cfabfbd7ef975",
+  "estado": "desarrollo-auditoria-local-01-corregida-con-validaciones-no-publicada",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v294-validacion-historial-pdf-dos-tarjetas",
+  "base_branch": "desarrollo/v295-recuperacion-conflictos-pdf-seguro",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -700,5 +700,36 @@
     "pruebas": "evidencias-v295/test-recuperaciones-v295.cjs",
     "ci": ".github/workflows/qa-v295-recuperaciones.yml",
     "estado_produccion": "sin cambios"
+  },
+  "auditoria_v296": {
+    "fecha": "2026-11-09",
+    "documento": "AUD-COD-HYS-2026-11-09-01",
+    "branch": "desarrollo/v296-integridad-local-documental",
+    "altas_implementadas": [
+      "A-01: copia de conflicto con PDF previo no sale como Finalizado sin PDF; la cola impide enviar hasta regenerar el archivo",
+      "A-02: rechazar cargas locales con entry.id, reportData.reportId o módulo incoherentes",
+      "A-03: estructura PDF mínima, Base64 estricto, firma y fin, desplazamiento xref e identidad de metadata"
+    ],
+    "medias_implementadas": [
+      "A-04: firmas de imagen compatibles con MIME (comprobación inicial)",
+      "A-05: etiqueta única de compilación en 61 recursos locales JS/CSS",
+      "A-06: sin éxito si onSave finaliza tras cambio de sesión",
+      "A-07: mensajes distintos para no guardado, guardado local y confirmación remota",
+      "A-08: si falla IndexedDB y no existe Navigator Locks, se rechaza escribir el fallback",
+      "A-09: cierre garantizado de conexión IndexedDB del PDF, incluso con error"
+    ],
+    "pendientes": [
+      "A-03: validación completa con parser y lectura real del PDF en navegador",
+      "A-04: decodificación raster completa y carga/impresión real de fotografías",
+      "A-10: SRI o biblioteca local con hashes de binarios verificados",
+      "A-11: reducir acoplamiento del HTML con refactorización gradual y regresión visual",
+      "Validación E2E con usuarios autorizados, otras tarjetas y dispositivos: requiere Work"
+    ],
+    "pruebas_nuevas": 34,
+    "pruebas_regresion": 218,
+    "total_pruebas": 252,
+    "evidencia": "evidencias-v296/test-integridad-auditoria-v296.cjs",
+    "workflow": ".github/workflows/qa-v296-integridad-local.yml",
+    "flags_centrales": "desactivadas, sin cambios de Supabase, main ni producción"
   }
 }
