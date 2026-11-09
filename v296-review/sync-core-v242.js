@@ -40,13 +40,25 @@
   }
   replaceDraft(ops){return this.transaction(()=>this.writeDraftOps(ops))}
   transaction(fn){const p=this.serial.then(fn);this.serial=p.catch(()=>{});return p}
-  async prepare(row){const prior=await this.store.get('pending',row.id),meta=await this.store.get('meta',row.id);return {...clone(row),archive:row.archive??(prior&&fingerprint(prior.payload)===fingerprint(row.payload)?prior.archive:null)??null,revision:prior?.revision??meta?.revision??0}}
+  async prepare(row){
+   const prior=await this.store.get('pending',row.id),meta=await this.store.get('meta',row.id);
+   const archive=row.archive??(prior&&fingerprint(prior.payload)===fingerprint(row.payload)?prior.archive:null)??null;
+   const requiresPdfRegeneration=!archive&&(prior?.requiresPdfRegeneration===true||row.requiresPdfRegeneration===true);
+   const payload=clone(row.payload);
+   if(requiresPdfRegeneration)payload.status='En edición';
+   return {...clone(row),payload,archive,requiresPdfRegeneration,revision:prior?.revision??meta?.revision??0};
+  }
   enqueue(row){return this.transaction(async()=>{await this.store.put('pending',await this.prepare(row))})}
   commitDraft(row,draft){return this.transaction(async()=>{const prepared=row?await this.prepare(row):null;await this.writeDraftOps([...(prepared?[{store:'pending',value:prepared}]:[]),{store:'draft',value:draft}])})}
   flush(){if(this.running)return this.running;this.running=this.run().finally(()=>{this.running=null});return this.running}
   async run(){for(let n=0;n<50;n++){
    const list=await this.transaction(()=>this.store.all('pending'));if(!list.length)return;
-   const item=list.sort((a,b)=>a.at-b.at)[0],saved=await this.send(item);
+   const item=list.sort((a,b)=>a.at-b.at)[0];
+   if(item.requiresPdfRegeneration===true&&!item.archive){
+    const err=Error('El informe recuperado necesita generar un PDF nuevo antes de sincronizarse.');
+    err.code='HYS_PDF_REQUIRED';throw err;
+   }
+   const saved=await this.send(item);
    const confirmation=verifyServerAck(item,saved);
    await this.transaction(async()=>{const current=await this.store.get('pending',item.id);await this.store.batch([{store:'meta',value:{id:item.id,revision:confirmation.revision,fingerprint:confirmation.fingerprint}},...(current?.token===item.token?[{store:'pending',id:item.id,remove:true}]:current?[{store:'pending',value:{...current,revision:saved.revision}}]:[])])});
   }}
