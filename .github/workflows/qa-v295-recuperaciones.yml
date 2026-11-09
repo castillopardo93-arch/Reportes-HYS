@@ -1,0 +1,36 @@
+name: Recuperación de conflictos y PDF seguro HYS v295
+on:
+  push:
+    branches:
+      - desarrollo/v295-recuperacion-conflictos-pdf-seguro
+    paths:
+      - 'v295-review/**'
+      - 'evidencias-v295/**'
+      - '.github/workflows/qa-v295-recuperaciones.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recovery-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM de pruebas aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Recuperaciones y PDF seguros v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial y permisos v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: Archivo PDF y fotos v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Confirmaciones servidor v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Facultades y guardado v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Riesgos oficiales v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresión integral v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión de cola local v284
+        run: node evidencias-v284/test-regresion-v284.cjs
