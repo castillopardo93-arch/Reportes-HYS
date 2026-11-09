@@ -1,0 +1,52 @@
+name: Reportes HYS v303 — Períodos y alertas sin cifras ficticias
+on:
+  push:
+    branches:
+      - desarrollo/v303-periodos-alertas-tendencias
+    paths:
+      - 'v303-review/**'
+      - 'evidencias-v303/**'
+      - '.github/workflows/qa-v303-periodos-indicadores.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  periods-alerts-and-all-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Períodos, alertas, tendencias y aislamiento v303
+        run: node evidencias-v303/test-periodos-indicadores-v303.cjs
+      - name: Auditoría integral v302
+        run: node evidencias-v302/test-auditoria-integral-v302.cjs
+      - name: Gestión rápida de permisos v301
+        run: node evidencias-v301/test-gestion-rapida-v301.cjs
+      - name: Interfaz y roles v300
+        run: node evidencias-v300/test-interfaz-permisos-v300.cjs
+      - name: Historial y paginación v299
+        run: node evidencias-v299/test-lectura-remota-v299.cjs
+      - name: RPC autenticación y permisos v298
+        run: node evidencias-v298/test-lectura-central-v298.cjs
+      - name: Acuses y trazabilidad v297
+        run: node evidencias-v297/test-acuses-trazabilidad-v297.cjs
+      - name: Integridad local v296
+        run: node evidencias-v296/test-integridad-auditoria-v296.cjs
+      - name: Recuperaciones v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: PDF y fotos v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: DOM y seguridad v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
