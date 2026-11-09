@@ -1,0 +1,923 @@
+{
+  "version": 305,
+  "branch": "desarrollo/v305-investigacion-accidentes-admin",
+  "base_version": 304,
+  "base_commit": "78904d3f0fa5adc015370db43fd9f51f0d5f6878",
+  "estado": "desarrollo-nueva-pestana-investigacion-accidentes-admin",
+  "aprobada": false,
+  "publicada": false,
+  "produccion": false,
+  "supabase_modificado": false,
+  "integracion_real_creacion_cuenta": false,
+  "escrituras_reales_bloqueadas": true,
+  "pasos": [
+    "Ficha del trabajador",
+    "Creación de cuenta",
+    "Rol y tarjetas",
+    "Áreas y facultades",
+    "Revisar y guardar"
+  ],
+  "cuentas_ficticias_sin_invitaciones_enviadas": true,
+  "almacenamiento_local_laboratorio": "hys-v266-lab-shared::reportes-hys-v266-simulador-local-1",
+  "pruebas_logica_aprobadas": 28,
+  "pruebas_automatizadas_node_en_repo": 10,
+  "pruebas_navegador_pendientes": true,
+  "presentacion_de_desarrollo": "aplicacion completa index.html?qa=1: selector dos tarjetas; cuatro funciones laterales sin duplicados",
+  "validacion_apariencia": {
+    "panel_original_conservado": true,
+    "opciones_del_panel_original": "colores, iconos, textos, logotipo, tipografia, espaciado, bordes, vista previa, restauracion",
+    "persistencia_local_qa": "reportes-hys-v265-apariencia-local",
+    "pruebas_qa_almacenamiento": 12,
+    "escritura_supabase": false,
+    "inspeccion_visual_final_pendiente": true
+  },
+  "validacion_areas": {
+    "panel_original": true,
+    "secciones": [
+      "Áreas de trabajo",
+      "Opciones de formularios",
+      "Historial de áreas"
+    ],
+    "datos_laboratorio_aislados": true
+  },
+  "validacion_navegacion": {
+    "correccion_apariencia_visible": true,
+    "correccion_superposicion_areas_y_usuarios": true,
+    "pruebas_navegacion_aprobadas": 7,
+    "pruebas_visibilidad_logica_aprobadas": 2,
+    "verificacion_visual_final": "pendiente",
+    "barra_desplazamiento_bajo_apariencia_eliminada": true,
+    "comprobaciones_css_y_modulos_aprobadas": 12,
+    "validacion_visual_final": "pendiente",
+    "rotulos_una_linea_y_mas_espaciados": true,
+    "verificaciones_rotulos_y_ancho": 16
+  },
+  "auditoria_integral_20261108": {
+    "audit_base_sha": "250f8bad097de0880bcb8454bcec8acd927c092e",
+    "audit_document": "evidencias-v265/AUDITORIA-INTEGRAL-CORRECTIVA-2026-11-08.md",
+    "node_suite": "evidencias-v265/test-regresion-integral-v265.cjs",
+    "node_suite_executed": false,
+    "logic_suite_counts": [
+      11,
+      12,
+      15,
+      8,
+      4,
+      19
+    ],
+    "browser_qa_verified": false,
+    "security_findings_supabase_read_only": true,
+    "fixes": [
+      "storage namespace",
+      "shared lab identity and appearance",
+      "simulated form catalogs",
+      "global admin role check",
+      "calendar and hierarchy validation",
+      "faculty allowlist and scope",
+      "atomic local persistence",
+      "audit privacy redaction",
+      "JS cache references"
+    ]
+  },
+  "auditoria_punto3": {
+    "fecha": "2026-11-08",
+    "informe": "evidencias-v266/PUNTO-3-IMPLEMENTACION-Y-PRUEBAS-v266.md",
+    "suite": "evidencias-v266/test-punto3-v266.cjs",
+    "suite_node_ejecutada": false,
+    "verificaciones_estaticas": 18,
+    "verificaciones_funcionales_simuladas": 12,
+    "verificacion_visual_pendiente": true,
+    "backend_produccion_modificado": false,
+    "seguridad_supabase_solo_lectura": true,
+    "aprobacion_pendiente": true,
+    "campos": [
+      "seguridad",
+      "creacion_cuentas",
+      "notificaciones",
+      "pdf-fotos",
+      "respaldos",
+      "offline-pospuesto"
+    ]
+  },
+  "source_report": "evidencias-v266/AUDITORIA-PUNTO-3-v266.md",
+  "pruebas_integridad_punto3": 18,
+  "pruebas_logica_punto3": 14,
+  "pruebas_node_ejecutadas": false,
+  "point3_progress": {
+    "seguridad_supabase": "asesores y grants verificados solo lectura; cambios pendientes de aprobación",
+    "cuentas_reales": "bloqueadas; asistente ficticio disponible",
+    "notificaciones": "prueba local F02-F07; envío real pendiente",
+    "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
+    "borradores_previos": "exportación selectiva; importación automática prohibida"
+  },
+  "base_branch": "desarrollo/v304-pilares-integrados-interfaz",
+  "implementacion_roles_v267": {
+    "catalogo_local": true,
+    "crear": true,
+    "editar": true,
+    "duplicar": true,
+    "desactivar": true,
+    "tarjetas": true,
+    "facultades": true,
+    "roles_reales": false,
+    "asignacion_real": false,
+    "rls_actualizada": false,
+    "pruebas_navegador_pendientes": true,
+    "almacenamiento": "reportes-hys-v267-roles-local"
+  },
+  "auditoria_integral_v268": {
+    "fecha": "2026-11-08",
+    "alcance": "estática sobre copia aislada; revisión visual pendiente",
+    "archivos_copiados": 67,
+    "hallazgos_confirmados": 5,
+    "aprobada": false,
+    "pruebas_navegador": false,
+    "produccion_modificada": false
+  },
+  "auditoria_integral_v269": {
+    "fecha": "2026-11-08",
+    "copia_aislada": true,
+    "archivos_copiados": 67,
+    "css_responsive_consolidado": true,
+    "script_landscape_legacy_desactivado": true,
+    "identificador_visual_corregido": true,
+    "acceso_laboratorio_corregido": true,
+    "roles_reales": false,
+    "pruebas_navegador_pendientes": true,
+    "pruebas_e2e_pendientes": true,
+    "estado": "parcial; no declarar todos los defectos resueltos"
+  },
+  "cambios_v270": {
+    "usuarios_registrados_sin_boton_nuevo": true,
+    "usuarios_registrados_sin_tarjeta_roles": true,
+    "crear_usuario_en_pestana_propia": true,
+    "roles_en_pestana_propia": true,
+    "pruebas_visuales_pendientes": true
+  },
+  "cambios_v271": {
+    "pestana_creacion_roles_eliminada": true,
+    "catalogo_roles_no_cargado": true,
+    "roles_existentes_y_permisos_conservados": true,
+    "datos_locales_anteriores_no_borrados": true,
+    "implementacion_roles_dinamicos_pospuesta": true,
+    "validacion_navegador_pendiente": true
+  },
+  "auditoria_integral_v272": {
+    "fecha": "2026-11-08",
+    "archivos_copiados": 67,
+    "inspeccion_estatica": true,
+    "pruebas_navegador": false,
+    "pruebas_integracion": false,
+    "roles_dinamicos_desactivados": true,
+    "problema_qa_ruta_confirmado": true,
+    "problema_simulador_ruta_confirmado": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "revision_permisos_backend_pendiente": true,
+    "aprobada": false
+  },
+  "correcciones_v273": {
+    "qa_v273_habilitado_solo_raw_githack_y_qa1": true,
+    "simulador_local_v273_habilitado_con_guardas": true,
+    "gestion_usuarios_lab_v273_habilitada": true,
+    "verificador_punto3_v273_habilitado": true,
+    "encabezado_actualizado": true,
+    "roles_dinamicos_desactivados": true,
+    "guardado_real_usuarios_bloqueado": true,
+    "duplicidades_heredadas_pendientes": true,
+    "pruebas_navegador_pendientes": true,
+    "pruebas_integracion_pendientes": true
+  },
+  "cambios_v274": {
+    "metodo_automatico_predeterminado": true,
+    "metodo_manual_y_confirmacion": true,
+    "metodo_invitacion_conservado": true,
+    "contrasena_generada_criptograficamente": true,
+    "copiar_y_compartir": true,
+    "entrega_unica_despues_de_alta_ficticia": true,
+    "contrasena_no_persistida_en_cuenta_o_auditoria": true,
+    "guardado_real_bloqueado": true,
+    "cuentas_reales_no_creadas": true,
+    "pruebas_estaticas": 13,
+    "pruebas_navegador": false,
+    "pruebas_supabase": false,
+    "publicacion_pendiente": true
+  },
+  "cambios_v275": {
+    "acceso_desde_tarjeta_ingreso": true,
+    "cambio_con_contrasena_actual": true,
+    "nueva_contrasena_y_confirmacion": true,
+    "ver_mostrar_contrasenas": true,
+    "retorno_a_ingreso": true,
+    "recuperacion_olvido_conservada": true,
+    "sin_envio_correo_en_flujo_habitual": true,
+    "cliente_supabase_efimero_sin_persistencia": true,
+    "escritura_auth_solo_tras_accion_usuario_real": true,
+    "demostracion_qa_sin_escrituras": true,
+    "contrasena_no_guardada_en_localstorage": true,
+    "pruebas_unitarias_simuladas": 7,
+    "comprobaciones_estructura": true,
+    "pruebas_end_to_end_reales": false,
+    "pruebas_supabase_reales": false,
+    "pruebas_visual_navegador": false
+  },
+  "cambios_v276": {
+    "cerrar_sesion_qa_en_prevencionistas": true,
+    "cerrar_sesion_qa_en_supervisores_embebidos": true,
+    "cambio_modulo_independiente_de_cierre": true,
+    "acceso_a_tarjeta_de_ingreso_qa": true,
+    "cambiar_contrasena_qa_accesible": true,
+    "retorno_al_laboratorio_qa": true,
+    "recuperacion_qa_sin_envio_correo": true,
+    "conexion_real_supabase_no_utilizada_en_qa": true,
+    "sesion_local_y_ambito_limpios_al_salir": true,
+    "script_nuevo": "qa-sesion-v276.js",
+    "pruebas_qa_simuladas": 7,
+    "pruebas_sintaxis": 6,
+    "pruebas_navegador_real": false,
+    "pruebas_supabase_real": false
+  },
+  "modo": "aplicacion-real-de-desarrollo-sin-simulador",
+  "regla_presentacion": {
+    "laboratorio_solo_con_autorizacion_explicita": true,
+    "formato_definitivo_por_defecto": true,
+    "funciones_simuladas_no_presentadas_como_reales": true,
+    "no_publicar_ni_modificar_backend_sin_autorizacion": true
+  },
+  "cambios_v277": {
+    "ingreso_real_supabase_auth": true,
+    "modo_qa_en_index_deshabilitado": true,
+    "simulador_ficticio_no_cargado": true,
+    "vista_previa_con_datos_ficticios_no_cargada": true,
+    "boton_cierre_ficticio_no_cargado": true,
+    "permisos_consultados_en_rpc_real": true,
+    "escrituras_centrales_habilitadas": false,
+    "creacion_real_usuarios_en_formulario_unificado": false,
+    "aplicacion_oficial_modificada": false,
+    "pruebas_dependencias_locales": 52,
+    "pruebas_js_embebidos": 46,
+    "pruebas_navegador_real": false,
+    "pruebas_e2e": false,
+    "pendiente_validacion_usuario": true
+  },
+  "cambios_v278": {
+    "gestor_estado_en_usuarios_registrados": true,
+    "suspender_acceso_con_rpc_real": "hys242_guardar_usuario",
+    "reactivar_acceso_con_rpc_real": "hys242_guardar_usuario",
+    "desvincular_con_baja_logica_y_auditoria": true,
+    "conserva_informes_y_compromisos": true,
+    "motivo_obligatorio": true,
+    "confirmacion_por_nombre_y_dialogo": true,
+    "comprobacion_revision_antes_de_guardar": true,
+    "confirmacion_estado_en_servidor": true,
+    "auditoria_eventos_v242": true,
+    "permisos_servidor_comprobados": true,
+    "impedir_modificacion_propias_cuentas_y_administrador_global": true,
+    "validacion_periodica_de_sesion_45_segundos": true,
+    "eliminacion_fisica_de_usuarios": false,
+    "revocacion_global_inmediata_de_tokens": false,
+    "reasignacion_automatica_de_compromisos": false,
+    "funciones_de_laboratorio_cargadas": false,
+    "ninguna_cuenta_modificada_por_esta_implementacion": true,
+    "pruebas_con_cliente_simulado": 14,
+    "pruebas_sintaxis_js": true,
+    "pruebas_e2e_con_cuentas_reales": false,
+    "pruebas_visual_navegador": false,
+    "solicitud_eliminacion_auditada_sin_borrado": true,
+    "validacion_acceso_authenticado_confirmada": true,
+    "ambitos_v242_sin_valores_invalidos_confirmados": true
+  },
+  "cambios_v279": {
+    "identificacion_internacional_pais_y_tipo": true,
+    "numero_documento_alfanumerico_y_ceros_iniciales": true,
+    "validacion_rut_chileno_condicional": true,
+    "codigo_interno_inicial_desde_documento_y_editable": true,
+    "campo_unidad_organizacional_retirado": true,
+    "correo_corporativo_o_personal_obligatorio": true,
+    "preferencia_todas_agregada": true,
+    "turno_desde_catalogo_real_listas_v242": true,
+    "editor_datos_propios_administrador_global": true,
+    "edicion_ficha_laboral_desde_usuarios_registrados": true,
+    "proteccion_role_y_facultades": true,
+    "servicio_backend_v279_preparado_sin_desplegar": true,
+    "creacion_tabla_fichas_laborales_solo_propuesta": true,
+    "rpc_auditada_fichas_y_opciones_solo_propuesta": true,
+    "no_guardar_si_backend_no_disponible": true,
+    "contraseñas_no_expuestas": true,
+    "usuarios_ficticios_no_cargados": true,
+    "auditoria_sin_documento_ni_contactos_completos": true,
+    "validaciones_modelo_19_de_19": true,
+    "validaciones_conector_7_de_7": true,
+    "no_eliminacion_de_usuarios": true,
+    "sin_cambios_produccion": true,
+    "pruebas_reales_e2e_no_ejecutadas": true,
+    "modo_offline_fuera_de_alcance": true
+  },
+  "cambios_v280": {
+    "pais_documento_texto_libre": true,
+    "sugerencias_paises_eliminadas": true,
+    "pais_predeterminado_eliminado": true,
+    "pais_obligatorio": true,
+    "validacion_rut_chileno_conservada": true,
+    "documentos_extranjeros_alfanumericos_conservados": true,
+    "otras_funciones_conservadas": true,
+    "pruebas_logica": 6,
+    "pruebas_sintaxis": true,
+    "prueba_visual_navegador": false,
+    "backend_ficha_pendiente_de_instalacion": true
+  },
+  "cambios_v281": {
+    "interfaz_areas_y_opciones_reutilizada": true,
+    "datos_de_turnos_de_informes_no_reutilizados": true,
+    "nuevo_catalogo_independiente": "regimenes_laborales_v281",
+    "valores_iniciales_en_propuesta_backend": [
+      "5X2",
+      "4X3",
+      "10X5",
+      "7X7"
+    ],
+    "alta_real_al_instalar_backend": true,
+    "edicion_real_al_instalar_backend": true,
+    "eliminacion_logica_y_restauracion_al_instalar_backend": true,
+    "auditado_por_eventos_v242": true,
+    "requiere_administrador_general": true,
+    "conserva_turnos_del_informe_diario": true,
+    "conserva_formulario_pais_documento_libre": true,
+    "sin_datos_ficticios": true,
+    "pruebas_logica_cliente_aislado": 9,
+    "pruebas_reales_autenticadas": false,
+    "pruebas_visuales_navegador": false,
+    "integracion_backend_preparada_no_instalada": true
+  },
+  "cambios_v282": {
+    "interfaz_v266_recuperada": true,
+    "titulo": "Áreas y opciones",
+    "pestanas": [
+      "Áreas de trabajo",
+      "Opciones de formularios",
+      "Historial"
+    ],
+    "un_solo_recuadro_administracion": true,
+    "todos_los_catalogos_operativos_existentes": [
+      "shift",
+      "project",
+      "Resultado",
+      "Prioridad",
+      "Estado",
+      "owner",
+      "otherCategory",
+      "otherStatus"
+    ],
+    "catalogo_turnos_laborales_independiente": "regimenes_laborales_v281",
+    "administracion_areas": "areas_trabajo_v242",
+    "editar_crear_desactivar_reactivar_en_cada_catalogo": true,
+    "consultas_reales_supabase": true,
+    "no_usa_datos_simulados": true,
+    "sin_dependencia_de_habilitar_guardado_central_de_informes": true,
+    "proyecto_consulta_catalogo_y_no_se_fuerza_valor_fijo": true,
+    "administrador_general_autorizado_a_todos_los_catalogos": true,
+    "gestion_de_areas_delegada_a_roles_con_facultades": true,
+    "controles_reales_habilitados_solo_con_rpc_v282_instalada": true,
+    "desplegada_rpc_v282": false,
+    "sin_cambios_automaticos_en_usuarios_areas_listas_o_roles": true,
+    "no_se_edita_rol_de_seguridad_ni_opciones_semanticas_fijas_desde_catalogo_generico": true,
+    "pruebas_cliente_aislado": 14,
+    "pruebas_navegador_real": false,
+    "pruebas_supabase_mutaciones_reales": false
+  },
+  "cambios_v283": {
+    "selector_nombre": "Régimen de turno",
+    "campo_entrada_nombre": "Régimen de turno",
+    "ficha_laboral_etiqueta": "Régimen de turno",
+    "regimenes_individuales_iniciales": [
+      "5X2",
+      "4X3",
+      "10X5",
+      "7X7"
+    ],
+    "regimenes_reales_si_existe_tabla": true,
+    "regimenes_pendientes_se_muestran_sin_fingir_guardado": true,
+    "edicion_individual_una_vez_instalada_rpc": true,
+    "administracion_mantiene_interfaz_v266": true,
+    "proyecto_vigente": "Proyecto Hidroeléctrico Alto Maipo",
+    "proyectos_desactualizados_en_supabase": [
+      "PHAM 1",
+      "PHAM 2"
+    ],
+    "registros_antiguos_agrupados_en_panel": true,
+    "formulario_nuevo_excluye_proyectos_antiguos": true,
+    "informe_historico_preserva_proyecto_original": true,
+    "sincronizacion_proyectos_en_supabase_pendiente_de_autorizacion": true,
+    "usuario_admin_debe_confirmar_toda_escritura": true,
+    "pruebas_sintaxis_js_embebido": 49,
+    "pruebas_logica_proyecto": 5,
+    "pruebas_logica_panel_regimen_proyecto": 11,
+    "pruebas_e2e_reales": false,
+    "pruebas_visuales_navegador": false,
+    "sin_produccion_modificada": true
+  },
+  "correcciones_v284": {
+    "fecha": "2026-11-08",
+    "base": "v283-review",
+    "carpeta": "v284-review",
+    "seguridad": "sin cambios en Supabase, usuarios, datos centrales, versiones protegidas ni main",
+    "alcance": "correcciones de almacenamiento local, integridad del formulario y nomenclatura de PDF, sin activación de backend remoto",
+    "guardado_sin_central": "la edición local no genera nuevas operaciones remotas imposibles de procesar; las operaciones heredadas se conservan",
+    "estado_guardado": "el panel identifica explícitamente que los informes y PDF están solo en el navegador",
+    "nuevo_informe": "conserva el borrador anterior en archivo local antes de reemplazarlo; exige regenerar PDF si el formulario cambió",
+    "finalizar": "exige datos obligatorios y rango de fechas correcto; distingue finalización local de remota",
+    "pdf": "evita base64 para envío remoto cuando central está desactivado; usa fecha del informe en nombre",
+    "fotos": "2 a 8 fotografías por fila en pantalla y PDF",
+    "layout_inicio": "dos columnas independientes de la configuración de fotografías; CSS móvil existente conserva una columna",
+    "pruebas_estaticas": [
+      "sintaxis de 10 bloques JavaScript embebidos en index.html",
+      "sintaxis de cloud-v242.js",
+      "comprobación de rutas y condiciones de guardado en código"
+    ],
+    "pruebas_navegador": false,
+    "pruebas_end_to_end": false,
+    "pruebas_supabase_reales": false,
+    "aprobacion_pendiente": true,
+    "pendientes_bloqueantes": [
+      "creación real de usuarios y ficha laboral v279",
+      "catálogos v282 y regímenes v281",
+      "guardado central de informes",
+      "notificaciones remotas y cierres auditados",
+      "numeración global única",
+      "pruebas navegadores y dispositivos"
+    ]
+  },
+  "pilares_indicadores_v285": {
+    "fecha": "2026-11-09",
+    "tipo": "interfaz de revisión con lectura RLS de áreas",
+    "autorizacion": "exclusivamente administrador_global activo en pantalla principal; previsualización pública sin datos reales en archivo independiente",
+    "componente": "pilares-indicadores-v285.js",
+    "estilos": "pilares-indicadores-v285.css",
+    "vista_sin_sesion": "pilares-indicadores-preview-v285.html",
+    "ubicacion": "panel lateral de Administración General, NO tercera tarjeta operativa",
+    "pilares": [
+      "Eficiencia en terreno",
+      "Gestión y cumplimiento",
+      "Indicadores de gestión",
+      "Gestión documental",
+      "Seguridad y trazabilidad",
+      "Mejora continua"
+    ],
+    "resumen": "Cuatro indicadores con guiones (no hay motor consolidado)",
+    "navegacion": "Seis tarjetas internas clicables con 3 indicadores de metodología por pilar y retorno",
+    "filtros": "Período, tarjeta de origen y áreas autorizadas; sin agregación aún",
+    "exportacion": "deshabilitada hasta datos reales",
+    "seguridad": "comprobación acceso por sesión/rol, lectura de áreas mediante RLS, sin creación/actualización/eliminación, sin métricas ficticias",
+    "pruebas": "evidencias-v285/test-pilares-v285.cjs; CI qa-v285-pilares.yml",
+    "pendientes": [
+      "verificación visual en navegador",
+      "motor central de indicadores",
+      "apertura de registros de origen y permisos finos",
+      "exportación ejecutiva PDF/Excel",
+      "validación end-to-end y aprobación de usuario"
+    ],
+    "produccion": "No se ha publicado, ni desplegado, ni activado backend de indicadores"
+  },
+  "ajuste_v286": {
+    "fecha": "2026-11-09",
+    "objetivo": "renombrar rótulo visible de tarjeta lateral de Pilares a Pilares e Indicadores",
+    "archivo": "pilares-indicadores-v285.js",
+    "css": "pilares-indicadores-v285.css",
+    "ubicaciones": [
+      "menú lateral contraído",
+      "menú lateral expandido",
+      "menú móvil",
+      "vista de previsualización"
+    ],
+    "comportamiento": "misma funcionalidad sin cambiar permiso ni datos ni formularios",
+    "pruebas": "evidencias-v286/test-pilares-v286.cjs y .github/workflows/qa-v286-pilares.yml",
+    "produccion": "sin publicar"
+  },
+  "integracion_v287": {
+    "fecha": "2026-11-09",
+    "alcance": "integración de Pilares e Indicadores en la aplicación completa index.html, no solo vista de diseño",
+    "menu": "opción Pilares e Indicadores dentro de la cinta de Administración General entre Seguimiento y Apariencia, con título completo",
+    "visibilidad": "administrador_global activo en pantalla de selección de módulos; no visible en módulos operativos ni para usuarios no autorizados",
+    "archivos": [
+      "v287-review/index.html",
+      "v287-review/pilares-indicadores-v285.js",
+      "v287-review/pilares-indicadores-v285.css"
+    ],
+    "sincronizacion": "la página principal conserva versiones de scripts actualizadas en caché; recalcula visibilidad al cambiar de módulo o sesión",
+    "contenido": "seis tarjetas con detalles y filtros de diseño; datos consolidados y exportaciones permanecen inhabilitados hasta integración autorizada",
+    "pruebas": "evidencias-v287/test-integracion-v287.cjs ejecutada en .github/workflows/qa-v287-interfaz.yml; además regresiones v284",
+    "seguridad": "sin escribir datos en Supabase ni cambiar RLS ni publicar app",
+    "limites": [
+      "sin prueba auténtica de navegador con acceso real",
+      "sin estadísticas centrales",
+      "sin habilitación de exportación PDF/Excel ejecutiva"
+    ]
+  },
+  "metodologia_practica_v288": {
+    "fecha": "2026-11-09",
+    "interfaz": "Pilares e Indicadores (panel Administración General)",
+    "cambios": [
+      "Cambiar título Metodología y trazabilidad futura por Cómo se calcula y verifica",
+      "Tres preguntas de gestión: qué ocurre, qué requiere intervención, si mejoramos",
+      "Mostrar reglas concretas de calidad y validación para cada uno de los 18 indicadores, en explicación plegable por indicador",
+      "Mostrar estado informativo real del bloqueo de guardado central, sin afirmar disponibilidad de estadísticas",
+      "No confundir sin datos con cero, ni sin denominador con 0%, ni ejecución con cierre verificado"
+    ],
+    "fuente_actual": "central desactivada en desarrollo: sin métricas consolidadas, sin simulación, sin exportación",
+    "permisos": "mismo Administrador General activo, pantalla principal",
+    "seguridad": "no muta datos, permisos ni estado de Supabase; no se habilita ninguna nueva función de escritura",
+    "evidencia": "evidencias-v288/test-metodologia-v288.cjs; .github/workflows/qa-v288-metodologia.yml",
+    "pendiente": [
+      "calcular métricas sobre registros centrales reales y autorizados",
+      "verificación documental de acciones y cierres",
+      "desglose de cada indicador hacia registros originales protegidos por RLS",
+      "validar visualmente con administrador en navegador",
+      "aprobar para eventual publicación"
+    ]
+  },
+  "auditoria_integral_v289": {
+    "fecha": "2026-11-09",
+    "origen": "copia íntegra v288; cambios solo v289-review/ más evidencias y workflow",
+    "componentes": [
+      "identidad y permisos",
+      "tarjetas APR/OTROS",
+      "gestión general",
+      "áreas y catálogos",
+      "borradores y archivos locales",
+      "generación y archivo PDF",
+      "seguimiento y notificaciones",
+      "seis pilares estratégicos",
+      "Supabase read-only"
+    ],
+    "correcciones": [
+      "guardado central necesita simultáneamente ENABLE_CENTRAL y DEPLOYMENT_READY",
+      "restauración de borrador legado no añade operaciones de envío cuando central está apagado",
+      "mensaje de guardado/errores corresponde a estado local real",
+      "historial remoto soporta respuesta nula sin romper paginación",
+      "actualización de catálogo no falla por caché local llena",
+      "sessionStorage indisponible no impide cargar borrador válido",
+      "archivo local se consulta aunque despliegue esté listo pero envío central siga apagado",
+      "nuevo informe usa fecha local del momento, no fecha de carga de página",
+      "Administrador General respeta tarjetas autorizadas cuando existen permisos explícitos; perfil histórico sin asignaciones conserva ambas",
+      "textos de versión actualizados al desarrollo v289"
+    ],
+    "pruebas": {
+      "nuevas": 43,
+      "regresion_v284": 16,
+      "total": 59,
+      "workflow": ".github/workflows/qa-v289-integral.yml"
+    },
+    "servidor": {
+      "modo": "solo lectura",
+      "ultima_migracion_instalada": "hys_v242_correcciones_aisladas",
+      "sin_tablasy_rpcs_posteriores": [
+        "fichas_laborales_v279",
+        "regimenes_laborales_v281",
+        "hys282_catalogo_capacidades",
+        "hys282_catalogo_mutar"
+      ],
+      "proyectos_anteriores": "listas_v242 conserva PHAM 1/PHAM 2 como datos antiguos",
+      "advertencias_asesor_seguridad": 46,
+      "advertencias_asesor_rendimiento": 33
+    },
+    "pendientes_criticos": [
+      "guardado central multiusuario sin activar",
+      "catálogos laborales v279/v281/v282 sin instalar",
+      "integración de hallazgos/seguimiento/cierre verificado con indicadores",
+      "informes PDF/Excel ejecutivos y numeración única global",
+      "pruebas E2E con credenciales y navegador",
+      "revisión y tratamiento selectivo de advisories de Supabase"
+    ],
+    "limitaciones": [
+      "pruebas automáticas sin navegador autenticado",
+      "no se ejecutó operación remota de escritura",
+      "no se validaron contratos de datos v279/v281/v282 con servicios inexistentes",
+      "offline/PWA fuera del alcance vigente"
+    ],
+    "autorizaciones": "Cambios de producción, RLS, migraciones, usuarios y app oficial no ejecutados; requieren aprobación de despliegue específica."
+  },
+  "cambios_v290": {
+    "fecha": "2026-11-09",
+    "alcance": "Interfaz y salidas del selector de riesgos: ocultar códigos legados, conservar identificadores internos e historial.",
+    "validaciones": "No mostrar códigos en resultados, chips, detalles ni resúmenes/PDF; mantener búsqueda por código heredado y alias como compatibilidad.",
+    "conservacion": "Seed original con 393 riesgos y códigos internos no alterado; instantáneas históricas y almacenamiento local no migrados.",
+    "limitaciones": "Importación JSON/CSV local con códigos internos; aún no admite directamente Excel maestro oficial ni PDF de solicitudes; no hay carga central.",
+    "ambiente": "Copia nueva v290-review desde v289-review. Producción, Supabase, main y v289 intactos.",
+    "pruebas": "evidencias-v290/test-riesgos-v290.cjs",
+    "ci": ".github/workflows/qa-v290-riesgos.yml",
+    "estado": "pendiente_de_validacion_ci_y_navegador_autenticado"
+  },
+  "cambios_v291": {
+    "fecha": "2026-11-09",
+    "base": "v290-review",
+    "intervenciones": [
+      "Rechazar áreas desactivadas al validar facultades, incluso si la lista quedó obsoleta",
+      "Impedir cambiar rol sin ficha válida del usuario objetivo y sin identidad consistente del administrador",
+      "Impedir guardar borradores locales desde una tarjeta no incluida en las autorizaciones de sesión o con sesión desplazada",
+      "Verificar incremento de revisión después de cambiar estado de acceso de un usuario"
+    ],
+    "sin_activacion_remota": true,
+    "flags_centrales_sin_cambios": true,
+    "acceso_usuarios_reales_no_habilitado": true,
+    "pruebas": "evidencias-v291/test-seguridad-y-guardado-v291.cjs",
+    "workflows": ".github/workflows/qa-v291-accesos-guardado.yml",
+    "pruebas_e2e_reales_pendientes": true,
+    "produccion": "sin cambios"
+  },
+  "cambios_v292": {
+    "fecha": "2026-11-09",
+    "cambios": [
+      "Confirmación de identidad: informe, módulo, número de revisión y token remoto",
+      "Compatibilidad con respuestas idempotentes (sin cambios) de RPC real",
+      "No eliminar operaciones pendientes ante respuestas incompletas o contradictorias",
+      "No mostrar sincronizado sin metadatos de revisión que correspondan al borrador local",
+      "Comprobar acuse del servidor antes de alterar el propietario local",
+      "Puerta adicional de autorización de escritura remota desactivada por defecto"
+    ],
+    "base_backend": "RPC hys242_guardar_con_motivo y hys242_guardar_informe verificados en Supabase mediante inspección de solo lectura",
+    "nueva_puerta": "HYS292_REMOTE_WRITE_AUTHORIZED=false",
+    "integracion_real": "preparada, no activada",
+    "pendientes": [
+      "pruebas con dos cuentas de prueba autorizadas",
+      "pruebas navegador y dispositivos",
+      "validación del rol y RLS en flujos reales",
+      "autorización explícita de despliegue"
+    ],
+    "evidencia": "evidencias-v292/test-contrato-guardado-v292.cjs",
+    "workflow": ".github/workflows/qa-v292-guardado-central.yml",
+    "supabase": "solo lectura"
+  },
+  "cambios_v293": {
+    "fecha": "2026-11-09",
+    "objetivo": "Preservar evidencias de informes, reforzar validación de fotografías y evitar estados falsos de descarga.",
+    "correcciones": [
+      "Impedir que metadatos remotos más recientes sustituyan automáticamente los bytes del PDF o el formulario editables de la revisión local anterior.",
+      "Indicar en el historial cuándo existe una revisión central pendiente de recuperar.",
+      "Comprobar la disponibilidad efectiva del PDF y datos editables antes de habilitar acciones, y distinguir disponibilidad remota autorizada de caché local.",
+      "Respetar también la tercera puerta de v292 al consultar PDF remoto.",
+      "Restringir fotos de respaldos a data URI de imagen compatible, base64 completo y límite conservador de tamaño.",
+      "Validar las fotografías del informe antes de archivar el PDF."
+    ],
+    "pruebas": "evidencias-v293/test-archivo-evidencias-v293.cjs",
+    "workflow": ".github/workflows/qa-v293-archivo-evidencias.yml",
+    "limitaciones": [
+      "Sin acceso E2E a usuarios reales ni dos dispositivos físicos.",
+      "Escrituras reales de Supabase siguen desactivadas.",
+      "PDF y archivos oficiales no han sido importados ni desplegados."
+    ]
+  },
+  "cambios_v294": {
+    "fecha": "2026-11-09",
+    "correcciones": [
+      "Las consultas de datos (p_pdf=false) no sustituyen el PDF ni el historial local completos.",
+      "Se comprueba identidad de informe y módulo en toda respuesta del servidor antes de mostrar o guardar sus datos.",
+      "Solo se cachea un PDF remoto cuando se entregó realmente un archivo validado.",
+      "Las operaciones sobre archivos exclusivamente locales nunca se derivan a Supabase por el mero hecho de activar la conexión.",
+      "Se conserva la comprobación de sesión antes y después de operaciones asíncronas.",
+      "La tarjeta Supervisores/Capataces no puede cargar actividades propias de Prevencionistas."
+    ],
+    "estado_servidor": "inspección solo lectura: RPC hys242_cargar_informe entrega archivo=null cuando p_pdf=false",
+    "test": "evidencias-v294/test-validacion-dos-modulos-v294.cjs",
+    "ci": ".github/workflows/qa-v294-historial-modulos.yml",
+    "pendientes": [
+      "pruebas autenticadas en dos dispositivos con roles reales",
+      "verificación de PDF/fotos en navegadores reales",
+      "autorización de escrituras centrales",
+      "integración de dos formatos oficiales"
+    ]
+  },
+  "cambios_v295": {
+    "fecha": "2026-11-09",
+    "correcciones": [
+      "No indicar recuperación de borrador guardada cuando el usuario cancela o la carga falla.",
+      "Revalidar sesión, informe y permisos después de lectura asíncrona de PDF y tras cada escritura local.",
+      "Bloquear archivos vacíos o ajenos al informe al intentar archivarlos.",
+      "No reutilizar PDF de informe antiguo cambiando únicamente metadatos al crear copias de conflicto.",
+      "Guardar el original completo de cada operación en recuperación local antes de sustituirla por copia nueva sin PDF.",
+      "Releer operaciones pendientes dentro de la transacción, comprobando usuario y tarjeta."
+    ],
+    "preparado_para_work": true,
+    "real_backend_operativo": false,
+    "pruebas": "evidencias-v295/test-recuperaciones-v295.cjs",
+    "ci": ".github/workflows/qa-v295-recuperaciones.yml",
+    "estado_produccion": "sin cambios"
+  },
+  "auditoria_v296": {
+    "fecha": "2026-11-09",
+    "documento": "AUD-COD-HYS-2026-11-09-01",
+    "branch": "desarrollo/v296-integridad-local-documental",
+    "altas_implementadas": [
+      "A-01: copia de conflicto con PDF previo no sale como Finalizado sin PDF; la cola impide enviar hasta regenerar el archivo",
+      "A-02: rechazar cargas locales con entry.id, reportData.reportId o módulo incoherentes",
+      "A-03: estructura PDF mínima, Base64 estricto, firma y fin, desplazamiento xref e identidad de metadata"
+    ],
+    "medias_implementadas": [
+      "A-04: firmas de imagen compatibles con MIME (comprobación inicial)",
+      "A-05: etiqueta única de compilación en 61 recursos locales JS/CSS",
+      "A-06: sin éxito si onSave finaliza tras cambio de sesión",
+      "A-07: mensajes distintos para no guardado, guardado local y confirmación remota",
+      "A-08: si falla IndexedDB y no existe Navigator Locks, se rechaza escribir el fallback",
+      "A-09: cierre garantizado de conexión IndexedDB del PDF, incluso con error"
+    ],
+    "pendientes": [
+      "A-03: validación completa con parser y lectura real del PDF en navegador",
+      "A-04: decodificación raster completa y carga/impresión real de fotografías",
+      "A-10: SRI o biblioteca local con hashes de binarios verificados",
+      "A-11: reducir acoplamiento del HTML con refactorización gradual y regresión visual",
+      "Validación E2E con usuarios autorizados, otras tarjetas y dispositivos: requiere Work"
+    ],
+    "pruebas_nuevas": 34,
+    "pruebas_regresion": 218,
+    "total_pruebas": 252,
+    "evidencia": "evidencias-v296/test-integridad-auditoria-v296.cjs",
+    "workflow": ".github/workflows/qa-v296-integridad-local.yml",
+    "flags_centrales": "desactivadas, sin cambios de Supabase, main ni producción"
+  },
+  "cambios_v297": {
+    "fecha": "2026-11-09",
+    "auditoria_origen": "AUD-296-01 a AUD-296-04",
+    "prioridades_altas": [
+      "Confirmación de servidor compara payload incluso si el token coincide, evitando perder datos.",
+      "Confirmación separada de historial; cambios de historia no demostrados permanecen pendientes.",
+      "La cola procesa operaciones independientes aunque otro informe requiera regenerar PDF."
+    ],
+    "prioridad_media": [
+      "El recuento de PDF pendientes usa needsPdf, no únicamente archivo preexistente."
+    ],
+    "estado_integracion": "Solo código cliente. El RPC real hys242_guardar_informe todavía omite history en su detección de no-op; su modificación y pruebas requieren autorización específica.",
+    "entorno": "Sin escrituras centrales, sin modificaciones de Supabase, sin cambios en main ni en app oficial.",
+    "pruebas": "evidencias-v297/test-acuses-trazabilidad-v297.cjs",
+    "workflow": ".github/workflows/qa-v297-acuses-trazabilidad.yml",
+    "pendientes": [
+      "Pruebas de navegador con usuario autorizado",
+      "Corregir persistencia de history en backend v242 con migración revisada en Work",
+      "Verificación PDF y fotos con archivos reales",
+      "SRI y catálogos oficiales todavía pendientes"
+    ]
+  },
+  "cambios_v298": {
+    "fecha": "2026-11-09",
+    "objetivo": "Preparación de conexión real sin publicar ni activar escrituras centrales",
+    "lectura_remota": "permitida exclusivamente en sesión autenticada con permiso de ver módulo, RPC v242 confirma permisos",
+    "escritura_remota": "desactivada: HYS242_ENABLE_CENTRAL=false, HYS242_DEPLOYMENT_READY=false, HYS292_REMOTE_WRITE_AUTHORIZED=false",
+    "funcionalidades": [
+      "preflight real del usuario con auth.getUser y hys242_contexto",
+      "listado read-only de informes mediante hys242_consultar_informes",
+      "recuperación read-only del PDF mediante hys242_cargar_informe (respeta permisos)",
+      "señal visual que distingue lectura conectada de escritura desactivada",
+      "resguardo del usuario y módulo durante consultas asíncronas",
+      "guardado de formularios continúa solo en IndexedDB/localStorage"
+    ],
+    "pruebas": "evidencias-v298/test-lectura-central-v298.cjs",
+    "workflow": ".github/workflows/qa-v298-lectura-central.yml",
+    "limitaciones": [
+      "Las consultas de informes requieren sesión autorizada y conexión; no se probaron credenciales reales desde automatizaciones.",
+      "No se habilitó edición remota, sincronización, ni migraciones de SQL.",
+      "El listado real de informes y recuperación real deben verificarse con cuentas autorizadas en entorno local.",
+      "Las integraciones v279-v282 no están disponibles en Supabase y siguen pendientes."
+    ],
+    "propiedad_originales": "versiones aprobadas, main, aplicación oficial, producción y formatos maestros no modificados"
+  },
+  "cambios_v299": {
+    "fecha": "2026-11-09",
+    "objetivo": "Robustez de consultas remotas v298 sin escrituras centrales.",
+    "correcciones": [
+      "Las consultas remotas muestran modo solo lectura; no se cargan en el editor local si la escritura central está desactivada.",
+      "El índice remoto valida todas las filas de la página: ID, módulo, creador, revisión, estado, PDF, duplicados y límite de 20.",
+      "Los resúmenes remotos solo conservan campos esperados de hys242_consultar_informes, sin aceptar reportData o pdfBlob arbitrarios.",
+      "Los reintentos simultáneos de una tarjeta comparten una consulta; no avanzan página dos veces.",
+      "La paginación se reinicia al cambiar de usuario o tarjeta y avanza solo tras guardar y renderizar la página con éxito.",
+      "Lecturas asíncronas comprueban sesión, tarjeta y habilitación de lectura antes y después de cada trabajo.",
+      "Se actualiza el parámetro build de los recursos locales JS/CSS para impedir caché anterior."
+    ],
+    "banderas_de_escritura": "HYS242_ENABLE_CENTRAL=false, HYS242_DEPLOYMENT_READY=false, HYS292_REMOTE_WRITE_AUTHORIZED=false",
+    "verificacion": "evidencias-v299/test-lectura-remota-v299.cjs",
+    "workflow": ".github/workflows/qa-v299-lectura-remota.yml",
+    "pendientes": [
+      "Prueba autenticada de navegador y dos tarjetas",
+      "Validar con usuarios reales permisos RLS y consulta PDF",
+      "SQL v242: corrección de no-op que ignora history",
+      "Conexión de catálogos laborales v279-v282 bajo autorización"
+    ],
+    "preservacion": "main, producción, Supabase, versiones protegidas y formatos oficiales sin modificaciones"
+  },
+  "cambios_v300": {
+    "fecha": "2026-11-09",
+    "objetivo": "Versiones solo en selector, acceso directo si hay una tarjeta y menú exclusivo Administrador General.",
+    "cambios": [
+      "Único número visible en selector: v300",
+      "Avisos internos de Inicio, Apariencia, Seguimiento, Indicadores y estado de lectura sin numeración histórica",
+      "Usuario con tarjeta única abre su tarjeta y no puede regresar al selector innecesariamente",
+      "Administrador General mantiene selector y herramientas especiales",
+      "Cinta Seguimiento oculta y protegida por rol",
+      "Botón del selector se llama Cerrar sesión",
+      "Recursos locales actualizados con etiqueta de compilación aislada"
+    ],
+    "pruebas": "evidencias-v300/test-interfaz-permisos-v300.cjs",
+    "workflow": ".github/workflows/qa-v300-interfaz-permisos.yml",
+    "seguridad": "No se habilitan escrituras centrales ni se modifican Supabase, main, la app oficial o versiones previas.",
+    "pendientes": [
+      "Probar acceso con cuentas reales en navegador",
+      "Validación real de todas las tarjetas y módulos",
+      "No hay sitio web público propio de v300"
+    ]
+  },
+  "cambios_v301": {
+    "fecha": "2026-11-09",
+    "objetivo": "Pestaña Permisos y facultades al final de las cuatro opciones de Gestión de usuarios",
+    "funciones": [
+      "Buscar usuarios",
+      "Editar propuestas de rol, tarjetas, áreas y facultades directamente en la misma ventana",
+      "Reutilizar lógica de configuración existente sin el asistente de creación",
+      "Revisar permisos propuestos y su motivo, sin alterar datos laborales ni contraseñas",
+      "No guardar usuarios reales hasta migración y operación atómica en Supabase"
+    ],
+    "pruebas": "evidencias-v301/test-gestion-rapida-v301.cjs",
+    "workflow": ".github/workflows/qa-v301-gestion-rapida.yml",
+    "seguridad": "Sin escrituras Supabase, sin tocar main, oficial, respaldos ni versiones anteriores."
+  },
+  "cambios_v302": {
+    "fecha": "2026-11-09",
+    "objetivo": "Auditar integralmente el código, funcionalidad de permisos rápidos y posibles afectaciones a otros módulos",
+    "correcciones": [
+      "Consulta de facultades falla de modo seguro si Supabase/RLS devuelve error o datos incompletos: nunca interpreta un error como ausencia de permisos.",
+      "Carga de usuarios y auditoría comprueba actor, rol y revisión de sesión después de cada espera asíncrona; una sesión revocada no recibe listados ni editor.",
+      "Estado de usuarios, áreas, facultades e historial se publica de manera atómica solo si todas las consultas se completan para el actor autorizado.",
+      "El historial de gestión no oculta errores de lectura de ninguna tabla."
+    ],
+    "verificacion": "evidencias-v302/test-auditoria-integral-v302.cjs",
+    "workflow": ".github/workflows/qa-v302-auditoria-integral.yml",
+    "seguridad": "No se activa guardado de permisos ni central; no se modifica Supabase, main, app oficial ni versiones previas.",
+    "pendientes": [
+      "Prueba de navegador con usuarios reales en alojamiento seguro",
+      "Conectar guardado atómico de permisos a Supabase bajo autorización futura",
+      "Resolver no-op history del RPC hys242_guardar_informe previamente detectado"
+    ]
+  },
+  "cambios_v303": {
+    "fecha": "2026-11-09",
+    "objetivo": "Ampliación de ventanas temporales, comparación y alertas de gestión sin datos simulados",
+    "caracteristicas": [
+      "Ocho opciones de período: mes actual, últimos 3/6/12/24 meses, año actual, año anterior y personalizado",
+      "Fechas personalizadas reales con validación de fechas, orden y límite hasta hoy",
+      "Comparación temporal calculada contra período anterior equivalente y fecha de corte explícita",
+      "Cuatro alertas pendientes de datos: compromisos vencidos, hallazgos prioridad alta, riesgos reincidentes, cierres por verificar",
+      "Secciones de evolución mensual y áreas/riesgos prioritarios con estado vacío real, sin gráficos ficticios",
+      "Trazabilidad futura de registros y respaldos, acción desactivada mientras no existan fuentes verificadas",
+      "Se conservan los seis pilares y los cuatro indicadores de gestión actuales",
+      "Definiciones de registro temporal y backlog de pendientes, preparadas para Power BI",
+      "Responsive dos/una columnas y cambio de compilación para evitar caché anterior",
+      "Panel de vista previa independiente actualizado sin número de versión dentro de la interfaz"
+    ],
+    "pruebas": "evidencias-v303/test-periodos-indicadores-v303.cjs",
+    "workflow": ".github/workflows/qa-v303-periodos-indicadores.yml",
+    "seguridad": "Sin escritura central ni cálculos simulados. No modificar Supabase, main, app oficial o versiones protegidas.",
+    "pendiente": [
+      "Enlazar consolidación central validada con autorizaciones específicas",
+      "Implementar gráficos reales y profundización de registros luego de establecer contratos",
+      "Verificar visualmente en navegador de confianza con cuenta real"
+    ]
+  },
+  "cambios_v304": {
+    "fecha": "2026-11-09",
+    "objetivo": "Implementar mejoras de indicadores en la interfaz principal de Reportes HYS, no solo en página de diseño",
+    "funciones": [
+      "Acceso integrado a Pilares e Indicadores desde el panel real del Administrador General",
+      "Cuatro pestañas de navegación entre Resumen, Alertas, Tendencias y Seis pilares, con navegación y foco funcionales",
+      "Filtros de ocho períodos y fechas personalizadas directamente en la aplicación y botón Restablecer filtros",
+      "Alertas con criterios consultables y sin cifras ficticias",
+      "Modo de revisión visual mediante index.html?revision=pilares, empleando el mismo componente que la aplicación real sin solicitar datos ni credenciales",
+      "Se conservan los seis pilares, la comparación temporal y el estado pendiente de consolidación",
+      "Los cambios no afectan los módulos de formularios, usuarios, fotografías, PDF, historial y riesgos"
+    ],
+    "pruebas": "evidencias-v304/test-interfaz-integrada-v304.cjs",
+    "workflow": ".github/workflows/qa-v304-panel-integrado.yml",
+    "seguridad": "Sin cambios de Supabase ni habilitación de escrituras. La vista visual integrada no consulta datos reales y no concede permisos administrativos reales.",
+    "pendientes": [
+      "Confirmar vista del panel en navegador con una sesión autorizada real",
+      "Conectar indicadores consolidados auditados después de autorizar el servicio de lectura",
+      "Habilitar trazabilidad a registros solo cuando haya datos y permisos RLS"
+    ]
+  },
+  "cambios_v305": {
+    "fecha": "2026-11-09",
+    "objetivo": "Nueva opción Investigación de accidentes en banda lateral de Administrador General",
+    "modificaciones": [
+      "Nuevo botón integrado junto a Pilares e Indicadores y antes de Apariencia, con etiqueta completa visible al expandir banda lateral",
+      "Acceso limitado a Administrador General activo en pantalla de tarjetas, sin afectar tarjetas del usuario",
+      "Pantalla inicial con resumen sin datos falsos y seis secciones tentativas para adaptar al formulario del usuario",
+      "Botón Nueva investigación desactivado hasta aprobar formulario y guardar con seguridad",
+      "La pantalla se cierra desde Cerrar, Escape, cambios de rol, cambios de sesión o navegación del menú",
+      "La gestión de usuarios reconoce el nuevo botón y respeta protecciones de formularios sin guardar",
+      "Revisión visual integrada en index.html?revision=accidentes sin credenciales ni datos reales",
+      "Versión v305 solo visible en selector de tarjetas"
+    ],
+    "pruebas": "evidencias-v305/test-investigacion-admin-v305.cjs",
+    "workflow": ".github/workflows/qa-v305-investigacion-admin.yml",
+    "seguridad": "Supabase, main, aplicación oficial, versiones anteriores y escrituras centrales intactas",
+    "pendiente": [
+      "Definir y aprobar formulario de investigación antes de habilitar registro",
+      "Diseñar permisos, protección de datos sensibles, notificación reglamentaria y trazabilidad",
+      "Realizar prueba de navegador real de la banda lateral autorizada"
+    ]
+  }
+}
