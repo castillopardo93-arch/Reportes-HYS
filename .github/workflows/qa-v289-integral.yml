@@ -1,0 +1,24 @@
+name: Auditoría y consolidación integral HYS v289
+on:
+  push:
+    branches:
+      - desarrollo/v289-auditoria-integral-consolidacion
+    paths:
+      - 'v289-review/**'
+      - 'evidencias-v289/**'
+      - '.github/workflows/qa-v289-integral.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression-and-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar jsdom sin scripts de terceros
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Pruebas de consolidación, permisos, formularios e indicadores
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresiones históricas de guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
