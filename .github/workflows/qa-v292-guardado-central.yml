@@ -1,0 +1,30 @@
+name: Guardado central controlado HYS v292
+on:
+  push:
+    branches:
+      - desarrollo/v292-integracion-guardado-controlado
+    paths:
+      - 'v292-review/**'
+      - 'evidencias-v292/**'
+      - '.github/workflows/qa-v292-guardado-central.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract-and-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM de prueba aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Contrato de guardado y confirmaciones v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad y edición v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Catálogo y trazabilidad v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresión v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión del guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
