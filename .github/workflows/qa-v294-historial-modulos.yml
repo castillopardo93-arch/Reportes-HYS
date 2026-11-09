@@ -1,0 +1,34 @@
+name: Validación de historial y PDF para dos tarjetas HYS v294
+on:
+  push:
+    branches:
+      - desarrollo/v294-validacion-historial-pdf-dos-tarjetas
+    paths:
+      - 'v294-review/**'
+      - 'evidencias-v294/**'
+      - '.github/workflows/qa-v294-historial-modulos.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa-both-modules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar jsdom para validaciones aisladas
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Simulaciones de APR/OTROS e historial v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: Custodia PDF/fotografías v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato de guardado v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Catálogo v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresión general v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
