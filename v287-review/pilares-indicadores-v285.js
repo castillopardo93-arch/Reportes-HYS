@@ -43,7 +43,13 @@ button.setAttribute('aria-label','Pilares e Indicadores');
 const glyph=el('span','tools-option-icon','▥');glyph.setAttribute('aria-hidden','true');
 button.title='Pilares e Indicadores';
 button.append(glyph,el('span','tools-option-label','Pilares e Indicadores'),el('span','tools-option-full','Pilares e Indicadores'));
-nav.append(button);
+// En el menú REAL de Administrador General aparece entre Seguimiento y Apariencia.
+function placeInActualRail(){
+ const appearance=d.getElementById('appearanceOpen242');
+ if(appearance&&appearance.parentElement===nav)nav.insertBefore(button,appearance);
+ else if(button.parentElement!==nav)nav.append(button);
+}
+placeInActualRail();
 const panel=el('section');panel.id='hys285PillarsPanel';panel.hidden=true;
 panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','hys285Title');
 panel.innerHTML=[
@@ -58,7 +64,7 @@ panel.innerHTML=[
  '<label class="hys285-filter">Tarjeta de origen<select id="hys285Module"><option value="ALL">Ambas tarjetas</option><option value="APR">Prevencionistas</option><option value="OTROS">Supervisores / Capataces</option></select></label>',
  '<label class="hys285-filter">Área de trabajo<select id="hys285Area" disabled><option value="">Todas las áreas (pendiente de carga)</option></select></label>',
  '</div><p id="hys285Scope" class="hys285-scope" role="status"></p>',
- '<div class="hys285-warning" role="note"><span aria-hidden="true">ⓘ</span><div><strong>Diseño para revisión v285 · Sin cifras simuladas</strong>',
+ '<div class="hys285-warning" role="note"><span aria-hidden="true">ⓘ</span><div><strong>Panel integrado en v287 · Indicadores en preparación</strong>',
  'El consolidado de indicadores aún no está conectado. Se muestran guiones hasta que los datos estén verificados en Supabase. El diseño y la navegación ya pueden revisarse.',
  '</div></div>',
  '<section id="hys285Home" aria-label="Resumen y pilares"><div class="hys285-section-heading"><h2>Resumen de gestión</h2><span class="hys285-muted">Valores pendientes de datos centrales</span></div>',
@@ -166,6 +172,7 @@ function close(){
  return true;
 }
 function sync(){
+ placeInActualRail();
  const visible=allowed();
  button.hidden=!visible;
  if(visible)button.style.removeProperty('display');
@@ -184,6 +191,6 @@ root.addEventListener('reportes-hys-access-changing',()=>{close();sync()});
 root.addEventListener('reportes-hys-access-changed',sync);
 const prior=root.reportesHysAdminSync;
 root.reportesHysAdminSync=()=>{prior?.();sync()};
-root.Hys285Pillars={open,close,sync,reviewOnly:true};
+root.Hys285Pillars={open,close,sync,reviewOnly:true,integratedInApp:true};
 sync();if(preview)open();
 })(window);
