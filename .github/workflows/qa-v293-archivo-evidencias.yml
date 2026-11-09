@@ -1,0 +1,32 @@
+name: Custodia PDF y evidencias HYS v293
+on:
+  push:
+    branches:
+      - desarrollo/v293-archivo-pdf-evidencias
+    paths:
+      - 'v293-review/**'
+      - 'evidencias-v293/**'
+      - '.github/workflows/qa-v293-archivo-evidencias.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM de simulación aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Archivo PDF y fotografías v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato de sincronización v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad y permisos v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Catálogo v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresiones v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresiones guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
