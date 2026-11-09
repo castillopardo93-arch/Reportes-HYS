@@ -25,7 +25,7 @@ ok('Vista previa y estilos vinculados',()=>{
 });
 ok('Integración en la aplicación v285',()=>{
  assert.match(index,/gestion-usuarios-v265\.js[^"]*"><\/script><link rel="stylesheet" href="pilares-indicadores-v285\.css/);
- assert.match(index,/pilares-indicadores-v285\.js\?build=v285-01/);
+ assert.match(index,/pilares-indicadores-v285\.js\?build=v287-integracion-real/);
 });
 ok('Protección de formularios de gestión existentes',()=>{
  assert.match(users,/hys285OpenPillars/);
