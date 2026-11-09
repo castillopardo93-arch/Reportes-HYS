@@ -1,0 +1,14 @@
+/* C07 — formulario de corrección dentro del Seguimiento de Hallazgos */
+.hys243-correction-box{border:1px solid #c6dced;border-radius:9px;margin:14px 0 6px;padding:12px;background:#f8fbff}
+.hys243-correction-box h4{font-size:14px;margin:0 0 6px;color:#173d68}
+.hys243-correction-status{font-size:12px;color:#6d583e;margin:4px 0 10px!important}
+.hys243-correction-box form{display:grid;gap:12px}
+.hys243-correction-box label{display:grid;gap:5px;font-weight:700}
+.hys243-correction-box textarea,.hys243-correction-box input[type=file]{width:100%;font:inherit;border:1px solid #b8d2e8;background:#fff;border-radius:7px;padding:9px;min-width:0}
+.hys243-correction-buttons{display:flex;flex-wrap:wrap;gap:9px}
+.hys243-correction-buttons button{border:1px solid #2471ab;border-radius:7px;background:#f3f9ff;color:#17466d;padding:8px 12px}
+.hys243-correction-buttons button:last-child{background:#eaf6f0;border-color:#439471;color:#176442}
+.hys243-correction-buttons button:disabled{background:#edf1f6;border-color:#c5ced8;color:#748496;cursor:not-allowed;opacity:.82}
+.hys243-correction-result{margin:0!important;font-weight:700;color:#294867}
+.hys243-correction-box>small{display:block;margin-top:8px;font-size:11px;color:#65798c}
+@media(max-width:760px){.hys243-correction-box{padding:10px}.hys243-correction-buttons{flex-direction:column}.hys243-correction-buttons button{min-height:42px;width:100%}}
