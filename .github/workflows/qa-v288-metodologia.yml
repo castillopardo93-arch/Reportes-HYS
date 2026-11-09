@@ -1,0 +1,24 @@
+name: QA metodología verificable v288
+on:
+  push:
+    branches:
+      - desarrollo/v288-verificacion-indicadores
+    paths:
+      - 'v288-review/**'
+      - 'evidencias-v288/**'
+      - '.github/workflows/qa-v288-metodologia.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indicadores:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar dependencias de pruebas DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Validar metodología y navegación del panel v288
+        run: node evidencias-v288/test-metodologia-v288.cjs
+      - name: Regresiones de v284
+        run: node evidencias-v284/test-regresion-v284.cjs
