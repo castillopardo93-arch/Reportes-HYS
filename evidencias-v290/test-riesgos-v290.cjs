@@ -12,6 +12,8 @@ let count=0;
 function test(label,fn){fn();count++;console.log('OK '+String(count).padStart(2,'0')+' · '+label);}
 function make(){
  const dom=new JSDOM('<!doctype html><html><body><div id="host"></div></body></html>',{url:'https://hys.local/',runScripts:'outside-only'});
+ // jsdom no expone TextEncoder de Node por defecto; el navegador real sí lo tiene.
+ dom.window.TextEncoder=TextEncoder;
  dom.window.eval(seed);
  dom.window.eval(src);
  return {dom,api:dom.window.Hys243Risks};
