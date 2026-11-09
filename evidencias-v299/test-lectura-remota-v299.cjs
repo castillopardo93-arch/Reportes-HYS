@@ -24,7 +24,7 @@ function mockCloud({rows=[base()],onRpc,cache,render,initialPage=0}={}){
  const history={append(node){els.set(node.id,node)}};
  els.set('historial',history);
  let session=1,allowed=true,module='APR';
- const data={calls,cached,messages,els,rows:clone(rows),initialPage};
+ const data={calls,cached,messages,els,rows:clone(rows),initialPage,onRpc,cache,render};
  const create=new Function('cfg','snippet','policy',`
  let generation=1,reportPage=cfg.initialPage,reportsFlight=null;
  let current={selectedModule:'APR'};
