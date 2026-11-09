@@ -94,7 +94,7 @@ nav.addEventListener('click',event=>{
  const button=event.target.closest('button');
  if(!button||!nav.contains(button))return;
  const id=button.id;
- if(!['hys265OpenUsers','manageOpen242','operationsOpen242','appearanceOpen242'].includes(id)
+ if(!['hys265OpenUsers','manageOpen242','operationsOpen242','appearanceOpen242','hys285OpenPillars'].includes(id)
     && button!==follow)return;
  if(id!=='hys265OpenUsers'&&!panel.hidden){
   if(!close()){event.preventDefault();event.stopImmediatePropagation();return}
@@ -819,7 +819,7 @@ function sync(){
  if(areasButton)areasButton.hidden=!visible;
  if(oldUsers){oldUsers.hidden=true;oldUsers.style.display='none'}
  for(const b of [...nav.querySelectorAll('.hys-admin-open')]){
-  if(b===usersButton||b===areasButton||b===follow||b===appearanceNow)continue;
+  if(b===usersButton||b===areasButton||b===follow||b===appearanceNow||b.id==='hys285OpenPillars')continue;
   b.hidden=true;b.style.display='none';
  }
  if(!isGlobal()&&!panel.hidden){clearCredentials();state.dirty=false;panel.hidden=true;state.users=[];state.history=[]}
