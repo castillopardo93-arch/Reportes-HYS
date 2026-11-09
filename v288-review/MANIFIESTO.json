@@ -1,9 +1,9 @@
 {
-  "version": 287,
-  "branch": "desarrollo/v287-integracion-pilares-interfaz",
-  "base_version": 286,
-  "base_commit": "a4e649a1f2833af9c9b4f58515b8347c93779c7f",
-  "estado": "desarrollo-aislado-v287-pilares-integrados-a-interfaz-principal",
+  "version": 288,
+  "branch": "desarrollo/v288-verificacion-indicadores",
+  "base_version": 287,
+  "base_commit": "bb1cc4073a6679fd0b0532fc15633a9f7e7bb17a",
+  "estado": "desarrollo-aislado-v288-metodologia-practica-y-verificable",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v286-titulo-pilares-indicadores",
+  "base_branch": "desarrollo/v287-integracion-pilares-interfaz",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -510,6 +510,28 @@
       "sin prueba auténtica de navegador con acceso real",
       "sin estadísticas centrales",
       "sin habilitación de exportación PDF/Excel ejecutiva"
+    ]
+  },
+  "metodologia_practica_v288": {
+    "fecha": "2026-11-09",
+    "interfaz": "Pilares e Indicadores (panel Administración General)",
+    "cambios": [
+      "Cambiar título Metodología y trazabilidad futura por Cómo se calcula y verifica",
+      "Tres preguntas de gestión: qué ocurre, qué requiere intervención, si mejoramos",
+      "Mostrar reglas concretas de calidad y validación para cada uno de los 18 indicadores, en explicación plegable por indicador",
+      "Mostrar estado informativo real del bloqueo de guardado central, sin afirmar disponibilidad de estadísticas",
+      "No confundir sin datos con cero, ni sin denominador con 0%, ni ejecución con cierre verificado"
+    ],
+    "fuente_actual": "central desactivada en desarrollo: sin métricas consolidadas, sin simulación, sin exportación",
+    "permisos": "mismo Administrador General activo, pantalla principal",
+    "seguridad": "no muta datos, permisos ni estado de Supabase; no se habilita ninguna nueva función de escritura",
+    "evidencia": "evidencias-v288/test-metodologia-v288.cjs; .github/workflows/qa-v288-metodologia.yml",
+    "pendiente": [
+      "calcular métricas sobre registros centrales reales y autorizados",
+      "verificación documental de acciones y cierres",
+      "desglose de cada indicador hacia registros originales protegidos por RLS",
+      "validar visualmente con administrador en navegador",
+      "aprobar para eventual publicación"
     ]
   }
 }
