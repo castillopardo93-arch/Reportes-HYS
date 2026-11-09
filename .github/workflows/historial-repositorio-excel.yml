@@ -1,0 +1,40 @@
+name: Generar historial completo del repositorio Excel
+on:
+  push:
+    branches:
+      - informes/historial-2026-11-09
+    paths:
+      - 'informes/historial/generar_historial_excel.py'
+      - '.github/workflows/historial-repositorio-excel.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  exportar-historial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Recopilar historial de ramas y generar Excel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python informes/historial/generar_historial_excel.py
+      - name: Guardar Excel como artefacto descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: Reportes-HYS-Historial-Versiones
+          path: informes/historial/Historial_Completo_Versiones_Reportes_HYS.xlsx
+          retention-days: 90
+      - name: Conservar Excel en rama de informes
+        run: |
+          git config user.name "Reportes HYS Historial"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f informes/historial/Historial_Completo_Versiones_Reportes_HYS.xlsx
+          if git diff --cached --quiet; then
+            echo "Excel idéntico al anterior"
+          else
+            git commit -m "Generar Excel cronológico del historial completo de Reportes HYS"
+            git push origin HEAD:informes/historial-2026-11-09
+          fi
