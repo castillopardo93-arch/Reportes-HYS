@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Reportes HYS · Pilares e Indicadores · Vista de diseño v285</title>
+ <style>
+  :root{font-family:Arial,Helvetica,sans-serif;color:#173b59;background:#eff5fa}
+  *{box-sizing:border-box}body{margin:0;min-height:100vh}
+  .preview-notice{background:#fff4d7;padding:12px 20px;text-align:center;font-size:13px;font-weight:700;color:#76521a}
+  .home{max-width:1080px;margin:55px auto;padding:30px}
+  .home h1{font-size:28px;margin:10px 0}.home p{color:#5b7890}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0}
+  .module{background:#fff;border:1px solid #d6e4f1;border-radius:16px;padding:26px;min-height:140px;box-shadow:0 4px 16px #163d6010}
+  #hysToolsRail{position:fixed;left:0;top:0;bottom:0;z-index:100;width:105px;background:#123554;color:white;padding:18px 9px}
+  #hysToolsOptions{display:flex;flex-direction:column;gap:10px}
+  .hys-admin-open{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;border:1px solid #5c85a4;border-radius:10px;background:#ffffff14;color:#fff;padding:12px 3px;cursor:pointer;font:inherit}
+  .tools-option-icon{display:grid;place-items:center;background:#eaf4fb;color:#145e8d;width:30px;height:30px;border-radius:8px;font-size:20px}
+  .tools-option-label{font-size:11px;font-weight:700}.tools-option-full{display:none}
+  .hys-admin-open[hidden]{display:none!important}
+  @media(max-width:700px){.cards{grid-template-columns:1fr}.home{padding:20px;margin:20px 0 0 66px}#hysToolsRail{width:65px}#hysToolsOptions{gap:4px}.hys-admin-open{font-size:10px}}
+ </style>
+ <link rel="stylesheet" href="pilares-indicadores-v285.css?build=v288-verificacion">
+</head>
+<body class="module-choice">
+ <div class="preview-notice">VISTA DE DISEÑO v285 · Sin sesión de usuario, sin información real y sin conexión a producción</div>
+ <aside id="hysToolsRail" aria-label="Menú de muestra">
+  <div id="hysToolsOptions"></div>
+ </aside>
+ <main class="home">
+  <h1>Reportes HYS</h1>
+  <p>Previsualización aislada del menú y de la nueva pantalla estratégica. No permite acceder a informes ni administrar usuarios.</p>
+  <div class="cards">
+   <div class="module"><strong>Prevencionistas</strong><p>Tarjeta operativa existente (representación visual).</p></div>
+   <div class="module"><strong>Supervisores / Capataces</strong><p>Tarjeta operativa existente (representación visual).</p></div>
+  </div>
+  <p>Utiliza la opción <strong>Pilares</strong> del menú izquierdo para volver a abrir la pantalla después de cerrarla.</p>
+ </main>
+ <script src="pilares-indicadores-v285.js?build=v288-verificacion"></script>
+</body>
+</html>

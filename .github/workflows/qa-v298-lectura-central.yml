@@ -1,0 +1,42 @@
+name: Reportes HYS v298 — lectura real de Supabase (sin escrituras)
+on:
+  push:
+    branches:
+      - desarrollo/v298-lectura-central-autenticada
+    paths:
+      - 'v298-review/**'
+      - 'evidencias-v298/**'
+      - '.github/workflows/qa-v298-lectura-central.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  read-only-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar DOM aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Conexión central de solo lectura v298
+        run: node evidencias-v298/test-lectura-central-v298.cjs
+      - name: Sincronización segura v297
+        run: node evidencias-v297/test-acuses-trazabilidad-v297.cjs
+      - name: Integridad documental v296
+        run: node evidencias-v296/test-integridad-auditoria-v296.cjs
+      - name: Recuperación v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: PDF y fotos v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Permisos v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresión general v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
