@@ -1,7 +1,7 @@
 /* HYS v293: pruebas aisladas de evidencia local y foto. */
 'use strict';
 const assert=require('node:assert/strict');
-const fs=require('node:fs'),path=require('node:path');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const {JSDOM}=require('jsdom');
 const dir=path.resolve(__dirname,'../v293-review');
 const policySrc=fs.readFileSync(path.join(dir,'archive-policy-v293.js'),'utf8');
@@ -20,7 +20,7 @@ function pack(photos){return {module:'APR',data:{activities:[[1,'APR','Área','D
  await check('Adjunto SVG no autorizado',()=>assert.throws(()=>policy.validatePhoto(img('data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=')),/Formato/));
  await check('Adjunto ajeno a imágenes bloqueado',()=>assert.throws(()=>policy.validatePhoto(img('data:text/html;base64,PGgxPg==')),/Formato/));
  await check('Base64 vacío bloqueado',()=>assert.throws(()=>policy.validatePhoto(img('data:image/png;base64,')),/incompletos/));
- await check('Base64 truncado bloqueado',()=>assert.throws(()=>policy.validatePhoto(img('data:image/jpeg;base64,/9j/')),/incompletos/));
+ await check('Base64 truncado bloqueado',()=>assert.throws(()=>policy.validatePhoto(img('data:image/jpeg;base64,/9j')),/incompletos/));
  await check('Foto excesivamente grande bloqueada',()=>assert.throws(()=>policy.validatePhoto(img('data:image/png;base64,'+'A'.repeat(32*1024*1024))),/demasiado grande/));
  await check('Solo dos banderas no habilitan el servidor',()=>assert.equal(policy.remoteEnabled({...flags,HYS292_REMOTE_WRITE_AUTHORIZED:false}),false));
  await check('Se necesitan tres autorizaciones explícitas',()=>assert.equal(policy.remoteEnabled(flags),true));
@@ -69,5 +69,6 @@ function pack(photos){return {module:'APR',data:{activities:[[1,'APR','Área','D
  await check('Resumen remoto nuevo utiliza unión sin destruir archivo local',()=>assert.match(html,/Hys293ArchivePolicy\.mergeRemoteSummary\(existing,summary\)/));
  await check('Vista diferencia copia anterior y revisión central nueva',()=>assert.match(html,/Copia local de revisión anterior; existe una revisión central pendiente de recuperar/));
  await check('Editar se deshabilita cuando no están disponibles datos',()=>assert.match(html,/!r\.hasReportData\?'disabled '/));
+ await check('Scripts JavaScript embebidos de la página sin errores de sintaxis',()=>{const scripts=[...html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)].filter(m=>!/\\bsrc\\s*=/.test(m[1])&&!/application\\/json/i.test(m[1]));assert.ok(scripts.length>=5);scripts.forEach((m,i)=>new vm.Script(m[2],{filename:'inline-'+i+'.js'}));});
  console.log('PASS · '+passed+' pruebas v293. No hay acceso a datos de usuarios ni escrituras remotas.');
 })().catch(e=>{console.error(e);process.exitCode=1});
