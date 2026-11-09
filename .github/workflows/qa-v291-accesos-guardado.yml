@@ -1,0 +1,28 @@
+name: Seguridad de facultades y guardado HYS v291
+on:
+  push:
+    branches:
+      - desarrollo/v291-accesos-y-guardado-protegido
+    paths:
+      - 'v291-review/**'
+      - 'evidencias-v291/**'
+      - '.github/workflows/qa-v291-accesos-guardado.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guards-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM aislado para regresiones
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Controles de acceso y guardado v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Pruebas de riesgos v290 sobre copia base
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresión v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
