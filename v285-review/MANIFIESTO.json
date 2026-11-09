@@ -1,9 +1,9 @@
 {
-  "version": 284,
-  "branch": "desarrollo/v284-correcciones-seguras",
-  "base_version": 283,
-  "base_commit": "de59cc78acb0075da963171f648ab6a23969028a",
-  "estado": "desarrollo-aislado-v284-correcciones-locales-no-publicada",
+  "version": 285,
+  "branch": "desarrollo/v285-pilares-indicadores",
+  "base_version": 284,
+  "base_commit": "b8bf52da6d01ea86761ed9eb0092a63ab0ffc3c4",
+  "estado": "desarrollo-aislado-v285-pilares-indicadores-vista-en-revision",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v283-regimen-de-turno",
+  "base_branch": "desarrollo/v284-correcciones-seguras",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -445,5 +445,36 @@
       "numeración global única",
       "pruebas navegadores y dispositivos"
     ]
+  },
+  "pilares_indicadores_v285": {
+    "fecha": "2026-11-09",
+    "tipo": "interfaz de revisión con lectura RLS de áreas",
+    "autorizacion": "exclusivamente administrador_global activo en pantalla principal; previsualización pública sin datos reales en archivo independiente",
+    "componente": "pilares-indicadores-v285.js",
+    "estilos": "pilares-indicadores-v285.css",
+    "vista_sin_sesion": "pilares-indicadores-preview-v285.html",
+    "ubicacion": "panel lateral de Administración General, NO tercera tarjeta operativa",
+    "pilares": [
+      "Eficiencia en terreno",
+      "Gestión y cumplimiento",
+      "Indicadores de gestión",
+      "Gestión documental",
+      "Seguridad y trazabilidad",
+      "Mejora continua"
+    ],
+    "resumen": "Cuatro indicadores con guiones (no hay motor consolidado)",
+    "navegacion": "Seis tarjetas internas clicables con 3 indicadores de metodología por pilar y retorno",
+    "filtros": "Período, tarjeta de origen y áreas autorizadas; sin agregación aún",
+    "exportacion": "deshabilitada hasta datos reales",
+    "seguridad": "comprobación acceso por sesión/rol, lectura de áreas mediante RLS, sin creación/actualización/eliminación, sin métricas ficticias",
+    "pruebas": "evidencias-v285/test-pilares-v285.cjs; CI qa-v285-pilares.yml",
+    "pendientes": [
+      "verificación visual en navegador",
+      "motor central de indicadores",
+      "apertura de registros de origen y permisos finos",
+      "exportación ejecutiva PDF/Excel",
+      "validación end-to-end y aprobación de usuario"
+    ],
+    "produccion": "No se ha publicado, ni desplegado, ni activado backend de indicadores"
   }
 }
