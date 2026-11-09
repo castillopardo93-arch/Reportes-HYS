@@ -20,7 +20,7 @@ function fixture(role='administrador_global'){
  const dom=new JSDOM('<html><head></head><body class="module-choice"><aside id="hysToolsRail" hidden></aside><nav id="hysToolsOptions"></nav><div id="moduleChooser"></div></body></html>',{url:'https://prueba.local/v301-review/index.html',runScripts:'outside-only'});
  const w=dom.window;
  const calls=[];
- w.__REPORTES_HYS_ACCESS__={userId:'admin',profile:{usuario_id:'admin',rol,activo:true},selectedModule:null,modules:['APR','OTROS'],permissions:[]};
+ w.__REPORTES_HYS_ACCESS__={userId:'admin',profile:{usuario_id:'admin',rol:role,activo:true},selectedModule:null,modules:['APR','OTROS'],permissions:[]};
  w.Hys274Credentials={validate:()=>({ok:true})};
  w.Hys278AccessControl={validTarget:()=>true};
  w.Hys279Backend={shifts:async()=>[]};
