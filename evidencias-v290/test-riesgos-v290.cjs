@@ -43,8 +43,8 @@ test('Selector no expone códigos en su interfaz',()=>{
  assert.equal(input.placeholder,'Buscar nombre del riesgo');
  assert.doesNotMatch(host.querySelector('.hys243-risk-help').textContent,/código/i);
  input.value='Amago';input.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
- const btn=host.querySelector('.hys243-risk-result');
- assert.ok(btn);assert.equal(btn.textContent,'✓ '+a.name);assert.doesNotMatch(btn.textContent,/R0005/);
+ const btn=[...host.querySelectorAll('.hys243-risk-result')].find(x=>x.textContent.includes(a.name));
+ assert.ok(btn,'Debe aparecer el riesgo estandarizado entre los resultados');assert.equal(btn.textContent,'✓ '+a.name);assert.doesNotMatch(btn.textContent,/R0005/);
  assert.equal(api.selected()[0].code,'R0005');
  dom.window.close();
 });
