@@ -1,0 +1,26 @@
+name: Compatibilidad catálogo HYS v290 - sin códigos visibles
+on:
+  push:
+    branches:
+      - desarrollo/v290-riesgos-sin-codigos-visibles
+    paths:
+      - 'v290-review/**'
+      - 'evidencias-v290/**'
+      - '.github/workflows/qa-v290-riesgos.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  risk-catalog-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar DOM de prueba sin scripts de terceros
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Pruebas del selector de riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Regresiones completas heredadas v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresiones de guardado v284
+        run: node evidencias-v284/test-regresion-v284.cjs
