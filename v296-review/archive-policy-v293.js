@@ -16,6 +16,19 @@
   const payload=data.slice(index+1);
   if(!payload||payload.length%4!==0||!/^(?:[a-z0-9+/]{4})*(?:[a-z0-9+/]{2}==|[a-z0-9+/]{3}=)?$/i.test(payload))
    throw Error('Los datos de la fotografía están incompletos o dañados.');
+  const mime=data.slice(11,index).toLowerCase();
+  let bytes;
+  try{bytes=atob(payload.slice(0,Math.min(payload.length,128)&~3))}
+  catch{throw Error('La fotografía no se pudo decodificar.')}
+  const at=n=>bytes.charCodeAt(n),starts=prefix=>bytes.startsWith(prefix);
+  const signature=(
+   mime==='jpeg'&&bytes.length>=4&&at(0)===255&&at(1)===216&&at(2)===255||
+   mime==='png'&&bytes.length>=8&&at(0)===137&&starts('\x89PNG\r\n\x1a\n')||
+   mime==='gif'&&bytes.length>=6&&(starts('GIF87a')||starts('GIF89a'))||
+   mime==='webp'&&bytes.length>=12&&starts('RIFF')&&bytes.slice(8,12)==='WEBP'||
+   mime==='bmp'&&bytes.length>=14&&starts('BM')
+  );
+  if(!signature)throw Error('La imagen no coincide con su tipo o carece de firma binaria válida.');
   return true;
  }
  function remoteEnabled(flags){
