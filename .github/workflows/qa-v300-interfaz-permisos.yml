@@ -1,0 +1,46 @@
+name: Reportes HYS v300 — Control visual de permisos y versiones
+on:
+  push:
+    branches:
+      - desarrollo/v300-interfaz-sin-versiones-y-acceso-por-tarjeta
+    paths:
+      - 'v300-review/**'
+      - 'evidencias-v300/**'
+      - '.github/workflows/qa-v300-interfaz-permisos.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ui-versions-roles-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar DOM aislado
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Verificar interfaz y roles v300
+        run: node evidencias-v300/test-interfaz-permisos-v300.cjs
+      - name: Historial y paginación v299
+        run: node evidencias-v299/test-lectura-remota-v299.cjs
+      - name: Conexión de lectura v298
+        run: node evidencias-v298/test-lectura-central-v298.cjs
+      - name: Acuses y trazabilidad v297
+        run: node evidencias-v297/test-acuses-trazabilidad-v297.cjs
+      - name: Integridad local v296
+        run: node evidencias-v296/test-integridad-auditoria-v296.cjs
+      - name: Recuperaciones v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: Fotos y PDF v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Permisos v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: Revisión DOM v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Regresión v284
+        run: node evidencias-v284/test-regresion-v284.cjs
