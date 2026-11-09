@@ -1,9 +1,9 @@
 {
-  "version": 285,
-  "branch": "desarrollo/v285-pilares-indicadores",
-  "base_version": 284,
-  "base_commit": "b8bf52da6d01ea86761ed9eb0092a63ab0ffc3c4",
-  "estado": "desarrollo-aislado-v285-pilares-indicadores-vista-en-revision",
+  "version": 286,
+  "branch": "desarrollo/v286-titulo-pilares-indicadores",
+  "base_version": 285,
+  "base_commit": "22af8595ee3b8d34359fd5f31cbbc6fd17ca2c43",
+  "estado": "desarrollo-aislado-v286-titulo-completo-menu-pilares",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v284-correcciones-seguras",
+  "base_branch": "desarrollo/v285-pilares-indicadores",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -476,5 +476,20 @@
       "validación end-to-end y aprobación de usuario"
     ],
     "produccion": "No se ha publicado, ni desplegado, ni activado backend de indicadores"
+  },
+  "ajuste_v286": {
+    "fecha": "2026-11-09",
+    "objetivo": "renombrar rótulo visible de tarjeta lateral de Pilares a Pilares e Indicadores",
+    "archivo": "pilares-indicadores-v285.js",
+    "css": "pilares-indicadores-v285.css",
+    "ubicaciones": [
+      "menú lateral contraído",
+      "menú lateral expandido",
+      "menú móvil",
+      "vista de previsualización"
+    ],
+    "comportamiento": "misma funcionalidad sin cambiar permiso ni datos ni formularios",
+    "pruebas": "evidencias-v286/test-pilares-v286.cjs y .github/workflows/qa-v286-pilares.yml",
+    "produccion": "sin publicar"
   }
 }
