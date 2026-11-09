@@ -58,3 +58,8 @@
 @media(max-width:990px){#hys285PillarsPanel{padding:12px 10px 78px}#hys285PillarsPanel .hys285-shell{border-radius:14px}#hys285PillarsPanel .hys285-head{padding:22px}#hys285PillarsPanel .hys285-content{padding:18px}#hys285PillarsPanel .hys285-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#hys285PillarsPanel .hys285-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){#hys285PillarsPanel{padding:0 0 68px}#hys285PillarsPanel .hys285-shell{border-radius:0}#hys285PillarsPanel .hys285-head{padding:22px 15px}#hys285PillarsPanel .hys285-headline{gap:10px}#hys285PillarsPanel h1{font-size:23px}#hys285PillarsPanel .hys285-close{padding:9px}#hys285PillarsPanel .hys285-content{padding:14px}#hys285PillarsPanel .hys285-toolbar{grid-template-columns:1fr;gap:10px}#hys285PillarsPanel .hys285-grid,#hys285PillarsPanel .hys285-metrics{grid-template-columns:1fr}#hys285PillarsPanel .hys285-pillar{min-height:160px}#hys285PillarsPanel .hys285-detail{padding:15px}#hys285PillarsPanel .hys285-vision{margin-top:12px}}
 @media print{#hys285PillarsPanel{display:none!important}}
+
+/* v286: rótulo completo también en el menú contraído, sin truncar «Indicadores». */
+#hysToolsRail #hys285OpenPillars .tools-option-label{font-size:10px;line-height:1.2;text-align:center;overflow-wrap:normal;word-break:normal;white-space:normal;hyphens:none}
+#hysToolsRail.expanded #hys285OpenPillars .tools-option-full{white-space:normal;line-height:1.35}
+@media(max-width:1024px){#hysToolsRail #hys285OpenPillars .tools-option-label{font-size:11px;line-height:1.16;text-align:left}}
