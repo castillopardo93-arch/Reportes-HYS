@@ -38,6 +38,36 @@ function loadedRecoverFixture(result,opts={}){
  async()=>{loadCalls++;return result},async()=>{pendingCalls++},{});
  return {fn:fixture,calls:()=>({messages,loadCalls,pendingCalls,confirmCalls})};
 }
+function archiveFixture(opts={}){
+ const pos=cloud.indexOf('async function onArchive('),end=cloud.indexOf('async function newConflictCopy(',pos);
+ assert.ok(pos>=0&&end>pos);
+ const body=cloud.slice(pos,end);
+ const build=new Function('fixture',[
+  'let generation=1,localSaved=false,draftId=fixture.id;',
+  'let queue={commitDraft:async(...args)=>{fixture.writes.push(args);}};',
+  'const canWrite=()=>fixture.canWrite!==false;',
+  'const clone=v=>JSON.parse(JSON.stringify(v));',
+  'const B={pack:()=>fixture.report};',
+  'const window={Hys255Guard:{capture:()=>({reportId:fixture.id}),assert:()=>{}},HysFingerprint242:v=>JSON.stringify(v)};',
+  'const central=()=>fixture.central!==false;',
+  'const draft=(p,id)=>({payload:p,draftId:id});',
+  'const row=(p,a,id)=>({id,payload:p,archive:a});',
+  'const H={hasPending:false};',
+  'const pendingStatus=async()=>{fixture.statusCalls++};',
+  'const schedule=()=>{fixture.schedules++};',
+  'const Blob=globalThis.Blob;',
+  'class FileReader{readAsDataURL(blob){',
+  ' if(fixture.switchSession)generation++;',
+  ' this.result="data:application/pdf;base64,JVBERi0xLjQK";',
+  ' queueMicrotask(()=>this.onload());',
+  ' }}',
+  body,
+  'return {onArchive};'
+ ].join("\n"));
+ const fixture={id:oldId,report:{...payload},writes:[],statusCalls:0,schedules:0,...opts};
+ const {onArchive}=build(fixture);
+ return {archive:()=>onArchive({reportId:fixture.id,reportData:fixture.report,pdfBlob:new Blob(['%PDF-1.4 example'],{type:'application/pdf'})}),fixture,onArchive};
+}
 (async()=>{
  await check('Los PDF antiguos no se envían con una copia nueva',()=>{
   const r=plan([item()]);const created=r.ops.find(x=>x.store==='pending'&&x.value);
@@ -115,6 +145,30 @@ function loadedRecoverFixture(result,opts={}){
  await check('Las operaciones pendientes bloquean recuperación remota',async()=>{
   const f=loadedRecoverFixture(true,{pending:[item()]});await f.fn();
   assert.equal(f.calls().loadCalls,0);assert.match(f.calls().messages.join(' '),/pendientes/);
+ });
+ await check('PDF original se incorpora con el mismo ID y token de sesión',async()=>{
+  const x=archiveFixture();await x.archive();
+  assert.equal(x.fixture.writes.length,1);
+  assert.equal(x.fixture.writes[0][0].id,oldId);
+  assert.ok(x.fixture.writes[0][0].archive.pdf.startsWith('JVBERi'));
+  assert.equal(x.fixture.statusCalls,1);assert.equal(x.fixture.schedules,1);
+ });
+ await check('Cambiar de usuario durante FileReader impide escritura remota',async()=>{
+  const x=archiveFixture({switchSession:true});
+  await assert.rejects(()=>x.archive(),/sesión, el informe o los permisos cambiaron/i);
+  assert.equal(x.fixture.writes.length,0);assert.equal(x.fixture.schedules,0);
+ });
+ await check('PDF vacío no es aceptado por el archivo actual',async()=>{
+  const x=archiveFixture();
+  await assert.rejects(()=>x.onArchive({reportId:oldId,reportData:payload,
+   pdfBlob:new Blob([''],{type:'application/pdf'})}),/vacío/);
+  assert.equal(x.fixture.writes.length,0);
+ });
+ await check('PDF con tipo incorrecto se rechaza antes de guardarlo',async()=>{
+  const x=archiveFixture();
+  await assert.rejects(()=>x.onArchive({reportId:oldId,reportData:payload,
+   pdfBlob:new Blob(['%PDF-1.4 example'],{type:'text/plain'})}),/PDF/);
+  assert.equal(x.fixture.writes.length,0);
  });
  await check('El archivo PDF se valida y se verifica después de convertirlo',()=>{
   assert.match(cloud,/entry\.pdfBlob\.size<8/);
