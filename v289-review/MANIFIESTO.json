@@ -1,9 +1,9 @@
 {
-  "version": 288,
-  "branch": "desarrollo/v288-verificacion-indicadores",
-  "base_version": 287,
-  "base_commit": "bb1cc4073a6679fd0b0532fc15633a9f7e7bb17a",
-  "estado": "desarrollo-aislado-v288-metodologia-practica-y-verificable",
+  "version": 289,
+  "branch": "desarrollo/v289-auditoria-integral-consolidacion",
+  "base_version": 288,
+  "base_commit": "dac58d9a91f7f8b6d00bd674296aa509a2bd6c1f",
+  "estado": "auditoria-integral-consolidada-desarrollo-no-publicado",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v287-integracion-pilares-interfaz",
+  "base_branch": "desarrollo/v288-verificacion-indicadores",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -533,5 +533,66 @@
       "validar visualmente con administrador en navegador",
       "aprobar para eventual publicación"
     ]
+  },
+  "auditoria_integral_v289": {
+    "fecha": "2026-11-09",
+    "origen": "copia íntegra v288; cambios solo v289-review/ más evidencias y workflow",
+    "componentes": [
+      "identidad y permisos",
+      "tarjetas APR/OTROS",
+      "gestión general",
+      "áreas y catálogos",
+      "borradores y archivos locales",
+      "generación y archivo PDF",
+      "seguimiento y notificaciones",
+      "seis pilares estratégicos",
+      "Supabase read-only"
+    ],
+    "correcciones": [
+      "guardado central necesita simultáneamente ENABLE_CENTRAL y DEPLOYMENT_READY",
+      "restauración de borrador legado no añade operaciones de envío cuando central está apagado",
+      "mensaje de guardado/errores corresponde a estado local real",
+      "historial remoto soporta respuesta nula sin romper paginación",
+      "actualización de catálogo no falla por caché local llena",
+      "sessionStorage indisponible no impide cargar borrador válido",
+      "archivo local se consulta aunque despliegue esté listo pero envío central siga apagado",
+      "nuevo informe usa fecha local del momento, no fecha de carga de página",
+      "Administrador General respeta tarjetas autorizadas cuando existen permisos explícitos; perfil histórico sin asignaciones conserva ambas",
+      "textos de versión actualizados al desarrollo v289"
+    ],
+    "pruebas": {
+      "nuevas": 43,
+      "regresion_v284": 16,
+      "total": 59,
+      "workflow": ".github/workflows/qa-v289-integral.yml"
+    },
+    "servidor": {
+      "modo": "solo lectura",
+      "ultima_migracion_instalada": "hys_v242_correcciones_aisladas",
+      "sin_tablasy_rpcs_posteriores": [
+        "fichas_laborales_v279",
+        "regimenes_laborales_v281",
+        "hys282_catalogo_capacidades",
+        "hys282_catalogo_mutar"
+      ],
+      "proyectos_anteriores": "listas_v242 conserva PHAM 1/PHAM 2 como datos antiguos",
+      "advertencias_asesor_seguridad": 46,
+      "advertencias_asesor_rendimiento": 33
+    },
+    "pendientes_criticos": [
+      "guardado central multiusuario sin activar",
+      "catálogos laborales v279/v281/v282 sin instalar",
+      "integración de hallazgos/seguimiento/cierre verificado con indicadores",
+      "informes PDF/Excel ejecutivos y numeración única global",
+      "pruebas E2E con credenciales y navegador",
+      "revisión y tratamiento selectivo de advisories de Supabase"
+    ],
+    "limitaciones": [
+      "pruebas automáticas sin navegador autenticado",
+      "no se ejecutó operación remota de escritura",
+      "no se validaron contratos de datos v279/v281/v282 con servicios inexistentes",
+      "offline/PWA fuera del alcance vigente"
+    ],
+    "autorizaciones": "Cambios de producción, RLS, migraciones, usuarios y app oficial no ejecutados; requieren aprobación de despliegue específica."
   }
 }
