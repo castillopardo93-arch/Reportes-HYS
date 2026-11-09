@@ -1,0 +1,54 @@
+name: Reportes HYS v304 — Pilares integrados en la aplicación
+on:
+  push:
+    branches:
+      - desarrollo/v304-pilares-integrados-interfaz
+    paths:
+      - 'v304-review/**'
+      - 'evidencias-v304/**'
+      - '.github/workflows/qa-v304-panel-integrado.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrated-dashboard-and-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar entorno de pruebas DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Panel integrado real v304
+        run: node evidencias-v304/test-interfaz-integrada-v304.cjs
+      - name: Períodos y alertas v303
+        run: node evidencias-v303/test-periodos-indicadores-v303.cjs
+      - name: Auditoría integral v302
+        run: node evidencias-v302/test-auditoria-integral-v302.cjs
+      - name: Gestión rápida v301
+        run: node evidencias-v301/test-gestion-rapida-v301.cjs
+      - name: Interfaz y roles v300
+        run: node evidencias-v300/test-interfaz-permisos-v300.cjs
+      - name: Historial y paginación v299
+        run: node evidencias-v299/test-lectura-remota-v299.cjs
+      - name: Autenticación y lectura v298
+        run: node evidencias-v298/test-lectura-central-v298.cjs
+      - name: Acuses y trazabilidad v297
+        run: node evidencias-v297/test-acuses-trazabilidad-v297.cjs
+      - name: Integridad local v296
+        run: node evidencias-v296/test-integridad-auditoria-v296.cjs
+      - name: Recuperación v295
+        run: node evidencias-v295/test-recuperaciones-v295.cjs
+      - name: Historial v294
+        run: node evidencias-v294/test-validacion-dos-modulos-v294.cjs
+      - name: Fotos y PDF v293
+        run: node evidencias-v293/test-archivo-evidencias-v293.cjs
+      - name: Contrato de guardado v292
+        run: node evidencias-v292/test-contrato-guardado-v292.cjs
+      - name: Seguridad v291
+        run: node evidencias-v291/test-seguridad-y-guardado-v291.cjs
+      - name: Riesgos v290
+        run: node evidencias-v290/test-riesgos-v290.cjs
+      - name: DOM y seguridad v289
+        run: node evidencias-v289/test-consolidacion-v289.cjs
+      - name: Guardado local v284
+        run: node evidencias-v284/test-regresion-v284.cjs
