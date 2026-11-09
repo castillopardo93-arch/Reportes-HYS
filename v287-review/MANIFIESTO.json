@@ -1,9 +1,9 @@
 {
-  "version": 286,
-  "branch": "desarrollo/v286-titulo-pilares-indicadores",
-  "base_version": 285,
-  "base_commit": "22af8595ee3b8d34359fd5f31cbbc6fd17ca2c43",
-  "estado": "desarrollo-aislado-v286-titulo-completo-menu-pilares",
+  "version": 287,
+  "branch": "desarrollo/v287-integracion-pilares-interfaz",
+  "base_version": 286,
+  "base_commit": "a4e649a1f2833af9c9b4f58515b8347c93779c7f",
+  "estado": "desarrollo-aislado-v287-pilares-integrados-a-interfaz-principal",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -110,7 +110,7 @@
     "pdf_fotos_cierre": "pruebas temporales de bibliotecas; flujo real pendiente",
     "borradores_previos": "exportación selectiva; importación automática prohibida"
   },
-  "base_branch": "desarrollo/v285-pilares-indicadores",
+  "base_branch": "desarrollo/v286-titulo-pilares-indicadores",
   "implementacion_roles_v267": {
     "catalogo_local": true,
     "crear": true,
@@ -491,5 +491,25 @@
     "comportamiento": "misma funcionalidad sin cambiar permiso ni datos ni formularios",
     "pruebas": "evidencias-v286/test-pilares-v286.cjs y .github/workflows/qa-v286-pilares.yml",
     "produccion": "sin publicar"
+  },
+  "integracion_v287": {
+    "fecha": "2026-11-09",
+    "alcance": "integración de Pilares e Indicadores en la aplicación completa index.html, no solo vista de diseño",
+    "menu": "opción Pilares e Indicadores dentro de la cinta de Administración General entre Seguimiento y Apariencia, con título completo",
+    "visibilidad": "administrador_global activo en pantalla de selección de módulos; no visible en módulos operativos ni para usuarios no autorizados",
+    "archivos": [
+      "v287-review/index.html",
+      "v287-review/pilares-indicadores-v285.js",
+      "v287-review/pilares-indicadores-v285.css"
+    ],
+    "sincronizacion": "la página principal conserva versiones de scripts actualizadas en caché; recalcula visibilidad al cambiar de módulo o sesión",
+    "contenido": "seis tarjetas con detalles y filtros de diseño; datos consolidados y exportaciones permanecen inhabilitados hasta integración autorizada",
+    "pruebas": "evidencias-v287/test-integracion-v287.cjs ejecutada en .github/workflows/qa-v287-interfaz.yml; además regresiones v284",
+    "seguridad": "sin escribir datos en Supabase ni cambiar RLS ni publicar app",
+    "limites": [
+      "sin prueba auténtica de navegador con acceso real",
+      "sin estadísticas centrales",
+      "sin habilitación de exportación PDF/Excel ejecutiva"
+    ]
   }
 }
