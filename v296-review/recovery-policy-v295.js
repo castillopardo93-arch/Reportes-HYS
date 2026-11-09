@@ -27,13 +27,14 @@
    if(id===item.id||seen.has(id)||issued.has(id)||issued.has(token)||issued.has(recoveryId))
     throw Error('No se pudo asignar una identidad única a la recuperación.');
    issued.add(id);issued.add(token);issued.add(recoveryId);
-   const payload={...clone(item.payload),reportId:id,...(!isGlobal?{owner:ownerName}:{})};
+   const needsPdf=!!item.archive||item.payload.status==='Finalizado';
+   const payload={...clone(item.payload),reportId:id,...(needsPdf?{status:'En edición'}:{}),...(!isGlobal?{owner:ownerName}:{})};
    const original=clone(item);
    if(item.archive)pdfsToRegenerate++;
    ops.push({store:'draft',value:{id:recoveryId,payload:clone(item.payload),
      draftId:item.id,operation:original,updatedAt:timestamp}});
    ops.push({store:'pending',value:{...original,id,payload,
-     archive:null,revision:0,token,at:timestamp}});
+     archive:null,revision:0,token,at:timestamp,requiresPdfRegeneration:needsPdf}});
    ops.push({store:'pending',id:item.id,remove:true});
    if(item.id===currentDraftId){
     currentId=id;
