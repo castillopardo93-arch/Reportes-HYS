@@ -37,6 +37,16 @@ ok('Sin exportación ni métricas inventadas',()=>{
  assert.doesNotMatch(app,/HYS242_DEPLOYMENT_READY\s*=\s*true/);
 });
 
+ok('Administrador General respeta permisos explícitos de módulo',()=>{
+ const match=index.match(/const moduleRows=permissions\.filter\(p=>\['APR','OTROS'\]\.includes\(p\.modulo\)\);[\s\S]*?:\[\.\.\.new Set\(moduleRows\.filter\(p=>p\.puede_ver===true\)\.map\(p=>p\.modulo\)\)\];/);
+ assert.ok(match,'No se encontró el cálculo de módulos efectivos');
+ const compute=new Function('profile','permissions',match[0]+'return modules;');
+ const admin={rol:'administrador_global'};
+ assert.deepEqual(compute(admin,[]),['APR','OTROS'],'La cuenta histórica sin asignaciones conserva dos tarjetas');
+ assert.deepEqual(compute(admin,[{modulo:'APR',puede_ver:true}]),['APR'],'Una asignación limita al Administrador General a APR');
+ assert.deepEqual(compute(admin,[{modulo:'APR',puede_ver:false},{modulo:'OTROS',puede_ver:true}]),['OTROS'],'Revocar APR oculta esa tarjeta');
+ assert.deepEqual(compute({rol:'supervisor'},[{modulo:'APR',puede_ver:true}]),['APR'],'Otros perfiles mantienen sus asignaciones');
+});
 ok('El proyecto actual se conserva y los antiguos quedan solo para históricos',()=>{
  assert.match(index,/const PROJECT_NAME_245="Proyecto Hidroeléctrico Alto Maipo"/);
  assert.match(index,/const LEGACY_PROJECTS_283=new Set\(\["PHAM 1","PHAM 2"\]\)/);
