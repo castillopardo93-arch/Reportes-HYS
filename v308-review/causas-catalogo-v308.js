@@ -59,7 +59,7 @@
   else section.insertBefore(status,section.firstElementChild?.nextSibling||null);
  }
  const preserved=new WeakMap();
- const selectorQuery='.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]';
+ const selectorQuery='.hys306-cause-select';
  function updateOptions(){
   for(const sel of form.querySelectorAll(selectorQuery)){
    if(!preserved.has(sel)){
@@ -87,10 +87,8 @@
   }
  }
  updateOptions();
- const add=d.getElementById('hys306AddAction');
- add?.addEventListener('click',updateOptions);
- // Los campos de texto libre no se bloquean, preservando el ensayo del flujo
- // documental; únicamente los códigos oficiales no se aceptan sin validación.
+ // El catálogo solo corresponde a los cinco selectores del análisis de causas
+ // (punto 9). El campo CÓDIGOS del punto 10 es de escritura libre, como en Excel.
  root.Hys308CausaCatalogo={
   ready,expected:expectedCount,count:()=>map.size,get,format,updateOptions,validateCatalog,valid,codeOrder,
   source:expectedSource
