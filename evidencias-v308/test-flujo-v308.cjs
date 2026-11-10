@@ -204,11 +204,14 @@ ok('Solo aprobadores facultados pueden cerrar el expediente',()=>{
  assert.ok(s.history.some(x=>x.kind==='flash'&&x.event==='Aprobación del informe'));
  assert.ok(s.history.some(x=>x.kind==='final'&&x.event==='Aprobación del informe'));
 });
-ok('Se conservaron las etiquetas originales de v307',()=>{
+ok('Se conservaron las etiquetas salvo CÓDIGOS libre del punto 10',()=>{
  const source=fs.readFileSync(path.resolve(__dirname,'../v307-review/investigacion-accidentes-v305.js'),'utf8');
  const labels=s=>[...s.matchAll(/\b(?:f|text|pick|areaField)\('([^']+)','[^']+'/g)].map(x=>x[1]);
  assert.equal(labels(base).length,82);
- assert.deepEqual(labels(base),labels(source));
+ const original=labels(source);
+ const expected=original.map(x=>x==='Código de causa'?'CÓDIGOS':x);
+ assert.equal(original.filter(x=>x==='Código de causa').length,1);
+ assert.deepEqual(labels(base),expected);
 });
 ok('No se alteran módulos APR/OTROS ni escribe el laboratorio en Supabase',()=>{
  assert.ok(productionPage.includes('if(embeddedOtros && !modules.includes("OTROS"))'));
