@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Instalar entorno DOM
         run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Verificar sintaxis del extractor oficial Excel
+        run: python3 -m py_compile evidencias-v308/extraer-causas-desde-excel.py
       - name: Ensayo de Flash, Final y seguimiento
         run: node evidencias-v308/test-flujo-v308.cjs
       - name: Catálogo Excel — Código y nombre (153 opciones)
