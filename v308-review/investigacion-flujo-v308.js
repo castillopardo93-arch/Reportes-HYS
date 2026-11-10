@@ -70,29 +70,65 @@
  function clearIssueView(form){
   form.querySelector('.hys308-required-summary')?.remove();
   form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
-  form.querySelectorAll('.hys308-required-field').forEach(node=>node.classList.remove('hys308-required-field'));
+  form.querySelectorAll('.hys308-required-field').forEach(node=>{
+   node.classList.remove('hys308-required-field');
+   node.querySelector('.hys308-error-detail')?.remove();
+  });
+  form.querySelectorAll('[aria-describedby^="hys308-error-"]').forEach(node=>node.removeAttribute('aria-describedby'));
+  form.querySelector('.hys308-required-complete')?.remove();
+  delete form.dataset.hys308Validate;
  }
- function showIssues(kind,issues){
-  const form=formFor(kind);clearIssueView(form);
-  if(!issues.length)return;
-  const summary=el('div','hys308-required-summary');summary.setAttribute('role','alert');
-  summary.setAttribute('aria-live','assertive');
-  summary.append(el('strong',null,'No se puede enviar a revisión. Completa los '+issues.length+' campos señalados:'));
+ function showIssues(kind,issues,focus=true){
+  const form=formFor(kind);
+  const previouslyInvalid=!!form.dataset.hys308Validate;
+  // Validación en vivo: mantener rojo hasta corregir; no ocultar avisos
+  // solo porque el usuario escribió un carácter o cambió un selector.
+  const oldSummary=form.querySelector('.hys308-required-summary');
+  oldSummary?.remove();
+  form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
+  form.querySelectorAll('.hys308-required-field').forEach(node=>{
+   node.classList.remove('hys308-required-field');
+   node.querySelector('.hys308-error-detail')?.remove();
+  });
+  form.querySelectorAll('[aria-describedby^="hys308-error-"]').forEach(node=>node.removeAttribute('aria-describedby'));
+  form.dataset.hys308Validate='true';
+  if(!issues.length){
+   delete form.dataset.hys308Validate;
+   if(previouslyInvalid&&!focus){
+    const ok=el('p','hys308-required-complete','Todos los antecedentes obligatorios están completos. Puedes enviar a revisión.');
+    form.prepend(ok);
+   }
+   return;
+  }
+  form.querySelector('.hys308-required-complete')?.remove();
+  const summary=el('div','hys308-required-summary');
+  summary.setAttribute('role','alert');summary.setAttribute('aria-live',focus?'assertive':'polite');
+  summary.append(el('strong',null,'Faltan '+issues.length+' campos obligatorios para enviar el Flash Report.'));
+  summary.append(el('p',null,'Los campos pendientes están marcados en rojo. Puedes guardar un borrador y completarlos después.'));
   const list=el('ul');
   for(const issue of issues){
-   list.append(el('li',null,issue.label+' — '+issue.reason));
+   const line=el('li',null,issue.label+' — '+issue.reason);
+   list.append(line);
    const control=[...form.querySelectorAll('[name]')].find(node=>node.name===issue.key);
    if(control){
     control.setAttribute('aria-invalid','true');
-    control.closest('.hys306-field')?.classList.add('hys308-required-field');
+    const holder=control.closest('.hys306-field');
+    holder?.classList.add('hys308-required-field');
+    if(holder){
+     const error=el('small','hys308-error-detail','⚠ '+issue.reason);
+     error.id='hys308-error-'+issue.key;
+     holder.append(error);
+     control.setAttribute('aria-describedby',error.id);
+    }
    }
   }
   summary.append(list);
   const banner=form.querySelector('.hys306-report-banner');
   if(banner)banner.insertAdjacentElement('afterend',summary);else form.prepend(summary);
-  summary.scrollIntoView?.({block:'start'});
-  const invalid=form.querySelector('[aria-invalid="true"]');
-  invalid?.focus?.({preventScroll:true});
+  if(focus){
+   summary.scrollIntoView?.({block:'start',behavior:'smooth'});
+   form.querySelector('[aria-invalid="true"]')?.focus?.({preventScroll:true});
+  }
  }
  function tellBlockedFinal(){
   root.alert?.('Final Report se habilita cuando el Flash Report tiene los antecedentes mínimos completos y fue enviado a revisión. Puedes guardar un borrador incompleto y continuar después.');
@@ -435,10 +471,12 @@
   const suffix=kind==='flash'?'Flash':'Final';
   const save=el('button','hys306-secondary','Guardar borrador (prueba)');
   save.type='button';save.id='hys308Save'+suffix;save.addEventListener('click',()=>saveDraft(kind));
-  form.addEventListener('input',e=>{
-   if(e.target?.hasAttribute?.('aria-invalid'))e.target.removeAttribute('aria-invalid');
-   e.target?.closest?.('.hys306-field')?.classList.remove('hys308-required-field');
-  });
+  const updateRequiredFeedback=()=>{
+   if(kind==='flash'&&form.dataset.hys308Validate==='true')
+    showIssues('flash',formIssues('flash',valueMap(form)),false);
+  };
+  form.addEventListener('input',updateRequiredFeedback);
+  form.addEventListener('change',updateRequiredFeedback);
   const lbl=el('label','hys308-assign','Revisor autorizado (simulación)');
   const select=el('select');select.id='hys308Reviewer'+suffix;
   const empty=el('option',null,demo?'Selecciona a quién enviar':'Revisores reales: integración pendiente');
