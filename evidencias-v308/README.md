@@ -25,7 +25,7 @@ La prueba DOM es `evidencias-v308/test-flujo-v308.cjs`; requiere `jsdom@26.1.0`.
 ## Corrección del análisis de causas en Final Report (misma v308)
 - Se añadió carga directa de la hoja `Tabla` desde el Excel original HSS-RGT-007 Rev. 08 en la sección 9.
 - Cada opción mantiene el código como identificador y muestra `código — nombre` cuando la descripción viene del libro.
-- La selección se incorpora al campo narrativo con código y nombre; también se aplica al selector de códigos de los planes de acción.
+- La selección se incorpora al campo narrativo del análisis de causas con código y nombre. La lista desplegable corresponde exclusivamente al punto 9; **el punto 10 no contiene desplegable**, y su columna CÓDIGOS se rellena libremente, como en el Excel original.
 - El fichero se lee temporalmente en memoria mediante JSZip 3.10.1 y no se sube a Supabase ni al repositorio.
 - **Sin el libro original cargado por el usuario, solo se muestran los códigos**. Las descripciones exactas NO se han inventado ni publicado en GitHub.
 - Validación automática: 153 pares de código y descripción en un Excel sintético; comprobación pendiente con la hoja Tabla real y cotejo de las categorías.
@@ -40,3 +40,9 @@ La prueba DOM es `evidencias-v308/test-flujo-v308.cjs`; requiere `jsdom@26.1.0`.
 - Los desplegables quedan deshabilitados hasta incorporar la plantilla original, sin impedir la revisión de la interfaz y otros campos.
 - No se requiere cargar Excel por cada usuario o reporte; queda pendiente la generación efectiva de 153 nombres desde el libro real y su revisión visual.
 - En las pruebas automatizadas se inyecta un catálogo **sintético** de 153 descripciones para validar la interfaz. Los nombres de prueba no forman parte de la aplicación real.
+
+## Ajuste puntual del punto 10 — Planes de acción (10/11/2026)
+- Verificado en la hoja `Final Report` de la plantilla HSS-RGT-007 Rev. 08: en el punto 10 existen `CÓDIGOS` y `PLANES DE ACCION RECOMENDADOS`, sin lista desplegable en la columna CÓDIGOS.
+- Se reemplazó el selector de `action_*_codigo` por un `input type="text"`; permanece la capacidad de añadir planes y los demás campos.
+- Las listas de código y nombre permanecen solo en las cinco categorías del punto 9.
+- Los test de flujo, catálogo y ubicación comprueban las dos secciones por separado. No se modificó Supabase/producción/main.
