@@ -6,8 +6,8 @@
  const d=root.document;
  if(!d||new URLSearchParams(root.location.search).get('embedded')==='otros')return;
  const params=new URLSearchParams(root.location.search);
- const review=/\/v307-review\/index\.html$/i.test(root.location.pathname)
-   &&['accidentes','flash','final'].includes(params.get('revision'));
+ const review=/\/v308-review\/index\.html$/i.test(root.location.pathname)
+   &&['accidentes','flash','final','seguimiento'].includes(params.get('revision'));
  const nav=d.getElementById('hysToolsOptions')||(review?d.createElement('nav'):null);
  if(!nav)return;
  const $=id=>d.getElementById(id);
@@ -18,9 +18,7 @@
   return e;
  };
  const access=()=>root.__REPORTES_HYS_ACCESS__;
- const authorized=()=>access()?.profile?.activo===true &&
-  access().profile.rol==='administrador_global' &&
-  !access().selectedModule && d.body.classList.contains('module-choice');
+ const authorized=()=>access()?.profile?.activo===true && !!access()?.userId;
  const visible=()=>review||authorized();
  const catalogs={
   incidentes:['Con Lesión','Cuasi Accidente','Daño Material','Falla Operacional','NAT','Sin lesión','Trayecto'],
@@ -459,9 +457,11 @@
  }
  function close(force=false){
   if(panel.hidden)return true;
-  if(!force&&(dirty.flash||dirty.final)&&typeof root.confirm==='function'&&
-   !root.confirm('Los formularios no tienen guardado activo. Al cerrar, los datos ingresados se perderán. ¿Cerrar?'))return false;
-  panel.hidden=true;token++;resetAll();active=null;
+  if(!force&&root.Hys308Workflow?.canLeave){
+   if(!root.Hys308Workflow.canLeave())return false;
+  }else if(!force&&(dirty.flash||dirty.final)&&typeof root.confirm==='function'&&
+   !root.confirm('Este formulario está en revisión y los datos no se han guardado. ¿Cerrar?'))return false;
+  panel.hidden=true;token++;resetAll();active=null;root.Hys308Workflow?.onClosed?.();
   if(button.isConnected&&!button.hidden&&authorized())button.focus({preventScroll:true});
   else if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});
   return true;
