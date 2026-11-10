@@ -7,8 +7,8 @@
 if(window.__REPORTES_HYS_OTROS_EMBEDDED__||!document.getElementById('hysToolsOptions'))return;
 const $=id=>document.getElementById(id);
 const C=window.Hys259Access, A=window.Hys256Access, F=window.Hys261FacultyModel, R=window.Hys262Roles, M=C.modules;
-const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',editOthers:'Modificar informes ajenos con motivo',areas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
-const dependent=['pdf','review','approve','close','editOthers'];
+const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',closeFlashReport:'Autorizar cierre de Flash Report',closeFinalReport:'Autorizar cierre de Final Report',editOthers:'Modificar informes ajenos con motivo',areas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
+const dependent=['pdf','review','approve','close','closeFlashReport','closeFinalReport','editOthers'];
 const access=()=>window.__REPORTES_HYS_ACCESS__;
 const isGlobal=()=>access()?.profile?.activo===true&&access()?.profile?.rol==='administrador_global';
 const canManage=()=>access()?.profile?.activo===true&&(isGlobal()||M.some(m=>A.can(access(),'users',m)));
