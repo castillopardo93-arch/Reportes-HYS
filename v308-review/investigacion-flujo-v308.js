@@ -359,12 +359,12 @@
    audit(c,kind,'Devuelto para corrección',String(note).trim());
   }else if(action==='approve'){
    const next=eligibleReviewers().find(x=>x.id===nextReviewer&&x.id!==who.id);
-   if(!next&&((kind==='flash'&&!who.canCloseFlash)||(kind==='final'&&!who.canCloseFinal))){
-    root.alert?.('La revisión no otorga facultad de cierre. Debes enviar el informe a una persona autorizada para aprobarlo definitivamente.');
-    return false;
-   }
    if(kind==='final'&&c.flash.status!=='aprobado'&&!next){
     root.alert?.('Final Report no puede aprobarse definitivamente sin Flash Report aprobado.');
+    return false;
+   }
+   if(!next&&((kind==='flash'&&!who.canCloseFlash)||(kind==='final'&&!who.canCloseFinal))){
+    root.alert?.('La revisión no otorga facultad de cierre. Debes enviar el informe a una persona autorizada para aprobarlo definitivamente.');
     return false;
    }
    if(next){
