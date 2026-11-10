@@ -154,7 +154,7 @@
  const fForm=formFor('flash'),nForm=formFor('final');
  if(!panel||!cards||!grid||!workspace||!main||!fForm||!nForm)return;
  const note=panel.querySelector('.hys306-notice p');
- if(note)note.textContent='LABORATORIO v308: puedes probar borradores, envío, revisiones y seguimiento con datos ficticios. Los informes solo permanecen en memoria hasta recargar la página. NO ingreses datos reales. No se envían mensajes ni se guardan en Supabase.';
+ if(note)note.textContent='DESARROLLO v309: puedes probar borradores, envío, revisiones y seguimiento con datos ficticios. Los informes solo permanecen en memoria hasta recargar la página. NO ingreses datos reales. No se envían mensajes ni se guardan en Supabase.';
  const finalDescription=cards.querySelector('#hys306OpenFinal .hys306-choice-desc');
  if(finalDescription)finalDescription.textContent='Se inicia desde Seguimiento Flash, cuando el Flash Report tiene los antecedentes obligatorios y ya fue enviado a revisión. No requiere esperar su aprobación.';
  const card=el('button','hys306-choice');
