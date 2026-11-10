@@ -5,10 +5,10 @@
 const assert=require('node:assert/strict');
 const fs=require('fs'),path=require('path');
 const {JSDOM}=require('jsdom');
-const dir=path.resolve(__dirname,'../v308-review');
+const dir=path.resolve(__dirname,'../v309-review');
 const read=p=>fs.readFileSync(path.join(dir,p),'utf8');
 const preview=read('demo-final-causas-v308.html');
-const dom=new JSDOM(preview,{url:'https://hys.test/v308-review/demo-final-causas-v308.html',runScripts:'outside-only'});
+const dom=new JSDOM(preview,{url:'https://hys.test/v309-review/demo-final-causas-v308.html',runScripts:'outside-only'});
 const w=dom.window,d=w.document;
 const inlineScripts=[...preview.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]).filter(s=>s.trim());
 assert.equal(inlineScripts.length,2,'Deben existir script de acceso ficticio y script de previsualización');
