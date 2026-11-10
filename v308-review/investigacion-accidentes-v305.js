@@ -199,7 +199,9 @@
    chooser.addEventListener('change',()=>{
     const code=chooser.value;
     if(!code)return;
-    c.value=[c.value.trim(),root.Hys308CausaCatalogo?.format(code)||code].filter(Boolean).join('\n');
+    const selected=root.Hys308CausaCatalogo?.format(code);
+    if(!selected)return;
+    c.value=[c.value.trim(),selected].filter(Boolean).join('\n');
     c.dispatchEvent(new root.Event('input',{bubbles:true}));
     chooser.value='';c.focus();
    });
@@ -233,7 +235,7 @@
   const fs=element('fieldset','hys306-section');fs.id='hys306ActionSection';
   fs.append(element('legend','hys306-legend','10.- PLANES DE ACCIÓN'));
   fs.append(element('p','hys306-section-description',
-   'Código de causa, plan recomendado, fecha de cumplimiento y responsable. La selección numérica usa los rangos de la hoja Tabla; descripciones exactas pendientes de cotejo.'));
+   'Código de causa, plan recomendado, fecha de cumplimiento y responsable. Los desplegables usan código y descripción literal de la hoja Tabla cuando el catálogo oficial está integrado.'));
   const list=element('div','hys306-action-list');list.id='hys306ActionRows';
   let seq=0;
   function add(){
@@ -370,16 +372,16 @@
    ]);
    section(form,kind,'9.- ANÁLISIS DE CAUSAS',[
     text('1. CAUSAS INMEDIATAS — CONDICIONES SUBESTÁNDAR','condiciones_subestandar',{wide:true,rows:3,causeGroup:'condiciones_subestandar',
-      hint:'Códigos 1.1–1.37; descripción literal por validar.'}),
+      hint:'La selección de causas requiere los códigos y las descripciones literales del Excel original.'}),
     text('1. CAUSAS INMEDIATAS — ACCIONES SUBESTÁNDAR','acciones_subestandar',{wide:true,rows:3,causeGroup:'acciones_subestandar',
-      hint:'Códigos 1.38–1.73; descripción literal por validar.'}),
+      hint:'La selección de causas requiere los códigos y las descripciones literales del Excel original.'}),
     text('2. CAUSAS BÁSICAS — FACTORES TÉCNICOS O DEL TRABAJO','factores_trabajo',{wide:true,rows:3,causeGroup:'factores_trabajo',
-      hint:'Códigos 2.1–2.25; descripción literal por validar.'}),
+      hint:'La selección de causas requiere los códigos y las descripciones literales del Excel original.'}),
     text('2. CAUSAS BÁSICAS — FACTORES PERSONALES','factores_personales',{wide:true,rows:3,causeGroup:'factores_personales',
-      hint:'Códigos 2.26–2.49; descripción literal por validar.'}),
+      hint:'La selección de causas requiere los códigos y las descripciones literales del Excel original.'}),
     text('3. REQUERIMIENTOS DEL SISTEMA','requerimientos_sistema',{wide:true,rows:3,causeGroup:'requerimientos_sistema',
-      hint:'Códigos 3.1–3.31; descripción literal por validar.'})
-   ],{description:'La clasificación conserva la estructura de las tres tablas del Excel; los códigos se seleccionan en las listas; sus descripciones originales requieren validación.'});
+      hint:'La selección de causas requiere los códigos y las descripciones literales del Excel original.'})
+   ],{description:'La clasificación conserva las tablas del Excel original; cada lista mostrará código y nombre cuando el catálogo oficial esté integrado.'});
    plans(form,kind);
    section(form,kind,'EQUIPO INVESTIGADOR Y APROBACIONES',[
     text('EQUIPO INVESTIGADOR — NOMBRES Y CARGOS','equipo_investigador',{wide:true,rows:3}),
