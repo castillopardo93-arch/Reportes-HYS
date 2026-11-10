@@ -39,8 +39,8 @@ function toggle(id,type,checked=true){
 toggle('demo-supervisor','flash');
 toggle('demo-hys','flash');
 toggle('demo-admin','final');
-assert.deepEqual(api.getProposal().facultades.flash.sort(),['demo-hys','demo-supervisor']);
-assert.deepEqual(api.getProposal().facultades.final,['demo-admin']);
+assert.equal([...api.getProposal().facultades.flash].sort().join('|'),'demo-hys|demo-supervisor');
+assert.equal([...api.getProposal().facultades.final].join('|'),'demo-admin');
 assert.equal(api.canClose('demo-supervisor','flash'),true);
 assert.equal(api.canClose('demo-admin','flash'),false);
 assert.equal(api.canClose('demo-admin','final'),true);
