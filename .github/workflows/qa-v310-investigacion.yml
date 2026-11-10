@@ -1,12 +1,12 @@
-name: Reportes HYS v309 — Investigación y trazabilidad (laboratorio)
+name: Reportes HYS v310 — Investigación y trazabilidad (laboratorio)
 on:
   push:
     branches:
-      - desarrollo/v309-integracion-investigacion
+      - desarrollo/v310-facultades-cierre-lista
     paths:
-      - 'v309-review/**'
-      - 'evidencias-v309/**'
-      - '.github/workflows/qa-v309-investigacion.yml'
+      - 'v310-review/**'
+      - 'evidencias-v310/**'
+      - '.github/workflows/qa-v310-investigacion.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,18 +19,18 @@ jobs:
       - name: Instalar entorno DOM
         run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
       - name: Verificar sintaxis del extractor oficial Excel
-        run: python3 -m py_compile evidencias-v309/extraer-causas-desde-excel.py
+        run: python3 -m py_compile evidencias-v310/extraer-causas-desde-excel.py
       - name: Integración de interfaz avanzada y ausencia de regresiones en módulos base
-        run: node evidencias-v309/test-interfaz-avanzada-v309.cjs
+        run: node evidencias-v310/test-interfaz-avanzada-v310.cjs
       - name: Ensayo de Flash, Final y seguimiento
-        run: node evidencias-v309/test-flujo-v308.cjs
-      - name: Facultades independientes de cierre Flash y Final
-        run: node evidencias-v309/test-facultades-cierre-v308.cjs
+        run: node evidencias-v310/test-flujo-v308.cjs
+      - name: Dos opciones de cierre dentro de las facultades originales (sin panel adicional)
+        run: node evidencias-v310/test-facultades-lista-v310.cjs
       - name: Directorio seguro y búsqueda inteligente de revisores
-        run: node evidencias-v309/test-revisores-v308.cjs
+        run: node evidencias-v310/test-revisores-v308.cjs
       - name: Verificar cada causa en su categoría de Final Report y acceso directo
-        run: node evidencias-v309/test-causas-ubicacion-v308.cjs
+        run: node evidencias-v310/test-causas-ubicacion-v308.cjs
       - name: Catálogo Excel — Código y nombre (153 opciones)
-        run: node evidencias-v309/test-catalogo-v308.cjs
+        run: node evidencias-v310/test-catalogo-v308.cjs
       - name: Regresión de formularios originales
         run: node evidencias-v306/test-flash-final-v306.cjs
