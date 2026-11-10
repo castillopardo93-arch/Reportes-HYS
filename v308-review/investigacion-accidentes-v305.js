@@ -47,7 +47,6 @@
   const x=causeGroups[group];
   return x?Array.from({length:x[2]-x[1]+1},(_,i)=>x[0]+'.'+(x[1]+i)):[];
  };
- const allCauseCodes=Object.keys(causeGroups).flatMap(causeCodes);
  const button=element('button','hys-admin-open');
  button.id='hys305OpenAccidents';
  button.type='button';
@@ -235,7 +234,7 @@
   const fs=element('fieldset','hys306-section');fs.id='hys306ActionSection';
   fs.append(element('legend','hys306-legend','10.- PLANES DE ACCIÓN'));
   fs.append(element('p','hys306-section-description',
-   'Código de causa, plan recomendado, fecha de cumplimiento y responsable. Los desplegables usan código y descripción literal de la hoja Tabla cuando el catálogo oficial está integrado.'));
+   'CÓDIGOS y PLANES DE ACCIÓN RECOMENDADOS según el punto 10 del Excel original. Ingresa los códigos directamente, sin lista desplegable. Se conservan los campos complementarios de fecha y responsable.'));
   const list=element('div','hys306-action-list');list.id='hys306ActionRows';
   let seq=0;
   function add(){
@@ -243,7 +242,7 @@
    block.append(element('h4',null,'Plan de acción '+seq));
    const grid=element('div','hys306-field-grid');
    for(const spec of [
-    pick('Código de causa','action_'+seq+'_codigo',{options:allCauseCodes}),
+    f('CÓDIGOS','action_'+seq+'_codigo','text',{placeholder:'Escribir código(s) asociado(s)'}),
     text('Plan de acción recomendado','action_'+seq+'_descripcion',{wide:true}),
     f('Fecha de cumplimiento','action_'+seq+'_fecha','date'),
     f('Responsable','action_'+seq+'_responsable','text')
