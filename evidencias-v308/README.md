@@ -21,3 +21,12 @@ Copia aislada desde v307, para probar funciones de investigación con datos excl
 
 ## QA
 La prueba DOM es `evidencias-v308/test-flujo-v308.cjs`; requiere `jsdom@26.1.0`. Aun con pruebas automáticas, se necesita revisión visual de los formularios en un navegador real.
+
+## Corrección del análisis de causas en Final Report (misma v308)
+- Se añadió carga directa de la hoja `Tabla` desde el Excel original HSS-RGT-007 Rev. 08 en la sección 9.
+- Cada opción mantiene el código como identificador y muestra `código — nombre` cuando la descripción viene del libro.
+- La selección se incorpora al campo narrativo con código y nombre; también se aplica al selector de códigos de los planes de acción.
+- El fichero se lee temporalmente en memoria mediante JSZip 3.10.1 y no se sube a Supabase ni al repositorio.
+- **Sin el libro original cargado por el usuario, solo se muestran los códigos**. Las descripciones exactas NO se han inventado ni publicado en GitHub.
+- Validación automática: 153 pares de código y descripción en un Excel sintético; comprobación pendiente con la hoja Tabla real y cotejo de las categorías.
+- Las pruebas de regresión v306 y el flujo v308 se ejecutaron en GitHub Actions con éxito.
