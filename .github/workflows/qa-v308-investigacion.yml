@@ -1,0 +1,24 @@
+name: Reportes HYS v308 — Investigación y trazabilidad (laboratorio)
+on:
+  push:
+    branches:
+      - desarrollo/v308-flujo-investigacion
+    paths:
+      - 'v308-review/**'
+      - 'evidencias-v308/**'
+      - '.github/workflows/qa-v308-investigacion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  investigacion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar entorno DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Ensayo de Flash, Final y seguimiento
+        run: node evidencias-v308/test-flujo-v308.cjs
+      - name: Regresión de formularios originales
+        run: node evidencias-v306/test-flash-final-v306.cjs
