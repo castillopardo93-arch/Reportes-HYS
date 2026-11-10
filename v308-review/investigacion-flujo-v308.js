@@ -348,7 +348,10 @@
   for(const k of ['flash','final']){
    const form=formFor(k);
    const activeForm=kind===k,editable=activeForm&&editing;
-   form.querySelectorAll('input,select,textarea').forEach(node=>node.disabled=!editable);
+   form.querySelectorAll('input,select,textarea').forEach(node=>{
+    const codeSelector=node.matches('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]');
+    node.disabled=!editable||(codeSelector&&!root.Hys308CausaCatalogo?.ready);
+   });
    const clr=form.querySelector('[data-clear-form]');if(clr)clr.disabled=!editable;
    if(k==='final'){$('hys306AddAction').disabled=!editable}
    const s=$('hys308Save'+(k==='flash'?'Flash':'Final'));
