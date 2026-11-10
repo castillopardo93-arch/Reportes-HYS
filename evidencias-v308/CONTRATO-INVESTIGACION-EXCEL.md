@@ -34,3 +34,9 @@ Por ahora, para enviar Flash se exigen: tipo de incidente, probabilidad, fecha, 
 - Los usuarios de demo no son perfiles reales. No introducir incidentes reales, RUT, declaraciones ni fotos personales.
 - Sin escrituras en Supabase ni publicación de producción; rama `main` y versiones previas intactas.
 - La plantilla original figura en Library, pero la sesión no ha permitido extraer sus bytes; pendiente de incorporar/inspeccionar el libro real antes de reemplazar los catálogos provisionales.
+
+## Corrección de interfaz — carga directa del catálogo (10/11/2026)
+
+Se elimina la opción `Cargar listas de causas desde Excel` del formulario. La fuente de verdad será un fichero de catálogo preintegrado, generado por la herramienta `extraer-causas-desde-excel.py` exclusivamente a partir del mismo HSS-RGT-007 Rev. 08.
+
+No se debe dar por terminado el requisito «código + descripción directa» hasta que los 153 nombres reales hayan sido extraídos y verificados. Sin ese fichero, se deshabilitan los selectores de causas. El resto de las funciones de desarrollo v308 se conserva.
