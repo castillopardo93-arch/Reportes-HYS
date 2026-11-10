@@ -20,6 +20,8 @@ jobs:
         run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
       - name: Verificar sintaxis del extractor oficial Excel
         run: python3 -m py_compile evidencias-v311/extraer-causas-desde-excel.py
+      - name: Verificar sintaxis de todos los JavaScript de la interfaz avanzada
+        run: find v311-review -maxdepth 1 -type f -name '*.js' -print0 | xargs -0 -n1 node --check
       - name: Integración de interfaz avanzada y ausencia de regresiones en módulos base
         run: node evidencias-v311/test-interfaz-avanzada-v310.cjs
       - name: Auditoría de fechas imposibles, Final incompleto y correcciones pendientes
