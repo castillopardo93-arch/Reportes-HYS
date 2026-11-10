@@ -55,10 +55,24 @@ w.JSZip={loadAsync:async()=>zip};
  assert.ok(option);
  assert.equal(option.textContent,'1.1 — '+safeName('1.1'));
  w.Hys308Workflow.openNew('flash');
- const f=d.querySelector('#hys306FlashForm [name="tipo_incidente"]');f.value='Cuasi Accidente';f.dispatchEvent(new w.Event('input',{bubbles:true}));
- d.getElementById('hys308SaveFlash').click();
+ const sample={
+  tipo_incidente:'Cuasi Accidente',probabilidad:'Baja',fecha_ocurrencia:'2026-11-10',
+  hora:'09:10',area_proyecto:'VA4',ubicacion:'Lugar de prueba',
+  involucrado:'Persona ficticia',cargo:'Operador',
+  primeros_auxilios:'No',ambulancia:'No',hospital:'No',existen_testigos:'No',
+  hechos:'Descripción completamente simulada para validar los datos de la investigación.',
+  causas_aparentes:'Causa inmediata ficticia de prueba',
+  acciones_inmediatas:'Medida preventiva simulada de prueba',
+  reportado_por:'Informante ficticio',preparado_por:'Elaborador ficticio'
+ };
+ for(const [key,value] of Object.entries(sample)){
+  const field=d.querySelector('#hys306FlashForm [name="'+key+'"]');
+  assert.ok(field,key);field.value=value;field.dispatchEvent(new w.Event('input',{bubbles:true}));
+ }
+ d.getElementById('hys308ReviewerFlash').value='demo-supervisor';
+ assert.equal(w.Hys308Workflow.send('flash'),true);
  const c=w.Hys308Workflow.state().cases[0];
- w.Hys308Workflow.openCase(c.id,'final');
+ assert.ok(w.Hys308Workflow.openCase(c.id,'final'));
  const codeSelector=d.querySelector('#hys306FinalForm .hys306-cause-select');
  codeSelector.value='1.1';codeSelector.dispatchEvent(new w.Event('change',{bubbles:true}));
  const textarea=d.querySelector('#hys306FinalForm [name="condiciones_subestandar"]');
