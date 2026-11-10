@@ -1,0 +1,42 @@
+name: Reportes HYS v312 — Investigación y trazabilidad (laboratorio)
+on:
+  push:
+    branches:
+      - desarrollo/v312-auditoria-correctiva
+    paths:
+      - 'v312-review/**'
+      - 'evidencias-v312/**'
+      - '.github/workflows/qa-v312-investigacion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  investigacion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar entorno DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Verificar sintaxis del extractor oficial Excel
+        run: python3 -m py_compile evidencias-v312/extraer-causas-desde-excel.py
+      - name: Verificar sintaxis de todos los JavaScript de la interfaz avanzada
+        run: find v312-review -maxdepth 1 -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Integración de interfaz avanzada y ausencia de regresiones en módulos base
+        run: node evidencias-v312/test-interfaz-avanzada-v310.cjs
+      - name: Auditoría de fechas imposibles, Final incompleto y correcciones pendientes
+        run: node evidencias-v312/test-integridad-investigacion-v312.cjs
+      - name: Correcciones v312 — archivos, planes, revisor, cambios Flash y Final
+        run: node evidencias-v312/test-correcciones-v312.cjs
+      - name: Ensayo de Flash, Final y seguimiento
+        run: node evidencias-v312/test-flujo-v308.cjs
+      - name: Dos opciones de cierre dentro de las facultades originales (sin panel adicional)
+        run: node evidencias-v312/test-facultades-lista-v310.cjs
+      - name: Directorio seguro y búsqueda inteligente de revisores
+        run: node evidencias-v312/test-revisores-v308.cjs
+      - name: Verificar cada causa en su categoría de Final Report y acceso directo
+        run: node evidencias-v312/test-causas-ubicacion-v308.cjs
+      - name: Catálogo Excel — Código y nombre (153 opciones)
+        run: node evidencias-v312/test-catalogo-v308.cjs
+      - name: Regresión de formularios originales
+        run: node evidencias-v306/test-flash-final-v306.cjs
