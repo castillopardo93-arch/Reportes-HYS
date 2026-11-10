@@ -274,6 +274,7 @@
    const activeForm=kind===k,editable=activeForm&&editing;
    form.querySelectorAll('input,select,textarea').forEach(node=>node.disabled=!editable);
    const clr=form.querySelector('[data-clear-form]');if(clr)clr.disabled=!editable;
+   if(k==='final'){$('hys306AddAction').disabled=!editable}
    const s=$('hys308Save'+(k==='flash'?'Flash':'Final'));
    const t=$('hys308Send'+(k==='flash'?'Flash':'Final'));
    const p=$('hys308Reviewer'+(k==='flash'?'Flash':'Final'));
@@ -367,6 +368,7 @@
  root.addEventListener('reportes-hys-access-changed',syncLauncher);
  root.Hys308Workflow={
   canLeave,showTracking,showCards,openNew,openCase,saveDraft,send,decide,
+  onClosed:()=>{selectedId=null;selectedKind=null;baseline='';tracking.hidden=true},
   sync:syncLauncher,isDemo:demo,serverStorageEnabled:false,
   state:()=>({cases:JSON.parse(JSON.stringify(cases)),selectedId,selectedKind,actor:actor()?.id||null})
  };
