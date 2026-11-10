@@ -363,12 +363,12 @@
   return true;
  }
  function send(kind){
+  if(kind==='final'&&!submittedFlash(currentCase())){tellBlockedFinal();return false}
   if(kind==='flash'||kind==='final'){
    const issues=formIssues(kind,valueMap(formFor(kind)));
    if(issues.length){showIssues(kind,issues);return false}
    clearIssueView(formFor(kind));
   }
-  if(kind==='final'&&!submittedFlash(currentCase())){tellBlockedFinal();return false}
   const selected=$('hys308Reviewer'+(kind==='flash'?'Flash':'Final'));
   const reviewer=eligibleReviewers().find(x=>x.id===selected?.value);
   if(!reviewer){
