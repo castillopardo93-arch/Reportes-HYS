@@ -9,9 +9,9 @@
  const demo=root.HYS308_DEMO_PAGE===true;
  const fakeUsers=[
   {id:'demo-autor',name:'Elaborador de prueba',role:'usuario',reviewer:false},
-  {id:'demo-supervisor',name:'Supervisor de prueba',role:'supervisor',reviewer:true},
-  {id:'demo-hys',name:'Revisor HYS de prueba',role:'supervisor',reviewer:true},
-  {id:'demo-admin',name:'Administrador de prueba',role:'administrador',reviewer:true}
+  {id:'demo-supervisor',name:'Supervisor de prueba',role:'supervisor',reviewer:true,canCloseFlash:false,canCloseFinal:false},
+  {id:'demo-hys',name:'Revisor HYS de prueba',role:'supervisor',reviewer:true,canCloseFlash:true,canCloseFinal:false},
+  {id:'demo-admin',name:'Administrador de prueba',role:'administrador',reviewer:true,canCloseFlash:true,canCloseFinal:true}
  ];
  let fakeId='demo-autor',serial=0,selectedId=null,selectedKind=null,baseline='',search='',filter='todos';
  let cases=[];
@@ -359,6 +359,10 @@
    audit(c,kind,'Devuelto para corrección',String(note).trim());
   }else if(action==='approve'){
    const next=eligibleReviewers().find(x=>x.id===nextReviewer&&x.id!==who.id);
+   if(!next&&((kind==='flash'&&!who.canCloseFlash)||(kind==='final'&&!who.canCloseFinal))){
+    root.alert?.('La revisión no otorga facultad de cierre. Debes enviar el informe a una persona autorizada para aprobarlo definitivamente.');
+    return false;
+   }
    if(kind==='final'&&c.flash.status!=='aprobado'&&!next){
     root.alert?.('Final Report no puede aprobarse definitivamente sin Flash Report aprobado.');
     return false;
@@ -439,8 +443,17 @@
      const next=el('select');next.append(el('option',null,'Aprobación final de este documento'));
      next.firstChild.value='';
      eligibleReviewers().filter(u=>u.id!==who.id).forEach(u=>{const opt=el('option',null,'Conforme y enviar a '+u.name);opt.value=u.id;next.append(opt)});
-     const approve=el('button','hys306-secondary','Aprobar / continuar');
-     approve.type='button';approve.addEventListener('click',()=>decide(c.id,kind,'approve',observation.value,next.value));
+     const approve=el('button','hys306-secondary','Conformidad / siguiente revisor');
+     approve.type='button';
+     const updateApprove=()=>{
+      const canClose=kind==='flash'?who.canCloseFlash:who.canCloseFinal;
+      approve.textContent=next.value?'Validar y derivar al siguiente revisor':
+       canClose?'Aprobar y cerrar '+(kind==='flash'?'Flash Report':'Final Report'):
+       'Selecciona el próximo revisor o aprobador';
+      approve.disabled=!next.value&&!canClose;
+     };
+     next.addEventListener('change',updateApprove);updateApprove();
+     approve.addEventListener('click',()=>decide(c.id,kind,'approve',observation.value,next.value));
      const ret=el('button','hys306-secondary','Devolver para corregir');
      ret.type='button';ret.addEventListener('click',()=>decide(c.id,kind,'return',observation.value));
      reviewerBox.append(observation,next,approve,ret);box.append(reviewerBox);
@@ -477,7 +490,7 @@
   };
   form.addEventListener('input',updateRequiredFeedback);
   form.addEventListener('change',updateRequiredFeedback);
-  const lbl=el('label','hys308-assign','Revisor autorizado (simulación)');
+  const lbl=el('div','hys308-assign');
   const select=el('select');select.id='hys308Reviewer'+suffix;
   const empty=el('option',null,demo?'Selecciona a quién enviar':'Revisores reales: integración pendiente');
   empty.value='';select.append(empty);
