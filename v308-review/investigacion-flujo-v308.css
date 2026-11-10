@@ -122,3 +122,53 @@
  #hys305Investigation .hys308-required-summary{padding:13px;}
  #hys305Investigation .hys306-field.hys308-required-field{padding:8px;}
 }
+
+
+/* v308 — búsqueda de revisores por nombre/apellido con selección validada */
+#hys305Investigation .hys308-searchable-reviewer{
+ position:relative;display:flex;flex-direction:column;gap:6px;
+ min-width:225px;max-width:330px;
+}
+#hys305Investigation .hys308-search-label{
+ font-weight:750;font-size:12px;line-height:1.3;color:#1c4867;
+}
+#hys305Investigation .hys308-search-input{
+ border:1px solid #8fb4cd;background:#fff;color:#173f5d;
+ border-radius:9px;min-height:42px;padding:9px 12px;
+ width:100%;font:600 13px "Segoe UI",Arial,sans-serif;
+ box-shadow:none;
+}
+#hys305Investigation .hys308-search-input:focus{
+ outline:2px solid #328fcd;outline-offset:2px;
+}
+#hys305Investigation .hys308-search-hint{
+ display:block;color:#526f84;font-size:11px;line-height:1.4;max-width:330px;
+}
+#hys305Investigation .hys308-search-results{
+ position:absolute;left:0;right:0;top:70px;z-index:99;
+ background:white;border:1px solid #a5c1d4;
+ border-radius:10px;box-shadow:0 12px 32px #152f4652;
+ max-height:240px;overflow-y:auto;padding:6px;
+}
+#hys305Investigation .hys308-search-results[hidden]{display:none}
+#hys305Investigation .hys308-search-option{
+ display:flex;flex-direction:column;align-items:flex-start;
+ width:100%;border:0;background:#fff;
+ border-radius:7px;padding:9px 10px;text-align:left;
+ color:#173e5b;font-size:13px;cursor:pointer;
+}
+#hys305Investigation .hys308-search-option small{
+ color:#668094;font-size:11px;font-weight:500;margin-top:3px;
+}
+#hys305Investigation .hys308-search-option:hover,
+#hys305Investigation .hys308-search-option.hys308-search-active{
+ background:#e7f3fc;
+}
+#hys305Investigation .hys308-search-empty{
+ padding:11px;margin:0;color:#596e7d;font-size:12px;line-height:1.5;
+}
+#hys305Investigation .hys308-native-reviewer{display:none!important}
+@media(max-width:650px){
+ #hys305Investigation .hys308-searchable-reviewer{min-width:100%;max-width:100%}
+ #hys305Investigation .hys308-search-results{max-height:190px}
+}
