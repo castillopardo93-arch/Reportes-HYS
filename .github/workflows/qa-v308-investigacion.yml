@@ -22,6 +22,8 @@ jobs:
         run: python3 -m py_compile evidencias-v308/extraer-causas-desde-excel.py
       - name: Ensayo de Flash, Final y seguimiento
         run: node evidencias-v308/test-flujo-v308.cjs
+      - name: Facultades independientes de cierre Flash y Final
+        run: node evidencias-v308/test-facultades-cierre-v308.cjs
       - name: Directorio seguro y búsqueda inteligente de revisores
         run: node evidencias-v308/test-revisores-v308.cjs
       - name: Catálogo Excel — Código y nombre (153 opciones)
