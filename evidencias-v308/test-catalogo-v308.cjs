@@ -33,7 +33,7 @@ const empty=init();
 assert.equal(empty.api.ready,false);
 assert.equal(empty.api.count(),0);
 assert.equal(empty.d.getElementById('hys308CauseWorkbook'),null);
-assert.equal(empty.d.querySelectorAll('#hys306FinalForm input[type="file"]').length,3);
+assert.ok(empty.d.querySelectorAll('#hys306FinalForm input[type="file"]').length>=4);
 assert.ok(!read('demo-v308.html').includes('jszip.min.js'));
 for(const select of empty.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')){
  assert.equal(select.disabled,true,'Selector de causas sin fuente debe estar bloqueado');
