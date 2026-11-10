@@ -245,6 +245,7 @@
   if(kind==='final'){
    const rows=$('hys306ActionRows');
    if(rows){for(const row of [...rows.children].slice(3))row.remove()}
+   const add=$('hys306AddAction');if(add)add.disabled=false;
   }
  }
  function assignForm(kind,data){
