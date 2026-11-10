@@ -16,7 +16,7 @@ function fixture({demo=true,active=true,role='usuario'}={}){
  w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador',rol:role,activo:active},modules:[],permissions:[],selectedModule:null};
  w.Hys285Pillars={close:()=>true};
  w.alert=s=>alerts.push(String(s));w.confirm=()=>true;
- w.eval(base);w.eval(flow);
+ w.eval(base);w.eval(flow);w.eval(read('revisores-busqueda-v308.js'));
  const api=w.Hys308Workflow;
  const choose=id=>{const x=d.getElementById('hys308DemoActor');x.value=id;x.dispatchEvent(new w.Event('change',{bubbles:true}))};
  return {dom,w,d,api,alerts,choose,get:id=>d.getElementById(id),click:id=>d.getElementById(id).click(),close:()=>dom.window.close()};
@@ -68,6 +68,21 @@ ok('Nuevo Flash permite otro borrador sin sobrescribir anterior',()=>{
  assert.equal(s.cases.length,2);
  assert.notEqual(s.cases[0].id,s.cases[1].id);
  assert.equal(s.cases[0].flash.data.tipo_incidente,'Daño Material');
+});
+ok('Búsqueda inteligente encuentra revisor por nombre y selecciona usuario',()=>{
+ const input=f.get('hys308ReviewerSearchFlash');
+ assert.ok(input,'Input de búsqueda no encontrado');
+ f.click('hys306OpenFlash');
+ input.value='superv';input.dispatchEvent(new f.w.Event('input',{bubbles:true}));
+ const list=f.get('hys308ReviewerListFlash');
+ assert.equal(list.hidden,false);
+ const choices=[...list.querySelectorAll('[role="option"]')];
+ assert.equal(choices.length,1);
+ assert.ok(choices[0].textContent.includes('Supervisor de prueba'));
+ choices[0].click();
+ assert.equal(f.get('hys308ReviewerFlash').value,'demo-supervisor');
+ assert.equal(input.value,'Supervisor de prueba');
+ assert.equal(list.hidden,true);
 });
 ok('Un borrador incompleto no puede enviarse ni abre Final Report',()=>{
  const second=f.api.state().cases[1].id;
@@ -177,8 +192,13 @@ ok('Supervisor y revisor HYS aprueban Flash secuencialmente',()=>{
  assert.equal(s.flash.status,'aprobado');
  assert.ok(s.history.some(x=>x.event==='Revisión conforme y reasignación'));
 });
-ok('Final puede aprobarse luego de Flash aprobado; historial se conserva',()=>{
- assert.equal(f.api.decide(first,'final','approve','Final conforme'),true);
+ok('Solo aprobadores facultados pueden cerrar el expediente',()=>{
+ assert.equal(f.api.decide(first,'final','approve','Final conforme'),false,
+  'HYS solo revisa Final pero no tiene facultad de cierre definitivo');
+ assert.equal(f.api.state().cases[0].final.status,'en_revision');
+ assert.equal(f.api.decide(first,'final','approve','Derivar a aprobador Final','demo-admin'),true);
+ f.choose('demo-admin');
+ assert.equal(f.api.decide(first,'final','approve','Final aprobado por facultad de cierre'),true);
  const s=f.api.state().cases[0];
  assert.equal(s.final.status,'aprobado');
  assert.ok(s.history.some(x=>x.kind==='flash'&&x.event==='Aprobación del informe'));
@@ -193,6 +213,8 @@ ok('Se conservaron las etiquetas originales de v307',()=>{
 ok('No se alteran módulos APR/OTROS ni escribe el laboratorio en Supabase',()=>{
  assert.ok(productionPage.includes('if(embeddedOtros && !modules.includes("OTROS"))'));
  assert.ok(productionPage.includes('investigacion-flujo-v308.js'));
+ assert.ok(productionPage.includes('revisores-busqueda-v308.js'));
+ assert.ok(read('revisores-busqueda-v308.js').includes('hys242_listar_usuarios'));
  assert.ok(!flow.includes('localStorage.')&&!flow.includes('indexedDB.'));
  assert.ok(!flow.includes('.from(')&&!flow.includes('.rpc('));
 });
@@ -204,6 +226,11 @@ ok('Usuario registrado no puede enviar de verdad sin backend autorizado',()=>{
  assert.ok(u.api.state().cases.length===1);
  assert.equal(u.get('hys308SendFlash').disabled,true);
  assert.equal(u.api.serverStorageEnabled,false);
+});
+ok('Directorio real no expone cuentas a perfiles básicos sin autorización',()=>{
+ assert.equal(u.w.Hys308ReviewerSearch.isDemo,false);
+ assert.ok(u.w.Hys308ReviewerSearch.directoryStatus().includes('requiere un directorio'));
+ assert.equal(u.get('hys308SendFlash').disabled,true);
 });
 u.close();
 const inactive=fixture({demo:false,active:false});
