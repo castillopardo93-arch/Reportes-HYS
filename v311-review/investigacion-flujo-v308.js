@@ -59,16 +59,44 @@
   {key:'reportado_por',label:'Incidente reportado por',min:3},
   {key:'preparado_por',label:'Informe preparado por',min:3}
  ];
+ // Reglas mínimas PROVISIONALES para investigar en este laboratorio.
+ // El catálogo oficial de obligatoriedades requerirá aprobación antes de producción.
+ const finalRequired=[
+  {key:'involucrados',label:'Nombre de los involucrados',min:3},
+  {key:'fecha_incidente',label:'Fecha del incidente'},
+  {key:'tipo_incidente',label:'Tipo de incidente'},
+  {key:'lugar_incidente',label:'Lugar o área del incidente',min:2},
+  {key:'descripcion',label:'Descripción detallada del evento',min:20},
+  {key:'equipo_investigador',label:'Equipo investigador — nombres y cargos',min:5}
+ ];
+ const dateKeys=new Set(['fecha_ocurrencia','fecha_incidente']);
+ function validIsoCalendar(value){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;
+  const parsed=new Date(value+'T12:00:00Z');
+  return Number.isFinite(parsed.getTime())&&parsed.toISOString().slice(0,10)===value;
+ }
  function formIssues(kind,data){
-  if(kind!=='flash')return [];
-  return flashRequired.flatMap(rule=>{
+  if(kind!=='flash'&&kind!=='final')return [];
+  const required=kind==='flash'?flashRequired:finalRequired;
+  const issues=required.flatMap(rule=>{
    const value=String(data?.[rule.key]??'').trim();
    if(!value)return [{...rule,reason:'Obligatorio'}];
    if(rule.min&&value.length<rule.min)return [{...rule,reason:'Mínimo '+rule.min+' caracteres'}];
-   if(rule.key==='fecha_ocurrencia'&&(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(new Date(value).getTime())))
-    return [{...rule,reason:'Fecha no válida'}];
+   if(dateKeys.has(rule.key)&&!validIsoCalendar(value))
+    return [{...rule,reason:'Fecha de calendario no válida'}];
    return [];
   });
+  if(kind==='final'){
+   const causeKeys=['condiciones_subestandar','acciones_subestandar','factores_trabajo','factores_personales','requerimientos_sistema'];
+   if(!causeKeys.some(key=>String(data?.[key]??'').trim()))
+    issues.push({key:'condiciones_subestandar',label:'Punto 9 — análisis de causas',
+     reason:'Registra al menos una causa en las cinco categorías'});
+   const plans=Object.keys(data||{}).filter(key=>/^action_\d+_descripcion$/.test(key));
+   if(!plans.some(key=>String(data[key]??'').trim().length>=10))
+    issues.push({key:'action_1_descripcion',label:'Punto 10 — plan de acción recomendado',
+     reason:'Describe al menos un plan (mínimo 10 caracteres)'});
+  }
+  return issues;
  }
  const submittedFlash=c=>!!c?.flash?.submittedAt &&
   ['en_revision','correccion','aprobado'].includes(c.flash.status);
@@ -108,7 +136,7 @@
   form.querySelector('.hys308-required-complete')?.remove();
   const summary=el('div','hys308-required-summary');
   summary.setAttribute('role','alert');summary.setAttribute('aria-live',focus?'assertive':'polite');
-  summary.append(el('strong',null,'Faltan '+issues.length+' campos obligatorios para enviar el Flash Report.'));
+  summary.append(el('strong',null,'Faltan '+issues.length+' antecedentes para enviar '+(kind==='flash'?'Flash Report':'Final Report')+'.'));
   summary.append(el('p',null,'Los campos pendientes están marcados en rojo. Puedes guardar un borrador y completarlos después.'));
   const list=el('ul');
   for(const issue of issues){
@@ -121,7 +149,7 @@
     holder?.classList.add('hys308-required-field');
     if(holder){
      const error=el('small','hys308-error-detail','⚠ '+issue.reason);
-     error.id='hys308-error-'+issue.key;
+     error.id='hys308-error-'+kind+'-'+issue.key;
      holder.append(error);
      control.setAttribute('aria-describedby',error.id);
     }
@@ -327,7 +355,7 @@
    doc.revision++;
    doc.data=next;
    if(doc.status==='no_iniciado')doc.status='borrador';
-   if(kind==='final'&&first)doc.sourceFlashRevision=c.flash.revision;
+   if(kind==='final')doc.sourceFlashRevision=c.flash.revision;
    audit(c,kind,first?'Primer borrador guardado':'Corrección de borrador',
      'Versión '+doc.revision+' guardada temporalmente en memoria',changes);
   }
@@ -335,10 +363,10 @@
   return true;
  }
  function send(kind){
-  if(kind==='flash'){
-   const issues=formIssues('flash',valueMap(fForm));
-   if(issues.length){showIssues('flash',issues);return false}
-   clearIssueView(fForm);
+  if(kind==='flash'||kind==='final'){
+   const issues=formIssues(kind,valueMap(formFor(kind)));
+   if(issues.length){showIssues(kind,issues);return false}
+   clearIssueView(formFor(kind));
   }
   if(kind==='final'&&!submittedFlash(currentCase())){tellBlockedFinal();return false}
   const selected=$('hys308Reviewer'+(kind==='flash'?'Flash':'Final'));
@@ -370,6 +398,10 @@
    }
    if(kind==='final'&&c.flash.status!=='aprobado'&&!next){
     root.alert?.('Final Report no puede aprobarse definitivamente sin Flash Report aprobado.');
+    return false;
+   }
+   if(kind==='final'&&!next&&doc.sourceFlashRevision!==c.flash.revision){
+    root.alert?.('Final Report contiene antecedentes de una revisión anterior del Flash. Devuelve Final para corregirlo, reconciliar los cambios y reenviarlo antes de aprobar.');
     return false;
    }
    if(!next&&!canActorClose(who,kind)){
@@ -494,8 +526,8 @@
   const save=el('button','hys306-secondary','Guardar borrador (prueba)');
   save.type='button';save.id='hys308Save'+suffix;save.addEventListener('click',()=>saveDraft(kind));
   const updateRequiredFeedback=()=>{
-   if(kind==='flash'&&form.dataset.hys308Validate==='true')
-    showIssues('flash',formIssues('flash',valueMap(form)),false);
+   if(form.dataset.hys308Validate==='true')
+    showIssues(kind,formIssues(kind,valueMap(form)),false);
   };
   form.addEventListener('input',updateRequiredFeedback);
   form.addEventListener('change',updateRequiredFeedback);
