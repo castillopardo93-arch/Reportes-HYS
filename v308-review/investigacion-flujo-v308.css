@@ -60,3 +60,18 @@
  #hys308Launcher{right:10px;bottom:10px;max-width:calc(100% - 20px)}
 }
 @media print{#hys308Launcher,#hys305Investigation .hys308-workspace-tools,#hys305Investigation .hys308-tracking{display:none!important}}
+
+/* v308 — lectura del catálogo de causas desde Excel original */
+#hys305Investigation .hys308-catalog-source{
+ border:1px solid #c0d7e7;background:#eef7fc;border-radius:10px;
+ padding:14px 16px;margin:4px 0 16px;max-width:100%;
+}
+#hys305Investigation .hys308-catalog-source strong{font-size:13px;color:#163e5b}
+#hys305Investigation .hys308-catalog-source p{font-size:12px;line-height:1.6;color:#45697e;margin:7px 0 10px}
+#hys305Investigation .hys308-catalog-source label{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;font-weight:750}
+#hys305Investigation .hys308-catalog-source input[type=file]{font:inherit;font-size:12px;max-width:100%;min-width:0}
+#hys305Investigation .hys308-catalog-source .hys308-catalog-status{font-weight:750;color:#815715}
+#hys305Investigation .hys308-catalog-source .hys308-catalog-status[data-complete=true]{color:#17693f}
+#hys305Investigation .hys306-cause-select{
+ font-size:13px;font-weight:650;
+}
