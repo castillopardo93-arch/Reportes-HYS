@@ -29,6 +29,33 @@ function init(data){
  w.eval(read('investigacion-flujo-v308.js'));
  return {dom,w,d,api:w.Hys308CausaCatalogo};
 }
+
+function enterFinalForTest(fixture){
+ const {d,w}=fixture;
+ const workflow=w.Hys308Workflow;
+ workflow.openNew('flash');
+ const values={
+  tipo_incidente:'Daño Material',probabilidad:'Baja',fecha_ocurrencia:'2026-11-10',hora:'09:10',
+  area_proyecto:'VA4',ubicacion:'Sector de prueba',
+  involucrado:'Persona ficticia',cargo:'Operador',
+  primeros_auxilios:'No',ambulancia:'No',hospital:'No',existen_testigos:'No',
+  hechos:'Descripción ficticia detallada y suficiente del evento de prueba.',
+  causas_aparentes:'Causa aparente ficticia solo para QA.',
+  acciones_inmediatas:'Medidas inmediatas ficticias para QA.',
+  reportado_por:'Informante de prueba',preparado_por:'Elaborador de prueba'
+ };
+ for(const [name,value] of Object.entries(values)){
+  const control=d.querySelector('#hys306FlashForm [name="'+name+'"]');
+  assert.ok(control,name);
+  control.value=value;
+  control.dispatchEvent(new w.Event('input',{bubbles:true}));
+ }
+ d.getElementById('hys308ReviewerFlash').value='demo-supervisor';
+ assert.equal(workflow.send('flash'),true);
+ const expediente=workflow.state().cases[0];
+ assert.ok(workflow.openCase(expediente.id,'final'));
+}
+
 const empty=init();
 assert.equal(empty.api.ready,false);
 assert.equal(empty.api.count(),0);
@@ -41,6 +68,8 @@ for(const select of empty.d.querySelectorAll('.hys306-cause-select,#hys306Action
  assert.ok(!select.options[0].value);
 }
 console.log('OK: no se solicita al usuario cargar Excel; sin catálogo no hay códigos sin texto.');
+enterFinalForTest(empty);
+assert.ok([...empty.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')].every(x=>x.disabled),'La edición no debe habilitar catálogo sin nombres');
 empty.dom.window.close();
 const t=init(sample);
 assert.equal(t.api.ready,true);
@@ -58,6 +87,8 @@ assert.equal(allCodes.options.length,154);
 assert.equal([...allCodes.options].find(o=>o.value==='3.31').textContent,
  '3.31 — Nombre sintético de prueba para código 3.31');
 console.log('OK: 153 opciones con código y nombre, 5 grupos y planes de acción.');
+enterFinalForTest(t);
+assert.ok([...t.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')].every(x=>!x.disabled),'El catálogo oficial validado sigue disponible para edición');
 const chooser=t.d.querySelector('.hys306-cause-select');
 chooser.value='1.1';chooser.dispatchEvent(new t.w.Event('change',{bubbles:true}));
 const textarea=t.d.querySelector('#hys306FinalForm [name="condiciones_subestandar"]');
