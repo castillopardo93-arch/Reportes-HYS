@@ -28,7 +28,14 @@
   return {id:a.userId,name:a.profile.nombre||'Usuario registrado',role:a.profile.rol,reviewer:false};
  };
  const active=()=>!!actor();
- const eligibleReviewers=()=>demo?fakeUsers.filter(x=>x.reviewer):[];
+ // En el laboratorio una facultad explícita de cierre también habilita
+ // la recepción del documento, sin importar el rol ordinario del usuario.
+ const eligibleReviewers=()=>!demo?[]:fakeUsers.filter(x=>x.reviewer||
+  (root.Hys308ClosingFaculties?.hasChanges?.()&&(
+   root.Hys308ClosingFaculties.canClose(x.id,'flash')||
+   root.Hys308ClosingFaculties.canClose(x.id,'final'))));
+ const canReview=(who,kind)=>!!who&&(who.reviewer===true||
+  (demo&&root.Hys308ClosingFaculties?.canClose?.(who.id,kind)===true));
  const findCase=id=>cases.find(x=>x.id===id);
  const formFor=kind=>$(kind==='flash'?'hys306FlashForm':'hys306FinalForm');
  const nameOf=id=>fakeUsers.find(x=>x.id===id)?.name||(cases.find(x=>x.creatorId===id)?.creatorName)||'Sin asignar';
@@ -360,13 +367,17 @@
  }
  function decide(id,kind,action,note='',nextReviewer=''){
   const c=findCase(id),doc=c?.[kind],who=actor();
-  if(!c||!doc||doc.status!=='en_revision'||!who?.reviewer||who.id!==doc.reviewerId)return false;
+  if(!c||!doc||doc.status!=='en_revision'||!canReview(who,kind)||who.id!==doc.reviewerId)return false;
   if(action==='return'){
    if(String(note).trim().length<10){root.alert?.('Indica una observación de al menos 10 caracteres.');return false}
    doc.status='correccion';doc.reviewerId=c.creatorId;doc.reviewerName=c.creatorName;
    audit(c,kind,'Devuelto para corrección',String(note).trim());
   }else if(action==='approve'){
    const next=eligibleReviewers().find(x=>x.id===nextReviewer&&x.id!==who.id);
+   if(!next&&who.id===c.creatorId){
+    root.alert?.('El elaborador no puede aprobar definitivamente su propio informe. Asigna un aprobador independiente.');
+    return false;
+   }
    if(kind==='final'&&c.flash.status!=='aprobado'&&!next){
     root.alert?.('Final Report no puede aprobarse definitivamente sin Flash Report aprobado.');
     return false;
@@ -445,7 +456,7 @@
     }
     if(!demo&&c.creatorId!==who?.id&&doc.reviewerId!==who?.id)open.disabled=true;
     box.append(open);
-    if(demo&&who?.reviewer&&doc.status==='en_revision'&&doc.reviewerId===who.id){
+    if(demo&&canReview(who,kind)&&doc.status==='en_revision'&&doc.reviewerId===who.id){
      const reviewerBox=el('div','hys308-review-actions');
      const observation=el('textarea');observation.placeholder='Observaciones y motivos de revisión';observation.rows=2;
      const next=el('select');next.append(el('option',null,'Aprobación final de este documento'));
