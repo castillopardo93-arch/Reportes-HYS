@@ -25,6 +25,7 @@ function init({role='usuario',active=true,source}={}){
  await new Promise(ok=>setTimeout(ok,5));
  assert.equal(basic.requests.length,0,'Usuario sin facultades no puede consultar directorio restringido');
  assert.equal(basic.w.Hys308ReviewerSearch.directoryStatus().includes('requiere un directorio'),true);
+ basic.d.getElementById('hys306OpenFlash').click();
  assert.equal(basic.d.getElementById('hys308SendFlash').disabled,true);
  assert.ok(basic.d.getElementById('hys308ReviewerSearchFlash'));
  basic.dom.window.close();
@@ -36,6 +37,7 @@ function init({role='usuario',active=true,source}={}){
  ];
  const admin=init({role:'administrador_global',source:users});
  await new Promise(ok=>setTimeout(ok,5));
+ admin.d.getElementById('hys306OpenFlash').click();
  assert.deepEqual(admin.requests,['hys242_listar_usuarios']);
  const input=admin.d.getElementById('hys308ReviewerSearchFlash');
  input.value='maria';input.dispatchEvent(new admin.w.Event('input',{bubbles:true}));
