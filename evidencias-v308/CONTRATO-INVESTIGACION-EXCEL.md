@@ -53,3 +53,13 @@ No se debe dar por terminado el requisito «código + descripción directa» has
 - En laboratorio de v308 se ensaya: Supervisor **solo revisa**, HYS **puede cerrar Flash** y Administrador **puede cerrar Final**. Es una configuración ficticia **no aprobada para producción**. El circuito real deberá basarse en facultades asignadas, no en nombres o roles inferidos.
 
 **Estado v308:** búsqueda visual implementada; listado real completo y envío entre usuarios pendiente de directorio autorizado y persistencia central en Supabase. Sin cambios de base de datos ni usuarios reales.
+
+## Facultades adicionales de cierre — v308 (10/11/2026)
+
+- En el módulo `Gestión de usuarios → Permisos y facultades`, el Administrador General puede preparar **dos autorizaciones independientes** para usuarios activos: `cerrar_flash_report` y `cerrar_final_report`.
+- Se permite seleccionar **uno o varios usuarios por facultad**; el mismo usuario puede tener ambas. No se exige rol Administrador: las facultades explícitas son independientes del rol ordinario y de las tarjetas APR/OTROS.
+- Para cada tipo existe un **responsable sugerido** elegible solamente entre los usuarios marcados. El responsable concreto de un expediente se designará y auditará en el circuito de revisión de ese expediente.
+- Cada propuesta muestra quiénes están seleccionados, cantidades por documento y los responsables sugeridos. Los cambios quedan temporalmente en memoria del navegador; pueden revisarse y descartarse, **no se guardan en Supabase** en esta etapa.
+- En la **simulación v308**, seleccionar una facultad habilita el control de cierre para esa cuenta si recibió el documento; aprobar el propio informe como elaborador está bloqueado. El Final requiere Flash aprobado.
+- En producción, cerrar exige autorización vigente verificada **en el servidor**, identidad autenticada, expediente asignado, estados válidos y bitácora de auditoría. Jamás confiar solo en un checkbox del frontend.
+- Antes del guardado real se requerirán tablas/políticas RLS, eventos inalterables, revisión/versionado de facultades y una operación atómica en Supabase, con autorización expresa. La lectura actual de facultades APR/OTROS sigue intacta.
