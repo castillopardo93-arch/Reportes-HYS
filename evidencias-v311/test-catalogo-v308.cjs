@@ -4,7 +4,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('fs'),path=require('path');
 const {JSDOM}=require('jsdom');
-const dir=path.resolve(__dirname,'../v310-review');
+const dir=path.resolve(__dirname,'../v311-review');
 const read=file=>fs.readFileSync(path.join(dir,file),'utf8');
 const codes=[...Array(73)].map((_,i)=>'1.'+(i+1))
  .concat([...Array(49)].map((_,i)=>'2.'+(i+1)))
@@ -15,7 +15,7 @@ const sample={
  entradas:codes.map(code=>({codigo:code,descripcion:'Nombre sintético de prueba para código '+code}))
 };
 function init(data){
- const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.test/v310-review/demo-v308.html',runScripts:'outside-only'});
+ const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.test/v311-review/demo-v308.html',runScripts:'outside-only'});
  const w=dom.window,d=w.document;
  w.HYS308_DEMO_PAGE=true;
  w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador simulado',rol:'usuario',activo:true},modules:[],selectedModule:null};

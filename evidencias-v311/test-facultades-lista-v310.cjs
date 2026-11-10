@@ -1,7 +1,7 @@
 /* v310: Facultades de cierre en la lista existente de Administradores. */
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const repo=path.resolve(__dirname,'../v310-review');
+const repo=path.resolve(__dirname,'../v311-review');
 const load=f=>fs.readFileSync(path.join(repo,f),'utf8');
 const W=require(path.join(repo,'worker-model-v265.js'));
 const R=require(path.join(repo,'role-control-v262.js'));

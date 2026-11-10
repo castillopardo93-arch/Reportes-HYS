@@ -3,14 +3,14 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
 const {JSDOM}=require('jsdom');
-const app=path.resolve(__dirname,'../v310-review');
+const app=path.resolve(__dirname,'../v311-review');
 const read=n=>fs.readFileSync(path.join(app,n),'utf8');
 const base=read('investigacion-accidentes-v305.js'),flow=read('investigacion-flujo-v308.js');
 const html=read('demo-v308.html'),productionPage=read('index.html');
 let checked=0;
 function ok(label,fn){fn();console.log('OK '+(++checked)+' '+label)}
 function fixture({demo=true,active=true,role='usuario'}={}){
- const dom=new JSDOM(html,{url:'https://hys.test/v310-review/demo-v308.html?demo=1',runScripts:'outside-only'});
+ const dom=new JSDOM(html,{url:'https://hys.test/v311-review/demo-v308.html?demo=1',runScripts:'outside-only'});
  const w=dom.window,d=w.document,alerts=[];
  w.HYS308_DEMO_PAGE=demo;
  w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador',rol:role,activo:active},modules:[],permissions:[],selectedModule:null};
@@ -43,6 +43,22 @@ function completeFlash(t,overrides={}){
  };
  for(const [key,value] of Object.entries(sample))setField(t,'flash',key,value);
 }
+
+function completeFinal(t){
+ const sample={
+  proyecto:'Proyecto ficticio',
+  involucrados:'Persona ficticia involucrada',
+  fecha_incidente:'2026-11-10',
+  tipo_incidente:'Daño Material',
+  lugar_incidente:'VA4',
+  descripcion:'Investigación final de prueba con análisis detallado y antecedentes suficientes.',
+  equipo_investigador:'Equipo de investigación y supervisión ficticio',
+  condiciones_subestandar:'1.1 — ACUÑADURA DEFICIENTE',
+  action_1_descripcion:'Inspeccionar y corregir las condiciones detectadas antes de continuar.'
+ };
+ for(const [key,value] of Object.entries(sample))setField(t,'final',key,value);
+}
+
 const f=fixture();
 ok('Usuario activo sin facultades APR/OTROS puede abrir investigaciones',()=>{
  assert.equal(f.w.Hys305Investigation.open(),true);
@@ -149,6 +165,15 @@ ok('Flash completo puede enviarse a revisor; abre Final sin esperar aprobación'
  assert.equal(updated.final.data.tipo_incidente,'Daño Material');
  assert.equal(updated.id,first);
 });
+ok('Final incompleto se bloquea en rojo y puede continuar como borrador',()=>{
+ f.get('hys308ReviewerFinal').value='demo-hys';
+ assert.equal(f.api.send('final'),false);
+ assert.ok(f.get('hys306FinalForm').querySelector('[name="involucrados"][aria-invalid="true"]'));
+ assert.ok(f.get('hys306FinalForm').querySelector('[name="action_1_descripcion"][aria-invalid="true"]'));
+ assert.ok(f.get('hys306FinalForm').querySelector('.hys308-required-summary')?.textContent.includes('Final Report'));
+ assert.equal(f.api.state().cases[0].final.status,'borrador');
+ completeFinal(f);
+});
 ok('Final en revisión no puede aprobarse hasta que Flash sea aprobado',()=>{
  f.get('hys308ReviewerFinal').value='demo-hys';
  f.click('hys308SendFinal');
@@ -192,11 +217,23 @@ ok('Supervisor y revisor HYS aprueban Flash secuencialmente',()=>{
  assert.equal(s.flash.status,'aprobado');
  assert.ok(s.history.some(x=>x.event==='Revisión conforme y reasignación'));
 });
-ok('Solo aprobadores facultados pueden cerrar el expediente',()=>{
+ok('Final desactualizado requiere corrección y aprobación posterior por autorizado',()=>{
  assert.equal(f.api.decide(first,'final','approve','Final conforme'),false,
   'HYS solo revisa Final pero no tiene facultad de cierre definitivo');
  assert.equal(f.api.state().cases[0].final.status,'en_revision');
  assert.equal(f.api.decide(first,'final','approve','Derivar a aprobador Final','demo-admin'),true);
+ f.choose('demo-admin');
+ assert.equal(f.api.decide(first,'final','approve','Final con Flash cambiado'),false,
+  'No cerrar Final basado en revisión antigua de Flash');
+ assert.ok(f.alerts.some(x=>x.includes('revisión anterior del Flash')));
+ assert.equal(f.api.decide(first,'final','return','Se requiere actualizar el Final con el Flash corregido.'),true);
+ f.choose('demo-autor');
+ assert.equal(f.api.openCase(first,'final'),true);
+ setField(f,'final','descripcion','Investigación final actualizada según antecedentes del Flash corregido y aprobado.');
+ f.get('hys308ReviewerFinal').value='demo-admin';
+ assert.equal(f.api.send('final'),true);
+ assert.equal(f.api.state().cases[0].final.sourceFlashRevision,
+  f.api.state().cases[0].flash.revision);
  f.choose('demo-admin');
  assert.equal(f.api.decide(first,'final','approve','Final aprobado por facultad de cierre'),true);
  const s=f.api.state().cases[0];
