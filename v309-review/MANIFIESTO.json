@@ -1,9 +1,9 @@
 {
-  "version": 308,
-  "branch": "desarrollo/v308-flujo-investigacion",
-  "base_version": 307,
-  "base_commit": "297e4750d2d5ec8e56d9dc4a8ddbd3e635d1e248",
-  "estado": "laboratorio-flash-final-seguimiento-revisiones-sin-backend",
+  "version": 309,
+  "branch": "desarrollo/v309-integracion-investigacion",
+  "base_version": 308,
+  "base_commit": "1b6ce4f5d4ebcef5f47cac89b7f7966462f22a9c",
+  "estado": "DESARROLLO_INTERFAZ_AVANZADA_NO_PUBLICADO",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -1003,15 +1003,15 @@
     "fecha": "2026-11-10",
     "eliminado": "Carga manual Excel desde Final Report",
     "implementacion": "catálogo automático integrado desde causas-datos-v308.js, generado desde la plantilla maestra",
-    "estado_catalogo": "INCOMPLETO_FALTA_EXTRACCION_EXCEL_ORIGINAL",
+    "estado_catalogo": "RESUELTO_EN_v308_153_CODIGOS_Y_NOMBRES_ORIGINALES",
     "fuente_excel": "HSS-RGT-007-Flash_Final Report rev.8.xlsx",
-    "datos_reales_extraidos": 0,
+    "datos_reales_extraidos": 153,
     "entradas_requeridas": 153,
-    "interfaz": "si no hay 153 pares de código/descripción oficiales, opciones bloqueadas; no mostrar código solo",
+    "interfaz": "Punto 9 con código y nombre por grupo; punto 10 CÓDIGOS de escritura libre",
     "herramienta_fuente": "evidencias-v308/extraer-causas-desde-excel.py",
     "cambios_supabase": false,
     "produccion": false,
-    "nota": "El archivo de Library no pudo materializarse en esta sesión; no atribuir a la aplicación nombres de un Excel no leído."
+    "nota": "La incidencia histórica de catálogo incompleto fue subsanada en v308 antes de clonar v309"
   },
   "facultades_cierre_v308": {
     "status": "INTEGRADO_EN_INTERFAZ_PARA_REVISION_SIN_PERSISTENCIA",
@@ -1028,5 +1028,43 @@
     "saving_real_permissions": false,
     "supabase_changed": false,
     "production_changed": false
+  },
+  "fecha_integracion": "2026-11-10",
+  "integracion_v309": {
+    "origen": "copia íntegra aislada de v308-review",
+    "nombre_version": "v309 — integración de investigación en interfaz avanzada",
+    "ruta_app": "v309-review/index.html",
+    "ruta_revision_catalogo": "v309-review/demo-final-causas-v308.html",
+    "acceso": "login real en interfaz avanzada; laboratorio ficticio separado",
+    "formularios": [
+      "Flash Report",
+      "Final Report",
+      "Seguimiento Flash"
+    ],
+    "excel_fuente": "HSS-RGT-007-Flash_Final Report rev.8.xlsx",
+    "catalogo": {
+      "cantidad": 153,
+      "ubicacion": "Final Report punto 9 — Análisis de causas",
+      "grupos": {
+        "condiciones_subestandar": 37,
+        "acciones_subestandar": 36,
+        "factores_trabajo": 25,
+        "factores_personales": 24,
+        "requerimientos_sistema": 31
+      },
+      "modalidad": "descripción integrada automáticamente, sin importar archivo por usuario",
+      "accion": "selección inserta código y nombre en la categoría correspondiente"
+    },
+    "planes_de_accion": "Final Report punto 10: campo CÓDIGOS de escritura libre; sin lista desplegable",
+    "revision": "selector por nombre; directorio real para cuentas básicas pendiente de API mínima autorizada",
+    "facultades_de_cierre": "dos autorizaciones independientes por usuario; propuestas en memoria sin guardado Supabase",
+    "campos_obligatorios": "Flash: borrador incompleto permitido, revisión solo con mínimo validado",
+    "cierres": "sin autoaprobación de autor; Final no se cierra hasta Flash aprobado",
+    "guardado_y_notificaciones": "flujo de prueba sin persistencia ni avisos reales: integración posterior solo previa autorización",
+    "solo_desarrollo": true,
+    "no_publicada": true,
+    "modificacion_main": false,
+    "modificacion_supabase": false,
+    "modificacion_produccion": false
   }
 }
