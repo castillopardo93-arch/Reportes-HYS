@@ -12,10 +12,10 @@
   #hysToolsOptions{display:none}
  </style>
  <link rel="stylesheet" href="investigacion-accidentes-v305.css">
- <link rel="stylesheet" href="investigacion-flujo-v308.css">
+ <link rel="stylesheet" href="investigacion-flujo-v308.css"><link rel="stylesheet" href="facultades-cierre-v308.css">
 </head>
 <body class="module-choice">
-<header><h1>Reportes HYS — laboratorio v308</h1><p>Solo datos ficticios. No se guardan expedientes ni se envían notificaciones.</p></header>
+<header><h1>Reportes HYS — laboratorio v308</h1><p>Solo datos ficticios. No se guardan expedientes ni se envían notificaciones.</p><button type="button" id="hys308ShowCloseFaculty" style="margin-top:12px;padding:10px 14px;border:1px solid #8aafc4;border-radius:8px;color:#0e466b;background:#f1f9ff;font-weight:700;cursor:pointer">Permisos y facultades — cierre de investigaciones</button></header><section id="hys308CloseFacultyDemo" hidden role="dialog" aria-modal="true" aria-label="Facultades de cierre"><div class="hys308-fac-modal"><header><strong>Administrador General · Facultades de cierre</strong><button type="button" id="hys308HideCloseFaculty">Cerrar</button></header><div id="hys308CloseFacultiesHost"></div></div></section>
 <nav id="hysToolsOptions" aria-label="Controles del laboratorio"></nav>
 <script>
  window.HYS308_DEMO_PAGE=true;
@@ -29,5 +29,31 @@
 <script src="investigacion-accidentes-v305.js"></script>
 <script src="causas-datos-v308.js"></script><script src="causas-catalogo-v308.js"></script>
 <script src="investigacion-flujo-v308.js"></script><script src="revisores-busqueda-v308.js"></script>
+<script src="facultades-cierre-v308.js"></script>
+<script>
+(function(){
+ const panel=document.getElementById('hys308CloseFacultyDemo');
+ const access=document.getElementById('hys308ShowCloseFaculty');
+ const close=document.getElementById('hys308HideCloseFaculty');
+ const users=[
+  {usuario_id:'demo-autor',nombre:'Elaborador de prueba',rol:'usuario',activo:true},
+  {usuario_id:'demo-supervisor',nombre:'Supervisor de prueba',rol:'supervisor',activo:true},
+  {usuario_id:'demo-hys',nombre:'Revisor HYS de prueba',rol:'supervisor',activo:true},
+  {usuario_id:'demo-admin',nombre:'Administrador de prueba',rol:'administrador_area',activo:true},
+  {usuario_id:'demo-inactivo',nombre:'Usuario inactivo de prueba',rol:'usuario',activo:false}
+ ];
+ function open(){
+  window.Hys308ClosingFaculties.mount(document.getElementById('hys308CloseFacultiesHost'),{
+   users,authorized:true,lab:true,onChange:()=>{}
+  });
+  panel.hidden=false;
+ }
+ access.onclick=open;
+ close.onclick=()=>{panel.hidden=true;access.focus()};
+ panel.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();close.click()}
+ });
+})();
+</script>
 </body>
 </html>
