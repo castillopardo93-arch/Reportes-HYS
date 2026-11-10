@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict');
 const fs=require('fs'),path=require('path');
 const {JSDOM}=require('jsdom');
-const base=path.resolve(__dirname,'../v308-review');
+const base=path.resolve(__dirname,'../v309-review');
 const read=n=>fs.readFileSync(path.join(base,n),'utf8');
 const users=[
  {usuario_id:'demo-autor',nombre:'Elaborador de prueba',rol:'usuario',activo:true},
@@ -12,7 +12,7 @@ const users=[
  {usuario_id:'demo-admin',nombre:'Administrador de prueba',rol:'administrador_area',activo:true},
  {usuario_id:'retirado',nombre:'Usuario desactivado',rol:'usuario',activo:false}
 ];
-const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.example/v308-review/demo-v308.html',runScripts:'outside-only'});
+const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.example/v309-review/demo-v308.html',runScripts:'outside-only'});
 const w=dom.window,d=w.document;
 w.HYS308_DEMO_PAGE=true;
 w.__REPORTES_HYS_ACCESS__={userId:'demo-admin',profile:{usuario_id:'demo-admin',nombre:'Administrador de prueba',rol:'administrador_global',activo:true},modules:[],selectedModule:null};
