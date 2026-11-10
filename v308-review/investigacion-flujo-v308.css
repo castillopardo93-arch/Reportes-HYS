@@ -61,36 +61,16 @@
 }
 @media print{#hys308Launcher,#hys305Investigation .hys308-workspace-tools,#hys305Investigation .hys308-tracking{display:none!important}}
 
-/* v308 — lectura del catálogo de causas desde Excel original */
-#hys305Investigation .hys308-catalog-source{
- border:1px solid #c0d7e7;background:#eef7fc;border-radius:10px;
- padding:14px 16px;margin:4px 0 16px;max-width:100%;
+/* v308 — disponibilidad de catálogo de causas integrado, sin carga manual */
+#hys305Investigation .hys308-catalog-status{
+ border:1px solid #e0cfa1;background:#fff8e6;color:#835a1d;
+ padding:11px 14px;border-radius:9px;font-size:12px;line-height:1.6;
+ margin:10px 0 15px;font-weight:650;
 }
-#hys305Investigation .hys308-catalog-source strong{font-size:13px;color:#163e5b}
-#hys305Investigation .hys308-catalog-source p{font-size:12px;line-height:1.6;color:#45697e;margin:7px 0 10px}
-#hys305Investigation .hys308-catalog-source label{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;font-weight:750}
-#hys305Investigation .hys308-catalog-source input[type=file]{font:inherit;font-size:12px;max-width:100%;min-width:0}
-#hys305Investigation .hys308-catalog-source .hys308-catalog-status{font-weight:750;color:#815715}
-#hys305Investigation .hys308-catalog-source .hys308-catalog-status[data-complete=true]{color:#17693f}
-#hys305Investigation .hys306-cause-select{
- font-size:13px;font-weight:650;
+#hys305Investigation .hys308-catalog-status[data-complete="true"]{
+ background:#ebf7ed;border-color:#bdddc3;color:#1d653b;
 }
-
-/* v308 — campos obligatorios al enviar Flash a revisión */
-#hys305Investigation .hys308-required-summary{
- border:1px solid #e4a2a2;border-left:4px solid #c43232;
- border-radius:10px;background:#fff4f4;padding:14px 16px;
- margin:14px 0 20px;color:#7f2525;
-}
-#hys305Investigation .hys308-required-summary strong{
- display:block;font-size:14px;margin-bottom:8px
-}
-#hys305Investigation .hys308-required-summary ul{
- margin:0;padding-left:22px;line-height:1.6;font-size:12px;
-}
-#hys305Investigation .hys308-required-field :is(input,select,textarea)[aria-invalid=true]{
- border:2px solid #c43232!important;background-color:#fff8f8;
-}
-#hys305Investigation .hys308-required-field .hys306-field-name{
- color:#a12222;
+#hys305Investigation .hys306-cause-select:disabled,
+#hys305Investigation #hys306ActionRows select[name$="_codigo"]:disabled{
+ opacity:1;background:#edf0f3;color:#5f6b78;cursor:not-allowed;
 }
