@@ -998,5 +998,19 @@
     "requisito_pendiente": "Revisión con el archivo Excel real; el libro original no fue materializable desde Library",
     "production": false,
     "central_storage": false
+  },
+  "correccion_catalogo_directo_v308": {
+    "fecha": "2026-11-10",
+    "eliminado": "Carga manual Excel desde Final Report",
+    "implementacion": "catálogo automático integrado desde causas-datos-v308.js, generado desde la plantilla maestra",
+    "estado_catalogo": "INCOMPLETO_FALTA_EXTRACCION_EXCEL_ORIGINAL",
+    "fuente_excel": "HSS-RGT-007-Flash_Final Report rev.8.xlsx",
+    "datos_reales_extraidos": 0,
+    "entradas_requeridas": 153,
+    "interfaz": "si no hay 153 pares de código/descripción oficiales, opciones bloqueadas; no mostrar código solo",
+    "herramienta_fuente": "evidencias-v308/extraer-causas-desde-excel.py",
+    "cambios_supabase": false,
+    "produccion": false,
+    "nota": "El archivo de Library no pudo materializarse en esta sesión; no atribuir a la aplicación nombres de un Excel no leído."
   }
 }
