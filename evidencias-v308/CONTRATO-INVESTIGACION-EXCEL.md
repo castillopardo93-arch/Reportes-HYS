@@ -40,3 +40,16 @@ Por ahora, para enviar Flash se exigen: tipo de incidente, probabilidad, fecha, 
 Se elimina la opción `Cargar listas de causas desde Excel` del formulario. La fuente de verdad será un fichero de catálogo preintegrado, generado por la herramienta `extraer-causas-desde-excel.py` exclusivamente a partir del mismo HSS-RGT-007 Rev. 08.
 
 No se debe dar por terminado el requisito «código + descripción directa» hasta que los 153 nombres reales hayan sido extraídos y verificados. Sin ese fichero, se deshabilitan los selectores de causas. El resto de las funciones de desarrollo v308 se conserva.
+
+## Selección de revisores y autorización de cierre (10/11/2026)
+
+- **Elaboración:** cualquier usuario activo puede crear Flash y guardar varios borradores.
+- **Enviar a revisión:** control de búsqueda por nombre/apellido, selección de `usuario_id`, sin escritura libre como identidad de destinatario.
+- **Directorio:** la sesión de Administrador General puede consultar los usuarios activos ya existentes mediante `hys242_listar_usuarios` (solo lectura). La consulta de nombres para usuarios básicos **no está habilitada** por el RLS actual de `perfiles`. Debe crearse posteriormente un servicio de directorio de mínimo privilegio que devuelva exclusivamente `usuario_id`, nombre, rol y facultades de revisión efectivas; no emails, RUT ni datos médicos.
+- **Revisión y aprobación final:** son dos facultades independientes. Un revisor no adquiere facultad de cerrar por recibir un expediente.
+- **Cierre Flash:** requiere estado válido, todas las observaciones resueltas y revisión/confirmación del aprobador final designado con facultad `aprobar_cerrar_flash`.
+- **Cierre Final:** exige Flash aprobado, validaciones del Final completas, responsabilidades resueltas, y aprobador final designado con facultad `aprobar_cerrar_final`.
+- El Administrador General establecerá **a quiénes** otorgar esas facultades; no serán facultades implícitas de un rol. Puede definir aprobadores diferentes por proyecto o área. Debe registrarse la persona autorizada, fecha-hora, decisión, versión aprobada, resolución de observaciones y cambios de responsables.
+- En laboratorio de v308 se ensaya: Supervisor **solo revisa**, HYS **puede cerrar Flash** y Administrador **puede cerrar Final**. Es una configuración ficticia **no aprobada para producción**. El circuito real deberá basarse en facultades asignadas, no en nombres o roles inferidos.
+
+**Estado v308:** búsqueda visual implementada; listado real completo y envío entre usuarios pendiente de directorio autorizado y persistencia central en Supabase. Sin cambios de base de datos ni usuarios reales.
