@@ -3,14 +3,14 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
 const {JSDOM}=require('jsdom');
-const app=path.resolve(__dirname,'../v309-review');
+const app=path.resolve(__dirname,'../v310-review');
 const read=n=>fs.readFileSync(path.join(app,n),'utf8');
 const base=read('investigacion-accidentes-v305.js'),flow=read('investigacion-flujo-v308.js');
 const html=read('demo-v308.html'),productionPage=read('index.html');
 let checked=0;
 function ok(label,fn){fn();console.log('OK '+(++checked)+' '+label)}
 function fixture({demo=true,active=true,role='usuario'}={}){
- const dom=new JSDOM(html,{url:'https://hys.test/v309-review/demo-v308.html?demo=1',runScripts:'outside-only'});
+ const dom=new JSDOM(html,{url:'https://hys.test/v310-review/demo-v308.html?demo=1',runScripts:'outside-only'});
  const w=dom.window,d=w.document,alerts=[];
  w.HYS308_DEMO_PAGE=demo;
  w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador',rol:role,activo:active},modules:[],permissions:[],selectedModule:null};
