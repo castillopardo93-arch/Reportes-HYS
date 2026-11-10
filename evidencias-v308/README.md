@@ -30,3 +30,13 @@ La prueba DOM es `evidencias-v308/test-flujo-v308.cjs`; requiere `jsdom@26.1.0`.
 - **Sin el libro original cargado por el usuario, solo se muestran los códigos**. Las descripciones exactas NO se han inventado ni publicado en GitHub.
 - Validación automática: 153 pares de código y descripción en un Excel sintético; comprobación pendiente con la hoja Tabla real y cotejo de las categorías.
 - Las pruebas de regresión v306 y el flujo v308 se ejecutaron en GitHub Actions con éxito.
+
+## Cambio v308 — desplegables automáticos de causas (10/11/2026)
+
+- Se eliminó la carga manual de Excel desde la sección 9 de Final Report, tanto en la aplicación como en el laboratorio.
+- Los códigos + nombres deben proceder de `causas-datos-v308.js`, un archivo estático generado una sola vez desde la hoja `Tabla` del XLSX maestro.
+- Se incorpora el generador reproducible `evidencias-v308/extraer-causas-desde-excel.py`; la salida requiere 153 pares válidos y se rechazan listas parciales o contradictorias.
+- **Bloqueador pendiente**: la copia registrada del HSS-RGT-007 en Library no entregó sus bytes para extracción, y no existe copia del XLSX en GitHub ni en Supabase Storage. Por eso el archivo de datos integrado está intencionalmente vacío; el sistema no inventa nombres ni muestra códigos huérfanos.
+- Los desplegables quedan deshabilitados hasta incorporar la plantilla original, sin impedir la revisión de la interfaz y otros campos.
+- No se requiere cargar Excel por cada usuario o reporte; queda pendiente la generación efectiva de 153 nombres desde el libro real y su revisión visual.
+- En las pruebas automatizadas se inyecta un catálogo **sintético** de 153 descripciones para validar la interfaz. Los nombres de prueba no forman parte de la aplicación real.
