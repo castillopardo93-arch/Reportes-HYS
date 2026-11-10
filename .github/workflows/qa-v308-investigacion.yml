@@ -26,6 +26,8 @@ jobs:
         run: node evidencias-v308/test-facultades-cierre-v308.cjs
       - name: Directorio seguro y búsqueda inteligente de revisores
         run: node evidencias-v308/test-revisores-v308.cjs
+      - name: Verificar cada causa en su categoría de Final Report y acceso directo
+        run: node evidencias-v308/test-causas-ubicacion-v308.cjs
       - name: Catálogo Excel — Código y nombre (153 opciones)
         run: node evidencias-v308/test-catalogo-v308.cjs
       - name: Regresión de formularios originales
