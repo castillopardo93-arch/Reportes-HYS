@@ -1107,7 +1107,9 @@
       "Casillas rojas y errores por campo también para Final",
       "Evitar aprobación final basada en una revisión Flash anterior",
       "Actualizar procedencia de Flash tras corrección del Final",
-      "Priorizar bloqueo de Final cuando Flash no se ha enviado"
+      "Priorizar bloqueo de Final cuando Flash no se ha enviado",
+      "Conservar al reabrir Final las filas de planes de acción 4 a 40 y sus valores, sin saltos de numeración",
+      "Limitar nuevos planes a 40, coherente con la restauración, y permitir agregar de nuevo tras limpiar"
     ],
     "validacionFinal": "MÍNIMOS PROVISIONALES PARA LABORATORIO; obligatoriedad oficial pendiente de revisión por H&S",
     "causa_excel": "HSS-RGT-007 Rev. 08, 153 pares conservados en 5 grupos del punto 9",
@@ -1118,6 +1120,11 @@
     "no_publicada": true,
     "modificacion_main": false,
     "modificacion_supabase": false,
-    "modificacion_produccion": false
+    "modificacion_produccion": false,
+    "auditoria": "evidencias-v311/AUDITORIA-FUNCIONAL-v311.md",
+    "qa_workflow": ".github/workflows/qa-v311-investigacion.yml",
+    "qa_verificacion": "Pruebas JSDOM, sintaxis de 57 archivos JS, regresiones; verificación visual manual pendiente",
+    "codigo_original_excel_sha256": "f569f11598bef56ffed255f84bd9840d72e119431fa8cfe5b71bb974d1337a8e",
+    "filas_maximas_planes": 40
   }
 }
