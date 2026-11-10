@@ -74,3 +74,51 @@
 #hys305Investigation #hys306ActionRows select[name$="_codigo"]:disabled{
  opacity:1;background:#edf0f3;color:#5f6b78;cursor:not-allowed;
 }
+
+/* v308 — señal visual para campos Flash obligatorios pendientes */
+#hys305Investigation .hys308-required-summary {
+ border:1px solid #d44d50;border-left:5px solid #b91c1c;
+ border-radius:10px;background:#fff1f0;color:#8b1e1e;
+ padding:15px 18px;margin:12px 0 20px;line-height:1.5;
+ box-shadow:0 2px 8px rgba(185,28,28,.08);
+}
+#hys305Investigation .hys308-required-summary strong{
+ display:block;font-weight:800;font-size:14px;margin:0 0 6px;
+}
+#hys305Investigation .hys308-required-summary p{
+ font-size:12px;line-height:1.6;margin:0 0 8px;
+}
+#hys305Investigation .hys308-required-summary ul{
+ margin:0;padding-left:20px;columns:2;column-gap:24px;
+ font-size:12px;line-height:1.65;
+}
+#hys305Investigation .hys308-required-summary li{break-inside:avoid;padding:1px 0;}
+#hys305Investigation .hys306-field.hys308-required-field{
+ border:1px solid #eaa4a4!important;background:#fff5f5;
+ border-radius:9px;padding:9px 10px;
+ outline:1px solid rgba(185,28,28,.13);
+}
+#hys305Investigation .hys306-field.hys308-required-field .hys306-field-name{
+ color:#a61b1b!important;font-weight:800;
+}
+#hys305Investigation .hys306-field.hys308-required-field :is(input,select,textarea)[aria-invalid="true"]{
+ border:2px solid #c62828!important;background:#fff!important;
+ box-shadow:0 0 0 2px rgba(198,40,40,.13)!important;
+ color:#5f1717;
+}
+#hys305Investigation .hys306-field.hys308-required-field :is(input,select,textarea)[aria-invalid="true"]:focus{
+ outline:2px solid #a41212;outline-offset:2px;
+}
+#hys305Investigation .hys308-error-detail{
+ display:block;color:#a61b1b;font-weight:700;font-size:11px;
+ line-height:1.4;margin-top:6px;
+}
+#hys305Investigation .hys308-required-complete{
+ border:1px solid #a9d7b3;background:#edf9ef;color:#17603b;
+ border-radius:9px;padding:10px 14px;font-size:13px;font-weight:750;margin:10px 0 18px;
+}
+@media(max-width:650px){
+ #hys305Investigation .hys308-required-summary ul{columns:1;}
+ #hys305Investigation .hys308-required-summary{padding:13px;}
+ #hys305Investigation .hys306-field.hys308-required-field{padding:8px;}
+}
