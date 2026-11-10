@@ -57,12 +57,18 @@ for(const group of categories){
  console.log('OK',group.name,values.length,'entradas',group.first,'...',group.last);
 }
 assert.equal(n,153);
-const action=form.querySelector('#hys306ActionRows select[name$="_codigo"]');
-assert.ok(action,'No hay código de causa para plan de acción');
-assert.equal([...action.options].filter(o=>o.value).length,153,'Plan de acción debe poder referenciar cualquier código');
-assert.equal([...action.options].find(o=>o.value==='2.26').textContent,'2.26 — AUDICION DEFECTUOSA');
-assert.equal([...action.options].find(o=>o.value==='3.31').textContent,'3.31 — OTROS');
+const action=form.querySelector('#hys306ActionRows input[name="action_1_codigo"]');
+assert.ok(action,'No hay campo CÓDIGOS del punto 10');
+assert.equal(action.type,'text','Punto 10: campo libre, no selector');
+assert.equal(form.querySelector('#hys306ActionRows select[name$="_codigo"]'),null,'El Excel no contiene desplegable de códigos en punto 10');
+action.value='1.1 y 2.26';
+action.dispatchEvent(new w.Event('input',{bubbles:true}));
+assert.equal(action.value,'1.1 y 2.26','Escritura libre en CÓDIGOS');
+const add=d.getElementById('hys306AddAction');
+add.click();
+assert.equal(form.querySelectorAll('#hys306ActionRows input[name$="_codigo"]').length,4,'También nuevos planes mantienen campo libre');
+assert.equal(form.querySelector('#hys306ActionRows select[name$="_codigo"]'),null);
 assert.equal(d.getElementById('hys308CauseWorkbook'),null,'El usuario no debe cargar Excel');
 assert.equal(read('causas-datos-v308.js').includes('estado:"pendiente_de_fuente_original"'),false);
-console.log('RESULTADO: 153 causas con código y texto en ubicación correcta; vista Final directa sin Flash.');
+console.log('RESULTADO: 153 causas con código y nombre exclusivamente en punto 9; punto 10 con campo CÓDIGOS libre sin selector.');
 dom.window.close();
