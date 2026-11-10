@@ -408,7 +408,7 @@
    const form=formFor(k);
    const activeForm=kind===k,editable=activeForm&&editing;
    form.querySelectorAll('input,select,textarea').forEach(node=>{
-    const codeSelector=node.matches('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]');
+    const codeSelector=node.matches('.hys306-cause-select');
     node.disabled=!editable||(codeSelector&&!root.Hys308CausaCatalogo?.ready);
    });
    const clr=form.querySelector('[data-clear-form]');if(clr)clr.disabled=!editable;
