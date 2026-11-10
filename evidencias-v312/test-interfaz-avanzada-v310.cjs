@@ -58,7 +58,7 @@ for(const group of [1,2,3])for(let i=1;i<={1:73,2:49,3:31}[group];i++){
  assert.ok(data.entradas.some(x=>x.codigo===code&&x.descripcion.length>3),code);
 }
 const manifest=JSON.parse(read(review,'MANIFIESTO.json'));
-assert.equal(manifest.version,311);
+assert.equal(manifest.version,312);
 assert.equal(manifest.integracion_v312.no_publicada,true);
 assert.equal(manifest.integracion_v312.modificacion_supabase,false);
 const unaffected=['cloud-v242.js','config-v242.js','operaciones-v242.js','storage-v242.js',
