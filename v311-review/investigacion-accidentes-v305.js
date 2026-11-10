@@ -236,9 +236,12 @@
   fs.append(element('p','hys306-section-description',
    'CÓDIGOS y PLANES DE ACCIÓN RECOMENDADOS según el punto 10 del Excel original. Ingresa los códigos directamente, sin lista desplegable. Se conservan los campos complementarios de fecha y responsable.'));
   const list=element('div','hys306-action-list');list.id='hys306ActionRows';
-  let seq=0;
+  // La numeración de planes se deriva de las filas actuales y nunca de un
+  // contador antiguo: evita perder action_4 y posteriores al reabrir Final.
   function add(){
-   seq++;const block=element('div','hys306-action-row');
+   if(list.children.length>=40)return;
+   const seq=list.children.length+1;
+   const block=element('div','hys306-action-row');
    block.append(element('h4',null,'Plan de acción '+seq));
    const grid=element('div','hys306-field-grid');
    for(const spec of [
@@ -248,6 +251,9 @@
     f('Responsable','action_'+seq+'_responsable','text')
    ])grid.append(field(spec,kind));
    block.append(grid);list.append(block);dirty[kind]=true;
+   if(list.children.length>=40){
+    const button=$('hys306AddAction');if(button)button.disabled=true;
+   }
   }
   for(let i=0;i<3;i++)add();
   dirty[kind]=false;
@@ -403,6 +409,7 @@
    if(kind==='final'){
     const list=$('hys306ActionRows');
     if(list){for(const row of [...list.children].slice(3))row.remove()}
+    const add=$('hys306AddAction');if(add)add.disabled=false;
    }
    dirty[kind]=false;
   });
@@ -439,6 +446,7 @@
   dirty.flash=false;dirty.final=false;
   const rows=$('hys306ActionRows');
   if(rows){for(const row of [...rows.children].slice(3))row.remove()}
+  const add=$('hys306AddAction');if(add)add.disabled=false;
  }
  function open(){
   if(!visible())return false;
