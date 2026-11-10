@@ -23,6 +23,8 @@ const rights=[
  ['review','Revisar y devolver informes'],
  ['approve','Aprobar informes'],
  ['close','Cerrar informes'],
+ ['closeFlashReport','Autorizar cierre de Flash Report'],
+ ['closeFinalReport','Autorizar cierre de Final Report'],
  ['editOthers','Modificar informes de otros'],
  ['areas','Administrar áreas'],
  ['users','Administrar usuarios'],
@@ -50,7 +52,7 @@ panel.setAttribute('aria-modal','true');
 panel.setAttribute('aria-labelledby','hys265Title');
 panel.innerHTML='<div class="hys265-shell"><header class="hys265-header"><div><p class="hys265-eyebrow">ADMINISTRADOR GENERAL</p><h1 id="hys265Title">Gestión de usuarios</h1><p>Ficha del trabajador, rol, tarjetas, áreas, facultades e historial en un solo lugar.</p></div><button id="hys265Close" type="button" class="btn">Cerrar</button></header><p class="hys265-notice" id="hys265Notice" role="status"></p><nav class="hys265-tabs" aria-label="Gestión de usuarios"><button data-hys265-tab="create" type="button">Crear usuario</button><button data-hys265-tab="directory" type="button">Usuarios registrados</button><button data-hys265-tab="history" type="button">Historial</button><button data-hys265-tab="self" type="button">Mis datos laborales</button><button data-hys265-tab="quick" type="button">Permisos y facultades</button></nav><div id="hys265Content"></div></div>';
 document.body.append(panel);
-const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0,accessTarget:null,accessMode:'suspend',accessEvents:null,accessBusy:false,turnos:[],profileTarget:null,profileRevision:0,profileReady:false,profileBusy:false,profileMode:'worker',profileError:'',quickFilter:'',quickTarget:null,quickBaseline:null,closeDirty:false};
+const state={tab:'directory',mode:'create',step:1,draft:null,selected:null,users:[],areas:[],faculties:[],history:[],filter:'',histFilter:'',dirty:false,loading:false,seq:0,accessTarget:null,accessMode:'suspend',accessEvents:null,accessBusy:false,turnos:[],profileTarget:null,profileRevision:0,profileReady:false,profileBusy:false,profileMode:'worker',profileError:'',quickFilter:'',quickTarget:null,quickBaseline:null};
 // Credenciales temporales solo en memoria; jamás integradas a state.draft o al historial.
 let credentialSecret='',credentialRepeat='',delivery=null;
 function clearCredentials(){credentialSecret='';credentialRepeat='';delivery=null;}
@@ -164,14 +166,7 @@ async function refresh(){
  }catch(e){if(authorized()){notice('No se pudo consultar: '+e.message,true);render()}}
  finally{if(token===inFlight)state.loading=false}
 }
-function abandon(){
- const pending=state.dirty||state.closeDirty||root.Hys308ClosingFaculties?.hasChanges();
- if(!pending)return true;
- if(!confirm('Hay cambios o facultades de cierre sin guardar. ¿Descartar las propuestas?'))return false;
- root.Hys308ClosingFaculties?.reset();
- state.closeDirty=false;
- return true;
-}
+function abandon(){return !state.dirty||confirm('Hay información sin guardar. ¿Descartarla?')}
 function show(tab){
  if(!abandon())return;
  clearCredentials();state.tab=tab;state.dirty=false;
@@ -311,13 +306,6 @@ function renderQuickPermissions(target){
  const card=element('section',undefined,'hys265-card hys301-quick');
  card.append(element('h2','Permisos y facultades'));
  card.append(element('p','Selecciona un usuario registrado para modificar sus autorizaciones sin recorrer los pasos de creación.','hys265-muted'));
- // v308: independiente de APR/OTROS. Propuesta de autorizados, SIN guardado real.
- const cierres=element('div',undefined,'hys308-fac-host');
- card.append(cierres);
- root.Hys308ClosingFaculties?.mount(cierres,{
-  users:state.users,authorized:isGlobal(),lab,
-  onChange:()=>{state.closeDirty=!!root.Hys308ClosingFaculties?.hasChanges()}
- });
  const selected=state.users.find(u=>u.usuario_id===state.quickTarget);
  if(state.quickTarget&&!quickEligible(selected)){state.quickTarget=null;state.quickBaseline=null;state.dirty=false}
  if(!state.quickTarget){
@@ -818,7 +806,7 @@ function stepSpecial(p,quick=false){
     ch.onchange=()=>{
      const granted=state.draft.facultades[m].facultades;
      granted[key]=ch.checked;
-     const dependent=['pdf','review','approve','close','editOthers'];
+     const dependent=['pdf','review','approve','close','closeFlashReport','closeFinalReport','editOthers'];
      if(ch.checked&&dependent.includes(key))granted.view=true;
      if(key==='view'&&!ch.checked)for(const dep of dependent)granted[dep]=false;
      state.draft.facultades[m].areas_ids=[...a.areas];state.dirty=true;render();
