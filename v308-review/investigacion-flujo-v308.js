@@ -33,6 +33,14 @@
  const formFor=kind=>$(kind==='flash'?'hys306FlashForm':'hys306FinalForm');
  const nameOf=id=>fakeUsers.find(x=>x.id===id)?.name||(cases.find(x=>x.creatorId===id)?.creatorName)||'Sin asignar';
  const statusName={no_iniciado:'Sin iniciar',borrador:'Borrador',en_revision:'En revisión',correccion:'Corrección solicitada',aprobado:'Aprobado'};
+ // En laboratorio las facultades de cierre seleccionadas tienen prioridad sobre
+ // los permisos ficticios. Sin configuración, conservar el ensayo original.
+ const canActorClose=(who,kind)=>{
+  if(!who||!demo)return false;
+  const panel=root.Hys308ClosingFaculties;
+  if(panel?.hasChanges?.())return panel.canClose(who.id,kind);
+  return kind==='flash'?who.canCloseFlash===true:who.canCloseFinal===true;
+ };
  // Reglas mínimas de prueba: contrastar las obligatoriedades con HSS-RGT-007
  // antes de convertir este catálogo en validación oficial de producción.
  const flashRequired=[
@@ -363,7 +371,7 @@
     root.alert?.('Final Report no puede aprobarse definitivamente sin Flash Report aprobado.');
     return false;
    }
-   if(!next&&((kind==='flash'&&!who.canCloseFlash)||(kind==='final'&&!who.canCloseFinal))){
+   if(!next&&!canActorClose(who,kind)){
     root.alert?.('La revisión no otorga facultad de cierre. Debes enviar el informe a una persona autorizada para aprobarlo definitivamente.');
     return false;
    }
@@ -446,7 +454,7 @@
      const approve=el('button','hys306-secondary','Conformidad / siguiente revisor');
      approve.type='button';
      const updateApprove=()=>{
-      const canClose=kind==='flash'?who.canCloseFlash:who.canCloseFinal;
+      const canClose=canActorClose(who,kind);
       approve.textContent=next.value?'Validar y derivar al siguiente revisor':
        canClose?'Aprobar y cerrar '+(kind==='flash'?'Flash Report':'Final Report'):
        'Selecciona el próximo revisor o aprobador';
