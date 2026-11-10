@@ -33,6 +33,70 @@
  const formFor=kind=>$(kind==='flash'?'hys306FlashForm':'hys306FinalForm');
  const nameOf=id=>fakeUsers.find(x=>x.id===id)?.name||(cases.find(x=>x.creatorId===id)?.creatorName)||'Sin asignar';
  const statusName={no_iniciado:'Sin iniciar',borrador:'Borrador',en_revision:'En revisión',correccion:'Corrección solicitada',aprobado:'Aprobado'};
+ // Reglas mínimas de prueba: contrastar las obligatoriedades con HSS-RGT-007
+ // antes de convertir este catálogo en validación oficial de producción.
+ const flashRequired=[
+  {key:'tipo_incidente',label:'Tipo de incidente'},
+  {key:'probabilidad',label:'Probabilidad de lesión con tiempo perdido'},
+  {key:'fecha_ocurrencia',label:'Fecha de ocurrencia'},
+  {key:'hora',label:'Hora del incidente'},
+  {key:'area_proyecto',label:'Área del proyecto'},
+  {key:'ubicacion',label:'Ubicación específica',min:5},
+  {key:'involucrado',label:'Nombre del involucrado',min:3},
+  {key:'cargo',label:'Cargo del involucrado',min:2},
+  {key:'primeros_auxilios',label:'¿Se dieron primeros auxilios?'},
+  {key:'ambulancia',label:'¿Se llamó a la ambulancia?'},
+  {key:'hospital',label:'¿Necesita tratamiento en hospital?'},
+  {key:'existen_testigos',label:'¿Existen testigos?'},
+  {key:'hechos',label:'Descripción de los hechos conocidos',min:15},
+  {key:'causas_aparentes',label:'Causas aparentes inmediatas',min:10},
+  {key:'acciones_inmediatas',label:'Acciones tomadas inmediatamente',min:10},
+  {key:'reportado_por',label:'Incidente reportado por',min:3},
+  {key:'preparado_por',label:'Informe preparado por',min:3}
+ ];
+ function formIssues(kind,data){
+  if(kind!=='flash')return [];
+  return flashRequired.flatMap(rule=>{
+   const value=String(data?.[rule.key]??'').trim();
+   if(!value)return [{...rule,reason:'Obligatorio'}];
+   if(rule.min&&value.length<rule.min)return [{...rule,reason:'Mínimo '+rule.min+' caracteres'}];
+   if(rule.key==='fecha_ocurrencia'&&(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(new Date(value).getTime())))
+    return [{...rule,reason:'Fecha no válida'}];
+   return [];
+  });
+ }
+ const submittedFlash=c=>!!c?.flash?.submittedAt &&
+  ['en_revision','correccion','aprobado'].includes(c.flash.status);
+ function clearIssueView(form){
+  form.querySelector('.hys308-required-summary')?.remove();
+  form.querySelectorAll('[aria-invalid="true"]').forEach(node=>node.removeAttribute('aria-invalid'));
+  form.querySelectorAll('.hys308-required-field').forEach(node=>node.classList.remove('hys308-required-field'));
+ }
+ function showIssues(kind,issues){
+  const form=formFor(kind);clearIssueView(form);
+  if(!issues.length)return;
+  const summary=el('div','hys308-required-summary');summary.setAttribute('role','alert');
+  summary.setAttribute('aria-live','assertive');
+  summary.append(el('strong',null,'No se puede enviar a revisión. Completa los '+issues.length+' campos señalados:'));
+  const list=el('ul');
+  for(const issue of issues){
+   list.append(el('li',null,issue.label+' — '+issue.reason));
+   const control=[...form.querySelectorAll('[name]')].find(node=>node.name===issue.key);
+   if(control){
+    control.setAttribute('aria-invalid','true');
+    control.closest('.hys306-field')?.classList.add('hys308-required-field');
+   }
+  }
+  summary.append(list);
+  const banner=form.querySelector('.hys306-report-banner');
+  if(banner)banner.insertAdjacentElement('afterend',summary);else form.prepend(summary);
+  summary.scrollIntoView?.({block:'start'});
+  const invalid=form.querySelector('[aria-invalid="true"]');
+  invalid?.focus?.({preventScroll:true});
+ }
+ function tellBlockedFinal(){
+  root.alert?.('Final Report se habilita cuando el Flash Report tiene los antecedentes mínimos completos y fue enviado a revisión. Puedes guardar un borrador incompleto y continuar después.');
+ }
  const panel=$('hys305Investigation');
  const cards=$('hys306Cards'),grid=cards?.querySelector('.hys306-choice-grid');
  const workspace=$('hys306Workspace'),main=panel?.querySelector('.hys305-content');
@@ -104,6 +168,7 @@
  }
  function cleanForm(kind){
   const f=formFor(kind);
+  clearIssueView(f);
   f.reset();f.querySelectorAll('textarea').forEach(t=>t.style.height='');
   f.querySelectorAll('.hys306-file-status').forEach(t=>t.textContent='Sin archivos adjuntos');
   if(kind==='final'){
@@ -131,7 +196,7 @@
   const who=actor();c.history.push({at:stamp(),kind,event,note:note||'',by:who?.name||'Sistema',byId:who?.id||null,changes});
   c.updatedAt=stamp();
  }
- function model(kind){return {status:kind==='flash'?'borrador':'no_iniciado',revision:0,data:{},reviewerId:null,reviewerName:null,sourceFlashRevision:0}}
+ function model(kind){return {status:kind==='flash'?'borrador':'no_iniciado',revision:0,data:{},reviewerId:null,reviewerName:null,sourceFlashRevision:0,submittedAt:null}}
  function createCase(){
   const who=actor();if(!who)throw Error('Debes iniciar sesión con una cuenta activa.');
   serial++;
@@ -196,6 +261,7 @@
  function openCase(id,kind){
   const c=findCase(id),who=actor();
   if(!c||!who)return false;
+  if(kind==='final'&&!submittedFlash(c)){tellBlockedFinal();return false}
   if(!demo&&c.creatorId!==who.id&&c[kind]?.reviewerId!==who.id)return false;
   if(!canLeave())return false;
   selectedId=id;selectedKind=kind;
@@ -210,6 +276,7 @@
   if(!active()||selectedKind!==kind)return false;
   let c=currentCase();
   if(kind==='flash'&&!c){c=createCase();selectedId=c.id}
+  if(kind==='final'&&!submittedFlash(c)){tellBlockedFinal();return false}
   if(!c||!canEdit(c,kind))return false;
   const doc=c[kind],next=valueMap(formFor(kind)),changes=diff(doc.data,next,formFor(kind));
   const first=doc.revision===0;
@@ -225,6 +292,12 @@
   return true;
  }
  function send(kind){
+  if(kind==='flash'){
+   const issues=formIssues('flash',valueMap(fForm));
+   if(issues.length){showIssues('flash',issues);return false}
+   clearIssueView(fForm);
+  }
+  if(kind==='final'&&!submittedFlash(currentCase())){tellBlockedFinal();return false}
   const selected=$('hys308Reviewer'+(kind==='flash'?'Flash':'Final'));
   const reviewer=eligibleReviewers().find(x=>x.id===selected?.value);
   if(!reviewer){
@@ -235,6 +308,7 @@
   const c=currentCase(),doc=c?.[kind];
   if(!c||!canEdit(c,kind))return false;
   doc.status='en_revision';doc.reviewerId=reviewer.id;doc.reviewerName=reviewer.name;
+  if(kind==='flash'&&!doc.submittedAt)doc.submittedAt=stamp();
   audit(c,kind,'Enviado a revisión','Asignado a '+reviewer.name);
   syncEditor();showTracking(true);return true;
  }
@@ -306,6 +380,10 @@
     }
     const open=el('button','hys306-secondary',kind==='flash'?'Abrir Flash':'Abrir Final');
     open.type='button';open.addEventListener('click',()=>openCase(c.id,kind));
+    if(kind==='final'&&!submittedFlash(c)){
+     box.append(el('p','hys308-warning','Bloqueado: completa el Flash y envíalo a revisión.'));
+     open.disabled=true;
+    }
     if(!demo&&c.creatorId!==who?.id&&doc.reviewerId!==who?.id)open.disabled=true;
     box.append(open);
     if(demo&&who?.reviewer&&doc.status==='en_revision'&&doc.reviewerId===who.id){
@@ -346,6 +424,10 @@
   const suffix=kind==='flash'?'Flash':'Final';
   const save=el('button','hys306-secondary','Guardar borrador (prueba)');
   save.type='button';save.id='hys308Save'+suffix;save.addEventListener('click',()=>saveDraft(kind));
+  form.addEventListener('input',e=>{
+   if(e.target?.hasAttribute?.('aria-invalid'))e.target.removeAttribute('aria-invalid');
+   e.target?.closest?.('.hys306-field')?.classList.remove('hys308-required-field');
+  });
   const lbl=el('label','hys308-assign','Revisor autorizado (simulación)');
   const select=el('select');select.id='hys308Reviewer'+suffix;
   const empty=el('option',null,demo?'Selecciona a quién enviar':'Revisores reales: integración pendiente');
@@ -367,7 +449,7 @@
  });
  root.addEventListener('reportes-hys-access-changed',syncLauncher);
  root.Hys308Workflow={
-  canLeave,showTracking,showCards,openNew,openCase,saveDraft,send,decide,
+  canLeave,showTracking,showCards,openNew,openCase,saveDraft,send,decide,formIssues,
   onClosed:()=>{selectedId=null;selectedKind=null;baseline='';tracking.hidden=true},
   sync:syncLauncher,isDemo:demo,serverStorageEnabled:false,
   state:()=>({cases:JSON.parse(JSON.stringify(cases)),selectedId,selectedKind,actor:actor()?.id||null})
