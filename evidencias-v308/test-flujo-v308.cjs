@@ -13,7 +13,7 @@ function fixture({demo=true,active=true,role='usuario'}={}){
  const dom=new JSDOM(html,{url:'https://hys.test/v308-review/demo-v308.html?demo=1',runScripts:'outside-only'});
  const w=dom.window,d=w.document,alerts=[];
  w.HYS308_DEMO_PAGE=demo;
- w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador',rol,activo:active},modules:[],permissions:[],selectedModule:null};
+ w.__REPORTES_HYS_ACCESS__={userId:'demo-autor',profile:{usuario_id:'demo-autor',nombre:'Elaborador',rol:role,activo:active},modules:[],permissions:[],selectedModule:null};
  w.Hys285Pillars={close:()=>true};
  w.alert=s=>alerts.push(String(s));w.confirm=()=>true;
  w.eval(base);w.eval(flow);
