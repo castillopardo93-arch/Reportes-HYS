@@ -104,6 +104,8 @@
  if(!panel||!cards||!grid||!workspace||!main||!fForm||!nForm)return;
  const note=panel.querySelector('.hys306-notice p');
  if(note)note.textContent='LABORATORIO v308: puedes probar borradores, envío, revisiones y seguimiento con datos ficticios. Los informes solo permanecen en memoria hasta recargar la página. NO ingreses datos reales. No se envían mensajes ni se guardan en Supabase.';
+ const finalDescription=cards.querySelector('#hys306OpenFinal .hys306-choice-desc');
+ if(finalDescription)finalDescription.textContent='Se inicia desde Seguimiento Flash, cuando el Flash Report tiene los antecedentes obligatorios y ya fue enviado a revisión. No requiere esperar su aprobación.';
  const card=el('button','hys306-choice');
  card.id='hys308OpenTracking';card.type='button';
  card.append(el('span','hys306-choice-icon','03'),el('strong',null,'Seguimiento Flash'),el('span','hys306-choice-desc','Consulta expedientes, responsable actual, revisiones, correcciones e historial de Flash y Final Report.'),el('span','hys306-choice-link','Abrir seguimiento'));
@@ -375,6 +377,12 @@
     const doc=c[kind],box=el('div','hys308-doc');
     box.append(el('strong',null,kind==='flash'?'Flash Report':'Final Report'),statusTag(doc.status));
     box.append(el('p',null,'Revisión '+doc.revision+' · En poder de: '+(doc.reviewerName||(doc.status==='aprobado'?'Cerrado':c.creatorName))));
+    if(kind==='flash'&&doc.status==='borrador'){
+     const missing=formIssues('flash',doc.data);
+     box.append(el('p','hys308-warning',missing.length
+      ?'Faltan '+missing.length+' campos obligatorios para enviar a revisión.'
+      :'Antecedentes mínimos completos. Selecciona revisor y envía el Flash.'));
+    }
     if(kind==='final'&&doc.status!=='no_iniciado'&&doc.sourceFlashRevision<c.flash.revision){
      box.append(el('p','hys308-warning','Flash Report cambió desde la última precarga; comparar antecedentes.'));
     }
