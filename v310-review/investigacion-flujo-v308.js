@@ -28,26 +28,16 @@
   return {id:a.userId,name:a.profile.nombre||'Usuario registrado',role:a.profile.rol,reviewer:false};
  };
  const active=()=>!!actor();
- // En el laboratorio una facultad explícita de cierre también habilita
- // la recepción del documento, sin importar el rol ordinario del usuario.
- const eligibleReviewers=()=>!demo?[]:fakeUsers.filter(x=>x.reviewer||
-  (root.Hys308ClosingFaculties?.hasChanges?.()&&(
-   root.Hys308ClosingFaculties.canClose(x.id,'flash')||
-   root.Hys308ClosingFaculties.canClose(x.id,'final'))));
- const canReview=(who,kind)=>!!who&&(who.reviewer===true||
-  (demo&&root.Hys308ClosingFaculties?.canClose?.(who.id,kind)===true));
+ // Las facultades se administran en la lista existente de Administradores.
+ // No hay panel paralelo de autorizaciones en esta versión.
+ const eligibleReviewers=()=>demo?fakeUsers.filter(x=>x.reviewer):[];
+ const canReview=who=>who?.reviewer===true;
  const findCase=id=>cases.find(x=>x.id===id);
  const formFor=kind=>$(kind==='flash'?'hys306FlashForm':'hys306FinalForm');
  const nameOf=id=>fakeUsers.find(x=>x.id===id)?.name||(cases.find(x=>x.creatorId===id)?.creatorName)||'Sin asignar';
  const statusName={no_iniciado:'Sin iniciar',borrador:'Borrador',en_revision:'En revisión',correccion:'Corrección solicitada',aprobado:'Aprobado'};
- // En laboratorio las facultades de cierre seleccionadas tienen prioridad sobre
- // los permisos ficticios. Sin configuración, conservar el ensayo original.
- const canActorClose=(who,kind)=>{
-  if(!who||!demo)return false;
-  const panel=root.Hys308ClosingFaculties;
-  if(panel?.hasChanges?.())return panel.canClose(who.id,kind);
-  return kind==='flash'?who.canCloseFlash===true:who.canCloseFinal===true;
- };
+ // Los cierres simulados no otorgan ni modifican permisos de usuarios reales.
+ const canActorClose=(who,kind)=>!!(demo&&who&&(kind==='flash'?who.canCloseFlash===true:who.canCloseFinal===true));
  // Reglas mínimas de prueba: contrastar las obligatoriedades con HSS-RGT-007
  // antes de convertir este catálogo en validación oficial de producción.
  const flashRequired=[
