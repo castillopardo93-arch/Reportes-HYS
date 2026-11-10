@@ -2,10 +2,10 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('fs'),path=require('path');
 const {JSDOM}=require('jsdom');
-const app=path.resolve(__dirname,'../v308-review');
+const app=path.resolve(__dirname,'../v309-review');
 const read=name=>fs.readFileSync(path.join(app,name),'utf8');
 function init({role='usuario',active=true,source}={}){
- const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.example/v308-review/demo-v308.html',runScripts:'outside-only'});
+ const dom=new JSDOM(read('demo-v308.html'),{url:'https://hys.example/v309-review/demo-v308.html',runScripts:'outside-only'});
  const w=dom.window,d=w.document;
  w.HYS308_DEMO_PAGE=false;w.Hys285Pillars={close:()=>true};
  w.__REPORTES_HYS_ACCESS__={userId:'fake-current-user',profile:{
