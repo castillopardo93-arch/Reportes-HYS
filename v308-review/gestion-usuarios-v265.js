@@ -304,6 +304,13 @@ function renderQuickPermissions(target){
  const card=element('section',undefined,'hys265-card hys301-quick');
  card.append(element('h2','Permisos y facultades'));
  card.append(element('p','Selecciona un usuario registrado para modificar sus autorizaciones sin recorrer los pasos de creación.','hys265-muted'));
+ // v308: independiente de APR/OTROS. Propuesta de autorizados, SIN guardado real.
+ const cierres=element('div',undefined,'hys308-fac-host');
+ card.append(cierres);
+ root.Hys308ClosingFaculties?.mount(cierres,{
+  users:state.users,authorized:isGlobal(),lab,
+  onChange:()=>{state.dirty=true}
+ });
  const selected=state.users.find(u=>u.usuario_id===state.quickTarget);
  if(state.quickTarget&&!quickEligible(selected)){state.quickTarget=null;state.quickBaseline=null;state.dirty=false}
  if(!state.quickTarget){
