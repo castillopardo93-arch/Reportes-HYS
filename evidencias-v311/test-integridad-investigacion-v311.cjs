@@ -77,6 +77,29 @@ assert.equal(finalForm.querySelectorAll('.hys308-required-field').length,0,
  'Cada casilla roja debe desaparecer cuando se completan los mínimos');
 assert.ok(!finalForm.querySelector('.hys308-required-summary'),'Resumen debe desaparecer');
 assert.equal(api.formIssues('final',final).length,0);
+// Regresión real: guardar y reabrir Final con más de tres planes.
+d.getElementById('hys306AddAction').click();
+d.getElementById('hys306AddAction').click();
+add('final',{
+ action_4_codigo:'1.1',
+ action_4_descripcion:'Cuarta medida preventiva de seguimiento para la prueba.',
+ action_5_codigo:'2.1',
+ action_5_descripcion:'Quinta medida preventiva para la investigación ficticia.'
+});
+assert.equal(api.saveDraft('final'),true);
+assert.equal(api.showTracking(true),true);
+assert.equal(api.openCase(id,'final'),true);
+assert.equal(finalForm.querySelectorAll('#hys306ActionRows .hys306-action-row').length,5);
+assert.equal(finalForm.querySelector('[name="action_4_codigo"]').value,'1.1');
+assert.equal(finalForm.querySelector('[name="action_5_codigo"]').value,'2.1');
+assert.equal(finalForm.querySelector('[name="action_4_descripcion"]').value,
+ 'Cuarta medida preventiva de seguimiento para la prueba.');
+assert.equal(finalForm.querySelector('[name="action_5_descripcion"]').value,
+ 'Quinta medida preventiva para la investigación ficticia.');
+d.getElementById('hys306AddAction').click();
+assert.ok(finalForm.querySelector('[name="action_6_codigo"]'),
+ 'El sexto plan debe recuperar el número 6 y no saltar al 8 o superior');
+
 d.getElementById('hys308ReviewerFinal').value='demo-hys';
 assert.equal(api.send('final'),true);
 const saved=api.state().cases[0];
