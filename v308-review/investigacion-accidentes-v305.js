@@ -199,7 +199,7 @@
    chooser.addEventListener('change',()=>{
     const code=chooser.value;
     if(!code)return;
-    c.value=[c.value.trim(),code].filter(Boolean).join('\n');
+    c.value=[c.value.trim(),root.Hys308CausaCatalogo?.format(code)||code].filter(Boolean).join('\n');
     c.dispatchEvent(new root.Event('input',{bubbles:true}));
     chooser.value='';c.focus();
    });
