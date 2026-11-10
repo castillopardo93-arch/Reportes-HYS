@@ -1012,5 +1012,21 @@
     "cambios_supabase": false,
     "produccion": false,
     "nota": "El archivo de Library no pudo materializarse en esta sesión; no atribuir a la aplicación nombres de un Excel no leído."
+  },
+  "facultades_cierre_v308": {
+    "status": "INTEGRADO_EN_INTERFAZ_PARA_REVISION_SIN_PERSISTENCIA",
+    "location": "Gestión de usuarios → Permisos y facultades",
+    "permissions": [
+      "cerrar_flash_report",
+      "cerrar_final_report"
+    ],
+    "multiple_authorized": true,
+    "suggested_responsible_per_type": true,
+    "independent_of_APR_OTROS": true,
+    "lab_policy": "Simulado en memoria, restricción de autor y aprobación por facultad",
+    "active_users_directory": "Solo Admin General usa consulta registrada ya autorizada; no expone directorio completo a usuarios básicos",
+    "saving_real_permissions": false,
+    "supabase_changed": false,
+    "production_changed": false
   }
 }
