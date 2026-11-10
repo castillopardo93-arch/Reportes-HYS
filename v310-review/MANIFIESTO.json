@@ -1,9 +1,9 @@
 {
-  "version": 309,
-  "branch": "desarrollo/v309-integracion-investigacion",
-  "base_version": 308,
-  "base_commit": "1b6ce4f5d4ebcef5f47cac89b7f7966462f22a9c",
-  "estado": "DESARROLLO_INTERFAZ_AVANZADA_NO_PUBLICADO",
+  "version": 310,
+  "branch": "desarrollo/v310-facultades-cierre-lista",
+  "base_version": 309,
+  "base_commit": "05b085507c059022ee3c4e504447e437511c52b8",
+  "estado": "DESARROLLO_INTERFAZ_ORIGINAL_FACULTADES_NO_PUBLICADO",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -1014,7 +1014,7 @@
     "nota": "La incidencia histórica de catálogo incompleto fue subsanada en v308 antes de clonar v309"
   },
   "facultades_cierre_v308": {
-    "status": "INTEGRADO_EN_INTERFAZ_PARA_REVISION_SIN_PERSISTENCIA",
+    "status": "SUPERADO_POR_v310_LISTA_ORIGINAL",
     "location": "Gestión de usuarios → Permisos y facultades",
     "permissions": [
       "cerrar_flash_report",
@@ -1027,7 +1027,8 @@
     "active_users_directory": "Solo Admin General usa consulta registrada ya autorizada; no expone directorio completo a usuarios básicos",
     "saving_real_permissions": false,
     "supabase_changed": false,
-    "production_changed": false
+    "production_changed": false,
+    "nota": "La UI adicional de v308/v309 fue retirada del entorno v310. Únicamente se conservaron dos claves dentro de los selectores existentes de facultades administrativas; sin persistencia real."
   },
   "fecha_integracion": "2026-11-10",
   "integracion_v309": {
@@ -1062,6 +1063,36 @@
     "cierres": "sin autoaprobación de autor; Final no se cierra hasta Flash aprobado",
     "guardado_y_notificaciones": "flujo de prueba sin persistencia ni avisos reales: integración posterior solo previa autorización",
     "solo_desarrollo": true,
+    "no_publicada": true,
+    "modificacion_main": false,
+    "modificacion_supabase": false,
+    "modificacion_produccion": false
+  },
+  "fecha_correccion": "2026-11-10",
+  "integracion_v310": {
+    "descripcion": "Corrección de interpretación: NO agregar un panel de autorizaciones de cierre. Únicamente dos opciones nuevas en la lista de facultades especiales existente para administradores.",
+    "origen": "copia aislada completa de v309; v309 y versiones previas no modificadas",
+    "interfaz": "v310-review/index.html",
+    "ubicacion": "Administrador General → Gestión de usuarios → Permisos y facultades → seleccionar usuario con rol Administrador → Áreas y facultades especiales → Facultades de Administrador (por tarjeta)",
+    "lista_administrativa_original_conservada": true,
+    "panel_adicional_eliminado": true,
+    "claves": [
+      "closeFlashReport",
+      "closeFinalReport"
+    ],
+    "rotulos": [
+      "Autorizar cierre de Flash Report",
+      "Autorizar cierre de Final Report"
+    ],
+    "casillas_independientes": true,
+    "roles": "solo administrador con permisos explícitos; administrador general configura",
+    "alcance": "conserva distribución por tarjeta de la interfaz original",
+    "consentimiento": "desmarcadas por defecto; requieren seleccionar usuario y marcarlas expresamente",
+    "seguridad": "las autorizaciones del laboratorio no se guardan ni activan permisos reales: backend supabase no habilitado",
+    "catalogo_causas": 153,
+    "analisis_causas": "punto 9 conserva cinco desplegables",
+    "planes": "punto 10 códigos libres sin desplegable",
+    "revision": "Flash con requeridos en rojo; Final habilitado tras envío válido de Flash",
     "no_publicada": true,
     "modificacion_main": false,
     "modificacion_supabase": false,
