@@ -988,5 +988,15 @@
       "Descripciones exactas del Excel y PDF maestro pendientes de cotejo"
     ],
     "supabase_produccion_modificado": false
+  },
+  "correccion_misma_v308": {
+    "alcance": "Final Report — Análisis de causas y códigos de planes de acción",
+    "cambio": "Importación local del libro Excel original para completar los rótulos código + descripción sin inventar nombres",
+    "cambio_en_valor": "Los identificadores de cada opción permanecen como código; el texto seleccionado en análisis incluye código + nombre",
+    "codigos_esperados": 153,
+    "validacion": "QA de 153 entradas sintéticas en DOM y regresiones v306/v308 aprobadas",
+    "requisito_pendiente": "Revisión con el archivo Excel real; el libro original no fue materializable desde Library",
+    "production": false,
+    "central_storage": false
   }
 }
