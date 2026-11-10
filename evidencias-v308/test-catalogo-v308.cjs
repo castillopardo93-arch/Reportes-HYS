@@ -56,7 +56,7 @@ function enterFinalForTest(fixture){
  assert.ok(workflow.openCase(expediente.id,'final'));
 }
 
-const empty=init();
+const empty=init({archivo:'HSS-RGT-007-Flash_Final Report rev.8.xlsx',hoja:'Tabla',entradas:[]});
 assert.equal(empty.api.ready,false);
 assert.equal(empty.api.count(),0);
 assert.equal(empty.d.getElementById('hys308CauseWorkbook'),null);
@@ -105,4 +105,4 @@ const bad=init(partial);
 assert.equal(bad.api.ready,false);
 assert.ok([...bad.d.querySelectorAll('.hys306-cause-select')].every(x=>x.disabled));
 bad.dom.window.close();
-console.log('RESULTADO: catálogo directo listo para recibir descripciones literales del Excel original; la fuente original aún no fue materializada.');
+console.log('RESULTADO: catálogo integrado validado; se mantiene protección frente a catálogos parciales o incompletos.');
