@@ -63,3 +63,7 @@ No se debe dar por terminado el requisito «código + descripción directa» has
 - En la **simulación v308**, seleccionar una facultad habilita el control de cierre para esa cuenta si recibió el documento; aprobar el propio informe como elaborador está bloqueado. El Final requiere Flash aprobado.
 - En producción, cerrar exige autorización vigente verificada **en el servidor**, identidad autenticada, expediente asignado, estados válidos y bitácora de auditoría. Jamás confiar solo en un checkbox del frontend.
 - Antes del guardado real se requerirán tablas/políticas RLS, eventos inalterables, revisión/versionado de facultades y una operación atómica en Supabase, con autorización expresa. La lectura actual de facultades APR/OTROS sigue intacta.
+
+## Rectificación de formato v308 — punto 10 (10/11/2026)
+
+La plantilla original contiene el encabezado **10.- PLANES DE ACCION** con columnas **CÓDIGOS** y **PLANES DE ACCION RECOMENDADOS**. No presenta lista desplegable para la columna CÓDIGOS. Se retira el selector añadido por error en v308: ahora es entrada de texto libre, mientras que los catálogos de código y descripción se presentan solo en el **9.- ANÁLISIS DE CAUSAS** (cinco categorías). La vista directa `demo-final-causas-v308.html` permite comprobar ambos puntos sin rellenar Flash Report.
