@@ -168,7 +168,7 @@ ok('Flash completo puede enviarse a revisor; abre Final sin esperar aprobación'
 ok('Final incompleto se bloquea en rojo y puede continuar como borrador',()=>{
  f.get('hys308ReviewerFinal').value='demo-hys';
  assert.equal(f.api.send('final'),false);
- assert.ok(f.get('hys306FinalForm').querySelector('[name="involucrados"][aria-invalid="true"]'));
+ assert.ok(f.get('hys306FinalForm').querySelector('[name="equipo_investigador"][aria-invalid="true"]'));
  assert.ok(f.get('hys306FinalForm').querySelector('[name="action_1_descripcion"][aria-invalid="true"]'));
  assert.ok(f.get('hys306FinalForm').querySelector('.hys308-required-summary')?.textContent.includes('Final Report'));
  assert.equal(f.api.state().cases[0].final.status,'borrador');
