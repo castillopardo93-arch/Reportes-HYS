@@ -117,7 +117,7 @@ function validConfiguration(role,ambitos,grants,areas){
   if(a.editar!==true&&a.editar!==false)errors.push('Indica acceso de edición en '+m);
  }
  if(role!=='administrador_area'&&modules.some(m=>Object.values(grants?.[m]?.facultades||{}).some(Boolean)))errors.push('Los roles no administradores no tienen facultades especiales');
- const requireView=['pdf','review','approve','close','editOthers'];
+ const requireView=['pdf','review','approve','close','closeFlashReport','closeFinalReport','editOthers'];
  const allowedRights=new Set(['view',...requireView,'areas','users','activation','audit']);
  for(const m of modules){
   const entry=grants?.[m],scope=entry?.facultades||{},selected=entry?.areas_ids||[];
