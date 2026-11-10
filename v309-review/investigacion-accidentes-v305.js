@@ -6,7 +6,7 @@
  const d=root.document;
  if(!d||new URLSearchParams(root.location.search).get('embedded')==='otros')return;
  const params=new URLSearchParams(root.location.search);
- const review=/\/v308-review\/index\.html$/i.test(root.location.pathname)
+ const review=/\/v309-review\/index\.html$/i.test(root.location.pathname)
    &&['accidentes','flash','final','seguimiento'].includes(params.get('revision'));
  const nav=d.getElementById('hysToolsOptions')||(review?d.createElement('nav'):null);
  if(!nav)return;
