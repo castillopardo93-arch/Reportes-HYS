@@ -62,14 +62,14 @@ assert.equal(empty.api.count(),0);
 assert.equal(empty.d.getElementById('hys308CauseWorkbook'),null);
 assert.ok(empty.d.querySelectorAll('#hys306FinalForm input[type="file"]').length>=4);
 assert.ok(!read('demo-v308.html').includes('jszip.min.js'));
-for(const select of empty.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')){
+for(const select of empty.d.querySelectorAll('.hys306-cause-select')){
  assert.equal(select.disabled,true,'Selector de causas sin fuente debe estar bloqueado');
  assert.equal(select.options.length,1,'No publicar códigos sin descripción');
  assert.ok(!select.options[0].value);
 }
 console.log('OK: no se solicita al usuario cargar Excel; sin catálogo no hay códigos sin texto.');
 enterFinalForTest(empty);
-assert.ok([...empty.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')].every(x=>x.disabled),'La edición no debe habilitar catálogo sin nombres');
+assert.ok([...empty.d.querySelectorAll('.hys306-cause-select')].every(x=>x.disabled),'La edición no debe habilitar catálogo sin nombres');
 empty.dom.window.close();
 const t=init(sample);
 assert.equal(t.api.ready,true);
@@ -82,23 +82,26 @@ for(const s of t.d.querySelectorAll('.hys306-cause-select')){
  assert.ok(opts.length>=20);
  assert.ok(opts.every(x=>x.textContent.startsWith(x.value+' — Nombre sintético de prueba')));
 }
-const allCodes=t.d.querySelector('#hys306ActionRows select[name$="_codigo"]');
-assert.equal(allCodes.options.length,154);
-assert.equal([...allCodes.options].find(o=>o.value==='3.31').textContent,
- '3.31 — Nombre sintético de prueba para código 3.31');
-console.log('OK: 153 opciones con código y nombre, 5 grupos y planes de acción.');
+const codeEntry=t.d.querySelector('#hys306ActionRows input[name="action_1_codigo"]');
+assert.ok(codeEntry,'El punto 10 debe tener un campo de códigos');
+assert.equal(codeEntry.type,'text');
+assert.equal(t.d.querySelector('#hys306ActionRows select[name$="_codigo"]'),null,
+ 'El punto 10 no debe tener un desplegable de causas');
+console.log('OK: catálogo limitado al punto 9; punto 10 con CÓDIGOS de escritura libre.');
 enterFinalForTest(t);
-assert.ok([...t.d.querySelectorAll('.hys306-cause-select,#hys306ActionRows select[name$="_codigo"]')].every(x=>!x.disabled),'El catálogo oficial validado sigue disponible para edición');
+assert.ok([...t.d.querySelectorAll('.hys306-cause-select')].every(x=>!x.disabled),'El catálogo oficial validado sigue disponible para edición');
 const chooser=t.d.querySelector('.hys306-cause-select');
 chooser.value='1.1';chooser.dispatchEvent(new t.w.Event('change',{bubbles:true}));
 const textarea=t.d.querySelector('#hys306FinalForm [name="condiciones_subestandar"]');
 assert.ok(textarea.value.includes('1.1 — Nombre sintético de prueba para código 1.1'));
 t.d.getElementById('hys306AddAction').click();
-const plans=t.d.querySelectorAll('#hys306ActionRows select[name$="_codigo"]');
+const plans=t.d.querySelectorAll('#hys306ActionRows input[name$="_codigo"]');
 assert.equal(plans.length,4);
-assert.equal([...plans[3].options].find(o=>o.value==='2.49').textContent,
- '2.49 — Nombre sintético de prueba para código 2.49');
-console.log('OK: selección copia código y nombre; planes adicionales heredan lista automáticamente.');
+assert.ok([...plans].every(x=>x.type==='text'));
+plans[3].value='1.1; 2.49';plans[3].dispatchEvent(new t.w.Event('input',{bubbles:true}));
+assert.equal(plans[3].value,'1.1; 2.49');
+assert.ok(!t.d.querySelector('#hys306ActionRows select[name$="_codigo"]'));
+console.log('OK: nombres solo en punto 9; punto 10 libre y nuevas filas libres.');
 t.dom.window.close();
 const partial=JSON.parse(JSON.stringify(sample));partial.entradas.pop();
 const bad=init(partial);
