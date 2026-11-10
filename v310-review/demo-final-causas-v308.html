@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reportes HYS v309 — Final Report · Códigos y nombres</title>
+<link rel="stylesheet" href="investigacion-accidentes-v305.css">
+<link rel="stylesheet" href="investigacion-flujo-v308.css">
+<style>
+  body{margin:0;background:#edf4f8;color:#173c57;font:14px "Segoe UI",Arial,sans-serif}
+  #hysToolsOptions{display:none!important}
+  .hys308-direct-head{padding:18px 25px;background:#143f60;color:white;position:sticky;top:0;z-index:100}
+  .hys308-direct-head h1{font-size:20px;margin:0 0 6px;font-weight:800}
+  .hys308-direct-head p{margin:0;font-size:12px;line-height:1.55}
+  #hys305Investigation .hys306-notice{background:#edf7ef!important;border-color:#bbd5c0!important}
+  #hys305Investigation .hys306-report-footer,
+  #hys305Investigation .hys306-form-footer,
+  #hys305Investigation .hys306-workspace-header,
+  #hys305Investigation .hys306-report-banner,
+  #hys305Investigation .hys306-top-tools{display:none!important}
+  #hys305Investigation [data-hys308-not-preview]{display:none!important}
+  #hys305Investigation .hys306-cause-select{font-size:13px;max-width:100%}
+  #hys305Investigation .hys306-field .hys306-cause-select{min-height:43px}
+  #hys305Investigation textarea{min-height:70px}
+  .hys308-demo-only{font-size:12px;line-height:1.6;padding:8px 22px;margin:0 auto;max-width:1150px}
+  .hys308-direct-sticky{background:#eaf3f8;border-left:3px solid #2a86b5;padding:10px 13px;margin:0 0 16px;font-size:12px}
+  @media(max-width:650px){.hys308-direct-head{padding:12px 15px}.hys308-direct-head h1{font-size:17px}}
+</style>
+</head>
+<body class="module-choice">
+<header class="hys308-direct-head">
+  <h1>Final Report · Análisis de causas</h1>
+  <p>Vista de revisión v309: solo las casillas de causas y planes de acción, sin completar Flash Report.</p>
+</header>
+<nav id="hysToolsOptions" aria-label="Laboratorio" hidden></nav>
+<script>
+window.__REPORTES_HYS_ACCESS__={
+ userId:'demo-autor',
+ profile:{usuario_id:'demo-autor',nombre:'Elaborador de prueba',rol:'usuario',activo:true},
+ modules:[],permissions:[],facultades:[],selectedModule:null
+};
+window.HYS308_DEMO_PAGE=true;
+window.Hys285Pillars={close:function(){return true;}};
+</script>
+<script src="investigacion-accidentes-v305.js"></script>
+<script src="causas-datos-v308.js"></script>
+<script src="causas-catalogo-v308.js"></script>
+<script>
+(function(){
+ const app=window.Hys305Investigation;
+ const catalog=window.Hys308CausaCatalogo;
+ if(!app?.open?.()||!app.selectReport('final')){
+  const p=document.createElement('p');
+  p.textContent='No se pudo abrir el formulario de revisión.';
+  document.body.append(p);return;
+ }
+ const panel=document.getElementById('hys305Investigation');
+ const form=document.getElementById('hys306FinalForm');
+ if(!panel||!form)return;
+ panel.querySelectorAll('.hys306-notice p').forEach(n=>{
+  n.textContent='Revisión visual del catálogo HSS-RGT-007 Rev. 08. Prueba los desplegables en sus categorías originales. No se guardan ni envían datos.';
+ });
+ for(const sec of form.querySelectorAll('.hys306-section')){
+  const name=(sec.querySelector('legend')?.textContent||'').trim();
+  if(!/^9\.-\s*ANÁLISIS DE CAUSAS/i.test(name)&&!/^10\.-\s*PLANES DE ACCIÓN/i.test(name)){
+   sec.hidden=true;sec.setAttribute('data-hys308-not-preview','');
+  }
+ }
+ const allSelects=[...form.querySelectorAll('.hys306-cause-select')];
+ const groups={
+  condiciones_subestandar:37,
+  acciones_subestandar:36,
+  factores_trabajo:25,
+  factores_personales:24,
+  requerimientos_sistema:31
+ };
+ const count=Object.keys(groups).reduce((a,key)=>a+(form.querySelector('[name="'+key+'"]')?1:0),0);
+ const banner=document.createElement('div');banner.className='hys308-direct-sticky';
+ banner.id='hys308DirectCatalogSummary';
+ banner.setAttribute('role','status');
+ banner.textContent=catalog?.ready&&count===5
+  ?'Catálogo Excel original integrado: 153 códigos y nombres en 5 grupos. Puedes seleccionar varias causas, y se agregarán en su campo correspondiente.'
+  :'Catálogo incompleto o casillas sin identificar. Verificar la lista de causas.';
+ form.insertBefore(banner,form.firstElementChild);
+ const footer=form.querySelector('.hys306-form-footer');
+ if(footer)footer.hidden=true;
+ const section9=[...form.querySelectorAll('.hys306-section')].find(s=>/^9\.-/.test(s.querySelector('legend')?.textContent||''));
+ if(section9) section9.scrollIntoView?.({block:'start'});
+ window.HYS308_DIRECT_PREVIEW={ready:catalog?.ready===true,groups,total:catalogTotal(),view:'final-only',skipFlash:true};
+ function catalogTotal(){return catalog?.count?.()||0}
+})();
+</script>
+</body>
+</html>
