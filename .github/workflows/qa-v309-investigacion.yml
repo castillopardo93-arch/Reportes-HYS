@@ -1,0 +1,34 @@
+name: Reportes HYS v308 — Investigación y trazabilidad (laboratorio)
+on:
+  push:
+    branches:
+      - desarrollo/v308-flujo-investigacion
+    paths:
+      - 'v308-review/**'
+      - 'evidencias-v308/**'
+      - '.github/workflows/qa-v308-investigacion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  investigacion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar entorno DOM
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund jsdom@26.1.0
+      - name: Verificar sintaxis del extractor oficial Excel
+        run: python3 -m py_compile evidencias-v308/extraer-causas-desde-excel.py
+      - name: Ensayo de Flash, Final y seguimiento
+        run: node evidencias-v308/test-flujo-v308.cjs
+      - name: Facultades independientes de cierre Flash y Final
+        run: node evidencias-v308/test-facultades-cierre-v308.cjs
+      - name: Directorio seguro y búsqueda inteligente de revisores
+        run: node evidencias-v308/test-revisores-v308.cjs
+      - name: Verificar cada causa en su categoría de Final Report y acceso directo
+        run: node evidencias-v308/test-causas-ubicacion-v308.cjs
+      - name: Catálogo Excel — Código y nombre (153 opciones)
+        run: node evidencias-v308/test-catalogo-v308.cjs
+      - name: Regresión de formularios originales
+        run: node evidencias-v306/test-flash-final-v306.cjs
