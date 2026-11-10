@@ -75,3 +75,22 @@
 #hys305Investigation .hys306-cause-select{
  font-size:13px;font-weight:650;
 }
+
+/* v308 — campos obligatorios al enviar Flash a revisión */
+#hys305Investigation .hys308-required-summary{
+ border:1px solid #e4a2a2;border-left:4px solid #c43232;
+ border-radius:10px;background:#fff4f4;padding:14px 16px;
+ margin:14px 0 20px;color:#7f2525;
+}
+#hys305Investigation .hys308-required-summary strong{
+ display:block;font-size:14px;margin-bottom:8px
+}
+#hys305Investigation .hys308-required-summary ul{
+ margin:0;padding-left:22px;line-height:1.6;font-size:12px;
+}
+#hys305Investigation .hys308-required-field :is(input,select,textarea)[aria-invalid=true]{
+ border:2px solid #c43232!important;background-color:#fff8f8;
+}
+#hys305Investigation .hys308-required-field .hys306-field-name{
+ color:#a12222;
+}
