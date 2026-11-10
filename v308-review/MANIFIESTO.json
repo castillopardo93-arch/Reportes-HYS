@@ -1,9 +1,9 @@
 {
-  "version": 307,
-  "branch": "desarrollo/v307-listas-y-proporciones",
-  "base_version": 306,
-  "base_commit": "3858aec63dc2310ae2e430c72fdfcbad8904bc9b",
-  "estado": "desarrollo-mejora-selectores-proporciones-v307",
+  "version": 308,
+  "branch": "desarrollo/v308-flujo-investigacion",
+  "base_version": 307,
+  "base_commit": "297e4750d2d5ec8e56d9dc4a8ddbd3e635d1e248",
+  "estado": "laboratorio-flash-final-seguimiento-revisiones-sin-backend",
   "aprobada": false,
   "publicada": false,
   "produccion": false,
@@ -966,5 +966,27 @@
       "Pruebas Node y de navegador v307 pendientes"
     ],
     "almacenamiento_en_produccion": false
+  },
+  "cambios_v308": {
+    "alcance": "Flujo de investigación experimental en copia aislada de v307",
+    "acceso": "Perfil registrado y activo puede abrir investigación, incluso sin módulos APR/OTROS; el acceso a otros módulos sigue condicionado a sus permisos",
+    "capacidades_simuladas": [
+      "Crear varios Flash Report independientes",
+      "Guardar borrador en memoria del navegador",
+      "Enviar a revisor ficticio autorizado",
+      "Seguimiento Flash con estado y responsable actual",
+      "Devolver con observación obligatoria",
+      "Aprobar, pasar a otro revisor, conservar historial de cambios",
+      "Iniciar Final Report antes de aprobación Flash, pero bloquear aprobación definitiva hasta que Flash esté aprobado",
+      "Mismo número de prueba para ambos documentos"
+    ],
+    "limites": [
+      "Números SIM y asignación de usuarios ficticios SOLO en laboratorio",
+      "Sin persistencia tras recargar o cambiar usuario",
+      "Sin envío real, notificaciones, almacenamiento central, PDF ni firmas",
+      "No ingresar información personal ni accidentes reales",
+      "Descripciones exactas del Excel y PDF maestro pendientes de cotejo"
+    ],
+    "supabase_produccion_modificado": false
   }
 }
