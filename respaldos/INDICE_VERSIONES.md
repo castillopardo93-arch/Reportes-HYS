@@ -27,6 +27,8 @@ El [laboratorio v259](2026-11-07/v259/v259-audit-lab/) se registró el 7 de novi
 
 No se localizaron originales de v235, v236 ni v313 a v332 en el historial Git disponible.
 
+Consulta la [procedencia de las ramas históricas](PROCEDENCIA_RAMAS.md) para localizar el commit y la copia de cada rama.
+
 ## ZIP originales
 
 | Versión | Archivo | SHA-256 |

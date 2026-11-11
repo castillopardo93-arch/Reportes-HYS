@@ -1,6 +1,0 @@
-{
-	"devDependencies": {
-		"@electric-sql/pglite": "0.5.15",
-		"jspdf": "2.5.1"
-	}
-}
