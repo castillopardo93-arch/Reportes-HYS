@@ -33,3 +33,21 @@ A 2026-11-11, **no se identificaron ramas ni carpetas v333/v334** en este reposi
 
 ### Protección
 No modificar copias históricas. Para cada nuevo respaldo, agregar una subcarpeta en la fecha correspondiente sin alterar carpetas anteriores. No confundir archivar una versión con aprobarla o publicarla.
+
+
+## Otras ramas históricas archivadas en `main`
+
+| Fecha | Carpeta en `respaldos/` | Procedencia |
+| --- | --- | --- |
+| 2026-10-26 | `preparacion-v1/` | Rama `preparacion-v1` (instantánea histórica) |
+| 2026-11-03 | `v233-admin-users-rama-original/` | Rama `desarrollo/v233-admin-users` (instantánea histórica) |
+| 2026-11-05 | `v248-rama-original/` | Rama `desarrollo/v248` (revisión atípica sin carpeta v248 propia) |
+| 2026-11-06 | `v258-excel-lab-integracion/` | Rama `desarrollo/excel-v258-integracion-pruebas` |
+| 2026-11-06 | `v258-excel-lab-auditoria/` | Rama `desarrollo/excel-v258-auditoria-offline` |
+| 2026-11-09 | `informes-historial/` | Rama `informes/historial-2026-11-09` |
+
+La rama `respaldo/orden-historico-2026-11-11` ya contiene las mismas carpetas por fecha que `main` antes de las variantes adicionales; se conserva su historial. Las demás ramas originales continúan disponibles porque una copia en `main` no elimina ni fusiona automáticamente una rama Git.
+
+**Uso recomendado en Visual Studio Code:** trabajar en `main` únicamente para consultar `respaldos/`; para corregir código crear una versión de desarrollo nueva y separada. Para ver copias recientes usar `git fetch origin` seguido de `git pull --ff-only origin main` únicamente cuando no existan cambios locales pendientes. Nunca usar `git reset --hard` para actualizar respaldos.
+
+**Pendiente:** v333 y v334 no están presentes en las ramas disponibles de este repositorio remoto; localizar los originales antes de agregarlas.

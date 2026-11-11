@@ -1,0 +1,20 @@
+/* C06: detalle del hallazgo con tres pestañas. Sin nuevas columnas ni acciones simuladas. */
+tr.hys243-finding-detail-row td{padding:5px 9px 12px!important;background:#f7f9fe;border-top:0!important;overflow-wrap:anywhere}
+.hys243-finding-details{border:1px solid #b9d2ef;border-radius:9px;background:#fff;color:#173d68;overflow:hidden}
+.hys243-finding-details>summary{cursor:pointer;background:#ecf4ff;padding:10px 12px;color:#174f88;font-weight:750;list-style-position:inside}
+.hys243-finding-details>summary:hover{background:#e3f0ff}
+.hys243-detail-content{padding:12px}
+.hys243-detail-tabs{display:flex;flex-wrap:wrap;gap:5px;border-bottom:1px solid #d5e2f0;margin-bottom:12px;padding-bottom:8px}
+.hys243-detail-tabs button{border:1px solid #b9d2e9;background:#f4f8fe;border-radius:7px;padding:8px 11px;text-align:left;color:#173d68}
+.hys243-detail-tabs button[aria-selected=true]{background:#e1efff;border-color:#467fb8;color:#123b63;font-weight:800}
+.hys243-detail-tabs button:focus-visible{outline:3px solid #2871cd;outline-offset:2px}
+.hys243-detail-content [role=tabpanel][hidden]{display:none!important}
+.hys243-detail-content [role=tabpanel]{padding:2px;line-height:1.5}
+.hys243-detail-content p{margin:7px 0 10px}
+.hys243-detail-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px}
+.hys243-detail-fields p{min-width:0;white-space:pre-wrap}
+.hys243-detail-value{display:block;color:#344b65;white-space:pre-wrap;overflow-wrap:anywhere;font-weight:400;margin:2px 0 0}
+.hys243-detail-empty{padding:8px 10px;background:#f7fafe;border-radius:6px;color:#526a82}
+.hys243-detail-pending{font-size:12px;color:#576d80;background:#f9fbfe;border-left:3px solid #b7cce5;padding:8px 10px}
+@media(max-width:760px){tr.hys243-finding-detail-row td{display:block!important;width:100%;padding:4px 8px 12px!important}.hys243-detail-content{padding:9px}.hys243-detail-fields{grid-template-columns:1fr}.hys243-detail-tabs button{flex:1 1 100%;min-height:40px}}
+@media print{tr.hys243-finding-detail-row{display:none!important}}
