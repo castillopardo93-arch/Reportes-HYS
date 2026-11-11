@@ -1,0 +1,39 @@
+{
+  "status": "Conexión central v239 autorizada y preparada",
+  "migrationApplied": true,
+  "originalTablesUnchanged": true,
+  "remoteDatabaseTests": [
+    {
+      "prueba": "administrador_area APR",
+      "resultado": "OK guardado, recuperación por consulta, finalización, idempotencia, conflicto y permisos"
+    },
+    {
+      "prueba": "administrador_area OTROS",
+      "resultado": "Sin perfil existente para este ámbito; no se crea ni modifica ninguno"
+    },
+    {
+      "prueba": "administrador_global APR",
+      "resultado": "OK guardado, recuperación por consulta, finalización, idempotencia, conflicto y permisos"
+    },
+    {
+      "prueba": "administrador_global OTROS",
+      "resultado": "OK guardado, recuperación por consulta, finalización, idempotencia, conflicto y permisos"
+    },
+    {
+      "prueba": "Perfil inexistente",
+      "resultado": "OK acceso denegado"
+    },
+    {
+      "prueba": "usuario APR",
+      "resultado": "OK consulta sin escritura"
+    },
+    {
+      "prueba": "usuario OTROS",
+      "resultado": "OK consulta sin escritura"
+    }
+  ],
+  "realProfilesModified": false,
+  "testReportsRetained": false,
+  "supervisor": "No existe perfil real; cobertura local con perfil ficticio",
+  "websiteDeployment": "Pendiente de autorización de publicación"
+}

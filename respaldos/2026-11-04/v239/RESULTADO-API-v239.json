@@ -1,0 +1,35 @@
+{
+  "transport": "HTTPS real Supabase",
+  "checks": [
+    {
+      "resource": "areas_trabajo_v239",
+      "status": 401,
+      "code": "42501",
+      "anonymousDenied": true
+    },
+    {
+      "resource": "listas_v239",
+      "status": 401,
+      "code": "42501",
+      "anonymousDenied": true
+    },
+    {
+      "resource": "informes_v239",
+      "status": 401,
+      "code": "42501",
+      "anonymousDenied": true
+    },
+    {
+      "resource": "apariencia_v239",
+      "status": 401,
+      "code": "42501",
+      "anonymousDenied": true
+    },
+    {
+      "resource": "hys239_guardar_informe",
+      "status": 401,
+      "code": "42501",
+      "anonymousDenied": true
+    }
+  ]
+}

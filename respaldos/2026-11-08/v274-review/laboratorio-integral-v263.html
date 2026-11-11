@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reportes HYS v263 — Laboratorio integral autónomo</title>
+<style>
+/* v261: fichas y tarjetas administrativas; alcance exclusivo de Facultades. */
+#facultadesPanel242[hidden],#facultadesPanel242 [hidden]{display:none!important}
+#facultadesPanel242{position:fixed;inset:0;z-index:65000;background:#0b294ce9;padding:24px;overflow:auto;color:#173d68}
+#facultadesPanel242 .faculty-shell259{max-width:1100px;margin:0 auto;background:#f3f7fc;padding:24px;border-radius:18px;min-height:min(720px,90vh)}
+#facultadesPanel242 h1{font-size:24px;margin:0}#facultadesPanel242 h2{font-size:19px;margin:0 0 12px}#facultadesPanel242 p{line-height:1.5;color:#526b83}
+#facultadesPanel242 label{display:block;margin:10px 0}
+#facultadesPanel242 input:not([type=checkbox]):not([type=radio]),#facultadesPanel242 select{display:block;max-width:100%;width:100%;padding:11px;border:1px solid #bfcede;border-radius:9px;font:inherit;background:#fff;color:#173d68;box-sizing:border-box}
+#facultadesPanel242 input:focus-visible,#facultadesPanel242 button:focus-visible,#facultadesPanel242 summary:focus-visible{outline:3px solid #3d80c5;outline-offset:2px}
+#facultadesPanel242 .faculty-card259{background:#fff;border:1px solid #dce6f0;border-radius:14px;padding:20px;margin:18px 0;box-shadow:0 3px 12px #14365508}
+#facultadesPanel242 .faculty-check259{display:flex;align-items:center;gap:10px;min-height:39px;margin:0;padding:10px 12px;background:#f6f9fc;border-radius:8px;overflow-wrap:anywhere;cursor:pointer}
+#facultadesPanel242 .faculty-check259 input{flex:0 0 auto;width:18px;height:18px}
+#facultadesPanel242 .faculty-actions259{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}
+#facultadesPanel242 button.btn{min-height:42px}
+#facultadesPanel242 .faculty-directory-head261{display:flex;justify-content:space-between;align-items:center;gap:20px}
+#facultadesPanel242 .faculty-directory-head261 h2{margin-bottom:3px}
+#facultadesPanel242 .faculty-directory-head261 p{margin:0}
+#facultadesPanel242 .faculty-directory-filters261{display:grid;grid-template-columns:1fr 250px;gap:14px;margin:16px 0}
+#facultadesPanel242 .faculty-directory-count261{font-size:13px;font-weight:600;margin:0 0 12px}
+#facultyDirectoryRows261{display:grid;gap:12px}
+#facultadesPanel242 .faculty-person261{background:#fff;border:1px solid #dce6f0;border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+#facultadesPanel242 .faculty-person-info261{min-width:0;display:flex;gap:5px;flex-direction:column}
+#facultadesPanel242 .faculty-person-info261 strong{font-size:16px}
+#facultadesPanel242 .faculty-person-info261 small{font-size:13px;color:#65788b}
+#facultadesPanel242 .faculty-person-modules261{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+#facultadesPanel242 .faculty-person-modules261 span{display:inline-block;border-radius:40px;padding:5px 9px;font-size:12px}
+#facultadesPanel242 .faculty-person-on261{background:#e5f3ed;color:#1c6250}
+#facultadesPanel242 .faculty-person-off261{background:#edf1f5;color:#617184}
+#facultadesPanel242 .faculty-detail-head261{display:flex;gap:20px;align-items:center;margin-top:10px}
+#facultadesPanel242 .faculty-detail-head261 h2{margin:0}
+#facultadesPanel242 .faculty-detail-head261 p{margin:3px 0 0;font-size:13px}
+#facultyCards261{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#facultadesPanel242 .faculty-module261{border:1px solid #d8e3ef;border-radius:13px;padding:16px;background:#f8fbfe;min-width:0}
+#facultadesPanel242 .faculty-module-enabled261{border-color:#80a7c8;background:#fff}
+#facultadesPanel242 .faculty-module-header261{display:flex;align-items:flex-start;justify-content:space-between;gap:9px;margin-bottom:13px}
+#facultadesPanel242 .faculty-module-title261{display:flex;align-items:flex-start;gap:9px;font-weight:700;cursor:pointer;line-height:1.35;margin:0}
+#facultadesPanel242 .faculty-module-title261 input{flex:0 0 19px;width:19px;height:19px;margin:2px 0 0}
+#facultadesPanel242 .faculty-module-header261 p{font-size:12px;margin:5px 0 0}
+#facultadesPanel242 .faculty-state261{flex-shrink:0;background:#e8eef7;color:#35597e;border-radius:30px;padding:6px 8px;font-size:11px}
+#facultadesPanel242 .faculty-disabled-note261{margin:0;font-size:13px}
+#facultadesPanel242 .faculty-area-mode261{border:0;padding:9px 0 0;margin:13px 0 0;min-width:0}
+#facultadesPanel242 .faculty-area-mode261 legend{font-weight:700;font-size:14px;padding:0;margin:0 0 7px}
+#facultadesPanel242 .faculty-radio261{display:flex;align-items:center;gap:9px;margin:4px 0;padding:7px 10px;border-radius:8px;background:#f5f8fc;cursor:pointer}
+#facultadesPanel242 .faculty-radio261 input{width:17px;height:17px;margin:0}
+#facultadesPanel242 .faculty-areas-count261{font-size:13px;margin:10px 0 0}
+#facultadesPanel242 .faculty-picker261{border-top:1px solid #e0e8f1;margin-top:10px;padding-top:12px}
+#facultadesPanel242 .faculty-picker-tools261{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px}
+#facultadesPanel242 .faculty-picker-tools261 input{flex:1 1 140px;min-width:130px}
+#facultadesPanel242 .faculty-picker-tools261 button{flex:0 1 auto;font-size:12px;padding:8px 10px}
+#facultadesPanel242 .faculty-areas-grid261{margin-top:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:290px;overflow:auto;padding:3px}
+#facultadesPanel242 .faculty-areas-grid261 label{font-size:13px}
+#facultySpecialCards261{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#facultadesPanel242 .faculty-special-module261{border:1px solid #dde7f0;border-radius:10px;padding:12px;background:#f9fbfd;min-width:0}
+#facultadesPanel242 .faculty-special-module261 summary{font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px}
+#facultadesPanel242 .faculty-cap-grid261{display:grid;gap:7px}
+#facultadesPanel242 .faculty-cap-grid261 label{font-size:13px;line-height:1.4}
+#facultadesPanel242 .faculty-summary-line261{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid #e4ecf4}
+#facultadesPanel242 .faculty-summary-line261 strong{display:block;font-size:14px}
+#facultadesPanel242 .faculty-summary-line261 small{display:block;margin-top:5px;color:#647a8f;font-size:12px}
+#facultadesPanel242 .faculty-summary-state261{font-size:12px;white-space:nowrap;color:#305775}
+#facultadesPanel242 .faculty-summary-result261{font-weight:600;font-size:13px;margin:13px 0}
+#facultadesPanel242 #facultySafety261{font-size:12px}
+#facultadesPanel242 #facultadesStatus242:not(:empty){background:#e7edf5;border:1px solid #cfdeed;padding:10px 14px;border-radius:9px;font-size:13px}
+@media(max-width:900px){#facultyCards261,#facultySpecialCards261{grid-template-columns:1fr}}
+@media(max-width:650px){
+ #facultadesPanel242{padding:0}#facultadesPanel242 .faculty-shell259{padding:14px;border-radius:0;min-height:100vh}
+ #facultadesPanel242 .faculty-card259{padding:14px}
+ #facultadesPanel242 .faculty-directory-head261,#facultadesPanel242 .faculty-person261,#facultadesPanel242 .faculty-detail-head261{align-items:stretch;flex-direction:column}
+ #facultadesPanel242 .faculty-directory-filters261{grid-template-columns:1fr;gap:4px}
+ #facultadesPanel242 .faculty-areas-grid261{grid-template-columns:1fr}
+ #facultadesPanel242 .faculty-actions259 button,#facultadesPanel242 .faculty-person261>button{width:100%}
+ #facultadesPanel242 .faculty-person-modules261{flex-direction:column;align-items:flex-start}
+}
+@media print{#facultadesPanel242{display:none!important}}
+
+/* v262: rol unificado en la ficha de Facultades. */
+#facultadesPanel242 #facultyRoleCard262{border-left:4px solid #2b709e}
+#facultadesPanel242 #facultyRole262{max-width:410px}
+#facultadesPanel242 #facultyRoleMessage262{font-size:13px;background:#eff5fb;padding:11px 13px;border-radius:8px;margin:8px 0}
+
+</style>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#173d68;background:#f0f5fa}*{box-sizing:border-box}
+body{margin:0;padding:24px;min-height:100vh}h1,h2,h3{line-height:1.3}p{line-height:1.6}
+button,.btn{font:inherit;cursor:pointer;border:1px solid #bacfdf;background:#f6f9fc;color:#173d68;border-radius:9px;padding:10px 15px}
+button.primary,.btn.primary{background:#155793;border-color:#155793;color:#fff}button:disabled{cursor:not-allowed;opacity:.55}
+input,select{font:inherit;padding:10px;border:1px solid #c5d4e1;border-radius:8px;max-width:100%}
+label{font-size:14px;display:grid;gap:5px}fieldset{border:0;padding:0;margin:0}
+main{max-width:1150px;margin:0 auto}
+.lab-header263{background:white;border:1px solid #d5e1eb;border-radius:16px;padding:22px 25px;box-shadow:0 3px 15px #16375112}
+.lab-header263 h1{margin:0 0 7px;font-size:27px}.lab-header263 p{margin:0}
+.lab-tag263{display:inline-block;padding:5px 11px;border-radius:30px;background:#ffe9bd;color:#805400;font-weight:700;font-size:12px;margin-bottom:14px}
+.lab-alert263{border-left:4px solid #d09232;margin:15px 0;padding:12px 16px;background:#fffaf0;border-radius:7px;font-size:14px}
+#labMessage263{background:#e6eff8;color:#173d68;border-radius:9px;padding:12px 14px;margin:12px 0;min-height:45px}
+.lab-nav263{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.lab-nav263 button{background:#fff;font-size:14px}.lab-nav263 button.active263{background:#155793;color:#fff;border-color:#155793}
+.lab-panel263{background:#fff;border:1px solid #dbe5ef;border-radius:14px;padding:22px;margin-bottom:17px;box-shadow:0 3px 12px #132f5010}
+.lab-panel263[hidden]{display:none}.lab-panel263 h2{margin:0 0 8px}
+.lab-row263{border-top:1px solid #e3edf5;padding:13px 0;display:grid;grid-template-columns:minmax(160px,1.4fr) minmax(145px,1.3fr) minmax(120px,.7fr) auto;gap:10px;align-items:center}
+.lab-row263 input,.lab-row263 select,.lab-area-row263 input,.lab-area-row263 select{width:100%}
+.lab-row263 small,.lab-user-name263 small{display:block;font-size:12px;color:#687d92;line-height:1.5}
+.lab-user-name263{min-width:0}.lab-row-actions263{display:flex;gap:6px;flex-wrap:wrap}
+.lab-row-actions263 button{font-size:12px;padding:9px 10px}
+.lab-inline-form263{display:flex;gap:10px;flex-wrap:wrap;align-items:end;padding:15px 0}
+.lab-inline-form263>*{flex:1 1 180px}.lab-inline-form263 button{flex:0 0 auto}
+.lab-grid263{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lab-group263{border:1px solid #dee8f1;border-radius:10px;padding:14px}
+.lab-area-row263{display:grid;grid-template-columns:1.3fr .8fr auto;gap:8px;margin:10px 0;align-items:center}
+.lab-area-row263 button{font-size:12px;padding:10px 8px}
+.lab-history-row263{border:1px solid #e2eaf1;border-radius:8px;padding:12px;margin:8px 0}
+.lab-history-row263 p{margin:3px 0}.lab-history-row263 small{color:#607991}
+.lab-two-cards263{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.lab-access-card263{padding:15px;border:1px solid #cadbea;border-radius:11px;background:#f6f9fc}
+.lab-preference-form263{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#labPhotoSample263{display:grid;gap:8px;margin:15px 0;max-width:550px}
+#labPhotoSample263 span{display:block;aspect-ratio:4/3;background:#dceaf5;border-radius:8px;border:1px solid #b6cce1}
+#labPhotoSample263[data-photo-size=small]{max-width:330px}#labPhotoSample263[data-photo-size=large]{max-width:850px}
+.lab-high-contrast263{background:#e6eaf0;color:#0b1f35}.lab-high-contrast263 .lab-panel263{border-color:#183a5f}
+#hysToolsRail{display:none}#hysToolsOptions{display:none}
+@media(max-width:960px){.lab-row263{grid-template-columns:1fr 1fr}.lab-grid263{grid-template-columns:1fr}.lab-preference-form263{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){body{padding:9px}.lab-header263,.lab-panel263{padding:15px}.lab-row263{grid-template-columns:1fr}.lab-inline-form263{flex-direction:column;align-items:stretch}.lab-inline-form263 button{width:100%}.lab-two-cards263,.lab-preference-form263{grid-template-columns:1fr}.lab-area-row263{grid-template-columns:1fr}.lab-row-actions263 button{flex:1 1 auto}}
+</style></head>
+<body class="module-choice">
+<main>
+<header class="lab-header263">
+ <span class="lab-tag263">LABORATORIO v263 · 100% FICTICIO</span>
+ <h1>Reportes HYS — Centro de pruebas</h1>
+ <p>Esta versión permite usar y guardar configuraciones <strong>simuladas</strong> de usuarios, roles, tarjetas, áreas, facultades, historial y opciones visuales. Los cambios persisten solo en este navegador y pueden reiniciarse.</p>
+ <p class="lab-alert263"><strong>No modifica cuentas reales.</strong> La autenticación y Supabase oficiales no se utilizan. No permite enviar reportes, correos, PDFs reales ni cambios a producción.</p>
+</header>
+<nav class="lab-nav263" aria-label="Configuraciones en prueba">
+ <button type="button" data-lab-tab="users">Usuarios</button>
+ <button type="button" id="labOpenFaculties263" class="primary">Facultades · Roles y tarjetas</button>
+ <button type="button" data-lab-tab="areas">Áreas</button>
+ <button type="button" data-lab-tab="access">Accesos simulados</button>
+ <button type="button" data-lab-tab="history">Auditoría</button>
+ <button type="button" data-lab-tab="notifications">Notificaciones</button>
+ <button type="button" data-lab-tab="settings">Configuración visual</button>
+</nav>
+<p id="labMessage263" role="status">Selecciona una pestaña. Las pruebas no afectan a usuarios reales.</p>
+<section class="lab-panel263" data-lab-panel="users">
+ <h2>Usuarios de prueba</h2><p>Administra datos y estados. El rol, las tarjetas, las áreas y las facultades especiales se asignan exclusivamente en Facultades.</p>
+ <form id="labNewUser263" class="lab-inline-form263"><label>Nombre del nuevo usuario ficticio<input id="labNewUserName263" required minlength="3" maxlength="150" placeholder="Ej. Encargado de turno"></label><button class="btn primary" type="submit">Crear usuario de prueba</button></form>
+ <p id="labUserCount263"></p><div id="labUserList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="areas" hidden>
+ <h2>Áreas de trabajo</h2><p>Alta, modificación, activación y desactivación de áreas simuladas para cada tarjeta.</p>
+ <form id="labNewArea263" class="lab-inline-form263"><label>Tarjeta<select id="labNewAreaModule263"><option value="APR">Prevencionista de riesgos</option><option value="OTROS">Supervisores, capataces y otros</option></select></label><label>Nombre de área<input id="labNewAreaName263" required maxlength="100" placeholder="Ej. COLORADO"></label><button class="btn primary" type="submit">Crear área de prueba</button></form>
+ <div id="labAreaList263" class="lab-grid263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="access" hidden>
+ <h2>Accesos según la configuración guardada</h2><p>Vista previa ficticia de las tarjetas, áreas y atribuciones que tendría la cuenta seleccionada.</p>
+ <label>Usuario de prueba<select id="labAccessUser263"></select></label>
+ <div id="labAccessResult263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="history" hidden>
+ <h2>Auditoría de pruebas</h2><p id="labHistoryCount263"></p><div id="labHistoryList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="notifications" hidden>
+ <h2>Notificaciones (simulación)</h2><p>Vista de eventos generados en el laboratorio. No envía correos ni notificaciones reales.</p>
+ <div id="labNotificationList263"></div>
+</section>
+<section class="lab-panel263" data-lab-panel="settings" hidden>
+ <h2>Configuración visual de prueba</h2><p>Estas opciones solo afectan a la muestra visual de este laboratorio, no al PDF ni a la configuración de la aplicación real.</p>
+ <form id="labPrefs263">
+  <div class="lab-preference-form263">
+   <label>Tamaño de fotos<select id="labPhotoSize263"><option value="small">Pequeñas</option><option value="medium">Medianas</option><option value="large">Grandes</option></select></label>
+   <label>Fotos por fila<select id="labPhotosRow263"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+   <label>Contraste<select id="labContrast263"><option value="normal">Normal</option><option value="high">Alto contraste</option></select></label>
+  </div>
+  <div id="labPhotoSample263"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <button type="submit" class="btn primary">Guardar preferencias de prueba</button>
+ </form>
+</section>
+<section class="lab-panel263">
+ <h2>Control del laboratorio</h2><p>Cuando termines de probar, puedes regresar todos los usuarios, áreas y permisos ficticios a su estado inicial.</p>
+ <button id="labReset263" class="btn" type="button">Restablecer todas las pruebas</button>
+</section>
+</main>
+<aside id="hysToolsRail" aria-label="Opciones de demostración"><nav id="hysToolsOptions"></nav></aside>
+<script>
+window.HYS263_SANDBOX=true;
+window.HYS242_DEPLOYMENT_READY=false;
+window.HYS257_ENABLE_USER_MANAGEMENT=true;
+window.HYS261_ATOMIC_FACULTIES_READY=true;
+window.HYS262_ATOMIC_ROLE_READY=true;
+window.HysAppearance242={moduleLabel:m=>m==='APR'?'Prevencionista de riesgos':m==='OTROS'?'Supervisores, capataces y otros':m};
+window.__REPORTES_HYS_ACCESS__={
+ userId:'administrador-general-ficticio',profile:{activo:true,rol:'administrador_global'},
+ modules:['APR','OTROS'],permissions:[],facultades:[],selectedModule:null
+};
+</script>
+<script>
+/* backend-simulador-v263.js */
+/* Reportes HYS v263 — Backend FICTICIO y persistencia LOCAL para pruebas.
+ * Solo debe cargarse desde demo-facultades.html con HYS263_SANDBOX=true.
+ * Nunca importa, consulta ni escribe Supabase real. Datos totalmente ficticios.
+ */
+(function(root){
+ 'use strict';
+ if(root.HYS263_SANDBOX!==true||!/\/(?:demo-facultades|laboratorio-v263|laboratorio-integral-v263)\.html(?:$|\?)/.test(root.location.pathname+root.location.search))throw Error('Laboratorio v263: entorno de prueba no autorizado');
+ const KEY='reportes-hys-v263-simulador-local-1';
+ const MODULES=['APR','OTROS'];
+ const clone=x=>JSON.parse(JSON.stringify(x));
+ const now=()=>new Date().toISOString();
+ const labels={APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'};
+ const ROLES=['usuario','supervisor','administrador_area'];
+ const initial=()=>({
+  rev:0,
+  users:[
+   {usuario_id:'prueba-admin',nombre:'Administrador de ejemplo',rol:'administrador_area',activo:true,revision:3,ambitos:{APR:{ver:true,editar:true,areas:['apr-va4','apr-v5']},OTROS:{ver:false,editar:false,areas:[]}}},
+   {usuario_id:'prueba-supervisor',nombre:'Supervisor de ejemplo',rol:'supervisor',activo:true,revision:2,ambitos:{APR:{ver:true,editar:true,areas:['apr-va4']},OTROS:{ver:true,editar:false,areas:['otr-va4']}}},
+   {usuario_id:'prueba-prevencionista',nombre:'Prevencionista de ejemplo',rol:'usuario',activo:true,revision:1,ambitos:{APR:{ver:true,editar:true,areas:['apr-au']}}},
+   {usuario_id:'prueba-apoyo',nombre:'Apoyo de terreno',rol:'usuario',activo:true,revision:4,ambitos:{OTROS:{ver:true,editar:false,areas:['otr-v5','otr-au']}}}
+  ],
+  areas:[
+   {id:'apr-va4',nombre:'VA4',activa:true,modulo:'APR'},{id:'apr-v5',nombre:'V5',activa:true,modulo:'APR'},
+   {id:'apr-au',nombre:'AUCAYES',activa:true,modulo:'APR'},{id:'apr-mt',nombre:'MAITENES',activa:true,modulo:'APR'},
+   {id:'otr-va4',nombre:'VA4',activa:true,modulo:'OTROS'},{id:'otr-v5',nombre:'V5',activa:true,modulo:'OTROS'},
+   {id:'otr-au',nombre:'AUCAYES',activa:true,modulo:'OTROS'},{id:'otr-mt',nombre:'MAITENES',activa:true,modulo:'OTROS'}
+  ],
+  faculties:[
+   {usuario_id:'prueba-admin',modulo:'APR',revision:1,areas_ids:['apr-va4','apr-v5'],facultades:{view:true,audit:true}},
+   {usuario_id:'prueba-admin',modulo:'OTROS',revision:0,areas_ids:[],facultades:{}}
+  ],
+  history:[]
+ });
+ function normalize(source){
+  if(!source||!Array.isArray(source.users)||!Array.isArray(source.areas)||!Array.isArray(source.faculties)||!Array.isArray(source.history))return initial();
+  return source;
+ }
+ let state;
+ try{state=normalize(JSON.parse(root.localStorage.getItem(KEY)||'null'))}catch{state=initial()}
+ const get=()=>clone(state);
+ function persist(next){state=clone(next);root.localStorage.setItem(KEY,JSON.stringify(state));root.dispatchEvent(new CustomEvent('hys263-lab-changed',{detail:{revision:state.rev}}));}
+ function write(action,target,apply,motivo){
+  const next=get(),value=apply(next);next.rev=(next.rev||0)+1;
+  next.history.unshift({id:'evento-'+next.rev,fecha:now(),actor:'Administrador general (simulado)',accion:action,usuario:target,motivo:String(motivo||'Prueba de laboratorio').slice(0,500)});
+  next.history=next.history.slice(0,250);persist(next);return clone(value);
+ }
+ const fail=msg=>{throw Error(msg)};
+ const person=(s,id)=>s.users.find(u=>u.usuario_id===id)||fail('Usuario de prueba inexistente');
+ const assertRole=role=>{if(!ROLES.includes(role))fail('Rol no permitido en el laboratorio')};
+ function assertScopes(s,ambitos){
+  if(!ambitos||typeof ambitos!=='object')fail('Ámbitos inválidos');
+  let active=0;
+  for(const m of MODULES){
+   const a=ambitos[m];if(!a||a.ver!==true)continue;
+   active++;
+   if(!Array.isArray(a.areas)||a.areas.length===0)fail('La tarjeta '+labels[m]+' necesita áreas');
+   for(const id of a.areas){const area=s.areas.find(x=>x.id===id&&x.modulo===m&&x.activa);if(!area)fail('Área inexistente o inactiva: '+id)}
+  }
+  if(!active)fail('La cuenta activa necesita al menos una tarjeta');
+ }
+ function assertRevision(value,expected){if(value!==(Number(expected)||0))fail('Conflicto de revisión. Actualiza la ficha antes de guardar')}
+ function updateFaculties(s,id,role,faculties,revs){
+  for(const m of MODULES){
+   const old=s.faculties.find(x=>x.usuario_id===id&&x.modulo===m);
+   const index=s.faculties.findIndex(x=>x.usuario_id===id&&x.modulo===m);
+   if(revs&&Object.prototype.hasOwnProperty.call(revs,m))assertRevision(old?.revision||0,revs[m]);
+   const f=role==='administrador_area'?faculties?.[m]:null;
+   const entry={usuario_id:id,modulo:m,revision:(old?.revision||0)+1,areas_ids:[...new Set(f?.areas_ids||[])],facultades:Object.fromEntries(Object.entries(f?.facultades||{}).filter(([,on])=>on===true))};
+   if(index<0)s.faculties.push(entry);else s.faculties[index]=entry;
+  }
+ }
+ function atomic(id,role,ambitos,faculties,expected,revs,motivo,action){
+  const s=get(),u=person(s,id);assertRole(role);assertRevision(u.revision,expected);assertScopes(s,ambitos);
+  for(const m of MODULES)if(revs&&Object.prototype.hasOwnProperty.call(revs,m)){
+   const rec=s.faculties.find(x=>x.usuario_id===id&&x.modulo===m);
+   assertRevision(rec?.revision||0,revs[m]);
+  }
+  if(role==='administrador_area')for(const m of MODULES)for(const area of faculties?.[m]?.areas_ids||[]){
+   if(!ambitos[m]?.ver||!ambitos[m]?.areas?.includes(area))fail('Facultad fuera del ámbito autorizado: '+area);
+  }
+  return write(action,id,next=>{
+   const dest=person(next,id);
+   dest.rol=role;dest.ambitos=clone(ambitos);dest.revision++;
+   updateFaculties(next,id,role,faculties,null);
+   return {usuario_id:id,revision:dest.revision};
+  },motivo);
+ }
+ function assign(params){
+  const s=get(),u=person(s,params.p_usuario),m=params.p_modulo;
+  if(!MODULES.includes(m)||u.rol!=='administrador_area')fail('Facultades fuera de rol o módulo');
+  const prior=s.faculties.find(x=>x.usuario_id===u.usuario_id&&x.modulo===m);
+  assertRevision(prior?.revision||0,params.p_revision);
+  for(const id of params.p_areas||[])if(!u.ambitos[m]?.areas?.includes(id))fail('Área fuera del ámbito actual');
+  return write('Facultades: '+labels[m],u.usuario_id,next=>{
+   const existing=next.faculties.find(x=>x.usuario_id===u.usuario_id&&x.modulo===m);
+   const entry={usuario_id:u.usuario_id,modulo:m,revision:(existing?.revision||0)+1,areas_ids:[...new Set(params.p_areas||[])],facultades:clone(params.p_facultades||{})};
+   if(existing)Object.assign(existing,entry);else next.faculties.push(entry);
+   return {revision:entry.revision};
+  },params.p_motivo);
+ }
+ function changeUser(params){
+  const s=get(),u=person(s,params.p_usuario);assertRevision(u.revision,params.p_revision);
+  const data=params.p_datos||{};
+  assertRole(data.rol);assertScopes(s,data.ambitos);
+  if(data.rol!==u.rol)fail('Cambio de rol exige guardar en el formulario unificado transaccional');
+  if(!String(data.nombre||'').trim())fail('Nombre requerido');
+  return write('Actualización de usuario',u.usuario_id,next=>{
+   const user=person(next,u.usuario_id);
+   user.nombre=String(data.nombre).trim().slice(0,150);user.activo=data.activo===true;
+   user.ambitos=clone(data.ambitos);user.revision++;
+   return {revision:user.revision};
+  },params.p_motivo);
+ }
+ async function rpc(name,p={}){
+  try{
+   switch(name){
+    case 'hys242_listar_usuarios':return {data:get().users,error:null};
+    case 'hys242_guardar_usuario':return {data:changeUser(p),error:null};
+    case 'hys242_asignar_facultades':return {data:assign(p),error:null};
+    case 'hys261_guardar_facultades_atomico':{
+     const u=person(get(),p.p_usuario);
+     return {data:atomic(u.usuario_id,u.rol,p.p_ambitos,p.p_facultades,p.p_revision_usuario,p.p_revisiones_facultades,p.p_motivo,'Accesos y facultades (atómico simulado)'),error:null};
+    }
+    case 'hys262_guardar_rol_y_facultades_atomico':return {data:atomic(p.p_usuario,p.p_rol,p.p_ambitos,p.p_facultades,p.p_revision_usuario,p.p_revisiones_facultades,p.p_motivo,'Rol y facultades (atómico simulado)'),error:null};
+    default:throw Error('RPC no simulada: '+name);
+   }
+  }catch(e){return {data:null,error:{message:e.message}}}
+ }
+ function from(table){
+  if(table==='areas_trabajo_v242')return {select:()=>({in:(field,modules)=>({order:async()=>({data:get().areas.filter(x=>modules.includes(x.modulo)).sort((a,b)=>a.nombre.localeCompare(b.nombre)),error:null})})})};
+  if(table==='facultades_v242')return {select:()=>({eq:async(field,id)=>({data:get().faculties.filter(x=>x.usuario_id===id),error:null})})};
+  throw Error('Tabla no simulada: '+table);
+ }
+ function createUser(name){
+  const clean=String(name||'').trim();if(clean.length<3||clean.length>150)fail('El nombre requiere entre 3 y 150 caracteres');
+  if(get().users.some(x=>x.nombre.toLowerCase()===clean.toLowerCase()))fail('Ya existe una persona con ese nombre');
+  return write('Crear usuario',clean,s=>{
+   const id='prueba-'+(s.rev+1)+'-'+Math.random().toString(36).slice(2,7);
+   const u={usuario_id:id,nombre:clean,rol:'usuario',activo:true,revision:1,ambitos:{APR:{ver:true,editar:false,areas:s.areas.filter(a=>a.modulo==='APR'&&a.activa).slice(0,1).map(a=>a.id)}}};
+   s.users.push(u);return u;
+  });
+ }
+ function updateUser(id,name,active){
+  const clean=String(name||'').trim();if(clean.length<3||clean.length>150)fail('Nombre inválido');
+  return write('Editar cuenta',id,s=>{
+   const u=person(s,id);u.nombre=clean;u.activo=active===true;u.revision++;return u;
+  });
+ }
+ function newArea(module,name){
+  if(!MODULES.includes(module))fail('Tarjeta no válida');
+  const clean=String(name||'').trim();if(clean.length<2||clean.length>100)fail('Nombre de área inválido');
+  if(get().areas.some(a=>a.modulo===module&&a.nombre.toLocaleLowerCase('es')===clean.toLocaleLowerCase('es')))fail('Ya existe esta área en la tarjeta');
+  return write('Crear área',module,s=>{
+   const a={id:'lab-area-'+(s.rev+1)+'-'+module,nombre:clean,activa:true,modulo:module};s.areas.push(a);return a;
+  });
+ }
+ function updateArea(id,name,active){
+  const clean=String(name||'').trim();if(clean.length<2||clean.length>100)fail('Nombre de área inválido');
+  const original=get().areas.find(a=>a.id===id)||fail('Área inexistente');
+  if(get().areas.some(a=>a.id!==id&&a.modulo===original.modulo&&a.nombre.toLocaleLowerCase('es')===clean.toLocaleLowerCase('es')))fail('Nombre duplicado');
+  return write('Editar área',id,s=>{const a=s.areas.find(x=>x.id===id);a.nombre=clean;a.activa=active===true;return a});
+ }
+ function reset(){persist(initial());return get()}
+ function report(){return {users:get().users,areas:get().areas,faculties:get().faculties,history:get().history}}
+ root.Hys263Lab={get,reset,report,createUser,updateUser,newArea,updateArea,rpc,from,labels,key:KEY};
+ root.reportesHysSupabase={rpc,from};
+})(window);
+
+</script>
+<script>
+/* access-policy-v256.js */
+/* Visibilidad de herramientas; la autorización definitiva permanece en el servidor. */
+(function(root){'use strict';
+ const active=a=>a?.profile?.activo===true;
+ function can(a,key,module){if(!active(a))return false;if(a.profile.rol==='administrador_global')return true;if(a.profile.rol!=='administrador_area')return false;return (a.facultades||[]).some(f=>(!module||f.modulo===module)&&['APR','OTROS'].includes(f.modulo)&&a.modules?.includes(f.modulo)&&Array.isArray(f.areas_ids)&&f.areas_ids.length>0&&f.facultades?.[key]===true)}
+ const users=a=>can(a,'users')||can(a,'activation');
+ const areas=a=>can(a,'areas')||(active(a)&&a.profile.rol==='supervisor'&&(a.permissions||[]).some(p=>a.modules?.includes(p.modulo)&&p.puede_ver===true&&p.puede_editar===true));
+ const userManagementEnabled=()=>root.HYS242_DEPLOYMENT_READY===true||root.HYS257_ENABLE_USER_MANAGEMENT===true;
+ const rpcEnabled=name=>root.HYS242_DEPLOYMENT_READY===true||(root.HYS257_ENABLE_USER_MANAGEMENT===true&&['hys242_listar_usuarios','hys242_guardar_usuario'].includes(name));
+ const api={can,users,areas,userManagementEnabled,rpcEnabled};if(typeof module==='object'&&module.exports)module.exports=api;else root.Hys256Access=api;
+})(typeof window==='object'?window:globalThis);
+
+</script>
+<script>
+/* access-settings-v259.js */
+/* Etiquetas y cálculo de cambios; nunca concede permisos por abrir una pantalla. */
+(function(root){'use strict';const modules=['APR','OTROS'];
+const clone=v=>JSON.parse(JSON.stringify(v));
+function label(m){return root.HysAppearance242?.moduleLabel(m)||({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[m])||'Tarjeta';}
+function stable(v){if(Array.isArray(v))return JSON.stringify([...v].sort());if(v&&typeof v==='object')return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';return JSON.stringify(v)}
+function normalizedScope(v){return {areas_ids:[...new Set(v?.areas_ids||[])].sort(),facultades:Object.fromEntries(Object.entries(v?.facultades||{}).filter(([k,on])=>on===true).sort(([a],[b])=>a.localeCompare(b)))}}
+function plan(account,draftAccess,originalFac,draftFac,canDelegate){
+ const revoke=[],grant=[];if(canDelegate&&account.rol==='administrador_area')for(const m of modules){const old=normalizedScope(originalFac[m]),next=normalizedScope(draftFac[m]);if(!originalFac[m]&&!Object.keys(next.facultades).length)continue;if(stable(old)===stable(next))continue;const step={kind:'faculties',module:m,revision:originalFac[m]?.revision||0,scope:next};(Object.keys(next.facultades).length?grant:revoke).push(step)}
+ const steps=[...revoke];if(stable(account.ambitos||{})!==stable(draftAccess))steps.push({kind:'access',revision:account.revision||0,datos:{nombre:account.nombre,rol:account.rol,activo:account.activo,ambitos:clone(draftAccess)}});return [...steps,...grant];
+}
+const canAssignArea=(actor,m,id)=>actor?.profile?.activo===true&&(actor.profile.rol==='administrador_global'||actor.profile.rol==='administrador_area'&&actor.modules?.includes(m)&&(actor.facultades||[]).some(f=>f.modulo===m&&f.facultades?.users===true&&Array.isArray(f.areas_ids)&&f.areas_ids.includes(id)));
+const canGrantEdit=(actor,m)=>actor?.profile?.activo===true&&(actor.profile.rol==='administrador_global'||actor.profile.rol==='administrador_area'&&actor.modules?.includes(m)&&actor.permissions?.some(p=>p.modulo===m&&p.puede_ver===true&&p.puede_editar===true));
+const api={modules,clone,label,stable,normalizedScope,plan,canAssignArea,canGrantEdit};if(typeof module==='object'&&module.exports)module.exports=api;else root.Hys259Access=api;
+})(typeof window==='object'?window:globalThis);
+
+</script>
+<script>
+/* faculty-model-v261.js */
+/* Reportes HYS v261: modelo de seleccion y resumen, sin acceso a red ni escrituras. */
+(function(root){
+ 'use strict';
+ const MODULES=['APR','OTROS'];
+ const canonical=v=>String(v==null?'':v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLocaleLowerCase('es');
+ const unique=a=>[...new Set((Array.isArray(a)?a:[]).filter(v=>typeof v==='string'&&v))];
+ function availableAreas(rows,module,canAssign){
+  return (Array.isArray(rows)?rows:[]).filter(a=>a.modulo===module&&a.activa===true&&canAssign(module,a.id));
+ }
+ function isAllSelected(selection,allIds){
+  const ids=unique(selection),eligible=unique(allIds);
+  return eligible.length>0&&ids.length===eligible.length&&eligible.every(id=>ids.includes(id));
+ }
+ function copyAreasByName(selectedIds,sourceRows,targetRows,canAssign,targetModule){
+  const selected=new Set(unique(selectedIds));
+  const names=new Set(sourceRows.filter(a=>selected.has(a.id)).map(a=>canonical(a.nombre)));
+  const usable=availableAreas(targetRows,targetModule,canAssign);
+  const matched=usable.filter(a=>names.has(canonical(a.nombre))).map(a=>a.id);
+  const matchedNames=new Set(usable.filter(a=>matched.includes(a.id)).map(a=>canonical(a.nombre)));
+  return {ids:unique(matched),notFound:[...names].filter(n=>!matchedNames.has(n))};
+ }
+ function summarize(access,fac,rows,labels,canAssign,areaMode){
+  return MODULES.map(m=>{
+   const entry=access?.[m],enabled=entry?.ver===true;
+   const ids=unique(entry?.areas),eligible=availableAreas(rows,m,canAssign).map(a=>a.id);
+   const capabilities=Object.entries(fac?.[m]?.facultades||{}).filter(([,v])=>v===true).map(([k])=>k);
+   return {module:m,title:labels(m),enabled,areaCount:enabled?ids.length:0,all:enabled&&areaMode?.[m]==='all'&&isAllSelected(ids,eligible),edit:enabled&&entry?.editar===true,capabilities:enabled?capabilities:[]};
+  });
+ }
+ function validateAreas(access,rows,canAssign,canEditModule){
+  for(const m of MODULES){
+   const a=access?.[m];if(a?.ver!==true||!canEditModule(m))continue;
+   const ids=unique(a.areas);
+   if(ids.length===0)return {ok:false,module:m,error:'Selecciona al menos un area para la tarjeta.'};
+   for(const id of ids){
+    const row=rows.find(x=>x.modulo===m&&x.id===id);
+    if(!row)return {ok:false,module:m,error:'Se encontro un area que ya no existe en esta tarjeta.'};
+    if(!canAssign(m,id))return {ok:false,module:m,error:'La seleccion contiene un area no autorizada.'};
+   }
+  }
+  return {ok:true};
+ }
+ const api={MODULES,canonical,unique,availableAreas,isAllSelected,copyAreasByName,summarize,validateAreas};
+ if(typeof module==='object'&&module.exports)module.exports=api;else root.Hys261FacultyModel=api;
+})(typeof window==='object'?window:globalThis);
+
+</script>
+<script>
+/* role-control-v262.js */
+/* v262: reglas sin efectos secundarios para unificar cambio de rol y facultades. */
+(function(root){
+ 'use strict';
+ const roles=Object.freeze([
+  {value:'usuario',label:'Usuario'},
+  {value:'supervisor',label:'Supervisor'},
+  {value:'administrador_area',label:'Administrador'}
+ ]);
+ const validRole=value=>roles.some(r=>r.value===value);
+ const mayChangeRole=(actor,target)=>{
+  return actor?.profile?.activo===true&&actor.profile.rol==='administrador_global'
+   &&target?.usuario_id!==actor.userId&&target?.rol!=='administrador_global';
+ };
+ const roleChanged=(target,next)=>Boolean(target)&&target.rol!==next;
+ function roleSummary(target,next){
+  if(!validRole(next))return {valid:false,changed:false,requiresAtomic:false,label:'Rol no permitido'};
+  const changed=roleChanged(target,next);
+  return {valid:true,changed,requiresAtomic:changed,previous:roles.find(r=>r.value===target?.rol)?.label||'Rol anterior',label:roles.find(r=>r.value===next)?.label};
+ }
+ function safeSpecials(role,faculties,modules){
+  if(role!=='administrador_area')return {};
+  const result={};
+  for(const m of modules){
+   const entry=faculties?.[m];
+   const selected={};
+   for(const [name,value] of Object.entries(entry?.facultades||{}))if(value===true)selected[name]=true;
+   result[m]={areas_ids:[...new Set(entry?.areas_ids||[])],facultades:selected};
+  }
+  return result;
+ }
+ const api={roles,validRole,mayChangeRole,roleChanged,roleSummary,safeSpecials};
+ if(typeof module==='object'&&module.exports)module.exports=api;else root.Hys262Roles=api;
+})(typeof window==='object'?window:globalThis);
+
+</script>
+<script>
+/* facultades-laboratorio-v263.js */
+/* Reportes HYS v261 — Directorio de usuarios y ficha única de facultades.
+ * APR y OTROS son identificadores internos; los nombres visibles vienen de Apariencia.
+ * Sin efectos sobre usuarios al abrir, consultar, seleccionar o previsualizar.
+ */
+(function(){
+'use strict';
+if(window.__REPORTES_HYS_OTROS_EMBEDDED__||!document.getElementById('hysToolsOptions'))return;
+const $=id=>document.getElementById(id);
+const C=window.Hys259Access, A=window.Hys256Access, F=window.Hys261FacultyModel, R=window.Hys262Roles, M=C.modules;
+const caps={view:'Consultar informes de otros usuarios',pdf:'Descargar PDF de otros usuarios',review:'Revisar y devolver informes',approve:'Aprobar informes',close:'Cerrar informes',editOthers:'Modificar informes ajenos con motivo',areas:'Administrar areas de trabajo',users:'Administrar usuarios y supervisores',activation:'Activar o desactivar cuentas',audit:'Consultar auditoria'};
+const dependent=['pdf','review','approve','close','editOthers'];
+const access=()=>window.__REPORTES_HYS_ACCESS__;
+const isGlobal=()=>access()?.profile?.activo===true&&access()?.profile?.rol==='administrador_global';
+const canManage=()=>access()?.profile?.activo===true&&(isGlobal()||M.some(m=>A.can(access(),'users',m)));
+const canEditModule=m=>isGlobal()||A.can(access(),'users',m);
+const canArea=(m,id)=>C.canAssignArea(access(),m,id);
+const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x};
+const roleLabel=r=>({administrador_global:'Administrador general',administrador_area:'Administrador',supervisor:'Supervisor',usuario:'Usuario'}[r]||r||'Sin rol');
+const panel=el('section');panel.id='facultadesPanel242';panel.hidden=true;
+panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','facultadesTitle242');
+panel.innerHTML='<div class="management-shell faculty-shell259"><header class="management-head"><div><h1 id="facultadesTitle242">Facultades de acceso</h1><p>Una persona, dos tarjetas y una sola ficha para todas las autorizaciones.</p></div><button class="btn" type="button" id="facultadesClose242">Cerrar</button></header><p id="facultadesStatus242" role="status" aria-live="polite"></p><section id="facultyDirectory261"><div class="faculty-directory-head261"><div><h2>Usuarios autorizados</h2><p>Selecciona una cuenta para configurar sus tarjetas, areas y atribuciones.</p></div><button type="button" class="btn" id="facultyRefresh261">Actualizar</button></div><div class="faculty-directory-filters261"><label>Buscar persona<input type="search" id="facultySearch261" placeholder="Nombre o rol…"></label><label>Acceso actual<select id="facultyFilter261"><option value="">Todas las cuentas</option><option value="APR">Prevencionista de riesgos</option><option value="OTROS">Supervisores, capataces y otros</option><option value="BOTH">Ambas tarjetas</option><option value="NONE">Sin tarjetas</option></select></label></div><p id="facultyDirectoryCount261" class="faculty-directory-count261"></p><div id="facultyDirectoryRows261"></div></section><section id="facultyDetail261" hidden><div class="faculty-detail-head261"><button id="facultyBack261" class="btn" type="button">Volver a usuarios</button><div><h2 id="facultyAccountName261"></h2><p id="facultyAccountRole261"></p></div></div><form id="facultadesForm242"><section class="faculty-card259" id="facultyRoleCard262"><h2>1. Rol de la persona</h2><p>El Administrador general puede elegir Usuario, Supervisor o Administrador. Las atribuciones especiales solo se mostrarán para Administrador.</p><label>Rol asignado<select id="facultyRole262" aria-label="Rol de la persona"></select></label><p id="facultyRoleMessage262" class="faculty-role-message262"></p></section><section class="faculty-card259"><h2>2. Tarjetas y áreas permitidas</h2><p>Cada tarjeta se configura de forma independiente. Todas las áreas incluye solo las áreas activas autorizadas actualmente.</p><div id="facultyCards261"></div></section><section class="faculty-card259" id="facultySpecial261" hidden><h2>3. Facultades especiales del Administrador</h2><p>Estas atribuciones se asignan por tarjeta y solo dentro de las áreas permitidas. No se duplican en Usuarios.</p><div id="facultySpecialCards261"></div></section><section class="faculty-card259"><h2 id="facultySummaryTitle261">Resumen antes de guardar</h2><div id="facultySummary261" aria-live="polite"></div><label>Motivo del cambio<input id="facultadesReason242" maxlength="500" required placeholder="Describe la razón de esta autorización…"></label><div class="faculty-actions259"><button class="btn primary" id="facultadesSave242" type="submit">Guardar facultades</button><button class="btn" type="button" id="facultyReset261">Descartar cambios</button></div><p id="facultySafety261">Los cambios deben confirmarse por el servidor y registrarse en auditoria. Esta copia de desarrollo no modifica produccion.</p></section></form></section></div>';
+document.body.append(panel);
+const button=el('button','hys-admin-open');button.type='button';button.hidden=true;button.title='Facultades de acceso';
+button.innerHTML='<span class="tools-option-icon" aria-hidden="true">⚿</span><span class="tools-option-label">Facultades</span><span class="tools-option-full">Facultades de acceso</span>';
+$('hysToolsOptions').append(button);
+let seq=0,busy=false,users=[],account=null,areaRows=[],originalFac={},draftFac={},draftAccess={},draftRole='',baseline='',areaMode={},searchAreas={};
+const status=msg=>{$('facultadesStatus242').textContent=msg};
+const signature=()=>C.stable({a:draftAccess,f:draftFac,role:draftRole});
+const discard=()=>!account||baseline===signature()||confirm('Hay facultades sin guardar. ¿Deseas descartarlas?');
+const isAdminTarget=()=>isGlobal()&&draftRole==='administrador_area';
+function enabled(m){return draftAccess[m]?.ver===true}
+function currentAreas(m){return F.unique(draftAccess[m]?.areas)}
+function allowedAreas(m){return F.availableAreas(areaRows,m,canArea)}
+function scopeSpecial(m){return F.unique(draftFac[m]?.areas_ids)}
+function updateScope(m,ids){
+ const selection=F.unique(ids);
+ if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,areas:[]};
+ draftAccess[m].areas=selection;
+ if(isAdminTarget()){if(!draftFac[m])draftFac[m]={areas_ids:[],facultades:{}};draftFac[m].areas_ids=[...selection]}
+}
+function makeCheckbox(labelText,checked,disabled,fn,className){
+ const label=el('label',className||'faculty-check259'),input=el('input');input.type='checkbox';input.checked=checked;input.disabled=disabled;input.onchange=()=>fn(input.checked);
+ label.append(input,document.createTextNode(labelText));return label;
+}
+function setBusy(on){busy=on;panel.querySelectorAll('button,input,select').forEach(node=>{node.disabled=on});if(!on)paintControls()}
+function paintControls(){if(!account)return;const save=$('facultadesSave242');save.disabled=busy||!M.some(canEditModule);save.textContent=window.HYS263_SANDBOX===true?'Guardar prueba (solo navegador)':(A.userManagementEnabled()?'Guardar facultades':'Revisar cambios (sin guardar)');$('facultyReset261').disabled=busy}
+function selectedMode(m){return areaMode[m]==='all'?'all':'selected'}
+function renderAreaSelector(m,host){
+ const ids=currentAreas(m),eligible=allowedAreas(m),mode=selectedMode(m);
+ const control=el('fieldset','faculty-area-mode261');control.append(el('legend',null,'Áreas autorizadas'));
+ for(const [key,labelText]of [['all','Todas las áreas activas'],['selected','Seleccionar áreas']]){
+  const row=el('label','faculty-radio261'),input=el('input');input.type='radio';input.name='facultyAreaMode261_'+m;input.value=key;input.checked=mode===key;input.disabled=busy||!canEditModule(m);
+  input.onchange=()=>{areaMode[m]=key;if(key==='all')updateScope(m,eligible.map(a=>a.id));renderCards();renderSpecial();renderSummary();};
+  row.append(input,document.createTextNode(labelText));control.append(row);
+ }
+ host.append(control);
+ const count=el('p','faculty-areas-count261',ids.length+' áreas seleccionadas'+(mode==='all'?' · todas las activas autorizadas':''));
+ host.append(count);
+ if(mode!=='selected')return;
+ const chooser=el('div','faculty-picker261');
+ const tools=el('div','faculty-picker-tools261');
+ const input=el('input');input.type='search';input.placeholder='Buscar área por nombre…';input.setAttribute('aria-label','Buscar areas de '+C.label(m));input.value=searchAreas[m]||'';
+ const copyBtn=el('button','btn','Copiar áreas de la otra tarjeta');copyBtn.type='button';copyBtn.disabled=busy||!canEditModule(m)||!M.some(other=>other!==m&&enabled(other));copyBtn.onclick=()=>{
+  const source=M.find(x=>x!==m&&enabled(x));if(!source)return;
+  const result=F.copyAreasByName(currentAreas(source),areaRows.filter(a=>a.modulo===source),areaRows.filter(a=>a.modulo===m),canArea,m);
+  if(!result.ids.length){status('No existen áreas equivalentes y autorizadas en esta tarjeta.');return}
+  if(!confirm('¿Copiar '+result.ids.length+' áreas coincidentes desde '+C.label(source)+'?'+(result.notFound.length?' Otras '+result.notFound.length+' no existen aqui.':'')))return;
+  updateScope(m,result.ids);renderCards();renderSpecial();renderSummary();status('Áreas equivalentes copiadas por nombre; revisa la seleccion antes de guardar.');
+ };
+ tools.append(input,copyBtn);
+ const list=el('div','faculty-areas-grid261');
+ const paintList=()=>{
+  list.replaceChildren();
+  const search=F.canonical(searchAreas[m]||'');
+  const entries=areaRows.filter(a=>a.modulo===m&&(a.activa||ids.includes(a.id))).filter(a=>F.canonical(a.nombre).includes(search));
+  for(const a of entries){
+   const wasSelected=currentAreas(m).includes(a.id);
+   const check=makeCheckbox(a.nombre+(a.activa?'':' · inactiva'),wasSelected,busy||!canEditModule(m)||!canArea(m,a.id)||(!a.activa&&!wasSelected),on=>{
+    updateScope(m,on?[...currentAreas(m),a.id]:currentAreas(m).filter(id=>id!==a.id));
+    renderCards();renderSpecial();renderSummary();
+   },'faculty-check259');
+   list.append(check);
+  }
+  if(!entries.length)list.append(el('p',null,'No hay áreas coincidentes.'));
+ };
+ input.oninput=()=>{searchAreas[m]=input.value;paintList()};
+ chooser.append(tools,list);host.append(chooser);paintList();
+}
+function renderRole(){
+  if(!account)return;
+  const field=$('facultyRole262');field.replaceChildren();
+  const canChange=R.mayChangeRole(access(),account);
+  for(const choice of R.roles){
+   const option=new Option(choice.label,choice.value);
+   field.add(option);
+  }
+  field.value=draftRole;
+  field.disabled=busy||!canChange;
+  $('facultyRoleMessage262').textContent=R.roleChanged(account,draftRole)
+   ?'Cambio de rol pendiente: '+roleLabel(account.rol)+' → '+roleLabel(draftRole)+(window.HYS263_SANDBOX===true?'. Al guardar se actualizará únicamente la cuenta ficticia de este laboratorio.':'. No se modificará la cuenta hasta que un servicio transaccional confirme todos los permisos.')
+   :'El rol actual se conserva. Las tarjetas y áreas pueden seleccionarse por separado.';
+ }
+ function renderCards(){
+ const host=$('facultyCards261');host.replaceChildren();if(!account)return;
+ for(const m of M){
+  const card=el('article','faculty-module261'+(enabled(m)?' faculty-module-enabled261':''));
+  const header=el('div','faculty-module-header261');
+  const left=el('div'),title=makeCheckbox(C.label(m),enabled(m),busy||!canEditModule(m),on=>{
+   if(on){if(!enabled(m)&&isAdminTarget())draftFac[m]={areas_ids:[],facultades:{}};if(!draftAccess[m])draftAccess[m]={ver:true,editar:false,areas:[]};draftAccess[m].ver=true;areaMode[m]='selected'}
+   else{delete draftAccess[m];if(isAdminTarget())draftFac[m]={areas_ids:[],facultades:{}}}
+   renderCards();renderSpecial();renderSummary();
+  },'faculty-module-title261');
+  left.append(title,el('p',null,enabled(m)?'Tarjeta habilitada':'Tarjeta sin acceso'));header.append(left);
+  const tag=el('span','faculty-state261',enabled(m)?'Autorizada':'Deshabilitada');header.append(tag);card.append(header);
+  if(enabled(m)){
+   card.append(makeCheckbox('Registrar y editar informes propios',draftAccess[m]?.editar===true,busy||!canEditModule(m)||!C.canGrantEdit(access(),m),on=>{
+    if(draftAccess[m])draftAccess[m].editar=on;renderSummary();
+   }));
+   renderAreaSelector(m,card);
+  }else{
+   card.append(el('p','faculty-disabled-note261','Activa esta tarjeta para definir sus areas y permisos.'));
+  }
+  host.append(card);
+ }
+}
+function renderSpecial(){
+ const section=$('facultySpecial261'),host=$('facultySpecialCards261');host.replaceChildren();section.hidden=!isAdminTarget();if(section.hidden)return;
+ for(const m of M){
+  const details=el('details','faculty-special-module261');details.open=enabled(m);
+  const title=el('summary',null,C.label(m)+(enabled(m)?'':' · sin acceso'));details.append(title);
+  if(!enabled(m)){details.append(el('p',null,'Habilita primero esta tarjeta.'));host.append(details);continue}
+  const grid=el('div','faculty-cap-grid261');
+  for(const [key,label]of Object.entries(caps)){
+   const on=draftFac[m]?.facultades?.[key]===true;
+   grid.append(makeCheckbox(label,on,busy||!canEditModule(m),checked=>{
+    if(!draftFac[m])draftFac[m]={areas_ids:currentAreas(m),facultades:{}};
+    draftFac[m].facultades[key]=checked;
+    if(checked&&dependent.includes(key))draftFac[m].facultades.view=true;
+    if(key==='view'&&!checked)for(const dep of dependent)draftFac[m].facultades[dep]=false;
+    renderSpecial();renderSummary();
+   }));
+  }
+  details.append(grid);host.append(details);
+ }
+}
+function renderSummary(){
+ const host=$('facultySummary261');host.replaceChildren();if(!account)return;
+ const summaries=F.summarize(draftAccess,isAdminTarget()?draftFac:{},areaRows,C.label,canArea,areaMode);
+ for(const item of summaries){
+  const line=el('div','faculty-summary-line261');
+  const label=el('div');label.append(el('strong',null,item.title));
+  label.append(el('small',null,!item.enabled?'Sin acceso':(item.all?'Todas las áreas activas':'Areas: '+item.areaCount)+(item.edit?' · edición propia':' · solo consulta')));
+  if(item.capabilities.length)label.append(el('small',null,item.capabilities.length+' facultades especiales'));
+  line.append(label,el('span','faculty-summary-state261',item.enabled?'Habilitada':'Sin acceso'));host.append(line);
+ }
+ const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
+ const roleWasChanged=R.roleChanged(account,draftRole);
+ const changed=steps.length>0||roleWasChanged;
+ const msg=el('p','faculty-summary-result261',changed?(roleWasChanged?'Cambio de rol pendiente de confirmación'+(steps.length?' y '+steps.length+' operación(es) de permisos.':'.'):steps.length+' operación(es) pendientes de confirmar con el servidor.'):'Sin cambios respecto de la configuración cargada.');
+ host.append(msg);
+ const special=$('facultySpecial261');$('facultySummaryTitle261').textContent=isAdminTarget()?'4. Revisar y guardar':'3. Revisar y guardar';
+ $('facultySafety261').textContent=window.HYS263_SANDBOX===true?'Laboratorio: roles, áreas y facultades se guardan atómicamente en datos FICTICIOS de este navegador, nunca en Supabase real.':(window.HYS261_ATOMIC_FACULTIES_READY===true?'El guardado requiere un servicio transaccional autorizado.':'Modo de revisión: las operaciones múltiples requieren un servicio transaccional; no se escriben datos reales desde esta copia.');
+ paintControls();
+}
+function renderDirectory(){
+ const host=$('facultyDirectoryRows261');host.replaceChildren();
+ const search=F.canonical($('facultySearch261').value),filter=$('facultyFilter261').value;
+ const rows=users.filter(u=>{
+  const active=M.filter(m=>u.ambitos?.[m]?.ver===true);
+  if(filter==='BOTH'&&active.length!==2)return false;
+  if(filter==='NONE'&&active.length!==0)return false;
+  if(M.includes(filter)&&!active.includes(filter))return false;
+  return !search||F.canonical([u.nombre,roleLabel(u.rol),...active.map(C.label)].join(' ')).includes(search);
+ });
+ $('facultyDirectoryCount261').textContent=rows.length+' de '+users.length+' usuarios';
+ if(!rows.length){host.append(el('p',null,'No hay usuarios coincidentes.'));return}
+ for(const u of rows){
+  const card=el('article','faculty-person261');
+  const main=el('div','faculty-person-info261');main.append(el('strong',null,u.nombre));
+  main.append(el('small',null,roleLabel(u.rol)+(u.activo?' · Activo':' · Inactivo')));
+  const accessLine=el('div','faculty-person-modules261');
+  for(const m of M){
+   const active=u.ambitos?.[m]?.ver===true,ids=F.unique(u.ambitos?.[m]?.areas);
+   accessLine.append(el('span',active?'faculty-person-on261':'faculty-person-off261',C.label(m)+': '+(active?ids.length+' areas':'Sin acceso')));
+  }
+  main.append(accessLine);const go=el('button','btn','Configurar facultades');go.type='button';go.onclick=async()=>{if(!discard())return;await loadAccount(u.usuario_id)};
+  card.append(main,go);host.append(card);
+ }
+}
+async function loadDirectory(openUid){
+ const n=++seq,actor=access()?.userId;
+ status('Consultando las cuentas autorizadas…');setBusy(true);
+ try{
+  if(!canManage())throw Error('No tienes facultades de gestion');
+  const r=await window.reportesHysSupabase.rpc('hys242_listar_usuarios');
+  if(r.error)throw r.error;
+  if(n!==seq||actor!==access()?.userId||!canManage())return;
+  users=(r.data||[]).filter(u=>u.usuario_id!==actor&&u.rol!=='administrador_global');
+  renderDirectory();
+  if(openUid&&users.some(u=>u.usuario_id===openUid))await loadAccount(openUid);
+  else{showDirectory();status('Selecciona el usuario que deseas configurar.')}
+ }catch(e){if(n===seq){showDirectory();status('No se pudo consultar: '+e.message)}}finally{if(n===seq)setBusy(false)}
+}
+function showDirectory(){
+ account=null;draftRole='';baseline='';$('facultyDirectory261').hidden=false;$('facultyDetail261').hidden=true;
+}
+async function loadAccount(uid){
+ const n=++seq,actor=access()?.userId;
+ if(!canManage()||!uid)return;setBusy(true);status('Consultando facultades actuales…');
+ try{
+  const r=await window.reportesHysSupabase.rpc('hys242_listar_usuarios');
+  if(r.error)throw r.error;
+  if(n!==seq||actor!==access()?.userId||!canManage())return;
+  users=(r.data||[]).filter(u=>u.usuario_id!==actor&&u.rol!=='administrador_global');
+  const u=users.find(x=>x.usuario_id===uid);if(!u)throw Error('La cuenta esta protegida o ya no pertenece a tu ámbito');
+  const queries=[window.reportesHysSupabase.from('areas_trabajo_v242').select('id,nombre,activa,modulo').in('modulo',M).order('nombre')];
+  if(isGlobal())queries.push(window.reportesHysSupabase.from('facultades_v242').select('*').eq('usuario_id',uid));
+  const result=await Promise.all(queries);if(result.some(x=>x.error))throw result.find(x=>x.error).error;
+  if(n!==seq||actor!==access()?.userId||!canManage())return;
+  account=u;draftRole=u.rol;areaRows=result[0].data||[];originalFac=Object.fromEntries((result[1]?.data||[]).map(f=>[f.modulo,f]));
+  draftAccess=C.clone(u.ambitos||{});draftFac={};
+  for(const m of M){
+   const fac=originalFac[m];
+   draftFac[m]=fac?C.clone(fac):{areas_ids:F.unique(draftAccess[m]?.areas),facultades:{}};
+  }
+  areaMode={};searchAreas={};
+  for(const m of M){const all=F.availableAreas(areaRows,m,canArea).map(a=>a.id);areaMode[m]=F.isAllSelected(draftAccess[m]?.areas,all)?'all':'selected'}
+  baseline=signature();
+  $('facultyAccountName261').textContent=u.nombre;
+  $('facultyAccountRole261').textContent=roleLabel(u.rol)+' · '+(u.activo?'Cuenta activa':'Cuenta inactiva');
+  $('facultadesReason242').value='';
+  $('facultyDirectory261').hidden=true;$('facultyDetail261').hidden=false;
+  renderRole();renderCards();renderSpecial();renderSummary();
+  status('Facultades cargadas. Ambas tarjetas pueden configurarse desde esta ficha.');
+ }catch(e){if(n===seq){showDirectory();status('No se pudo abrir la ficha: '+e.message)}}finally{if(n===seq){setBusy(false);if(account){renderCards();renderSpecial();renderSummary()}}}
+}
+async function openFor(uid){
+ if(!canManage())return;
+ panel.hidden=false;$('facultySearch261').value='';$('facultyFilter261').value='';await loadDirectory(uid);
+}
+button.onclick=()=>openFor();window.Hys242Facultades={openFor};
+$('facultySearch261').oninput=renderDirectory;$('facultyFilter261').onchange=renderDirectory;
+$('facultyRefresh261').onclick=()=>loadDirectory();
+$('facultyBack261').onclick=()=>{if(!discard())return;showDirectory();renderDirectory();status('Selecciona otro usuario para administrar sus facultades.')};
+$('facultyRole262').onchange=()=>{
+ if(!account)return;
+ const next=$('facultyRole262').value;
+ if(!R.validRole(next)||!R.mayChangeRole(access(),account)){
+  $('facultyRole262').value=draftRole;status('Solo el Administrador general puede modificar el rol de esta cuenta.');return;
+ }
+ draftRole=next;
+ renderRole();renderSpecial();renderSummary();
+ status(R.roleChanged(account,draftRole)?'Cambio de rol sin guardar; confirma también tarjetas, áreas y facultades.':'Rol original restablecido.');
+};
+$('facultyReset261').onclick=()=>{if(!account||!discard())return;loadAccount(account.usuario_id)};
+$('facultadesClose242').onclick=()=>{
+ if(busy||!discard())return;
+ seq++;panel.hidden=true;showDirectory();users=[];areaRows=[];draftAccess={};draftFac={};draftRole='';originalFac={};button.focus();
+};
+$('facultadesForm242').onsubmit=async event=>{
+ event.preventDefault();
+ if(!account||busy||!canManage())return;
+ const actor=access()?.userId,uid=account.usuario_id,reason=$('facultadesReason242').value.trim();
+ if(!reason){status('Indica el motivo del cambio.');$('facultadesReason242').focus();return}
+ if(!M.some(enabled)){status('Habilita al menos una tarjeta. Para suspender una cuenta utiliza Usuarios.');return}
+ const valid=F.validateAreas(draftAccess,areaRows,canArea,canEditModule);
+ if(!valid.ok){status(C.label(valid.module)+': '+valid.error);return}
+ for(const m of M){
+  if(!canEditModule(m)&&C.stable(account.ambitos?.[m]||{})!==C.stable(draftAccess[m]||{})){status('No tienes atribuciones para modificar '+C.label(m));return}
+  if(enabled(m)&&draftAccess[m]?.editar===true&&!C.canGrantEdit(access(),m)){status('No puedes conceder edición en '+C.label(m));return}
+ }
+ if(isAdminTarget())for(const m of M){
+  if(!canEditModule(m)&&C.stable(C.normalizedScope(originalFac[m]))!==C.stable(C.normalizedScope(draftFac[m]))){
+   status('No tienes atribuciones para modificar facultades especiales de '+C.label(m));return;
+  }
+ }
+ if(!R.validRole(draftRole)||R.roleChanged(account,draftRole)&&!R.mayChangeRole(access(),account)){status('No autorizado para este cambio de rol.');return}
+ const steps=C.plan(account,draftAccess,originalFac,draftFac,isAdminTarget());
+ const roleWasChanged=R.roleChanged(account,draftRole);
+ if(!steps.length&&!roleWasChanged){status('No hay cambios que guardar.');return}
+ if(roleWasChanged&&window.HYS262_ATOMIC_ROLE_READY!==true){
+  status('Cambio de rol protegido: la edición está disponible para revisión, pero el guardado real requiere un RPC atómico que aún no está habilitado. No se modificó el usuario.');return;
+ }
+ if(!A.userManagementEnabled()){status('Vista de revision: la gestión remota de usuarios sigue deshabilitada. Ningun permiso fue modificado.');return}
+ if(steps.length>1&&window.HYS261_ATOMIC_FACULTIES_READY!==true){
+  status('Guardado protegido: estas facultades requieren varias operaciones. No se ejecuta ningun cambio hasta habilitar una operacion transaccional unica en Supabase.');return;
+ }
+ if(window.HYS263_SANDBOX!==true&&!confirm('¿Confirmar '+(steps.length+(roleWasChanged?1:0))+' cambio(s) de rol y facultades para '+account.nombre+'? Esta acción quedará auditada.'))return;
+ const n=++seq;setBusy(true);
+ try{
+  let result;
+  if(roleWasChanged){
+   const revs=Object.fromEntries(M.map(m=>[m,originalFac[m]?.revision||0]));
+   result=await window.reportesHysSupabase.rpc('hys262_guardar_rol_y_facultades_atomico',{
+    p_usuario:uid,p_rol:draftRole,p_ambitos:draftAccess,
+    p_facultades:R.safeSpecials(draftRole,draftFac,M),
+    p_revision_usuario:account.revision||0,p_revisiones_facultades:revs,p_motivo:reason
+   });
+  }else if(steps.length>1){
+   const revs=Object.fromEntries(M.map(m=>[m,originalFac[m]?.revision||0]));
+   result=await window.reportesHysSupabase.rpc('hys261_guardar_facultades_atomico',{
+    p_usuario:uid,p_ambitos:draftAccess,p_facultades:Object.fromEntries(M.map(m=>[m,C.normalizedScope(draftFac[m])])),p_revision_usuario:account.revision||0,p_revisiones_facultades:revs,p_motivo:reason
+   });
+  }else{
+   const step=steps[0];
+   result=step.kind==='access'
+     ?await window.reportesHysSupabase.rpc('hys242_guardar_usuario',{p_usuario:uid,p_datos:step.datos,p_revision:step.revision,p_motivo:reason})
+     :await window.reportesHysSupabase.rpc('hys242_asignar_facultades',{p_usuario:uid,p_modulo:step.module,p_areas:step.scope.areas_ids,p_facultades:step.scope.facultades,p_revision:step.revision,p_motivo:reason});
+  }
+  if(result.error)throw result.error;
+  if(n!==seq||actor!==access()?.userId||!canManage())return;
+  status(window.HYS263_SANDBOX===true?'Prueba guardada localmente. Actualizando usuario ficticio…':'Cambios confirmados por el servidor. Actualizando facultades…');
+  await loadAccount(uid);
+  if(actor===access()?.userId&&canManage())status(window.HYS263_SANDBOX===true?'Guardado local confirmado. Comprueba el resultado en Accesos simulados y Auditoría.':'Facultades guardadas. El servidor confirmó las operaciones y su auditoría.');
+ }catch(e){if(n===seq&&actor===access()?.userId&&canManage()){status('No se confirmó el guardado: '+e.message+'. Consulta nuevamente el estado antes de reintentar.');await loadAccount(uid)}}finally{if(n===seq){setBusy(false);if(account)renderSummary()}}
+};
+const previousSync=window.reportesHysAdminSync;
+window.reportesHysAdminSync=()=>{
+ previousSync?.();
+ const a=access(),visible=canManage()&&!a?.selectedModule&&document.body.classList.contains('module-choice');
+ button.hidden=!visible;
+ if(visible){$('hysToolsRail').hidden=false;document.body.classList.add('hys-tools-visible')}
+ if(!canManage()){seq++;panel.hidden=true;showDirectory();users=[];areaRows=[];draftAccess={};draftFac={};originalFac={}}
+};
+window.reportesHysAdminSync();
+})();
+
+</script>
+<script>
+/* laboratorio-ui-v263.js */
+/* Reportes HYS v263: navegación y gestión interactiva del laboratorio ficticio.
+ * Funciona solo junto a Hys263Lab; sin backend ni autenticación reales.
+ */
+(function(root){
+'use strict';
+const lab=root.Hys263Lab;
+if(!root.HYS263_SANDBOX||!lab)throw Error('Laboratorio aislado no disponible');
+const $=id=>document.getElementById(id);
+const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
+const MODULES=['APR','OTROS'];
+const label=m=>lab.labels[m]||m;
+const roles={usuario:'Usuario',supervisor:'Supervisor',administrador_area:'Administrador'};
+let current='users';
+const message=txt=>{$('labMessage263').textContent=txt};
+function btn(text,fn){const b=el('button',text,'btn');b.type='button';b.onclick=fn;return b}
+function safe(fn){try{const result=fn();if(result&&typeof result.catch==='function')result.catch(e=>message('No se pudo completar: '+e.message));return result}catch(e){message('No se pudo completar: '+e.message)}}
+function navigate(tab){
+ current=tab;
+ for(const b of document.querySelectorAll('[data-lab-tab]')){
+  const selected=b.dataset.labTab===tab;b.setAttribute('aria-current',selected?'page':'false');b.classList.toggle('active263',selected);
+ }
+ for(const panel of document.querySelectorAll('[data-lab-panel]'))panel.hidden=panel.dataset.labPanel!==tab;
+ render();
+}
+function render(){({users:renderUsers,areas:renderAreas,history:renderHistory,access:renderAccess,settings:renderSettings,notifications:renderNotifications}[current]||renderUsers)()}
+function changeNotice(){message('Cambios guardados SOLO en este navegador y SOLO dentro de la simulación v263. No se enviaron a Supabase.');}
+function renderUsers(){
+ const users=lab.get().users,holder=$('labUserList263');holder.replaceChildren();
+ $('labUserCount263').textContent=users.length+' cuentas ficticias';
+ for(const u of users){
+  const card=el('article',undefined,'lab-row263');
+  const name=el('input');name.value=u.nombre;name.maxLength=150;name.setAttribute('aria-label','Nombre de '+u.nombre);
+  const active=el('select');for(const [v,title]of [['true','Activo'],['false','Inactivo']]){const op=new Option(title,v);active.add(op)}active.value=String(u.activo);active.setAttribute('aria-label','Estado de '+u.nombre);
+  const title=el('div',undefined,'lab-user-name263');title.append(el('strong',u.nombre),el('small',(roles[u.rol]||u.rol)+' · '+Object.keys(u.ambitos||{}).filter(m=>u.ambitos[m]?.ver===true).map(label).join(' / ')));
+  const actions=el('div',undefined,'lab-row-actions263');
+  actions.append(btn('Guardar datos',()=>safe(()=>{lab.updateUser(u.usuario_id,name.value,active.value==='true');changeNotice();renderUsers()})));
+  actions.append(btn('Rol y facultades',()=>root.Hys242Facultades.openFor(u.usuario_id)));
+  card.append(title,name,active,actions);holder.append(card);
+ }
+}
+function renderAreas(){
+ const data=lab.get(),list=$('labAreaList263');list.replaceChildren();
+ for(const m of MODULES){
+  const box=el('section',undefined,'lab-group263'),h=el('h3',label(m));box.append(h);
+  for(const a of data.areas.filter(a=>a.modulo===m)){
+   const line=el('div',undefined,'lab-area-row263');
+   const name=el('input');name.value=a.nombre;name.maxLength=100;name.setAttribute('aria-label','Nombre del área '+a.nombre);
+   const act=el('select');for(const [v,txt]of [['true','Activa'],['false','Inactiva']])act.add(new Option(txt,v));act.value=String(a.activa);
+   line.append(name,act,btn('Guardar área',()=>safe(()=>{lab.updateArea(a.id,name.value,act.value==='true');changeNotice();renderAreas()})));
+   box.append(line);
+  }
+  list.append(box);
+ }
+}
+function renderHistory(){
+ const history=lab.get().history,host=$('labHistoryList263');host.replaceChildren();
+ $('labHistoryCount263').textContent=history.length+' acciones registradas en la simulación';
+ if(!history.length)host.append(el('p','Todavía no se han guardado cambios de prueba.'));
+ for(const event of history){
+  const card=el('article',undefined,'lab-history-row263');
+  card.append(el('strong',event.accion),el('p',(new Date(event.fecha)).toLocaleString('es-CL')+' · '+event.usuario),el('small',event.motivo||'Sin motivo'));
+  host.append(card);
+ }
+}
+function renderAccess(){
+ const state=lab.get(),sel=$('labAccessUser263'),previous=sel.value;
+ sel.replaceChildren(...state.users.map(u=>new Option(u.nombre,u.usuario_id)));
+ if(state.users.some(x=>x.usuario_id===previous))sel.value=previous;
+ paintAccess();
+}
+function paintAccess(){
+ const state=lab.get(),u=state.users.find(x=>x.usuario_id===$('labAccessUser263').value),host=$('labAccessResult263');
+ host.replaceChildren();if(!u)return;
+ host.append(el('h3',u.nombre),el('p','Rol: '+(roles[u.rol]||u.rol)+' · '+(u.activo?'Cuenta activa':'Cuenta inactiva')));
+ const both=el('div',undefined,'lab-two-cards263');
+ for(const m of MODULES){
+  const card=el('article',undefined,'lab-access-card263'),a=u.ambitos?.[m];
+  card.append(el('strong',label(m)));
+  if(!u.activo||!a?.ver){card.append(el('p','Tarjeta oculta para esta cuenta.'))}
+  else{
+   card.append(el('p',(a.editar?'Puede registrar y editar':'Solo consulta')+' · '+(a.areas||[]).length+' áreas'));
+   const names=state.areas.filter(x=>a.areas?.includes(x.id)&&x.modulo===m).map(x=>x.nombre).join(', ');
+   card.append(el('small',names||'Sin áreas'));
+   if(u.rol==='administrador_area'){
+    const fac=state.faculties.find(x=>x.usuario_id===u.usuario_id&&x.modulo===m);
+    card.append(el('p','Facultades especiales: '+(Object.keys(fac?.facultades||{}).filter(k=>fac.facultades[k]).join(', ')||'Ninguna')));
+   }
+  }
+  both.append(card);
+ }
+ host.append(both);
+}
+const PREFKEY='reportes-hys-v263-lab-preferencias';
+function prefs(){try{return JSON.parse(localStorage.getItem(PREFKEY)||'{}')}catch{return {}}}
+function savePrefs(value){localStorage.setItem(PREFKEY,JSON.stringify(value));renderSettings();changeNotice()}
+function renderSettings(){
+ const p=prefs();
+ $('labPhotoSize263').value=p.photoSize||'medium';
+ $('labPhotosRow263').value=String(p.photosRow||3);
+ $('labContrast263').value=p.contrast||'normal';
+ const sample=$('labPhotoSample263');sample.style.gridTemplateColumns='repeat('+($('labPhotosRow263').value)+',minmax(0,1fr))';sample.dataset.photoSize=$('labPhotoSize263').value;
+ document.body.classList.toggle('lab-high-contrast263',p.contrast==='high');
+}
+function renderNotifications(){
+ const host=$('labNotificationList263'),list=lab.get().history.slice(0,8);
+ host.replaceChildren();
+ if(!list.length)host.append(el('p','Todavía no se generaron acciones de prueba.'));
+ for(const event of list)host.append(el('article',event.accion+' · '+event.usuario,'lab-history-row263'));
+}
+for(const n of document.querySelectorAll('[data-lab-tab]'))n.onclick=()=>navigate(n.dataset.labTab);
+$('labNewUser263').onsubmit=e=>{e.preventDefault();safe(()=>{lab.createUser($('labNewUserName263').value);$('labNewUserName263').value='';changeNotice();renderUsers()})};
+$('labNewArea263').onsubmit=e=>{e.preventDefault();safe(()=>{lab.newArea($('labNewAreaModule263').value,$('labNewAreaName263').value);$('labNewAreaName263').value='';changeNotice();renderAreas()})};
+$('labAccessUser263').onchange=paintAccess;
+$('labPrefs263').onsubmit=e=>{e.preventDefault();savePrefs({photoSize:$('labPhotoSize263').value,photosRow:Number($('labPhotosRow263').value),contrast:$('labContrast263').value})};
+$('labReset263').onclick=()=>{if(!confirm('¿Reiniciar todos los usuarios, áreas y facultades FICTICIOS de v263? No afecta a Reportes HYS real.'))return;lab.reset();localStorage.removeItem(PREFKEY);changeNotice();render()};
+$('labOpenFaculties263').onclick=()=>root.Hys242Facultades.openFor();
+root.addEventListener('hys263-lab-changed',()=>{if(current==='users'||current==='areas'||current==='history'||current==='access'||current==='notifications')render()});
+navigate('users');
+})(window);
+
+</script>
+</body></html>

@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "userFormSimplified": true,
+      "currentCardNames": true,
+      "basicAccessSaved": true,
+      "noUnchangedWrites": true,
+      "specialFacultyDependencies": true,
+      "partialFailureReported": true,
+      "retryOnlyPending": true,
+      "revocationBeforeAccess": true,
+      "concurrentChangeRejected": true,
+      "revocation": true
+    },
+    {
+      "width": 390,
+      "userFormSimplified": true,
+      "currentCardNames": true,
+      "basicAccessSaved": true,
+      "noUnchangedWrites": true,
+      "specialFacultyDependencies": true,
+      "partialFailureReported": true,
+      "retryOnlyPending": true,
+      "revocationBeforeAccess": true,
+      "concurrentChangeRejected": true,
+      "revocation": true
+    }
+  ],
+  "javascriptErrors": [],
+  "backendRequests": 0,
+  "authentication": "simulada; cambios de cuentas solo en memoria"
+}

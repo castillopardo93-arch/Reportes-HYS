@@ -1,0 +1,24 @@
+#operations242 .management-shell{max-width:1180px;margin:0 auto;background:#f4f7fb;border-radius:18px;padding:24px;color:#173d68}
+#operations242 .op-directory258,#operations242 .op-detail258{background:#fff;border:1px solid #dce6f0;border-radius:14px;padding:22px;margin:16px 0;box-shadow:0 3px 12px #14365508}
+#operations242 .op-directory-head258{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+#operations242 h2{font-size:20px;margin:0 0 8px}#operations242 p{line-height:1.6}#operations242 .op-directory-head258 p{margin:0;color:#62778f}
+#operations242 .op-filters258{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:18px}
+#operations242 .op-directory-meta258{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0;color:#62778f}
+#operations242 .op-directory-meta258 button[hidden]{display:none!important}
+#operations242 .op-users-table258{width:100%;border-collapse:collapse;font-size:14px}
+#operations242 .op-users-table258 th{padding:13px 10px;background:#f1f6fb;font-weight:700;color:#46637e}
+#operations242 .op-users-table258 td{padding:14px 10px;vertical-align:middle;border-bottom:1px solid #e5edf4}
+#operations242 .op-users-table258 td:last-child{display:flex;gap:8px;flex-wrap:wrap}
+#operations242 .op-user-name258{font-weight:700;color:#143c67}#operations242 .op-empty258{padding:20px;color:#657a90}
+#operations242 .op-detail-head258{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid #e0e9f2;padding-bottom:14px;margin-bottom:16px}
+#operations242 .op-detail-head258 p{margin:0;flex:1}#operations242 .op-detail-head258 h2{margin:0}
+#operations242 .op-account258{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+#operations242 .op-form fieldset{border:1px solid #d4e2ef;border-radius:12px;padding:16px;min-width:0;background:#f8fbfe}
+#operations242 .op-form legend{font-weight:750;padding:0 8px}#operations242 .op-actions258{display:flex;gap:12px;flex-wrap:wrap;border-top:1px solid #e0e9f2;padding-top:18px}
+#operations242 .op-audit258{border-left:3px solid #3384c9;background:#f5f9fd;padding:16px;margin:12px 0;border-radius:0 10px 10px 0}
+#operations242 .op-audit258 details{margin-top:10px}#operations242 .op-audit258 pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:13px;line-height:1.6}
+#operations242 button.btn{min-height:42px}#operations242 input:focus,#operations242 select:focus,#operations242 textarea:focus{outline:2px solid #3c8ed3;outline-offset:2px}
+@media(max-width:760px){#operations242 .management-shell{border-radius:0;padding:16px}#operations242 .op-directory258,#operations242 .op-detail258{padding:16px}#operations242 .op-directory-head258{flex-direction:column;gap:10px}#operations242 .op-filters258,#operations242 .op-account258{grid-template-columns:1fr}#operations242 .op-users-table258,#operations242 .op-users-table258 tbody,#operations242 .op-users-table258 tr,#operations242 .op-users-table258 td{display:block;width:100%}#operations242 .op-users-table258 thead{display:none}#operations242 .op-users-table258 tr{border:1px solid #d8e4ef;border-radius:12px;padding:10px;margin:12px 0}#operations242 .op-users-table258 td{border:0;padding:6px}#operations242 .op-users-table258 td::before{content:attr(data-label) ' · ';font-weight:650;color:#698198}#operations242 .op-users-table258 td:last-child{display:flex;width:100%;padding-top:10px}#operations242 .op-users-table258 td:last-child::before{content:none}#operations242 .op-actions258>button{width:100%}}
+/* Las tablas generales heredadas fijaban un mínimo de 620px en móvil. */
+#operations242 .op-users-table258{min-width:0!important;max-width:100%!important}
+@media(max-width:760px){#operations242 .op-users-table258 tbody,#operations242 .op-users-table258 tbody tr,#operations242 .op-users-table258 td{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere}}

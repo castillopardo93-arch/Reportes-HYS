@@ -1,0 +1,67 @@
+#management242[hidden],#manageOpen242[hidden],#manageInModule242[hidden]{display:none!important}
+#management242{position:fixed;inset:0;z-index:65000;background:#0b294ce6;padding:24px;overflow:auto}
+.management-shell{max-width:1100px;margin:auto;background:#f4f8fc;border-radius:16px;padding:24px;color:#173d68}
+.management-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.management-head h1{font-size:24px}
+#management242 label{display:block;margin:12px 0;font-weight:700}#management242 input,#management242 select{padding:10px;border:1px solid #b8d2f0;border-radius:7px;max-width:100%}
+#manageForm242{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:20px 0}.manage-row{padding:14px;margin:10px 0;background:white;border:1px solid #c9def5;border-radius:9px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.manage-row strong{flex:1}.manage-row p{width:100%;overflow-wrap:anywhere;font-size:12px}
+#manageInModule242{margin:12px 8px;font-size:12px}#cloudStatus242{white-space:pre-line;color:#173d68;background:#eef5fc;border:1px solid #c9def5;border-radius:8px;margin-bottom:12px}
+.nav[aria-current=page]{background:#2879bc;color:white;font-weight:800}
+@media(max-width:700px){#management242{padding:8px}.management-shell{padding:14px}.management-head h1{font-size:19px}#manageInModule242{flex:0 0 auto}.manage-row{align-items:stretch}.manage-row strong{flex-basis:100%}}
+@media print{#management242,#manageInModule242,#manageOpen242{display:none!important}}
+#management242 [hidden]{display:none!important}
+
+#hysToolsOptions #manageOpen242 .tools-option-label{overflow-wrap:anywhere;text-align:center}
+
+/* Nombres visibles de módulos; claves APR/OTROS permanecen compatibles. */
+.module-card h2,.module-card button{overflow-wrap:anywhere}.module-card button{white-space:normal}
+.brand{min-width:0}.brand>span,body.embedded-otros .brand span{font-size:clamp(12px,1.2vw,16px);white-space:normal;line-height:1.25}body.embedded-otros .brand span:after{content:none}
+
+
+
+#devVersion242{padding:7px 10px;margin:0 0 8px;border:1px solid #d8bf75;border-radius:7px;background:#fff8e6;color:#694500;font-size:12px;font-weight:700}#formAccess242:empty{display:none}@media print{#devVersion242,#saveState242,#formAccess242{display:none!important}}
+
+/* v282 · Se recupera el formato de Áreas y opciones mostrado en v266. */
+#management242 .hys282-shell{max-width:1120px;min-height:420px;padding:24px 22px}
+#management242 .hys282-shell .management-head{align-items:flex-start}
+#management242 .hys282-shell .management-head h1{margin:4px 0 10px;font-size:24px;color:#173d68}
+#management242 .hys282-shell .management-head p{margin:0 0 7px;font-size:12px;color:#577a9f}
+#management242 #manageMessage242{margin:12px 0;font-size:12px;line-height:1.6;color:#245b8a;min-height:24px}
+#management242 #manageMessage242[data-warning=true]{color:#935c1d}
+#management242 .hys282-module-label{display:inline-flex;align-items:center;gap:9px;margin:5px 0 12px;font-weight:750}
+#management242 #manageModule242{min-width:240px}
+#management242 .hys282-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 19px}
+#management242 .hys282-tabs button.active{background:#1e68b5;color:#fff;border-color:#1e68b5;font-weight:750}
+#management242 .hys282-form{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:10px 0 13px}
+#management242 .hys282-form label{display:flex;align-items:center;gap:9px;margin:0;font-weight:750}
+#management242 #catalogField242{width:min(280px,100%);min-width:230px}
+#management242 #manageName242{width:200px;max-width:100%}
+#management242 .hys282-form button{min-height:42px}
+#management242 #hys282Context{margin:12px 0 14px;color:#537698}
+#management242 .manage-row{background:#fff;min-height:68px;margin:10px 0;border:1px solid #c5d9ef;gap:10px}
+#management242 .manage-row strong{font-weight:750;font-size:13px;min-width:180px}
+#management242 .manage-row button:disabled,#management242 .hys282-form button:disabled{cursor:not-allowed;opacity:.45}
+#management242 .hys282-footer{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-top:18px}
+#management242 .hys282-footer p{margin:0;max-width:750px;font-size:11px}
+#management242 .hys282-footer .btn{flex:0 0 auto}
+@media(max-width:760px){
+ #management242{padding:6px}
+ #management242 .hys282-shell{width:100%;min-height:100dvh;padding:15px 13px;border-radius:0}
+ #management242 .hys282-module-label{display:flex;flex-direction:column;align-items:stretch}
+ #management242 #manageModule242{min-width:0;width:100%}
+ #management242 .hys282-form{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+ #management242 .hys282-form label{display:flex;flex-direction:column;align-items:stretch}
+ #management242 #catalogField242,#management242 #manageName242{width:100%;min-width:0}
+ #management242 .manage-row{display:flex;flex-direction:column;align-items:stretch}
+ #management242 .manage-row strong{min-width:0}
+ #management242 .manage-row button{min-height:42px}
+}
+
+/* v283: cada régimen de turno es una opción independiente, no una frase de ejemplo. */
+#management242 .hys283-pending{border-style:dashed;background:#f7fafc}
+#management242 .hys283-pending strong{color:#52718f}
+#management242 .hys283-old-group{border:1px solid #d2dde7;border-radius:10px;margin:14px 0;padding:10px 14px;background:#f9fbfd}
+#management242 .hys283-old-group summary{cursor:pointer;font-weight:700;color:#765a2f;padding:5px 0}
+#management242 .hys283-old-group .manage-row{margin:10px 0 5px}
+#management242 .hys283-old{border-left:3px solid #c5a071}
+#management242 .hys283-pending button:disabled{opacity:.4}
+@media(max-width:700px){#management242 .hys283-old-group{padding:8px 10px}}

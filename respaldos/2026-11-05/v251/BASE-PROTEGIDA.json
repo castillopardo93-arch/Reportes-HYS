@@ -1,0 +1,18 @@
+{
+  "version": "v241",
+  "commit": "078366a3b5dd4f0700622a999ef5fd15fee590fb",
+  "files": {
+    "index.html": "f27569aa0d12d30c70d3174ba58bc7a8c8d968f5fb7a2c6c59abfdf5ab181f54",
+    "v241.css": "324a4ef27832ad8fcdd310f08427eb459014dec8ab8e025a924e4717c0c673a8",
+    "mobile-v241.css": "7a690f7e2c6e75a84f113b1e487fd287bf045ac7e3973eac993516a4927eb710",
+    "appearance-core-v241.js": "7e931589fbe91f5f8095cc44a37efc557159c5818dd2c202db56223b618a004f",
+    "appearance-v241.js": "443e607f1ac5030c12249af64f6523ba7c7b8f0dde7023d03d269f8307336f05",
+    "appearance-v241.css": "3fd7f274a659ad5b79412b4bfa85441cd656ca1fcb1cf6fa90b967d729bdc886",
+    "cloud-v241.js": "20520efda1e57ca9590a06845c6ba96548a4e31952a0fe49a94816c900bf6546",
+    "config-v241.js": "e45a70033fcf11b002a4fbfd4fac97e6eacd2c42959c7d990bcf3fe07f12de02",
+    "storage-v241.js": "8b439894444587c767b6fc141fe3bad6f42f4dbc60062c3cb286ee8d9e2edc30",
+    "sync-core-v241.js": "8fed682b9c21c04c7b143f1152b24a15f52a7c9130b62127313059ab1c9b03d0",
+    "facultades-v241.js": "58c758d4bfc75bb8c996d536b66c87327aecbbb225fca453bb45e4f4c3e3665b",
+    "operaciones-v241.js": "1309c592bab91738b61b4c51e6c0c77dafda501e9a7526a75133ff15a3f17b9d"
+  }
+}
