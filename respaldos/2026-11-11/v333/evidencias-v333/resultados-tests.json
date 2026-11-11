@@ -1,0 +1,146 @@
+[
+  {
+    "test": "test-acuses-trazabilidad-v297.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · 01: token exacto con contenido íntegro se confirma\nOK 02 · 02: mismo token con responsable cambiado se rechaza\nOK 03 · 03: mismo token con estado alterado se rechaza\nOK 04 · 04: mismo token con actividades distintas se rechaza\nOK 05 · 05: mismo token y PDF cambiado se rechaza\nOK 06 · 06: mismo token y archivo faltante se rechaza\nOK 07 · 07: identidad de informe equivocada se rechaza\nOK 08 · 08: módulo contrario se rechaza\nOK 09 · 09: revisión inferior a la solicitada se rechaza\nOK 10 · 10: reintento idempotente con token anterior y contenido igual se confirma\nOK 11 · 11: no-op con token anterior y formulario diferente se rechaza\nOK 12 · 12: mismo token y cambio solo en historia se rechaza\nOK 13 · 13: token anterior y cambio solo en historia se rechaza\nOK 14 · 14: huella de historial distingue modificaciones sin cambio en campos\nOK 15 · 15: mismo token y PDF íntegro con normalización documentada se confirma\nOK 16 · 16: metadatos PDF arbitrariamente modificados se rechazan\nOK 17 · 17: confirmación conserva huella de historial\nOK 18 · 18: estado remoto no puede declararse sincronizado con historia sin huella\nOK 19 · 19: estado remoto exige ambas huellas si el historial existe\nOK 20 · 20: documentos históricos sin historia explícita siguen compatibles\nOK 21 · 21: acuse erróneo mantiene operación pendiente sin metadatos\nOK 22 · 22: acuse con historia no confirmada mantiene el pendiente\nOK 23 · 23: primer informe sin PDF no bloquea segundo informe listo\nOK 24 · 24: cola compuesta solo por PDF pendientes retorna bloqueo sin borrar nada\nOK 25 · 25: cola no bloqueada sigue procesando todas las entradas por fecha\nOK 26 · 26: al reintentar se procesa el informe antes bloqueado tras agregar PDF\nOK 27 · 27: informativos de cola y PDF pendientes están conectados a interfaz\nOK 28 · 28: contador de recuperación incluye Finalizado sin PDF\nOK 29 · 29: copia con PDF anterior igualmente cuenta y conserva archivo histórico\nOK 30 · 30: copia En edición sin PDF no contabiliza regeneración\nOK 31 · 31: las tres banderas de Supabase continúan apagadas\nOK 32 · 32: el flujo de conflicto deja procesar entradas independientes\nPASS · 32 pruebas v297 (sin red, usuario real ni despliegue).\n"
+  },
+  {
+    "test": "test-archivo-evidencias-v293.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Validación JPG incorporado\nOK 02 · Validación PNG incorporado\nOK 03 · Adjunto SVG no autorizado\nOK 04 · Adjunto ajeno a imágenes bloqueado\nOK 05 · Base64 vacío bloqueado\nOK 06 · Base64 truncado bloqueado\nOK 07 · Foto excesivamente grande bloqueada\nOK 08 · Solo dos banderas no habilitan el servidor\nOK 09 · Se necesitan tres autorizaciones explícitas\nOK 10 · Sin conexión no se pide archivo remoto\nOK 11 · Sin las tres banderas no se pide archivo remoto\nOK 12 · Solo PDF local habilita descarga sin conexión\nOK 13 · PDF anunciado pero no descargado no se ofrece sin conexión\nOK 14 · PDF remoto disponible con autorización se ofrece\nOK 15 · Datos editables remotos solo con conexión autorizada\nOK 16 · Conexión autorizada permite recuperar datos remotos\nOK 17 · No se falsifican datos de un informe local\nOK 18 · Resumen nuevo conserva fotografía y PDF locales previos\nOK 19 · Resumen obsoleto no reemplaza informe local nuevo\nOK 20 · Resumen con misma revisión no borra PDF\nOK 21 · Resumen nuevo sin PDF local conserva etiqueta de descarga remota\nOK 22 · No se mezclan dos identificadores de informe\nOK 23 · Archivo remoto sin datos locales no inventa contenido\nOK 24 · La validación real del formulario rechaza SVG y conserva JPEG\nOK 25 · Ambas tarjetas utilizan validación de imágenes\nOK 26 · HTML integra política antes de validación del formulario\nOK 27 · Archivo PDF exige validación antes de conservarlo\nOK 28 · Archivo remoto utiliza puerta autenticada y elección explícita de fuente\nOK 29 · Resumen remoto nuevo utiliza unión sin destruir archivo local\nOK 30 · Vista diferencia copia anterior y revisión central nueva\nOK 31 · Editar se deshabilita cuando no están disponibles datos\nOK 32 · Scripts JavaScript embebidos de la página sin errores de sintaxis\nPASS · 32 pruebas v293. No hay acceso a datos de usuarios ni escrituras remotas.\n"
+  },
+  {
+    "test": "test-catalogo-v308.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK: no se solicita al usuario cargar Excel; sin catálogo no hay códigos sin texto.\nOK: catálogo limitado al punto 9; punto 10 con CÓDIGOS de escritura libre.\nOK: nombres solo en punto 9; punto 10 libre y nuevas filas libres.\nRESULTADO: catálogo integrado validado; se mantiene protección frente a catálogos parciales o incompletos.\n"
+  },
+  {
+    "test": "test-causas-ubicacion-v308.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK condiciones_subestandar 37 entradas 1.1 ... 1.37\nOK acciones_subestandar 36 entradas 1.38 ... 1.73\nOK factores_trabajo 25 entradas 2.1 ... 2.25\nOK factores_personales 24 entradas 2.26 ... 2.49\nOK requerimientos_sistema 31 entradas 3.1 ... 3.31\nRESULTADO: 153 causas con código y nombre exclusivamente en punto 9; punto 10 con campo CÓDIGOS libre sin selector.\n"
+  },
+  {
+    "test": "test-contrato-guardado-v292.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Confirmación con identidad, módulo y token exactos\nOK 02 · Rechaza respuesta con ID diferente\nOK 03 · Rechaza respuesta del módulo contrario\nOK 04 · Rechaza revisión nula\nOK 05 · Rechaza revisión inferior a la enviada\nOK 06 · Rechaza cuerpo del informe ausente\nOK 07 · Rechaza reportId que no pertenece al registro\nOK 08 · Acepta repetición idempotente con el mismo token\nOK 09 · Acepta sin cambios si el servidor ya tenía contenido equivalente\nOK 10 · Rechaza token viejo cuando cambia el contenido\nOK 11 · Rechaza respuesta vieja que no coincide con PDF adjunto\nOK 12 · Rechaza solicitud sin token\nOK 13 · No declara remoto sin metadatos confirmados\nOK 14 · No declara remoto si falta revisión positiva\nOK 15 · No declara remoto con datos diferentes\nOK 16 · No declara remoto sin copia local confirmada\nOK 17 · Reconoce confirmación exacta remota\nOK 18 · Cola elimina solo operación confirmada por servidor\nOK 19 · Cola conserva pendiente ante token conflictivo\nOK 20 · Cola conserva pendiente ante respuesta de otro informe\nOK 21 · Cola conserva pendiente ante respuesta de otro módulo\nOK 22 · Cola permite no-op probado por coincidencia completa\nOK 23 · Cola bloquea respuesta sin informe de origen\nOK 24 · La interfaz solo informa sincronización con evidencia\nOK 25 · El RPC se verifica antes de alterar la copia local\nOK 26 · Tres banderas obligatorias y desactivadas\nPASS · 26 pruebas v292, sin red ni cambios Supabase.\n"
+  },
+  {
+    "test": "test-correcciones-v312.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK v312: adjuntos, 40 planes y restauración, revisor bloqueado, cambio de caso, Final actualizado y cierre controlado.\n"
+  },
+  {
+    "test": "test-entorno-desarrollo-v313.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "Entorno local: 8 verificaciones superadas.\n"
+  },
+  {
+    "test": "test-facultades-lista-v310.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK v310: 2 facultades añadidas a la lista ORIGINAL, 10 históricos intactos, roles/áreas validados, sin panel extra ni guardado real.\n"
+  },
+  {
+    "test": "test-finalizar-confirmacion-v313.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "Finalizar informe: 10 casos verificados.\n"
+  },
+  {
+    "test": "test-flash-final-v306.cjs",
+    "scope": "historical",
+    "exit": 0,
+    "output": "OK 01 · v305 se conserva como copia aislada\nOK 02 · 95 archivos ajenos a formularios permanecen byte a byte\nOK 03 · Todos los archivos JavaScript tienen sintaxis válida\nOK 04 · Los scripts embebidos del index conservan sintaxis válida\nOK 05 · El HTML real apunta al mismo formulario de v306\nOK 06 · La app no habilitó escrituras centrales\nOK 07 · Único número de versión visible en selector de tarjetas\nOK 08 · La CSS contiene rótulo completo de menú sin truncar\nOK 09 · Módulos de usuarios, riesgos, fotos, PDF y guardado permanecen intactos\nOK 10 · La vista de revisión abre la pantalla de dos tarjetas dentro de la app\nOK 11 · El menú dice exactamente Investigación de accidente\nOK 12 · Hay exactamente dos tarjetas independientes\nOK 13 · Los nombres de tarjetas son Flash Report y Final Report\nOK 14 · Los formularios se crean por separado y ocultos inicialmente\nOK 15 · Flash abre su propio formulario desde la primera tarjeta\nOK 16 · Flash contiene tipo de incidente, probabilidad, hora y fecha\nOK 17 · Flash contiene área, ubicación, involucrado, cargo y RUT\nOK 18 · Flash contiene seis responsabilidades del área\nOK 19 · Flash contiene primeros auxilios, ambulancia, hospital y médicos\nOK 20 · Flash contiene tres testigos con cargo y contacto\nOK 21 · Flash contiene fotos, hechos conocidos, causas aparentes y acciones inmediatas\nOK 22 · Flash contiene reportado por y preparado por con cargos y contactos\nOK 23 · La lista de tipo de incidente contiene las 7 opciones de Lista\nOK 24 · La lista de probabilidad contiene 4 valores\nOK 25 · El área es sugerida por catálogo, no impuesta como valor fijo\nOK 26 · El Flash admite escritura en campos reales\nOK 27 · Al volver se ven otra vez las dos tarjetas\nOK 28 · Final abre su formulario independiente\nOK 29 · Final incluye los datos generales del Excel\nOK 30 · Final tiene 18 opciones del tipo de pérdida\nOK 31 · Final incluye las 7 preguntas de antecedentes adicionales\nOK 32 · Final contiene tres declaraciones completas y resúmenes\nOK 33 · Final contiene descripción, fotos, procedimientos, matriz y capacitaciones\nOK 34 · Final conserva las 5 categorías del análisis de causas\nOK 35 · Final incluye tres planes de acción iniciales\nOK 36 · Agregar plan genera una fila adicional y sus campos\nOK 37 · Final conserva equipo investigador y aprobaciones\nOK 38 · La lista de códigos de causas queda expresamente pendiente de enlazar\nOK 39 · Los datos del Flash se conservan separados al cambiar de tarjeta\nOK 40 · El botón de guardar está desactivado en ambos reportes\nOK 41 · Al cerrar se borran los datos sensibles temporales\nOK 42 · Al reabrir se muestran de nuevo las dos tarjetas\nOK 43 · No se ejecutó ningún acceso a Supabase al navegar\nOK 44 · Enlace de revisión Flash abre directamente ese formulario\nOK 45 · Enlace de revisión Final abre directamente ese formulario\nOK 46 · Admin General puede abrir las tarjetas desde el botón lateral real\nOK 47 · Cambio de sesión elimina todo borrador temporal\nOK 48 · Usuario sin facultad global no puede abrir Investigaciones\nOK 49 · Supervisor sin facultad global no puede abrir Investigaciones\nOK 50 · No existe escritura de formularios en Supabase ni localStorage\nOK 51 · Los recursos locales apuntan a compilación v306 sin enlaces rotos\nPASS · 51 pruebas v306: dos tarjetas, formularios Excel, seguridad y ausencia de regresiones.\n"
+  },
+  {
+    "test": "test-flujo-v308.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 1 Usuario activo sin facultades APR/OTROS puede abrir investigaciones\nOK 2 Guardar borrador incompleto está permitido\nOK 3 Nuevo Flash permite otro borrador sin sobrescribir anterior\nOK 4 Búsqueda inteligente encuentra revisor por nombre y selecciona usuario\nOK 5 Un borrador incompleto no se envía; Final abre y guarda borrador\nOK 6 Completar solo algunos datos aún bloquea envío\nOK 7 Flash completo puede enviarse a revisor; abre Final sin esperar aprobación\nOK 8 Final incompleto se bloquea en rojo y puede continuar como borrador\nOK 9 Final en revisión no puede aprobarse hasta que Flash sea aprobado\nOK 10 Revisor devuelve el Flash y solicita correcciones\nOK 11 Corrección de Flash también se valida antes de reenviar\nOK 12 Supervisor y revisor HYS aprueban Flash secuencialmente\nOK 13 Final desactualizado requiere corrección y aprobación posterior por autorizado\nOK 14 Se conservaron las etiquetas salvo CÓDIGOS libre del punto 10\nOK 15 No se alteran módulos APR/OTROS ni escribe el laboratorio en Supabase\nOK 16 Usuario registrado no puede enviar de verdad sin backend autorizado\nOK 17 Directorio real no expone cuentas a perfiles básicos sin autorización\nOK 18 Usuario inactivo no puede iniciar expedientes\nRESULTADO: 18 verificaciones v308 con validación obligatoria, sin producción.\n"
+  },
+  {
+    "test": "test-integridad-auditoria-v296.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · A-01: una copia Finalizada pasa a En edición\nOK 02 · A-01: la copia conserva identidad nueva, nunca reusa PDF\nOK 03 · A-01: el original con PDF queda preservado en recuperación\nOK 04 · A-01: sin PDF y En edición normal no activa bloqueo especial\nOK 05 · A-01: estado Finalizado sin PDF genera obligación de PDF\nOK 06 · A-01: cola impide enviar copia con obligación de PDF\nOK 07 · A-01: cambios posteriores sin PDF no quitan bloqueo\nOK 08 · A-01: PDF nuevo desbloquea cola y conserva identidad\nOK 09 · A-01: no se provoca envío automático de conflictos con PDF pendiente\nOK 10 · A-02: informe de identidad coherente se acepta\nOK 11 · A-02: rechaza diferencia entre ID y formulario\nOK 12 · A-02: rechaza diferencia entre identificadores de archivo\nOK 13 · A-02: rechaza módulo de otra tarjeta\nOK 14 · A-02: rechaza formulario de otro módulo\nOK 15 · A-02: rechaza identificador ausente antes de reemplazar datos\nOK 16 · A-02: módulo de identidad invocado antes del validador del formulario\nOK 17 · A-03: estructura PDF sintético correcto y metadato válido\nOK 18 · A-03: PDF simulado truncado no cumple estructura\nOK 19 · A-03: PDF con carácter Base64 inválido no se archiva\nOK 20 · A-03: PDF con startxref inválido no se acepta\nOK 21 · A-03: PDF con ID de metadatos incorrecto se rechaza\nOK 22 · A-03: PDF sin metadatos de identidad se rechaza\nOK 23 · A-03: falta de PDF no afirma descarga real\nOK 24 · A-04: imagen JPEG con encabezado binario válido\nOK 25 · A-04: PNG con firma binaria válida\nOK 26 · A-04: falso PNG con Base64 correcto se rechaza\nOK 27 · A-04: PNG camuflado como JPEG se rechaza\nOK 28 · A-05: CSS y JS locales comparten identificador de compilación\nOK 29 · A-06: onSave devuelve false si cambió la sesión\nOK 30 · A-07: no se presenta cola vacía como respaldo confirmado\nOK 31 · A-08: sin Navigator Locks fallback no escribe ni confirma\nOK 32 · A-09: cierre de base en finally dentro de archivo PDF\nOK 33 · A-09: los scripts embebidos conservan sintaxis JavaScript válida\nOK 34 · No se habilitaron escrituras a Supabase\nPASS · 34 pruebas de integridad local v296, sin conexión real.\n"
+  },
+  {
+    "test": "test-integridad-investigacion-v311.cjs",
+    "scope": "historical",
+    "exit": 0,
+    "output": "OK v311: fechas reales, Final incompleto rojo y bloqueado, guardado parcial, revisión válida y 153 causas intactas.\n"
+  },
+  {
+    "test": "test-integridad-investigacion-v312.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK v312: fechas reales, Final incompleto rojo y bloqueado, guardado parcial, revisión válida y 153 causas intactas.\n"
+  },
+  {
+    "test": "test-interfaz-avanzada-v309.cjs",
+    "scope": "historical",
+    "exit": 0,
+    "output": "RESULTADO v309: 72 referencias locales completas, 153 causas, planes libres,\npanel facultades integrado, acceso v309, componentes APR/OTROS intactos y desarrollo NO publicado.\n"
+  },
+  {
+    "test": "test-interfaz-avanzada-v310.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "RESULTADO v333: 70 recursos completos, 153 causas, punto 10 libre,\nlistas originales con nuevas facultades, panel extra eliminado, módulos restantes intactos.\n"
+  },
+  {
+    "test": "test-lectura-central-v298.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Solo lectura: función autorizada con usuario activo, módulo y permiso real\nOK 02 · Solo lectura: deniega bandera desactivada\nOK 03 · Solo lectura: deniega perfil inactivo\nOK 04 · Solo lectura: deniega identidad de perfil distinta\nOK 05 · Solo lectura: deniega tarjeta no seleccionada\nOK 06 · Solo lectura: deniega tarjeta fuera de módulos habilitados\nOK 07 · Solo lectura: deniega permiso puede_ver falso\nOK 08 · Solo lectura: deniega cliente sin RPC\nOK 09 · Solo lectura: deniega modo sin conexión\nOK 10 · La puerta de lectura no depende de la bandera de escritura central\nOK 11 · Preflight verifica Auth, contexto y consulta exclusivamente lectura\nOK 12 · Preflight no devuelve los informes ni nombres consultados\nOK 13 · Preflight niega identidad Auth diferente y no consulta RPC\nOK 14 · Preflight niega error de sesión Auth\nOK 15 · Preflight niega contexto de otro perfil\nOK 16 · Preflight niega perfil revocado\nOK 17 · Preflight niega ámbito sin puede_ver\nOK 18 · Preflight niega RPC contexto con error\nOK 19 · Preflight niega RPC listado con error\nOK 20 · Preflight niega respuesta de listado que no sea array\nOK 21 · Preflight detecta cambio de sesión durante Auth\nOK 22 · Preflight detecta cambio de sesión durante contexto\nOK 23 · Preflight detecta cambio de sesión durante consulta\nOK 24 · Preflight sin autorización local nunca solicita datos remotos\nOK 25 · CanReadRemote comprueba la sesión global efectiva\nOK 26 · HTML carga política de lectura antes del módulo de guardado\nOK 27 · Historial y PDF central usan puerta de lectura independiente\nOK 28 · Lectura de PDF local usa la misma autorización de solo lectura\nOK 29 · No hay RPC de mutación en módulo de lectura\nOK 30 · La interfaz ofrece comprobación manual sin contraseñas\nOK 31 · Guardado central sigue condicionado por tres banderas\nOK 32 · El botón de recuperación remota de borradores no habilita escritura\nPASS · 32 pruebas v298 (sin escrituras ni autenticación real).\n"
+  },
+  {
+    "test": "test-lectura-remota-v299.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Acepta resumen real válido de APR\nOK 02 · Acepta resumen válido de OTROS\nOK 03 · La página vacía es válida\nOK 04 · Rechaza módulo desconocido\nOK 05 · Rechaza página negativa\nOK 06 · Rechaza número de página no entero\nOK 07 · Rechaza respuesta de listado como objeto\nOK 08 · Rechaza más de 20 registros en una página\nOK 09 · Rechaza fila de otra tarjeta\nOK 10 · Rechaza fila duplicada\nOK 11 · Rechaza ID sin prefijo válido\nOK 12 · Rechaza ID ausente\nOK 13 · Rechaza creador ausente\nOK 14 · Rechaza revisión nula o cero\nOK 15 · Rechaza estado no permitido\nOK 16 · Rechaza indicador PDF sin booleano\nOK 17 · Los datos y fotos arbitrarios no ingresan al resumen\nOK 18 · Rechaza metadatos complejos\nOK 19 · Permite consultar PDF y datos solo en modo remoto lectura\nOK 20 · Permite editar exclusivamente un informe local si existen datos\nOK 21 · El HTML deshabilita edición cuando el informe procede de Supabase\nOK 22 · El editor rechaza una respuesta remota cuando las escrituras están desactivadas\nOK 23 · El código carga las políticas antes de consultar\nOK 24 · Consulta remota valida registros antes de guardarlos\nOK 25 · Consulta válida guarda resúmenes ya saneados\nOK 26 · Consulta simultánea de primera página se realiza una sola vez\nOK 27 · Dos pulsaciones seguidas de Cargar más no saltan páginas\nOK 28 · Un error al guardar una página no incrementa el número\nOK 29 · El botón Más se crea con el resultado de 20 filas\nOK 30 · El botón Más queda oculto en página parcial\nOK 31 · Si se cambia de sesión durante RPC no se escribe el caché local\nOK 32 · Si se revoca la lectura durante RPC no se escribe resumen\nOK 33 · Al iniciar otra tarjeta se limpia paginación y estado del botón de conexión\nOK 34 · Nuevo build en JS y CSS local\nOK 35 · Los scripts embebidos no presentan errores sintácticos\nOK 36 · No se han habilitado escrituras centrales ni administrador\nPASS · 36 pruebas de lectura central segura v299; sin conexión a datos reales.\n"
+  },
+  {
+    "test": "test-navegacion-v313.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK v313: Final independiente, envío protegido, recuperación temporal y aviso al recargar\n"
+  },
+  {
+    "test": "test-recuperaciones-v295.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Los PDF antiguos no se envían con una copia nueva\nOK 02 · PDF original intacto en recuperación local\nOK 03 · La copia nueva conserva hallazgos y cambia la identidad\nOK 04 · La copia nueva reinicia revisión y token\nOK 05 · El original no se elimina sin un respaldo local\nOK 06 · El borrador activo cambia solamente si corresponde\nOK 07 · El propietario administrador se conserva cuando está autorizado\nOK 08 · Un usuario distinto no puede copiar operaciones de otra sesión\nOK 09 · No se mezclan operaciones entre tarjetas\nOK 10 · Rechaza lista de operaciones vacía\nOK 11 · Rechaza operaciones duplicadas\nOK 12 · Rechaza operación cuya carga tiene identificador diferente\nOK 13 · Rechaza operación sin token\nOK 14 · Los identificadores de copias son únicos\nOK 15 · La transacción conserva evidencia y genera copia nueva\nOK 16 · No se confirma borrador remoto cuando la carga falla\nOK 17 · No se confirma borrador remoto si el usuario cancela\nOK 18 · Se actualiza estado solo al cargar correctamente el borrador\nOK 19 · Las operaciones pendientes bloquean recuperación remota\nOK 20 · PDF original se incorpora con el mismo ID y token de sesión\nOK 21 · Cambiar de usuario durante FileReader impide escritura remota\nOK 22 · PDF vacío no es aceptado por el archivo actual\nOK 23 · PDF con tipo incorrecto se rechaza antes de guardarlo\nOK 24 · El archivo PDF se valida y se verifica después de convertirlo\nOK 25 · Al copiar conflictos se relee la cola bajo transacción\nOK 26 · La app carga el módulo de recuperación antes del núcleo de guardado\nOK 27 · Las banderas de escritura remota permanecen desactivadas\nPASS · 27 pruebas v295, sin conectar el servidor.\n"
+  },
+  {
+    "test": "test-revisores-v308.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK buscador: usuarios activos, tildes, rol, consulta admin de solo lectura y cuenta básica sin acceso a directorio.\n"
+  },
+  {
+    "test": "test-seguridad-y-guardado-v291.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · Área activa autorizada\nOK 02 · Área desactivada rechazada\nOK 03 · Área inexistente rechazada\nOK 04 · Área perteneciente a otra tarjeta rechazada\nOK 05 · Área no autorizada rechazada\nOK 06 · Tarjeta activa requiere al menos un área\nOK 07 · Tarjeta no habilitada no exige áreas\nOK 08 · Cambio rol autorizado requiere administrador válido\nOK 09 · Cambio rol rechaza ficha nula\nOK 10 · Cambio rol rechaza ficha incompleta\nOK 11 · Cambio rol rechaza el propio rol\nOK 12 · Cambio rol protege administrador global de destino\nOK 13 · Cambio rol comprueba identidad actual del administrador\nOK 14 · Cambio rol no se permite a supervisor\nOK 15 · Cambio de rol borra facultades especiales no autorizadas\nOK 16 · Administrador solo escribe en tarjeta autorizada\nOK 17 · Administrador no escribe en tarjeta denegada\nOK 18 · Un usuario necesita módulo permitido y permiso de edición\nOK 19 · Sesión distinta bloquea edición y guardado local\nOK 20 · Cambio de tarjeta sin refrescar sesión bloquea escritura\nOK 21 · Perfil inactivo bloquea guardado\nOK 22 · Sin autorización de guardado local no se edita\nOK 23 · No activar servidor ni gestión de usuarios en versión de desarrollo\nOK 24 · Cambio de acceso inválido sin motivo o confirmación\nOK 25 · Acceso: revisión posterior debe incrementarse\nOK 26 · Acceso: rechazar estado sin nueva revisión confirmada\nOK 27 · Acceso: rechazar estado incorrecto aunque aumente revisión\nPASS · 27 pruebas de seguridad y guardado, sin escrituras reales.\n"
+  },
+  {
+    "test": "test-sesion-v313.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK v313: cambio de sesión limpia formularios, listado, búsqueda y expedientes\n"
+  },
+  {
+    "test": "test-validacion-dos-modulos-v294.cjs",
+    "scope": "v333",
+    "exit": 0,
+    "output": "OK 01 · APR: acepta respuesta correcta sin PDF\nOK 02 · APR: rechazo de tarjeta contraria\nOK 03 · APR: rechazo de identificador equivocado\nOK 04 · APR: rechazo de reportId incompatible\nOK 05 · APR: lectura sin PDF no sobrescribe historial local\nOK 06 · APR: recuperación con PDF válido se almacena\nOK 07 · APR: servidor de módulo ajeno bloqueado antes de archivar\nOK 08 · OTROS: acepta respuesta correcta sin PDF\nOK 09 · OTROS: rechazo de tarjeta contraria\nOK 10 · OTROS: rechazo de identificador equivocado\nOK 11 · OTROS: rechazo de reportId incompatible\nOK 12 · OTROS: lectura sin PDF no sobrescribe historial local\nOK 13 · OTROS: recuperación con PDF válido se almacena\nOK 14 · OTROS: servidor de módulo ajeno bloqueado antes de archivar\nOK 15 · Consulta local no deriva al servidor aunque esté conectado\nOK 16 · Resumen remoto usa servidor cuando está autorizado\nOK 17 · Resumen remoto sin conexión conserva PDF del propietario\nOK 18 · No se exponen informes remotos ajenos sin conexión\nOK 19 · Sin archivo local y sin servidor devuelve ausencia, no inventa PDF\nOK 20 · Sin archivo local y con servidor intenta recuperar\nOK 21 · PDF remoto incompleto bloqueado\nOK 22 · PDF remoto con metadata de otro informe bloqueado\nOK 23 · PDF remoto ausente no se interpreta como archivo descargado\nOK 24 · PDF válido con identificador correcto\nOK 25 · La tarjeta OTROS rechaza actividades de APR en respaldo\nOK 26 · La tarjeta APR conserva actividades y fotografías\nOK 27 · La tarjeta OTROS admite hallazgos y fotografías\nOK 28 · No se modificó el selector de riesgos oficial v293\nOK 29 · Interfaz integra nueva validación antes de seguridad y conexión\nOK 30 · Copia central mantiene desactivadas las escrituras\nPASS · 30 pruebas v294 aisladas. Sin credenciales ni operaciones remotas.\n"
+  }
+]

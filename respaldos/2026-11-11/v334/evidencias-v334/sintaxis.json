@@ -1,0 +1,302 @@
+[
+  {
+    "file": "access-policy-v256.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "access-settings-v259.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "actions-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "activity-workflow-v244.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "appearance-core-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "appearance-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "archive-policy-v293.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "areas-opciones-qa-v265.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "assignees-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "audit-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "auth-password-v275.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "backend-simulador-v263.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "borrador-diario-local-v318.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "catalogo-unificado-v282.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "causas-catalogo-v308.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "causas-datos-v308.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "cloud-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "commitment-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "config-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "control-accesos-v278.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "corrections-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "credentials-v274.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "facultades-laboratorio-v263.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "facultades-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "faculty-model-v261.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "ficha-backend-v279.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "finding-detail-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "gestion-usuarios-v265.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "identity-policy-v296.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "inbox-v245.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "integrity-v255.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "interfaz-local-v316.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "investigacion-accidentes-v305.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "investigacion-flujo-v308.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "investigacion-pdf-v332.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "laboratorio-backend-v263.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "laboratorio-ui-v263.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "mobile-landscape-v267.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "notifications-f251.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "operaciones-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "pending-dashboard-v250.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "pending-detail-v246.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "people-areas-v244.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "pilares-indicadores-v285.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "qa-sesion-v276.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "read-gate-v298.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "read-policy-v299.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "reassignment-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "recovery-policy-v295.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "remote-archive-v294.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "revisores-busqueda-v308.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "risk-catalog-v243.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "risk-seed-v252.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "role-control-v262.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "roles-dinamicos-v267.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "storage-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "sync-core-v242.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "verificacion-punto3-v266.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "vista-completa-preview-v265.js",
+    "exit": 0,
+    "error": ""
+  },
+  {
+    "file": "worker-model-v265.js",
+    "exit": 0,
+    "error": ""
+  }
+]

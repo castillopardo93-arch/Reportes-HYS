@@ -1,53 +1,35 @@
-# Índice histórico de respaldos — Reportes HYS
+# Índice histórico de respaldos
 
-Este directorio conserva **la estructura preexistente** `respaldos/AAAA-MM-DD/` de la rama principal.
-Las carpetas originales del 26 al 30 de octubre de 2026 permanecen intactas.
+**Última versión de desarrollo disponible:** [v334](2026-11-11/v334/).
 
-## Respaldos incorporados (copias, no traslados)
+Los respaldos se consultan en main con el formato respaldos/AAAA-MM-DD/vNNN/.
 
-| Fecha de referencia (Chile) | Versiones archivadas |
+| Día de trabajo en Chile | Versiones disponibles |
 | --- | --- |
-| 2026-11-03 | v237, v238 |
-| 2026-11-04 | v239, v240 |
-| 2026-11-05 | v241–v253 (incluye variantes v247/v248 conservadas tal como existen en sus ramas) |
-| 2026-11-06 | v254–v259 |
-| 2026-11-07 | v260–v261 |
-| 2026-11-08 | v262–v284 |
-| 2026-11-09 | v285–v307 |
-| 2026-11-10 | v308–v312 |
+| [2026-10-26](2026-10-26/) | [v1](2026-10-26/v1/), [v2](2026-10-26/v2/) |
+| [2026-10-27](2026-10-27/) | [v3](2026-10-27/v3/), [v4](2026-10-27/v4/), [v5](2026-10-27/v5/), [v6](2026-10-27/v6/), [v7](2026-10-27/v7/), [v8](2026-10-27/v8/), [v9](2026-10-27/v9/), [v10](2026-10-27/v10/), [v11](2026-10-27/v11/), [v12](2026-10-27/v12/), [v13](2026-10-27/v13/), [v14](2026-10-27/v14/), [v15](2026-10-27/v15/), [v16](2026-10-27/v16/), [v17](2026-10-27/v17/), [v18](2026-10-27/v18/), [v19](2026-10-27/v19/), [v20](2026-10-27/v20/), [v21](2026-10-27/v21/), [v22](2026-10-27/v22/), [v23](2026-10-27/v23/), [v24](2026-10-27/v24/), [v25](2026-10-27/v25/), [v26](2026-10-27/v26/), [v27](2026-10-27/v27/), [v28](2026-10-27/v28/), [v29](2026-10-27/v29/), [v30](2026-10-27/v30/), [v31](2026-10-27/v31/), [v32](2026-10-27/v32/), [v33](2026-10-27/v33/), [v34](2026-10-27/v34/), [v35](2026-10-27/v35/), [v36](2026-10-27/v36/), [v37](2026-10-27/v37/), [v38](2026-10-27/v38/), [v40](2026-10-27/v40/), [v41](2026-10-27/v41/), [v42](2026-10-27/v42/), [v43](2026-10-27/v43/), [v44](2026-10-27/v44/), [v45](2026-10-27/v45/), [v46](2026-10-27/v46/), [v47](2026-10-27/v47/), [v48](2026-10-27/v48/), [v49](2026-10-27/v49/), [v50](2026-10-27/v50/), [v51](2026-10-27/v51/), [v52](2026-10-27/v52/), [v53](2026-10-27/v53/), [v54](2026-10-27/v54/), [v55](2026-10-27/v55/), [v56](2026-10-27/v56/), [v57](2026-10-27/v57/), [v58](2026-10-27/v58/), [v59](2026-10-27/v59/), [v60](2026-10-27/v60/), [v61](2026-10-27/v61/), [v62](2026-10-27/v62/), [v63](2026-10-27/v63/), [v64](2026-10-27/v64/), [v65](2026-10-27/v65/), [v66](2026-10-27/v66/), [v67](2026-10-27/v67/), [v68](2026-10-27/v68/), [v69](2026-10-27/v69/), [v70](2026-10-27/v70/), [v71](2026-10-27/v71/), [v72](2026-10-27/v72/), [v73](2026-10-27/v73/), [v74](2026-10-27/v74/), [v75](2026-10-27/v75/), [v76](2026-10-27/v76/), [v77](2026-10-27/v77/), [v78](2026-10-27/v78/), [v79](2026-10-27/v79/), [v80](2026-10-27/v80/), [v81](2026-10-27/v81/), [v82](2026-10-27/v82/), [v83](2026-10-27/v83/), [v84](2026-10-27/v84/), [v85](2026-10-27/v85/), [v86](2026-10-27/v86/), [v87](2026-10-27/v87/), [v88](2026-10-27/v88/), [v89](2026-10-27/v89/), [v90](2026-10-27/v90/), [v91](2026-10-27/v91/), [v92](2026-10-27/v92/), [v93](2026-10-27/v93/), [v94](2026-10-27/v94/), [v95](2026-10-27/v95/), [v96](2026-10-27/v96/), [v97](2026-10-27/v97/), [v98](2026-10-27/v98/), [v99](2026-10-27/v99/), [v100](2026-10-27/v100/), [v101](2026-10-27/v101/), [v102](2026-10-27/v102/), [v103](2026-10-27/v103/), [v104](2026-10-27/v104/), [v105](2026-10-27/v105/), [v106](2026-10-27/v106/), [v107](2026-10-27/v107/), [v108](2026-10-27/v108/), [v109](2026-10-27/v109/), [v110](2026-10-27/v110/), [v111](2026-10-27/v111/), [v112](2026-10-27/v112/), [v113](2026-10-27/v113/), [v114](2026-10-27/v114/), [v115](2026-10-27/v115/), [v116](2026-10-27/v116/), [v117](2026-10-27/v117/), [v118](2026-10-27/v118/), [v119](2026-10-27/v119/), [v120](2026-10-27/v120/), [v121](2026-10-27/v121/), [v122](2026-10-27/v122/), [v123](2026-10-27/v123/), [v124](2026-10-27/v124/), [v125](2026-10-27/v125/), [v126](2026-10-27/v126/), [v127](2026-10-27/v127/), [v128](2026-10-27/v128/), [v129](2026-10-27/v129/), [v130](2026-10-27/v130/), [v131](2026-10-27/v131/), [v132](2026-10-27/v132/), [v133](2026-10-27/v133/), [v134](2026-10-27/v134/), [v135](2026-10-27/v135/), [v136](2026-10-27/v136/), [v137](2026-10-27/v137/), [v138](2026-10-27/v138/), [v139](2026-10-27/v139/), [v140](2026-10-27/v140/), [v141](2026-10-27/v141/), [v142](2026-10-27/v142/) |
+| [2026-10-28](2026-10-28/) | [v143](2026-10-28/v143/), [v144](2026-10-28/v144/), [v145](2026-10-28/v145/), [v146](2026-10-28/v146/), [v147](2026-10-28/v147/), [v148](2026-10-28/v148/), [v149](2026-10-28/v149/), [v150](2026-10-28/v150/), [v151](2026-10-28/v151/), [v152](2026-10-28/v152/), [v153](2026-10-28/v153/), [v154](2026-10-28/v154/), [v155](2026-10-28/v155/), [v156](2026-10-28/v156/), [v157](2026-10-28/v157/), [v158](2026-10-28/v158/), [v159](2026-10-28/v159/), [v160](2026-10-28/v160/), [v161](2026-10-28/v161/), [v162](2026-10-28/v162/), [v163](2026-10-28/v163/), [v164](2026-10-28/v164/), [v165](2026-10-28/v165/), [v166](2026-10-28/v166/), [v167](2026-10-28/v167/), [v168](2026-10-28/v168/), [v169](2026-10-28/v169/), [v170](2026-10-28/v170/), [v171](2026-10-28/v171/), [v172](2026-10-28/v172/), [v173](2026-10-28/v173/), [v174](2026-10-28/v174/), [v175](2026-10-28/v175/), [v176](2026-10-28/v176/), [v177](2026-10-28/v177/), [v178](2026-10-28/v178/), [v179](2026-10-28/v179/), [v180](2026-10-28/v180/), [v181](2026-10-28/v181/), [v182](2026-10-28/v182/), [v183](2026-10-28/v183/), [v184](2026-10-28/v184/), [v185](2026-10-28/v185/), [v186](2026-10-28/v186/), [v187](2026-10-28/v187/), [v188](2026-10-28/v188/), [v189](2026-10-28/v189/), [v190](2026-10-28/v190/), [v191](2026-10-28/v191/), [v192](2026-10-28/v192/), [v193](2026-10-28/v193/), [v194](2026-10-28/v194/), [v195](2026-10-28/v195/), [v196](2026-10-28/v196/) |
+| [2026-10-29](2026-10-29/) | [v197](2026-10-29/v197/), [v198](2026-10-29/v198/), [v199](2026-10-29/v199/), [v200](2026-10-29/v200/), [v201](2026-10-29/v201/), [v202](2026-10-29/v202/), [v203](2026-10-29/v203/), [v204](2026-10-29/v204/), [v205](2026-10-29/v205/), [v206](2026-10-29/v206/), [v207](2026-10-29/v207/), [v208](2026-10-29/v208/), [v209](2026-10-29/v209/), [v210](2026-10-29/v210/), [v211](2026-10-29/v211/), [v212](2026-10-29/v212/), [v213](2026-10-29/v213/), [v214](2026-10-29/v214/), [v215](2026-10-29/v215/), [v216](2026-10-29/v216/), [v217](2026-10-29/v217/), [v218](2026-10-29/v218/), [v219](2026-10-29/v219/), [v220](2026-10-29/v220/), [v221](2026-10-29/v221/), [v222](2026-10-29/v222/), [v223](2026-10-29/v223/), [v224](2026-10-29/v224/), [v225](2026-10-29/v225/), [v226](2026-10-29/v226/), [v227](2026-10-29/v227/), [v228](2026-10-29/v228/), [v229](2026-10-29/v229/), [v230](2026-10-29/v230/) |
+| [2026-10-30](2026-10-30/) | [v231](2026-10-30/v231/), [v232](2026-10-30/v232/), [v233](2026-10-30/v233/), [v234](2026-10-30/v234/) |
+| [2026-11-03](2026-11-03/) | [v233](2026-11-03/v233/), [v237](2026-11-03/v237/), [v238](2026-11-03/v238/) |
+| [2026-11-04](2026-11-04/) | [v239](2026-11-04/v239/), [v240](2026-11-04/v240/) |
+| [2026-11-05](2026-11-05/) | [v241](2026-11-05/v241/), [v242](2026-11-05/v242/), [v243](2026-11-05/v243/), [v244](2026-11-05/v244/), [v245](2026-11-05/v245/), [v246](2026-11-05/v246/), [v247](2026-11-05/v247/), [v248](2026-11-05/v248/), [v249](2026-11-05/v249/), [v250](2026-11-05/v250/), [v251](2026-11-05/v251/), [v252](2026-11-05/v252/), [v253](2026-11-05/v253/) |
+| [2026-11-06](2026-11-06/) | [v254](2026-11-06/v254/), [v255](2026-11-06/v255/), [v256](2026-11-06/v256/), [v257](2026-11-06/v257/), [v258](2026-11-06/v258/), [v259](2026-11-06/v259/) |
+| [2026-11-07](2026-11-07/) | [v259](2026-11-07/v259/), [v260](2026-11-07/v260/), [v261](2026-11-07/v261/) |
+| [2026-11-08](2026-11-08/) | [v262](2026-11-08/v262/), [v263](2026-11-08/v263/), [v264](2026-11-08/v264/), [v265](2026-11-08/v265/), [v266](2026-11-08/v266/), [v267](2026-11-08/v267/), [v268](2026-11-08/v268/), [v269](2026-11-08/v269/), [v270](2026-11-08/v270/), [v271](2026-11-08/v271/), [v272](2026-11-08/v272/), [v273](2026-11-08/v273/), [v274](2026-11-08/v274/), [v275](2026-11-08/v275/), [v276](2026-11-08/v276/), [v277](2026-11-08/v277/), [v278](2026-11-08/v278/), [v279](2026-11-08/v279/), [v280](2026-11-08/v280/), [v281](2026-11-08/v281/), [v282](2026-11-08/v282/), [v283](2026-11-08/v283/), [v284](2026-11-08/v284/) |
+| [2026-11-09](2026-11-09/) | [v285](2026-11-09/v285/), [v286](2026-11-09/v286/), [v287](2026-11-09/v287/), [v288](2026-11-09/v288/), [v289](2026-11-09/v289/), [v290](2026-11-09/v290/), [v291](2026-11-09/v291/), [v292](2026-11-09/v292/), [v293](2026-11-09/v293/), [v294](2026-11-09/v294/), [v295](2026-11-09/v295/), [v296](2026-11-09/v296/), [v297](2026-11-09/v297/), [v298](2026-11-09/v298/), [v299](2026-11-09/v299/), [v300](2026-11-09/v300/), [v301](2026-11-09/v301/), [v302](2026-11-09/v302/), [v303](2026-11-09/v303/), [v304](2026-11-09/v304/), [v305](2026-11-09/v305/), [v306](2026-11-09/v306/), [v307](2026-11-09/v307/) |
+| [2026-11-10](2026-11-10/) | [v308](2026-11-10/v308/), [v309](2026-11-10/v309/), [v310](2026-11-10/v310/), [v311](2026-11-10/v311/), [v312](2026-11-10/v312/) |
+| [2026-11-11](2026-11-11/) | [v333](2026-11-11/v333/), [v334](2026-11-11/v334/) |
 
-Las fechas agrupan versiones según la fecha de referencia del historial Git disponible; **no sustituyen** la fecha de creación original de cada archivo o versión. Para auditar una fecha exacta, consultar el historial de la rama de origen.
+Las fechas históricas provienen de los respaldos documentados y del historial Git. Una versión aparece en más de una fecha cuando existen estados distintos documentados. Los ZIP v333 y v334 se registraron en la jornada indicada, 11 de noviembre.
 
-Se copiaron las carpetas de aplicación y las de evidencia disponibles, sin sobrescribir el historial de cada rama. Algunas versiones tempranas no tienen un directorio numerado propio en el último árbol y sus estados/variantes se conservaron conforme a los objetos de Git existentes. La rama `main` no incorpora cambios de lógica ni de despliegue: el cambio se limita a `respaldos/`.
+El [laboratorio v259](2026-11-07/v259/v259-audit-lab/) se registró el 7 de noviembre. Las copias aprobadas también conservan sus rutas de publicación.
 
-### Convenciones
-- `vNNN-review/`: copia de desarrollo/revisión de una versión.
-- `vNNN/`: copia de versión cuando esta carpeta existe.
-- `evidencias-vNNN/`: pruebas y reportes de auditoría disponibles.
-- `v266-avance-formulario-usuarios/` y `v248-workspace-v247/`: variantes paralelas, conservadas para no perder trabajo.
-- Las ramas originales `desarrollo/*` siguen siendo la referencia de historial y permanecen sin modificaciones.
+No se localizaron originales de v235, v236 ni v313 a v332 en el historial Git disponible.
 
-### Estado de v333 y v334
+## ZIP originales
 
-A 2026-11-11, **no se identificaron ramas ni carpetas v333/v334** en este repositorio remoto conectado. No se deben inventar respaldos para esas versiones. Antes de incorporarlas, localizar sus fuentes reales (posiblemente en otro repositorio o exclusivamente en el computador local) y comprobar su integridad.
-
-### Protección
-No modificar copias históricas. Para cada nuevo respaldo, agregar una subcarpeta en la fecha correspondiente sin alterar carpetas anteriores. No confundir archivar una versión con aprobarla o publicarla.
-
-
-## Otras ramas históricas archivadas en `main`
-
-| Fecha | Carpeta en `respaldos/` | Procedencia |
+| Versión | Archivo | SHA-256 |
 | --- | --- | --- |
-| 2026-10-26 | `preparacion-v1/` | Rama `preparacion-v1` (instantánea histórica) |
-| 2026-11-03 | `v233-admin-users-rama-original/` | Rama `desarrollo/v233-admin-users` (instantánea histórica) |
-| 2026-11-05 | `v248-rama-original/` | Rama `desarrollo/v248` (revisión atípica sin carpeta v248 propia) |
-| 2026-11-06 | `v258-excel-lab-integracion/` | Rama `desarrollo/excel-v258-integracion-pruebas` |
-| 2026-11-06 | `v258-excel-lab-auditoria/` | Rama `desarrollo/excel-v258-auditoria-offline` |
-| 2026-11-09 | `informes-historial/` | Rama `informes/historial-2026-11-09` |
-
-La rama `respaldo/orden-historico-2026-11-11` ya contiene las mismas carpetas por fecha que `main` antes de las variantes adicionales; se conserva su historial. Las demás ramas originales continúan disponibles porque una copia en `main` no elimina ni fusiona automáticamente una rama Git.
-
-**Uso recomendado en Visual Studio Code:** trabajar en `main` únicamente para consultar `respaldos/`; para corregir código crear una versión de desarrollo nueva y separada. Para ver copias recientes usar `git fetch origin` seguido de `git pull --ff-only origin main` únicamente cuando no existan cambios locales pendientes. Nunca usar `git reset --hard` para actualizar respaldos.
-
-**Pendiente:** v333 y v334 no están presentes en las ramas disponibles de este repositorio remoto; localizar los originales antes de agregarlas.
+| v333 | [Reportes_HYS_v333.zip](2026-11-11/v333/Reportes_HYS_v333.zip) | c24c01761a661d8df5fbc6875de97037f766244a331299175d7a26cb50122bbf |
+| v334 | [Reportes_HYS_v334.zip](2026-11-11/v334/Reportes_HYS_v334.zip) | 5d6b9e53b3a740a8270998841826a6e5202a5d4011828b4869cc7f48c1544b1d |

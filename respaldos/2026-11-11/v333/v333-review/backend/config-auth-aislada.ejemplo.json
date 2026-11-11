@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:54321/",
+  "publicKey": "REEMPLAZAR_CLAVE_PUBLICA_LOCAL",
+  "projectMarker": "QA-v326",
+  "author": {
+    "email": "elaborador@prueba.invalid",
+    "password": "REEMPLAZAR_CLAVE_FICTICIA"
+  },
+  "viewer": {
+    "email": "consulta@prueba.invalid",
+    "password": "REEMPLAZAR_CLAVE_FICTICIA"
+  },
+  "reports": {
+    "allowedApr": "v242-00000000-0000-4000-8000-000000000001",
+    "otherAreaApr": "v242-00000000-0000-4000-8000-000000000002",
+    "otherModule": "v242-00000000-0000-4000-8000-000000000003"
+  }
+}

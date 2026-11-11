@@ -1,0 +1,39 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node --test *.test.cjs
+
+✔ Interfaz avanzada: evidencia, revisión, corrección y cierre con facultad (6357.49541ms)
+✔ El mismo token pierde listado y descarga al revocar su área en PostgreSQL (2606.463516ms)
+✔ Interfaz avanzada abre Investigación y recupera borrador desde la cinta (3868.000108ms)
+✔ El modal de Investigación conserva el foco y lo devuelve al cerrar (1062.888679ms)
+✔ Prevencionistas guarda y recupera datos y fotografía en un navegador sin caché previa (2347.240815ms)
+✔ La tarjeta Supervisores abre su formulario integrado sin pasar por Prevencionistas (1355.040905ms)
+✔ Flash y Final descargan PDF con el mismo código y nombres abreviados (1621.438917ms)
+✔ Final y Flash guardan, el navegador recupera tras reiniciar y el servidor rechaza ediciones obsoletas (3333.800001ms)
+▶ Persistencia, permisos y revisiones de investigación en PostgreSQL
+  ✔ Final incompleto abre su expediente y persiste al cerrar el motor (383.18251ms)
+  ✔ Aislamiento por área, búsqueda por tildes y acceso directo denegado (17.896265ms)
+  ✔ Evidencias privadas, archivo inválido y eliminación trazable (41.50539ms)
+  ✔ Validación, bloqueo de versión antigua y rechazo de aprobación de Final obsoleto (136.724693ms)
+  ✔ Aprobación y cierre separados, revocación efectiva y auditoría (34.629887ms)
+  ✔ Directorio elimina revisores al revocar el área autorizada (4.725889ms)
+  ✔ Reversión retira solo objetos nuevos (26.708925ms)
+✔ Persistencia, permisos y revisiones de investigación en PostgreSQL (3038.595427ms)
+✔ El nombre abrevia un involucrado y conserva la inicial del segundo apellido (2.534394ms)
+✔ PDF largo prevencionistas: títulos unidos, texto íntegro y fotos dentro de A4 (140.093992ms)
+✔ PDF largo supervisores: títulos unidos, texto íntegro y fotos dentro de A4 (34.86371ms)
+✔ Recorrido APR: PDF real con foto, cierre e historial separado (6214.921207ms)
+✔ Recorrido OTROS: PDF real con foto, cierre e historial separado (2354.34568ms)
+✔ RLS de informes protege directamente las filas, el módulo y los permisos (2677.706675ms)
+✔ Los tokens de informes vencen y cerrar una sesión no revoca otra cuenta (2.12698ms)
+✔ El ejecutor rechaza destinos remotos y claves privilegiadas (2.291018ms)
+✔ El ejecutor conserva el token durante la revocación y detecta permisos que siguen abiertos (206.113363ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10846.583512

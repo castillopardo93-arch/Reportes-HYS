@@ -1,0 +1,2376 @@
+[
+  {
+    "file": "MANIFIESTO.json",
+    "bytes": 63632,
+    "sha256": "d97f58190ea8dd215b6f6d5fd2de72ac7311ef5411c89fee1822b0454520a1b7"
+  },
+  {
+    "file": "README-v290.md",
+    "bytes": 199,
+    "sha256": "49696079778dc9a474f07da6d16909884ffd70c8cef464112519e9ab927d44b1"
+  },
+  {
+    "file": "README-v291.md",
+    "bytes": 152,
+    "sha256": "bc255f63eaa19b372f190e8f3894091eaaae918e31ea4be1963666879afe5611"
+  },
+  {
+    "file": "README-v292.md",
+    "bytes": 204,
+    "sha256": "b0d58e9cb2385ec49d67e0302d5ca78d62328a180a2a9f2f5cee25a7ca850941"
+  },
+  {
+    "file": "README-v293.md",
+    "bytes": 214,
+    "sha256": "b2a66b2e70d28e0b5ce52d31d237f85448cca72b92da36dbbeda0de3eeb65a8c"
+  },
+  {
+    "file": "README-v294.md",
+    "bytes": 171,
+    "sha256": "8f9f8ee3b153ceed59d4b4028057aa9d8fbbde64259d4198027212958ff01d55"
+  },
+  {
+    "file": "README-v295.md",
+    "bytes": 202,
+    "sha256": "2ac313f225ee86f993075750931e7998208c4c7cdd0e77e404421a76a7c062c9"
+  },
+  {
+    "file": "README-v296.md",
+    "bytes": 344,
+    "sha256": "323d456fbfa1baf1c40b368b9de5c6970e6d2ae477adef743c006f759a8427e5"
+  },
+  {
+    "file": "README-v297.md",
+    "bytes": 299,
+    "sha256": "4e10fcc9744dcdcaae4c7bc932e872fd098a408e229faf95fca5e6352875e0af"
+  },
+  {
+    "file": "README-v298.md",
+    "bytes": 257,
+    "sha256": "8f241e5da8734ec822783f56016df0c4c02d46a719628cc38bf8c22fb7367d42"
+  },
+  {
+    "file": "README-v299.md",
+    "bytes": 272,
+    "sha256": "bf639ec47c7b71fe75a4607c66c18100a8948b26005fb599bf7285c35684629a"
+  },
+  {
+    "file": "README-v300.md",
+    "bytes": 232,
+    "sha256": "43d5a6be4b95841a507189019498c26ca61ee5688b914c9555710d5c89a63eba"
+  },
+  {
+    "file": "README-v301.md",
+    "bytes": 177,
+    "sha256": "2f7690aa11c9ae98cfc2f49ebad40ba0068695ef8a9a18474035efa39779375e"
+  },
+  {
+    "file": "README-v302.md",
+    "bytes": 216,
+    "sha256": "ee746a660f0d09b2d2a942a6bfc89e14109fd92f93c86ab75a995ccf4871abf1"
+  },
+  {
+    "file": "README-v303.md",
+    "bytes": 244,
+    "sha256": "52db125c20a5cd381b75cb0d95198f753ebbc95c465d3e8b0f87c0b03ef1bf99"
+  },
+  {
+    "file": "README-v304.md",
+    "bytes": 296,
+    "sha256": "845d0734882dbac3b113013efd3589326f1f202d67924fea016b67caceccd3a0"
+  },
+  {
+    "file": "README-v305.md",
+    "bytes": 259,
+    "sha256": "ccb72894ea52a15610f7d27c7bbf2f52571070029990b176e59026af02165041"
+  },
+  {
+    "file": "README-v306.md",
+    "bytes": 270,
+    "sha256": "eb435b4e16bf84c8be07ab211713c79af685f99facd50af71b2acb9de3d260a2"
+  },
+  {
+    "file": "README-v307.md",
+    "bytes": 1183,
+    "sha256": "f35976a1b60cf0e6baec3f583fa91fe06f5ca168db1d0fc6ccabd3bee9b26fd6"
+  },
+  {
+    "file": "README-v309.md",
+    "bytes": 3355,
+    "sha256": "e6d1cc7a1b03bb724e63f58aba4f0061741c529387e4fb656955320909813cf3"
+  },
+  {
+    "file": "README-v310.md",
+    "bytes": 2453,
+    "sha256": "f1b7bf4617c32117450b04ee5fe6bc0ef7a06c8bdd900e3dda904755cecd18b3"
+  },
+  {
+    "file": "README-v312.md",
+    "bytes": 1664,
+    "sha256": "5c4683cc0d10affa86138fac4a149bf4e522a24506961b4a1b8c7562879668c9"
+  },
+  {
+    "file": "access-policy-v256.js",
+    "bytes": 1254,
+    "sha256": "8e9d5047d318fda1b05722de5595a9fb3f161e1b98ab41d4aa399c7d5a37114b",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "can"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "access-settings-v259.js",
+    "bytes": 2339,
+    "sha256": "d3090cafb3d357156c4deaaf46d899caa266771ee81d4daf5095faeda7b263a3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "label",
+      "stable",
+      "normalizedScope",
+      "plan"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "actions-v243.css",
+    "bytes": 2254,
+    "sha256": "58700b79a86026c2ca4a774b49e468e5d87bdba8280d96dfb6c5d4227f22098a",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "actions-v243.js",
+    "bytes": 15842,
+    "sha256": "f715c875bb1871996a2d4939f13a83c29ffb2b1ac69e9574d43cd88b30459878",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "focus",
+      "submit"
+    ],
+    "declared_functions": [
+      "validAction",
+      "verified",
+      "allRequiredVerified",
+      "validateActionList",
+      "makeDraft",
+      "actorMaySubmit",
+      "mount",
+      "read",
+      "listMarkup",
+      "setProvider",
+      "setContextProvider",
+      "enabled",
+      "onSubmit"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "activity-workflow-v244.css",
+    "bytes": 1336,
+    "sha256": "37c1b649f3361d2c9808bf126ebd7d1c5a44a821da55282459545c9cbba3783a",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "activity-workflow-v244.js",
+    "bytes": 10580,
+    "sha256": "f1c477539a1c761d622c9195f2ff26bbdbde3b89cc99dc336ef28bc5b930f621",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change"
+    ],
+    "declared_functions": [
+      "dateOK",
+      "findingChoices",
+      "snapshot",
+      "normalize",
+      "validate",
+      "formatFields",
+      "detailRow",
+      "setDirectoryProvider",
+      "enabled",
+      "mount",
+      "read"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "appearance-core-v242.js",
+    "bytes": 3980,
+    "sha256": "b313ee370da112f7f51ecab807ce346fbee37ece2e8886c613ed2164f28f3fc3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "normalize",
+      "luminance",
+      "contrast",
+      "foreground",
+      "validate"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "appearance-v242.css",
+    "bytes": 7826,
+    "sha256": "46b8d8fe749992618590b97c63ec68e5fd51a2d9f74dc09b466a3e5bae41073a",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "appearance-v242.js",
+    "bytes": 26669,
+    "sha256": "e9598d3ea27724d90651b12bfed28f3022c29e792070b22300c50fc6db4c4c0c",
+    "rpc_names": [],
+    "table_names": [
+      "apariencia_v242",
+      "historial_apariencia_v242"
+    ],
+    "events": [
+      "focus",
+      "keydown",
+      "load",
+      "message",
+      "online"
+    ],
+    "declared_functions": [
+      "readQA",
+      "writeQA",
+      "status",
+      "edited",
+      "fill",
+      "renderMock",
+      "fillPresetState",
+      "setText",
+      "refreshIdentity",
+      "apply",
+      "themeCSS",
+      "refresh",
+      "syncAccess",
+      "mount",
+      "open",
+      "checkDraft",
+      "close",
+      "publish",
+      "controls"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "archive-policy-v293.js",
+    "bytes": 5117,
+    "sha256": "09cda67cca6bd9164cbaeb1cd99e6f5fd3fd9885fa9299d1a80805b353e6f409",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "validatePhoto",
+      "remoteEnabled",
+      "canFetch",
+      "availability",
+      "mergeRemoteSummary",
+      "charBytes",
+      "limitBytes",
+      "namePart",
+      "reportFilenameBase",
+      "validPdfFilename"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "areas-opciones-qa-v265.js",
+    "bytes": 5331,
+    "sha256": "5c4895f971667343e4905fbe167b0fd266476d46312b30f8adf8b1b9e045345e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "hys263-lab-changed"
+    ],
+    "declared_functions": [
+      "write",
+      "available",
+      "render",
+      "openOriginal"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "assignee-selector-v243.css",
+    "bytes": 1690,
+    "sha256": "5611acf82cde21c28d9bb1fa630e7ddf9ed09f7934a3ac385477cee1448748f3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "assignees-v243.js",
+    "bytes": 8102,
+    "sha256": "c236389ee2c552260f2c875265a5c9f17c15c41219848d2175146bafe1eafa59",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "input"
+    ],
+    "declared_functions": [
+      "snapshot",
+      "snapshots",
+      "normalizedDirectory",
+      "filterDirectory",
+      "detailRow",
+      "setProvider",
+      "enabled",
+      "selected",
+      "changed",
+      "canSubmit",
+      "mountedPicker",
+      "mount",
+      "reset"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "audit-v243.css",
+    "bytes": 1768,
+    "sha256": "a46ae20cad07d0b7f7a63bc531185d3b02eb94c359819437aaadb4e4e8805166",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "audit-v243.js",
+    "bytes": 14778,
+    "sha256": "0ef00ae177b7924ba8518b41f50f9683fbfab370e615c8b4732d1027bfb9d7f7",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "submit"
+    ],
+    "declared_functions": [
+      "canRead",
+      "canManage",
+      "verifiedTasks",
+      "canRequestClose",
+      "canRequestReopen",
+      "validateRequest",
+      "validateEventLog",
+      "eventMarkup",
+      "setProvider",
+      "setContextProvider",
+      "enabled",
+      "panel",
+      "onClick",
+      "onSubmit"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "auth-password-v275.js",
+    "bytes": 7312,
+    "sha256": "13735cd1d41f90eb3fd2663e8a05727ea1013365b18f3d479618c28d5e6feb42",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change",
+      "click",
+      "submit"
+    ],
+    "declared_functions": [
+      "validatePassword",
+      "showStatus",
+      "open",
+      "close",
+      "errorText"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "backend/.gitignore",
+    "bytes": 25,
+    "sha256": "fd5a59b054146d31115049f3ca5f419b2c5503f72b6c11fb4896b4dcabe3544d"
+  },
+  {
+    "file": "backend/001-investigaciones.sql",
+    "bytes": 14982,
+    "sha256": "7880031de308c9ab4e7f42700bae70835ca7abbc0b7121f06c44e5312c2cdcce"
+  },
+  {
+    "file": "backend/001-reversion.sql",
+    "bytes": 693,
+    "sha256": "a951828575e3e1cfee9e4e28fdda35f4ad058f9c28e7d282ca8a2a2d8a02ea34"
+  },
+  {
+    "file": "backend/002-evidencias.sql",
+    "bytes": 4574,
+    "sha256": "cf5bf00eb42fa6e287348187abf16bfb816395f4a2fef561d873deb4d03b1770"
+  },
+  {
+    "file": "backend/002-reversion.sql",
+    "bytes": 219,
+    "sha256": "723853972c9619c083d8dccc87623ee64346a34cb8e2871c22ff736172d32869"
+  },
+  {
+    "file": "backend/003-evidencias-revision.sql",
+    "bytes": 5990,
+    "sha256": "1b87dc8f36cef7ed0694883d55703778334bacb614eb2132196fb8caf5f7048d"
+  },
+  {
+    "file": "backend/003-reversion.sql",
+    "bytes": 285,
+    "sha256": "fbffee2201dbd1531860b4838e3ed9bfe07672910ace03ccf98f120b584aa594"
+  },
+  {
+    "file": "backend/004-borradores-laboratorio.sql",
+    "bytes": 590,
+    "sha256": "de91332899479ed06889a2fba7a24278b4f75ed0b2fa3fa1638f18700c9516d9"
+  },
+  {
+    "file": "backend/005-cierre-laboratorio.sql",
+    "bytes": 441,
+    "sha256": "82e324a4c9b42dd00f82b273779024001afd75ff3632b21fe5ecd5da2e3f9cb7"
+  },
+  {
+    "file": "backend/006-acuse-cierre-laboratorio.sql",
+    "bytes": 174,
+    "sha256": "0a6a5e749873ab270918f96d9962e51d0abefd944e8f11adacde5cfba04d5d5f"
+  },
+  {
+    "file": "backend/007-identidad-informe-laboratorio.sql",
+    "bytes": 163,
+    "sha256": "c029da34f4bdf433a0c113c33bf8a1ce9c81c221d595b32957ac850c1aec696c"
+  },
+  {
+    "file": "backend/008-rls-informes-laboratorio.sql",
+    "bytes": 3175,
+    "sha256": "93b2638264dcd7ab8858c84e5193d1adf778e60dcc08fcbb513e78995f2ea4e7"
+  },
+  {
+    "file": "backend/009-alcance-area-laboratorio.sql",
+    "bytes": 1794,
+    "sha256": "6ba3548f6491b5bf414eac3fcc612cee7eb407039fa11056d314878d677d20d5"
+  },
+  {
+    "file": "backend/010-indice-historial-laboratorio.sql",
+    "bytes": 151,
+    "sha256": "f363989cdc98419ccd127f020d35737f40ecef0335d09a423c9a7721750073fe"
+  },
+  {
+    "file": "backend/011-codigo-investigacion-laboratorio.sql",
+    "bytes": 1952,
+    "sha256": "cb80d8aeb8b11aaf5dadcf0b217c516241d8e3ba5bb82394442c9b5f191e24f5"
+  },
+  {
+    "file": "backend/012-auditoria-investigacion-laboratorio.sql",
+    "bytes": 4310,
+    "sha256": "230f81c201ec535489e4302d7651cddf726e743d0db24d0235c80970f1ae3d7a"
+  },
+  {
+    "file": "backend/LEEME-AUTH-AISLADA.md",
+    "bytes": 2007,
+    "sha256": "09eb6605e5ba009df1843d242ea185d1c144159404f8ad74a9f121592746048a"
+  },
+  {
+    "file": "backend/LEEME-INTERFAZ.md",
+    "bytes": 6279,
+    "sha256": "25f2f844b91febe177a3e2e12286f39aae76dbf79c6df247fc97520da7cd128c"
+  },
+  {
+    "file": "backend/LEEME-LABORATORIO.md",
+    "bytes": 384,
+    "sha256": "977fc8dc17f3e714a78e6e2a239279429a66074fcf7b00c949e545e381420b1c"
+  },
+  {
+    "file": "backend/README.md",
+    "bytes": 2419,
+    "sha256": "8799957266f7dc0b8c9d05fefbad9b02b48bdb96c26d4d6cffdce0a9d7e183b0"
+  },
+  {
+    "file": "backend/adjuntos-revision.test.cjs",
+    "bytes": 11968,
+    "sha256": "913fe369d5c636822efd7cb39dbbb76e7f36e84713e6b952b39ccdd257c970aa"
+  },
+  {
+    "file": "backend/alcance-revocacion.test.cjs",
+    "bytes": 4228,
+    "sha256": "69c77dda58df857157f6663b5b84d1a5a5a51554dbef6a477d065fe9137f5ee2"
+  },
+  {
+    "file": "backend/borrador-local.cjs",
+    "bytes": 6391,
+    "sha256": "7a1d2c65efcbc03286c77fd99f003b21a8b9c478c72f7f9f05ca02a1ab8c4810"
+  },
+  {
+    "file": "backend/config-auth-aislada.ejemplo.json",
+    "bytes": 537,
+    "sha256": "542e8a56f9ab3f4b455b0bb0dce40ec1ff4eb4874d4d25725d544653f2fed0e8"
+  },
+  {
+    "file": "backend/fixture-local.cjs",
+    "bytes": 2385,
+    "sha256": "f95fe1caa0df86cdf6e9543fce17021013ff41b8490264cf5fe50a4807f4ed39"
+  },
+  {
+    "file": "backend/fixture-permisos.sql",
+    "bytes": 3269,
+    "sha256": "94be0b2de72970488bd1cbb8c81c6e7b782ab55d48575784ab6572661a28250a"
+  },
+  {
+    "file": "backend/interfaz-avanzada.test.cjs",
+    "bytes": 12856,
+    "sha256": "88751e11578345e1903be10edf7a64de2c17d7e8cff17186a74ae3ba619490a9"
+  },
+  {
+    "file": "backend/interfaz-local.test.cjs",
+    "bytes": 4092,
+    "sha256": "88715f28c85030325b8a3a973511c6d98ceb6bc682c7d36040d1e0cbee3fcce0"
+  },
+  {
+    "file": "backend/investigacion.test.cjs",
+    "bytes": 7913,
+    "sha256": "7230957f86678159fb042c2ff1e764fa8d578e087448092838a77cd811c5154b"
+  },
+  {
+    "file": "backend/nombres-investigacion.test.cjs",
+    "bytes": 935,
+    "sha256": "b08229ca4d9aaeba78fb3b68edfd1e6902502ad82246da25d0f1d93a77f061b5"
+  },
+  {
+    "file": "backend/package-lock.json",
+    "bytes": 19358,
+    "sha256": "c47b7ab2875e114ddf74b99e66a6b7221f4b6ef860da8327485494fff2eb1226"
+  },
+  {
+    "file": "backend/package.json",
+    "bytes": 314,
+    "sha256": "d02c7a14348d05d88815c4ce9990fdb67a75e3dfdf45d04a007ff48d901ab3d3"
+  },
+  {
+    "file": "backend/paginacion-pdf.test.cjs",
+    "bytes": 3563,
+    "sha256": "0072043ef76b9e57bedaf5a840827558e51c2ea329356aad910e92b992d98664"
+  },
+  {
+    "file": "backend/recorrido-informe.test.cjs",
+    "bytes": 15683,
+    "sha256": "de5ef654be2950f656c5e3aebd7cbee783916d63dd2a662dc6c63f9c4ebb02ad"
+  },
+  {
+    "file": "backend/rls-informes.test.cjs",
+    "bytes": 3260,
+    "sha256": "7c898a8ccbcd92acaa6f988c143e70f4329255e0632ada7a8c8544781bad79f2"
+  },
+  {
+    "file": "backend/servidor-local.cjs",
+    "bytes": 10726,
+    "sha256": "e5761330c2ff284afdbf7be57a769f746338f6381f9d1dd606a557331de89fd3"
+  },
+  {
+    "file": "backend/sesiones-informes-local.cjs",
+    "bytes": 1989,
+    "sha256": "6d2054deb05608f3fb58478037a2ca307a36e4d628cd7f8764139aa71dd9ad14"
+  },
+  {
+    "file": "backend/sesiones-informes.test.cjs",
+    "bytes": 867,
+    "sha256": "1a068b47d2f23f06660081da82e867c3249dcc49564d433c5218842be49ae829"
+  },
+  {
+    "file": "backend/verificar-supabase-auth.cjs",
+    "bytes": 6073,
+    "sha256": "41664f8f4a1ef8f2dd1626e0aa7c65e6075af50b4d758eb2efbdef676c83adfd"
+  },
+  {
+    "file": "backend/verificar-supabase-auth.test.cjs",
+    "bytes": 2905,
+    "sha256": "c7e3c712a0c86fe105bf4178df0d73328039a94dea75c31891ed6208b42b1e66"
+  },
+  {
+    "file": "backend-simulador-v263.js",
+    "bytes": 18930,
+    "sha256": "20c3089f5277f1065a41e93850fda64ee914ab36131451c99ed9b1a81008bbc6",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "normalize",
+      "persist",
+      "write",
+      "assertScopes",
+      "assertRevision",
+      "updateFaculties",
+      "atomic",
+      "assign",
+      "changeUser",
+      "rpc",
+      "from",
+      "createUser",
+      "updateUser",
+      "newArea",
+      "updateArea",
+      "createOption",
+      "updateOption",
+      "validateWorkerTransaction",
+      "createWorker",
+      "updateWorker",
+      "originalFacSnapshot",
+      "reset",
+      "report"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "borrador-diario-local-v318.js",
+    "bytes": 12191,
+    "sha256": "bb7fb54135913a17b6a3e6e4c095ab854b1f9831fe76e48ad4a51899a7012c72",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "reportes-hys-access-changed",
+      "storage",
+      "submit"
+    ],
+    "declared_functions": [
+      "post",
+      "request",
+      "changeSession",
+      "resetSessionViews",
+      "button",
+      "archiveRequest",
+      "resetHistory",
+      "firstHistoryPage"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "catalogo-unificado-v282.js",
+    "bytes": 20150,
+    "sha256": "a2c745f6cd6e4f1796915c8d8ca79e565d8cd95b93dff27a4d4ef8bf57898236",
+    "rpc_names": [
+      "hys282_catalogo_capacidades",
+      "hys282_catalogo_mutar"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "auditoria_areas_v242",
+      "eventos_v242",
+      "listas_v242",
+      "regimenes_laborales_v281"
+    ],
+    "events": [
+      "change",
+      "click",
+      "submit"
+    ],
+    "declared_functions": [
+      "validateValue",
+      "capability",
+      "list",
+      "audit",
+      "mutate",
+      "create",
+      "sync",
+      "mount",
+      "switchTab",
+      "setSelectors",
+      "setModules",
+      "load",
+      "createRow",
+      "paragraph",
+      "submit",
+      "open"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "causas-catalogo-v308.js",
+    "bytes": 4565,
+    "sha256": "9473f7d62e840847c5521098a73075b7c89090bbc628ab0b14e86dbd17b78404",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "validateCatalog",
+      "updateOptions"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "causas-datos-v308.js",
+    "bytes": 11375,
+    "sha256": "d24b8ba689224b2a09a130c608d56074f0b45df7f21d861e6837892db4284a1c",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "cloud-v242.js",
+    "bytes": 38520,
+    "sha256": "c0a513c1ad0d92387d5a7ac4e14bae09ec6d2814493685aeab6d5cc49d9f2581",
+    "rpc_names": [
+      "hys242_cargar_informe",
+      "hys242_consultar_informes",
+      "hys242_guardar_con_motivo",
+      "hys242_recuperar_borrador"
+    ],
+    "table_names": [
+      "areas_trabajo_",
+      "listas_"
+    ],
+    "events": [
+      "beforeunload",
+      "change",
+      "click",
+      "offline",
+      "online",
+      "pagehide",
+      "submit"
+    ],
+    "declared_functions": [
+      "editable",
+      "canWrite",
+      "allowedManage",
+      "message",
+      "central",
+      "canReadCentral",
+      "localConflict255",
+      "database",
+      "adapter",
+      "compareAndBatch",
+      "call",
+      "fallbackStore",
+      "pendingStatus",
+      "row",
+      "draft",
+      "schedule",
+      "onSave",
+      "flush",
+      "enforceOwner",
+      "changeCatalog",
+      "normalizedCatalog",
+      "refreshCatalog",
+      "blobFromBase64",
+      "refreshReports",
+      "fetchReport",
+      "loadReport",
+      "apply",
+      "recoverDraft",
+      "download",
+      "onAccess",
+      "setWriteAccess",
+      "finalizeReport",
+      "startNew",
+      "onArchive",
+      "newConflictCopy",
+      "preserveBeforeRefresh",
+      "mountManagementRail",
+      "syncManagementRail",
+      "updateManagement"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "commitment-v243.css",
+    "bytes": 892,
+    "sha256": "0b98c979ba9912794560076080dacce832e05071c0964b48e4b36773e615efcb",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "commitment-v243.js",
+    "bytes": 2943,
+    "sha256": "de6e01add37ce41328830b77c538149ed0eaeb4be28f8d5d087bdb8ad66a997c",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "validDate",
+      "normalizeDate",
+      "displayDate",
+      "dateFromRecord",
+      "escape",
+      "detailRow",
+      "mount",
+      "readDate",
+      "mergeMetadata"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "config-v242.js",
+    "bytes": 2300,
+    "sha256": "41ccd044d20aece96fb557352ffb37b3ecb2fdd603bfbeb6ad0388ab74879020",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "control-accesos-v278.js",
+    "bytes": 6220,
+    "sha256": "daf5511f4ea1714d236af6d211cbfe4c81d45feba83232b9ddad78c96b5177e4",
+    "rpc_names": [
+      "hys242_guardar_usuario",
+      "hys242_listar_usuarios"
+    ],
+    "table_names": [
+      "eventos_v242"
+    ],
+    "events": [],
+    "declared_functions": [
+      "allowedActor",
+      "validTarget",
+      "validate",
+      "labelFromHistory",
+      "list",
+      "history",
+      "apply"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "corrections-v243.css",
+    "bytes": 1403,
+    "sha256": "277912f3390445b17d9dc36858517a48848955b21f020daa8c184ea77bd85f64",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "corrections-v243.js",
+    "bytes": 10548,
+    "sha256": "9f4a41348327d161f776b8143c4f336f5a7bdad20b3092da941aa68d22da2e5c",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "submit"
+    ],
+    "declared_functions": [
+      "ensureFindingId",
+      "assignments",
+      "eligible",
+      "requiredActionsComplete",
+      "mayRequestClose",
+      "validateEvidence",
+      "validateRequest",
+      "setProvider",
+      "setContextProvider",
+      "enabled",
+      "context",
+      "panel",
+      "onSubmit"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "credentials-v274.js",
+    "bytes": 2527,
+    "sha256": "c4327e3923691559929781daeadd72558a37a7a8ff21cba1a2b48c7b634c40e6",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "secureIndex",
+      "generate",
+      "validate",
+      "deliveryText"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "demo-facultades.html",
+    "bytes": 10172,
+    "sha256": "e16d4cd31c6b0c7df993a80b5a77f790befa49867e2f8d1517bab4c7bb523c3e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "demo-final-causas-v308.html",
+    "bytes": 4702,
+    "sha256": "66cc144e52ac8cdb868cfb7f1d877cee2389e8fe04b9b13a68a1d82625f369ba",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "catalogTotal"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "demo-v308.html",
+    "bytes": 1461,
+    "sha256": "1c4ba0045fd1755f26d0f18995e44312b45d4ba919dc824f5bcd529b09fddb5c",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "facultades-laboratorio-v263.js",
+    "bytes": 26949,
+    "sha256": "40ec36d8a4fdd21359337c60d9dead4b7a9cceae83484f0a1033539f160f35a5",
+    "rpc_names": [
+      "hys242_asignar_facultades",
+      "hys242_guardar_usuario",
+      "hys242_listar_usuarios",
+      "hys261_guardar_facultades_atomico",
+      "hys262_guardar_rol_y_facultades_atomico"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "facultades_v242"
+    ],
+    "events": [],
+    "declared_functions": [
+      "enabled",
+      "currentAreas",
+      "allowedAreas",
+      "scopeSpecial",
+      "updateScope",
+      "makeCheckbox",
+      "setBusy",
+      "paintControls",
+      "selectedMode",
+      "renderAreaSelector",
+      "renderRole",
+      "renderCards",
+      "renderSpecial",
+      "renderSummary",
+      "renderDirectory",
+      "loadDirectory",
+      "showDirectory",
+      "loadAccount",
+      "openFor"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "facultades-v242.js",
+    "bytes": 27091,
+    "sha256": "dc53ae97effef742530d69ecc72f5209b87e01fda6cb7f71e2346a58e6ee055a",
+    "rpc_names": [
+      "hys242_asignar_facultades",
+      "hys242_guardar_usuario",
+      "hys242_listar_usuarios",
+      "hys261_guardar_facultades_atomico",
+      "hys262_guardar_rol_y_facultades_atomico"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "facultades_v242"
+    ],
+    "events": [],
+    "declared_functions": [
+      "enabled",
+      "currentAreas",
+      "allowedAreas",
+      "scopeSpecial",
+      "updateScope",
+      "makeCheckbox",
+      "setBusy",
+      "paintControls",
+      "selectedMode",
+      "renderAreaSelector",
+      "renderRole",
+      "renderCards",
+      "renderSpecial",
+      "renderSummary",
+      "renderDirectory",
+      "loadDirectory",
+      "showDirectory",
+      "loadAccount",
+      "openFor"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "faculty-model-v261.js",
+    "bytes": 2848,
+    "sha256": "d34a59cae83f13ed3e30a3ada133ca74c9a1b11a55989c06c4b6fd82c5fcc5bb",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "availableAreas",
+      "isAllSelected",
+      "copyAreasByName",
+      "summarize",
+      "validateAreas"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "faculty-settings-v259.css",
+    "bytes": 7726,
+    "sha256": "a9d7c3076da25954faf9ea8b4b88650a06c4257f0ca7fd8bb352393ec27f76c9",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "ficha-backend-v279.js",
+    "bytes": 4898,
+    "sha256": "62d66829a2908f0dc374ed27aedf0a6913122b4917a2d46526ee7714983d783f",
+    "rpc_names": [
+      "hys279_capacidades",
+      "hys279_guardar_ficha",
+      "hys279_guardar_opcion",
+      "hys279_obtener_ficha",
+      "hys282_catalogo_capacidades",
+      "hys282_catalogo_mutar"
+    ],
+    "table_names": [
+      "regimenes_laborales_v281"
+    ],
+    "events": [],
+    "declared_functions": [
+      "available",
+      "read",
+      "save",
+      "regimesReady",
+      "shifts",
+      "regimes",
+      "saveRegime",
+      "saveOption"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "finding-detail-v243.css",
+    "bytes": 2045,
+    "sha256": "5202e093df693386f28829e8132caa185740cf79c971bc46bf53872788be90bf",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "finding-detail-v243.js",
+    "bytes": 5471,
+    "sha256": "e9530e45f0e93a9326dee6cd78e72709e096086889636c052120e16748ce8b1e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "keydown"
+    ],
+    "declared_functions": [
+      "detailRow",
+      "activateTab",
+      "onClick",
+      "onKeydown"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "gestion-usuarios-v265.css",
+    "bytes": 14904,
+    "sha256": "233b9e49bb7cc9b076d9c0f2efdf6b882a0a39a9b6251f25d527c565b018809f",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "gestion-usuarios-v265.js",
+    "bytes": 65032,
+    "sha256": "4f4eb473e59e3e8a8d22a62f5996c6774d7af29fe32d81e3a5783529aa21ebf5",
+    "rpc_names": [
+      "hys242_listar_usuarios"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "auditoria_facultades_v242",
+      "eventos_v242",
+      "facultades_v242"
+    ],
+    "events": [
+      "click",
+      "input",
+      "reportes-hys-regimenes-updated"
+    ],
+    "declared_functions": [
+      "clearCredentials",
+      "isGlobal",
+      "showInRail",
+      "newButton",
+      "readStore",
+      "readHistory",
+      "refresh",
+      "abandon",
+      "show",
+      "resetDraft",
+      "setTabStyle",
+      "render",
+      "element",
+      "action",
+      "openEdit",
+      "openProfile",
+      "renderProfileEditor",
+      "quickEligible",
+      "quickSnapshot",
+      "selectQuick",
+      "renderQuickPermissions",
+      "quickRows",
+      "reviewQuick",
+      "renderDirectory",
+      "renderDirectoryRows",
+      "openAccess",
+      "renderAccess",
+      "renderHistory",
+      "renderWizard",
+      "field",
+      "selectField",
+      "stepWorker",
+      "fillWorkerSample",
+      "copyAccess",
+      "shareAccess",
+      "accessButtons",
+      "renderCredentialDelivery",
+      "stepAccount",
+      "stepRoles",
+      "available",
+      "stepSpecial",
+      "stepReview",
+      "validateStep",
+      "showInlineError",
+      "goNext",
+      "save",
+      "open",
+      "sync"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "identity-policy-v296.js",
+    "bytes": 1021,
+    "sha256": "d3cdbbf38560a12a6e72362b2882dd631ae8182034f6a3865199af6b7fd1dbbe",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "checkLoadIdentity"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "inbox-v245.css",
+    "bytes": 2532,
+    "sha256": "01093576b35f8da8c72e424e0921bdd40ecd8b7f58509a0f6f907edf36856390",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "inbox-v245.js",
+    "bytes": 14813,
+    "sha256": "5ec34aa05b896b3c23020f6a6e59df5d4319e09fda379ba4298ef02c278007a9",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change",
+      "click"
+    ],
+    "declared_functions": [
+      "collect",
+      "mineOnly",
+      "node",
+      "setDemoDirectory",
+      "mount",
+      "redrawChoices",
+      "refresh"
+    ],
+    "external_urls": [
+      "http://www.w3.org/2000/svg"
+    ]
+  },
+  {
+    "file": "index.html",
+    "bytes": 196459,
+    "sha256": "3a6d857423644a9580df07b50314cfb58a30df5bea5e951cba1e32a3626937ca",
+    "rpc_names": [
+      "hys242_contexto"
+    ],
+    "table_names": [
+      "perfiles"
+    ],
+    "events": [
+      "DOMContentLoaded",
+      "afterprint",
+      "change",
+      "click",
+      "focus",
+      "input",
+      "keydown",
+      "message",
+      "pagehide",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing",
+      "submit",
+      "visibilitychange"
+    ],
+    "declared_functions": [
+      "create",
+      "trackedText",
+      "header",
+      "band",
+      "recordHeader",
+      "nextPage",
+      "ensure",
+      "rowFields",
+      "longNote",
+      "photoFiles",
+      "readPhoto",
+      "gallery",
+      "recordPlan",
+      "canEditReport242",
+      "enforceProject245",
+      "updateTurnDay",
+      "renderAreaSelect",
+      "persistArea",
+      "renderAprSelect",
+      "persistApr",
+      "esc",
+      "toast",
+      "addHistory",
+      "renderHistory",
+      "render",
+      "renderActivityPhotoList",
+      "openModal",
+      "setupDescriptionBullets",
+      "compressImage",
+      "pack",
+      "save",
+      "autosaveEnabled",
+      "updateStorageStatus",
+      "applyPack",
+      "archiveFinalizedSnapshot",
+      "updatePrintInicio",
+      "nombreBaseArchivo",
+      "nombreArchivoPDF",
+      "validarDatosInicioParaPDF",
+      "ensurePdfLibraries",
+      "clearThreeCards",
+      "archiveContext242",
+      "openArchiveDB",
+      "getArchivedReports",
+      "readLocalArchivedReport242",
+      "getArchivedReport",
+      "archiveEditAvailable",
+      "archiveMonthKey",
+      "renderArchivedReports",
+      "reportChangeList",
+      "archiveGeneratedPdf",
+      "readBackupRecord",
+      "normalizeBackup",
+      "backupSummary",
+      "downloadBackup",
+      "makeBackup",
+      "safeRestore",
+      "showTab",
+      "getPhotoRatio",
+      "applyPhotoRatio",
+      "getPhotoColumns",
+      "applyPhotoSettings",
+      "closePhotoViewer",
+      "setMode",
+      "rememberModule",
+      "lock",
+      "showGate",
+      "chooser",
+      "renderIdentity",
+      "syncModuleCards257",
+      "landingModule256",
+      "loadAccess",
+      "logout",
+      "verifyActiveAccess",
+      "forgetSecret",
+      "controls",
+      "reset",
+      "render",
+      "request",
+      "refresh",
+      "showHistory",
+      "showSecret",
+      "run",
+      "confirmation"
+    ],
+    "external_urls": [
+      "http://www.w3.org/2000/svg",
+      "http://www.w3.org/2000/svg\\",
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8",
+      "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ]
+  },
+  {
+    "file": "integrity-v255.js",
+    "bytes": 5380,
+    "sha256": "625f5428c088ea6bef39de115cd2208d99372da3ba14e7981a5e15a58bf5e2a4",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "capture",
+      "valid",
+      "assert",
+      "resetViews",
+      "watch",
+      "validatePack",
+      "validDate",
+      "validateReportStart"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "interfaz-local-v316.js",
+    "bytes": 4139,
+    "sha256": "9a8ca38d06317dfbe902b6c8af1d1b3367df737ed0b4ab78bb3041f9ab7be081",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "DOMContentLoaded",
+      "hys317-local-actor"
+    ],
+    "declared_functions": [
+      "applyIdentity",
+      "applyCatalog"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "investigacion-accidentes-v305.css",
+    "bytes": 12072,
+    "sha256": "468ea63f61b71f6388e19cc82b13f9cb2bfcef606278a9bbe65dc55f1dddc8bf",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "investigacion-accidentes-v305.js",
+    "bytes": 27087,
+    "sha256": "2cf91f84ac2da732d1be83ccd6bdfff9f0b762c86d822f8c3d8ca02f8769660b",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change",
+      "click",
+      "input",
+      "keydown",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing",
+      "submit"
+    ],
+    "declared_functions": [
+      "place",
+      "reportCard",
+      "f",
+      "text",
+      "pick",
+      "areaField",
+      "field",
+      "section",
+      "witnesses",
+      "plans",
+      "add",
+      "makeForm",
+      "selectReport",
+      "showCards",
+      "resetAll",
+      "open",
+      "close",
+      "sync"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "investigacion-flujo-v308.css",
+    "bytes": 11514,
+    "sha256": "c8e8e4979a653192d700bc7352996260835b95c5e9dd3ca52181893c39e179c3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "investigacion-flujo-v308.js",
+    "bytes": 50972,
+    "sha256": "4ba08aa7711f873929bb3523bc29122a79be58a6277f41736488b1d414418246",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "beforeunload",
+      "change",
+      "click",
+      "hys308-form-cleared",
+      "input",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing"
+    ],
+    "declared_functions": [
+      "validIsoCalendar",
+      "formIssues",
+      "clearIssueView",
+      "showIssues",
+      "tellBlockedFinal",
+      "syncLauncher",
+      "valueMap",
+      "hasUnstoredFiles",
+      "cleanForm",
+      "assignForm",
+      "stamp",
+      "audit",
+      "model",
+      "createCase",
+      "currentCase",
+      "canEdit",
+      "diff",
+      "canLeave",
+      "showCards",
+      "showTracking",
+      "openNew",
+      "prefills",
+      "openCase",
+      "saveDraft",
+      "send",
+      "decide",
+      "syncEditor",
+      "statusTag",
+      "renderTracking",
+      "localRequest",
+      "saveLocal",
+      "listLocal",
+      "openLocal",
+      "renderLocalHistory",
+      "refreshEvidence",
+      "fileBase64",
+      "uploadLocal",
+      "transitionLocal",
+      "exportLocalPdf",
+      "mountLocalTools"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "investigacion-pdf-v332.js",
+    "bytes": 3484,
+    "sha256": "2a78d9c589d9d1714b75375a3be8515cfcc9699e8fae46e336875a6a0771dc05",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "participantes",
+      "abreviar",
+      "filename",
+      "create",
+      "header"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-backend-v263.js",
+    "bytes": 10751,
+    "sha256": "2ffb83069faa4d19c1b25ddf19b3ec0639d9987145b7cc718e91c275fdb451ef",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "normalize",
+      "persist",
+      "write",
+      "assertScopes",
+      "assertRevision",
+      "updateFaculties",
+      "atomic",
+      "assign",
+      "changeUser",
+      "rpc",
+      "from",
+      "createUser",
+      "updateUser",
+      "newArea",
+      "updateArea",
+      "reset",
+      "report"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-integral-v263.html",
+    "bytes": 70539,
+    "sha256": "f92898d58420abaf7b1960db9f12ee43f5568cc0a1cc684d74da3d180b1dfd17",
+    "rpc_names": [
+      "hys242_asignar_facultades",
+      "hys242_guardar_usuario",
+      "hys242_listar_usuarios",
+      "hys261_guardar_facultades_atomico",
+      "hys262_guardar_rol_y_facultades_atomico"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "facultades_v242"
+    ],
+    "events": [
+      "hys263-lab-changed"
+    ],
+    "declared_functions": [
+      "normalize",
+      "persist",
+      "write",
+      "assertScopes",
+      "assertRevision",
+      "updateFaculties",
+      "atomic",
+      "assign",
+      "changeUser",
+      "rpc",
+      "from",
+      "createUser",
+      "updateUser",
+      "newArea",
+      "updateArea",
+      "reset",
+      "report",
+      "can",
+      "label",
+      "stable",
+      "normalizedScope",
+      "plan",
+      "availableAreas",
+      "isAllSelected",
+      "copyAreasByName",
+      "summarize",
+      "validateAreas",
+      "roleSummary",
+      "safeSpecials",
+      "enabled",
+      "currentAreas",
+      "allowedAreas",
+      "scopeSpecial",
+      "updateScope",
+      "makeCheckbox",
+      "setBusy",
+      "paintControls",
+      "selectedMode",
+      "renderAreaSelector",
+      "renderRole",
+      "renderCards",
+      "renderSpecial",
+      "renderSummary",
+      "renderDirectory",
+      "loadDirectory",
+      "showDirectory",
+      "loadAccount",
+      "openFor",
+      "btn",
+      "safe",
+      "navigate",
+      "render",
+      "changeNotice",
+      "renderUsers",
+      "renderAreas",
+      "renderHistory",
+      "renderAccess",
+      "paintAccess",
+      "prefs",
+      "savePrefs",
+      "renderSettings",
+      "renderNotifications"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-integral-v264.html",
+    "bytes": 72427,
+    "sha256": "9e91e5fa479309f353cb65c58563222b20e0905fd787cc42d67806a704fa06c8",
+    "rpc_names": [
+      "hys242_asignar_facultades",
+      "hys242_guardar_usuario",
+      "hys242_listar_usuarios",
+      "hys261_guardar_facultades_atomico",
+      "hys262_guardar_rol_y_facultades_atomico"
+    ],
+    "table_names": [
+      "areas_trabajo_v242",
+      "facultades_v242"
+    ],
+    "events": [
+      "hys263-lab-changed"
+    ],
+    "declared_functions": [
+      "normalize",
+      "persist",
+      "write",
+      "assertScopes",
+      "assertRevision",
+      "updateFaculties",
+      "atomic",
+      "assign",
+      "changeUser",
+      "rpc",
+      "from",
+      "createUser",
+      "updateUser",
+      "newArea",
+      "updateArea",
+      "reset",
+      "report",
+      "can",
+      "label",
+      "stable",
+      "normalizedScope",
+      "plan",
+      "availableAreas",
+      "isAllSelected",
+      "copyAreasByName",
+      "summarize",
+      "validateAreas",
+      "roleSummary",
+      "blankSpecials",
+      "roleTransitionSpecials",
+      "safeSpecials",
+      "enabled",
+      "currentAreas",
+      "allowedAreas",
+      "scopeSpecial",
+      "updateScope",
+      "makeCheckbox",
+      "setBusy",
+      "paintControls",
+      "selectedMode",
+      "renderAreaSelector",
+      "renderRole",
+      "renderCards",
+      "renderSpecial",
+      "renderSummary",
+      "renderDirectory",
+      "loadDirectory",
+      "showDirectory",
+      "loadAccount",
+      "openFor",
+      "btn",
+      "safe",
+      "navigate",
+      "render",
+      "changeNotice",
+      "renderUsers",
+      "renderAreas",
+      "renderHistory",
+      "renderAccess",
+      "paintAccess",
+      "prefs",
+      "savePrefs",
+      "renderSettings",
+      "renderNotifications"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-integral-v265.html",
+    "bytes": 1056,
+    "sha256": "5ce40081f65d3b7d6f19e6c73543912ac20428ebba33b36e01ab3f9c744bb13f",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-persistente.html",
+    "bytes": 1435,
+    "sha256": "0c960a7ac7763623c5a612d6d9bc3ee2fd5c2f9cc8693aa71651fdad47b18b51",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-ui-v263.js",
+    "bytes": 7882,
+    "sha256": "6f23c6607336640c3ce1ac41b7c90acadea6b25fbba6388c2c9c44d536237d18",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "hys263-lab-changed"
+    ],
+    "declared_functions": [
+      "btn",
+      "safe",
+      "navigate",
+      "render",
+      "changeNotice",
+      "renderUsers",
+      "renderAreas",
+      "renderHistory",
+      "renderAccess",
+      "paintAccess",
+      "prefs",
+      "savePrefs",
+      "renderSettings",
+      "renderNotifications"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "laboratorio-v263.html",
+    "bytes": 10170,
+    "sha256": "e0dd0b3d7fd94ae3fa1f4a85e558bef763c4709dea5ef16da79f126ae958b3a5",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "mobile-landscape-v267.js",
+    "bytes": 5545,
+    "sha256": "69da5bb01bd8384a56e0d6489be2a83bbc53fcdf83ea67b2be9ae13c2a5a21df",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "DOMContentLoaded",
+      "orientationchange",
+      "resize"
+    ],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "mobile-v242.css",
+    "bytes": 16735,
+    "sha256": "94fda77d0a749c7a8407f2833e3776678eaa1c487da17a1d8bae3b463bd0acc3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "notifications-f251.css",
+    "bytes": 1054,
+    "sha256": "928e1e5393f59462ab8eb71382a086ec09c8f48cb8ec4ff23bf9d4bb23eff9c7",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "notifications-f251.js",
+    "bytes": 15207,
+    "sha256": "a7b97ada8dbc3e96ce3b690cb05749aff5009b53d5e2849e859c42d6f81d797b",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "tasks",
+      "diff",
+      "merge",
+      "retryPolicy",
+      "emailTemplate",
+      "serverStatus",
+      "annexRows",
+      "mount",
+      "forItem",
+      "renderInPanel",
+      "exportAnnex"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "operaciones-v242.js",
+    "bytes": 31467,
+    "sha256": "ebb797d14d7b47d952a804f465ddfdc14722f43b418f6dc50ed5fad915a4cc88",
+    "rpc_names": [],
+    "table_names": [
+      "auditoria_facultades_v242",
+      "eventos_v242"
+    ],
+    "events": [],
+    "declared_functions": [
+      "canUsers",
+      "rpc",
+      "run",
+      "open",
+      "moduleOptions",
+      "render",
+      "showReport242",
+      "renderReports",
+      "userMatches258",
+      "allowDiscard258",
+      "editableUser258",
+      "paintUsers258",
+      "renderUsers",
+      "undoUser258",
+      "auditSummary258",
+      "userActivity258",
+      "userForm",
+      "renderInvitations"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "pending-dashboard-v250.css",
+    "bytes": 8223,
+    "sha256": "114fcb99c591d21d12b7b8d302b1ec95a312ba93738be3ce3fe7a1448402fbe2",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "pending-dashboard-v250.js",
+    "bytes": 25580,
+    "sha256": "d0eae9233e092bae1c048e08d9ac11fe0404c2ffca82572c9e8023e444ccd4ed",
+    "rpc_names": [
+      "hys242_listar_usuarios",
+      "hys250_asignar_supervision",
+      "hys250_equipo_autorizado"
+    ],
+    "table_names": [
+      "areas_trabajo_v242"
+    ],
+    "events": [
+      "change",
+      "click",
+      "input",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing",
+      "reportes-hys-data-saved",
+      "submit"
+    ],
+    "declared_functions": [
+      "sourceRow",
+      "areaName",
+      "priority",
+      "readAllowed",
+      "mount",
+      "invalidateScope",
+      "validateScopes",
+      "makeMetric",
+      "renderDetail",
+      "loadOrg",
+      "renderOrg",
+      "paint",
+      "scopeRole",
+      "open"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "pending-detail-v246.css",
+    "bytes": 3331,
+    "sha256": "d70b8b60adc44bc09ec36c99d482b3f98b80e78eaff428f5ca229ecaab400b02",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "pending-detail-v246.js",
+    "bytes": 9529,
+    "sha256": "c789761ff258ac2b018fe59ba92dd0bfc66bd60257933e16e5b9a0d0186147a1",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click"
+    ],
+    "declared_functions": [
+      "readScope",
+      "findSelected",
+      "node",
+      "mount",
+      "render",
+      "open",
+      "refresh",
+      "open",
+      "refresh"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "people-areas-v244.css",
+    "bytes": 2012,
+    "sha256": "ebb779ec9c280db8a774f3cb64ace95598249c44528ac015147ba6aee9778b2e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "people-areas-v244.js",
+    "bytes": 11238,
+    "sha256": "460dbbb3d0a6e1a7335269d77aab54bfc8580979eb458ed7ec0f3f922dff1cb5",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change",
+      "click"
+    ],
+    "declared_functions": [
+      "validScope",
+      "sameScope",
+      "validateContact",
+      "normalizePerson",
+      "normalizeArea",
+      "uniqueAreaName",
+      "setPreviewData",
+      "el",
+      "rowLabel",
+      "mount",
+      "fill",
+      "drawPeople",
+      "drawAreas"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "pilares-indicadores-preview-v285.html",
+    "bytes": 2752,
+    "sha256": "4b9fc55c5b4527774e4947b4c59fb7e29dacb00bdaf0efbc6e9a75ab53d7e9e4",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "pilares-indicadores-v285.css",
+    "bytes": 15124,
+    "sha256": "564bf133ec4005e5d026c79aa7d94e20869a4768798531ae2877cf2950e9e662",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "pilares-indicadores-v285.js",
+    "bytes": 29625,
+    "sha256": "1b129fa9ced6d89ed83f86aaac3bb892f8ffbc68cb7e76996fe923a978a508bc",
+    "rpc_names": [],
+    "table_names": [
+      "areas_trabajo_v242"
+    ],
+    "events": [
+      "change",
+      "click",
+      "keydown",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing"
+    ],
+    "declared_functions": [
+      "placeInActualRail",
+      "validDay",
+      "todayLocal",
+      "addDays",
+      "monthOffset",
+      "resolveRange",
+      "prettyDay",
+      "showReadiness",
+      "render",
+      "showPillar",
+      "back",
+      "navigateSection",
+      "defaultFilters",
+      "resetAllFilters",
+      "scope",
+      "changePeriod",
+      "showAreas",
+      "getAreas",
+      "open",
+      "close",
+      "sync"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "qa-sesion-v276.js",
+    "bytes": 4540,
+    "sha256": "f8b06a1669963ac243e3ca50390d14f06fbf62578ada3d104541ef28e08c7a6e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click"
+    ],
+    "declared_functions": [
+      "showLogin",
+      "logout",
+      "enterLab"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "read-gate-v298.js",
+    "bytes": 2675,
+    "sha256": "7f2f93ea92fe7ce78a2cb004507e5b460c0db9fec07d2f7f1a9bc1f34c080489",
+    "rpc_names": [
+      "hys242_consultar_informes",
+      "hys242_contexto"
+    ],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "permitted",
+      "canReadRemote",
+      "preflight"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "read-policy-v299.js",
+    "bytes": 2114,
+    "sha256": "06ca032e9ad91b59a6a0c7ece9a6b085863803e4010e92090748de9ac14f39e4",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "validatePage",
+      "canEditArchived"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "reassignment-v243.css",
+    "bytes": 1341,
+    "sha256": "ef487de704cf6c80253a72156b9a69d79219aee8abc07c847da53c349482ba8c",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "reassignment-v243.js",
+    "bytes": 12161,
+    "sha256": "ce7cbd3a437910654a58aa358fc1d4858f3439f4a6a83ba71d10584118013288",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click",
+      "submit"
+    ],
+    "declared_functions": [
+      "canManage",
+      "eligibleAction",
+      "normalizeCandidates",
+      "validateRequest",
+      "setProvider",
+      "setContextProvider",
+      "enabled",
+      "panel",
+      "onClick",
+      "onSubmit"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "recovery-policy-v295.js",
+    "bytes": 2749,
+    "sha256": "2e403b850df27708f6fb552433b9f74da940cc4d54297f3ddd866ec80c502ce8",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "planConflictCopies"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "remote-archive-v294.js",
+    "bytes": 2680,
+    "sha256": "dfb0b53613c7e6ecdcd4b597ff806711b47263de7240f3755b46ad3cc272c8aa",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "validateRemoteRow",
+      "validatePdfPayload",
+      "chooseArchiveSource",
+      "readableHistory"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "revisores-busqueda-v308.js",
+    "bytes": 8189,
+    "sha256": "de4312913fec496a91fccae0d0a3df17667c921b1296f3f52aaa9c206937c9f6",
+    "rpc_names": [
+      "hys242_listar_usuarios"
+    ],
+    "table_names": [],
+    "events": [
+      "change",
+      "click",
+      "focus",
+      "focusout",
+      "hys308-editor-synced",
+      "input",
+      "keydown",
+      "mousedown",
+      "reportes-hys-access-changed",
+      "reportes-hys-access-changing"
+    ],
+    "declared_functions": [
+      "readOnlyDirectory",
+      "choose",
+      "render"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "risk-catalog-v243.js",
+    "bytes": 14711,
+    "sha256": "a425de2752f87346fd3505e06ad149f1279ec1554a5b51d3af1187fa73c05a79",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "change",
+      "click",
+      "input",
+      "storage"
+    ],
+    "declared_functions": [
+      "validateCatalog",
+      "sortCatalog",
+      "csvRows",
+      "parseCatalogText",
+      "editWithin",
+      "shouldShowResults",
+      "filterCatalog",
+      "snapshots",
+      "formatSelection",
+      "detailRow",
+      "readCatalog",
+      "canImport",
+      "importContext",
+      "sameImportContext",
+      "importCatalog",
+      "reset",
+      "selected",
+      "mountedPicker",
+      "mount"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "risk-seed-v252.js",
+    "bytes": 46540,
+    "sha256": "d358a43f6049b24932db2d63d3fc36a3d46dbc90d6386733c655fd3ec2054413",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "risk-selector-v243.css",
+    "bytes": 2006,
+    "sha256": "60448db45f4704101c4970045608efe3215a24d158e689c74ad862ce6366620e",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "role-control-v262.js",
+    "bytes": 2459,
+    "sha256": "3b1e105b45e1d59fee0431f9976ff0cb694ad0e90787dbe0438f4fe7edc06fb4",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "roleSummary",
+      "blankSpecials",
+      "roleTransitionSpecials",
+      "safeSpecials"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "roles-dinamicos-v267.js",
+    "bytes": 9217,
+    "sha256": "c3893b333f7f70995f2e6093325732d0cb3863070abf56e12cf66b0212e92cb3",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "click"
+    ],
+    "declared_functions": [
+      "form",
+      "collect",
+      "persist",
+      "save",
+      "mount"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "storage-v242.js",
+    "bytes": 4128,
+    "sha256": "e3e5c1d467e3debf75d1b04c1ababa82a4659d586d7b38ac71df8be27500395f",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "migrateLabSettings",
+      "wrapper"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "sync-core-v242.js",
+    "bytes": 7759,
+    "sha256": "4cd86249c9f0b04a11f378e98cf0862c63161c8dc3025ae5d33f850f502268b0",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "canonical",
+      "fingerprint",
+      "historyFingerprint",
+      "archiveMatches",
+      "verifyServerAck",
+      "isRemoteConfirmed"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "user-management-v258.css",
+    "bytes": 3892,
+    "sha256": "7f723ae1526baaeab98914f137185a46b6bee8825c8820b0e245ff503c07fd95",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "v242.css",
+    "bytes": 5701,
+    "sha256": "97c3402f992df61c1aba25cf2440f92187c1dc687dbd01b42ea2f290cfa7a718",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "verificacion-punto3-v266.css",
+    "bytes": 1497,
+    "sha256": "36c069fc387b36af6da8cce7bf79d1776ce5cd5610eadcd2ab381125bda7dbee",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [],
+    "external_urls": []
+  },
+  {
+    "file": "verificacion-punto3-v266.js",
+    "bytes": 10010,
+    "sha256": "0b35c980484a98c17e171cf77ad2c959fcedb73f5dbb27311d7465fdc386f226",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [
+      "DOMContentLoaded",
+      "reportes-hys-access-changing"
+    ],
+    "declared_functions": [
+      "checkNotification",
+      "checkAccount",
+      "checkPDF",
+      "checkPhoto",
+      "checkStorage",
+      "previewChecks",
+      "backupEntries",
+      "exportBackup",
+      "mount",
+      "show"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "vista-completa-preview-v265.js",
+    "bytes": 6202,
+    "sha256": "e6998e53f62ff579c30ec1b6332beb785c3d800e1dd704fd379a26db4f422ca6",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "mockSelect",
+      "take",
+      "enterModule"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "worker-model-v265.js",
+    "bytes": 11708,
+    "sha256": "e64b176257d4931f8ce30a9f9f0c6459ad57a2bc042238c162e89e2450193935",
+    "rpc_names": [],
+    "table_names": [],
+    "events": [],
+    "declared_functions": [
+      "normalizeDocument",
+      "validDocument",
+      "sanitize",
+      "validate",
+      "validateAccount",
+      "validConfiguration",
+      "redactAudit",
+      "walk",
+      "transition"
+    ],
+    "external_urls": []
+  }
+]
