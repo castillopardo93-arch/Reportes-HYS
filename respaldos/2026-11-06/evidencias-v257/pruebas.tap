@@ -1,0 +1,594 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reportes-hys-desarrollo@257.0.0 test
+> node --test test-*.cjs
+
+OK Invitación válida habilita creación de contraseña: SIGNED_IN
+OK Invitación válida habilita creación de contraseña: INITIAL_SESSION
+OK Ruta de activación sin tipo invite no acepta una sesión previa
+OK Sesión ausente o enlace de otro tipo no habilita contraseña
+OK Sesiones de recuperación no persisten en almacenamiento de ingreso normal
+OK Controles propios sin escritura ocultos en estado null
+OK Controles propios sin escritura ocultos en estado Devuelto
+OK Controles propios sin escritura ocultos en estado Corregido
+OK Propietario autorizado conserva envío a revisión
+9 grupos de activación y controles aprobados sin autenticación real.
+✔ test-activacion-controles-v242.cjs (287.110365ms)
+✔ C01-01: tarjeta Hallazgos y columnas originales (3.469858ms)
+✔ C01-02: proporciones de escritorio son exactamente 100% (1.371339ms)
+✔ C01-03: APR y OTROS utilizan la misma tabla y su instancia aislada (3.535248ms)
+✔ C01-04: hallazgos editables sin sustituir acciones históricas (0.627611ms)
+✔ C01-05: varias fotos y eliminación antes de guardar (1.048891ms)
+✔ C01-06: fotos en fila de detalle, desplegables y con visor (0.717205ms)
+✔ C01-07: diseño adaptable en pantallas pequeñas (0.411056ms)
+✔ C01-08: no se activa la base remota heredada de v242 (0.4563ms)
+✔ C02-01: orden de cinco campos idéntico en keys y labels (2.68404ms)
+✔ C02-02: las siete columnas visibles se conservan (2.307325ms)
+✔ C02-03: prioridad y estado conservan las opciones originales (3.528675ms)
+✔ C02-04: textos, obligatorio y retorno de valores existentes en edición (0.805279ms)
+✔ C02-05: el alta y la edición utilizan los índices de los campos históricos (0.792225ms)
+✔ C02-06: acciones de edición y eliminación conservadas (0.727541ms)
+✔ C02-07: datos APR y OTROS guardan hallazgos sin alterar orden (0.596414ms)
+✔ C02-08: fotos en índice 5 y categoría OTROS en índice 6 (1.890697ms)
+✔ C02-09: PDF conserva todos los campos en APR y OTROS (0.961912ms)
+✔ C02-10: viñetas históricas de textos Hallazgos y central desactivada (1.100173ms)
+✔ C03-01 normalizar tildes, mayúsculas y espacios (2.781822ms)
+✔ C03-02 búsqueda por código, nombre y múltiples palabras (3.981791ms)
+✔ C03-03 JSON con arreglo u objeto versionado sin fabricar datos (1.140675ms)
+✔ C03-04 CSV coma y punto y coma, comillas y UTF-8 (0.925007ms)
+✔ C03-05 rechazar duplicados normalizados y filas sin códigos (2.126893ms)
+✔ C03-06 prohibir catálogo excesivo o inválido (32.399689ms)
+✔ C03-07 persistencia local sin conexión y reemplazo atómico (19.880117ms)
+✔ C03-08 fallo por cuota no reemplaza catálogo previo (1.24636ms)
+✔ C03-09 instantáneas son independientes del catálogo posterior (0.999329ms)
+✔ C03-10 escapar HTML en el detalle de riesgos (1.596746ms)
+✔ C03-11 integración conserva campos históricos y metadatos OTROS (0.521526ms)
+✔ C03-12 muestra riesgos sin añadir columnas ni perder evidencia (0.729334ms)
+✔ C03-13 PDF conserva campos y añade riesgos como detalle opcional (0.911862ms)
+✔ C03-14 no contiene conexiones de red ni credenciales (0.476754ms)
+✔ C03-15 recursos necesarios referenciados por la copia (0.455798ms)
+✔ C04-01 acepta UUID y descarta IDs y nombres inválidos (15.4082ms)
+✔ C04-02 no duplica usuarios, máximo 30 (0.634817ms)
+✔ C04-03 filtra únicamente activos con permiso en el módulo (0.945402ms)
+✔ C04-04 separa APR y OTROS (0.634724ms)
+✔ C04-05 busca nombres con y sin tildes (31.446133ms)
+✔ C04-06 compatibilidad de instantáneas y nombres históricos (0.749588ms)
+✔ C04-07 no se confunden nombres iguales con identidades distintas (0.553726ms)
+✔ C04-08 formato HTML seguro al mostrar instantáneas (2.718837ms)
+✔ C04-09 no consulta usuarios sin configuración de fuente aislada (1.149603ms)
+✔ C04-10 interfaz añade selector sin desplazar campos ni fotografías (11.397431ms)
+✔ C04-11 fusiona los metadatos sin perder riesgos o categoría OTROS (0.512992ms)
+✔ C04-12 texto legado preservado sin IDs y sincronizado con IDs vinculados (0.47062ms)
+✔ C04-13 no guarda cambios nuevos sin directorio verificado (0.430219ms)
+✔ C04-14 conservado bloqueo de escritura central y sesión (1.207703ms)
+✔ C04-15 referencia recursos de desarrollo (1.026295ms)
+✔ C05-01 reconoce fechas ISO reales, incluidos años bisiestos (1.786873ms)
+✔ C05-02 rechaza fechas no ISO, fuera de rango y datos extraños (0.417197ms)
+✔ C05-03 admite fecha vacía para informes históricos e informativos (0.267513ms)
+✔ C05-04 no acepta entrada malformada en guardado (0.572649ms)
+✔ C05-05 presenta día, mes y año sin cambio de zona horaria (0.217828ms)
+✔ C05-06 obtiene la fecha del metadato 6, compatible con registros antiguos (0.214743ms)
+✔ C05-07 la fusión de metadatos conserva categoría, riesgos y responsables (0.870977ms)
+✔ C05-08 se puede quitar la fecha sin borrar otros datos (0.224394ms)
+✔ C05-09 el detalle no agrega una columna y oculta fechas vacías (0.642301ms)
+✔ C05-10 el formulario usa entrada fecha accesible y se valida antes de guardar (0.38843ms)
+✔ C05-11 lectura del campo detecta validez y campo inexistente (0.57727ms)
+✔ C05-12 integración de fecha en modal, tabla y guardado con meta 6 (0.33633ms)
+✔ C05-13 PDF incorpora fecha opcional conservando los cinco campos (0.647498ms)
+✔ C05-14 no altera anchos ni acciones y mantiene configuración aislada (0.261683ms)
+✔ C05-15 scripts y estilos importados; módulo sin acceso remoto (0.257095ms)
+✔ C06-01 tres pestañas definidas y en orden (3.559726ms)
+✔ C06-02 genera un detalle por registro válido sin añadir campos (1.126608ms)
+✔ C06-03 validaciones evitan índices incorrectos (0.305248ms)
+✔ C06-04 muestra medidas y responsables reales, no registros inventados (0.424444ms)
+✔ C06-05 escapa etiquetas inyectadas por datos del informe (0.686687ms)
+✔ C06-06 notificaciones en estado no implementado, sin fingir envíos (0.561548ms)
+✔ C06-07 historial no confunde Completado con cierre auditado (0.505232ms)
+✔ C06-08 ARIA tabs tienen paneles asociados y primera pestaña visible (0.411702ms)
+✔ C06-09 identificadores no se repiten entre hallazgos (0.636482ms)
+✔ C06-10 seleccionar pestaña cambia ARIA y panel visible (0.775941ms)
+✔ C06-11 no acepta pestañas extrañas o ajenas al mismo detalle (0.579652ms)
+✔ C06-12 delegación de clic activa el tab elegido (0.32366ms)
+✔ C06-13 navegación con flechas, Inicio y Fin conserva foco (0.578928ms)
+✔ C06-14 integra detalle solo en Hallazgos; C01–C05 intactos (0.33935ms)
+✔ C06-15 CSS, bloqueo de impresión, aislamiento y ausencia de red (0.15952ms)
+✔ C07-01 utiliza un ID estable para hallazgos existentes (3.185061ms)
+✔ C07-02 solo se considera elegible al UUID asignado (1.12446ms)
+✔ C07-03 compara UUID, no nombres de personas (0.305485ms)
+✔ C07-04 bloquea módulo cruzado y otros permisos (0.326525ms)
+✔ C07-05 impide actuar a usuarios inactivos o no identificados (0.28361ms)
+✔ C07-06 rechaza cierre cuando hay varios asignados (0.481925ms)
+✔ C07-07 no permite cierre con acciones obligatorias incompletas (0.808904ms)
+✔ C07-08 distingue tareas completadas de verificadas con evidencia (1.10433ms)
+✔ C07-09 cierre ya confirmado no se vuelve a ofrecer (1.560138ms)
+✔ C07-10 exige al menos una foto de evidencia (1.555672ms)
+✔ C07-11 restringe formatos y tamaño de fotografías (0.525717ms)
+✔ C07-12 impide más de ocho fotos y total excesivo (0.481915ms)
+✔ C07-13 la corrección requiere descripción verificable (0.465939ms)
+✔ C07-14 no admite acción inventada ni hallazgo sin ID (1.596437ms)
+✔ C07-15 requiere un informe persistido para enviar la solicitud (0.37952ms)
+✔ C07-16 el cierre directo depende de asignación única y corrección con foto (0.575792ms)
+✔ C07-17 proveedor y backend ausentes no permiten envío (1.666012ms)
+✔ C07-18 formulario de revisión queda deshabilitado de fábrica (1.189211ms)
+✔ C07-19 información del hallazgo y metadatos se mantienen (1.048345ms)
+✔ C07-20 cliente no realiza escrituras remotas ni confirma cierres por sí solo (0.48015ms)
+✔ C08R-01 supervisor autorizado supera comprobación preliminar (2.930318ms)
+✔ C08R-02 administrador de área y global también pueden solicitar (0.322231ms)
+✔ C08R-03 usuario común no obtiene control de reasignación (0.313926ms)
+✔ C08R-04 una cuenta inactiva no puede reasignar (0.331687ms)
+✔ C08R-05 acceso de solo lectura no permite reasignaciones (0.741454ms)
+✔ C08R-06 rechazo de contextos sin identidad o módulo (0.324228ms)
+✔ C08R-07 pendientes, en proceso y devueltas son reasignables (0.979013ms)
+✔ C08R-08 completadas, verificadas y enviadas no se transfieren (0.52756ms)
+✔ C08R-09 una acción no reconocida y un hallazgo sin UUID se bloquean (0.501983ms)
+✔ C08R-10 no se incluyen trabajadores inactivos o sin permiso (2.740639ms)
+✔ C08R-11 no se mezclan módulos APR y OTROS (0.728157ms)
+✔ C08R-12 si hay dos nombres iguales se distingue por UUID (33.313266ms)
+✔ C08R-13 rechaza asignación a sí mismo o sin lista autorizada (1.491819ms)
+✔ C08R-14 motivo y justificación se registran obligatoriamente (0.659476ms)
+✔ C08R-15 la solicitud no altera el registro del responsable original (2.668752ms)
+✔ C08R-16 se bloquea si falta revisión persistente del servidor (0.792195ms)
+✔ C08R-17 las tareas verificadas no pierden su autoría histórica (0.229589ms)
+✔ C08R-18 no se activa ningún proveedor ni envío por defecto (1.296475ms)
+✔ C08R-19 interfaz muestra el responsable original y controles bloqueados (0.791972ms)
+✔ C08R-20 la UI no modifica tareas verificadas ni duplicados de estado (0.163672ms)
+✔ C08R-21 se escapan nombres y descripciones ingresadas (0.419821ms)
+✔ C08R-22 formulario está integrado sin agregar columnas ni alterar archivos (0.480574ms)
+✔ C08R-23 ningún cliente almacena reasignaciones ni registra cierres ficticios (0.27906ms)
+✔ C08R-24 el recibo exige auditoría y revisión correlativa (0.223211ms)
+✔ C08-01 crea tarea nueva solo como pendiente (2.093937ms)
+✔ C08-02 rechaza identidades o nombres no verificables en planificación (0.71529ms)
+✔ C08-03 requiere descripción de acción entre 10 y 500 caracteres (0.337942ms)
+✔ C08-04 identifica tareas válidas y estados reconocidos (0.210225ms)
+✔ C08-05 en una tarea nueva no se puede atribuir verificación (1.369792ms)
+✔ C08-06 estado completado o enviado no significa verificado (0.175517ms)
+✔ C08-07 verificación requiere fecha, verificador y evidencia con UUID (0.36441ms)
+✔ C08-08 sin acciones un único responsable mantiene compatibilidad C07 (0.570951ms)
+✔ C08-09 varios responsables sin acciones no pueden cerrar globalmente (0.192947ms)
+✔ C08-10 la verificación debe cubrir una acción obligatoria por cada responsable (0.385941ms)
+✔ C08-11 un pendiente obligatorio bloquea el cierre del conjunto (0.224785ms)
+✔ C08-12 lo opcional no bloquea cuando todas las obligatorias están verificadas (0.181532ms)
+✔ C08-13 tareas inválidas, repetidas o ajenas bloquean el cierre (0.327807ms)
+✔ C08-14 si el responsable sale del hallazgo se bloquea la validación de sus tareas (0.146769ms)
+✔ C08-15 no deja eliminar tareas históricas ni asignadas a otra persona inadvertidamente (0.76178ms)
+✔ C08-16 exige acciones con IDs únicos y máximo 100 (0.268249ms)
+✔ C08-17 el actor solo puede completar su tarea con permiso de edición (0.290057ms)
+✔ C08-18 usuarios inactivos y módulos distintos quedan excluidos (0.618439ms)
+✔ C08-19 estados verificados o enviados no permiten volver a completar (0.208272ms)
+✔ C08-20 las acciones se muestran pero sus envíos siguen deshabilitados (0.474519ms)
+✔ C08-21 texto aportado por el usuario se escapa en la vista (0.329358ms)
+✔ C08-22 sólo se actualiza el metadato de acciones, preservando campos de C01–C07 (0.317205ms)
+✔ C08-23 Seguimiento incluye tareas independientes sin tocar la tabla (0.109613ms)
+✔ C08-24 C07 exige verificación C08 y prohíbe corrección general por equipos (0.55419ms)
+✔ C08-25 la integración permanece bloqueada sin servicio aislado (0.32264ms)
+✔ C09-01 perfiles supervisor y administradores pueden gestionar auditoría (4.058109ms)
+✔ C09-02 usuario común y supervisor inactivo no cierran (0.362773ms)
+✔ C09-03 ausencia de escritura, sesión o módulo bloquea lectura (0.46551ms)
+✔ C09-04 acciones obligatorias verificadas con autor independiente habilitan criterio (0.990867ms)
+✔ C09-05 verificación por el propio ejecutor impide cierre (0.449502ms)
+✔ C09-06 tareas incompletas o sin evidencia impiden cierre (0.752872ms)
+✔ C09-07 un hallazgo sin tareas verificadas no se cierra por su estado visible (0.318489ms)
+✔ C09-08 el cierre previo confirmado impide un segundo cierre (0.351013ms)
+✔ C09-09 reapertura solo desde cierre confirmado por evento (0.616317ms)
+✔ C09-10 el actor común no puede reabrir aunque exista cierre (0.716779ms)
+✔ C09-11 cierre y reapertura exigen motivación de 20 a 1500 caracteres (1.694645ms)
+✔ C09-12 reapertura conserva referencia al cierre anterior (2.35027ms)
+✔ C09-13 no admite eventos alterados ni tipos de operación inventados (0.407682ms)
+✔ C09-14 una solicitud no muta el registro local (0.409376ms)
+✔ C09-15 acepta historial firmado por el contrato de servidor y encadenado (0.721292ms)
+✔ C09-16 rechaza fuente no verificada aunque contenga eventos (0.623991ms)
+✔ C09-17 ningún módulo, informe ni hallazgo ajeno aparece en la auditoría (0.623038ms)
+✔ C09-18 rechaza duplicación de evento e interrupción de cadena (0.404872ms)
+✔ C09-19 rechaza revisión no ascendente y evento final erróneo (0.456023ms)
+✔ C09-20 rechaza actor, fecha y evidencia inválidos (0.503098ms)
+✔ C09-21 incluye responsable anterior y nuevo en reasignación sin perder evidencia (1.030711ms)
+✔ C09-22 escapa comentarios y nombres maliciosos (1.148598ms)
+✔ C09-23 no muestra eventos auditados ficticios si no ha consultado servidor (0.446314ms)
+✔ C09-24 las operaciones de cierre y reapertura se muestran inactivas (0.232259ms)
+✔ C09-25 un proveedor incompleto no puede habilitar el módulo (1.333576ms)
+✔ C09-26 contrato de respuesta y relectura exige evento, auditoría y revisión (0.24318ms)
+✔ C09-27 preserva APR/OTROS y la tabla original sin cambios de modelo (0.808825ms)
+✔ C09-28 la pestaña Historial/cierre integra C09 sin inventar eventos (0.271987ms)
+✔ C09-29 módulo no escribe datos locales ni accede a Supabase ni red directamente (0.50592ms)
+✔ C10P-01 host y clave real no incluidos (4.292009ms)
+✔ C10P-02 no carga SDK Supabase (0.776261ms)
+✔ C10P-03 no ejecuta cloud ni funciones administrativas (0.911896ms)
+✔ C10P-04 usa personas y riesgos ficticios (0.838307ms)
+✔ C10P-05 conserva tarjetas APR/OTROS y vista iframe (0.544697ms)
+✔ C10P-06 misma interfaz original de Hallazgos y PDF (0.454982ms)
+✔ C10P-07 operaciones reales deshabilitadas en runtime (1.212098ms)
+✔ C10P-08 recursos locales incluidos explícitamente en build (1.384537ms)
+✔ C10P-09 build no copia clientes de nube ni secretos (0.763511ms)
+✔ C10P-10 no ejecuta autenticación conectada (1.223207ms)
+✔ C10-01 tarjeta APR y OTROS accesibles por separado (2.229762ms)
+✔ C10-02 OTROS usa el formulario original por iframe integrado (0.635128ms)
+✔ C10-03 comparte componentes de hallazgo, sin duplicación de código C03-C09 (0.776816ms)
+✔ C10-04 se conserva tabla de 7 columnas y fotos originales (0.316185ms)
+✔ C10-05 el mismo formulario de hallazgos sirve a ambos módulos (0.419477ms)
+✔ C10-06 se registra módulo explícito en todo nuevo informe (0.256528ms)
+✔ C10-07 no permite importar directamente respaldo etiquetado para otro módulo (0.402142ms)
+✔ C10-08 mantiene compatibilidad con respaldos históricos sin módulo (0.358056ms)
+✔ C10-09 OTROS descarta datos APR invisibles al cargar y guardar (5.950549ms)
+✔ C10-10 OTROS oculta áreas de actividades exclusivas de APR (0.637513ms)
+✔ C10-11 se conservan nombres de PDF y contenido OTROS por módulo (2.309557ms)
+✔ C10-12 cada contexto de acciones usa módulo actual explícito (0.648531ms)
+✔ C10-13 aislamiento local: usuario/módulo APR distinto de OTROS (1.439501ms)
+✔ C10-14 aislamiento local: usuarios distintos del mismo módulo (0.37325ms)
+✔ C10-15 credenciales de autenticación se comparten intencionalmente, no informes (0.309929ms)
+✔ C10-16 sessionStorage también aísla pestañas del módulo (0.307761ms)
+✔ C10-17 bases IndexedDB están separadas por usuario y módulo (2.544727ms)
+✔ C10-18 mensajería de iframe valida origen y ventana exacta (0.301963ms)
+✔ C10-19 edición local requiere permisos y no activa escritura central (0.32164ms)
+✔ C10-20 rutas remotas de C07-C09 siguen bloqueadas por defecto (0.31867ms)
+✔ C10-21 directorio C04 no carga datos de otro módulo ni inactivos (0.127198ms)
+✔ C10-22 catálogo C03 es local y sin consultas remotas (0.202342ms)
+✔ C10-23 funcionalidades móviles y PDF originales siguen disponibles (0.204995ms)
+✔ C10-24 no se publica main ni se cambian cuentas desde C10 (0.15444ms)
+OK Caché normal conserva destino y contenido
+OK Cambio de usuario durante lectura no escribe caché
+OK Cambio de módulo durante lectura no escribe caché
+OK Cambio de cierre de sesión durante lectura no escribe caché
+OK Cambio después de abrir tampoco escribe en el nuevo ámbito
+OK Cambio antes de confirmar no entrega resultado antiguo a la nueva sesión
+OK Destino nativo capturado permanece en A aunque cambie el ámbito global
+7 grupos de caché y sesión aprobados, sin datos reales.
+✔ test-cache-sesion-v242.cjs (196.330013ms)
+OK Solo lectura no envía ni corrige en APR
+OK Solo lectura no envía ni corrige en OTROS
+OK Revisión delegada conserva facultad explícita y no permite autoaprobación
+OK Nombre efectivo, PDF inicial y responsable histórico conservados
+OK Solicitud preparada corregible con revisión y auditoría
+OK Cliente no reserva envíos ni registra identidades de servicio
+OK Reserva exclusiva bloquea envío duplicado y correcciones concurrentes
+OK Fallo confirmado permite corregir; resultado incierto no permite reenvío
+OK Cancelar conserva historial y permite otra solicitud nueva
+OK Invitaciones ajenas y usuarios sin facultad no se pueden gestionar
+OK Revisiones nulas no evitan el control de concurrencia
+OK La auditoría identifica al General que corrige una solicitud delegada
+12 grupos de correcciones SQL aprobados. Sin red ni cuentas reales.
+✔ test-correcciones-sql-v242.cjs (5980.109221ms)
+✔ D01-01 tabla Actividades HYS conserva las cuatro columnas históricas (1.337086ms)
+✔ D01-02 conservar selector de resultados, adjuntos múltiples y visor (0.23429ms)
+✔ D01-03 primera línea sin viñeta, Enter añade viñeta a continuación (0.283986ms)
+✔ D02-01 identificador estable UUID obligatorio (0.922051ms)
+✔ D02-02 solo se permite identidad de APR con UUID y nombre (0.395346ms)
+✔ D02-03 directorio no se activa sin flags y proveedor explícitos (0.19141ms)
+✔ D03-01 vínculo opcional al UUID de un hallazgo real (0.333066ms)
+✔ D03-02 hallazgo antiguo sin ID no se vincula por índice (0.723305ms)
+✔ D04-01 las dos clases de registros comparten el contrato sin alterar el texto histórico (0.341996ms)
+✔ D04-02 fotografías permanecen en la posición 4 y metadatos en la 5 (0.289246ms)
+✔ D05-01 no se admite una clasificación arbitraria (1.168043ms)
+✔ D06-01 tareas planificadas necesitan fecha compromiso, sin generar verificación (0.616982ms)
+✔ D06-02 fechas imposibles se rechazan (0.127892ms)
+✔ D06-03 los metadatos existentes adicionales se conservan (0.118856ms)
+✔ D06-04 formato de seguimiento muestra tipo, identidad, fecha y hallazgo (0.287115ms)
+✔ D07-01 detalle se integra en tablas APR y PDF sin alterar esquema de hallazgos (0.365128ms)
+✔ D07-02 preview tiene el mismo componente y datos ficticios de APR (0.194258ms)
+✔ D07-03 CSS adapta editor y resumen a pantallas pequeñas (0.081785ms)
+✔ D07-04 no hay conexiones ni mutaciones remotas en el módulo D (0.231105ms)
+✔ E01-01 identidad consistente requiere UUID, rol válido y ámbito (2.784439ms)
+✔ E01-02 no se aceptan roles inventados (0.347515ms)
+✔ E02-01 cargo, teléfono y correo se normalizan (1.696051ms)
+✔ E02-02 teléfono inválido rechazado (0.987396ms)
+✔ E02-03 correo inválido rechazado (0.375861ms)
+✔ E02-04 contacto preferido exige canal disponible (0.368222ms)
+✔ E03-01 ámbitos exigen organización, proyecto, módulo y área UUID (0.29785ms)
+✔ E03-02 ninguna coincidencia entre módulos APR/OTROS (0.754182ms)
+✔ E03-03 ningún permiso por semejanza de nombre de proyecto (0.384199ms)
+✔ E04-01 áreas operativas no son tabla de permisos (1.286431ms)
+✔ E04-02 áreas de otros módulos se distinguen por alcance (0.536516ms)
+✔ E04-03 no se duplica un área en el mismo proyecto/módulo (0.838449ms)
+✔ E05-01 no se inventa auditoría central ni se envían operaciones de red (0.707167ms)
+✔ E05-02 datos ficticios solo se habilitan en la demostración (0.375087ms)
+✔ E UI-01 montaje en Configuración ambos módulos (0.483705ms)
+✔ E UI-02 pantallas adaptables (0.269893ms)
+✔ E UI-03 no habilita escritura real sin backend (0.650391ms)
+OK Origen ajeno y preflight restringidos
+OK Sesión inválida no prepara solicitud
+OK Sin retorno válido no queda solicitud preparada
+OK Rechazo SQL no crea cuenta ni envía correo
+OK Cuenta existente ajena conservada sin modificación
+OK Alta vincula identidad antes de completar y usa ruta de activación
+OK Habilitación fallida se reintenta sin duplicar invitación
+OK Rechazo explícito de proveedor queda fallido y corregible
+OK Respuesta 500 incierta impide envío automático adicional
+OK Desconexión después de iniciar conserva incertidumbre
+OK Fallo de directorio anterior al correo permite recuperación segura
+OK Reserva concurrente rechazada antes de correo
+OK Fallo al persistir identidad no repite creación de cuenta
+OK Sin confirmación de retorno no prepara solicitud ni envía correo
+14 grupos del endpoint aprobados. Sin Auth real ni correos.
+✔ test-edge-v242.cjs (209.462749ms)
+✔ F01-01 se rechaza el informe de otro módulo (1.905007ms)
+✔ F01-02 APR incluye actividad y acción de hallazgo sin confundirlas (1.082314ms)
+✔ F01-03 OTROS no incorpora las actividades APR (0.930019ms)
+✔ F01-04 vencidos primero, luego próximos (0.476335ms)
+✔ F01-05 filtro personal por UUID exacto (0.285963ms)
+✔ F01-06 no se incluye una acción ajena al módulo (0.784767ms)
+✔ F01-07 no se cuentan acciones verificadas realmente (0.368484ms)
+✔ F01-08 verificación sin evidencia no equivale a cierre (0.250706ms)
+✔ F01-09 no se inventa tarea para actividad informativa (0.667933ms)
+✔ F01-10 las actividades sin identidad no aparecen como propias (0.514598ms)
+✔ F01-11 fechas imposibles no se usan para plazos (0.403784ms)
+✔ F01-12 duplicados de acción se ignoran y notifican como advertencia de datos (0.556446ms)
+✔ F01-13 no hay APIs de envío, almacenamiento, confirmación o notificaciones falsas (2.043907ms)
+✔ F01-14 solo vista ficticia permite filtrar equipo (0.704845ms)
+✔ F01-15 se actualiza la bandeja al redibujar las tablas (0.158741ms)
+✔ F01-16 el acceso desde la campana navega al módulo correspondiente (0.335023ms)
+✔ F01-17 demo usa solo IDs y personas ficticias separadas APR/OTROS (0.268249ms)
+✔ F01-18 F01 no altera las páginas PDF ni las tablas históricas (0.478005ms)
+✔ F01-19 hallazgo pendiente sin acciones aparece en bandeja de equipo (0.51068ms)
+✔ F01-20 hallazgo sin acciones se asigna solo cuando hay un único usuario válido (0.609307ms)
+✔ F01-21 se excluye el hallazgo completado sin acciones (0.669812ms)
+✔ F01-22 tarjeta 1 con seguimiento no clasificado aparece solo en equipo (0.411028ms)
+✔ F01-23 actividad informativa sin novedades no dispara pendiente (0.472007ms)
+✔ F01-24 estado En proceso de tarjeta 2 puede verse como seguimiento sin asignación (0.500679ms)
+✔ F01-25 separación OTROS: solo hallazgos, aun sin acciones (0.466948ms)
+✔ F01-26 registros antiguos no se muestran como tareas personales sin UUID estable (0.620327ms)
+✔ F01-27 resumen muestra las tres tarjetas (0.252912ms)
+✔ F01b-01 vista ficticia APR incluye las 3 tarjetas (30.537222ms)
+✔ F01b-02 filtro real solo incluye pendientes del actor (0.966731ms)
+✔ F01b-03 otro usuario no obtiene tareas ajenas (0.891263ms)
+✔ F01b-04 una cuenta no válida no obtiene tareas ajenas (1.20939ms)
+✔ F01b-05 no accede a un informe de OTROS desde APR (1.121503ms)
+✔ F01b-06 no accede a un informe APR desde OTROS (0.375652ms)
+✔ F01b-07 OTROS incluye solamente su hallazgo (0.385116ms)
+✔ F01b-08 la consulta no altera el informe original (1.867503ms)
+✔ F01b-09 búsqueda de tarea verifica clave exacta (0.609571ms)
+✔ F01b-10 las fichas no crean verificaciones ni eventos (0.871354ms)
+✔ F01b-11 menú permite entrar a Mis pendientes (0.779513ms)
+✔ F01b-12 menú de OTROS usa el mismo formulario embebido con nueva sección (0.888037ms)
+✔ F01b-13 navegación de campana no redirige al formulario (0.658649ms)
+✔ F01b-14 navegación permite conservar la pestaña de pendientes (3.845154ms)
+✔ F01b-15 al cambiar de pestaña se oculta la sección (0.749277ms)
+✔ F01b-16 la vista se actualiza al guardar el registro (0.366537ms)
+✔ F01b-17 muestra sólo lectura sin ejecución ni cierre (0.31209ms)
+✔ F01b-18 muestra vínculo al proyecto único aprobado (0.642167ms)
+✔ F01b-19 mantiene función PDF original (1.20048ms)
+✔ F01b-20 build copia el nuevo módulo y CSS al sitio aislado (0.227521ms)
+✔ F01b-21 la demostración no conecta Supabase (0.320156ms)
+✔ F01b-22 al consultar informe incorrecto no se devuelven registros (0.207881ms)
+✔ F01-F02: hallazgo válido produce tarea por UUID (2.351573ms)
+✔ F02: crea una propuesta por responsable y tipo (0.81887ms)
+✔ F02: nunca toma hallazgos de otro módulo (0.993355ms)
+✔ F02: omite UUID inexistente o identidad no vinculada (0.248955ms)
+✔ F02: no duplica la misma propuesta al guardar repetidamente (0.713941ms)
+✔ F05: reasignación genera aviso nuevo y al anterior (0.437748ms)
+✔ F05: cierre requiere verificación real registrada, no solo estado verbal (0.386114ms)
+✔ F05: reapertura después de cierre verificado genera evento (0.249238ms)
+✔ F03: plantilla de correo no inventa envío ni confirma lectura (1.001177ms)
+✔ F04: preparado no se transforma en enviado, visto o confirmado (0.816121ms)
+✔ F03-F07: recordatorios cercanos y vencidos con clave determinista (0.362839ms)
+✔ F07: reintentos exponenciales acotados sin modificación de clave (0.439637ms)
+✔ F06: exportación solo de tarea visible para el ámbito autorizado (0.376576ms)
+✔ F02: actividad APR asignada participa sin filtrar actividades a OTROS (3.518617ms)
+✔ Gestión explícita permite solo las RPC de cuentas existentes (5.602313ms)
+✔ Gestión cerrada bloquea toda RPC operativa (3.308077ms)
+✔ Habilitación completa anterior se conserva (3.482168ms)
+✔ Config no activa informes ni publicación oficial (0.400201ms)
+✔ UI exige contexto vigente y bloquea invitaciones sin activación completa (0.3923ms)
+✔ administrador_global entra al selector con APR (2.88844ms)
+✔ administrador_global entra al selector con OTROS (0.222046ms)
+✔ administrador_global entra al selector con APR/OTROS (0.141243ms)
+✔ administrador_global conserva módulo activo durante renovación (0.331534ms)
+✔ administrador_global revocación no conserva módulo anterior (0.318737ms)
+✔ administrador_area entra al selector con APR (0.211679ms)
+✔ administrador_area entra al selector con OTROS (0.37537ms)
+✔ administrador_area entra al selector con APR/OTROS (0.126196ms)
+✔ administrador_area conserva módulo activo durante renovación (0.168927ms)
+✔ administrador_area revocación no conserva módulo anterior (0.243107ms)
+✔ usuario conserva ingreso directo de módulo único (0.314153ms)
+✔ supervisor conserva ingreso directo de módulo único (0.131823ms)
+✔ OTROS embebido respeta autorización (0.19278ms)
+✔ tarjetas visibles exclusivamente por permisos del servidor (0.600317ms)
+✔ Administrador sin facultades no ve gestión de usuarios ni áreas (0.580035ms)
+✔ Usuarios y activación son facultades independientes del acceso a tarjetas (0.355418ms)
+✔ Áreas requiere su propia facultad y ámbito no vacío (3.389878ms)
+✔ No se muestran facultades de módulos no autorizados (0.161104ms)
+✔ Usuario normal no obtiene gestión aunque tenga una entrada inválida de facultades (0.229671ms)
+✔ Revocación e inactividad ocultan las herramientas (0.148208ms)
+✔ Administrador general conserva las herramientas (7.019037ms)
+✔ Supervisor conserva áreas solo con edición autorizada (0.178468ms)
+OK Contexto real conserva roles y módulos sin cambiar perfiles compartidos
+OK Usuario conserva informe propio y PDF no se expone por tabla directa
+OK Administrador sin facultades no consulta informes ajenos
+OK Consulta por área no concede PDF ni edición
+OK No se filtran resúmenes de otras áreas
+OK Edición ajena requiere motivo y conserva creador/responsable
+OK Varias áreas en el contenido se verifican completas
+OK Flujo nuevo no modifica el estado histórico y bloquea edición aprobada
+OK Áreas fuera del ámbito no pueden actualizarse ni con API directa
+OK Área creada por facultad delegada entra en su ámbito y queda auditada
+OK Cambios de cuentas se limitan a v242 y no alteran perfiles ni permisos originales
+OK Invitación preparada no crea ni elimina cuentas por sí sola
+OK Guardado sin PDF autorizado no filtra el archivo ni por idempotencia
+OK Renombrar un área conserva el informe y su autorización por UUID
+OK Filtros y creadores se limitan a los registros autorizados
+OK Inactivos visibles para reactivación y áreas ajenas no visibles
+OK Una cuenta Supervisor nueva no hereda poderes administrativos implícitos
+OK Activación delegada es independiente de editar datos
+OK No se puede conceder edición que el administrador no posee
+OK Anónimo y cliente no pueden alterar ni borrar auditorías
+OK Supervisor existente conserva facultades solo en su ámbito local
+OK Versiones PDF se conservan y consulta no concede su descarga
+OK Invitación completada es idempotente y crea solo un perfil neutral nuevo
+OK Guardado sin cambios no invalida aprobación y el PDF aprobado queda bloqueado
+OK Cambiar un administrador a usuario revoca sus facultades anteriores
+OK Revocar a un administrador no cambia las facultades del otro
+OK Desactivación local bloquea sesión y conserva cuenta compartida
+27 grupos de integración PostgreSQL aprobados. Sin cambios de producción.
+✔ test-integracion-v242.cjs (6057.688739ms)
+✔ v255 operación pendiente se invalida por cambio de cuenta (3.850897ms)
+✔ v255 operación pendiente se invalida por cambio de módulo (1.019701ms)
+✔ v255 operación pendiente se invalida por cambio de rol (2.640637ms)
+✔ v255 operación pendiente se invalida por cambio de permisos (2.038053ms)
+✔ v255 operación pendiente se invalida por cambio de generación (1.897017ms)
+✔ v255 operación pendiente se invalida por cambio de informe (1.426216ms)
+✔ v255 permiso de escritura se vuelve a comprobar al terminar (1.202647ms)
+✔ v255 copia inválida se rechaza: módulo cruzado (8.21137ms)
+✔ v255 copia inválida se rechaza: registro nulo (1.161425ms)
+✔ v255 copia inválida se rechaza: registro incompleto (1.326054ms)
+✔ v255 copia inválida se rechaza: fotos objeto (1.686166ms)
+✔ v255 copia inválida se rechaza: metadatos array (2.492837ms)
+✔ v255 copia inválida se rechaza: URL ejecutable (2.34134ms)
+✔ v255 copia inválida se rechaza: historial objeto (1.766092ms)
+✔ v255 copia inválida se rechaza: acciones objeto (0.84308ms)
+✔ v255 conserva copia histórica sin módulo ni metadatos (1.138067ms)
+✔ v255 adjuntos incorporados se conservan (0.904166ms)
+✔ v255 dos pestañas no sobrescriben ni encolan cambios de la segunda (1.157322ms)
+✔ v255 una pestaña puede guardar sucesivamente e iniciar otro informe (0.529689ms)
+✔ v255 espejo local solo se escribe tras confirmar guardado (4.681721ms)
+✔ v255 guardado rechazado no sobrescribe espejo de otra pestaña (4.103446ms)
+✔ v255 guardado lento de A nunca crea espejo en B (8.684055ms)
+✔ v255 validar antes de aplicar impide mutación parcial (5.320717ms)
+✔ v255 historial agrupa por fecha del informe y no fecha de archivo (33.232654ms)
+✔ v255 avisos no anuncian persistencia con cuota agotada y reintentan (3.323441ms)
+✔ v255 avisos de perfil inactivo no se leen ni guardan (4.71787ms)
+✔ v255 vencimiento usa día local de Chile cerca de medianoche UTC (257.098115ms)
+✔ v255 snapshot público no comparte arrays con el informe vivo (2.209143ms)
+✔ v255 cargar archivo de otro módulo se rechaza antes de acceder a la cola (2.03673ms)
+✔ desarrollo contiene una sola acción Generar PDF (1.897348ms)
+✔ desarrollo botón Finalizar está inmediatamente a la derecha de Generar PDF (0.452767ms)
+✔ desarrollo botón imprimir pertenece a opciones tras generar PDF (0.618359ms)
+✔ desarrollo conserva descarga, compartir y archivo local PDF (0.456788ms)
+✔ desarrollo conserva finalización conectada a proveedor autorizable (0.149394ms)
+✔ desarrollo no modifica el proyecto único ni menú de pendientes (0.229183ms)
+✔ desarrollo estilo adaptativo mantiene ambos controles en la misma fila (0.386892ms)
+✔ desarrollo no contiene errores de sintaxis en scripts inline (7.880164ms)
+✔ revisión contiene una sola acción Generar PDF (0.875036ms)
+✔ revisión botón Finalizar está inmediatamente a la derecha de Generar PDF (0.306269ms)
+✔ revisión botón imprimir pertenece a opciones tras generar PDF (1.328142ms)
+✔ revisión conserva descarga, compartir y archivo local PDF (0.398127ms)
+✔ revisión conserva finalización conectada a proveedor autorizable (1.557149ms)
+✔ revisión no modifica el proyecto único ni menú de pendientes (0.081094ms)
+✔ revisión estilo adaptativo mantiene ambos controles en la misma fila (0.054114ms)
+✔ revisión no contiene errores de sintaxis en scripts inline (3.262503ms)
+OK APR-paginacion: 10 páginas, fotografías y límites verificados
+OK OTROS-paginacion: 12 páginas, fotografías y límites verificados
+OK APR-texto-extenso: 4 páginas, fotografías y límites verificados
+3 PDF reales verificados. Solo datos sintéticos.
+✔ test-pdf-v242.cjs (570.878885ms)
+✔ index.html muestra exactamente un proyecto (2.450291ms)
+✔ index.html evita que el catálogo y los borradores reintroduzcan proyectos antiguos (0.672326ms)
+✔ index.html mantiene salida PDF dependiente del selector actual (0.347431ms)
+✔ fixtures/v245-review/index.html muestra exactamente un proyecto (0.524706ms)
+✔ fixtures/v245-review/index.html evita que el catálogo y los borradores reintroduzcan proyectos antiguos (0.897534ms)
+✔ fixtures/v245-review/index.html mantiene salida PDF dependiente del selector actual (0.278041ms)
+✔ v254 APR: instancia de A no lee ni persiste avisos tras cambio a B (13.159755ms)
+✔ v254 APR: logout/login A invalida también la captura anterior (2.452225ms)
+✔ v254 APR: duplicados, dos cierres, reapertura y recarga (7.409207ms)
+✔ v254 APR: reasignación A→B→A conserva cada transición y destinatario (2.889006ms)
+✔ v254 APR: volver a un informe no reinventa su asignación (2.73149ms)
+✔ v254 APR: parada elimina listeners y ledger en memoria (2.180595ms)
+✔ v254 APR: evento físico de catálogo acepta solo cuenta/módulo y limpia (1.361078ms)
+✔ v254 APR: importación directa bajo rol usuario (2.966549ms)
+✔ v254 APR: importación directa bajo rol supervisor (1.817967ms)
+✔ v254 APR: importación directa bajo rol administrador_area (4.898373ms)
+✔ v254 APR: importación directa bajo rol administrador_global (2.129848ms)
+✔ v254 APR: archivo lento se cancela al cambiar la cuenta (63.111518ms)
+✔ v254 OTROS: instancia de A no lee ni persiste avisos tras cambio a B (4.000042ms)
+✔ v254 OTROS: logout/login A invalida también la captura anterior (4.031963ms)
+✔ v254 OTROS: duplicados, dos cierres, reapertura y recarga (5.939146ms)
+✔ v254 OTROS: reasignación A→B→A conserva cada transición y destinatario (4.857734ms)
+✔ v254 OTROS: volver a un informe no reinventa su asignación (3.994151ms)
+✔ v254 OTROS: parada elimina listeners y ledger en memoria (4.347995ms)
+✔ v254 OTROS: evento físico de catálogo acepta solo cuenta/módulo y limpia (2.742545ms)
+✔ v254 OTROS: importación directa bajo rol usuario (4.781948ms)
+✔ v254 OTROS: importación directa bajo rol supervisor (4.252497ms)
+✔ v254 OTROS: importación directa bajo rol administrador_area (3.324246ms)
+✔ v254 OTROS: importación directa bajo rol administrador_global (4.123906ms)
+✔ v254 OTROS: archivo lento se cancela al cambiar la cuenta (61.804634ms)
+✔ v254 catálogo: CSV conserva alias y keywords (4.383238ms)
+✔ v254 catálogo: evento entre pestañas refresca sin mostrar resultados vacíos (43.951729ms)
+✔ v254 módulos: normaliza null/vacío y rechaza desconocidos sin mutar (25.670313ms)
+✔ v254 módulos: evento monta después de onAccess y descarta transición lenta (9.65184ms)
+✔ v254 APR: jerarquía de otro supervisor no amplía ámbito (6.316651ms)
+✔ v254 OTROS: jerarquía de otro supervisor no amplía ámbito (3.862389ms)
+✔ v254 ámbitos: respuesta lenta de A se descarta y no hay render inexistente (35.753862ms)
+(node:245) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ v254 SQL F251: instalación completa local y transacción reversible (4340.98098ms)
+✔ v254 worker: enviado solo tras proveedor y una fila confirmada (56.734746ms)
+✔ v254 worker: reserva perdida no inventa enviado ni falla de proveedor (2.856028ms)
+✔ v254 worker: sin consentimiento no llama proveedor (2.964409ms)
+✔ v254 worker: permiso revocado no llama proveedor (6.452983ms)
+✔ v254 worker: rechazo proveedor conserva reintento y no entrega (3.543685ms)
+✔ v254 editores: reset elimina selecciones y acciones de la sesión anterior (5.095624ms)
+✔ v254 build: cada recurso local referido tiene los mismos bytes en dist (175.93627ms)
+✔ v254 controles administrativos: iframe OTROS sin barra no arroja errores (3.756618ms)
+✔ v254 móvil: cinco destinos de navegación caben en una fila (0.376943ms)
+✔ F-253-01 catálogo no aparece hasta buscar (2.261008ms)
+✔ F-253-02 no se muestran los 40 riesgos iniciales (63.299735ms)
+✔ F-253-03 buscar activa resultados y reconoce tildes (59.100233ms)
+✔ F-253-04 selección múltiple guardada aunque se limpie la búsqueda (78.964372ms)
+✔ F-253-05 riesgo guardado aparece al volver a editar, sin catálogo desplegado (25.508941ms)
+✔ F-253-06 se pueden retirar los riesgos seleccionados (19.399463ms)
+✔ F-253-07 resultados realmente ocultos con CSS de retícula (0.22874ms)
+✔ F-253-08 se mantiene un solo buscador en APR y OTROS (0.659846ms)
+✔ F-253-09 no altera guardado e impresión de riesgos (1.15921ms)
+✔ F-253-10 buscador respeta filtros tolerantes a errores y sinónimos (24.985267ms)
+✔ F-253-11 no se introducen escrituras centrales o llamadas externas (0.878947ms)
+✔ R252-01 precarga 393 riesgos con IDs únicos (1.730278ms)
+✔ R252-02 conserva alias/keywords sin cambiar nombre principal (0.408763ms)
+✔ R252-03 normalización previa conserva código con guión (0.349335ms)
+✔ R252-04 errores menores de escritura tienen coincidencia (47.759976ms)
+✔ R252-05 términos relacionados encuentran caída a distinto nivel (9.348941ms)
+✔ R252-06 búsqueda sin tildes y términos fuera de orden (12.152845ms)
+✔ R252-07 filtro vacío mantiene listado, sin duplicar resultados (0.175361ms)
+✔ R252-08 importación JSON guarda alias y ordena el catálogo alfabéticamente (6.100657ms)
+✔ R252-09 importación inválida no reemplaza catálogo anterior (1.264414ms)
+✔ R252-10 instantánea guarda código/nombre, sin sinónimos anexados (0.425864ms)
+✔ R252-11 selector original sigue siendo único en APR y OTROS (0.652897ms)
+✔ R252-12 actualización local visible solo al administrador general (0.18185ms)
+✔ R252-13 sin conexión remota, conserva bandera de solo prueba (0.118562ms)
+OK administrador_global APR: fallo IndexedDB no bloquea; responsable correcto
+OK administrador_global OTROS: fallo IndexedDB no bloquea; responsable correcto
+OK administrador_area APR: fallo IndexedDB no bloquea; responsable correcto
+OK administrador_area OTROS: fallo IndexedDB no bloquea; responsable correcto
+OK supervisor APR: fallo IndexedDB no bloquea; responsable correcto
+OK supervisor OTROS: fallo IndexedDB no bloquea; responsable correcto
+OK usuario APR: fallo IndexedDB no bloquea; responsable correcto
+OK usuario OTROS: fallo IndexedDB no bloquea; responsable correcto
+OK administrador_area APR: solo lectura bloquea todos los controles y escrituras
+OK administrador_area OTROS: solo lectura bloquea todos los controles y escrituras
+OK supervisor APR: solo lectura bloquea todos los controles y escrituras
+OK supervisor OTROS: solo lectura bloquea todos los controles y escrituras
+OK usuario APR: solo lectura bloquea todos los controles y escrituras
+OK usuario OTROS: solo lectura bloquea todos los controles y escrituras
+OK Finalización offline conserva todos los registros con el mismo ID
+OK Cuota llena impide finalizar sin limpiar ni anunciar conservación
+OK Nuevo informe preserva el anterior antes de crear otra identidad
+OK Cambiar usuario durante un guardado no cruza borradores ni colas
+OK Guardar con autosincronización apagada distingue envío manual pendiente
+OK Revocar permiso al mismo usuario bloquea inmediatamente sin borrar su borrador
+OK Una importación no puede cambiar el responsable bloqueado
+OK Supervisor conserva el nombre del informe cargado aunque su perfil sea otro
+OK La distribución sin activación no envía informes a Supabase
+23 pruebas del runtime real aprobadas; solo almacenamiento simulado.
+✔ test-runtime-v242.cjs (202.087516ms)
+OK General lista solo administradores
+OK Asignación independiente y auditoría atómica
+OK Protege general y usuario común como destinos
+OK Rechaza áreas de otro módulo, facultades desconocidas y ausencia de motivo
+OK Conflicto conserva la revisión anterior
+OK Administrador solo ve su propia asignación
+OK Administrador no puede conceder ni editar auditoría
+OK Usuario no lista administradores ni consulta asignaciones ajenas
+OK Anónimo no ejecuta RPC privilegiadas
+OK Revocación independiente conserva al segundo administrador
+OK General inactivo no administra
+11 grupos SQL aprobados. No se aplicó migración remota.
+✔ test-servidor-v242.cjs (5108.982876ms)
+✔ Tarjetas completas y botones respetan [] (4.508232ms)
+✔ Tarjetas completas y botones respetan ["APR"] (1.159827ms)
+✔ Tarjetas completas y botones respetan ["OTROS"] (1.193265ms)
+✔ Tarjetas completas y botones respetan ["APR","OTROS"] (1.12505ms)
+✔ Tarjetas ocultas al inicio y CSS respeta hidden aunque sean flex (0.772684ms)
+ℹ tests 465
+ℹ suites 0
+ℹ pass 465
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6872.049275

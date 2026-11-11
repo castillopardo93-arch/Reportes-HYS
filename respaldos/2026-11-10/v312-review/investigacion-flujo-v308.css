@@ -1,0 +1,174 @@
+/* Reportes HYS v308 — interfaz del circuito de pruebas */
+#hys305Investigation .hys308-demo-bar{padding:12px 15px;background:#e8f3fb;border:1px solid #c2daed;border-radius:11px;margin-bottom:18px;color:#194a69;font-size:12px;font-weight:700}
+#hys305Investigation .hys308-demo-bar label{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+#hys305Investigation .hys308-demo-bar select{padding:9px 12px;border:1px solid #adc6da;border-radius:8px;min-width:190px;background:white;color:#153b56}
+#hys305Investigation .hys308-demo-bar p{margin:0;font-weight:650;line-height:1.6}
+#hys305Investigation .hys306-choice-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#hys305Investigation .hys306-choice{min-height:205px;padding:21px}
+#hys305Investigation .hys306-choice strong{font-size:20px}
+#hys305Investigation .hys308-workspace-tools{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:0 0 14px}
+#hys305Investigation .hys308-case-label{margin:0 auto 0 0;font-weight:800;color:#184e6a}
+#hys305Investigation .hys308-workspace-tools button{max-width:210px}
+#hys305Investigation .hys308-track-top{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:20px}
+#hys305Investigation .hys308-track-top h2{font-size:21px;margin:0 0 5px}
+#hys305Investigation .hys308-track-top p{font-size:13px;color:#6b8190;line-height:1.5;margin:0}
+#hys305Investigation .hys308-track-controls{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin:12px 0 18px}
+#hys305Investigation .hys308-track-controls input,#hys305Investigation .hys308-track-controls select{padding:12px;border-radius:9px;border:1px solid #c5d8e6;min-width:0;font:inherit;background:white;color:#153e59}
+#hys305Investigation .hys308-list{display:grid;gap:14px}
+#hys305Investigation .hys308-item{border:1px solid #cfdfe9;border-radius:13px;background:white;padding:18px;min-width:0;box-shadow:0 2px 6px #102e4810}
+#hys305Investigation .hys308-item-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#hys305Investigation .hys308-item-head h3{font-size:17px;margin:0;color:#164362}
+#hys305Investigation .hys308-item-head small{font-size:12px;color:#607d91}
+#hys305Investigation .hys308-doc-states{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:15px}
+#hys305Investigation .hys308-doc{border:1px solid #dfebf2;border-radius:10px;background:#f8fbfe;padding:14px;min-width:0}
+#hys305Investigation .hys308-doc>strong{display:block;color:#153c57;margin-bottom:7px}
+#hys305Investigation .hys308-doc>p{font-size:12px;color:#5b7686;line-height:1.45}
+#hys305Investigation .hys308-state{display:inline-flex;padding:5px 9px;border:1px solid #cbdbe8;border-radius:100px;background:#ecf3f7;font-size:11px;font-weight:750;color:#416783}
+#hys305Investigation .hys308-state-en_revision{background:#e5f2ff;border-color:#b8d8f2;color:#12649b}
+#hys305Investigation .hys308-state-aprobado{background:#e8f6e9;border-color:#b7dabc;color:#176036}
+#hys305Investigation .hys308-state-correccion{background:#fff3db;border-color:#edcf85;color:#8c630e}
+#hys305Investigation .hys308-warning{border-left:3px solid #ca8e23;padding-left:9px;color:#915f13!important}
+#hys305Investigation .hys308-review-actions{display:flex;flex-direction:column;gap:9px;margin-top:13px}
+#hys305Investigation .hys308-review-actions :is(textarea,select){width:100%;padding:9px;border:1px solid #b8cbdc;border-radius:8px;background:white;color:#173d58;min-width:0}
+#hys305Investigation .hys308-review-actions button{align-self:stretch}
+#hys305Investigation .hys308-history{margin-top:16px;border-top:1px solid #d6e5ee;padding-top:11px}
+#hys305Investigation .hys308-history>summary{color:#17618f;font-size:13px;font-weight:750;cursor:pointer}
+#hys305Investigation .hys308-history-event{border-left:3px solid #b5d8ed;margin:12px 0 0 7px;padding:2px 0 2px 12px;font-size:12px}
+#hys305Investigation .hys308-history-event strong{font-size:12px}
+#hys305Investigation .hys308-history-event p{margin:5px 0;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+#hys305Investigation .hys308-history-event details{margin-top:8px}
+#hys305Investigation .hys308-empty{border:1px dashed #bcd3e4;border-radius:12px;background:white;padding:20px;color:#5a7285;text-align:center}
+#hys305Investigation .hys306-form-footer{align-items:end}
+#hys305Investigation .hys308-assign{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:750;min-width:195px;max-width:300px}
+#hys305Investigation .hys308-assign select{min-height:40px;padding:8px;border:1px solid #bdd2e0;border-radius:8px;background:white;color:#163e5a}
+#hys308Launcher{position:fixed;right:20px;bottom:20px;z-index:55000;background:#135784;color:white;border:1px solid #337aa6;border-radius:12px;padding:13px 17px;box-shadow:0 8px 30px #07314c66;font:700 13px "Segoe UI",Arial,sans-serif;cursor:pointer}
+#hys308Launcher:hover{background:#1a6a9c}
+#hys308Launcher[hidden]{display:none!important}
+@media(max-width:900px){
+ #hys305Investigation .hys306-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #hys305Investigation .hys308-doc-states{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ #hys305Investigation .hys306-choice-grid{grid-template-columns:1fr}
+ #hys305Investigation .hys308-track-top{flex-direction:column}
+ #hys305Investigation .hys308-track-controls{grid-template-columns:1fr}
+ #hys305Investigation .hys308-workspace-tools{align-items:stretch;justify-content:stretch}
+ #hys305Investigation .hys308-case-label{flex-basis:100%}
+ #hys305Investigation .hys308-workspace-tools button{max-width:none;flex:1}
+ #hys305Investigation .hys308-assign{max-width:none;min-width:100%;width:100%}
+ #hys305Investigation .hys306-form-footer button{flex:1}
+ #hys308Launcher{right:10px;bottom:10px;max-width:calc(100% - 20px)}
+}
+@media print{#hys308Launcher,#hys305Investigation .hys308-workspace-tools,#hys305Investigation .hys308-tracking{display:none!important}}
+
+/* v308 — disponibilidad de catálogo de causas integrado, sin carga manual */
+#hys305Investigation .hys308-catalog-status{
+ border:1px solid #e0cfa1;background:#fff8e6;color:#835a1d;
+ padding:11px 14px;border-radius:9px;font-size:12px;line-height:1.6;
+ margin:10px 0 15px;font-weight:650;
+}
+#hys305Investigation .hys308-catalog-status[data-complete="true"]{
+ background:#ebf7ed;border-color:#bdddc3;color:#1d653b;
+}
+#hys305Investigation .hys306-cause-select:disabled,
+#hys305Investigation #hys306ActionRows select[name$="_codigo"]:disabled{
+ opacity:1;background:#edf0f3;color:#5f6b78;cursor:not-allowed;
+}
+
+/* v308 — señal visual para campos Flash obligatorios pendientes */
+#hys305Investigation .hys308-required-summary {
+ border:1px solid #d44d50;border-left:5px solid #b91c1c;
+ border-radius:10px;background:#fff1f0;color:#8b1e1e;
+ padding:15px 18px;margin:12px 0 20px;line-height:1.5;
+ box-shadow:0 2px 8px rgba(185,28,28,.08);
+}
+#hys305Investigation .hys308-required-summary strong{
+ display:block;font-weight:800;font-size:14px;margin:0 0 6px;
+}
+#hys305Investigation .hys308-required-summary p{
+ font-size:12px;line-height:1.6;margin:0 0 8px;
+}
+#hys305Investigation .hys308-required-summary ul{
+ margin:0;padding-left:20px;columns:2;column-gap:24px;
+ font-size:12px;line-height:1.65;
+}
+#hys305Investigation .hys308-required-summary li{break-inside:avoid;padding:1px 0;}
+#hys305Investigation .hys306-field.hys308-required-field{
+ border:1px solid #eaa4a4!important;background:#fff5f5;
+ border-radius:9px;padding:9px 10px;
+ outline:1px solid rgba(185,28,28,.13);
+}
+#hys305Investigation .hys306-field.hys308-required-field .hys306-field-name{
+ color:#a61b1b!important;font-weight:800;
+}
+#hys305Investigation .hys306-field.hys308-required-field :is(input,select,textarea)[aria-invalid="true"]{
+ border:2px solid #c62828!important;background:#fff!important;
+ box-shadow:0 0 0 2px rgba(198,40,40,.13)!important;
+ color:#5f1717;
+}
+#hys305Investigation .hys306-field.hys308-required-field :is(input,select,textarea)[aria-invalid="true"]:focus{
+ outline:2px solid #a41212;outline-offset:2px;
+}
+#hys305Investigation .hys308-error-detail{
+ display:block;color:#a61b1b;font-weight:700;font-size:11px;
+ line-height:1.4;margin-top:6px;
+}
+#hys305Investigation .hys308-required-complete{
+ border:1px solid #a9d7b3;background:#edf9ef;color:#17603b;
+ border-radius:9px;padding:10px 14px;font-size:13px;font-weight:750;margin:10px 0 18px;
+}
+@media(max-width:650px){
+ #hys305Investigation .hys308-required-summary ul{columns:1;}
+ #hys305Investigation .hys308-required-summary{padding:13px;}
+ #hys305Investigation .hys306-field.hys308-required-field{padding:8px;}
+}
+
+
+/* v308 — búsqueda de revisores por nombre/apellido con selección validada */
+#hys305Investigation .hys308-searchable-reviewer{
+ position:relative;display:flex;flex-direction:column;gap:6px;
+ min-width:225px;max-width:330px;
+}
+#hys305Investigation .hys308-search-label{
+ font-weight:750;font-size:12px;line-height:1.3;color:#1c4867;
+}
+#hys305Investigation .hys308-search-input{
+ border:1px solid #8fb4cd;background:#fff;color:#173f5d;
+ border-radius:9px;min-height:42px;padding:9px 12px;
+ width:100%;font:600 13px "Segoe UI",Arial,sans-serif;
+ box-shadow:none;
+}
+#hys305Investigation .hys308-search-input:focus{
+ outline:2px solid #328fcd;outline-offset:2px;
+}
+#hys305Investigation .hys308-search-hint{
+ display:block;color:#526f84;font-size:11px;line-height:1.4;max-width:330px;
+}
+#hys305Investigation .hys308-search-results{
+ position:absolute;left:0;right:0;top:70px;z-index:99;
+ background:white;border:1px solid #a5c1d4;
+ border-radius:10px;box-shadow:0 12px 32px #152f4652;
+ max-height:240px;overflow-y:auto;padding:6px;
+}
+#hys305Investigation .hys308-search-results[hidden]{display:none}
+#hys305Investigation .hys308-search-option{
+ display:flex;flex-direction:column;align-items:flex-start;
+ width:100%;border:0;background:#fff;
+ border-radius:7px;padding:9px 10px;text-align:left;
+ color:#173e5b;font-size:13px;cursor:pointer;
+}
+#hys305Investigation .hys308-search-option small{
+ color:#668094;font-size:11px;font-weight:500;margin-top:3px;
+}
+#hys305Investigation .hys308-search-option:hover,
+#hys305Investigation .hys308-search-option.hys308-search-active{
+ background:#e7f3fc;
+}
+#hys305Investigation .hys308-search-empty{
+ padding:11px;margin:0;color:#596e7d;font-size:12px;line-height:1.5;
+}
+#hys305Investigation .hys308-native-reviewer{display:none!important}
+@media(max-width:650px){
+ #hys305Investigation .hys308-searchable-reviewer{min-width:100%;max-width:100%}
+ #hys305Investigation .hys308-search-results{max-height:190px}
+}

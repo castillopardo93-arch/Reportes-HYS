@@ -1,0 +1,18 @@
+/* C03: selector de riesgos local, sin alterar columnas de Hallazgos */
+.hys243-risk-picker{grid-column:1/-1;border:1px solid #c9def5;background:#f8fbff;border-radius:10px;padding:14px;min-width:0}
+.hys243-risk-label{display:block;font-weight:800;margin:0 0 4px;color:#173d68}
+.hys243-risk-help,.hys243-risk-status{margin:3px 0 9px;color:#546a7d;font-size:12px}
+.hys243-risk-picker input[type=search]{display:block;width:100%;min-height:39px;border:1px solid #b8d2f0;border-radius:7px;padding:8px;background:#fff}
+.hys243-risk-chosen{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}
+.hys243-risk-chip{border:1px solid #97b8e2;border-radius:18px;background:#e3f0ff;color:#164a79;padding:5px 9px;max-width:100%;overflow-wrap:anywhere;text-align:left}
+.hys243-risk-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:5px;max-height:210px;overflow:auto;padding:6px;border:1px solid #d8e7f4;border-radius:7px;background:#fff}
+.hys243-risk-result{border:1px solid #d3e1f2;border-radius:7px;text-align:left;padding:7px 8px;background:#fff;overflow-wrap:anywhere}
+.hys243-risk-result.selected{background:#eaf6ef;border-color:#81bda0;font-weight:750}
+.hys243-risk-import{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px}
+.hys243-risk-import small{color:#6a7584;font-size:11px}
+tr.hys243-risk-detail td{background:#f3f8fe;border-top:0!important;padding:9px 12px!important;overflow-wrap:anywhere}
+.hys243-risk-tag{display:inline-block;vertical-align:middle;border-radius:6px;border:1px solid #bcd6ed;padding:3px 6px;margin:3px 4px 2px 0;font-size:11px;background:white;white-space:normal}
+@media(max-width:760px){.hys243-risk-picker{padding:10px}.hys243-risk-results{grid-template-columns:1fr;max-height:170px}tr.hys243-risk-detail td{display:block;width:100%}.hys243-risk-import .btn{min-height:40px}}
+
+/* v253: ocultar completamente los resultados cuando aún no se ha buscado. */
+.hys243-risk-results[hidden]{display:none!important}

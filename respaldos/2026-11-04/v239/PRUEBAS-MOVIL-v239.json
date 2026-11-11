@@ -1,0 +1,174 @@
+{
+  "environment": "Navegador integrado con tamaños de teléfono y datos ficticios; no dispositivo físico",
+  "APR": [
+    {
+      "requested": 320,
+      "view": "APR Inicio",
+      "viewport": 305,
+      "width": 305
+    },
+    {
+      "requested": 320,
+      "view": "APR Informe",
+      "viewport": 305,
+      "width": 305
+    },
+    {
+      "requested": 320,
+      "view": "Modal",
+      "viewport": 308,
+      "width": 308
+    },
+    {
+      "requested": 390,
+      "view": "APR Inicio",
+      "viewport": 375,
+      "width": 375
+    },
+    {
+      "requested": 390,
+      "view": "APR Informe",
+      "viewport": 375,
+      "width": 375
+    },
+    {
+      "requested": 390,
+      "view": "Modal",
+      "viewport": 378,
+      "width": 378
+    },
+    {
+      "requested": 430,
+      "view": "APR Inicio",
+      "viewport": 415,
+      "width": 415
+    },
+    {
+      "requested": 430,
+      "view": "APR Informe",
+      "viewport": 415,
+      "width": 415
+    },
+    {
+      "requested": 430,
+      "view": "Modal",
+      "viewport": 418,
+      "width": 418
+    },
+    {
+      "requested": 768,
+      "view": "APR Inicio",
+      "viewport": 753,
+      "width": 753
+    },
+    {
+      "requested": 768,
+      "view": "APR Informe",
+      "viewport": 753,
+      "width": 753
+    },
+    {
+      "requested": 768,
+      "view": "Modal",
+      "viewport": 680,
+      "width": 680
+    },
+    {
+      "requested": 1280,
+      "view": "APR Informe",
+      "viewport": 1265,
+      "width": 1265
+    }
+  ],
+  "OTROS": [
+    {
+      "size": {
+        "width": 320,
+        "height": 740
+      },
+      "view": "OTROS Inicio",
+      "inicio": 272,
+      "main": 290,
+      "viewport": 290,
+      "width": 290
+    },
+    {
+      "size": {
+        "width": 320,
+        "height": 740
+      },
+      "view": "OTROS modal",
+      "height": 628,
+      "viewport": 293,
+      "width": 293
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "OTROS Inicio",
+      "inicio": 334,
+      "main": 360,
+      "viewport": 360,
+      "width": 360
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "view": "OTROS modal",
+      "height": 732,
+      "viewport": 363,
+      "width": 363
+    },
+    {
+      "size": {
+        "width": 430,
+        "height": 932
+      },
+      "view": "OTROS Inicio",
+      "inicio": 374,
+      "main": 400,
+      "viewport": 400,
+      "width": 400
+    },
+    {
+      "size": {
+        "width": 430,
+        "height": 932
+      },
+      "view": "OTROS modal",
+      "height": 820,
+      "viewport": 403,
+      "width": 403
+    },
+    {
+      "size": {
+        "width": 844,
+        "height": 390
+      },
+      "view": "OTROS Inicio",
+      "inicio": 803,
+      "main": 829,
+      "viewport": 829,
+      "width": 829
+    },
+    {
+      "size": {
+        "width": 844,
+        "height": 390
+      },
+      "view": "OTROS modal",
+      "height": 278,
+      "viewport": 600,
+      "width": 600
+    }
+  ],
+  "readonlyMobile": true,
+  "adminPanels": "Usuarios, áreas y apariencia revisados a ancho de teléfono sin desbordamiento",
+  "activity": "Formulario APR con texto multilinea y PNG guardado en QA; miniatura y ampliación probadas",
+  "pdf": "Motor PDF sin cambios respecto al respaldo conectado anterior al ajuste móvil",
+  "finalAPRErrors": []
+}

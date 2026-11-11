@@ -1,0 +1,8 @@
+/* C05: fecha compromiso en el detalle del hallazgo; no agregar columnas */
+.hys243-commitment-field{grid-column:1/-1;border:1px solid #c6def4;border-radius:10px;background:#f8fcff;padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.hys243-commitment-field label{color:#173d68;font-weight:800}
+.hys243-commitment-field input[type=date]{width:min(100%,260px);min-height:40px;border:1px solid #aac8e6;border-radius:7px;padding:8px;background:white;color:#173d68}
+.hys243-commitment-field small{color:#516b85;font-size:12px}
+tr.hys243-commitment-detail td{padding:9px 12px!important;background:#f3f9ff;border-top:0!important;overflow-wrap:anywhere}
+tr.hys243-commitment-detail time{font-weight:700}
+@media(max-width:760px){.hys243-commitment-field{padding:10px}.hys243-commitment-field input[type=date]{width:100%}tr.hys243-commitment-detail td{display:block;width:100%}}

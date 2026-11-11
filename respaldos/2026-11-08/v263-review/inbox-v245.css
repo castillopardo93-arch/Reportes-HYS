@@ -1,0 +1,23 @@
+/* Reportes HYS v245 · F01. Solo bandeja informativa local. */
+.hys245-inbox{position:relative;display:inline-flex;align-items:center;color:#143756;z-index:25}
+.hys245-bell{display:flex;align-items:center;gap:6px;border:1px solid #afcbea;background:#f5fbff;color:#1b4d79;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:750;cursor:pointer;white-space:nowrap}
+.hys245-bell:focus-visible,.hys245-inbox-panel button:focus-visible{outline:3px solid #ffbe57;outline-offset:2px}
+.hys245-bell-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;background:#dceaf7;border-radius:12px;font-weight:850;color:#123a5a}
+.hys245-inbox-panel{position:absolute;right:0;top:calc(100% + 9px);width:min(420px,calc(100vw - 22px));max-height:min(65vh,600px);overflow:auto;background:white;border:1px solid #b9cce0;border-radius:12px;box-shadow:0 12px 28px #11345140;padding:14px;z-index:4000;color:#1b3851}
+.hys245-inbox-panel[hidden]{display:none!important}
+.hys245-inbox-panel h3{margin:0 0 8px;font-size:17px}
+.hys245-inbox-note{color:#79582c;background:#fff7e8;border-left:3px solid #d6a45b;padding:8px 10px;font-size:12px;line-height:1.4;margin:0 0 10px}
+.hys245-inbox-panel>label{display:grid;gap:5px;margin-bottom:9px;font-size:12px;font-weight:700}
+.hys245-inbox-panel>label[hidden]{display:none}
+.hys245-inbox-panel select{padding:8px;border-radius:7px;border:1px solid #b4cbdc;max-width:100%;min-width:0;background:white;color:#243f56}
+.hys245-inbox-status{font-size:12px;color:#4c6880;margin:6px 0 12px}
+.hys245-inbox-list{display:grid;gap:8px}
+.hys245-inbox-item{border:1px solid #dfeaf3;border-radius:9px;padding:10px;background:#fafcff;display:grid;gap:5px;min-width:0}
+.hys245-inbox-item strong{color:#235c88;font-size:12px}
+.hys245-inbox-title{font-size:13px;font-weight:800;margin:0;overflow-wrap:anywhere}
+.hys245-inbox-description{font-size:12px;color:#425d74;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.hys245-inbox-meta{font-size:11px;color:#6a5260;line-height:1.5}
+.hys245-inbox-buttons{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
+.hys245-inbox-panel button:not(.hys245-bell){border:1px solid #b0c9dc;background:#edf5fc;color:#184969;padding:7px 9px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700}
+.hys245-inbox-empty{font-size:13px;color:#6a7c8c;margin:0;padding:15px 8px}
+@media(max-width:730px){.hys245-inbox-panel{position:fixed;left:10px;right:10px;top:62px;width:auto;max-height:70vh}.hys245-bell{padding:6px 8px;font-size:11px}}

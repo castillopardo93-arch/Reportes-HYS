@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporte Diario Higiene y Seguridad</title>
+<style>
+:root{--navy:#123b63;--navy2:#0b3157;--blue:#1876e8;--green:#119b70;--orange:#f18717;--purple:#6850dc;--cyan:#0aa3b8;--line:#c9def5;--ink:#173d68;--muted:#617d9e;--bg:#f4f8fc}
+*{box-sizing:border-box}body{margin:0;font:13px/1.45 "Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{height:66px;background:linear-gradient(110deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:18px}.brand{display:flex;align-items:center;gap:14px;font-size:19px;font-weight:800}.shield{width:40px;height:40px;display:grid;place-items:center;font-size:25px}.topmeta{display:flex;align-items:center;gap:24px;font-weight:600}.layout{display:grid;grid-template-columns:190px minmax(460px,1fr) 256px;gap:18px;max-width:1600px;margin:auto;min-height:calc(100vh - 66px)}.side{background:linear-gradient(var(--navy),#07365f);color:#fff;padding:28px 0;display:flex;flex-direction:column;gap:8px}.nav{padding:15px 18px;color:#e8f2ff;text-decoration:none;font-weight:650;display:flex;gap:12px;align-items:center}.nav.active{background:#2879bc;border-left:4px solid #b9ddff;padding-left:14px}.nav span{font-size:19px}.sidefoot{margin-top:auto;padding:18px;font-size:11px;color:#d4e6fa}.main{padding:28px 0 24px;min-width:0}.pagehead{display:flex;align-items:center;gap:18px;margin:0 0 22px}.pagehead .bigicon{font-size:42px;color:#1d68b5}.pagehead h1{font-size:23px;margin:0 0 4px}.pagehead p{margin:0;color:#53749c;font-size:14px}.panel{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 1px #123b6308}.metaform{padding:16px;display:grid;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr));gap:14px}.metaform .field input,.metaform .field select{min-height:40px}.rangehead{grid-column:1/-1;font-weight:800;color:#1766b5;border-bottom:1px solid #e2edf9;padding-bottom:8px;margin-bottom:0}.daybadge{border:1px solid #b8d2f0;border-radius:7px;padding:10px;background:#f3f8ff;font-weight:800;color:#1766b5;min-height:40px;display:flex;align-items:center}.metasubhead{grid-column:1/-1;font-weight:800;color:#1766b5;border-bottom:1px solid #e2edf9;padding:6px 0 8px;margin-top:4px}.field label{font-weight:700;display:block;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid #b8d2f0;border-radius:7px;padding:10px;background:#fff;color:var(--ink);min-width:0}.section-title{padding:11px 16px;color:#fff;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:800}.section-title .ico{font-size:23px}.section-title .add{margin-left:auto;border:1px solid #ffffff8a;background:#ffffff20;color:white;border-radius:7px;padding:6px 10px;font-weight:700}.blue{background:linear-gradient(90deg,#1978e8,#1264d4)}.green{background:linear-gradient(90deg,#11a477,#09895f)}.orange{background:linear-gradient(90deg,#f18a17,#df6b0a)}.purple{background:linear-gradient(90deg,#7055e6,#6042d1)}.cyan{background:linear-gradient(90deg,#0da8bd,#078fa8)}.tablewrap{padding:14px 12px 12px;overflow-x:auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:11.5px}th{background:#eef5fc;text-align:left;font-weight:750;padding:10px 9px;border-top:1px solid #e0edf9;border-bottom:1px solid #e0edf9}th:first-child{border-radius:7px 0 0 0}th:last-child{border-radius:0 7px 0 0}td{padding:12px 9px;border-bottom:1px solid #e5eef8;vertical-align:middle}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:20px;padding:4px 9px;font-weight:750;white-space:nowrap}.ok{background:#d5f7e5;color:#087950}.warn{background:#fff0cb;color:#a85a00}.danger{background:#ffe0e4;color:#b42338}.pending{background:#d8f0ff;color:#076ba8}.act{border:0;background:transparent;color:#1766b5;font-size:16px;padding:3px 5px}.sidepanels{padding:22px 0 24px 0;margin-right:18px}.summary{padding:15px}.summary h3,.mini h3{margin:0 0 14px;font-size:14px;display:flex;align-items:center;gap:10px}.sumrow{display:flex;align-items:center;gap:12px;padding:8px 0;font-weight:650}.sumrow .n{margin-left:auto;border-radius:50%;color:#fff;background:#2179e8;width:27px;height:27px;display:grid;place-items:center}.sumrow:nth-of-type(3) .n{background:#109b70}.sumrow:nth-of-type(4) .n{background:#ed8214}.sumrow:nth-of-type(5) .n{background:#6b55df}.sumrow:nth-of-type(6) .n{background:#0ba3b8}.status{border-top:1px solid #d9e8f7;margin-top:12px;padding-top:14px;font-weight:700}.mini{padding:15px}.upload{border:1px dashed #a7c7ec;border-radius:9px;background:#f8fbff;text-align:center;padding:24px 12px;color:#4b77a8;margin-top:8px}.file{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #e7eef8}.file:last-child{border:0}.file small{margin-left:auto;color:#6985a6}.photo-delete{color:#dc2626!important;font-weight:900;font-size:21px;line-height:1;padding:2px 7px;border-radius:5px}.photo-delete:hover{background:#fee2e2}.historyitem{border-left:2px solid #d7e6f7;margin-left:8px;padding:0 0 14px 18px;position:relative}.historyitem:before{content:"●";position:absolute;left:-7px;top:0;color:#2874bd;background:white;font-size:12px}.historyitem small{display:block;color:#6b86a5;margin-top:3px}.footeractions{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:12px 4px}.btn{border:1px solid #b9d2ef;background:#fff;color:#145a9d;border-radius:8px;padding:11px 14px;font-weight:750}.btn.primary{background:#176df0;color:white;border-color:#176df0}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#123b63;color:#fff;padding:12px 18px;border-radius:9px;display:none;box-shadow:0 6px 25px #0002}.smallnote{color:#7089a7;font-size:11px}.modal{display:none;position:fixed;inset:0;background:#0b294c66;align-items:center;justify-content:center;padding:18px}.modalbox{background:white;border-radius:12px;padding:22px;width:min(520px,100%);box-shadow:0 20px 60px #001b3c55}.modalbox h2{margin:0 0 14px}.modalbox .field{margin-bottom:12px}.modalactions{display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:1100px){.layout{grid-template-columns:160px minmax(0,1fr)}.sidepanels{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-top:0}.main{padding-right:0}.side{grid-row:1 / span 2}.mini{min-width:0}}
+@media(max-width:700px){.metaform{grid-template-columns:1fr}.rangehead,.metasubhead{grid-column:1}.top{height:auto;min-height:62px;padding:12px 15px;flex-wrap:wrap}.brand{font-size:16px}.topmeta{font-size:11px;gap:10px}.layout{display:block}.side{display:flex;flex-direction:row;padding:0;overflow:auto;position:sticky;top:0;z-index:3}.nav{white-space:nowrap;padding:12px;font-size:12px}.nav.active{padding-left:12px;border-left:0;border-bottom:3px solid #c2e2ff}.sidefoot{display:none}.main{padding:20px 12px}.pagehead h1{font-size:20px}.pagehead .bigicon{font-size:34px}.metaform{grid-template-columns:1fr;gap:14px}.sidepanels{display:block;margin:0;padding:0 12px 18px}.tablewrap{padding:9px 8px}table{min-width:650px}.footeractions{align-items:stretch}.btnrow{width:100%}.btnrow .btn{flex:1}.footeractions>.btn{width:100%}}
+
+/* Ajustes v30: experiencia táctil y adaptable para móviles */
+@media(max-width:700px){
+  html{scroll-padding-top:112px}
+  body{font-size:14px;line-height:1.5}
+  .top{position:relative;align-items:flex-start;gap:8px}
+  .brand{gap:8px;font-size:15px}
+  .shield{width:32px;height:32px;font-size:22px}
+  .topmeta{width:100%;justify-content:space-between;gap:6px;font-size:11px;flex-wrap:wrap}
+  .layout{display:flex;flex-direction:column;min-height:0}
+  .side{order:0;position:sticky;top:0;z-index:10;box-shadow:0 3px 10px #092d4c24;gap:0;scrollbar-width:thin}
+  .nav{flex:0 0 auto;justify-content:center;min-height:48px;padding:11px 13px;font-size:12px}
+  .main{order:1;padding:16px 10px 18px}
+  .pagehead{gap:10px;margin-bottom:14px}
+  .pagehead .bigicon{font-size:30px;min-width:30px}
+  .pagehead h1{font-size:19px;line-height:1.25}
+  .pagehead p{font-size:12px}
+  .panel{border-radius:12px;margin-bottom:13px}
+  .metaform{padding:13px;gap:12px}
+  .rangehead,.metasubhead{font-size:12px}
+  .field label{font-size:13px;margin-bottom:5px}
+  .field input,.field select,.field textarea{font-size:16px;min-height:44px;padding:11px;border-radius:9px}
+  .daybadge{min-height:44px}
+  .section-title{padding:12px;font-size:13px;gap:8px;flex-wrap:wrap}
+  .section-title .ico{font-size:20px}
+  .section-title .add{min-height:38px;padding:8px 12px;font-size:13px}
+  .tablewrap{padding:8px 7px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:620px;font-size:12px}
+  th{padding:11px 8px;position:sticky;top:0}
+  td{padding:11px 8px}
+  .act{font-size:19px;padding:7px;min-width:36px;min-height:36px}
+  .footeractions{padding:8px 0;gap:8px}
+  .btnrow{gap:8px}
+  .btnrow .btn,.footeractions>.btn{min-height:44px;font-size:13px;padding:10px}
+  .sidepanels{order:2;margin:0;padding:0 10px 18px;display:flex;flex-direction:column;gap:12px}
+  .summary,.mini{padding:13px}
+  .upload{padding:18px 10px;min-height:100px}
+  .modal{padding:10px;align-items:flex-end}
+  .modalbox{width:100%;max-height:88dvh;overflow-y:auto;border-radius:16px 16px 10px 10px;padding:17px}
+  .modalbox h2{font-size:18px}
+  .modalactions{position:sticky;bottom:-17px;background:white;padding:12px 0 2px;gap:10px}
+  .modalactions .btn{min-height:44px;flex:1}
+  .toast{width:calc(100% - 24px);bottom:12px;text-align:center}
+}
+@media(max-width:380px){
+  .nav{padding:10px 9px;font-size:11px}
+  .brand{font-size:13px}
+  .topmeta{font-size:10px}
+  .footeractions .btnrow .btn{font-size:12px;padding:9px 6px}
+}
+
+.print-inicio-header{display:none}
+.print-report-title{font-size:19pt!important;text-align:center;margin:0 0 14px!important;color:#111!important}.print-observation{margin:0 0 12px!important;font-size:10.5pt!important}
+@media print{.print-inicio-header{display:block!important;margin:0 0 16px;padding:0 0 10px;border-bottom:1px solid #777}.print-inicio-header h2,.print-inicio-header .print-observation{display:none!important}.print-inicio-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.print-inicio-grid>div{break-inside:avoid}}
+.photo-label{font-size:10px;font-weight:700;margin:0 0 4px;color:#222}.photo-links img{display:block;max-width:100%;height:auto;margin:0 auto 6px}.photo-links img.print-photo{display:none!important}@media print{.photo-label{display:block!important;color:#111!important}.photo-links img.print-photo{display:block!important;max-width:100%;height:auto;break-inside:avoid;page-break-inside:avoid;margin:0 auto 6px}}.record-evidence-row td{padding:10px 12px!important;background:#f8fafc;border-top:0!important}.activity-photos-toggle{border:1px solid #c9def5;background:#fff;color:#1766b5;border-radius:7px;padding:7px 10px;font-weight:750;display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left}.activity-photos-toggle .photo-count{font-size:11px;color:#617d9e;font-weight:600}.activity-photos-details[open] .activity-photos-toggle{margin-bottom:10px}.activity-photos-details:not([open]) .record-evidence{display:none}@media print{.activity-photos-toggle{display:none!important}.activity-photos-details:not([open]) .record-evidence{display:grid!important}.activity-photos-details .record-evidence{display:grid!important}}.record-evidence{display:grid;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr));gap:6px;align-items:start;width:100%}.record-evidence a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-width:0;max-width:100%;aspect-ratio:var(--photo-ratio,4/3);height:auto;overflow:hidden;background:#fff}.record-evidence img.print-photo{display:block!important;flex:none;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;margin:0}@media print{.record-evidence a{display:flex!important;width:100%;max-width:100%;height:auto;aspect-ratio:var(--photo-ratio,4/3);break-inside:avoid;page-break-inside:avoid}.record-evidence img.print-photo{display:block!important;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}}.record-attachment-note{font-size:11px;color:#555}.photo-viewer{display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,18,35,.92);align-items:center;justify-content:center;padding:56px 16px 20px}.photo-viewer.open{display:flex}.photo-viewer img{display:block;max-width:96vw;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 8px 35px #0008}.photo-viewer-close{position:absolute;top:12px;right:14px;width:44px;height:44px;border:1px solid #ffffff80;border-radius:50%;background:#ffffff18;color:#fff;font-size:30px;line-height:1}.photo-viewer-hint{position:absolute;top:20px;left:16px;color:#fff;font-size:13px}@media print{.photo-viewer{display:none!important}}@media print{.record-evidence-row td{background:#fff!important}.record-evidence{display:grid!important;grid-template-columns:repeat(var(--photo-columns,3),minmax(0,1fr))!important;gap:2mm!important;width:100%!important;align-items:start!important}.record-evidence a{display:flex!important;align-items:center;justify-content:center;width:100%!important;min-width:0!important;max-width:100%!important;aspect-ratio:var(--photo-ratio,4/3)!important;height:auto!important;break-inside:avoid!important;page-break-inside:avoid!important}.record-evidence img.print-photo{display:block!important;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;break-inside:avoid;page-break-inside:avoid;margin:0}}
+@media print{
+@page{size:A4 portrait;margin:10mm}
+html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{padding:0!important}
+.top,.side,.sidepanels,.add,.footeractions,.act,.toast,.modal,.pagehead,#inicioPanel,#config,#saveOptionsPanel{display:none!important}
+.layout{display:block!important;max-width:none!important;min-height:0!important;margin:0!important}
+.main{padding:0!important}
+.panel{break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;break-after:auto;margin-bottom:7px!important}
+.tablewrap{overflow:visible!important;padding:7px 7px 5px!important}
+table{width:100%;border-collapse:collapse!important;font-size:10.5px!important}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+th,td{overflow-wrap:anywhere;padding:7px 6px!important;line-height:1.25!important}
+.photo-label,.photo-empty{display:none!important}.photo-links a{display:block!important;text-decoration:none!important;break-inside:avoid!important;page-break-inside:avoid!important;margin:5px 0!important}table tr:not(.record-evidence-row) th:last-child,table tr:not(.record-evidence-row) td:last-child{display:none!important}table th:nth-last-child(2),table td:nth-last-child(2){text-align:center!important}
+.print-photo{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:var(--photo-max-height,48mm)!important;object-fit:contain!important;break-inside:avoid!important;page-break-inside:avoid!important;margin:3px 0!important}
+body{background:#fff!important}
+}
+
+/* v172: archivo PDF principal agrupado por mes */
+#historial.archive-main{display:none;width:100%;margin:0 0 18px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 1px 1px #123b6308}
+#historial.archive-main h3{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.archive-month{border:1px solid #d8e7f7;border-radius:10px;margin:14px 0;overflow:hidden;background:#fff}
+.archive-month>h3{margin:0;padding:13px 15px;background:#eef5fc;color:#145a9d;font-size:15px;text-transform:none;border-bottom:1px solid #d8e7f7}
+.archive-count{font-size:12px;font-weight:700;color:#486b91;background:#fff;border:1px solid #d5e4f5;border-radius:20px;padding:4px 9px;white-space:nowrap}
+.archive-record{padding:14px 15px;border-bottom:1px solid #e5eef8}.archive-record:last-child{border-bottom:0}.archive-filename{display:block;overflow-wrap:anywhere;margin-bottom:8px;color:#173d68;font-size:14px}
+.archive-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px;font-size:12px;color:#526f91}.archive-meta span{overflow-wrap:anywhere}.archive-empty{padding:18px;border:1px dashed #b8d2f0;border-radius:9px;background:#f8fbff;color:#456b95}.archive-empty p{margin:7px 0 0}
+@media(max-width:700px){#historial.archive-main{padding:12px}.archive-meta{grid-template-columns:1fr}.archive-record{padding:12px}}
+
+
+/* v174: adaptación móvil reforzada, sin alterar lógica de informes ni PDF */
+html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{width:100%;max-width:100%;overflow-x:hidden}
+img,canvas,video,iframe{max-width:100%}
+input,select,textarea{max-width:100%;min-width:0}
+.panel,.main,.sidepanels,#historial,.archive-record,.archive-month{min-width:0;max-width:100%}
+button,.btn,.nav{touch-action:manipulation}
+:focus-visible{outline:3px solid #75baff;outline-offset:2px}
+@media(max-width:700px){
+  html{font-size:16px;scroll-padding-top:62px}
+  body{font-size:14px}
+  .top{padding:10px 12px;gap:8px}
+  .brand{min-width:0;overflow-wrap:anywhere}
+  .topmeta{min-width:0;line-height:1.4}
+  .topmeta>span{overflow-wrap:anywhere}
+  .side{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .nav{min-height:48px;flex:0 0 auto}
+  .main{width:100%;min-width:0;padding:14px 10px 20px}
+  .pagehead{align-items:flex-start}
+  .pagehead>div:last-child{min-width:0}
+  .pagehead h1,.pagehead p{overflow-wrap:anywhere}
+  .panel{width:100%;min-width:0}
+  .field{min-width:0;width:100%}
+  .field input,.field select,.field textarea{width:100%;min-width:0;min-height:46px;font-size:16px}
+  .section-title{align-items:flex-start}
+  .section-title>span:first-child{min-width:0;overflow-wrap:anywhere}
+  .section-title .add{max-width:100%;white-space:normal}
+  .btnrow{display:flex;flex-wrap:wrap;width:100%;gap:8px}
+  .btnrow .btn{flex:1 1 130px;min-width:0;min-height:44px;white-space:normal}
+  .footeractions{display:flex;flex-direction:column;width:100%}
+  .footeractions>.btn,.footeractions .btnrow,.footeractions .btnrow .btn{width:100%;min-height:46px}
+  .tablewrap{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .tablewrap table{min-width:600px}
+  .sidepanels{width:100%;min-width:0}
+  .upload{width:100%;max-width:100%;overflow-wrap:anywhere}
+  #historial.archive-main{width:100%;max-width:100%;padding:12px}
+  #historial.archive-main h3{align-items:flex-start}
+  .archive-month{margin:10px 0}
+  .archive-month>h3{padding:11px 12px;font-size:14px}
+  .archive-record{padding:12px}
+  .archive-filename{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
+  .archive-meta{grid-template-columns:minmax(0,1fr);gap:7px}
+  .archive-meta span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+  .archive-record .btn,.archive-record button{min-height:44px}
+  .modal{padding:0;align-items:flex-end}
+  .modalbox{width:100%;max-width:100%;max-height:90dvh;padding:16px 12px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain}
+  .modalactions{position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));padding:12px 0 calc(2px + env(safe-area-inset-bottom));margin-top:10px}
+  .modalactions .btn{min-height:46px;min-width:0}
+  .photo-viewer{padding:60px 10px calc(16px + env(safe-area-inset-bottom))}
+  .photo-viewer img{max-width:96vw;max-height:80dvh}
+}
+@media(max-width:380px){
+  .main{padding-left:8px;padding-right:8px}
+  .nav{padding-left:9px;padding-right:9px;font-size:11px}
+  .modalactions{flex-direction:column}
+  .modalactions .btn{width:100%}
+}
+
+
+/* v205: distribución compacta de columnas en Actividades HYS */
+table:has(> tbody#activities){table-layout:fixed;width:100%}
+table:has(> tbody#activities) th,
+table:has(> tbody#activities) td{padding:8px 6px;overflow-wrap:anywhere}
+table:has(> tbody#activities) th:nth-child(1),
+table:has(> tbody#activities) td:nth-child(1){width:6%;text-align:center}
+table:has(> tbody#activities) th:nth-child(2),
+table:has(> tbody#activities) td:nth-child(2){width:14%}
+table:has(> tbody#activities) th:nth-child(3),
+table:has(> tbody#activities) td:nth-child(3){width:12%}
+table:has(> tbody#activities) th:nth-child(4),
+table:has(> tbody#activities) td:nth-child(4){width:45%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#activities) th:nth-child(5),
+table:has(> tbody#activities) td:nth-child(5){width:14%}
+table:has(> tbody#activities) th:nth-child(6),
+table:has(> tbody#activities) td:nth-child(6){width:9%;text-align:center}
+table:has(> tbody#activities) td:nth-child(6) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#activities){min-width:620px}
+ table:has(> tbody#activities) th,
+ table:has(> tbody#activities) td{padding:8px 5px}
+ table:has(> tbody#activities) th:nth-child(4),
+ table:has(> tbody#activities) td:nth-child(4){width:45%}
+}
+
+/* v206: distribución proporcional para la tarjeta 2 - Actividades por área */
+table:has(> tbody#inspections){table-layout:fixed;width:100%}
+table:has(> tbody#inspections) th,
+table:has(> tbody#inspections) td{padding:8px 6px;overflow-wrap:anywhere;white-space:normal}
+table:has(> tbody#inspections) th:nth-child(1),
+table:has(> tbody#inspections) td:nth-child(1){width:5%;text-align:center}
+table:has(> tbody#inspections) th:nth-child(2),
+table:has(> tbody#inspections) td:nth-child(2){width:10%}
+table:has(> tbody#inspections) th:nth-child(3),
+table:has(> tbody#inspections) td:nth-child(3){width:45%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#inspections) th:nth-child(4),
+table:has(> tbody#inspections) td:nth-child(4){width:16%}
+table:has(> tbody#inspections) th:nth-child(5),
+table:has(> tbody#inspections) td:nth-child(5){width:13%}
+table:has(> tbody#inspections) th:nth-child(6),
+table:has(> tbody#inspections) td:nth-child(6){width:11%;text-align:center}
+table:has(> tbody#inspections) td:nth-child(6) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#inspections){min-width:620px}
+ table:has(> tbody#inspections) th,
+ table:has(> tbody#inspections) td{padding:8px 5px}
+}
+
+/* v207: distribución proporcional para la tarjeta 3 - Hallazgos */
+table:has(> tbody#findings){table-layout:fixed;width:100%}
+table:has(> tbody#findings) th,
+table:has(> tbody#findings) td{padding:8px 6px;overflow-wrap:anywhere;white-space:normal}
+table:has(> tbody#findings) th:nth-child(1),
+table:has(> tbody#findings) td:nth-child(1){width:5%;text-align:center}
+table:has(> tbody#findings) th:nth-child(2),
+table:has(> tbody#findings) td:nth-child(2){width:27%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#findings) th:nth-child(3),
+table:has(> tbody#findings) td:nth-child(3){width:9%}
+table:has(> tbody#findings) th:nth-child(4),
+table:has(> tbody#findings) td:nth-child(4){width:27%;white-space:normal;overflow-wrap:break-word}
+table:has(> tbody#findings) th:nth-child(5),
+table:has(> tbody#findings) td:nth-child(5){width:13%}
+table:has(> tbody#findings) th:nth-child(6),
+table:has(> tbody#findings) td:nth-child(6){width:9%}
+table:has(> tbody#findings) th:nth-child(7),
+table:has(> tbody#findings) td:nth-child(7){width:10%;text-align:center}
+table:has(> tbody#findings) td:nth-child(7) .act{padding:2px 3px;font-size:14px}
+@media(max-width:700px){
+ table:has(> tbody#findings){min-width:760px}
+ table:has(> tbody#findings) th,
+ table:has(> tbody#findings) td{padding:8px 5px}
+}
+
+/* v208 descripcion multilinea */
+table:has(> tbody#activities) td.multiline-detail{white-space:pre-line;overflow-wrap:anywhere;vertical-align:top}
+table:has(> tbody#inspections) td.multiline-detail,
+table:has(> tbody#findings) td.multiline-detail{white-space:pre-line;overflow-wrap:anywhere;vertical-align:top}
+#modalFields textarea[data-bullet-list=true]{min-height:100px;line-height:1.55;white-space:pre-wrap}
+
+/* v221: selector independiente de formularios APR / Otros */
+body.module-choice>header,body.module-choice>.layout{display:none!important}
+#moduleChooser{min-height:100vh;padding:clamp(24px,6vw,72px) 20px;background:linear-gradient(145deg,#edf5ff,#f8fbff);color:#173d68}
+#moduleChooser .chooser-inner{max-width:980px;margin:0 auto}
+#moduleChooser .chooser-kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:#1876e8;text-transform:uppercase}
+#moduleChooser h1{font-size:clamp(28px,4vw,42px);margin:8px 0;color:#123b63}
+#moduleChooser .chooser-sub{font-size:16px;color:#617d9e;margin:0 0 28px}
+.module-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.module-card[hidden]{display:none!important}
+.module-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:28px;border:1px solid #c9def5;border-radius:18px;background:#fff;box-shadow:0 8px 28px #123b630d}
+.module-card .module-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:15px;background:#e8f3ff;font-size:30px}
+.module-card h2{margin:0;font-size:24px;color:#123b63}
+.module-card p{margin:0;color:#617d9e;line-height:1.6;min-height:48px}
+.module-card button{margin-top:auto;width:100%;border:0;border-radius:9px;padding:13px 16px;background:#1766b5;color:white;font-weight:800}
+.module-card.other button{background:#119b70}
+/* v223: formulario Otros adaptado al lenguaje visual del formulario APR */
+/* v224: Otros utiliza una instancia completa de APR dentro de un iframe con almacenamiento aislado */
+#otherModule{display:none;min-height:100vh;padding:0;background:var(--bg);color:var(--ink)}
+#otherAprApp{display:none;width:100%;height:calc(100vh - 1px);min-height:760px;border:0;background:var(--bg)}
+body:not(.embedded-otros) #otherModule #otherAprApp{display:block}
+body:not(.embedded-otros) #otherModule .other-wrap{display:none}
+body.embedded-otros #moduleChooser,body.embedded-otros #otherModule{display:none!important}
+body.embedded-otros>header{display:flex!important}
+body.embedded-otros>.layout{display:grid!important}
+body.embedded-otros .brand span{font-size:0}
+body.embedded-otros .brand span:after{content:"REPORTES H Y S · Supervisores, capataces y otros";font-size:19px}
+.other-wrap{max-width:1600px;margin:0 auto;padding:22px clamp(14px,2.5vw,32px) 30px}
+.other-top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid var(--line)}
+.other-top h1{font-size:23px;color:var(--navy);margin:0}
+.other-top .chooser-kicker{font-size:12px;font-weight:800;letter-spacing:1.2px;color:#1766b5;text-transform:uppercase}
+.other-panel{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 1px #123b6308;padding:0}
+.other-panel h2{margin:0 0 16px;padding:13px 16px;background:#eef5fc;border-bottom:1px solid var(--line);font-size:15px;color:#1766b5}
+.other-panel>.smallnote{padding:0 16px}
+.other-grid{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.other-grid .field{min-width:0}
+.other-grid .field label{font-weight:700;display:block;margin-bottom:7px}
+.other-grid input,.other-grid select,.other-grid textarea{width:100%;border:1px solid #b8d2f0;border-radius:7px;padding:10px;background:#fff;color:var(--ink);min-width:0}
+.other-grid textarea{min-height:100px;resize:vertical}
+.other-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0;padding:0 16px 16px}
+.other-actions button,.other-top button{border:1px solid var(--line);border-radius:7px;padding:10px 14px;font-weight:750;background:#fff;color:#1766b5}
+.other-actions .save-other{background:#1766b5;color:white;border-color:#1766b5}
+.other-record{padding:13px 16px;border-bottom:1px solid #e2edf9}
+.other-record:last-child{border-bottom:0}
+.other-record h3{margin:0 0 5px;font-size:15px;color:var(--navy)}
+.other-record p{margin:4px 0;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}
+#chooserLogout{margin:0 0 18px;padding:10px 16px;border:0;border-radius:8px;background:#123b63;color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:680px){.module-cards,.other-grid{grid-template-columns:1fr}#moduleChooser{padding:28px 16px}.module-card{padding:22px}.other-wrap{padding:14px}.other-panel h2{padding:12px 14px}.other-grid{padding:14px}.other-actions{padding:0 14px 14px}}
+
+
+/* v227: en el usuario Otros se deja disponible únicamente el formulario Hallazgos */
+body.embedded-otros .layout main > section.report-section:has(#activities),
+body.embedded-otros .layout main > section.report-section:has(#inspections){display:none!important}
+body.embedded-otros .sidepanels .summary .sumrow:has(#count-activities),
+body.embedded-otros .sidepanels .summary .sumrow:has(#count-inspections){display:none!important}
+body.embedded-otros #historial h3:first-child{font-size:0}
+body.embedded-otros #historial h3:first-child:after{content:"Hallazgos anteriores";font-size:18px}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="config-v242.js"></script>
+<script src="access-policy-v256.js"></script>
+<script src="access-settings-v259.js"></script>
+<script src="storage-v242.js"></script><script src="integrity-v255.js"></script><script src="risk-seed-v252.js"></script><script src="risk-catalog-v243.js"></script><script src="assignees-v243.js"></script><script src="commitment-v243.js"></script><script src="finding-detail-v243.js"></script><script src="corrections-v243.js"></script><script src="actions-v243.js"></script><script src="reassignment-v243.js"></script><script src="audit-v243.js"></script><script src="activity-workflow-v244.js"></script><script src="people-areas-v244.js"></script><script src="inbox-v245.js"></script><script src="pending-detail-v246.js"></script><script src="notifications-f251.js"></script><script src="pending-dashboard-v250.js"></script>
+
+<style id="supabase-auth-styles">
+#authGate[hidden]{display:none!important}
+body.auth-locked>header,body.auth-locked>.layout,body.auth-locked #otherModule,body.auth-locked #moduleChooser{display:none!important}
+#authGate{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#092d4c,#123b63);font-family:"Segoe UI",Arial,sans-serif}
+#authGate .auth-card{width:min(430px,100%);background:#fff;border-radius:16px;padding:28px;box-shadow:0 22px 65px #001b3c66;color:#173d68}
+#authGate .auth-brand{font-weight:850;letter-spacing:.4px;color:#123b63;font-size:14px}
+#authGate h1{font-size:24px;margin:10px 0 6px}
+#authGate p{color:#617d9e;line-height:1.5}
+#authGate .auth-field{margin:16px 0}
+#authGate label{display:block;font-weight:700;margin-bottom:6px}
+#authGate input{width:100%;min-height:46px;border:1px solid #b8d2f0;border-radius:8px;padding:11px;font:inherit}
+#authGate button{width:100%;min-height:46px;border:0;border-radius:8px;background:#176df0;color:#fff;font-weight:800;font:inherit;cursor:pointer}
+#authGate button:disabled{opacity:.6;cursor:wait}
+#authGate #authRecover{margin-top:12px;background:transparent;color:#1766b5;text-decoration:underline;min-height:36px}
+#authGate .auth-status{min-height:22px;margin-top:12px;font-size:13px;color:#a33}
+#authGate .auth-foot{font-size:12px;color:#7188a4;margin-top:14px}
+#authLogout{border:1px solid #ffffff88;border-radius:7px;padding:7px 10px;background:#ffffff18;color:inherit;font-weight:700;cursor:pointer}
+#authUserLabel{display:flex;flex-direction:column;gap:2px;min-width:145px;line-height:1.2}#authUserLabel strong{font-size:12px}#authUserLabel span,#authUserLabel small{font-size:10px;opacity:.9}#authIdentityChooser{display:flex;flex-direction:column;gap:3px;max-width:520px;margin:0 0 22px;padding:14px 16px;border:1px solid #c9def5;border-radius:12px;background:#fff;box-shadow:0 5px 18px #123b630d;color:#173d68}#authIdentityChooser strong{font-size:15px}#authIdentityChooser span{font-size:13px;font-weight:750;color:#1766b5}#authIdentityChooser small{font-size:12px;color:#617d9e}
+@media(max-width:520px){#authGate .auth-card{padding:22px}}
+</style>
+<style id="inicio-v242-styles">
+/* Inicio mantiene su propia distribución, independiente de las fotografías. */
+#inicioPanel{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px;padding:26px;border-radius:14px;align-items:start}
+#inicioPanel>.field{min-width:0;margin:0;grid-column:auto}
+#inicioPanel>.inicio-wide{grid-column:1/-1}
+#inicioPanel>.rangehead,#inicioPanel>.metasubhead{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:0;padding:0 0 14px;border-bottom:1px solid #dfeaf5;color:#173d68;font-size:16px;font-weight:800;line-height:1.4}
+#inicioPanel>.metasubhead{margin-top:8px;padding-top:16px;border-top:1px solid #e5edf6}
+#inicioPanel>.rangehead:before,#inicioPanel>.metasubhead:before{content:"1";display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:#e9f2fc;color:#1766b5;font-size:14px}
+#inicioPanel>.metasubhead:before{content:"2"}
+#inicioPanel .field label{font-size:13px;line-height:1.4;margin-bottom:9px;color:#365a7d;font-weight:700}
+#inicioPanel .field input,#inicioPanel .field select{min-height:50px;padding:12px 14px;font-size:15px;line-height:1.4;border-radius:9px;background:#fcfdff;border-color:#bdd0e4}
+#inicioPanel .field input:focus,#inicioPanel .field select:focus{border-color:#1876e8;background:#fff}
+#inicioPanel .daybadge{min-height:50px;padding:12px 16px;border-radius:9px;background:#edf7f2;border-color:#c6e4d4;color:#216348;font-size:14px;font-weight:750}
+@media(max-width:640px){
+ #inicioPanel{grid-template-columns:minmax(0,1fr);gap:20px;padding:20px 18px}
+ #inicioPanel>.field,#inicioPanel>.inicio-wide{grid-column:1/-1}
+ #inicioPanel .field input,#inicioPanel .field select{font-size:16px;min-height:50px}
+ #inicioPanel>.rangehead,#inicioPanel>.metasubhead{font-size:15px}
+}
+</style>
+<style id="record-modal-v242-styles">
+/* El contenido se desplaza dentro del formulario; las acciones quedan fuera. */
+#modal{z-index:1000;padding:16px;align-items:center;justify-content:center;overflow:hidden}
+#modal .modalbox{display:flex;flex-direction:column;width:min(680px,100%);max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:0;overflow:hidden;border-radius:14px}
+#modalTitle{flex:0 0 auto;font-size:19px;line-height:1.35;margin:0;padding:18px 22px;border-bottom:1px solid #dfe8f2}
+#recordForm{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow:hidden}
+#modalFields{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;padding:20px 22px;scroll-padding-block:16px;-webkit-overflow-scrolling:touch}
+#modalFields::-webkit-scrollbar{width:10px}
+#modalFields::-webkit-scrollbar-track{background:#edf3f8}
+#modalFields::-webkit-scrollbar-thumb{background:#8ba9c5;border:2px solid #edf3f8;border-radius:8px}
+#modalFields .field{margin-bottom:18px;min-width:0}
+#modalFields .field:last-child{margin-bottom:0}
+#modalFields label{line-height:1.4}
+#modalFields textarea{min-height:100px;max-height:320px;resize:vertical;line-height:1.5}
+#modalFields input,#modalFields select{min-height:46px}
+#modalFields .file{align-items:flex-start;gap:8px}
+#modal .modalactions{position:static;flex:0 0 auto;display:flex;flex-direction:row;justify-content:flex-end;gap:10px;margin:0;padding:14px 22px;border-top:1px solid #dfe8f2;background:#fff;box-shadow:0 -4px 12px #123b6309}
+#modal .modalactions .btn{min-height:46px;min-width:100px;flex:0 1 auto}
+@media(max-width:640px){
+ #modal{padding:8px;align-items:center}
+ #modal .modalbox{max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);border-radius:12px}
+ #modalTitle{font-size:17px;padding:15px 16px}
+ #modalFields{padding:16px}
+ #modal .modalactions{padding:12px 16px max(12px,env(safe-area-inset-bottom))}
+ #modal .modalactions .btn{flex:1 1 0;min-width:0;width:auto;padding:10px 8px}
+}
+</style>
+<link rel="stylesheet" href="v242.css">
+<link rel="stylesheet" href="user-management-v258.css">
+<link rel="stylesheet" href="faculty-settings-v259.css"><link rel="stylesheet" href="appearance-v242.css"><link rel="stylesheet" href="mobile-v242.css"><link rel="stylesheet" href="risk-selector-v243.css"><link rel="stylesheet" href="assignee-selector-v243.css"><link rel="stylesheet" href="commitment-v243.css"><link rel="stylesheet" href="finding-detail-v243.css"><link rel="stylesheet" href="corrections-v243.css"><link rel="stylesheet" href="actions-v243.css"><link rel="stylesheet" href="reassignment-v243.css"><link rel="stylesheet" href="audit-v243.css"><link rel="stylesheet" href="activity-workflow-v244.css"><link rel="stylesheet" href="people-areas-v244.css"><link rel="stylesheet" href="inbox-v245.css"><link rel="stylesheet" href="pending-detail-v246.css"><link rel="stylesheet" href="pending-dashboard-v250.css"><link rel="stylesheet" href="notifications-f251.css">
+<style id="hys246-pdf-actions-css">.footeractions .pdf-final-row{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:8px}.footeractions .pdf-final-row>.btn{flex:1 1 50%;width:auto!important;min-width:0!important;white-space:normal!important}@media(max-width:560px){.footeractions .pdf-final-row>.btn{font-size:12px!important;padding:10px 5px!important}}.nav-bell{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:inherit}.nav-bell-icon{display:block;flex:none;stroke:currentColor}#pageIcon .nav-bell-icon{width:40px;height:40px}</style></head>
+<body class="auth-locked">
+
+<div id="authGate" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="auth-card">
+    <div class="auth-brand">🛡 REPORTES H Y S</div>
+    <h1 id="authTitle">Iniciar sesión</h1><button type="button" id="authBack" hidden>Reintentar cierre de sesión</button>
+    <p>Ingresa con la cuenta que te asignó el administrador. No existe registro público de trabajadores.</p>
+    <form id="authLoginForm">
+      <div class="auth-field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" autocomplete="username" required></div>
+      <div class="auth-field"><label for="authPassword">Contraseña</label><input id="authPassword" type="password" autocomplete="current-password" required></div>
+      <button id="authLoginButton" type="submit">Ingresar</button>
+    </form>
+    <button id="authRecover" type="button">¿Olvidaste tu contraseña?</button>
+    <form id="authResetForm" hidden>
+      <div class="auth-field"><label for="authNewPassword">Nueva contraseña</label><input id="authNewPassword" type="password" autocomplete="new-password" minlength="12" required></div>
+      <div class="auth-field"><label for="authRepeatPassword">Repite la nueva contraseña</label><input id="authRepeatPassword" type="password" autocomplete="new-password" minlength="12" required></div>
+      <button id="authResetButton" type="submit">Guardar nueva contraseña</button>
+    </form>
+    <a id="authReturn" href="./" hidden>Volver al ingreso</a>
+    <div id="authStatus" class="auth-status" role="status" aria-live="polite"></div>
+    <div class="auth-foot">El acceso a Prevencionista de riesgos y a Supervisores, capataces y otros depende de los permisos asignados a tu cuenta.</div>
+  </div>
+</div>
+
+<section id="moduleChooser" aria-labelledby="moduleChooserTitle" style="display:none">
+  <div class="chooser-inner">
+    <div class="chooser-kicker">Reportes H y S · v242 · Desarrollo</div>
+    <h1 id="moduleChooserTitle">Reporte Diario Higiene y Seguridad</h1>
+    <div id="authIdentityChooser" aria-live="polite"></div>
+    <p class="chooser-sub">Selecciona una opción para continuar. Cada formulario mantiene su información por separado.</p>
+  <button type="button" id="chooserLogout">Cambiar usuario</button><p id="chooserStatus" role="status" aria-live="polite"></p>
+    <div class="module-cards">
+      <article class="module-card" id="aprModuleCard" hidden>
+        <div class="module-icon" aria-hidden="true">🛡️</div>
+        <h2>Prevencionista de riesgos</h2>
+        <p>Abre el formato actual de Reportes HYS, con sus funciones y reportes anteriores.</p>
+        <button type="button" id="openAprModule">Ingresar</button>
+      </article>
+      <article class="module-card other" id="otherModuleCard" hidden>
+        <div class="module-icon" aria-hidden="true">📋</div>
+        <h2>Supervisores, capataces y otros</h2>
+        <p>Formulario independiente para registrar actividades de otras áreas, con campos propios e historial separado.</p>
+        <button type="button" id="openOtherModule">Ingresar</button>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="otherModule" aria-labelledby="otherModuleTitle"><iframe id="otherAprApp" title="Módulo Supervisores, capataces y otros" src="about:blank" loading="eager" referrerpolicy="same-origin"></iframe>
+</section>
+
+<header class="top"><div class="brand"><div class="shield">🛡</div><span>REPORTES H Y S · Prevencionista de riesgos</span></div><div class="topmeta"><span>▦ &nbsp;<span id="topDate"></span></span><div id="authUserLabel" aria-label="Usuario y permisos"></div><button type="button" id="moduleChange" hidden>Cambiar módulo</button><button type="button" id="authLogout">Cerrar sesión</button></div></header>
+<div class="layout">
+<nav class="side"><a class="nav active" href="#inicio" data-tab="inicio"><span>⌂</span> Inicio</a><a class="nav" href="#informe" data-tab="informe"><span>▤</span> Informe diario</a><a class="nav" href="#pendientes" data-tab="pendientes"><span class="nav-bell"><svg class="nav-bell-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></span> Pendientes</a><a class="nav" href="#historial" data-tab="historial"><span>▤</span> Reportes anteriores</a><a class="nav" href="#config" data-tab="config"><span>⚙</span> Configuración</a><div class="sidefoot">🛡 &nbsp; Seguridad<br>&nbsp;&nbsp;&nbsp;&nbsp; es trabajo de todos</div></nav>
+<main class="main" id="inicio"><p id="devVersion242">v255 · Desarrollo local · Integración real pendiente de activación</p><div id="formAccess242" role="status"></div><div id="saveState242" role="status" class="smallnote">Cargando almacenamiento…</div>
+<div class="pagehead" id="mainPagehead"><div class="bigicon" id="pageIcon">⌂</div><div><h1 id="pageTitle">Inicio</h1><p id="pageDescription">Complete el período del turno y los datos generales del informe.</p></div></div><section class="panel" id="config" style="display:none"><details id="photoSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">▧ &nbsp; FOTOGRAFÍAS DEL INFORME</summary><div style="padding:15px"><div class="field"><label for="photoColumns">Fotografías por fila</label><select id="photoColumns"><option value="5">5 por fila</option><option value="6">6 por fila</option><option value="7">7 por fila</option><option value="8">8 por fila</option></select></div><p class="smallnote" id="photoRatioStatus" role="status">Configuración guardada en este navegador.</p></div></details></section><section class="panel" id="saveOptionsPanel" style="display:none"><details id="saveSettings" style="border:1px solid #c9def5;border-radius:10px;overflow:hidden;margin-bottom:16px"><summary style="cursor:pointer;padding:13px 15px;background:#eef5fc;color:#1766b5;font-weight:800">▣ &nbsp; CONFIGURACIÓN DE GUARDADO</summary><div style="padding:15px"><p class="smallnote">Supabase es el almacenamiento central. Los cambios pendientes se conservan en este navegador para reintentar si se corta Internet.</p>
+<div id="cloudStatus242" role="status" aria-live="polite" style="padding:12px">Inicia sesión para sincronizar con Supabase.</div><div class="btnrow"><button class="btn" id="cloudRetry242" type="button">Sincronizar ahora</button><button class="btn" id="cloudCopy242" type="button" hidden>Conservar conflicto como informe nuevo</button><button class="btn" id="cloudLoad242" type="button" hidden>Recuperar borrador central</button></div><div class="file"><span>▣</span><span style="flex:1">Guardado automático</span><label style="display:flex;align-items:center;gap:7px"><input id="autosaveToggle" type="checkbox" checked style="width:18px;height:18px"> Activado</label></div><div id="storageStatus" class="smallnote" style="padding:10px 0">Estado del almacenamiento local pendiente de revisar.</div><div class="file" style="display:block;padding:12px;margin:8px 0;background:#f4f8fc;border-radius:8px"><strong>Ubicación del archivo</strong><div id="backupLocationStatus" class="smallnote" style="padding-top:6px">Consulta del estado del respaldo...</div><div id="backupReminder" class="smallnote" style="padding-top:6px;color:#9a5a08">Se mostrará una recomendación de respaldo aquí.</div></div><div class="btnrow" style="margin:8px 0"><button class="btn primary" id="saveNow" type="button">▣ Guardar ahora</button><button class="btn" id="backupLocal" type="button">＋ Crear respaldo local</button></div><div class="btnrow" style="margin:8px 0"><button class="btn" id="restoreLocal" type="button">↶ Restaurar respaldo local</button><button class="btn" id="export" type="button">⇩ Descargar copia JSON</button></div><div class="btnrow" style="margin:8px 0"><label class="btn" for="import" style="display:inline-block">⇧ Importar copia JSON</label><input type="file" id="import" accept="application/json" hidden><button class="btn" id="resetLocal" type="button">⟲ Restablecer datos</button></div><p class="smallnote">La copia JSON se descarga a tu equipo para guardarla fuera del navegador. Importar una copia reemplaza los datos actuales de este informe. El restablecimiento elimina los datos locales de esta versión.</p></div></details></section>
+<section id="printInicioHeader" class="print-inicio-header"><h1 class="print-report-title">Reporte Diario Higiene y Seguridad</h1><h2>INFORMACIÓN DE INICIO</h2><p class="print-observation"><strong>Observación:</strong> Herramientas se observan en buen estado, codificadas de acuerdo con el color del mes.</p><div class="print-inicio-grid"><div><strong>Período del turno:</strong> <span id="printPeriodo">—</span></div><div><strong>Día del turno:</strong> <span id="printDiaTurno">—</span></div><div><strong>Fecha de informe:</strong> <span id="printFechaInforme">—</span></div><div><strong>APR responsable:</strong> <span id="printApr">—</span></div><div><strong>Turno:</strong> <span id="printTurno">—</span></div><div><strong>Proyecto:</strong> <span id="printProyecto">—</span></div><div><strong>Área:</strong> <span id="printArea">—</span></div></div></section>
+<section class="panel metaform" id="inicioPanel" aria-label="Datos del turno y del informe">
+  <div class="rangehead">Período del turno</div>
+  <div class="field"><label for="dateFrom">Fecha desde</label><input id="dateFrom" type="date"></div>
+  <div class="field"><label for="dateTo">Fecha hasta</label><input id="dateTo" type="date"></div>
+  <div class="field inicio-wide"><label id="turnDayLabel">Día del turno según las fechas</label><div id="turnDay" class="daybadge" aria-labelledby="turnDayLabel" role="status">Ingrese el período</div></div>
+  <div class="metasubhead">Datos del informe</div>
+  <div class="field inicio-wide"><label for="owner">APR responsable</label><select id="owner"><option value="">Seleccione APR responsable...</option></select></div>
+  <div class="field"><label for="date">Fecha de informe</label><input id="date" type="date"></div>
+  <div class="field"><label for="shift">Turno</label><select id="shift"><option value="">Seleccione turno...</option><option>Día/Propio</option><option>Noche/Propio</option><option>Día/Reemplazo</option><option>Noche/Reemplazo</option></select></div>
+  <div class="field"><label for="project">Proyecto</label><select id="project" aria-label="Proyecto"><option value="Proyecto Hidroeléctrico Alto Maipo">Proyecto Hidroeléctrico Alto Maipo</option></select></div>
+  <div class="field"><label for="area">Área</label><select id="area"><option value="">Seleccione área...</option></select></div>
+</section>
+<section class="panel report-section"><div class="section-title blue"><span class="ico">▤</span>1. Actividades HYS<button class="add" data-add="activities">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>APR u otro responsable</th><th>Área</th><th>Descripción</th><th>Resultado</th><th></th></tr></thead><tbody id="activities"><tr><td colspan="7" class="smallnote">No hay actividades registradas.</td></tr></tbody></table></div></section>
+<section class="panel report-section"><div class="section-title green"><span class="ico">⌕</span>2. Actividades por área<button class="add" data-add="inspections">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>Área</th><th>Actividad</th><th>Responsable</th><th>Estado</th><th></th></tr></thead><tbody id="inspections"><tr><td colspan="6" class="smallnote">No hay inspecciones registradas.</td></tr></tbody></table></div></section>
+<section class="panel report-section"><div class="section-title purple"><span class="ico">☑</span>3. Hallazgos<button class="add" data-add="findings">＋ Agregar</button></div><div class="tablewrap"><table><thead><tr><th>N.º</th><th>Condición detectada</th><th>Prioridad</th><th>Medida propuesta</th><th>Responsable</th><th>Estado</th><th></th></tr></thead><tbody id="findings"><tr><td colspan="7" class="smallnote">No hay hallazgos registrados.</td></tr></tbody></table></div></section>
+<div class="footeractions report-section"><div class="btnrow"><button class="btn" id="save">▣ Guardar borrador</button><button class="btn" id="newReport242" type="button">Nuevo informe</button></div><div class="btnrow pdf-final-row"><button class="btn primary" id="pdfShare">▤ Generar PDF</button><button class="btn primary" id="finalize">✓ Finalizar informe</button></div></div>
+</main>
+<aside class="sidepanels">
+<section class="panel summary"><h3>▤ &nbsp; Resumen del informe</h3><div class="sumrow">▤ &nbsp; Actividades <span class="n" id="count-activities">0</span></div><div class="sumrow">⌕ &nbsp; Actividades por área <span class="n" id="count-inspections">0</span></div><div class="sumrow">☑ &nbsp; Hallazgos <span class="n" id="count-findings">0</span></div><div class="status">Estado del informe<br><span class="pill warn" id="status">● En edición</span></div></section>
+
+<section class="panel mini" id="historial"><h3>◷ &nbsp; Reportes anteriores</h3><p class="smallnote">Los reportes anteriores se integrarán con el servidor cuando se habiliten las conexiones; en desarrollo se trabaja con datos locales.</p><div id="archivedReports"><div class="historyitem">Todavía no hay PDF archivados<small>Genera o comparte un PDF para crear el primer registro.</small></div></div><h3 style="margin-top:16px">◷ &nbsp; Actividad reciente</h3><div id="history"><div class="historyitem">Informe listo para completar<small>El historial local se inicia al guardar.</small></div></div></section>
+
+</aside></div>
+<div class="photo-viewer" id="photoViewer" role="dialog" aria-modal="true" aria-label="Fotografía ampliada"><span class="photo-viewer-hint">Toca fuera de la foto o ✕ para cerrar</span><button type="button" class="photo-viewer-close" id="photoViewerClose" aria-label="Cerrar fotografía">×</button><img id="photoViewerImage" alt="Fotografía ampliada"></div><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modalbox"><h2 id="modalTitle">Agregar registro</h2><form id="recordForm"><div id="modalFields"></div><div class="modalactions"><button type="button" class="btn" id="cancel">Cancelar</button><button class="btn primary" type="submit">Guardar registro</button></div></form></div></div><div class="toast" id="toast"></div>
+<script>
+/* v239: páginas A4 calculadas por contenido, sin cortar una captura larga. */
+(function(root){
+  'use strict';
+  async function create(jsPDF, report, options={}){
+    const doc=new jsPDF({unit:'mm',format:'a4',orientation:'portrait',compress:true});
+    const W=210,H=297,M=12,RIGHT=W-M,BOTTOM=279,START=32,WIDTH=W-2*M;
+    const navy=[18,59,99],ink=[29,49,69],muted=[91,113,132],line=[209,222,233];
+    const audit=[],warnings=[];
+    const text=value=>String(value??'').replace(/\r\n?/g,'\n').replace(/\t/g,'    ').replace(/•\s?/g,'- ').replace(/[–—]/g,'-').trim()||'-';
+    const date=value=>/^\d{4}-\d{2}-\d{2}$/.test(value||'')?value.split('-').reverse().join('-'):text(value);
+    const font=(size=9,bold=false,color=ink)=>{doc.setFont('helvetica',bold?'bold':'normal');doc.setFontSize(size);doc.setTextColor(...color);};
+    const wrap=(value,width,size=9,bold=false)=>{font(size,bold);return doc.splitTextToSize(text(value),width);};
+    let y=START,sectionName='',recordName='';
+    function trackedText(lines,x,top,width,size=9,bold=false,color=ink,leading=4){
+      font(size,bold,color);const list=Array.isArray(lines)?lines:[lines];
+      list.forEach((value,i)=>doc.text(value,x,top+2.9+i*leading));
+      audit.push({kind:'text',page:doc.getNumberOfPages(),x,y:top,w:width,h:list.length*leading,text:list.join('\n'),size,bold});
+    }
+    function header(){
+      doc.setFillColor(...navy);doc.rect(M,11,WIDTH,16,'F');
+      trackedText(options.otros?'INFORME DE HALLAZGOS - OTROS':'INFORME DIARIO HYS',M+4,14,WIDTH-8,13,true,[255,255,255],5);
+      font(7.5,false,[255,255,255]);doc.text('Higiene y Seguridad',M+4,24);
+      y=START;
+    }
+    function band(label,continuation=false){
+      doc.setFillColor(234,242,249);doc.rect(M,y,WIDTH,8,'F');
+      trackedText(label+(continuation?' (continuación)':''),M+3,y+1.3,WIDTH-6,10,true,navy);
+      y+=11;
+    }
+    function recordHeader(continuation=false){
+      trackedText(recordName+(continuation?' - continuación':''),M+3,y,WIDTH-6,9,true,navy);
+      y+=7;
+    }
+    function nextPage(withRecord=true){
+      doc.addPage();header();
+      if(sectionName)band(sectionName,true);
+      if(withRecord&&recordName)recordHeader(true);
+    }
+    function ensure(height,withRecord=true){if(y+height>BOTTOM)nextPage(withRecord);}
+    function rowFields(fields){
+      const gap=4,padding=3,colW=(WIDTH-gap*(fields.length-1))/fields.length;
+      const parts=fields.map(f=>({label:f.label,lines:wrap(f.value,colW-padding*2),offset:0}));
+      let continued=false;
+      while(parts.some(p=>p.offset<p.lines.length)){
+        const remaining=Math.max(...parts.map(p=>p.lines.length-p.offset));
+        const fullHeight=10+remaining*4;
+        const freshCapacity=BOTTOM-(START+(sectionName?11:0)+(recordName?7:0));
+        // Conservar completa la fila cuando cabe en una página nueva.
+        if(y+fullHeight>BOTTOM&&fullHeight<=freshCapacity)nextPage();
+        ensure(18);
+        const count=Math.max(1,Math.floor((BOTTOM-y-10)/4));
+        const take=Math.min(remaining,count),height=10+take*4;
+        parts.forEach((p,index)=>{
+          const x=M+index*(colW+gap);
+          doc.setFillColor(249,251,253);doc.setDrawColor(...line);doc.rect(x,y,colW,height,'FD');
+          trackedText(p.label+(continued?' (cont.)':''),x+padding,y+2,colW-padding*2,7.5,true,muted,3.5);
+          const slice=p.lines.slice(p.offset,p.offset+take);
+          if(slice.length)trackedText(slice,x+padding,y+7,colW-padding*2);
+          p.offset+=slice.length;
+        });
+        y+=height+3;continued=true;
+        if(parts.some(p=>p.offset<p.lines.length))nextPage();
+      }
+    }
+    function longNote(value){
+      const lines=wrap(value,WIDTH-6,8);
+      let offset=0;
+      while(offset<lines.length){
+        ensure(10);const count=Math.max(1,Math.floor((BOTTOM-y-2)/3.8));
+        const part=lines.slice(offset,offset+count);trackedText(part,M+3,y,WIDTH-6,8,false,muted,3.8);
+        y+=part.length*3.8+3;offset+=part.length;if(offset<lines.length)nextPage();
+      }
+    }
+    function photoFiles(files){return (Array.isArray(files)?files:[]).filter(p=>p&&/^data:image\/(?:jpeg|png|gif|webp|bmp);base64,[a-z0-9+/=\s]+$/i.test(String(p.data||'')));}
+    async function readPhoto(file){
+      try{const p=doc.getImageProperties(file.data);return {src:file.data,width:p.width,height:p.height,format:p.fileType};}
+      catch{
+        if(typeof Image==='undefined')return null;
+        return new Promise(resolve=>{
+          const image=new Image();let finished=false;
+          const finish=result=>{if(finished)return;finished=true;clearTimeout(timer);resolve(result);};
+          const timer=setTimeout(()=>finish(null),15000);
+          image.crossOrigin='anonymous';
+          image.onload=()=>{try{const c=document.createElement('canvas');c.width=image.naturalWidth;c.height=image.naturalHeight;const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(image,0,0);finish({src:c.toDataURL('image/jpeg',.92),width:c.width,height:c.height,format:'JPEG'});}catch{finish(null);}};
+          image.onerror=()=>finish(null);image.src=file.data;
+        });
+      }
+    }
+    const columns=[5,6,7,8].includes(Number(options.photoColumns))?Number(options.photoColumns):5;
+    const ratioText=String(options.photoRatio||'4:3');
+    const ratioParts=ratioText.split(':').map(Number);
+    const ratio=ratioParts.length===2&&ratioParts.every(v=>Number.isFinite(v)&&v>0)?ratioParts[0]/ratioParts[1]:4/3;
+    const tileW=(WIDTH-6-(columns-1)*2)/columns,tileH=Math.min(65,tileW/ratio);
+    async function gallery(files){
+      const photos=photoFiles(files);
+      if(!photos.length)return;
+      // Cada fila de fotografías es indivisible; nunca cruza un salto de página.
+      for(let start=0;start<photos.length;start+=columns){
+        ensure(tileH+13);
+        trackedText('Evidencia fotográfica'+(start?' - continuación':''),M+3,y,WIDTH-6,7.5,true,muted,3.5);y+=6;
+        const rowTop=y;
+        for(let i=start;i<Math.min(start+columns,photos.length);i++){
+          const x=M+3+(i-start)*(tileW+2),photo=await readPhoto(photos[i]);
+          doc.setFillColor(250,251,252);doc.setDrawColor(...line);doc.rect(x,rowTop,tileW,tileH,'FD');
+          if(photo&&photo.width>0&&photo.height>0){
+            const fit=Math.min((tileW-2)/photo.width,(tileH-2)/photo.height),w=photo.width*fit,h=photo.height*fit;
+            try{doc.addImage(photo.src,photo.format,x+(tileW-w)/2,rowTop+(tileH-h)/2,w,h,undefined,'FAST');audit.push({kind:'photo',page:doc.getNumberOfPages(),x,y:rowTop,w:tileW,h:tileH});}
+            catch{warnings.push('No se pudo incluir '+(photos[i].name||'una imagen'));font(7,false,muted);doc.text('Imagen no disponible',x+1,rowTop+5,{maxWidth:tileW-2});}
+          }else{
+            warnings.push('No se pudo incluir '+(photos[i].name||'una imagen'));font(7,false,muted);doc.text('Imagen no disponible',x+1,rowTop+5,{maxWidth:tileW-2});
+          }
+          trackedText('Foto '+(i+1),x,rowTop+tileH+1,tileW,7,false,muted,3);
+        }
+        y=rowTop+tileH+7;
+      }
+    }
+    header();
+    const metadata=[
+      {label:'PERÍODO',value:date(report.dateFrom)+' al '+date(report.dateTo)},
+      {label:'FECHA DEL INFORME',value:date(report.date)},
+      {label:'RESPONSABLE',value:report.owner},
+      {label:'TURNO',value:report.shift},
+      {label:'PROYECTO',value:report.project},
+      {label:'ÁREA',value:report.area},
+      {label:'DÍA DEL TURNO',value:(()=>{const from=Date.parse(report.dateFrom+'T12:00:00Z'),to=Date.parse(report.dateTo+'T12:00:00Z'),day=Date.parse(report.date+'T12:00:00Z');const index=Math.round((day-from)/86400000)+1,total=Math.round((to-from)/86400000)+1;return Number.isFinite(index)&&Number.isFinite(total)&&index>=1&&index<=total?'Día '+index+' de '+total:'Fuera del período';})()},
+      {label:'ESTADO',value:report.status}
+    ];
+    for(let i=0;i<metadata.length;i+=2)rowFields(metadata.slice(i,i+2));
+    y+=2;
+    const findingSection={key:'findings',title:'Hallazgos',labels:['Condición detectada','Prioridad','Medida propuesta','Responsable','Estado'],groups:[[1,4],[3],[0],[2]]};
+    const sections=options.otros?[findingSection]:[
+      {key:'activities',title:'Actividades HYS',labels:['APR u otro responsable','Área','Descripción','Resultado'],groups:[[0,1],[2],[3]]},
+      {key:'inspections',title:'Actividades por área',labels:['Área','Actividad','Responsable','Estado'],groups:[[0,3],[1],[2]]},
+      findingSection
+    ];
+    const groupsFor=(record,section)=>{const groups=section.groups.map(group=>group.map(i=>({label:section.labels[i],value:record[i]})));if((section.key==="activities"||section.key==="inspections")&&window.Hys244Activity){for(const field of window.Hys244Activity.formatFields(record,section.key,report.data?.findings||[]))groups.push([field]);}if(options.otros&&section.key==='findings'&&record[6]?.category)groups.push([{label:'Tipo de actividad',value:record[6].category}]);if(section.key==='findings'){const linked=window.Hys243Risks?.formatSelection(record[6]?.risks)||'';if(linked)groups.push([{label:'Riesgos vinculados',value:linked}]);const due=window.Hys243Commitment?.displayDate(record[6]?.dueDate)||'';if(due)groups.push([{label:'Fecha compromiso',value:due}]);}return groups};
+    const groupHeight=group=>13+Math.max(...group.map(f=>wrap(f.value,(WIDTH-4*(group.length-1))/group.length-6).length))*4;
+    for(const section of sections){
+      const records=Array.isArray(report.data?.[section.key])?report.data[section.key]:[];
+      const first=records[0];
+      const firstGroups=first?groupsFor(first,section):[];
+      const firstPair=first?groupHeight(firstGroups[0])-3:14;
+      let firstTotal=first?11:14;
+      if(first){firstTotal+=firstGroups.reduce((sum,group)=>sum+groupHeight(group),0);
+        firstTotal+=Math.ceil(photoFiles(Array.isArray(first[section.labels.length])?first[section.labels.length]:[]).length/columns)*(tileH+13);}
+      const prefix=first?7+firstGroups.slice(0,3).reduce((sum,group)=>sum+Math.min(groupHeight(group),28),0):14;
+      const minimum=11+(firstTotal<=BOTTOM-START-11?firstTotal:prefix);
+      recordName='';sectionName='';ensure(minimum,false);sectionName=section.title;band(sectionName);
+      if(!records.length){longNote('Sin registros.');y+=2;continue;}
+      for(let index=0;index<records.length;index++){
+        const record=records[index],files=Array.isArray(record[section.labels.length])?record[section.labels.length]:[];
+        const groups=groupsFor(record,section);
+        // Evitar separar registros breves cuando pueden viajar completos.
+        const fieldsHeight=groups.reduce((sum,group)=>sum+groupHeight(group),0);
+        const photoHeight=Math.ceil(photoFiles(files).length/columns)*(tileH+13);
+        const fullHeight=7+fieldsHeight+photoHeight+4;
+        recordName='';const freshCapacity=BOTTOM-START-11;
+        const firstPairHeight=groupHeight(groups[0])-3;
+        const prefixHeight=7+groups.slice(0,3).reduce((sum,group)=>sum+Math.min(groupHeight(group),28),0);
+        if(fullHeight<=freshCapacity&&y+fullHeight>BOTTOM)nextPage(false);
+        else ensure(Math.max(prefixHeight,firstPairHeight<=60?firstPairHeight+7:30),false);
+        recordName=section.title+' - registro '+(index+1);recordHeader();
+        for(const group of groups)rowFields(group);
+        await gallery(files);
+        const other=files.filter(f=>!photoFiles(files).includes(f));
+        if(other.length)longNote('Otros archivos adjuntos: '+other.map(f=>f.name||'Archivo').join('; ')+'. Se conservan en el informe original.');
+        if(index<records.length-1){ensure(3);doc.setDrawColor(...line);doc.line(M,y,RIGHT,y);y+=4;}
+      }
+      recordName='';y+=3;
+    }
+    const pages=doc.getNumberOfPages();
+    for(let page=1;page<=pages;page++){
+      doc.setPage(page);doc.setDrawColor(...line);doc.line(M,284,RIGHT,284);font(7.5,false,muted);
+      doc.text((options.otros?'OTROS':'APR')+' | '+date(report.date),M,289);
+      doc.text('Página '+page+' de '+pages,RIGHT,289,{align:'right'});
+    }
+    return {doc,blob:doc.output('blob'),pages,warnings,audit};
+  }
+  root.HysReportPdf={create};
+})(typeof window==='undefined'?globalThis:window);
+
+</script>
+<script>
+const embeddedOtros=new URLSearchParams(location.search).get("embedded")==="otros";
+window.__REPORTES_HYS_OTROS_EMBEDDED__=embeddedOtros;
+function canEditReport242(){return window.Hys242?.canWrite()===true}
+const PROJECT_NAME_245="Proyecto Hidroeléctrico Alto Maipo";
+function enforceProject245(){const project=document.getElementById("project");if(!project)return;project.replaceChildren(new Option(PROJECT_NAME_245,PROJECT_NAME_245));project.value=PROJECT_NAME_245;}
+const keys={activities:["APR u otro responsable","Área","Descripción","Resultado"],inspections:["Área","Actividad","Responsable","Estado"],findings:["Condición detectada","Prioridad","Medida propuesta","Responsable","Estado"]};
+const labels={activities:["APR u otro responsable","Área","Descripción","Resultado"],inspections:["Área","Actividad","Responsable","Estado"],findings:["Condición detectada","Prioridad","Medida propuesta","Responsable","Estado"]};
+const choices={"Resultado":["Sin novedades","Con observaciones","Requiere seguimiento","Otro"],"Prioridad":["Baja","Media","Alta","Crítica"],"Estado":["Pendiente","En proceso","Completado"]};
+let data={activities:[],inspections:[],findings:[]},editRef=null,status="En edición",history=[],aprNames=[],areaNames=[];
+window.Hys243Corrections?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()}));
+window.Hys243Actions?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()}));
+window.Hys243Audit?.setContextProvider(()=>({records:data.findings,actorId:window.__REPORTES_HYS_ACCESS__?.userId||null,profile:window.__REPORTES_HYS_ACCESS__?.profile||null,module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,canWrite:canEditReport242()})); let pendingActivityPhotos=[],editingActivityPhotos=[],editingAprIndex=null,editingAreaIndex=null,editRevision255=0,activeSubmit255=null;window.Hys255Guard.onInvalidate(()=>{editRevision255++;editRef=null;});
+const $=id=>document.getElementById(id);
+const today=new Date(),localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);$("date").value=localDate;$("dateFrom").value=localDate;$("dateTo").value=localDate;$("topDate").textContent=today.toLocaleDateString("es-CL",{day:"2-digit",month:"long",year:"numeric"});
+function updateTurnDay(){const from=$("dateFrom").value,to=$("dateTo").value,day=$("date").value;if(!from||!to||!day){$("turnDay").textContent="Ingrese las fechas";return}const a=new Date(from+"T12:00:00"),b=new Date(to+"T12:00:00"),d=new Date(day+"T12:00:00");if(b<a){$("turnDay").textContent="Rango de fechas inválido";return}const total=Math.round((b-a)/86400000)+1,index=Math.round((d-a)/86400000)+1;$("turnDay").textContent=index<1||index>total?"Fuera del período":"Día "+index+" de "+total;}
+["dateFrom","dateTo","date"].forEach(id=>$(id).addEventListener("change",updateTurnDay));updateTurnDay();
+function renderAreaSelect(selected=$("area").value){const sel=$("area");const safe=String(selected||"");sel.innerHTML='<option value="">Seleccione área...</option>'+areaNames.map(n=>'<option value="'+esc(n)+'"'+(n===safe?' selected':'')+' >'+esc(n)+'</option>').join("");if(safe&&!areaNames.includes(safe)){const opt=document.createElement("option");opt.value=safe;opt.textContent=safe;opt.selected=true;sel.appendChild(opt)}}
+function persistArea(){localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));renderAreaSelect();save(false)}
+function renderAprSelect(selected=$("owner").value){const sel=$("owner");const safe=String(selected||"");sel.innerHTML='<option value="">Seleccione APR responsable...</option>'+aprNames.map(n=>'<option value="'+esc(n)+'"'+(n===safe?' selected':'')+' >'+esc(n)+'</option>').join("");if(safe&&!aprNames.includes(safe)){const opt=document.createElement("option");opt.value=safe;opt.textContent=safe;opt.selected=true;sel.appendChild(opt)}}
+function persistApr(){localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));renderAprSelect();save(false)}
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function toast(s){$("toast").textContent=s;$("toast").style.display="block";setTimeout(()=>{$("toast").style.display="none"},2300)}
+function addHistory(action){history.unshift({action,by:$("owner").value||"Usuario local",at:new Date().toLocaleString("es-CL")});renderHistory()}
+function renderHistory(){$("history").innerHTML=history.length?history.slice(0,8).map(h=>'<div class="historyitem">'+esc(h.action)+'<small>'+esc(h.by)+' · '+esc(h.at)+'</small></div>').join(""):'<div class="historyitem">Sin modificaciones registradas<small>El historial aparecerá al guardar.</small></div>'}
+function render(){Object.keys(data).forEach(k=>{let body=$(k);if(!data[k].length){body.innerHTML='<tr><td colspan="'+(keys[k].length+2)+'" class="smallnote">No hay registros. Usa “＋ Agregar” para comenzar.</td></tr>';return}body.innerHTML=data[k].map((r,i)=>{const rawFiles=r[k==="activities"?4:keys[k].length];const files=Array.isArray(rawFiles)?rawFiles.filter(p=>p&&typeof p==="object"):[];const isImageFile=p=>{const type=String(p.type||"").toLowerCase(),name=String(p.name||"").toLowerCase(),url=String(p.data||"").toLowerCase();return type.startsWith("image/")||url.startsWith("data:image/")||/\.(jpg|jpeg|png|gif|webp|bmp|heic|heif)$/.test(name)};const photos=files.filter(p=>isImageFile(p)&&/^data:image\/(?:jpeg|png|gif|webp|bmp);base64,[a-z0-9+/=\s]+$/i.test(String(p.data||"")));const detailRow=keys[k].map((field,j)=>'<td data-label="'+esc(field)+'"'+(field==='Descripción'?' class="multiline-detail"':'')+'>'+(field==="Prioridad"||field==="Estado"||field==="Resultado"?'<span class="pill '+(String(r[j]).match(/Alta|Crítica/i)?'danger':String(r[j]).match(/Pendiente|seguimiento|observaciones/i)?'warn':'ok')+'">'+esc(r[j])+'</span>':esc(r[j]))+'</td>').join('');const mainRow='<tr><td data-label="N.º">'+(i+1)+'</td>'+detailRow+'<td data-label="Acciones"><button class="act" data-edit="'+k+':'+i+'" title="Editar">✎</button><button class="act photo-delete" data-delete="'+k+':'+i+'" title="Eliminar registro">×</button></td></tr>';const evidence=photos.length?'<tr class="record-evidence-row"><td colspan="'+(keys[k].length+2)+'"><details class="activity-photos-details"><summary class="activity-photos-toggle"><span>📷 Fotografías de esta actividad</span><span class="photo-count">'+photos.length+' imagen'+(photos.length===1?'':'es')+' · Mostrar / ocultar</span></summary><div class="record-evidence" aria-label="Evidencia fotográfica">'+photos.map(p=>'<a href="'+esc(p.data)+'" data-photo-preview="true" title="Abrir fotografía en grande"><img class="print-photo" src="'+esc(p.data)+'" alt="Evidencia fotográfica"></a>').join('')+'</div></details></td></tr>':(files.length?'<tr class="record-evidence-row"><td colspan="'+(keys[k].length+2)+'"><div class="record-attachment-note">'+(files.length===1?'1 archivo adjunto':files.length+' archivos adjuntos')+'</div></td></tr>':'');const linkedRisks=k==="findings"&&window.Hys243Risks?window.Hys243Risks.detailRow(r,keys[k].length+2):"";const linkedAssignees=k==="findings"&&window.Hys243Assignees?window.Hys243Assignees.detailRow(r,keys[k].length+2):"";const dueDateRow=k==="findings"&&window.Hys243Commitment?window.Hys243Commitment.detailRow(r,keys[k].length+2):"";const workflowDetail="";/* Detalle y seguimiento ahora en Pendientes. */const activityDetail=(k==="activities"||k==="inspections")&&window.Hys244Activity?window.Hys244Activity.detailRow(r,k,keys[k].length+2,data.findings):"";return mainRow+evidence+activityDetail+linkedRisks+linkedAssignees+dueDateRow+workflowDetail}).join('');});Object.keys(data).forEach(k=>$("count-"+k).textContent=data[k].length);window.Hys245Inbox?.refresh?.();window.Hys246PendingDetail?.refresh?.()}
+function renderActivityPhotoList(){const box=$("existingPhotos");if(!box)return;const existing=editingActivityPhotos.map((p,i)=>'<div class="file"><span>'+(String(p.type||"").startsWith("image/")||p.data&&p.data.startsWith("data:image/")?'🖼':'📎')+'</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">'+esc(p.name||("Archivo "+(i+1)))+'</span><button type="button" class="act photo-delete" data-photo-delete="existing:'+i+'" title="Eliminar archivo" aria-label="Eliminar archivo">×</button></div>').join("");const pending=pendingActivityPhotos.map((p,i)=>'<div class="file"><span>'+(p.type&&p.type.startsWith("image/")?'🖼':'📎')+'</span><span style="flex:1;min-width:0;overflow-wrap:anywhere">'+esc(p.name)+'</span><button type="button" class="act photo-delete" data-photo-delete="pending:'+i+'" title="Quitar archivo seleccionado" aria-label="Quitar archivo seleccionado">×</button></div>').join("");box.innerHTML=existing+pending||'<div class="smallnote" style="padding-top:8px">No hay archivos cargados.</div>'}
+function openModal(k,i=null){if(!canEditReport242())return;editRevision255++;editRef={k,i};pendingActivityPhotos=[];editingActivityPhotos=[];$("modalTitle").textContent=(i===null?"Agregar":"Editar")+" · "+({activities:"Actividad HYS",inspections:"Actividad por área",findings:"Hallazgo"}[k]);let current=i===null?[]:data[k][i];$("modalFields").innerHTML=labels[k].map((label,j)=>'<div class="field"><label>'+esc(label)+'</label>'+(label==="Área"?'<select name="f'+j+'"><option value="">Seleccione área...</option>'+[...areaNames,...(current[j]&&!areaNames.includes(current[j])?[current[j]]:[])].map(n=>'<option '+(current[j]===n?'selected':'')+'>'+esc(n)+'</option>').join('')+'</select>':(choices[label]?'<select name="f'+j+'" '+(j===0&&k==="activities"?'id="responsibleType"':'')+' required><option value="">Seleccione...</option>'+[...choices[label],...(current[j]&&!choices[label].includes(current[j])?[current[j]]:[])].map(c=>'<option '+((j===0&&k==="activities"?String(current[j]||"").startsWith(c):current[j]===c)?'selected':'')+'>'+esc(c)+'</option>').join('')+'</select>':(label==="Fecha comprometida"?'<input type="date" name="f'+j+'" value="'+esc(current[j]||"")+'">':'<textarea name="f'+j+'" rows="2" '+(j===0?'required':'')+' placeholder="'+esc(label)+'">'+esc(current[j]||"")+'</textarea>')))+'</div>').join('')+'<div class="field"><label>Adjuntar fotos o archivos (opcional)</label><input id="recordFiles" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt,.csv" multiple><small class="smallnote">Puedes cargar una o varias fotos o documentos. Máximo 20 MB por archivo y 60 MB por carga. Los archivos seleccionados aparecerán debajo y podrás quitar cada uno con la X antes de guardar.</small><div id="existingPhotos" class="smallnote" style="margin-top:8px"></div></div>';if(embeddedOtros&&k==="findings"){const extra=document.createElement("div");extra.className="field";const label=document.createElement("label");label.textContent="Tipo de actividad";label.htmlFor="recordCategory242";const select=document.createElement("select");select.id="recordCategory242";const value=current[6]?.category||"";select.add(new Option("Seleccione...",""));for(const item of new Set([...(window.Hys242CategoryOptions||[]),...(value?[value]:[])]))select.add(new Option(item,item));select.value=value;extra.append(label,select);$("modalFields").append(extra)}if(k==="findings"){if(!window.Hys243Risks){toast("Selector de riesgos no disponible; no se puede editar el hallazgo.");return;}window.Hys243Risks.mount($("modalFields"),current[6]?.risks||[]);if(!window.Hys243Assignees){toast("Selector de responsables no disponible; no se puede editar el hallazgo.");return;}window.Hys243Assignees.mount($("modalFields"),{modulo:embeddedOtros?"OTROS":"APR",previous:current[6]?.assignees||[],legacy:current[3]||""});if(!window.Hys243Commitment){toast("Fecha compromiso no disponible; no se puede editar el hallazgo.");return;}window.Hys243Commitment.mount($("modalFields"),current);if(!window.Hys243Actions){toast("Acciones individuales no disponibles. No se puede editar el hallazgo.");return;}try{window.Hys243Actions.mount($("modalFields"),{existing:current[6]?.actions,getAssignees:()=>window.Hys243Assignees.selected()});}catch(error){toast(error.message||"No se pudieron cargar las acciones");return;}}if(k==="activities"||k==="inspections"){if(!window.Hys244Activity){toast("Planificación de actividades no disponible.");return;}try{window.Hys244Activity.mount($("modalFields"),{kind:k,record:current,findings:data.findings,module:"APR"});}catch(error){toast(error.message||"No se pudo abrir la planificación");return;}}$("modal").style.display="flex";editingActivityPhotos=(current[k==="activities"?4:labels[k].length]||[]).map(p=>({...p}));renderActivityPhotoList();$("modalFields").scrollTop=0;const firstControl=$("modalFields").querySelector("input,select,textarea");if(firstControl)firstControl.focus({preventScroll:true});$("recordFiles").addEventListener("change",e=>{pendingActivityPhotos.push(...Array.from(e.target.files));e.target.value="";renderActivityPhotoList()});}
+function setupDescriptionBullets(){
+ const f=$("modalFields");if(!f||f.dataset.bulletSetup)return;f.dataset.bulletSetup="1";
+ const isD=t=>{if(t.tagName!=="TEXTAREA")return false;const label=t.closest(".field")?.querySelector("label")?.textContent.trim();const k=editRef?.k;return (k==="activities"&&label==="Descripción")||(k==="inspections"&&["Actividad","Responsable"].includes(label))||(k==="findings"&&["Condición detectada","Medida propuesta","Responsable"].includes(label));};const b="• ";
+ f.addEventListener("keydown",e=>{const t=e.target;if(!isD(t))return;
+  if(e.key==="Enter"&&!e.shiftKey){
+   e.preventDefault();const v=t.value,p=t.selectionStart,q=t.selectionEnd,ls=v.lastIndexOf("\n",p-1)+1,z=v.indexOf("\n",q),le=z<0?v.length:z,line=v.slice(ls,le),before=v.slice(0,ls),after=v.slice(le);
+   const hasBullets=v.split("\n").some(x=>x.startsWith(b));
+   if(line.startsWith(b)&&line.slice(b.length).trim()===""){
+    const next=before+line.slice(b.length)+after;t.value=next;const pos=before.length+line.slice(b.length).length;t.setSelectionRange(pos,pos);
+   }else if(!hasBullets&&line.trim()!==""){
+    const raw=v.slice(ls,p)+v.slice(q,le);const first=raw;const rest=v.slice(le);t.value=v.slice(0,ls)+first+"\n"+b+rest;const pos=ls+first.length+1+b.length;t.setSelectionRange(pos,pos);
+   }else if(line.trim()===""&&hasBullets){
+    const prevStart=v.lastIndexOf("\n",Math.max(0,ls-2))+1;const prevLine=v.slice(prevStart,ls-1);
+    if(prevLine.trim()===""){const ins="\n"+b;t.value=v.slice(0,p)+ins+v.slice(q);const pos=p+ins.length;t.setSelectionRange(pos,pos)}
+    else{const ins="\n";t.value=v.slice(0,p)+ins+v.slice(q);t.setSelectionRange(p+1,p+1)}
+   }else{const ins="\n"+b;t.value=v.slice(0,p)+ins+v.slice(q);const pos=p+ins.length;t.setSelectionRange(pos,pos)}
+   t.dispatchEvent(new Event("input",{bubbles:true}));return;
+  }
+  if(e.key==="Backspace"&&t.selectionStart===t.selectionEnd){const v=t.value,p=t.selectionStart,ls=v.lastIndexOf("\n",p-1)+1;if(v.slice(ls,ls+b.length)===b&&p===ls+b.length){e.preventDefault();t.value=v.slice(0,ls)+v.slice(ls+b.length);t.setSelectionRange(ls,ls);t.dispatchEvent(new Event("input",{bubbles:true}))}}
+ });
+}
+setupDescriptionBullets();
+document.addEventListener("click",e=>{if(!canEditReport242())return;let photo=e.target.closest("[data-photo-delete]");if(photo){const [kind,index]=photo.dataset.photoDelete.split(":");if(kind==="existing")editingActivityPhotos.splice(+index,1);else pendingActivityPhotos.splice(+index,1);renderActivityPhotoList();return}let a=e.target.closest("[data-add]"),ed=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");if(a)openModal(a.dataset.add);if(ed){let [k,i]=ed.dataset.edit.split(":");openModal(k,+i)}if(del){let [k,i]=del.dataset.delete.split(":");if(confirm("¿Eliminar este registro?")){data[k].splice(+i,1);render();addHistory("Registro eliminado de "+k);save(false)}}});
+$("recordForm").addEventListener("submit",async e=>{e.preventDefault();const ownedRevision255=editRevision255,formContext255=window.Hys255Guard.capture({report:true});if(activeSubmit255===ownedRevision255)return;activeSubmit255=ownedRevision255;try{if(!canEditReport242()||!editRef)return;if(editRef.k==="findings"&&!window.Hys243Risks?.mountedPicker()){toast("Selector de riesgos no disponible. No se guardó el hallazgo.");return;}if(editRef.k==="findings"&&(!window.Hys243Assignees?.mountedPicker()||!window.Hys243Assignees.canSubmit())){toast("No se pudo validar la asignación de responsables. No se guardó el hallazgo.");return;}if(editRef.k==="findings"&&!window.Hys243Commitment){toast("Fecha compromiso no disponible. No se guardó el hallazgo.");return;}if(editRef.k==="findings"&&!window.Hys243Corrections){toast("Identificador de seguimiento no disponible. No se guardó el hallazgo.");return;}if(editRef.k==="findings"&&!window.Hys243Actions){toast("Acciones individuales no disponibles. No se guardó el hallazgo.");return;}let dueDate243="";if(editRef.k==="findings"){try{dueDate243=window.Hys243Commitment.readDate($("recordCommitmentDate243"));}catch(error){toast(error.message||"Fecha compromiso inválida");return;}}let plannedActions243=null;if(editRef.k==="findings"){try{plannedActions243=window.Hys243Actions.read(window.Hys243Assignees.selected());}catch(error){toast(error.message||"Acciones individuales inválidas");return;}}let plannedActivity244=null;if(editRef.k==="activities"||editRef.k==="inspections"){try{plannedActivity244=window.Hys244Activity.read({kind:editRef.k,record:editRef.i===null?[]:data[editRef.k][editRef.i],findings:data.findings,module:"APR"});}catch(error){toast(error.message||"Planificación de actividad inválida");return;}}const session242=window.Hys242.sessionKey(),editToken255=editRevision255;let {k,i}=editRef,values=labels[k].map((_,j)=>new FormData(e.target).get("f"+j)||"");let attachments=editingActivityPhotos.map(p=>({...p}));if(pendingActivityPhotos.reduce((n,f)=>n+(f.size||0),0)>60*1024*1024){toast('Los nuevos adjuntos superan 60 MB en total. Reduce su tamaño antes de guardar.');return;}for(const file of pendingActivityPhotos){if(file.size>20*1024*1024){toast('El archivo '+file.name+' supera el máximo de 20 MB. Comprímelo antes de adjuntarlo.');return;}let dataUrl;if(file.type&&file.type.startsWith("image/")){dataUrl=await compressImage(file)}else{dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(reader.error||Error('No se pudo leer el adjunto'));reader.onabort=()=>reject(Error('Lectura cancelada'));reader.readAsDataURL(file)})}attachments.push({name:file.name,type:file.type||"application/octet-stream",data:dataUrl})}if(!canEditReport242()||session242!==window.Hys242.sessionKey()||editToken255!==editRevision255||!editRef)return;values[k==="activities"?4:labels[k].length]=attachments;if(plannedActivity244)values[5]=plannedActivity244;if(embeddedOtros&&k==="findings")values[6]={category:$("recordCategory242")?.value||""};if(k==="findings"){const prev=i===null?null:data[k][i]?.[6];const oldMeta=prev&&typeof prev==="object"&&!Array.isArray(prev)?prev:{};const assignments=window.Hys243Assignees.selected();let stableId243;try{stableId243=window.Hys243Corrections.ensureFindingId(oldMeta.findingId);}catch(error){toast(error.message||"No se pudo identificar el hallazgo");return;}values[6]={...oldMeta,...(values[6]||{}),risks:window.Hys243Risks.selected(),assignees:assignments,dueDate:dueDate243,findingId:stableId243,actions:plannedActions243};if(assignments.length||window.Hys243Assignees.changed())values[3]=window.Hys243Assignees.names(assignments);}if(i===null)data[k].push(values);else data[k][i]=values;$("modal").style.display="none";render();addHistory((i===null?"Registro creado en ":"Registro modificado en ")+k);const stored255=await save(false);if(window.Hys255Guard.valid(formContext255))toast(stored255?"Registro guardado":"Registro en pantalla; no se confirmó el guardado. Conserva una copia JSON.");}catch(error){if(window.Hys255Guard?.valid(formContext255))toast("No se pudo guardar el adjunto: "+String(error?.message||"Error de lectura").slice(0,160));}finally{if(activeSubmit255===ownedRevision255)activeSubmit255=null;}});
+function compressImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{try{if(!img.width||!img.height)throw Error("La fotografía no tiene dimensiones válidas");if(img.width*img.height>100000000)throw Error("La imagen es demasiado grande para procesar");const max=1600,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext("2d");if(!ctx)throw Error("No se pudo preparar la fotografía");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",0.78));}catch(e){reject(e)}};img.onerror=()=>reject(Error("No se pudo decodificar la fotografía"));img.src=reader.result};reader.onerror=()=>reject(reader.error||Error("No se pudo leer la fotografía"));reader.onabort=()=>reject(Error("Lectura cancelada"));reader.readAsDataURL(file)})}
+$("cancel").onclick=()=>{editRevision255++;editRef=null;$("modal").style.display="none";};$("modal").addEventListener("click",e=>{if(e.target===$("modal")){editRevision255++;editRef=null;$("modal").style.display="none";}});
+function pack(){const reportData=window.__REPORTES_HYS_OTROS_EMBEDDED__?{activities:[],inspections:[],findings:data.findings}:data;return {version:"v242",module:embeddedOtros?"OTROS":"APR",reportId:window.Hys242?.reportId()||null,authenticatedUser:window.__REPORTES_HYS_ACCESS__?.userId||null,aprNames,areaNames,date:$("date").value,dateFrom:$("dateFrom").value,dateTo:$("dateTo").value,owner:$("owner").value,shift:$("shift").value,project:$("project").value,area:$("area").value,status,data:reportData,history}}
+async function save(show=true){
+ if(!canEditReport242())return false;
+ const token255=window.Hys255Guard.capture({report:true}),payload255=JSON.parse(JSON.stringify(pack()));
+ const confirmed255=await window.Hys242?.onSave(payload255,show);
+ if(confirmed255!==true||!window.Hys255Guard.valid(token255,{write:true}))return false;
+ if(window.HysFingerprint242(payload255)!==window.HysFingerprint242(pack()))return true;
+ try{localStorage.setItem("reportes-hys-v30-daily",JSON.stringify({...pack(),localSavedAt242:Date.now()}));updateStorageStatus();window.dispatchEvent(new CustomEvent("reportes-hys-data-saved"));if(show)toast("Borrador protegido en este navegador; consulta el estado de sincronización");return true;}
+ catch(e){toast("No se pudo guardar la copia adicional: almacenamiento local lleno");return true;}
+}
+function autosaveEnabled(){return localStorage.getItem("reportes-hys-v30-autosave")!=="false"}
+function updateStorageStatus(){const el=$("storageStatus");if(!el)return;let used=0;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith("reportes-hys-"))used+=(localStorage.getItem(k)||"").length*2}const last=readBackupRecord();const age=last?Math.floor((Date.now()-new Date(last.createdAt).getTime())/86400000):null;el.textContent="Guardado local: "+(localStorage.getItem("reportes-hys-v30-daily")?"hay un borrador guardado":"todavía no hay un borrador guardado")+" · Espacio aproximado usado por Reportes H y S: "+(used/1024).toFixed(1)+" KB."+(last?" · Último respaldo: "+new Date(last.createdAt).toLocaleString("es-CL"):" · No hay respaldos creados")+(last&&age<7?" · Respaldo reciente":!last?" · Recomendación: crear un respaldo":" · Recomendación: crear un respaldo actualizado");const loc=$("backupLocationStatus");if(loc)loc.textContent=last?"Último respaldo: "+new Date(last.createdAt).toLocaleString("es-CL")+". Copia interna del navegador y descarga JSON al dispositivo.":"Aún no se ha creado un respaldo. Al crearlo se guardará en este navegador y se descargará un archivo JSON.";const warn=$("backupReminder");if(warn)warn.textContent=!last?"Recomendación: crea tu primer respaldo local y guarda el archivo descargado.":age>=7?"Han pasado "+age+" días desde el último respaldo. Conviene crear uno actualizado.":"Tu respaldo tiene "+Math.max(0,age)+" días. Recuerda descargar una copia cuando hagas cambios importantes."}
+function applyPack(obj){window.Hys255Guard.validatePack(obj,embeddedOtros?"OTROS":"APR");if(!obj||!obj.data||!["activities","inspections","findings"].every(k=>Array.isArray(obj.data[k])))throw Error("Copia no válida");if(obj.module&&obj.module!==(embeddedOtros?"OTROS":"APR"))throw Error("El informe corresponde a otro módulo. No se mezclaron los datos de APR y OTROS.");data=JSON.parse(JSON.stringify(embeddedOtros?{activities:[],inspections:[],findings:obj.data.findings}:obj.data));$("date").value=obj.date||localDate;$("dateFrom").value=obj.dateFrom||obj.date||localDate;$("dateTo").value=obj.dateTo||obj.date||localDate;renderAprSelect(obj.owner||"");renderAreaSelect(obj.area||"");$("owner").value=obj.owner||"";for(const id of ["shift"]){const el=$(id),value=obj[id]||"";if(value&&![...el.options].some(o=>o.value===value))el.add(new Option(value,value));el.value=value}enforceProject245();$("area").value=obj.area||"";updateTurnDay();history=obj.history||[];status=obj.status||"En edición";$("status").textContent=status;$("status").className=status==="Finalizado"?"pill ok":"pill warn";render();renderHistory();localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));window.Hys242?.enforceOwner();save(false);updateStorageStatus()}
+$("save").onclick=()=>{save();addHistory("Borrador guardado");save(false)};
+function archiveFinalizedSnapshot(){if(!canEditReport242())return false;try{const key="reportes-hys-finalized-snapshots";const list=JSON.parse(localStorage.getItem(key)||"[]");const snapshot={id:"final-"+Date.now().toString(36),createdAt:new Date().toISOString(),report:JSON.parse(JSON.stringify(pack()))};list.unshift(snapshot);localStorage.setItem(key,JSON.stringify(list.slice(0,50)));return true}catch(e){console.error("No se pudo archivar la copia del informe finalizado:",e);return false}}
+$("finalize").onclick=()=>window.Hys242?.finalizeReport();
+function updatePrintInicio(){const val=id=>{const el=$(id);return el?(el.tagName==="SELECT"?(el.options[el.selectedIndex]?.text||""):el.value)||"—":"—"};const dateFmt=v=>v&&v!=="—"?v.split("-").reverse().join("-"):"—";$("printPeriodo").textContent=dateFmt(val("dateFrom"))+" al "+dateFmt(val("dateTo"));$("printDiaTurno").textContent=($("turnDay")?.textContent||"").trim()||"—";$("printFechaInforme").textContent=dateFmt(val("date"));$("printApr").textContent=val("owner");$("printTurno").textContent=val("shift");$("printProyecto").textContent=val("project");$("printArea").textContent=val("area")}const originalDocumentTitle=document.title;function nombreBaseArchivo(){const now=new Date();const fechaGeneracion=[now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");const aprSelect=$("owner");const aprName=(aprSelect?.options[aprSelect.selectedIndex]?.text||"APR no seleccionado").trim();const turnoSelect=$("shift");const turno=(turnoSelect?.options[turnoSelect.selectedIndex]?.text||"Turno no seleccionado").trim().replace(/-/g,"/");const turnoArchivo=turno.replace(/\//g,"∕");return fechaGeneracion+"_"+aprName+"_Informe Diario_"+turnoArchivo}function nombreArchivoPDF(){return nombreBaseArchivo()+".pdf"}function validarDatosInicioParaPDF(){const required=[["dateFrom","Fecha desde"],["dateTo","Fecha hasta"],["date","Fecha de informe"],["owner","APR responsable"],["shift","Turno"],["project","Proyecto"],["area","Área"]];const missing=required.filter(([id])=>!($(id)?.value||"").trim());if(missing.length){alert("No se puede generar el PDF. Completa todas las casillas de la pestaña Inicio:\\n\\n• "+missing.map(([,label])=>label).join("\\n• "));const first=$(missing[0][0]);if(first){first.focus();first.scrollIntoView({behavior:"smooth",block:"center"});}return false;}if($("dateFrom").value>$("dateTo").value){alert("No se puede generar el PDF: la Fecha desde no puede ser posterior a la Fecha hasta.");$("dateFrom").focus();return false;}return true}window.addEventListener("afterprint",()=>{document.title=originalDocumentTitle});async function ensurePdfLibraries(){const load=(urls,ready)=>new Promise((resolve,reject)=>{if(ready())return resolve();let i=0;const next=()=>{if(ready())return resolve();if(i>=urls.length)return reject(Error("Bibliotecas PDF no disponibles"));const sc=document.createElement("script");sc.src=urls[i++];sc.async=true;sc.onload=()=>ready()?resolve():next();sc.onerror=next;document.head.appendChild(sc)};next()});await load(["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"],()=>!!(window.jspdf&&window.jspdf.jsPDF))}
+function clearThreeCards(showMessage=true){if(!canEditReport242())return;data.activities=[];data.inspections=[];data.findings=[];render();save(false);addHistory("Se limpiaron los registros de las tres tarjetas");save(false);if(showMessage)toast("Se limpiaron las tres tarjetas. Los datos del informe y del turno se conservaron.");}
+
+$("pdfShare").onclick=async()=>{
+const pdfContext255=window.Hys255Guard.capture({report:true});if(!window.Hys255Guard.valid(pdfContext255))return;
+if(!validarDatosInicioParaPDF())return;
+save(false);updatePrintInicio();const pdfReport242=JSON.parse(JSON.stringify(pack()));
+const area=document.querySelector(".main");
+if(!area){alert("No se encontró el contenido del informe.");return}
+if(!window.HysReportPdf){alert("No se pudo cargar el formato PDF. Actualiza la página.");return}
+const filename=nombreArchivoPDF();
+let blob,pages=0;
+try{
+  await ensurePdfLibraries();window.Hys255Guard.assert(pdfContext255);
+  const result=await window.HysReportPdf.create(window.jspdf.jsPDF,pdfReport242,{
+    otros:window.__REPORTES_HYS_OTROS_EMBEDDED__===true,
+    photoColumns:getPhotoColumns(),
+    photoRatio:getPhotoRatio()
+  });
+  window.Hys255Guard.assert(pdfContext255);blob=result.blob;pages=result.pages;
+  if(result.warnings.length)alert("El PDF incluye avisos de imágenes no disponibles. Revísalo antes de compartir:\n"+result.warnings.slice(0,5).join("\n"));
+  if(!(blob instanceof Blob)||blob.size===0)throw new Error("PDF vacío");
+}catch(e){if(!window.Hys255Guard.valid(pdfContext255))return;console.error("Error al generar PDF:",e);alert("No se pudo generar el PDF. Revisa las imágenes y la conexión e inténtalo nuevamente.");return}
+await archiveGeneratedPdf(blob,filename,pdfReport242);
+if(!window.Hys255Guard.valid(pdfContext255))return;
+const url=URL.createObjectURL(blob);
+const modal=document.createElement("div");modal.style.cssText="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:12px";
+modal.innerHTML='<div style="background:#fff;color:#172b3a;width:min(100%,1000px);height:min(94vh,900px);border-radius:12px;display:flex;flex-direction:column;overflow:hidden"><div style="padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid #ddd"><strong>Vista previa del PDF</strong><span style="font-size:14px">Páginas detectadas: '+pages+'</span></div><iframe title="Vista previa del PDF" style="border:0;flex:1;width:100%;min-height:0" src="'+url+'"></iframe><div style="padding:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;border-top:1px solid #ddd"><button type="button" data-pdf-action="close">Cancelar</button><button type="button" data-pdf-action="download">Descargar PDF</button><button type="button" data-pdf-action="print">Imprimir</button><button type="button" data-pdf-action="share">Compartir PDF</button></div></div>';
+document.body.appendChild(modal);
+let forget255;const close=()=>{forget255?.();modal.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)};forget255=window.Hys255Guard.watch(modal,pdfContext255,close);
+modal.querySelector('[data-pdf-action="close"]').onclick=close;
+modal.querySelector('[data-pdf-action="download"]').onclick=()=>{if(!window.Hys255Guard.valid(pdfContext255)){close();return;}const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();close()};
+modal.querySelector('[data-pdf-action="print"]').onclick=()=>{if(!window.Hys255Guard.valid(pdfContext255)){close();return;}
+  const viewer=modal.querySelector('iframe[title="Vista previa del PDF"]');
+  try{
+    if(!viewer?.contentWindow)throw new Error("Visor de PDF no disponible");
+    viewer.contentWindow.focus();
+    viewer.contentWindow.print();
+  }catch(error){
+    console.warn("El navegador no permitió imprimir directamente desde la vista previa:",error);
+    const popup=window.open(url,"_blank");
+    if(popup){alert("El PDF se abrió en otra pestaña. Selecciona Imprimir en el visor del navegador (Ctrl+P).");}
+    else{alert("No fue posible abrir la impresión. Descarga el PDF y utiliza Imprimir desde el visor de tu dispositivo.");}
+  }
+};
+modal.querySelector('[data-pdf-action="share"]').onclick=async()=>{if(!window.Hys255Guard.valid(pdfContext255)){close();return;}try{const file=new File([blob],filename,{type:"application/pdf"});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:filename,text:filename});close();}else{const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();close();alert("El PDF se descargó. Adjunta ese archivo desde la aplicación que prefieras.");}}catch(e){if(e.name!=="AbortError"){console.error("Error al compartir PDF:",e);alert("No se pudo compartir directamente. Puedes usar Descargar PDF y enviarlo manualmente.");}}};
+};
+const ARCHIVE_DB_NAME="reportes-hys-pdf-archive-v242",ARCHIVE_DB_STORE="pdfs";function archiveContext242(){const captured=window.HysStorage242.captureDatabase(ARCHIVE_DB_NAME),ticket=window.Hys242?.sessionKey();return {valid:()=>captured.valid()&&ticket===window.Hys242?.sessionKey(),open:()=>captured.open(1)}}
+function openArchiveDB(context=archiveContext242()){return new Promise((ok,no)=>{if(!context.valid()){no(Error('La sesión cambió'));return}const req=context.open();req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(ARCHIVE_DB_STORE))db.createObjectStore(ARCHIVE_DB_STORE,{keyPath:'id'})};req.onsuccess=()=>{if(!context.valid()){req.result.close();no(Error('La sesión cambió'));return}ok(req.result)};req.onerror=()=>no(req.error||Error('No se pudo abrir el archivo local'))})}
+async function getArchivedReports(){const context=archiveContext242(),db=await openArchiveDB(context);return new Promise((ok,no)=>{const list=[],tx=db.transaction(ARCHIVE_DB_STORE,'readonly'),req=tx.objectStore(ARCHIVE_DB_STORE).openCursor();req.onsuccess=()=>{const c=req.result;if(c){const {pdfBlob,reportData,...summary}=c.value;list.push({...summary,hasReportData:!!reportData||summary.hasReportData,hasPdf:!!pdfBlob||summary.hasPdf});c.continue()}};tx.oncomplete=()=>{db.close();if(!context.valid()){no(Error('La sesión cambió'));return}ok(list.sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))))};tx.onerror=()=>{db.close();no(tx.error)}})}
+async function readLocalArchivedReport242(id,context=archiveContext242()){const db=await openArchiveDB(context);return new Promise((ok,no)=>{const tx=db.transaction(ARCHIVE_DB_STORE,'readonly'),req=tx.objectStore(ARCHIVE_DB_STORE).get(id);let value;req.onsuccess=()=>value=req.result||null;tx.oncomplete=()=>{db.close();if(!context.valid()){no(Error('La sesión cambió'));return}ok(value)};tx.onerror=()=>{db.close();no(tx.error)}})}
+async function getArchivedReport(id,needPdf=true){if(navigator.onLine!==false&&window.HYS242_DEPLOYMENT_READY===true)return window.Hys242.fetchReport(id,needPdf);const local=await readLocalArchivedReport242(id);if(local?.remote&&local.creador_id!==window.__REPORTES_HYS_ACCESS__?.userId)throw Error('Conéctate para verificar el permiso de este informe');return local}function archiveMonthKey(r){const raw=r.dateFrom||r.date||r.dateLabel||r.createdAt||"";let d=null;if(/^\d{4}-\d{2}-\d{2}$/.test(raw))d=new Date(raw+"T12:00:00");else if(r.createdAt)d=new Date(r.createdAt);if(!d||Number.isNaN(d.getTime()))d=new Date();return {key:d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"),label:d.toLocaleDateString("es-CL",{month:"long",year:"numeric"})}}async function renderArchivedReports(){const reportScope242=window.Hys242?.sessionKey();const el=$("archivedReports");if(!el)return;let list;try{list=await getArchivedReports();}catch(e){if(reportScope242!==window.Hys242?.sessionKey())return;el.innerHTML='<div class="historyitem">No se pudo leer el archivo de PDF<small>'+esc(e.message||"Error de almacenamiento")+'</small></div>';return}if(reportScope242!==window.Hys242?.sessionKey())return;if(!list.length){el.innerHTML='<div class="archive-empty"><strong>No hay informes archivados todavía.</strong><p>Completa Inicio y genera el PDF. Cada archivo guardado aparecerá aquí agrupado por mes, con opciones para abrirlo o descargarlo.</p></div>';return}const groups={};list.forEach(r=>{const m=archiveMonthKey(r);if(!groups[m.key])groups[m.key]={label:m.label,items:[]};groups[m.key].items.push(r)});el.innerHTML=Object.keys(groups).sort((a,b)=>b.localeCompare(a)).map(key=>{const g=groups[key];return '<section class="archive-month"><h3>'+esc(g.label.charAt(0).toLocaleUpperCase("es")+g.label.slice(1))+' <span class="archive-count">'+g.items.length+' archivo(s)</span></h3>'+g.items.map(r=>'<article class="archive-record"><strong class="archive-filename">'+esc(r.filename||"Informe PDF")+'</strong><div class="archive-meta"><span><b>Fecha del informe:</b> '+esc(r.dateLabel||r.date||"No indicada")+'</span><span><b>Período:</b> '+esc(r.period||"No indicado")+'</span><span><b>APR responsable:</b> '+esc(r.owner||"No indicado")+'</span><span><b>Turno:</b> '+esc(r.shift||"No indicado")+'</span><span><b>Proyecto:</b> '+esc(r.project||"No indicado")+'</span><span><b>Área:</b> '+esc(r.area||"No indicada")+'</span><span><b>Archivado:</b> '+esc(r.createdAt?new Date(r.createdAt).toLocaleString("es-CL"):"Fecha no registrada")+'</span></div><div class="btnrow" style="margin-top:9px"><button class="btn" '+(r.hasPdf===false?'disabled title="PDF pendiente: carga los datos y genéralo"':'')+' data-archive-open="'+esc(r.id)+'">Ver PDF</button><button class="btn" '+(r.hasPdf===false?'disabled':'')+' data-archive-download="'+esc(r.id)+'">Descargar PDF</button><button class="btn" '+(r.hasPdf===false?'disabled':'')+' data-archive-share="'+esc(r.id)+'">Compartir</button><button class="btn" data-archive-edit="'+esc(r.id)+'" title="'+(r.hasReportData?'Cargar los datos guardados para editarlos':'Este PDF antiguo no conserva los datos del formulario')+'">'+(r.hasReportData?'Editar datos del informe':'Edición no disponible')+'</button><button class="btn" data-archive-history="'+esc(r.id)+'">Ver historial ('+(Array.isArray(r.history)?r.history.length:0)+')</button></div></article>').join("")+'</section>'}).join("");el.querySelectorAll("[data-archive-open]").forEach(b=>b.onclick=async()=>{const archiveAction255=window.Hys255Guard.capture();try{const r=await getArchivedReport(b.dataset.archiveOpen);window.Hys255Guard.assert(archiveAction255);if(!r||!r.pdfBlob)throw Error("No se encontró el archivo PDF");const url=URL.createObjectURL(r.pdfBlob),w=window.open(url,"_blank");if(!w){const a=document.createElement("a");a.href=url;a.target="_blank";document.body.appendChild(a);a.click();a.remove()}setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){alert("No se pudo abrir el PDF: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-download]").forEach(b=>b.onclick=async()=>{const archiveAction255=window.Hys255Guard.capture();try{const r=await getArchivedReport(b.dataset.archiveDownload);window.Hys255Guard.assert(archiveAction255);if(!r||!r.pdfBlob)throw Error("No se encontró el archivo PDF");const url=URL.createObjectURL(r.pdfBlob),a=document.createElement("a");a.href=url;a.download=r.filename||"informe.pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(e){alert("No se pudo descargar el PDF: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-share]").forEach(b=>b.onclick=async()=>{const archiveAction255=window.Hys255Guard.capture();try{const r=await getArchivedReport(b.dataset.archiveShare);window.Hys255Guard.assert(archiveAction255);if(!r||!r.pdfBlob)throw Error("No se encontró el PDF para compartir");const filename=r.filename||"informe.pdf";const file=new File([r.pdfBlob],filename,{type:"application/pdf"});if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:filename,text:"Informe HYS: "+filename});}else{const url=URL.createObjectURL(r.pdfBlob),a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);alert("Este navegador no permite compartir el PDF directamente. Se descargó el archivo para que puedas adjuntarlo en WhatsApp, correo u otra aplicación.");}}catch(e){if(e.name!=="AbortError"){console.error("Error al compartir informe:",e);alert("No se pudo compartir el informe: "+(e.message||"error"));}}});el.querySelectorAll("[data-archive-history]").forEach(b=>b.onclick=async()=>{const archiveAction255=window.Hys255Guard.capture();try{const r=await getArchivedReport(b.dataset.archiveHistory,false);window.Hys255Guard.assert(archiveAction255);if(!r)throw Error("No se encontró el informe.");const entries=Array.isArray(r.history)?r.history:[];let modal=document.getElementById("changeHistoryModal");if(modal)modal.remove();modal=document.createElement("div");modal.id="changeHistoryModal";modal.style.cssText="position:fixed;inset:0;background:#071b30b8;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px";const cards=entries.map((h,i)=>{const changes=(h.changes||[]).map(c=>{const imgs=(c.beforeImage||c.afterImage)?`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px">${c.beforeImage?`<div><b>Imagen anterior</b><img src="${esc(c.beforeImage)}" alt="Imagen anterior" style="display:block;width:100%;max-height:220px;object-fit:contain;border:1px solid #c9def5;border-radius:8px;margin-top:4px"></div>`:""}${c.afterImage?`<div><b>Imagen nueva</b><img src="${esc(c.afterImage)}" alt="Imagen nueva" style="display:block;width:100%;max-height:220px;object-fit:contain;border:1px solid #c9def5;border-radius:8px;margin-top:4px"></div>`:""}</div>`:"";return `<article style="border:1px solid #d8e7f7;border-radius:9px;padding:11px;margin-top:8px"><div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:#456b95"><b>Pestaña:</b> ${esc(c.tab||"Datos generales")} <b>· Actividad:</b> ${esc(c.activity||c.field||"Campo")}</div><div style="margin-top:5px"><b>Tipo:</b> ${esc(c.type||"Campo")} · <b>Acción:</b> ${esc(c.action||"Modificación")}</div>${c.beforeImage||c.afterImage?"":`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px"><div><small style="color:#617d9e">Anterior</small><div style="overflow-wrap:anywhere">${esc(c.before||"(vacío)")}</div></div><div><small style="color:#119b70">Nuevo</small><div style="overflow-wrap:anywhere">${esc(c.after||"(vacío)")}</div></div></div>`}${imgs}</article>`}).join("");return `<section style="border:1px solid #d8e7f7;border-radius:10px;padding:12px;margin:12px 0"><b>${i+1}. ${esc(new Date(h.at).toLocaleString("es-CL"))}</b><div style="margin:4px 0 8px;color:#456b95">${esc(h.action||"Modificación")}</div>${changes||`<p>${esc(h.note||"Sin detalle de campos.")}</p>`}</section>`}).join("");modal.innerHTML=`<div style="background:white;color:#173d68;border-radius:14px;width:min(900px,100%);max-height:90vh;overflow:auto;padding:18px;box-shadow:0 15px 50px #0005"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div><h2 style="margin:0">Historial de modificaciones</h2><p style="margin:4px 0;color:#617d9e">${esc(r.filename||"Informe")}</p></div><button type="button" id="closeChangeHistory" class="btn">Cerrar ✕</button></div>${cards||`<p>Este informe todavía no tiene historial registrado. Las modificaciones se registrarán a partir de esta versión.</p>`}</div>`;document.body.appendChild(modal);modal.addEventListener("click",e=>{if(e.target===modal)modal.remove()});modal.querySelector("#closeChangeHistory").onclick=()=>modal.remove()}catch(e){alert("No se pudo mostrar el historial: "+(e.message||"error"))}});el.querySelectorAll("[data-archive-edit]").forEach(b=>b.onclick=async()=>{const archiveAction255=window.Hys255Guard.capture();try{const r=await getArchivedReport(b.dataset.archiveEdit,false);window.Hys255Guard.assert(archiveAction255);if(!r)throw Error("No se encontró el informe archivado.");if(!r.reportData){alert("Este PDF se guardó antes de habilitar la edición y no contiene los datos originales del formulario. Los informes archivados a partir de esta versión conservarán sus datos editables.");return}if(!confirm("Se cargarán los datos de este informe anterior en el formulario actual. Antes de reemplazarlos, se guardará una copia local del estado actual. ¿Continuar?"))return;if(!await window.Hys242.loadReport(r))return;showTab("inicio");const notice=$("toast");if(notice){notice.textContent="Informe anterior cargado para editar. Guarda los cambios y genera el PDF nuevamente.";notice.style.display="block"}window.scrollTo({top:0,behavior:"smooth"})}catch(e){alert("No se pudo editar el informe: "+(e.message||"error"))}})}function reportChangeList(before,after){
+ const out=[],tabNames={activities:"Actividades HYS",inspections:"Actividades por área",findings:"Hallazgos"};
+ const fieldNames={date:"Fecha del informe",dateFrom:"Inicio del período",dateTo:"Fin del período",owner:"APR responsable",shift:"Turno",project:"Proyecto",area:"Área",status:"Estado"};
+ const fmt=v=>{if(v===undefined)return"(vacío)";if(v===null)return"(sin dato)";if(typeof v==="string"&&/^data:image\//i.test(v))return"[Imagen adjunta]";if(Array.isArray(v))return v.length+" elemento(s)";if(typeof v==="object"){if(v&&(/^image\//i.test(v.type||"")||/^data:image\//i.test(v.data||"")))return v.name||"Imagen adjunta";return JSON.stringify(v).slice(0,180)}const t=String(v).replace(/\s+/g," ").trim();return(t||"(vacío)").slice(0,180)};
+ const isImg=v=>typeof v==="string"&&/^data:image\//i.test(v)||v&&typeof v==="object"&&(/^image\//i.test(v.type||"")||/^data:image\//i.test(v.data||"")||/\.(png|jpe?g|gif|webp|bmp|heic|heif)$/i.test(v.name||""));
+ const walk=(a,b,path,tab,activity)=>{
+  if(JSON.stringify(a)===JSON.stringify(b))return;
+  if(isImg(a)||isImg(b)){
+   out.push({tab:tab||"Datos generales",activity:activity||"Evidencia adjunta",type:"Imagen",action:!a?"Imagen agregada":!b?"Imagen eliminada":"Imagen reemplazada",field:path,before:fmt(a),after:fmt(b),beforeImage:isImg(a)?(typeof a==="string"?a:a.data):null,afterImage:isImg(b)?(typeof b==="string"?b:b.data):null});return;
+  }
+  if(a&&b&&typeof a==="object"&&typeof b==="object"&&!Array.isArray(a)&&!Array.isArray(b)){
+   const keys=new Set([...Object.keys(a),...Object.keys(b)]);keys.forEach(k=>walk(a[k],b[k],path?path+" / "+k:k,tab,activity));return;
+  }
+  if(Array.isArray(a)||Array.isArray(b)){
+   const aa=Array.isArray(a)?a:[],bb=Array.isArray(b)?b:[],n=Math.max(aa.length,bb.length);
+   for(let i=0;i<n;i++){const item=bb[i]||aa[i],label=typeof item==="object"&&item?String(item.title||item.activity||item.description||item[2]||item[1]||("Registro "+(i+1))):"Registro "+(i+1);walk(aa[i],bb[i],path+" / "+label,tab, label||activity)}
+   return;
+  }
+  const root=path.split(" / ")[0],type=(typeof a==="string"||typeof b==="string")?"Texto":"Campo";
+  out.push({tab:tab||"Datos generales",activity:activity||fieldNames[root]||root||"Datos generales",type,action:a===undefined?"Registro agregado":b===undefined?"Registro eliminado":"Texto"===type?"Texto modificado":"Campo modificado",field:(fieldNames[root]||root)+(path.includes(" / ")? " / "+path.split(" / ").slice(1).join(" / "):""),before:fmt(a),after:fmt(b)});
+ };
+ const roots=new Set([...Object.keys(before||{}),...Object.keys(after||{})]);
+ roots.forEach(k=>{
+  if(k==="data"){
+   const ad=before&&before.data||{},bd=after&&after.data||{};
+   new Set([...Object.keys(ad),...Object.keys(bd)]).forEach(section=>walk(ad[section],bd[section],section,tabNames[section]||section,""));
+  }else walk(before&&before[k],after&&after[k],k, "Datos generales",fieldNames[k]||k);
+ });
+ return out;
+}
+async function archiveGeneratedPdf(blob,filename,pdfReport=null){const cacheContext242=archiveContext242();try{if(!canEditReport242())return true;const p=pdfReport||pack();if(window.HysFingerprint242(p)!==window.HysFingerprint242(pack()))throw Error("El formulario cambió durante la generación. El PDF puede descargarse, pero debes generarlo nuevamente para archivar los cambios actuales.");if(p.reportId!==window.Hys242.reportId())throw Error("La sesión cambió durante la generación del PDF");const db=await openArchiveDB(cacheContext242),list=await new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readonly"),req=tx.objectStore(ARCHIVE_DB_STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error||Error("No se pudo consultar el archivo"))});if(!cacheContext242.valid()){db.close();return false}const signature=p.reportId;const editingId=p.reportId;const existing=list.find(r=>r.reportId===p.reportId);const now=new Date().toISOString();let history=existing&&Array.isArray(existing.history)?existing.history.slice():[];if(!existing){history.push({at:now,action:"Creación del informe",changes:[],note:"Se archivó la primera versión disponible en esta aplicación."})}else{if(!history.length)history.push({at:existing.createdAt||now,action:"Inicio del historial",changes:[],note:"No existen registros de modificaciones anteriores a esta versión."});if(existing.reportData){const changes=reportChangeList(existing.reportData,p);if(changes.length)history.push({at:now,action:"Modificación del informe",changes});}else{history.push({at:now,action:"Datos editables incorporados",changes:[],note:"Se guardaron los datos estructurados para permitir futuras modificaciones."})}}const stableReportId=p.reportId;if(!stableReportId)throw Error("No se confirmó la identidad del informe");const entry={id:stableReportId,signature,reportId:stableReportId,filename,pdfBlob:blob,reportData:p,history,createdAt:existing&&existing.createdAt?existing.createdAt:now,updatedAt:now,dateLabel:p.date?p.date.split("-").reverse().join("-"):new Date().toLocaleDateString("es-CL"),dateFrom:p.dateFrom,dateTo:p.dateTo,owner:p.owner,shift:p.shift,project:p.project,area:p.area,period:(p.dateFrom||"—")+" al "+(p.dateTo||"—")};await new Promise((resolve,reject)=>{const tx=db.transaction(ARCHIVE_DB_STORE,"readwrite"),store=tx.objectStore(ARCHIVE_DB_STORE);store.put(entry);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||Error("No se pudo guardar el PDF"));tx.onabort=()=>reject(tx.error||Error("Se canceló el guardado"))});db.close();await window.Hys242?.onArchive(entry);try{if(editingId)sessionStorage.removeItem("reportes-hys-editing-archive-id")}catch{}addHistory("PDF archivado automáticamente: "+filename);save(false);await renderArchivedReports();return true}catch(e){if(!cacheContext242.valid())return false;console.error("No se pudo archivar el PDF:",e);alert("El PDF se generó, pero no se pudo guardar en Reportes anteriores: "+(e.message||"almacenamiento no disponible")+". Descárgalo para conservarlo.");return false}}function readBackupRecord(){try{const raw=localStorage.getItem("reportes-hys-v30-backup");if(!raw)return null;const obj=JSON.parse(raw);return obj&&obj.backupFormat==="ReportesHYSBackup"?obj:null}catch{return null}}
+function normalizeBackup(obj){if(obj&&obj.backupFormat==="ReportesHYSBackup")return {payload:obj.payload,createdAt:obj.createdAt,appVersion:obj.appVersion||"v78"};return {payload:obj,createdAt:null,appVersion:obj&&obj.version||"anterior"}}
+function backupSummary(obj,createdAt,filename){const p=obj||{};const date=p.date||"Sin fecha";const from=p.dateFrom||date,to=p.dateTo||date;const owner=p.owner||"Sin APR seleccionado";const activityCount=Array.isArray(p.data&&p.data.activities)?p.data.activities.length:0;const findingCount=Array.isArray(p.data&&p.data.findings)?p.data.findings.length:0;const areaCount=Array.isArray(p.data&&p.data.inspections)?p.data.inspections.length:0;return "Archivo: "+(filename||"respaldo guardado en navegador")+"\\nFecha de respaldo: "+(createdAt?new Date(createdAt).toLocaleString("es-CL"):"fecha no registrada (copia antigua)")+"\\nFecha del informe: "+date+"\\nPeríodo: "+from+" a "+to+"\\nAPR: "+owner+"\\nRegistros de actividades: "+activityCount+"\\nRegistros por área: "+areaCount+"\\nHallazgos: "+findingCount+"\\n\\nLa restauración reemplazará los datos actuales. Se guardará primero una copia de seguridad del estado actual. ¿Deseas continuar?"}
+function downloadBackup(record){const blob=new Blob([JSON.stringify(record,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=nombreBaseArchivo()+"_Respaldo_"+new Date(record.createdAt).toISOString().replace(/[:.]/g,"-").slice(0,19)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
+function makeBackup(download=true){const record={backupFormat:"ReportesHYSBackup",appVersion:"v78",createdAt:new Date().toISOString(),payload:pack()};const raw=JSON.stringify(record);localStorage.setItem("reportes-hys-v30-backup",raw);if(download)downloadBackup(record);updateStorageStatus();return record}
+function safeRestore(obj,createdAt,filename){if(!canEditReport242())throw Error("Acceso de solo lectura");window.Hys255Guard.validatePack(obj,embeddedOtros?"OTROS":"APR");save(false);addHistory("Respaldo previo a restauración");const current={backupFormat:"ReportesHYSBackup",appVersion:"v78",createdAt:new Date().toISOString(),payload:pack()};localStorage.setItem("reportes-hys-v30-backup-before-restore",JSON.stringify(current));applyPack(obj);toast("Respaldo restaurado. Se conservó una copia previa en el navegador.");updateStorageStatus()}
+$("export").onclick=()=>{try{const record=makeBackup(true);toast("Respaldo guardado en el navegador y descargado al dispositivo")}catch(e){console.error(e);toast("No se pudo crear el archivo. Revisa el espacio disponible")}};
+$("import").onchange=async e=>{const guard255=window.Hys255Guard.capture({report:true});try{if(!e.target.files||!e.target.files[0])return;const file=e.target.files[0];const raw=JSON.parse(await file.text());window.Hys255Guard.assert(guard255,{write:true});const n=normalizeBackup(raw);if(!n.payload||!n.payload.data)throw Error("Formato no válido");if(!confirm(backupSummary(n.payload,n.createdAt,file.name)))return;safeRestore(n.payload,n.createdAt,file.name)}catch(err){if(!window.Hys255Guard.valid(guard255))return;console.error(err);toast("No se pudo importar: el archivo no es válido o no es compatible")}finally{e.target.value=""}};
+$("autosaveToggle").checked=autosaveEnabled();$("autosaveToggle").addEventListener("change",e=>{localStorage.setItem("reportes-hys-v30-autosave",e.target.checked?"true":"false");toast(e.target.checked?"Guardado automático activado":"Guardado automático desactivado");updateStorageStatus()});$("saveNow").addEventListener("click",()=>{save(false);addHistory("Guardado manual local");save(false);toast("Guardado en este navegador")});$("backupLocal").addEventListener("click",()=>{try{makeBackup(true);toast("Respaldo creado en el navegador y archivo descargado")}catch(e){console.error(e);toast("No se pudo crear el respaldo. Revisa el espacio disponible")}});$("restoreLocal").addEventListener("click",()=>{try{const raw=localStorage.getItem("reportes-hys-v30-backup");if(!raw){toast("Todavía no existe un respaldo local");return}const n=normalizeBackup(JSON.parse(raw));if(!n.payload||!n.payload.data)throw Error("Copia no válida");if(!confirm(backupSummary(n.payload,n.createdAt,"Respaldo local del navegador")))return;safeRestore(n.payload,n.createdAt,"Respaldo local del navegador")}catch(e){console.error(e);toast("No se pudo restaurar el respaldo local")}});$("resetLocal").addEventListener("click",()=>{if(window.Hys242?.hasPending){toast("Sincroniza o exporta los cambios pendientes antes de restablecer.");return;}if(!confirm("Esto eliminará el borrador, respaldo local y listas guardadas de la versión v30 en este navegador. Los archivos JSON descargados no se eliminarán. ¿Continuar?"))return;["reportes-hys-v30-daily","reportes-hys-v30-backup","reportes-hys-v30-apr","reportes-hys-v30-areas","reportes-hys-v30-autosave"].forEach(k=>localStorage.removeItem(k));location.reload()});["date","dateFrom","dateTo","owner","shift","project","area"].forEach(id=>$(id).addEventListener("change",()=>{save(false)}));updateStorageStatus();
+const configPanel=$("config"),saveOptionsPanel=$("saveOptionsPanel");const archivePanel=$("historial");archivePanel.classList.add("archive-main");$("mainPagehead").insertAdjacentElement("afterend",archivePanel);function showTab(tab){if(["inicio","config","informe","historial","pendientes"].includes(tab)){try{sessionStorage.setItem("reportes-hys-active-tab",tab)}catch{}}const isHome=tab==="inicio",isConfig=tab==="config",isReport=tab==="informe",isArchive=tab==="historial",isPending=tab==="pendientes";$("inicioPanel").style.display=isHome?"grid":"none";configPanel.style.display=isConfig?"block":"none";saveOptionsPanel.style.display=isConfig?"block":"none";document.querySelectorAll(".report-section").forEach(el=>el.style.display=isReport?"":"none");$("historial").style.display=isArchive?"block":"none";const pendingPanel246=document.getElementById("pendingDetailPanel");if(pendingPanel246)pendingPanel246.style.display=isPending?"block":"none";const summaryPanel=document.querySelector(".sidepanels .summary");if(summaryPanel)summaryPanel.style.display=(isArchive||isPending)?"none":"";$("pageIcon").textContent=isHome?"⌂":isConfig?"⚙":isArchive?"◷":isPending?"":"▤";if(isPending)$("pageIcon").innerHTML="<svg class=\"nav-bell-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9\"/><path d=\"M10 21h4\"/></svg>";$("pageTitle").textContent=isHome?"Inicio":isConfig?"Configuración":isArchive?"Reportes anteriores":isPending?"Pendientes":(embeddedOtros?"Hallazgos":"Informe diario");$("pageDescription").textContent=isHome?"Complete el período del turno y los datos generales del informe.":isConfig?"Configure las fotografías del informe y las opciones de guardado local.":isArchive?"Consulta los informes de Supabase y las copias disponibles en este dispositivo.":isPending?"Consulta las tareas y hallazgos pendientes sin abrir el formulario original.":"Registre las actividades HYS, las actividades por área y los hallazgos de la jornada.";document.querySelectorAll(".nav[data-tab]").forEach(el=>{const active=el.dataset.tab===tab;el.classList.toggle("active",active);if(active)el.setAttribute("aria-current","page");else el.removeAttribute("aria-current")});if(isArchive)renderArchivedReports();if(isPending)window.Hys246PendingDetail?.refresh?.();}
+document.querySelectorAll(".nav[data-tab]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();showTab(el.dataset.tab)}));
+function getPhotoRatio(){const allowed=["4:3","16:9","3:2","2:1","5:4","3:4","1:1","2:3","9:16"];const saved=localStorage.getItem("reportes-hys-photo-ratio");return allowed.includes(saved)?saved:"4:3"}
+function applyPhotoRatio(value,notify=false){const allowed=["4:3","16:9","3:2","2:1","5:4","3:4","1:1","2:3","9:16"];const ratio=allowed.includes(value)?value:"4:3";document.documentElement.style.setProperty("--photo-ratio",ratio.replace(":"," / "));const selector=$("photoRatio");if(selector)selector.value=ratio;localStorage.setItem("reportes-hys-photo-ratio",ratio);const status=$("photoRatioStatus");if(status)status.textContent="Relación seleccionada: "+ratio+". Se aplicará al informe y al PDF.";if(notify)toast("Relación de fotografías guardada: "+ratio)}
+function getPhotoColumns(){const n=localStorage.getItem("reportes-hys-photo-columns");return ["5","6","7","8"].includes(n)?n:"5"}function applyPhotoSettings(c,notify=false){c=["5","6","7","8"].includes(String(c))?String(c):"5";document.documentElement.style.setProperty("--photo-columns",c);document.documentElement.style.setProperty("--photo-max-height","48mm");localStorage.setItem("reportes-hys-photo-columns",c);$("photoColumns").value=c;const status=$("photoRatioStatus");if(status)status.textContent=c+" fotografías por fila.";if(notify)toast("Configuración de fotografías guardada")}applyPhotoSettings(getPhotoColumns());$("photoColumns").addEventListener("change",e=>applyPhotoSettings(e.target.value,true));
+$("owner").addEventListener("change",()=>save(false));$("area").addEventListener("change",()=>save(false));
+try{const defaultAprNames=[];const storedApr=JSON.parse(localStorage.getItem("reportes-hys-v30-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v26-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v25-apr"))||JSON.parse(localStorage.getItem("reportes-hys-v21-apr"));aprNames=Array.isArray(storedApr)&&storedApr.length?storedApr:defaultAprNames.slice();localStorage.setItem("reportes-hys-v30-apr",JSON.stringify(aprNames));const defaultAreaNames=["VA4","V5","VA4/V5","VOLCAN","AUCAYES","MAITENES","VA1","VA2","COLORADO","VL4","VL5"];const storedAreas=JSON.parse(localStorage.getItem("reportes-hys-v30-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v26-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v25-areas"))||JSON.parse(localStorage.getItem("reportes-hys-v21-areas"));areaNames=Array.isArray(storedAreas)&&storedAreas.length?storedAreas:defaultAreaNames.slice();localStorage.setItem("reportes-hys-v30-areas",JSON.stringify(areaNames));let saved=JSON.parse(localStorage.getItem("reportes-hys-v30-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v26-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v25-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v21-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v14-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v12-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v9-daily"))||JSON.parse(localStorage.getItem("reportes-hys-v4-daily"));if(saved){data=saved.data||data;if(Array.isArray(saved.aprNames)&&!aprNames.length)aprNames=saved.aprNames;$("date").value=saved.date||localDate;$("dateFrom").value=saved.dateFrom||saved.date||localDate;$("dateTo").value=saved.dateTo||saved.date||localDate;$("owner").value=saved.owner||"";$("shift").value=saved.shift||"";$("project").value=saved.project||"";$("area").value=saved.area||"";updateTurnDay();history=saved.history||[];status=saved.status||"En edición";$("status").textContent=status;renderHistory();}}catch{}renderAprSelect($("owner").value);renderAreaSelect($("area").value);render();if(!$("date").value)$("date").value=localDate;updateTurnDay();save(false);renderArchivedReports();let restoreTab="inicio";try{const candidate=sessionStorage.getItem("reportes-hys-active-tab");if(["inicio","config","informe","historial","pendientes"].includes(candidate))restoreTab=candidate;}catch{}let restoreScroll=0;try{restoreScroll=Number(sessionStorage.getItem("reportes-hys-scroll-y")||0)||0;}catch{}showTab(restoreTab);if(restoreScroll>0){requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,restoreScroll)));}window.addEventListener("pagehide",()=>{try{sessionStorage.setItem("reportes-hys-scroll-y",String(window.scrollY||0));}catch{}});
+
+const photoViewer=$("photoViewer"),photoViewerImage=$("photoViewerImage");
+function closePhotoViewer(){photoViewer.classList.remove("open");photoViewerImage.removeAttribute("src");document.body.style.overflow="";}
+document.addEventListener("click",e=>{const link=e.target.closest("a[data-photo-preview]");if(link){e.preventDefault();const image=link.querySelector("img");const src=image?.currentSrc||image?.src||link.href;if(src){photoViewerImage.src=src;photoViewer.classList.add("open");document.body.style.overflow="hidden";}return;}if(e.target===photoViewer||e.target.closest("#photoViewerClose"))closePhotoViewer();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&photoViewer.classList.contains("open"))closePhotoViewer();});
+
+</script>
+<script>
+
+/* v221: selector APR/Otros y formulario local independiente */
+/* v223: formato visual de Otros alineado con APR; campos y almacenamiento siguen separados */
+(function(){
+  const $ = id => document.getElementById(id);
+  const MODE_KEY = "reportes-hys-selected-module";
+  const chooser = $("moduleChooser"), otherModule = $("otherModule"), layout = document.querySelector(".layout"), header = document.querySelector("body>header");
+
+  const embeddedOtros=window.__REPORTES_HYS_OTROS_EMBEDDED__===true;
+  if(embeddedOtros){const reportNav=document.querySelector('.nav[data-tab="informe"]');if(reportNav&&reportNav.lastChild)reportNav.lastChild.textContent=" Hallazgos";}
+  function setMode(mode){
+    if(mode && !embeddedOtros && !window.__REPORTES_HYS_ACCESS__?.modules.includes(mode.toUpperCase()))return;
+    if(embeddedOtros){
+      document.body.classList.remove("module-choice");
+      chooser.style.display="none";
+      otherModule.style.display="none";
+      layout.style.display="";
+      header.style.display="flex";
+      return;
+    }
+    try{if(mode)localStorage.setItem(MODE_KEY,mode);else localStorage.removeItem(MODE_KEY)}catch{}
+    document.body.classList.toggle("module-choice",!mode);
+    chooser.style.display=mode?"none":"block";
+    otherModule.style.display=mode==="otros"?"block":"none";
+    layout.style.display=mode==="apr"?"":"none";
+    header.style.display=mode==="apr"?"flex":"none";
+    if(mode==="otros"){
+      const frame=$("otherAprApp");
+      const target=location.pathname+"?embedded=otros"+(new URLSearchParams(location.search).has("qa")?"&qa=1&role="+encodeURIComponent(new URLSearchParams(location.search).get("role")||"administrador_global")+"&readonly="+(new URLSearchParams(location.search).get("readonly")||"0")+"&failStorage="+(new URLSearchParams(location.search).get("failStorage")||"0"):"");
+      if(frame&&(!frame.src||frame.src==="about:blank"||!frame.src.includes("embedded=otros")))frame.src=target;
+    }
+    window.reportesHysAdminSync?.();
+  }
+  window.reportesHysSetMode=setMode;
+  $("openAprModule").addEventListener("click",()=>window.reportesHysChooseModule?.("APR"));
+  $("openOtherModule").addEventListener("click",()=>window.reportesHysChooseModule?.("OTROS"));
+  $("moduleChange").addEventListener("click",()=>{
+    if(embeddedOtros)window.parent.postMessage({type:"reportes-hys-switch-module"},location.origin);
+    else window.reportesHysChooseModule?.("");
+  });
+  $("backToModuleChooser")?.addEventListener("click",()=>window.reportesHysChooseModule?.(""));
+  if(!embeddedOtros){
+    window.addEventListener("message",event=>{
+      if(event.origin===location.origin && event.source===$("otherAprApp").contentWindow){
+        if(event.data?.type==="reportes-hys-switch-user")window.reportesHysLogout?.();
+        if(event.data?.type==="reportes-hys-switch-module")window.reportesHysChooseModule?.("");
+      }
+    });
+  }
+  // v242: OTROS utiliza exclusivamente el formulario integrado del iframe.
+  // v225: mostrar siempre las tarjetas APR / Otros al abrir la app principal.
+  // La selección anterior no debe ocultar el selector en una nueva visita.
+  if(embeddedOtros){
+    setMode("apr");
+    document.body.classList.add("embedded-otros");
+    const label=document.querySelector(".brand span");if(label)label.textContent="REPORTES H Y S · Supervisores, capataces y otros";
+
+    /* v229: el selector de sección debe nombrar el único formulario disponible */
+    const findingHeading=document.querySelector(".section-title.purple");
+    if(findingHeading){findingHeading.childNodes.forEach(node=>{if(node.nodeType===Node.TEXT_NODE&&node.textContent.includes("3."))node.textContent=node.textContent.replace(/3\.\s*/, "");});}
+    const findingTitle=document.querySelector(".section-title.purple");
+    if(findingTitle){for(const node of findingTitle.childNodes){if(node.nodeType===Node.TEXT_NODE&&node.textContent.trim()){node.textContent=" Hallazgos";break;}}}
+  }else{
+    setMode("");
+  }
+})();
+
+</script>
+<script>
+window.Hys242Bridge={pack:()=>JSON.parse(JSON.stringify(pack())),applyPack,save,restorePreferences(){applyPhotoSettings(getPhotoColumns());applyPhotoRatio(getPhotoRatio());$("autosaveToggle").checked=autosaveEnabled()},resetCatalog(){areaNames=[];aprNames=[];window.Hys242CategoryOptions=[];$('shift').replaceChildren(new Option('Seleccione...',''));enforceProject245();Object.assign(choices,{Resultado:['Sin novedades','Con observaciones','Requiere seguimiento','Otro'],Prioridad:['Baja','Media','Alta','Crítica'],Estado:['Pendiente','En proceso','Completado']})},renderArchivedReports,showTab,openArchiveDB,getArchivedReports,getArchivedReport,
+ setCatalog(c){const current=pack();areaNames=c.areas||[];aprNames=c.owners||[];Object.assign(choices,c.choices);renderAreaSelect(current.area);renderAprSelect(current.owner);for(const id of ['shift']){const el=$(id),value=el.value;el.replaceChildren(new Option('Seleccione...',''),...(c[id]||[]).map(v=>new Option(v,v)));if(value&&!(c[id]||[]).includes(value))el.add(new Option(value,value));el.value=value}enforceProject245();for(const id of ["otherCategory","otherStatus"]){const el=$(id);if(!el)continue;const value=el.value;el.replaceChildren(new Option("Seleccione...",""),...(c[id]||[]).map(v=>new Option(v,v)));if(value&&!(c[id]||[]).includes(value))el.add(new Option(value,value));el.value=value}if(embeddedOtros&&c.otherStatus?.length)choices.Estado=c.otherStatus;window.Hys242CategoryOptions=c.otherCategory||[]},
+ setOwner(name,editable){const el=$('owner');renderAprSelect(name);el.value=name;el.disabled=!editable;el.hidden=editable;const field=el.closest('.field');const label=field.querySelector('label');if(label){label.htmlFor=editable?'ownerEdit242':'owner';label.textContent=embeddedOtros?'Responsable':'APR responsable'}let input=$('ownerEdit242');if(!input){input=document.createElement('input');input.id='ownerEdit242';input.maxLength=150;input.placeholder='Nombre del responsable';input.setAttribute('aria-label','Nombre del responsable (administrador general)');field.append(input);input.addEventListener('input',()=>{if(!canEditReport242())return;renderAprSelect(input.value);el.value=input.value;save(false)})}input.hidden=!editable;input.disabled=!editable;input.value=name},
+ blank(){return {version:'v242',data:{activities:[],inspections:[],findings:[]},date:localDate,dateFrom:localDate,dateTo:localDate,owner:'',area:'',shift:'',project:PROJECT_NAME_245,status:'En edición',history:[]}},
+ async cacheFinalized(entry){const ticket=window.Hys242?.sessionKey(),existing=await readLocalArchivedReport242(entry.id);if(ticket!==window.Hys242?.sessionKey())return;if(existing?.pdfBlob&&window.HysFingerprint242(existing.reportData)===window.HysFingerprint242(entry.reportData))return this.cacheArchive({...entry,...existing,revision:entry.revision,reportData:entry.reportData,hasPdf:true});return this.cacheArchive(entry)},
+ async cacheSummary(summary){const ticket=window.Hys242?.sessionKey();const existing=await readLocalArchivedReport242(summary.id);if(ticket!==window.Hys242?.sessionKey()||existing?.revision===summary.revision)return;return this.cacheArchive({...summary,pdfBlob:null,reportData:null})},
+ async cacheArchive(entry){const context=archiveContext242(),current=await readLocalArchivedReport242(entry.id,context);if(!context.valid())throw Error('La sesión cambió');if(!entry.pdfBlob&&current?.pdfBlob&&current.revision===entry.revision&&entry.reportData&&window.HysFingerprint242(current.reportData)===window.HysFingerprint242(entry.reportData))entry={...current,...entry,pdfBlob:current.pdfBlob,hasPdf:true,filename:current.filename};const db=await openArchiveDB(context);try{if(!context.valid())throw Error('La sesión cambió');await new Promise((ok,no)=>{const tx=db.transaction(ARCHIVE_DB_STORE,'readwrite');tx.objectStore(ARCHIVE_DB_STORE).put(entry);tx.oncomplete=()=>context.valid()?ok():no(Error('La sesión cambió'));tx.onerror=()=>no(tx.error);tx.onabort=()=>no(tx.error||Error('Escritura cancelada'))})}finally{db.close()}},
+ updateCatalogOwner(){window.Hys242?.enforceOwner()}
+};
+</script>
+<script src="sync-core-v242.js"></script>
+<script src="cloud-v242.js"></script>
+<script src="appearance-core-v242.js"></script>
+<script src="appearance-v242.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8"></script>
+<script>
+/* v235: ingreso único, destino según permisos y cierre de sesión */
+(function(){
+  const $=id=>document.getElementById(id);
+  const gate=$("authGate"), status=$("authStatus"), form=$("authLoginForm"), loginButton=$("authLoginButton");
+  const embeddedOtros=new URLSearchParams(location.search).get("embedded")==="otros";
+  const recoveryMode=new URLSearchParams(location.search).get("recuperar")==="1";
+  const activationMode=recoveryMode&&new URLSearchParams(location.search).get("activar")==="1";
+  const authLinkType242=new URLSearchParams(location.hash.slice(1)).get('type');
+  let recoveryReady=false, recoveryBusy=false;
+  if(embeddedOtros)$("authRecover").hidden=true;
+  if(recoveryMode){form.hidden=true;$("authRecover").hidden=true;$("authReturn").hidden=false;}
+  let selected=null, revision=0, moduleTransition=0, submitting=false, closing=false, logoutFailed=false;
+  document.body.classList.add("auth-locked");
+  function rememberModule(uid,module){
+    try{if(module)sessionStorage.setItem("sb-hys-v242-module::"+uid,module);else sessionStorage.removeItem("sb-hys-v242-module::"+uid);}catch{}
+  }
+  function lock(){
+    syncModuleCards257([]);
+    document.body.classList.add("auth-locked");
+    window.__REPORTES_HYS_ACCESS__=null;
+    window.Hys251Notifications?.stop?.();
+    window.dispatchEvent(new CustomEvent("reportes-hys-access-changed"));
+    window.Hys242?.onAccess(null);
+    window.HysAppearance242?.syncAccess(null);
+    window.reportesHysAdminSync?.();
+    $("authUserLabel").replaceChildren();
+    $("authIdentityChooser").replaceChildren();
+  }
+  function showGate(message=""){
+    gate.hidden=false;gate.style.display="flex";
+    $("moduleChooser").style.display="none";
+    status.textContent=message;
+    $("authTitle").textContent="Ingresar a Reportes HYS";
+    loginButton.disabled=submitting||closing;
+  }
+  function chooser(message=""){
+    revision++;selected=null;lock();form.reset();gate.hidden=false;
+    window.reportesHysSetMode("");
+    $("chooserStatus").textContent=message;
+    const frame=$("otherAprApp");if(frame)frame.src="about:blank";
+    showGate(message);
+  }
+    function renderIdentity(profile,modules,email){
+    const roleNames={
+      administrador_global:"Administrador general",
+      administrador_area:"Administrador",
+      supervisor:"Supervisor",
+      usuario:"Usuario"
+    };
+    const role=roleNames[profile.rol]||profile.rol||"Rol no definido";
+    const areaText="Áreas habilitadas: "+(modules.length?modules.map(m=>window.HysAppearance242?.moduleLabel(m)||({APR:"Prevencionista de riesgos",OTROS:"Supervisores, capataces y otros"}[m]||m)).join(" · "):"Ninguna");
+    [document.getElementById("authUserLabel"),document.getElementById("authIdentityChooser")].forEach(node=>{
+      if(!node)return;
+      node.replaceChildren();
+      const name=document.createElement("strong");
+      name.textContent=profile.nombre||email||"Usuario";
+      const roleLine=document.createElement("span");
+      roleLine.textContent=role;
+      const areas=document.createElement("small");
+      areas.textContent=areaText;
+      node.append(name,roleLine,areas);
+    });
+  }
+
+
+  let parentClient=null;
+  if(embeddedOtros){
+    form.hidden=true;loginButton.disabled=true;
+    try{
+      const parent=window.parent;
+      if(parent!==window && parent.location.origin===location.origin
+        && parent.__REPORTES_HYS_ACCESS__?.selectedModule==="OTROS"){
+        parentClient=parent.reportesHysSupabase;
+      }
+    }catch{}
+    if(!parentClient){showGate("Abre Supervisores, capataces y otros desde la pantalla principal.");return;}
+  }
+  if(!parentClient && (!window.supabase || typeof window.supabase.createClient!=="function")){
+    if(embeddedOtros)showGate("No se pudo cargar el servicio de autenticación.");
+    else chooser("No se pudo cargar el servicio de autenticación. Actualiza la página.");
+    return;
+  }
+  const client=parentClient||window.supabase.createClient("https://ujfsugivgysyhboyirtz.supabase.co","sb_publishable_n2SIcWm9rKPWaq2o8j4YCw_bsuWF2eb",{
+    auth:{storageKey:recoveryMode?"sb-reportes-hys-v242-recovery":"sb-reportes-hys-v242-auth",persistSession:!recoveryMode,autoRefreshToken:true,detectSessionInUrl:recoveryMode}
+  });
+  window.reportesHysSupabase=client;
+  $("authRecover").addEventListener("click",async()=>{
+    if(embeddedOtros||recoveryMode||recoveryBusy||submitting||closing)return;
+    const email=$("authEmail");
+    if(!email.value.trim()||!email.checkValidity()){
+      showGate("Escribe tu correo electrónico para recuperar la contraseña.");email.reportValidity();email.focus();return;
+    }
+    recoveryBusy=true;$("authRecover").disabled=true;
+    status.textContent="Solicitando enlace de recuperación…";
+    try{
+      const {error}=await client.auth.resetPasswordForEmail(email.value.trim(),{
+        redirectTo:location.origin+location.pathname+"?recuperar=1"
+      });
+      if(error)throw error;
+      status.textContent="Si el correo corresponde a una cuenta, recibirás un enlace para cambiar tu contraseña. Revisa también Spam.";
+    }catch(error){
+      const code=String(error?.code||"");
+      if(error?.status===429||code==="over_email_send_rate_limit"||code==="over_request_rate_limit"){
+        status.textContent="Supabase limitó temporalmente las solicitudes o los envíos de correo. No sigas solicitando enlaces por ahora. Debemos revisar el límite de envíos del proyecto.";
+      }else if(code==="email_address_not_authorized"){
+        status.textContent="El servicio de correo del proyecto no está autorizado para enviar a esta dirección. Debemos revisar la configuración de correo en Supabase.";
+      }else if(error?.name==="AuthRetryableFetchError"||error instanceof TypeError){
+        status.textContent="No se pudo conectar con Supabase. Revisa la conexión a Internet y vuelve a intentarlo.";
+      }else{
+        status.textContent="No se pudo solicitar el enlace. Revisa el último error de Auth en Supabase antes de reintentar.";
+      }
+    }
+    finally{recoveryBusy=false;$("authRecover").disabled=false;}
+  });
+  $("authResetForm").addEventListener("submit",async event=>{
+    event.preventDefault();
+    if(!recoveryMode||!recoveryReady||recoveryBusy)return;
+    const password=$("authNewPassword").value;
+    if(password.length<12||password!==$("authRepeatPassword").value){
+      status.textContent="Las contraseñas deben coincidir y tener al menos 12 caracteres.";return;
+    }
+    recoveryBusy=true;$("authResetButton").disabled=true;
+    try{
+      const {error}=await client.auth.updateUser({password});
+      if(error)throw error;
+      recoveryReady=false;$("authResetForm").reset();$("authResetForm").hidden=true;
+      const result=await client.auth.signOut({scope:"local"});
+      status.textContent=result.error?"Contraseña actualizada. Vuelve al ingreso para continuar.":"Contraseña actualizada. Vuelve al ingreso y utiliza tu nueva contraseña.";
+    }catch{status.textContent="No se pudo cambiar la contraseña. Revisa los requisitos o solicita un enlace nuevo.";}
+    finally{recoveryBusy=false;$("authResetButton").disabled=false;}
+  });
+  function syncModuleCards257(modules){
+    $("openAprModule").hidden=!modules.includes("APR");
+    $("openOtherModule").hidden=!modules.includes("OTROS");
+    $("aprModuleCard").hidden=!modules.includes("APR");
+    $("otherModuleCard").hidden=!modules.includes("OTROS");
+    $("openAprModule").disabled=!modules.includes("APR");
+    $("openOtherModule").disabled=!modules.includes("OTROS");
+  }
+  function landingModule256(profile,modules,previous,restored,embedded){
+    if(embedded)return modules.includes('OTROS')?'OTROS':null;
+    const administrative=['administrador_global','administrador_area'].includes(profile?.rol);
+    // Un ingreso administrativo comienza en la pantalla principal. Una renovación
+    // conserva el módulo ya abierto, si continúa autorizado.
+    if(administrative)return modules.includes(previous)?previous:null;
+    return modules.length===1?modules[0]:modules.includes(previous)?previous:modules.includes(restored)?restored:null;
+  }
+  async function loadAccess(session,version=revision){
+    if(!session?.user)return;
+    const module=selected;
+    document.body.classList.add("auth-locked");showGate("Verificando perfil y permisos…");
+    try{
+      let profile,permissions=[],facultades=[];
+      if(window.HYS242_DEPLOYMENT_READY===true||window.HYS250_LOCAL_EDIT===true){const r=await client.rpc('hys242_contexto');if(r.error)throw r.error;profile=r.data.profile;permissions=r.data.permissions||[];facultades=r.data.facultades||[];}else{const r=await client.from('perfiles').select('usuario_id,nombre,rol,activo').eq('usuario_id',session.user.id).maybeSingle();if(r.error)throw r.error;profile=r.data;}
+      if(profile?.usuario_id!==session.user.id)throw Error('La identidad de la sesión cambió');
+      if(!profile||profile.activo!==true)throw Error('Perfil inactivo o inexistente');
+      let modules=profile.rol==='administrador_global'?['APR','OTROS']:[...new Set(permissions.filter(p=>p.puede_ver).map(p=>p.modulo))];
+      if(window.HYS242_DEPLOYMENT_READY!==true&&window.HYS250_LOCAL_EDIT!==true)modules=['APR','OTROS'];
+      if(version!==revision || module!==selected || closing)return;
+      if((embeddedOtros && !modules.includes("OTROS")) || modules.length===0){
+        lock();
+        showGate("Tu cuenta no tiene módulos autorizados para este ingreso.");
+        return;
+      }
+      let restoredModule=null;
+      try{restoredModule=sessionStorage.getItem("sb-hys-v242-module::"+session.user.id);}catch{}
+      selected=landingModule256(profile,modules,module,restoredModule,embeddedOtros);
+      rememberModule(session.user.id,selected);
+      $("moduleChange").hidden=false;
+      window.__REPORTES_HYS_ACCESS__={userId:session.user.id,profile,modules,permissions,facultades,selectedModule:selected};
+      renderIdentity(profile,modules,session.user.email);
+      await window.Hys242?.onAccess(window.__REPORTES_HYS_ACCESS__);
+      window.HysAppearance242?.syncAccess(window.__REPORTES_HYS_ACCESS__);
+      window.reportesHysAdminSync?.();
+      window.dispatchEvent(new CustomEvent("reportes-hys-access-changed"));
+      document.body.classList.remove("auth-locked");
+      gate.hidden=true;
+      if(!embeddedOtros){
+        window.reportesHysSetMode(selected?selected.toLowerCase():"");
+        syncModuleCards257(modules);
+      }
+    }catch(error){
+      if(version!==revision)return;
+      lock();showGate(error.message?.startsWith("Perfil inactivo")?error.message:"No se pudieron verificar tus permisos. Revisa la conexión e inténtalo nuevamente.");
+    }
+  }
+  window.reportesHysRefreshPermissions=async()=>{const version=revision;const r=await client.auth.getSession();if(r.error)throw r.error;if(version!==revision||!r.data.session)return;const saved=await window.Hys242?.preserveBeforeRefresh();if(saved===false)throw Error('No se confirmó la copia local. Exporta un respaldo antes de actualizar permisos.');if(version!==revision)return;await loadAccess(r.data.session,version);};
+  async function logout(){
+    if(embeddedOtros && window.parent!==window){
+      window.parent.postMessage({type:"reportes-hys-switch-user"},location.origin);revision++;lock();showGate("Cerrando sesión…");return;
+    }
+    if(closing)return;
+    closing=true;revision++;
+    if(window.__REPORTES_HYS_ACCESS__)rememberModule(window.__REPORTES_HYS_ACCESS__.userId,null);
+    lock();selected=null;form.reset();
+    window.reportesHysSetMode("");
+    $("otherAprApp").src="about:blank";
+    showGate("Cerrando sesión…");
+    try{
+      const {error}=await client.auth.signOut({scope:"local"});
+      if(error)throw error;
+      logoutFailed=false;$("authBack").hidden=true;chooser("Sesión cerrada. Ingresa tus credenciales.");
+    }catch{
+      logoutFailed=true;$("authBack").hidden=false;chooser("No se pudo cerrar la sesión. Pulsa Reintentar cierre de sesión.");
+      return false;
+    }finally{closing=false;loginButton.disabled=logoutFailed;}
+    return true;
+  }
+  window.reportesHysLogout=logout;
+  window.reportesHysChooseModule=async module=>{
+    const target=module==null?'':typeof module==='string'?module.trim().toUpperCase():null;
+    const access=window.__REPORTES_HYS_ACCESS__;
+    if(target===null||!access||!Array.isArray(access.modules)||
+       (target&&!['APR','OTROS'].includes(target))||(target&&!access.modules.includes(target))||closing||submitting)return false;
+    const ticket=++moduleTransition,authRevision=revision;
+    window.Hys251Notifications?.stop?.();
+    selected=target||null;access.selectedModule=selected;
+    window.dispatchEvent(new CustomEvent("reportes-hys-access-changing"));
+    await window.Hys242?.onAccess(access);
+    if(ticket!==moduleTransition||authRevision!==revision||window.__REPORTES_HYS_ACCESS__!==access||access.selectedModule!==(target||null))return false;
+    window.HysAppearance242?.syncAccess(access);
+    rememberModule(access.userId,selected);
+    window.reportesHysSetMode(target.toLowerCase());
+    if(!target)$("otherAprApp").src="about:blank";
+    window.dispatchEvent(new CustomEvent("reportes-hys-access-changed"));
+    return true;
+  };
+  $("chooserLogout").addEventListener("click",logout);
+  $("authBack").addEventListener("click",logout);
+  $("authLogout").addEventListener("click",logout);
+  form.addEventListener("submit",async event=>{
+    event.preventDefault();
+    if(embeddedOtros||submitting||closing||logoutFailed)return;
+    submitting=true;loginButton.disabled=true;
+    revision++;selected=null;lock();
+    const version=revision;
+    status.textContent="Validando credenciales…";
+    try{
+      const {data,error}=await client.auth.signInWithPassword({email:$("authEmail").value.trim(),password:$("authPassword").value});
+      $("authPassword").value="";
+      if(version!==revision){await client.auth.signOut({scope:"local"});return;}
+      if(error){showGate("No se pudo iniciar sesión. Revisa el correo y la contraseña.");return;}
+      await loadAccess(data.session,version);
+    }catch{if(version===revision)showGate("No se pudo iniciar sesión. Revisa la conexión e inténtalo nuevamente.");}
+    finally{submitting=false;loginButton.disabled=closing;}
+  });
+  const {data:authListener}=client.auth.onAuthStateChange((event,session)=>{
+    if(recoveryMode){
+      if((event==="PASSWORD_RECOVERY"||(activationMode&&authLinkType242==="invite"&&["SIGNED_IN","INITIAL_SESSION"].includes(event))) && session?.user){
+        recoveryReady=true;showGate("Escribe y confirma tu nueva contraseña.");
+        $("authTitle").textContent=activationMode?"Crear contraseña de acceso":"Recuperar contraseña";$("authResetForm").hidden=false;
+      }
+      if(event==="SIGNED_OUT"){recoveryReady=false;$("authResetForm").hidden=true;}
+      return;
+    }
+    if(event==="SIGNED_OUT" && closing)return;
+    window.setTimeout(()=>{
+      if(event==="SIGNED_OUT"){
+        if(!closing){if(embeddedOtros){revision++;lock();showGate("Sesión cerrada.");}else chooser("Sesión cerrada.");}
+      }else if(event==="TOKEN_REFRESHED" && window.__REPORTES_HYS_ACCESS__ && !submitting && !closing){
+        loadAccess(session);
+      }
+    },0);
+  });
+  window.addEventListener("pagehide",()=>authListener?.subscription?.unsubscribe(),{once:true});
+  if(recoveryMode){
+    showGate("Verificando enlace de recuperación…");$("authTitle").textContent=activationMode?"Crear contraseña de acceso":"Recuperar contraseña";
+    client.auth.getSession().then(()=>{
+      if(!recoveryReady)status.textContent="Abre el enlace recibido por correo. Si venció o ya se utilizó, solicita uno nuevo desde el ingreso.";
+    }).catch(()=>{status.textContent="No se pudo verificar el enlace. Solicita uno nuevo desde el ingreso.";});
+    return;
+  }
+  if(embeddedOtros){
+    selected="OTROS";showGate("Verificando acceso a Supervisores, capataces y otros…");
+    let parentAccess;
+    try{parentAccess=window.parent!==window && window.parent.location.origin===location.origin && window.parent.__REPORTES_HYS_ACCESS__;}catch{}
+    if(!parentAccess || parentAccess.selectedModule!=="OTROS"){
+      selected=null;form.hidden=true;showGate("Selecciona Supervisores, capataces y otros desde la pantalla principal.");return;
+    }
+    $("authBack").textContent="Cerrar sesión";$("authBack").hidden=false;
+    client.auth.getSession().then(({data,error})=>{
+      if(error || !data.session || data.session.user.id!==parentAccess.userId){showGate("No se pudo recuperar la sesión. Vuelve a ingresar desde Supervisores, capataces y otros.");return;}
+      loadAccess(data.session);
+    }).catch(()=>showGate("No se pudo recuperar la sesión."));
+  }else{
+    chooser("Recuperando sesión…");
+    const version=revision;
+    client.auth.getSession().then(({data,error})=>{
+      if(version!==revision || submitting || closing)return;
+      if(error){showGate("No se pudo recuperar la sesión. Ingresa tus credenciales.");return;}
+      if(data.session)loadAccess(data.session,version);
+      else showGate("Ingresa tus credenciales para abrir el módulo autorizado.");
+    }).catch(()=>{if(version===revision && !submitting)showGate("No se pudo recuperar la sesión.");});
+  }
+})();
+</script>
+<script>
+/* Administración v235: todas las escrituras requieren una acción explícita. */
+(function(){
+  if(new URLSearchParams(location.search).get('embedded')==='otros')return;
+  document.head.insertAdjacentHTML('beforeend',`<style>
+
+  #hysToolsRail[hidden]{display:none!important}
+  #hysToolsRail{position:fixed;left:0;top:0;bottom:0;z-index:700;width:80px;display:flex;flex-direction:column;gap:22px;padding:18px 8px;background:#102f4d;color:#fff;border-right:1px solid #294d6c;box-shadow:4px 0 20px #123b6310}
+  body.hys-tools-visible{padding-left:80px}
+  #hysToolsRail.expanded{width:232px;padding:18px 14px}
+  body.hys-tools-expanded{padding-left:232px}
+  #hysToolsToggle{width:100%;display:flex;flex-direction:column;align-items:center;gap:5px;background:transparent;border:0;color:#d9e7f4;padding:6px 0;cursor:pointer;font:inherit;font-size:11px}
+  #hysToolsToggle .tools-icon{font-size:24px;line-height:1}
+  #hysToolsOptions{display:flex;flex-direction:column;gap:10px}
+  #hysToolsRail .hys-admin-open{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;padding:14px 4px;border:1px solid #476b8a;border-radius:12px;background:#ffffff0d;color:white;cursor:pointer;line-height:1.4}
+  #hysToolsRail .hys-admin-open:hover{background:#ffffff1f;border-color:#8baac5}
+  #hysToolsRail .tools-option-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#e8f1fc;color:#1766b5;font-size:21px}
+  #hysToolsRail .tools-option-label{font-size:11px;font-weight:750}
+  #hysToolsRail .tools-option-full,#hysToolsRail .tools-description{display:none}
+  #hysToolsRail.expanded #hysToolsToggle{flex-direction:row;gap:12px;font-size:15px;font-weight:750;padding:6px}
+  #hysToolsRail.expanded .hys-admin-open{flex-direction:row;align-items:center;text-align:left;padding:12px;gap:12px}
+  #hysToolsRail.expanded .tools-option-label{display:none}
+  #hysToolsRail.expanded .tools-option-full{display:block;font-size:13px;font-weight:750;flex:1}
+  #hysToolsRail.expanded .tools-description{display:block;margin-top:auto;padding:12px 4px 0;border-top:1px solid #375671;font-size:12px;line-height:1.6;color:#bdd0e1}
+  @media(max-width:700px){
+    body.hys-tools-visible,body.hys-tools-expanded{padding-left:0;padding-right:0;padding-bottom:74px}
+    #hysToolsRail,#hysToolsRail.expanded{top:auto;left:0;right:0;bottom:0;width:auto;min-height:68px;height:auto;padding:8px 14px max(8px,env(safe-area-inset-bottom));display:flex;flex-direction:row;align-items:center;gap:14px;border-right:0;border-top:1px solid #294d6c}
+    #hysToolsToggle,#hysToolsRail.expanded #hysToolsToggle{width:auto;flex:0 0 auto;padding:4px 8px;gap:6px;font-size:11px;flex-direction:column}
+    #hysToolsOptions{flex:1;flex-direction:row}
+    #hysToolsRail .hys-admin-open,#hysToolsRail.expanded .hys-admin-open{flex-direction:row;gap:10px;padding:8px 12px;border-radius:9px;min-height:48px}
+    #hysToolsRail .tools-option-label{display:none}
+    #hysToolsRail .tools-option-full,#hysToolsRail.expanded .tools-option-full{display:block;flex:1;text-align:left;font-size:12px}
+    #hysToolsRail .tools-description,#hysToolsRail.expanded .tools-description{display:none}
+    body.hys-tools-visible #otherAprApp{height:calc(100vh - 74px);height:calc(100dvh - 74px)}
+  }
+  @media print{#hysToolsRail{display:none!important}body.hys-tools-visible,body.hys-tools-expanded{padding:0!important}}
+
+  #hysAdmin[hidden],.hys-admin-open[hidden]{display:none!important}
+  #hysAdmin{position:fixed;inset:0;z-index:60000;background:#082b4be6;padding:24px;overflow:auto;color:#173d68}
+  #hysAdmin .admin-shell{max-width:1150px;margin:auto;background:#f4f8fc;border-radius:16px;padding:24px;box-shadow:0 20px 70px #001b3c55}
+  #hysAdmin .admin-heading{display:flex;justify-content:space-between;gap:16px;align-items:center}
+  #hysAdmin h1{margin:0;font-size:26px}#hysAdmin h2{margin-top:0;font-size:20px}
+  #hysAdmin .admin-columns{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:18px}
+  #hysAdmin .admin-card{padding:20px;background:white;border:1px solid #c9def5;border-radius:12px}
+  #hysAdmin label{display:block;font-weight:700;margin:12px 0 5px}
+  #hysAdmin input:not([type=checkbox]),#hysAdmin select{width:100%;padding:10px;border:1px solid #b8d2f0;border-radius:7px;font:inherit}
+  #hysAdmin fieldset{border:1px solid #c9def5;border-radius:8px;margin:16px 0}#hysAdmin fieldset label{font-weight:500}
+  #hysAdmin button{padding:10px 13px;border:1px solid #bdd3e9;border-radius:7px;background:#fff;color:#173d68;font:inherit;font-weight:700;cursor:pointer}
+  #hysAdmin button:disabled{opacity:.5;cursor:default}#hysAdmin .primary{background:#1766b5;color:white;border:0}
+  #hysAdmin .danger{color:#a32d38;border-color:#d99aa1}#hysAdmin .admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  #hysAdmin .admin-user{display:block;text-align:left;width:100%;margin:8px 0;overflow-wrap:anywhere}#hysAdmin .admin-user span{display:block;font-size:12px;font-weight:400;margin-top:4px}
+  #hysAdmin .admin-note{font-size:13px;line-height:1.5;color:#617d9e}#adminStatus{min-height:24px;margin:12px 0;white-space:pre-line}
+  #adminConfirm{margin-top:16px;padding:14px;border:1px solid #dfb0b0;border-radius:8px;background:#fff5f5}
+  @media(max-width:760px){#hysAdmin{padding:10px}#hysAdmin .admin-shell{padding:15px}#hysAdmin .admin-columns{grid-template-columns:1fr}}
+  </style>`);
+  document.body.insertAdjacentHTML('beforeend',`<section id="hysAdmin" role="dialog" aria-modal="true" aria-labelledby="adminTitle" hidden>
+  <div class="admin-shell"><div class="admin-heading"><div><h1 id="adminTitle">Administración de usuarios</h1><p class="admin-note">Administrador general · Reportes HYS v242</p></div><button id="adminClose" type="button">Cerrar</button></div>
+  <p id="adminStatus" role="status" aria-live="polite"></p>
+  <div class="admin-columns"><section class="admin-card"><h2>Usuarios</h2><label for="adminSearch">Buscar por nombre o correo</label><input id="adminSearch" type="search" placeholder="Buscar usuario…"><div class="admin-actions"><button id="adminRefresh" type="button">Actualizar lista</button><button id="adminNew" class="primary" type="button">＋ Nuevo usuario</button></div><div id="adminList"><p class="admin-note">Pulsa Actualizar lista para consultar los usuarios.</p></div></section>
+  <section class="admin-card"><h2 id="adminFormTitle">Nuevo usuario</h2><form id="adminForm">
+  <label for="adminName">Nombre completo</label><input id="adminName" maxlength="150" required>
+  <label for="adminEmail">Correo electrónico</label><input id="adminEmail" type="email" required maxlength="254">
+  <div id="adminMethodField"><label for="adminMethod">Entrega del acceso inicial</label><select id="adminMethod"><option value="invite">Invitación por correo</option><option value="temporary_create">Generar contraseña temporal</option></select></div>
+  <label for="adminRole">Rol</label><select id="adminRole"><option value="usuario">Usuario</option><option value="supervisor">Supervisor</option><option value="administrador_area">Administrador</option></select>
+  <fieldset><legend>Módulos autorizados</legend><label><input id="adminApr" type="checkbox"> Prevencionista de riesgos</label><label><input id="adminOtros" type="checkbox"> Supervisores, capataces y otros</label></fieldset>
+  <label><input id="adminEdit" type="checkbox"> Puede crear y editar informes</label>
+  <label><input id="adminActive" type="checkbox" checked> Cuenta activa</label>
+  <p id="adminFormHelp" class="admin-note">El nuevo usuario recibirá una invitación por correo para elegir su contraseña.</p>
+  <div class="admin-actions"><button id="adminSave" class="primary" type="submit">Enviar invitación</button><button id="adminRecover" type="button" hidden>Recuperar contraseña</button><button id="adminDelete" class="danger" type="button" hidden>Eliminar cuenta</button></div>
+  </form><div class="admin-actions"><button id="adminTemporary" type="button" hidden>Generar otra temporal</button><button id="adminHistory" type="button" hidden>Ver historial de acceso</button></div>
+  <div id="adminSecretBlock" hidden><h3>Contraseña temporal: se muestra solo ahora</h3><p id="adminSecretEmail"></p><input id="adminSecret" type="password" readonly autocomplete="off" aria-label="Contraseña temporal generada"><div class="admin-actions"><button id="adminShowSecret" type="button">Mostrar / ocultar</button><button id="adminDelivered" type="button" disabled>Marcar entrega al trabajador</button><button id="adminForgetSecret" type="button">Cerrar y borrar de pantalla</button></div><p class="admin-note">No se guardará en el historial. Si la pierdes, genera otra. El trabajador puede cambiarla mediante «¿Olvidaste tu contraseña?».</p></div>
+  <div id="adminHistoryBlock" hidden><h3>Historial de acceso</h3><p id="adminAccessState"></p><div id="adminHistoryList"></div></div>
+  <div id="adminConfirm" hidden><p id="adminConfirmText"></p><label for="adminConfirmEmail">Confirma escribiendo el correo del usuario</label><input id="adminConfirmEmail" type="email" autocomplete="off"><div class="admin-actions"><button id="adminConfirmYes" class="primary" type="button">Confirmar</button><button id="adminConfirmNo" type="button">Cancelar</button></div></div></section></div></div></section>`);
+  document.body.insertAdjacentHTML('beforeend',`<aside id="hysToolsRail" aria-label="Herramientas autorizadas" hidden>
+    <button id="hysToolsToggle" type="button" aria-expanded="false" aria-controls="hysToolsOptions" title="Ampliar cinta de opciones"><span class="tools-icon" aria-hidden="true">☰</span><span>Opciones</span></button>
+    <nav id="hysToolsOptions" aria-label="Opciones de administración"></nav>
+    <p class="tools-description">Opciones del administrador general.</p>
+  </aside>`);
+  const $=id=>document.getElementById(id);
+  const rail=$('hysToolsRail');let railExpanded=false;
+  $('hysToolsToggle').addEventListener('click',()=>{railExpanded=!railExpanded;rail.classList.toggle('expanded',railExpanded);document.body.classList.toggle('hys-tools-expanded',railExpanded);$('hysToolsToggle').setAttribute('aria-expanded',String(railExpanded));});
+  const panel=$('hysAdmin');
+  let rows=[],selected=null,busy=false,pending=null,epoch=0,owner=null,capabilities={delete:false},opener=null;
+  let secretUser=null,secretIssuedAt=null;
+  function forgetSecret(){ $('adminSecret').value='';$('adminSecret').type='password';$('adminSecretBlock').hidden=true;secretUser=null;secretIssuedAt=null;$('adminDelivered').disabled=true; }
+  const access=()=>window.__REPORTES_HYS_ACCESS__;
+  const allowed=()=>access()?.profile?.activo===true&&access()?.profile?.rol==='administrador_global';
+  const showTools=()=>window.Hys256Access.users(access())&&!access()?.selectedModule&&$('moduleChooser').style.display==='block';
+  const status=text=>{$('adminStatus').textContent=text;};
+  const modules=()=>[$('adminApr').checked?'APR':null,$('adminOtros').checked?'OTROS':null].filter(Boolean);
+  function controls(){
+    const protectedUser=selected&&(selected.usuario_id===access()?.userId||selected.rol==='administrador_global');
+    ['adminName','adminEmail','adminRole','adminApr','adminOtros','adminEdit','adminActive','adminSave','adminRecover','adminDelete'].forEach(id=>$(id).disabled=busy||!!protectedUser);
+    $('adminEmail').disabled=busy||!!selected;
+    $('adminActive').disabled=busy||!selected||!!protectedUser;
+    $('adminDelete').disabled=busy||!!protectedUser||!capabilities.delete||selected?.activo!==false;
+    $('adminRefresh').disabled=busy;$('adminNew').disabled=busy;$('adminConfirmYes').disabled=busy;
+    $('adminMethod').disabled=busy||!!selected;$('adminMethodField').hidden=!!selected;
+    $('adminTemporary').hidden=!selected;$('adminHistory').hidden=!selected;
+    $('adminTemporary').disabled=busy||!!protectedUser||selected?.activo!==true;
+    $('adminHistory').disabled=busy||!!protectedUser;
+  }
+  function reset(){forgetSecret();$('adminHistoryBlock').hidden=true;$('adminMethod').value='invite';selected=null;pending=null;$('adminForm').reset();$('adminMethod').value='invite';$('adminActive').checked=true;$('adminConfirm').hidden=true;$('adminFormTitle').textContent='Nuevo usuario';$('adminSave').textContent='Enviar invitación';$('adminRecover').hidden=true;$('adminDelete').hidden=true;$('adminFormHelp').textContent='El nuevo usuario recibirá una invitación por correo para elegir su contraseña.';controls();}
+  function render(){
+    const list=$('adminList');list.replaceChildren();const query=$('adminSearch').value.toLowerCase();
+    const filtered=rows.filter(u=>(u.nombre+' '+u.email).toLowerCase().includes(query));
+    if(!filtered.length){const p=document.createElement('p');p.className='admin-note';p.textContent='No hay usuarios para mostrar.';list.append(p);}
+    filtered.forEach(u=>{const button=document.createElement('button');button.type='button';button.className='admin-user';button.textContent=u.nombre||u.email;const meta=document.createElement('span');meta.textContent=[u.email,u.rol,u.activo?'Activo':'Desactivado',(u.permisos||[]).filter(p=>p.puede_ver).map(p=>window.HysAppearance242?.moduleLabel(p.modulo)||({APR:'Prevencionista de riesgos',OTROS:'Supervisores, capataces y otros'}[p.modulo]||p.modulo)).join(' / ')].join(' · ');button.append(meta);button.addEventListener('click',()=>{if(busy)return;reset();selected=u;$('adminName').value=u.nombre||'';$('adminEmail').value=u.email||'';$('adminRole').value=u.rol;$('adminApr').checked=(u.permisos||[]).some(p=>p.modulo==='APR'&&p.puede_ver);$('adminOtros').checked=(u.permisos||[]).some(p=>p.modulo==='OTROS'&&p.puede_ver);$('adminEdit').checked=(u.permisos||[]).some(p=>p.puede_editar);$('adminActive').checked=u.activo===true;$('adminFormTitle').textContent='Editar usuario';$('adminSave').textContent='Guardar cambios';$('adminRecover').hidden=false;$('adminDelete').hidden=false;$('adminFormHelp').textContent=u.rol==='administrador_global'?'Las cuentas de administrador general están protegidas.':!capabilities.delete?'Puedes desactivar la cuenta. La eliminación definitiva requiere habilitación del servidor tras revisar sus informes.':'Para eliminar la cuenta, primero debes desactivarla y guardar el cambio.';controls();});list.append(button);});
+  }
+  async function request(){throw Error('Utiliza Usuarios y accesos de v242. Las funciones protegidas de versiones anteriores no se invocan.');}
+  async function refresh(){const data=await request({action:'list'});rows=data.users||[];capabilities=data.capabilities||{delete:false};render();}
+  async function showHistory(uid){
+    const data=await request({action:'history',usuario_id:uid});
+    $('adminHistoryBlock').hidden=false;
+    const state=data.state;
+    const date=value=>value?new Date(value).toLocaleString('es-CL'):'Sin registro';
+    $('adminAccessState').textContent=state?[(state.pendiente_cambio?'Cambio de contraseña pendiente':'Contraseña actualizada'),'Temporal generada: '+date(state.emitida_en),'Entrega confirmada: '+date(state.entregada_en),'Último cambio: '+date(state.cambiada_en)].join(' · '):'Sin registro de contraseña temporal. No se infiere una entrega desde la creación de la cuenta.';
+    $('adminHistoryList').replaceChildren();const names={temporal_generada:'Se generó una contraseña temporal',entrega_confirmada:'Administrador confirmó la entrega',contrasena_actualizada:'La contraseña fue actualizada'};
+    (data.history||[]).forEach(item=>{const p=document.createElement('p');p.className='admin-note';p.textContent=date(item.creado_en)+' · '+(names[item.evento]||item.evento);$('adminHistoryList').append(p);});
+    return state;
+  }
+  async function showSecret(data){
+    secretUser=data.usuario_id;$('adminSecretEmail').textContent=data.email;
+    $('adminSecret').value=data.temporary_password;$('adminSecretBlock').hidden=false;
+    const state=await showHistory(secretUser);secretIssuedAt=state?.emitida_en||null;
+    $('adminDelivered').disabled=!secretIssuedAt||!state?.pendiente_cambio||!!state?.entregada_en;
+  }
+  async function run(fn){if(busy)return;busy=true;controls();try{await fn();}catch(e){status(e.message);}finally{busy=false;controls();}}
+  function confirmation(text,action){pending=action;$('adminConfirmText').textContent=text;$('adminConfirmEmail').value='';$('adminConfirm').hidden=false;$('adminConfirmEmail').focus();}
+  $('adminForm').addEventListener('submit',event=>{event.preventDefault();if(!allowed()||busy)return;if(!modules().length){status('Selecciona Prevencionista de riesgos, Supervisores, capataces y otros, o ambos.');return;}if($('adminRole').value==='administrador_area'&&modules().length!==1){status('Un administrador de área debe tener un solo módulo.');return;}
+    const body={action:selected?'update':$('adminMethod').value,usuario_id:selected?.usuario_id,nombre:$('adminName').value.trim(),email:$('adminEmail').value.trim().toLowerCase(),rol:$('adminRole').value,modulos:modules(),puede_editar:$('adminEdit').checked,activo:$('adminActive').checked};
+    confirmation(selected?'Guardarás el perfil y los permisos de esta cuenta.':body.action==='temporary_create'?'Crearás una cuenta con una contraseña temporal que deberás entregar al trabajador.':'Se creará una cuenta y se enviará una invitación a este correo.',{body,email:body.email});});
+  $('adminConfirmYes').addEventListener('click',()=>{if(!pending||busy)return;if($('adminConfirmEmail').value.trim().toLowerCase()!==pending.email){status('El correo de confirmación no coincide.');return;}const action=pending;run(async()=>{const data=await request(action.body);pending=null;$('adminConfirm').hidden=true;reset();status(data.message||'Operación completada.');if(data.temporary_password){await showSecret(data);return;}await refresh();});});
+  $('adminConfirmNo').addEventListener('click',()=>{if(busy)return;pending=null;$('adminConfirm').hidden=true;});
+  $('adminRecover').addEventListener('click',()=>{if(selected&&!busy)confirmation('Enviarás un correo para recuperar la contraseña.',{email:selected.email,body:{action:'recover',usuario_id:selected.usuario_id}});});
+  $('adminDelete').addEventListener('click',()=>{if(selected&&!busy&&capabilities.delete&&selected.activo===false)confirmation('Eliminarás definitivamente esta cuenta. Esta acción no se puede deshacer.',{email:selected.email,body:{action:'delete',usuario_id:selected.usuario_id,confirm_email:selected.email}});});
+  $('adminRefresh').addEventListener('click',()=>run(async()=>{status('Consultando usuarios…');await refresh();status('Lista actualizada.');}));
+  $('adminNew').addEventListener('click',()=>{if(!busy)reset();});$('adminSearch').addEventListener('input',render);
+  $('adminClose').addEventListener('click',()=>{forgetSecret();panel.hidden=true;pending=null;$('adminConfirm').hidden=true;opener?.focus();});
+  // Las opciones futuras deben comprobar su permiso propio también en el servidor.
+  const buttons=[];
+  const button=document.createElement('button');button.type='button';button.className='hys-admin-open';button.id='usersOpen258';button.title='Administración de usuarios';button.setAttribute('aria-label','Administración de usuarios');button.hidden=true;
+  button.innerHTML='<span class="tools-option-icon" aria-hidden="true">♙</span><span class="tools-option-label">Usuarios</span><span class="tools-option-full">Administración de usuarios</span>';
+  button.addEventListener('click',()=>{if(!showTools())return;window.Hys242Operations?.open('users');});
+  $('hysToolsOptions').append(button);buttons.push(button);
+  $('adminMethod').addEventListener('change',()=>{if(selected)return;$('adminSave').textContent=$('adminMethod').value==='temporary_create'?'Crear con contraseña temporal':'Enviar invitación';$('adminFormHelp').textContent=$('adminMethod').value==='temporary_create'?'La temporal se mostrará solo al crearla. El historial guardará fechas y estado, no la contraseña.':'El nuevo usuario recibirá una invitación por correo para elegir su contraseña.';});
+  $('adminTemporary').addEventListener('click',()=>{if(selected&&!busy&&selected.activo===true)confirmation('La contraseña actual dejará de funcionar. Se generará otra temporal para entregar al trabajador.',{email:selected.email,body:{action:'temporary_reset',usuario_id:selected.usuario_id,confirm_email:selected.email}});});
+  $('adminHistory').addEventListener('click',()=>{if(selected&&!busy)run(()=>showHistory(selected.usuario_id));});
+  $('adminShowSecret').addEventListener('click',()=>{$('adminSecret').type=$('adminSecret').type==='password'?'text':'password';});
+  $('adminForgetSecret').addEventListener('click',forgetSecret);
+  $('adminDelivered').addEventListener('click',()=>{if(!secretUser||!secretIssuedAt||busy)return;const uid=secretUser,issued=secretIssuedAt;run(async()=>{await request({action:'mark_delivery',usuario_id:uid,emitida_en:issued});forgetSecret();await showHistory(uid);status('Entrega registrada. La contraseña se borró de esta pantalla.');});});
+
+  window.reportesHysAdminSync=()=>{const usersVisible=showTools(),managementVisible=window.Hys242?.syncManagementRail()===true,visible=usersVisible||managementVisible;buttons.forEach(b=>b.hidden=!usersVisible);rail.hidden=!visible;document.body.classList.toggle('hys-tools-visible',visible);if(!visible){panel.hidden=true;railExpanded=false;rail.classList.toggle('expanded',false);document.body.classList.toggle('hys-tools-expanded',false);$('hysToolsToggle').setAttribute('aria-expanded','false');}const uid=allowed()?access().userId:null;if(owner!==uid){epoch++;forgetSecret();owner=uid;rows=[];selected=null;pending=null;panel.hidden=true;$('adminList').replaceChildren();$('adminForm').reset();$('adminConfirm').hidden=true;status('');}};
+  window.Hys242?.mountManagementRail();
+  window.HysAppearance242?.mount();
+  window.reportesHysAdminSync();
+})();
+
+</script>
+<script src="faculty-model-v261.js"></script><script src="role-control-v262.js"></script><script src="facultades-v242.js"></script><script src="operaciones-v242.js"></script><link rel="stylesheet" href="gestion-usuarios-v265.css"><script src="worker-model-v265.js"></script><script src="gestion-usuarios-v265.js"></script><script>
+/* v244 E: interfaz deshabilitada sin un servicio autorizado; montaje no destructivo. */
+/* v265: se retira el montaje duplicado de fichas, roles y áreas en Configuración de ambas tarjetas.
+   Gestión de usuarios centraliza el acceso a esos formularios. No altera la configuración de fotos ni PDF. */
+</script><script>
+/* F01 v245: inicializar bandeja de lectura local; no ejecuta tareas ni registra avisos. */
+(function(){
+ if(window.HYS243_PREVIEW_ONLY===true){
+  window.HYS245_REVIEW_ONLY=true;
+  window.Hys245Inbox?.setDemoDirectory([
+   {user_id:'11111111-1111-4111-8111-111111111111',nombre:'Persona de prueba A',modulo:'APR'},
+   {user_id:'22222222-2222-4222-8222-222222222222',nombre:'Persona de prueba B',modulo:'APR'},
+   {user_id:'33333333-3333-4333-8333-333333333333',nombre:'Persona de prueba C',modulo:'OTROS'},
+   {user_id:'44444444-4444-4444-8444-444444444444',nombre:'Persona de prueba D',modulo:'OTROS'}
+  ]);
+ }
+ const initialize=()=>{
+  const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
+  const header=document.querySelector('header.top .topmeta');
+  if(!header||!window.Hys245Inbox||!window.Hys242Bridge)return;
+  window.Hys245Inbox.mount({
+   header,module,
+   reportReader:()=>window.Hys242Bridge?.pack?.(),
+   userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null,
+   onNavigate(item){
+    window.Hys246PendingDetail?.open?.(item);
+   }
+  });
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize,{once:true});
+ else initialize();
+})();
+</script><script>
+/* F01b · Pantalla de consulta independiente. No escribe sobre el informe. */
+(function(){
+ const mount=()=>{
+  const module=new URLSearchParams(location.search).get('embedded')==='otros'?'OTROS':'APR';
+  const head=document.getElementById('mainPagehead');
+  if(!head||!window.Hys246PendingDetail||!window.Hys242Bridge)return;
+  window.Hys246PendingDetail.mount({
+   head,module,
+   reportReader:()=>window.Hys242Bridge.pack(),
+   userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null,
+   onTabChange:tab=>window.Hys242Bridge?.showTab?.(tab)
+  });
+  window.Hys250Dashboard?.mount?.({
+   panel:document.getElementById('pendingDetailPanel'),module,
+   reportReader:()=>window.Hys242Bridge.pack(),
+   userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null
+  });
+  const mountF251=()=>{
+   const a=window.__REPORTES_HYS_ACCESS__;
+   if(!a?.userId||a.selectedModule!==module){window.Hys251Notifications?.stop?.();return;}
+   window.Hys251Notifications?.mount?.({
+     module,reportReader:()=>window.Hys242Bridge.pack(),
+     userIdReader:()=>window.__REPORTES_HYS_ACCESS__?.userId||null,
+     readVisible:()=>[]
+   });
+   window.Hys250Dashboard?.refresh?.();
+  };
+  window.addEventListener('reportes-hys-access-changed',mountF251);
+  window.addEventListener('reportes-hys-access-changing',()=>window.Hys251Notifications?.stop?.());
+  if(window.__REPORTES_HYS_ACCESS__?.userId)mountF251();
+  const savedTab=(()=>{try{return sessionStorage.getItem('reportes-hys-active-tab')}catch{return null}})();
+  if(savedTab==='pendientes')window.Hys242Bridge.showTab('pendientes');
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});
+ else mount();
+})();
+</script></body></html>
+
+
+

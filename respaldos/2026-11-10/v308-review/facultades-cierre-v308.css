@@ -1,0 +1,119 @@
+/* Reportes HYS v308 — facultades adicionales de cierre (sin escrituras reales) */
+#hys265UsersPanel .hys308-close-faculties,
+#hys308CloseFacultyDemo .hys308-close-faculties{
+ border:1px solid #c7dce9;background:#f8fbfd;border-radius:13px;
+ padding:18px;margin:16px 0 19px;color:#183e5a;max-width:100%;
+}
+#hys265UsersPanel .hys308-close-faculties h3,
+#hys308CloseFacultyDemo .hys308-close-faculties h3{
+ font-size:17px;font-weight:800;margin:0 0 7px;
+}
+.hys308-close-faculties .hys308-fac-hint{
+ font-size:12px;line-height:1.55;margin:8px 0;color:#53718a;
+}
+.hys308-close-faculties .hys308-fac-warning{
+ border:1px solid #e4cf8f;background:#fff9e7;color:#805a17;
+ border-radius:8px;padding:10px 11px;font-size:12px;line-height:1.5;
+ margin:8px 0 14px;
+}
+.hys308-close-faculties .hys308-fac-label{
+ display:flex;flex-direction:column;font-weight:700;font-size:12px;gap:7px;
+ margin:12px 0;
+}
+.hys308-close-faculties .hys308-fac-search,
+.hys308-close-faculties .hys308-fac-principal{
+ min-height:40px;background:white;border:1px solid #a9c6d8;
+ padding:8px 10px;border-radius:8px;color:#173e5b;font:inherit;width:100%;
+}
+.hys308-close-faculties .hys308-fac-search:focus,
+.hys308-close-faculties .hys308-fac-principal:focus{
+ outline:2px solid #2774af;outline-offset:2px;
+}
+.hys308-close-faculties .hys308-fac-counts{
+ font-size:12px;font-weight:750;padding:8px 11px;border-radius:8px;
+ background:#e8f3fb;color:#20526e;margin:9px 0 12px;
+}
+.hys308-close-faculties .hys308-fac-head,
+.hys308-close-faculties .hys308-fac-person{
+ display:grid;grid-template-columns:minmax(0,1.7fr) minmax(120px,1fr) minmax(120px,1fr);
+ gap:10px;align-items:center;
+}
+.hys308-close-faculties .hys308-fac-head{
+ padding:11px 12px;font-weight:800;font-size:11px;
+ background:#e3eef6;border:1px solid #c4d8e7;border-radius:9px 9px 0 0;
+}
+.hys308-close-faculties .hys308-fac-rows{
+ max-height:330px;overflow-y:auto;border:1px solid #c4d8e7;border-top:0;
+ background:white;border-radius:0 0 9px 9px;
+}
+.hys308-close-faculties .hys308-fac-person{
+ padding:11px 12px;border-bottom:1px solid #dce8ef;min-width:0;
+}
+.hys308-close-faculties .hys308-fac-person:last-child{border-bottom:0}
+.hys308-close-faculties .hys308-fac-person:has(input:checked){background:#f1f9fc}
+.hys308-close-faculties .hys308-fac-name{
+ display:flex;flex-direction:column;min-width:0;
+}
+.hys308-close-faculties .hys308-fac-name strong{
+ font-size:12px;overflow-wrap:anywhere;
+}
+.hys308-close-faculties .hys308-fac-name small{
+ color:#668296;font-size:11px;margin-top:3px;
+}
+.hys308-close-faculties .hys308-fac-check{
+ display:flex;align-items:center;justify-content:flex-start;gap:7px;
+ font-size:12px;font-weight:700;cursor:pointer;
+}
+.hys308-close-faculties .hys308-fac-check input{
+ width:18px;height:18px;accent-color:#196c9d;cursor:pointer;
+}
+.hys308-close-faculties .hys308-fac-principals{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 15px;
+ margin-top:14px;
+}
+.hys308-close-faculties .hys308-fac-principals p{grid-column:1/-1}
+.hys308-close-faculties .hys308-fac-actions{
+ display:flex;gap:10px;flex-wrap:wrap;margin:13px 0;
+}
+.hys308-close-faculties .hys308-fac-actions button{
+ min-height:38px;border:1px solid #91b5cc;border-radius:8px;
+ padding:8px 12px;background:#f4fafe;color:#144b74;cursor:pointer;
+ font-weight:750;
+}
+.hys308-close-faculties .hys308-fac-actions button:first-child{
+ background:#17699e;color:white;
+}
+.hys308-close-faculties .hys308-fac-report{
+ padding:10px 12px;border:1px dashed #b8cbd9;border-radius:8px;
+ background:white;font-size:12px;line-height:1.55;overflow-wrap:anywhere;
+}
+.hys308-close-faculties .hys308-fac-report:empty{display:none}
+.hys308-close-faculties .hys308-fac-empty{
+ color:#647e90;padding:18px 12px;font-size:12px;
+}
+#hys308CloseFacultyDemo{
+ position:fixed;inset:0;background:rgba(12,35,53,.85);z-index:80000;
+ padding:20px;overflow:auto;
+}
+#hys308CloseFacultyDemo[hidden]{display:none!important}
+#hys308CloseFacultyDemo .hys308-fac-modal{
+ max-width:900px;margin:auto;background:white;border-radius:15px;padding:20px;
+}
+#hys308CloseFacultyDemo .hys308-fac-modal>header{
+ display:flex;gap:12px;align-items:center;justify-content:space-between;
+}
+#hys308CloseFacultyDemo .hys308-fac-modal>header button{
+ padding:9px 13px;background:#e7eff5;border:1px solid #bfd3df;
+ border-radius:8px;color:#173e59;cursor:pointer;
+}
+@media(max-width:640px){
+ .hys308-close-faculties .hys308-fac-head{display:none}
+ .hys308-close-faculties .hys308-fac-person{
+  grid-template-columns:1fr 1fr;gap:10px;
+ }
+ .hys308-close-faculties .hys308-fac-name{grid-column:1/-1}
+ .hys308-close-faculties .hys308-fac-check{font-size:11px}
+ .hys308-close-faculties .hys308-fac-principals{grid-template-columns:1fr}
+ #hys308CloseFacultyDemo{padding:8px}
+ #hys308CloseFacultyDemo .hys308-fac-modal{padding:12px}
+}

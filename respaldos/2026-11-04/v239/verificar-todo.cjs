@@ -1,0 +1,5 @@
+const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process'),vm=require('node:vm');
+for(const f of fs.readdirSync(__dirname).filter(f=>f.endsWith('.js')))new vm.Script(fs.readFileSync(path.join(__dirname,f),'utf8'),{filename:f});
+const files=['test-auth.cjs','test-admin-ui.cjs','test-apariencia-v239.cjs','test-inicio-pdf-v239.cjs','test-storage-v239.cjs','test-sync-v239.cjs','test-runtime-v239.cjs','test-database-v239.cjs','test-pdf-flow.cjs','test-pdf-real-v239.cjs'];const results=[];
+for(const file of files){const r=spawnSync(process.execPath,[path.join(__dirname,file)],{encoding:'utf8',cwd:__dirname,timeout:120000});results.push({file,ok:r.status===0,output:r.stdout+r.stderr});console.log((r.status===0?'OK ':'FALLO ')+file);if(r.status!==0)console.log(r.stdout,r.stderr)}
+fs.writeFileSync(path.join(__dirname,'RESULTADOS-PRUEBAS-v239.json'),JSON.stringify({date:'2026-11-03',environment:'Local; perfiles ficticios y PostgreSQL WASM. Sin escrituras Supabase real.',results},null,2));if(results.some(r=>!r.ok))process.exitCode=1;else console.log('10 conjuntos de pruebas aprobados.');

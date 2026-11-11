@@ -1,0 +1,24 @@
+/* C08 — acciones individuales: planificadas en el formulario y consultables en Seguimiento */
+.hys243-actions-editor{grid-column:1/-1;padding:12px;border:1px solid #a8c5e5;border-radius:9px;background:#f8fbff;display:grid;gap:9px;min-width:0}
+.hys243-actions-editor>strong{color:#173d68;font-weight:800}
+.hys243-actions-editor>p{font-size:12px;margin:0;color:#4d6680}
+.hys243-actions-editor label{font-weight:700;display:grid;gap:5px}
+.hys243-actions-editor select,.hys243-actions-editor textarea{font:inherit;padding:8px;border-radius:7px;border:1px solid #adc5df;min-width:0;width:100%;background:#fff}
+.hys243-actions-editor label:has(input[type=checkbox]){display:flex;align-items:center;gap:8px}
+.hys243-action-editor-row{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid #d0e0f1;border-radius:7px;padding:8px;margin:5px 0;overflow-wrap:anywhere}
+.hys243-action-editor-row .btn{flex-shrink:0}
+.hys243-action-editor-status{font-size:12px;color:#466f91}
+.hys243-action-tracker{border-top:1px solid #cfdfef;padding-top:10px;margin-top:10px}
+.hys243-action-tracker h4{font-size:14px;color:#173d68}
+.hys243-action-tracker ol{padding-left:23px}
+.hys243-action-tracker li{border:1px solid #d3e2ef;padding:10px;margin-bottom:10px;border-radius:8px;background:#fff;overflow-wrap:anywhere}
+.hys243-action-tracker li p{margin:6px 0}
+.hys243-action-tracker form{display:grid;gap:8px}
+.hys243-action-tracker label{display:grid;gap:5px;font-weight:700}
+.hys243-action-tracker input[type=file],.hys243-action-tracker textarea{width:100%;border:1px solid #b6cde5;border-radius:7px;padding:8px}
+.hys243-action-tracker button{border-radius:7px;border:1px solid #4d94c3;padding:8px;background:#f2faff;color:#1f4e70}
+.hys243-action-tracker button:disabled{opacity:.7;cursor:not-allowed;background:#eef2f7}
+.hys243-action-status,.hys243-action-warning{font-size:12px;border-left:3px solid #c9994e;background:#fff9ed;padding:7px 9px;color:#6a5132}
+.hys243-action-empty{font-size:12px;color:#65778b}
+.hys243-action-response{font-weight:700;font-size:12px}
+@media(max-width:760px){.hys243-action-editor-row{display:block}.hys243-action-editor-row .btn{width:100%;margin-top:7px}.hys243-actions-editor{padding:10px}}

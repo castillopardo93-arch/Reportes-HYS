@@ -1,0 +1,69 @@
+{
+  "fuente": "HSS-RGT-007-Flash_Final Report rev.8.xlsx",
+  "hojas": {
+    "Lista": {
+      "headers": [
+        "Tipo de incidente",
+        "Area del proyecto",
+        "Dia",
+        "Mes",
+        "Año",
+        "Lesiones con tiempo perdido",
+        "Testigos",
+        "Preguntas genéricas",
+        "Tipo de pérdida"
+      ]
+    },
+    "Flash Report": {
+      "rango": "A1:Y58",
+      "campos": [
+        "Incidente",
+        "Probabilidad tiempo perdido",
+        "Hora",
+        "Fecha",
+        "Área",
+        "Ubicación",
+        "Involucrado",
+        "Cargo",
+        "RUT",
+        "Responsables",
+        "Primera atención",
+        "Testigos (3)",
+        "Fotografías",
+        "Descripción",
+        "Causas aparentes",
+        "Acciones inmediatas",
+        "Reportado por",
+        "Preparado por"
+      ]
+    },
+    "Final Report": {
+      "rango": "A1:X147",
+      "secciones": [
+        "Antecedentes generales",
+        "Antecedentes adicionales",
+        "Declaraciones",
+        "Descripción de los hechos",
+        "Fotografías",
+        "Procedimientos asociados",
+        "Matriz de identificación de peligros y evaluación de riesgos",
+        "Capacitaciones",
+        "Análisis de causas",
+        "Planes de acción",
+        "Equipo investigador y aprobaciones"
+      ]
+    },
+    "Tabla": {
+      "rango": "A1:P102",
+      "categorias": [
+        "1.1–1.37 condiciones subestándar",
+        "1.38–1.73 acciones subestándar",
+        "2.1–2.25 factores técnicos o del trabajo",
+        "2.26–2.49 factores personales",
+        "3.1–3.31 gestión de control"
+      ]
+    }
+  },
+  "estado": "Catálogos de selección iniciales embebidos en desarrollo; vinculación dinámica de Excel pendiente de autorización.",
+  "datos_personales": "No almacenar RUT, historia médica ni declaraciones en localStorage o recursos públicos."
+}

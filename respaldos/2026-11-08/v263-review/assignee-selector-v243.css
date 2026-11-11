@@ -1,0 +1,15 @@
+/* C04: asignación múltiple sin modificar las siete columnas de Hallazgos */
+.hys243-assignee-picker{grid-column:1/-1;min-width:0;border:1px solid #d5d9e9;border-radius:9px;background:#fafaff;padding:12px}
+.hys243-assignee-picker>strong{display:block;color:#173d68;font-weight:800;margin-bottom:4px}
+.hys243-assignee-note,.hys243-assignee-status,.hys243-assignee-legacy{margin:5px 0 8px;font-size:12px;color:#52677e}
+.hys243-assignee-legacy{color:#755a24}
+.hys243-assignee-picker input[type=search]{display:block;width:100%;min-height:40px;background:#fff;border-radius:7px;border:1px solid #bccfe6;padding:8px}
+.hys243-assignee-chosen{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.hys243-assignee-chip{border-radius:18px;border:1px solid #a3b9df;background:#eaf1fc;color:#244d83;padding:5px 9px}
+.hys243-assignee-chip:disabled{opacity:.72;cursor:not-allowed}
+.hys243-assignee-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));max-height:180px;overflow:auto;gap:5px}
+.hys243-assignee-choice{background:white;border:1px solid #c9dcf1;border-radius:7px;text-align:left;padding:7px;overflow-wrap:anywhere}
+.hys243-assignee-choice.selected{background:#e8f5ed;border-color:#9fc7b0;font-weight:700}
+tr.hys243-assignee-detail td{padding:9px 12px!important;background:#f9f9ff;overflow-wrap:anywhere}
+.hys243-assignee-tag{display:inline-block;margin:2px 4px;border:1px solid #ced9e8;border-radius:8px;padding:3px 7px;white-space:normal;background:white;font-size:11px}
+@media(max-width:760px){.hys243-assignee-picker{padding:10px}.hys243-assignee-results{grid-template-columns:1fr;max-height:170px}tr.hys243-assignee-detail td{display:block;width:100%}}

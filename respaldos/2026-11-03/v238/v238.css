@@ -1,0 +1,18 @@
+#management238[hidden],#manageOpen238[hidden],#manageInModule238[hidden]{display:none!important}
+#management238{position:fixed;inset:0;z-index:65000;background:#0b294ce6;padding:24px;overflow:auto}
+.management-shell{max-width:1100px;margin:auto;background:#f4f8fc;border-radius:16px;padding:24px;color:#173d68}
+.management-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.management-head h1{font-size:24px}
+#management238 label{display:block;margin:12px 0;font-weight:700}#management238 input,#management238 select{padding:10px;border:1px solid #b8d2f0;border-radius:7px;max-width:100%}
+#manageForm238{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:20px 0}.manage-row{padding:14px;margin:10px 0;background:white;border:1px solid #c9def5;border-radius:9px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.manage-row strong{flex:1}.manage-row p{width:100%;overflow-wrap:anywhere;font-size:12px}
+#manageInModule238{margin:12px 8px;font-size:12px}#cloudStatus238{white-space:pre-line;color:#173d68;background:#eef5fc;border:1px solid #c9def5;border-radius:8px;margin-bottom:12px}
+.nav[aria-current=page]{background:#2879bc;color:white;font-weight:800}
+@media(max-width:700px){#management238{padding:8px}.management-shell{padding:14px}.management-head h1{font-size:19px}#manageInModule238{flex:0 0 auto}.manage-row{align-items:stretch}.manage-row strong{flex-basis:100%}}
+@media print{#management238,#manageInModule238,#manageOpen238{display:none!important}}
+#management238 [hidden]{display:none!important}
+
+#hysToolsOptions #manageOpen238 .tools-option-label{overflow-wrap:anywhere;text-align:center}
+
+/* Nombres visibles de módulos; claves APR/OTROS permanecen compatibles. */
+.module-card h2,.module-card button{overflow-wrap:anywhere}.module-card button{white-space:normal}
+.brand{min-width:0}.brand>span,body.embedded-otros .brand span{font-size:clamp(12px,1.2vw,16px);white-space:normal;line-height:1.25}body.embedded-otros .brand span:after{content:none}
+

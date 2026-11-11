@@ -1,0 +1,12 @@
+/* Reportes HYS F02-F07: historial local, sin estados de entrega inventados */
+.hys251-intro{display:grid;gap:4px;margin:0 0 12px}
+.hys251-intro h4{font-size:14px;color:#234f73;margin:0}
+.hys251-muted{font-size:12px;color:#637d93;line-height:1.55;margin:6px 0}
+.hys251-events{display:grid;gap:8px;max-height:420px;overflow:auto}
+.hys251-event{border:1px solid #d9e7f1;border-left:3px solid #4a8cba;border-radius:8px;display:grid;gap:5px;padding:12px;background:#f8fbfe;color:#264a62}
+.hys251-event-title{font-size:12px;font-weight:800}
+.hys251-event small{font-size:11px;color:#58768b;line-height:1.45}
+.hys251-chip{display:inline-flex;justify-self:start;border-radius:999px;background:#e7f2fb;color:#235d85;padding:3px 8px;font-size:10px;font-weight:800}
+.hys251-export{border:1px solid #bad6e8;border-radius:8px;padding:9px 12px;margin-top:12px;background:#f0f8fd;color:#245f87;font-size:12px;font-weight:800;max-width:100%}
+.hys251-export:focus-visible{outline:3px solid #7cb6dc;outline-offset:2px}
+@media(max-width:700px){.hys251-export{width:100%}}

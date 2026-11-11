@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reportes HYS · Revisión de facultades</title>
+<link rel="stylesheet" href="faculty-settings-v259.css">
+<style>
+:root{font-family:system-ui,Arial,sans-serif;color:#173d68;background:#eff5fb}*{box-sizing:border-box}
+body{margin:0;padding:24px}.demo-banner{max-width:900px;margin:16px auto;background:#fff;border:1px solid #d9e4ed;border-radius:14px;padding:25px;box-shadow:0 4px 18px #16375113}
+h1{margin-top:0}p{line-height:1.65}button,.btn{font:inherit;cursor:pointer;border:1px solid #bacfdf;background:#f6f9fc;color:#173d68;border-radius:9px;padding:10px 15px}
+button.primary,.btn.primary{background:#155793;border-color:#155793;color:white}button:disabled{cursor:not-allowed;opacity:.5}
+#hysToolsRail{max-width:900px;margin:12px auto}#hysToolsOptions{display:flex;gap:10px;flex-wrap:wrap}
+.hys-admin-open{display:flex;gap:10px;align-items:center}.tools-option-full,.tools-option-label{display:inline}
+@media(max-width:650px){body{padding:12px}}
+</style></head>
+<body class="module-choice">
+<section class="demo-banner">
+ <h1>Reportes HYS — facultades v261</h1>
+ <p><strong>Demostración aislada, con cuentas ficticias.</strong> Revisa el nuevo centro de facultades sin iniciar sesión. No utiliza el proyecto Supabase ni modifica usuarios, áreas o versiones oficiales.</p>
+ <p>Prueba el acceso a ambas tarjetas, las opciones <strong>Todas las áreas</strong> y <strong>Seleccionar áreas</strong>, la búsqueda, la copia de áreas entre tarjetas y las facultades especiales de un Administrador.</p>
+ <button id="startDemo" class="btn primary" type="button">Abrir administración de facultades</button>
+</section>
+<aside id="hysToolsRail" aria-label="Opciones de demostración"><nav id="hysToolsOptions"></nav></aside>
+<script>
+window.HYS242_DEPLOYMENT_READY=false;
+window.HYS257_ENABLE_USER_MANAGEMENT=false;
+window.HYS261_ATOMIC_FACULTIES_READY=false;
+window.HysAppearance242={moduleLabel:m=>m==='APR'?'Prevencionista de riesgos':m==='OTROS'?'Supervisores, capataces y otros':m};
+window.__REPORTES_HYS_ACCESS__={userId:'admin-general-ficticio',profile:{activo:true,rol:'administrador_global'},modules:['APR','OTROS'],permissions:[],facultades:[],selectedModule:null};
+const demoUsers=[
+ {usuario_id:'cuenta-uno',nombre:'Administrador de ejemplo',rol:'administrador_area',activo:true,revision:3,ambitos:{APR:{ver:true,editar:true,areas:['apr-va4','apr-v5']},OTROS:{ver:false,editar:false,areas:[]}}},
+ {usuario_id:'cuenta-dos',nombre:'Supervisor de ejemplo',rol:'supervisor',activo:true,revision:2,ambitos:{APR:{ver:true,editar:true,areas:['apr-va4']},OTROS:{ver:true,editar:false,areas:['otr-va4']}}},
+ {usuario_id:'cuenta-tres',nombre:'Prevencionista de ejemplo',rol:'usuario',activo:true,revision:1,ambitos:{APR:{ver:true,editar:true,areas:['apr-au']}}},
+ {usuario_id:'cuenta-cuatro',nombre:'Apoyo de terreno',rol:'usuario',activo:true,revision:4,ambitos:{OTROS:{ver:true,editar:false,areas:['otr-v5','otr-au']}}}
+];
+const demoAreas=[
+ {id:'apr-va4',nombre:'VA4',activa:true,modulo:'APR'},{id:'apr-v5',nombre:'V5',activa:true,modulo:'APR'},{id:'apr-au',nombre:'AUCAYES',activa:true,modulo:'APR'},{id:'apr-mt',nombre:'MAITENES',activa:true,modulo:'APR'},
+ {id:'otr-va4',nombre:'VA4',activa:true,modulo:'OTROS'},{id:'otr-v5',nombre:'V5',activa:true,modulo:'OTROS'},{id:'otr-au',nombre:'AUCAYES',activa:true,modulo:'OTROS'},{id:'otr-mt',nombre:'MAITENES',activa:true,modulo:'OTROS'}
+];
+const demoFac=[
+ {usuario_id:'cuenta-uno',modulo:'APR',revision:1,areas_ids:['apr-va4','apr-v5'],facultades:{view:true,audit:true}},
+ {usuario_id:'cuenta-uno',modulo:'OTROS',revision:0,areas_ids:[],facultades:{}}
+];
+window.reportesHysSupabase={
+ rpc:async name=>name==='hys242_listar_usuarios'?{data:structuredClone(demoUsers),error:null}:{data:null,error:{message:'Demostracion sin cambios remotos'}},
+ from:table=>({
+  select:()=>({
+   in:()=>({order:async()=>({data:structuredClone(demoAreas),error:null})}),
+   eq:(_,id)=>Promise.resolve({data:structuredClone(demoFac.filter(x=>x.usuario_id===id)),error:null})
+  })
+ })
+};
+</script>
+<script src="access-policy-v256.js"></script>
+<script src="access-settings-v259.js"></script>
+<script src="faculty-model-v261.js"></script>
+<script src="facultades-v242.js"></script>
+<script>document.getElementById('startDemo').onclick=()=>window.Hys242Facultades.openFor();</script>
+</body></html>

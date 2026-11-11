@@ -1,0 +1,73 @@
+/* v261: fichas y tarjetas administrativas; alcance exclusivo de Facultades. */
+#facultadesPanel242[hidden],#facultadesPanel242 [hidden]{display:none!important}
+#facultadesPanel242{position:fixed;inset:0;z-index:65000;background:#0b294ce9;padding:24px;overflow:auto;color:#173d68}
+#facultadesPanel242 .faculty-shell259{max-width:1100px;margin:0 auto;background:#f3f7fc;padding:24px;border-radius:18px;min-height:min(720px,90vh)}
+#facultadesPanel242 h1{font-size:24px;margin:0}#facultadesPanel242 h2{font-size:19px;margin:0 0 12px}#facultadesPanel242 p{line-height:1.5;color:#526b83}
+#facultadesPanel242 label{display:block;margin:10px 0}
+#facultadesPanel242 input:not([type=checkbox]):not([type=radio]),#facultadesPanel242 select{display:block;max-width:100%;width:100%;padding:11px;border:1px solid #bfcede;border-radius:9px;font:inherit;background:#fff;color:#173d68;box-sizing:border-box}
+#facultadesPanel242 input:focus-visible,#facultadesPanel242 button:focus-visible,#facultadesPanel242 summary:focus-visible{outline:3px solid #3d80c5;outline-offset:2px}
+#facultadesPanel242 .faculty-card259{background:#fff;border:1px solid #dce6f0;border-radius:14px;padding:20px;margin:18px 0;box-shadow:0 3px 12px #14365508}
+#facultadesPanel242 .faculty-check259{display:flex;align-items:center;gap:10px;min-height:39px;margin:0;padding:10px 12px;background:#f6f9fc;border-radius:8px;overflow-wrap:anywhere;cursor:pointer}
+#facultadesPanel242 .faculty-check259 input{flex:0 0 auto;width:18px;height:18px}
+#facultadesPanel242 .faculty-actions259{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}
+#facultadesPanel242 button.btn{min-height:42px}
+#facultadesPanel242 .faculty-directory-head261{display:flex;justify-content:space-between;align-items:center;gap:20px}
+#facultadesPanel242 .faculty-directory-head261 h2{margin-bottom:3px}
+#facultadesPanel242 .faculty-directory-head261 p{margin:0}
+#facultadesPanel242 .faculty-directory-filters261{display:grid;grid-template-columns:1fr 250px;gap:14px;margin:16px 0}
+#facultadesPanel242 .faculty-directory-count261{font-size:13px;font-weight:600;margin:0 0 12px}
+#facultyDirectoryRows261{display:grid;gap:12px}
+#facultadesPanel242 .faculty-person261{background:#fff;border:1px solid #dce6f0;border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+#facultadesPanel242 .faculty-person-info261{min-width:0;display:flex;gap:5px;flex-direction:column}
+#facultadesPanel242 .faculty-person-info261 strong{font-size:16px}
+#facultadesPanel242 .faculty-person-info261 small{font-size:13px;color:#65788b}
+#facultadesPanel242 .faculty-person-modules261{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+#facultadesPanel242 .faculty-person-modules261 span{display:inline-block;border-radius:40px;padding:5px 9px;font-size:12px}
+#facultadesPanel242 .faculty-person-on261{background:#e5f3ed;color:#1c6250}
+#facultadesPanel242 .faculty-person-off261{background:#edf1f5;color:#617184}
+#facultadesPanel242 .faculty-detail-head261{display:flex;gap:20px;align-items:center;margin-top:10px}
+#facultadesPanel242 .faculty-detail-head261 h2{margin:0}
+#facultadesPanel242 .faculty-detail-head261 p{margin:3px 0 0;font-size:13px}
+#facultyCards261{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#facultadesPanel242 .faculty-module261{border:1px solid #d8e3ef;border-radius:13px;padding:16px;background:#f8fbfe;min-width:0}
+#facultadesPanel242 .faculty-module-enabled261{border-color:#80a7c8;background:#fff}
+#facultadesPanel242 .faculty-module-header261{display:flex;align-items:flex-start;justify-content:space-between;gap:9px;margin-bottom:13px}
+#facultadesPanel242 .faculty-module-title261{display:flex;align-items:flex-start;gap:9px;font-weight:700;cursor:pointer;line-height:1.35;margin:0}
+#facultadesPanel242 .faculty-module-title261 input{flex:0 0 19px;width:19px;height:19px;margin:2px 0 0}
+#facultadesPanel242 .faculty-module-header261 p{font-size:12px;margin:5px 0 0}
+#facultadesPanel242 .faculty-state261{flex-shrink:0;background:#e8eef7;color:#35597e;border-radius:30px;padding:6px 8px;font-size:11px}
+#facultadesPanel242 .faculty-disabled-note261{margin:0;font-size:13px}
+#facultadesPanel242 .faculty-area-mode261{border:0;padding:9px 0 0;margin:13px 0 0;min-width:0}
+#facultadesPanel242 .faculty-area-mode261 legend{font-weight:700;font-size:14px;padding:0;margin:0 0 7px}
+#facultadesPanel242 .faculty-radio261{display:flex;align-items:center;gap:9px;margin:4px 0;padding:7px 10px;border-radius:8px;background:#f5f8fc;cursor:pointer}
+#facultadesPanel242 .faculty-radio261 input{width:17px;height:17px;margin:0}
+#facultadesPanel242 .faculty-areas-count261{font-size:13px;margin:10px 0 0}
+#facultadesPanel242 .faculty-picker261{border-top:1px solid #e0e8f1;margin-top:10px;padding-top:12px}
+#facultadesPanel242 .faculty-picker-tools261{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px}
+#facultadesPanel242 .faculty-picker-tools261 input{flex:1 1 140px;min-width:130px}
+#facultadesPanel242 .faculty-picker-tools261 button{flex:0 1 auto;font-size:12px;padding:8px 10px}
+#facultadesPanel242 .faculty-areas-grid261{margin-top:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:290px;overflow:auto;padding:3px}
+#facultadesPanel242 .faculty-areas-grid261 label{font-size:13px}
+#facultySpecialCards261{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#facultadesPanel242 .faculty-special-module261{border:1px solid #dde7f0;border-radius:10px;padding:12px;background:#f9fbfd;min-width:0}
+#facultadesPanel242 .faculty-special-module261 summary{font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px}
+#facultadesPanel242 .faculty-cap-grid261{display:grid;gap:7px}
+#facultadesPanel242 .faculty-cap-grid261 label{font-size:13px;line-height:1.4}
+#facultadesPanel242 .faculty-summary-line261{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid #e4ecf4}
+#facultadesPanel242 .faculty-summary-line261 strong{display:block;font-size:14px}
+#facultadesPanel242 .faculty-summary-line261 small{display:block;margin-top:5px;color:#647a8f;font-size:12px}
+#facultadesPanel242 .faculty-summary-state261{font-size:12px;white-space:nowrap;color:#305775}
+#facultadesPanel242 .faculty-summary-result261{font-weight:600;font-size:13px;margin:13px 0}
+#facultadesPanel242 #facultySafety261{font-size:12px}
+#facultadesPanel242 #facultadesStatus242:not(:empty){background:#e7edf5;border:1px solid #cfdeed;padding:10px 14px;border-radius:9px;font-size:13px}
+@media(max-width:900px){#facultyCards261,#facultySpecialCards261{grid-template-columns:1fr}}
+@media(max-width:650px){
+ #facultadesPanel242{padding:0}#facultadesPanel242 .faculty-shell259{padding:14px;border-radius:0;min-height:100vh}
+ #facultadesPanel242 .faculty-card259{padding:14px}
+ #facultadesPanel242 .faculty-directory-head261,#facultadesPanel242 .faculty-person261,#facultadesPanel242 .faculty-detail-head261{align-items:stretch;flex-direction:column}
+ #facultadesPanel242 .faculty-directory-filters261{grid-template-columns:1fr;gap:4px}
+ #facultadesPanel242 .faculty-areas-grid261{grid-template-columns:1fr}
+ #facultadesPanel242 .faculty-actions259 button,#facultadesPanel242 .faculty-person261>button{width:100%}
+ #facultadesPanel242 .faculty-person-modules261{flex-direction:column;align-items:flex-start}
+}
+@media print{#facultadesPanel242{display:none!important}}

@@ -1,0 +1,15 @@
+/* v244 D02–D06: datos complementarios APR, sin modificar fotos ni tabla original */
+.hys244-activity-editor{grid-column:1/-1;display:grid;gap:9px;padding:13px;background:#f6faff;border:1px solid #bcd4ec;border-radius:10px;min-width:0}
+.hys244-activity-editor>strong{font-size:15px;color:#163d66}
+.hys244-activity-editor>p{font-size:12px;color:#526a82;margin:0}
+.hys244-activity-editor label{display:grid;gap:5px;min-width:0;font-weight:700;color:#294661}
+.hys244-activity-editor select,.hys244-activity-editor input[type=date]{min-width:0;width:100%;padding:8px 9px;border:1px solid #b5cbe1;border-radius:7px;background:#fff;color:#173d68;font:inherit}
+.hys244-activity-editor select:disabled{background:#edf2f6;color:#637889}
+.hys244-activity-editor small{font-size:12px;line-height:1.4;color:#5f7188}
+.hys244-activity-editor label[hidden]{display:none!important}
+.hys244-activity-editor-status{min-height:0;color:#985a20!important}
+.hys244-activity-extra td{padding:7px 10px!important;background:#f8fbfe!important}
+.hys244-activity-summary{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:#34536e}
+.hys244-activity-summary>span{overflow-wrap:anywhere}
+.hys244-activity-summary small{width:100%;color:#8a683d}
+@media(max-width:680px){.hys244-activity-editor{padding:10px}.hys244-activity-summary{display:grid;gap:5px}}

@@ -1,0 +1,20 @@
+
+/* v266 · Verificación técnica dentro de Seguimiento. Sin modificar otras pantallas. */
+#operations242 .hys266-check-intro{max-width:1060px;margin:8px auto 30px;padding:20px;background:#fff;border:1px solid #c5d9ee;border-radius:14px;color:#153b64;line-height:1.55}
+#operations242 .hys266-check-intro>h2{font-size:22px;margin:0 0 4px}
+#operations242 .hys266-check-intro>p{margin:8px 0 17px}
+#operations242 .hys266-check-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:16px 0}
+#operations242 .hys266-check-row{background:#f6faff;border:1px solid #ccdbed;border-radius:10px;padding:14px;overflow-wrap:anywhere}
+#operations242 .hys266-check-row h3{font-size:16px;margin:0 0 7px}
+#operations242 .hys266-check-row strong{font-size:14px;display:block}
+#operations242 .hys266-check-row p{font-size:13px;margin:7px 0}
+#operations242 .hys266-check-row[data-state="ok"]{border-left:4px solid #347b5e}
+#operations242 .hys266-check-row[data-state="pending"]{border-left:4px solid #bb7240}
+#operations242 #hys266VerificationButton{white-space:nowrap;flex:0 0 auto}
+#operations242 #hys266BackupModule{max-width:420px;margin:10px 0}
+#operations242 .management-head{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+@media(max-width:760px){
+ #operations242 .hys266-check-intro{padding:14px;border-radius:9px;margin:8px 0 22px}
+ #operations242 .hys266-check-results{grid-template-columns:1fr}
+ #operations242 #hys266VerificationButton{order:3;width:100%}
+}
